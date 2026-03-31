@@ -33,7 +33,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const LicenseredeCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Licenserede Casinoer i Danmark 2026 – Din Komplette Guide", description: "Alt om licenserede danske casinoer, Spillemyndigheden og spillerbeskyttelse.", url: `${SITE_URL}/casino-licenser`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Licenserede Casinoer i Danmark 2026 – Din Komplette Guide", description: "Alt om licenserede danske casinoer, Spillemyndigheden og spillerbeskyttelse.", url: `${SITE_URL}/casino-licenser`, datePublished: "2026-05-21" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (

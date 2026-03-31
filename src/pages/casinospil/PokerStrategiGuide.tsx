@@ -78,7 +78,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Poker Strategi 2026 – EV-modeller, Positionsspil & Bankroll Management",
   description: "Avanceret dansk poker strategi-guide. Lær positionsspil, pot odds, implied odds, GTO-koncepter og bankroll management.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-04-29",
   url: `${SITE_URL}/casinospil/poker/poker-strategi`,
   image: `${SITE_URL}/og/poker-strategi.jpg`,
 });

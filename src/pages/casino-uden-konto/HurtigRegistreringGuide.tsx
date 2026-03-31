@@ -102,7 +102,7 @@ const HurtigRegistreringGuide = () => {
     headline: "Hurtig Registrering – Pay N Play vs. MitID vs. Standard 2026",
     description: "Detaljeret sammenligning af registreringsmetoder på danske casinoer: Pay N Play, MitID og standard email. Tidstest-data, scenarieanalyser og EV-model for tidsbesparelse.",
     url: `${SITE_URL}/casino-uden-konto/hurtig-registrering`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-08",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

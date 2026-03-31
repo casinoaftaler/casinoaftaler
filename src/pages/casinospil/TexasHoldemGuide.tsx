@@ -109,7 +109,7 @@ const TexasHoldemGuide = () => {
     headline: "Texas Hold'em 2026 – Regler, Strategi & Håndrankering",
     description: "Komplet dansk guide til Texas Hold'em poker: regler, strategi, pot odds, positionsspil og starthands-rangering for begyndere og øvede.",
     url: `${SITE_URL}/casinospil/poker/texas-holdem`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-05-01",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

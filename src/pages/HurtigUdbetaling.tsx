@@ -169,7 +169,7 @@ const HurtigUdbetaling = () => {
     headline: "Hurtig Udbetaling Casino – Casinoer med Hurtigste Udbetalinger",
     description: "Find casinoer med hurtige udbetalinger i Danmark. Sammenlign udbetalingstider, betalingsmetoder og find casinoer der udbetaler inden for minutter.",
     url: `${SITE_URL}/hurtig-udbetaling`,
-    datePublished: "2026-03-31",
+    datePublished: "2026-06-04",
   });
 
   return (

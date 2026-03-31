@@ -80,7 +80,7 @@ const BaccaratGuide = () => {
     description:
       "Matematisk analyse af baccarat: Banker vs Player edge, kommissionsberegning, varians, korttælling og high roller-perspektiv.",
     url: `${SITE_URL}/casinospil/baccarat`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-19",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

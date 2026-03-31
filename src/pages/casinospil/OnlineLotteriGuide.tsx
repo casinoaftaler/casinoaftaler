@@ -98,7 +98,7 @@ const OnlineLotteriGuide = () => {
     headline: "Online Lotteri – Jackpot-Sandsynlighed og Regressionsanalyse",
     description: "Dybdegående analyse af lotteri-sandsynligheder: kombinatorik, EV, house edge, regression to the mean og jackpot-psykologi.",
     url: `${SITE_URL}/casinospil/online-lotteri`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-03-19",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

@@ -34,7 +34,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const VRCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "VR Casinoer 2026 – Virtual Reality Gambling i Danmark", description: "VR casinoer i Danmark 2026: Virtual Reality gambling, teknologi, headsets og fremtidsperspektiver for VR-casino.", url: `${SITE_URL}/casinoer/vr-casinoer`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "VR Casinoer 2026 – Virtual Reality Gambling i Danmark", description: "VR casinoer i Danmark 2026: Virtual Reality gambling, teknologi, headsets og fremtidsperspektiver for VR-casino.", url: `${SITE_URL}/casinoer/vr-casinoer`, datePublished: "2026-05-24" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (

@@ -73,7 +73,7 @@ const NyeCasinoerTrustly = () => {
     headline: "Nye Casinoer med Trustly – Pay N Play i Danmark 2026",
     description: "Find nye casinoer med Trustly og Pay N Play. Bankkompatibilitet, beløbsgrænser og onboarding-test hos 15+ nye casinoer.",
     url: `${SITE_URL}/nye-casinoer/trustly`,
-    datePublished: "2026-02-01",
+    datePublished: "2026-05-25",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

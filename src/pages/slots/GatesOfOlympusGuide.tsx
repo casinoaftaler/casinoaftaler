@@ -68,7 +68,7 @@ const GatesOfOlympusGuide = () => {
     headline: "Gates of Olympus – Multiplikator-Matematik & Feature-Analyse",
     description: "Komplet matematisk analyse af Gates of Olympus: multiplikatormekanik, volatilitetsprofil, EV-beregninger og strategisk vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/gates-of-olympus`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-06",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

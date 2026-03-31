@@ -79,7 +79,7 @@ const LegacyOfDeadGuide = () => {
     headline: "Legacy of Dead – Progressiv Expanding Symbol-Analyse",
     description: "Dybdegående analyse af Legacy of Dead: progressivt expanding symbol-system, sammenligning med Book of Dead, RTP 96,58 % og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-05",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

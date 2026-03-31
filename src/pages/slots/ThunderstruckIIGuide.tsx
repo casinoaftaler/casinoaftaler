@@ -36,7 +36,7 @@ const ThunderstruckIIGuide = () => {
     headline: "Thunderstruck II – Progressive Bonus & RTP",
     description: "Komplet analyse af Thunderstruck II: progressiv Great Hall of Spins, 96,65 % RTP, 8.000× max win og fire unikke bonusniveauer.",
     url: `${SITE_URL}/casinospil/spillemaskiner/thunderstruck-ii`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-12",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 

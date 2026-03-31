@@ -91,7 +91,7 @@ const ReactoonzGuide = () => {
     headline: "Reactoonz – Cluster Pays Analyse & Volatilitetsprofil",
     description: "Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/reactoonz`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-01",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

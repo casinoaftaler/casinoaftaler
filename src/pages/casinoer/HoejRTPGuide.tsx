@@ -38,7 +38,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const HoejRTPGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Casinoer med Høj RTP 2026 – Bedste Tilbagebetalingsprocent", description: "Guide til casinoer og spil med den højeste RTP i Danmark 2026.", url: `${SITE_URL}/casinoer/hoej-rtp`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Casinoer med Høj RTP 2026 – Bedste Tilbagebetalingsprocent", description: "Guide til casinoer og spil med den højeste RTP i Danmark 2026.", url: `${SITE_URL}/casinoer/hoej-rtp`, datePublished: "2026-05-19" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (

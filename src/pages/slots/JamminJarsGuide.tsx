@@ -90,7 +90,7 @@ const JamminJarsGuide = () => {
     headline: "Jammin' Jars – Cluster Pays & Multiplikator-Analyse",
     description: "Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/jammin-jars`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-04",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

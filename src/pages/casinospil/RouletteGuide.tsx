@@ -96,7 +96,7 @@ const RouletteGuide = () => {
     description:
       "Komplet guide til roulette: regler, bet-typer, hjulets opbygning, odds, European vs American og live roulette. Alt du skal vide.",
     url: `${SITE_URL}/casinospil/roulette`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-13",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

@@ -82,7 +82,7 @@ const DreamCatcherGuide = () => {
     headline: "Dream Catcher – Komplet Matematisk Guide til Money Wheel",
     description: "Dream Catcher: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og volatilitetsprofil. Det originale live game show.",
     url: `${SITE_URL}/live-casino/dream-catcher`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-14",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

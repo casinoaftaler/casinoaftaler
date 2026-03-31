@@ -94,7 +94,7 @@ const HurtigUdbetalingGuide = () => {
     headline: "Casinoer med Hurtig Udbetaling 2026 – Få Dine Gevinster Hurtigt",
     description: "Komplet guide til de hurtigste online casinoer i Danmark. Sammenlign udbetalingstider, betalingsmetoder og tips til lynhurtige udbetalinger.",
     url: `${SITE_URL}/casinoer/hurtig-udbetaling`,
-    datePublished: "2026-02-01",
+    datePublished: "2026-05-20",
   });
 
   const faqSchema = buildFaqSchema(faqs);

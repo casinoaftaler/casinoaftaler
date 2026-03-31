@@ -70,7 +70,7 @@ const RazorSharkGuide = () => {
     headline: "Razor Shark – Mystery Stacks, Volatilitet & Gevinstpotentiale",
     description: "Dybdegående analyse af Push Gamings Razor Shark: RTP 96,70 %, max win 50.000x, Mystery Stack-mekanik og risikoprofil.",
     url: `${SITE_URL}/casinospil/spillemaskiner/razor-shark`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

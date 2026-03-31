@@ -75,7 +75,7 @@ const LiveRouletteGuide = () => {
     headline: "Live Roulette – Bordtyper, House Edge & Strategi 2026",
     description: "Komplet live roulette guide 2026. House edge 2,70 % (EU) vs. 5,26 % (US), bordtyper, tempoanalyse og bankroll management for danske spillere.",
     url: `${SITE_URL}/live-casino/roulette`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-22",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

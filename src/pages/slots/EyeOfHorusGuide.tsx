@@ -39,7 +39,7 @@ const EyeOfHorusGuide = () => {
     headline: "Eye of Horus – Symbol Upgrade & Volatilitetsanalyse",
     description: "Dybdegående analyse af Eye of Horus: symbol upgrade-mekanik, expanding symbols, RTP 96,31 %, volatilitetsprofil og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/eye-of-horus`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-07",
     authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/eye-of-horus`, "G8beL2DD1sI", {

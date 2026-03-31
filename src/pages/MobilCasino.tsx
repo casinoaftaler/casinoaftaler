@@ -172,7 +172,7 @@ const MobilCasino = () => {
     description:
       "Alt om mobil casino: Bedste mobilcasinoer med dansk licens, app vs. browser, betalingsmetoder, sikkerhed og performance. Spil spilleautomater og live casino på mobilen.",
     url: `${SITE_URL}/mobil-casino`,
-    datePublished: "2026-03-07",
+    datePublished: "2026-05-27",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

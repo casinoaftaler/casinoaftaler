@@ -65,7 +65,7 @@ const FireJokerGuide = () => {
     headline: "Fire Joker – Klassisk Slot-Mekanik & Multiplier-Analyse",
     description: "Komplet analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/fire-joker`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-02",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

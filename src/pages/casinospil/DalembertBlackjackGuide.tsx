@@ -125,7 +125,7 @@ const DalembertBlackjackGuide = () => {
     headline: "D'Alembert-Systemet i Blackjack 2026 – Balancens Filosofi & Casino-Virkeligheden",
     description: "Komplet analyse af D'Alembert-systemet i blackjack: lineær progression, equilibrium-teorien, 5.000-hånds simulering og ærlig vurdering af det mest konservative indsatssystem.",
     url: `${SITE_URL}/casinospil/blackjack/dalembert`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-04-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

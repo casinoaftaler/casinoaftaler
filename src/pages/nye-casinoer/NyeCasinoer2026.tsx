@@ -89,7 +89,7 @@ const NyeCasinoer2026 = () => {
     headline: "Nye Casinoer 2026 – Komplet Oversigt over Nye Spillesteder",
     description: "Opdateret liste over alle nye casinoer lanceret i Danmark i 2026. Sammenlign bonusser, spiludvalg og vilkår.",
     url: `${SITE_URL}/nye-casinoer/2026`,
-    datePublished: "2026-01-15",
+    datePublished: "2026-06-03",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

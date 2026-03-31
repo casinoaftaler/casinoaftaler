@@ -180,7 +180,7 @@ const KenoGuide = () => {
     headline: "Online Keno i Danmark – Komplet Guide til Keno med Dansk Licens",
     description: "Spil online keno hos danske licenserede casinoer. Guide til keno-varianter, RTP-analyse, optimal strategi og ansvarligt spil.",
     url: `${SITE_URL}/casinospil/keno`,
-    datePublished: "2026-03-31",
+    datePublished: "2026-06-06",
   });
 
   return (

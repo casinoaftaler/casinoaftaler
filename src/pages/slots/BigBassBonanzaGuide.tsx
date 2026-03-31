@@ -80,7 +80,7 @@ const BigBassBonanzaGuide = () => {
     headline: "Big Bass Bonanza – Money Collect-Mekanik, RTP & Strategi",
     description: "Komplet analyse af Pragmatic Plays Big Bass Bonanza: RTP 96,71 %, Money Collect-system, free spins-matematik og fisker-mekanikken forklaret.",
     url: `${SITE_URL}/casinospil/spillemaskiner/big-bass-bonanza`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-26",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

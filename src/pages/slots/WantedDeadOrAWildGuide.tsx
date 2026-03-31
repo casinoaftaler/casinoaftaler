@@ -38,7 +38,7 @@ const WantedDeadOrAWildGuide = () => {
     headline: "Wanted Dead or a Wild – Duel & Max Win",
     description: "Komplet analyse af Wanted Dead or a Wild: Duel at Dawn-mekanik, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win.",
     url: `${SITE_URL}/casinospil/spillemaskiner/wanted-dead-or-a-wild`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-13",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 

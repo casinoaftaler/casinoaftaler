@@ -125,7 +125,7 @@ const OmahaPokerGuide = () => {
     headline: "Omaha Poker 2026 – Regler, Strategi & Hi-Lo Guide",
     description: "Komplet dansk guide til Omaha poker: PLO-regler, starthands-rangering, Hi-Lo split, wraps og avanceret strategi for danske spillere.",
     url: `${SITE_URL}/casinospil/poker/omaha`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-04-28",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

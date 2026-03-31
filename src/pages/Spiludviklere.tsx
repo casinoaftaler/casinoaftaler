@@ -301,7 +301,7 @@ const Spiludviklere = () => {
     headline: "Spiludviklere til Casino – Den Ultimative Brancheguide 2026",
     description: "Strategisk guide til alle spiludviklere på danske casinoer. RTP-analyse, volatilitetsforklaring, matematisk gennemgang og sammenligning af 22 udviklere.",
     url: `${SITE_URL}/spiludviklere`,
-    datePublished: "2026-01-15",
+    datePublished: "2026-06-01",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

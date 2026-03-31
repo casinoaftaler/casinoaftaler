@@ -77,7 +77,7 @@ const GonzosQuestGuide = () => {
     headline: "Gonzo's Quest – Avalanche-Pioneren: RTP, Multiplikatorer & Arv",
     description: "Komplet analyse af NetEnts Gonzo's Quest: RTP 95,97 %, Avalanche-mekanikken forklaret, multiplikator-matematik og sammenligning med Megaways-versionen.",
     url: `${SITE_URL}/casinospil/spillemaskiner/gonzos-quest`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-03",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

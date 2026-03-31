@@ -127,7 +127,7 @@ const ThreeCardPokerGuide = () => {
     headline: "Three Card Poker 2026 – Regler, Strategi & Udbetalinger",
     description: "Komplet dansk guide til Three Card Poker: regler, optimal Q-6-4 strategi, house edge-analyse, Pair Plus og Ante/Play forklaret.",
     url: `${SITE_URL}/casinospil/poker/three-card-poker`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-05-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

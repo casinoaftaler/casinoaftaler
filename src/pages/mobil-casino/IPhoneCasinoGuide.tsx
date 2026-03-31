@@ -107,7 +107,7 @@ const IPhoneCasinoGuide = () => {
     headline: "Casino på iPhone – Komplet Guide til iOS Casino i 2026",
     description: "Casino på iPhone: Face ID-login, Apple Pay, Safari PWA, performance-benchmarks og de bedste iOS-optimerede casinoer i Danmark.",
     url: `${SITE_URL}/mobil-casino/iphone`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-17",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

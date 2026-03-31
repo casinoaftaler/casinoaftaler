@@ -72,7 +72,7 @@ const BookOfDeadGuide = () => {
     headline: "Book of Dead – Den Komplette Risikoprofil-Analyse",
     description: "Dybdegående analyse af Book of Dead: RTP, expanding symbols-matematik, bonus-compatibility og risikostyring for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/book-of-dead`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-12",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

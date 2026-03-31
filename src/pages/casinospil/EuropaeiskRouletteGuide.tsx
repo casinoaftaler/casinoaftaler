@@ -68,7 +68,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Europæisk Roulette 2026 – Single Zero, Matematik & Strategi",
   description: "Komplet guide til europæisk roulette: single zero mekanik, 2,70% house edge, call bets, sector betting, 10.000-spins simulering og casino-anbefalinger for danske spillere.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-04-20",
   url: `${SITE_URL}/casinospil/roulette/europaeisk-roulette`,
   image: `${SITE_URL}/og/europaeisk-roulette.jpg`,
 });

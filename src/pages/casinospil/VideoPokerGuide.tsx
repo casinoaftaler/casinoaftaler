@@ -74,7 +74,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Video Poker Guide 2026 – RTP-analyse, Strategi & Bedste Varianter",
   description: "Komplet dansk guide til video poker. Sammenlign RTP på Jacks or Better, Deuces Wild og Joker Poker. Lær optimal hold/discard-strategi.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-05-03",
   url: `${SITE_URL}/casinospil/poker/video-poker`,
   image: `${SITE_URL}/og/video-poker.jpg`,
 });

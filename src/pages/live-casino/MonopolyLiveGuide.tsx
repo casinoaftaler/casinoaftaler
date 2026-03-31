@@ -71,7 +71,7 @@ const MonopolyLiveGuide = () => {
     headline: "Monopoly Live – Game Show Analyse & Strategi 2026",
     description: "Komplet Monopoly Live guide 2026. RTP 96,23 %, bonusrunde-analyse, segmentfordeling og house edge-sammenligning for danske spillere.",
     url: `${SITE_URL}/live-casino/monopoly-live`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-23",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

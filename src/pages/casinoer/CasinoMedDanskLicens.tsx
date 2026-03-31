@@ -103,7 +103,7 @@ const CasinoMedDanskLicens = () => {
     headline: "Casino med Dansk Licens – Komplet Guide til Licenserede Casinoer",
     description: "Find de bedste casinoer med dansk licens. Skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og MitID-verifikation.",
     url: `${SITE_URL}/casino-med-dansk-licens`,
-    datePublished: "2026-03-31",
+    datePublished: "2026-06-05",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

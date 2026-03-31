@@ -74,7 +74,7 @@ const BonanzaGuide = () => {
     headline: "Bonanza Megaways – Den Komplette Megaways-Analyse",
     description: "Dybdegående analyse af Bonanza Megaways: 117.649 gevinstmuligheder, cascading wins, ubegrænset multiplier, RTP 96,00 % og strategisk EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/bonanza`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-27",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

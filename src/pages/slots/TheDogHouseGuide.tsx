@@ -83,7 +83,7 @@ const TheDogHouseGuide = () => {
     headline: "The Dog House – Sticky Wilds & Multiplikator-Analyse",
     description: "Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/the-dog-house`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-11",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

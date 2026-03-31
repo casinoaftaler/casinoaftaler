@@ -86,7 +86,7 @@ const CrazyTimeGuide = () => {
     headline: "Crazy Time – Komplet Matematisk Analyse af Evolutions Game Show",
     description: "Dybdegående analyse af Crazy Time: RTP, house edge, bonusrunder, Top Slot-multiplikatorer og matematisk breakdown af alle væddemål.",
     url: `${SITE_URL}/live-casino/crazy-time`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-12",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

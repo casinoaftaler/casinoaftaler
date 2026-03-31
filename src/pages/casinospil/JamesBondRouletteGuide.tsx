@@ -68,7 +68,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "James Bond Roulette System 2026 – 007's Strategi Testet med Matematik",
   description: "Dybdegående guide til James Bond roulette-systemet: dækningsstrategi, sandsynlighedsfordeling, 10.000-spins Monte Carlo simulering og sammenligning med klassiske systemer.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-04-24",
   url: `${SITE_URL}/casinospil/roulette/james-bond-roulette`,
   image: `${SITE_URL}/og/james-bond-roulette.jpg`,
 });

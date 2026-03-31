@@ -83,7 +83,7 @@ const MartingaleBlackjackGuide = () => {
     headline: "Martingale-Systemet i Blackjack 2026 – Matematik, Risiko & Realitet",
     description: "Dybdegående analyse af Martingale-systemet i blackjack: matematisk bevis, risk of ruin og hvorfor fordoblingsstrategien kollapser i praksis.",
     url: `${SITE_URL}/casinospil/blackjack/martingale`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-04-26",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
