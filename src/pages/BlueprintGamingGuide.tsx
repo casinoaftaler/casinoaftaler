@@ -29,6 +29,13 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er en udbredt misforståelse blandt danske casinospillere: at Blueprint Gaming blot er endnu et studio der licenserer <Link to="/megaways-slots" className="text-primary underline hover:text-primary/80">Megaways</Link>-mekanikken fra <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> og producerer varianter. Det er, for at sige det mildt, en grov forsimpling. Blueprint Gaming, grundlagt i Newark, England i 2001, er et af de ældste og mest erfarne digitale spiludviklerstudier i Europa – med rødder der strækker sig tilbage til den fysiske spilleautomat-industri. Deres portefølje på over 200 titler, et proprietært progressivt jackpot-netværk (Jackpot King), og en Gauselmann Group-backing gør dem til en af branchens mest komplette aktører.
         </p>
+        <ReviewScreenshot
+          src={blueprintLogo}
+          alt="Blueprint Gaming officielt logo med den ikoniske Gauselmann-sol – britisk spiludvikler grundlagt 2001"
+          caption="Blueprint Gamings officielle logo – ejet af Gauselmann Group (Merkur)"
+          eager
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Blueprint Gamings DNA er britisk – og det mærkes i alt hvad de producerer. Den britiske gambling-kultur har altid prioriteret action og potentiale over æstetik og subtilitet. Hvor svenske studios som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og Thunderkick designer for den reflekterende spiller der værdsætter visuel fidelitet og matematisk elegance, designer Blueprint for spilleren der vil have ting til at ske – hurtigt, dramatisk og med store tal på skærmen. Deres spil er høj-energi, feature-rige og designet til at generere øjeblikke af intens spænding.
         </p>
