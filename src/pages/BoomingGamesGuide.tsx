@@ -82,6 +82,12 @@ const BoomingGamesGuide = () => (
         <p>
           Booming Games' spiludbud spænder over et bemærkelsesværdigt bredt spektrum af temaer og mekanikker, der afspejler studiets globale ambitioner og forståelse af diverse spillerpræferencer. Fra <strong>klassiske frugtmaskiner</strong> som Burning Classics og Sizzling Fruits til <strong>avancerede video slots</strong> med komplekse bonussystemer og progressive jackpots, dækker studiet praktisk talt enhver spillerpræference. Denne tematiske mangfoldighed er ikke tilfældig – den er en bevidst strategi der gør Booming Games attraktive for operatører på tværs af markeder med meget forskellige kulturelle præferencer.
         </p>
+        <ReviewScreenshot
+          src={boomingBuffaloGameplay}
+          alt="Buffalo Hold and Win gameplay fra Booming Games – 5x3 slot med Grand, Major og Mini jackpots og nordamerikansk prærie-tema"
+          caption="Buffalo Hold and Win – en af Booming Games' populære Hold & Win-titler med tredobbelt jackpot-system"
+          size="full"
+        />
         <p>
           Studiets styrke ligger i evnen til at kombinere velkendte, gennemprøvede mekanikker som <strong>Hold & Win</strong>, <strong>Book-style free spins</strong> og <strong>cascading wins</strong> med unikke twists der giver hvert spil sin egen identitet. Hvor mange mid-tier studier simpelthen kopierer populære mekanikker fra tier-1 udviklere, tilføjer Booming Games konsekvent et lag af innovation – hvad enten det er en samlingsmekanik (Cash Pig), en power-meter (Wild Energy) eller en crystal chance-feature (Book of Wizard). Denne tilgang sikrer at spillere der kender de grundlæggende mekanikker altid møder noget nyt og uventet i Booming Games' titler.
         </p>
