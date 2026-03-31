@@ -1,32 +1,29 @@
 
 
-## Fix: Bonus Hunt End Balance Calculation
+# Plan: Erstat Lucide-ikoner med 3D WebP menu-ikoner på forsiden
 
-### Problem
-The client-side `parseHuntResponse` function in `useBonusHuntData.ts` (line 72-73) **ignores** the StreamSystem API's `end` field and incorrectly sets `endBalance = totalWinnings`.
+## Problem
+Forsiden bruger generiske Lucide-ikoner (CreditCard, Gamepad2, Trophy, etc.) til betalingsmetoder, spiludviklere og link-knapper — mens mega-menuen bruger flotte 3D WebP-ikoner fra `MENU_ICON_MAP`. Det skaber visuel inkonsistens.
 
-In reality, when you hunt from 5000 kr down to 1500 kr, the end balance after opening bonuses should be **1500 + total bonus winnings**, not just the bonus winnings alone. The API's `huntData.end` field already contains this correct value.
+## Berørte filer og ændringer
 
-The backend edge functions (`bonus-hunt-proxy`, `bonus-hunt-auto-settle`, `bonus-hunt-bulk-import`) all correctly use `huntData.end`, so only the client parser needs fixing.
+### 1. `src/components/HomepagePaymentProviders.tsx`
+- **Betalingsmetoder-sektionen**: Erstat `<CreditCard>` Lucide-ikon med det korrekte 3D WebP-ikon per betalingsmetode (baseret på `PAYMENT_LINKS` i navData: apple→apple.webp, smartphone→mobile, wallet, credit-card, banknote, send, shield, landmark, circle-dollar-sign)
+- **Spiludvikler-sektionen**: Erstat `<Gamepad2>` Lucide-ikon med `gamepad-fun.webp` fra MENU_ICON_MAP
 
-### Fix (1 file)
+### 2. `src/components/HomepageBottomSections.tsx`
+- **Bonus Hunt links** (linje 146-174): Erstat Lucide-ikoner (Target, BookOpen, Gamepad2, Trophy, TrendingUp, Users) med matchende 3D WebP-ikoner (target-aim, book-glossary, gamepad-fun, trophy-casino, trending-rtp, users-group)
+- **Slot Showcase links** (linje 301-312): Erstat Zap→lightning-fast, Trophy→trophy-casino, Gift→gift-bonus
+- **Nyheder-link** (linje 191): Erstat Newspaper→newspaper.webp
 
-**`src/hooks/useBonusHuntData.ts`** — line 72-73:
+### 3. Implementeringsmetode
+- Importér `MENU_ICON_MAP` fra `@/components/header/menuIconMap`
+- Lav en lille hjælpekomponent `MenuIcon` der renderer `<img>` med det korrekte WebP-ikon baseret på iconName, med fallback til Lucide-ikon
+- Tilføj `iconName` til betalingsmetode-arrayet (matching navData's PAYMENT_LINKS)
+- Erstat alle inline `<LucideIcon>` med `<MenuIcon>` i link-cards
 
-Replace:
-```ts
-const endVal = totalWinnings > 0 ? totalWinnings : null;
-```
-
-With:
-```ts
-const endVal = huntData.end != null ? huntData.end : (totalWinnings > 0 ? totalWinnings : null);
-```
-
-This uses the API's `end` field when available (which includes the remaining hunting balance + bonus winnings), and only falls back to `totalWinnings` if the API doesn't provide it.
-
-### Impact
-- **End Balance** row in the stats tab will show the correct final balance
-- **Resultat** row (profit/loss = endBalance - startBalance) will be accurate
-- No changes needed to the stats UI or edge functions — they already handle this correctly
+### 4. Ikke berørt
+- `HomepageTopProviders.tsx` bruger allerede provider-logoer (korrekt)
+- `HomepageAnmeldelserSection` bruger allerede casino-logoer (korrekt)
+- Trends-sektionens CheckCircle2 er generisk og passer fint som er
 
