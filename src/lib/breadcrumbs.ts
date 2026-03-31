@@ -292,6 +292,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/bingo": "Bingo",
   "/casinospil/keno": "Keno",
+  "/casinospil/skrabespil": "Skrabespil",
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
   "/casinoer": "Casinoer",
