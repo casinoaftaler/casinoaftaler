@@ -89,8 +89,8 @@ const jonasGuideVideos = getAuthorGuideVideos("jonas");
 const expertiseItems = [
   {
     icon: CalendarDays,
-    label: "4+ års erfaring med online casino",
-    desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2021.",
+    label: "5+ års erfaring med online casino",
+    desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2020.",
   },
   {
     icon: CheckCircle2,
