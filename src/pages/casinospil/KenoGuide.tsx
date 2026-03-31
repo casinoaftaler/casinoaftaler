@@ -431,8 +431,11 @@ const KenoGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Keno placerer sig i en unik niche: det er enklere end <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> og <Link to="/casinospil/poker" className={linkClass}>poker</Link>, men tilbyder mere spiller-kontrol end <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link>. Du bestemmer selv din risikoprofil ved at vælge antal numre. Keno er det ideelle spil for spillere der vil have mere involvering end en spilleautomat, men som ikke ønsker at lære komplekse strategier.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Sammenlignet med <Link to="/casinospil/online-lotteri" className={linkClass}>lotteri</Link> er keno overlegen på næsten alle parametre: højere RTP, hurtigere trækninger, mere fleksibilitet i indsats og bedre transparens omkring odds. Den eneste fordel lotteri har er potentialet for astronomiske jackpots i multimillion-kroner-klassen, som online keno sjældent matcher. Men faktisk justeret for odds giver keno markant bedre value per investeret krone.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Spillere der søger endnu hurtigere instant-win oplevelser bør overveje <Link to="/casinospil/skrabespil" className={linkClass}>online skrabespil</Link> – her afsløres resultatet med det samme uden nummervalg, og RTP kan nå op på 97% for premium-varianter fra udbydere som Hacksaw Gaming.
           </p>
         </section>
 
