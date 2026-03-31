@@ -222,7 +222,7 @@ export default function ForfatterKevin() {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={kevinImage}
-                alt="Kevin – Casino-streamer & IT medansvarlig hos Casinoaftaler.dk"
+                alt="Kevin – Casino-streamer & Spiludvikler hos Casinoaftaler.dk"
                 className="w-64 h-64 rounded-2xl object-cover object-top shadow-lg"
                 loading="eager"
               />
