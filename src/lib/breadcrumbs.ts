@@ -422,6 +422,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   // Casinoer cluster – orphan pages bound to /casinoer hub
   "/casino-licenser": [{ name: "Casinoer", path: "/casinoer" }],
   "/spillemyndigheden": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casino-med-dansk-licens": [{ name: "Casinoer", path: "/casinoer" }],
 
   // Top-10 bound to casino-anmeldelser hub
   "/top-10-casino-online": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
