@@ -91,8 +91,8 @@ const expertiseItems = [
   },
   {
     icon: Code,
-    label: "Platformfeedback & udvikling",
-    desc: "IT-medansvarlig med erfaring fra FaZe Clan, ansvarlig for teknisk kvalitetssikring og platformoptimering.",
+    label: "Spiludvikling",
+    desc: "Udvikler community-spil i spillehallen og bidrager med kreative spilidéer til platformen.",
   },
 ];
 
