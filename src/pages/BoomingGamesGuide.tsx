@@ -12,6 +12,11 @@ import {
   Sparkles,
   Rocket,
 } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import boomingLogo from "@/assets/screenshots/booming-games-logo-officielt.webp";
+import boomingBuffaloGameplay from "@/assets/screenshots/booming-buffalo-hold-and-win-gameplay.webp";
+import boomingBuffaloBonus from "@/assets/screenshots/booming-buffalo-hold-and-win-bonus.webp";
+import boomingMga from "@/assets/screenshots/booming-games-mga-licens.webp";
 
 const BoomingGamesGuide = () => (
   <ProviderPage
