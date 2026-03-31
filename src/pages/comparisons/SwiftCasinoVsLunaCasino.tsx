@@ -154,7 +154,7 @@ export default function SwiftCasinoVsLunaCasino() {
       verdictWinner="draw"
       faqs={faqs}
       ctaSlug="swift-casino"
-      readTime="36 min"
+      readTime="38 min"
       snippetAnswer="Swift Casino og Luna Casino er begge nye aktører med game shows og hurtig registrering. Swift vinder på udbetalingshastighed, mens Luna tilbyder bedre kampagner for eksisterende spillere."
       prioritySlugs={["betinia", "spilleautomaten", "campobet"]}
     >
