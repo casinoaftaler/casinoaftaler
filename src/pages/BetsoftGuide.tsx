@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betsoftLogo from "@/assets/screenshots/betsoft-logo-officielt.webp";
+import betsoftSlots from "@/assets/screenshots/betsoft-slots-katalog.webp";
+import betsoftMga from "@/assets/screenshots/betsoft-mga-licens.webp";
+import betsoftStats from "@/assets/screenshots/betsoft-noegletal-statistik.webp";
 
 const BetsoftGuide = () => (
   <ProviderPage
