@@ -33,7 +33,8 @@ interface CreditsExpiredOverlayProps {
 
 export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps) {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
-  const { data: playkasinoCasino } = useCasinoBySlug("playkasino");
+  const { data: spildansknu } = useCasinoBySlug("spildansknu");
+  const { data: spilleautomaten } = useCasinoBySlug("spilleautomaten");
   const { user } = useAuth();
   const { pages, completedCount, totalPages } = useDwellRewardProgress();
   const { currentStreak, nextMilestone } = useMissionStreak();
@@ -55,7 +56,11 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   if (!isVisible) return null;
 
   const pad = (n: number) => String(n).padStart(2, "0");
-  const playkasino = playkasinoCasino;
+
+  const promoCasinos = [
+    { casino: spildansknu, slug: "spildansknu", name: "SpilDanskNu", tagline: "Danmarks mest populære online casino" },
+    { casino: spilleautomaten, slug: "spilleautomaten", name: "Spilleautomaten", tagline: "Fantastisk bonus og hurtigt spil" },
+  ];
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm rounded-xl">
@@ -257,43 +262,46 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
             ))}
           </div>
 
-          {/* PlayKasino promo */}
+          {/* Casino promos – SpilDanskNu & Spilleautomaten */}
           <div className="border-t border-border/30 pt-4 space-y-3">
             <p className="text-sm font-semibold text-foreground leading-snug">
-              Er du klar til at spille for rigtige penge? Prøv det helt nye danske casino, <span className="text-primary">PlayKasino</span>. (No-Sticky bonus!).
+              Er du klar til at spille for rigtige penge? Prøv disse danske casinoer med <span className="text-primary">dansk licens</span>!
             </p>
 
-            {playkasino && (
-              <div className="rounded-xl border border-primary/30 bg-gradient-to-b from-primary/10 to-primary/5 p-4 space-y-3">
-                {playkasino.logo_url && (
-                  <img
-                    src={optimizeStorageImage(playkasino.logo_url, 120)}
-                    alt="PlayKasino logo"
-                    className="h-10 mx-auto object-contain"
-                    loading="lazy"
-                  />
-                )}
-                <p className="text-xs text-muted-foreground">{playkasino.bonus_amount}</p>
-                <Button
-                  size="sm"
-                  className="w-full gap-1.5"
-                  onClick={() => getAffiliateRedirect("playkasino", user?.id)}
-                >
-                  Klik her!
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </Button>
-              </div>
-            )}
-
-            {!playkasino && (
-              <Link
-                to="/casino-anmeldelser/playkasino"
-                className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
-              >
-                Klik her!
-                <ExternalLink className="h-3.5 w-3.5" />
-              </Link>
-            )}
+            <div className="space-y-2.5">
+              {promoCasinos.map(({ casino, slug, name, tagline }) => (
+                casino ? (
+                  <div key={slug} className="rounded-xl border border-primary/30 bg-gradient-to-b from-primary/10 to-primary/5 p-3 space-y-2">
+                    {casino.logo_url && (
+                      <img
+                        src={optimizeStorageImage(casino.logo_url, 120)}
+                        alt={`${name} logo`}
+                        className="h-8 mx-auto object-contain"
+                        loading="lazy"
+                      />
+                    )}
+                    <p className="text-[11px] text-muted-foreground">{casino.bonus_amount}</p>
+                    <Button
+                      size="sm"
+                      className="w-full gap-1.5"
+                      onClick={() => getAffiliateRedirect(slug, user?.id)}
+                    >
+                      Spil hos {name}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                ) : (
+                  <Link
+                    key={slug}
+                    to={`/casino-anmeldelser/${slug}`}
+                    className="block rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-sm font-bold text-primary-foreground text-center transition-transform hover:scale-[1.03] active:scale-95"
+                  >
+                    Besøg {name}
+                    <ExternalLink className="h-3.5 w-3.5 inline ml-1.5" />
+                  </Link>
+                )
+              ))}
+            </div>
           </div>
 
           <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/70 pt-1">
