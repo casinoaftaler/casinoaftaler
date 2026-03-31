@@ -1200,7 +1200,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   }
 
   // Casino guides subpages → rotated siblings + varied cross-cluster
-  if (path.startsWith("/casinoer/") || path === "/casino-licenser") {
+  if (path.startsWith("/casinoer/") || path === "/casino-licenser" || path === "/casino-med-dansk-licens") {
     const currentIndex = casinoGuidesSiblings.findIndex(g => g.to === path);
     const len = casinoGuidesSiblings.length;
     let siblings: GuideLink[];
