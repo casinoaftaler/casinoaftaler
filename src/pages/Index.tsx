@@ -248,15 +248,25 @@ const Index = () => {
               <button
                 className="md:hidden text-primary font-medium ml-1 hover:underline"
                 id="intro-read-more-btn"
-                onClick={(e) => {
-                  const moreText = document.getElementById('intro-more-text');
-                  if (moreText) {
-                    moreText.style.display = 'inline';
-                  }
-                  (e.target as HTMLElement).style.display = 'none';
+                onClick={() => {
+                  document.getElementById('intro-more-text')!.style.display = 'inline';
+                  document.getElementById('intro-read-more-btn')!.style.display = 'none';
+                  document.getElementById('intro-read-less-btn')!.style.display = 'inline';
                 }}
               >
                 Læs mere →
+              </button>
+              <button
+                className="md:hidden text-primary font-medium ml-1 hover:underline"
+                id="intro-read-less-btn"
+                style={{ display: 'none' }}
+                onClick={() => {
+                  document.getElementById('intro-more-text')!.style.display = 'none';
+                  document.getElementById('intro-read-less-btn')!.style.display = 'none';
+                  document.getElementById('intro-read-more-btn')!.style.display = 'inline';
+                }}
+              >
+                Læs mindre ←
               </button>
             </p>
             <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
