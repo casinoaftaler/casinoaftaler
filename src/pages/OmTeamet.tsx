@@ -222,7 +222,7 @@ const OmTeamet = () => {
             <div className="mt-10 grid grid-cols-2 gap-6 justify-items-center md:hidden">
               {[
                 { to: "/forfatter/jonas", img: jonasImage, alt: "Jonas – Grundlægger", name: "Jonas" },
-                { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – IT Medansvarlig", name: "Kevin" },
+                { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – Streamer & Spiludvikler", name: "Kevin" },
                 { to: "/forfatter/ajse", img: ajseImage, alt: "Ajse – Juridisk redaktør", name: "Ajse" },
                 { to: "/forfatter/niklas", img: niklasImage, alt: "Niklas – Finansøkonom", name: "Niklas" },
                 { to: "/forfatter/frederik", img: frederikImage, alt: "Frederik – Streamer", name: "Frederik" },
@@ -245,7 +245,7 @@ const OmTeamet = () => {
               <span className="text-3xl font-bold text-white/30">&</span>
               <Link to="/forfatter/kevin" className="group">
                 <div className="mx-auto h-36 w-36 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105">
-                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
+                  <img src={kevinImage} alt="Kevin – Streamer & Spiludvikler" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
               </Link>
@@ -291,25 +291,24 @@ const OmTeamet = () => {
             Fra Twitch til Casinoaftaler.dk
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-4">
+             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Det hele startede på Twitch. Jonas og Kevin streamede uafhængigt af hinanden, men
-                fandt hurtigt fælles interesse for online casino, streaming og det community, der
-                voksede op omkring dem.
+                Det hele startede på Twitch. Jonas streamede online casino og byggede gradvist et
+                community op omkring ærlige casinotests og gennemsigtig information. Det blev
+                hurtigt tydeligt, at der manglede en dansk platform med reel ekspertise.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                De begyndte at gæste hinandens streams, dele erfaringer og diskutere de casinoer,
-                de testede. Seerne stillede spørgsmål – og det blev tydeligt, at der manglede et
-                sted med ærlig og gennemsigtig information.
+                Derfra voksede idéen om Casinoaftaler.dk – en platform bygget af en streamer med
+                praktisk erfaring, for spillere der ønsker gennemsigtighed.
               </p>
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Derfra voksede idéen om Casinoaftaler.dk – en platform bygget af streamere med
-                praktisk erfaring, for spillere der ønsker gennemsigtighed.
+                Efterhånden som platformen voksede, blev Kevin kontaktet som streamer og spiludvikler.
+                Kevin bidrager med live-streaming og udvikling af community-spil i spillehallen.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                I dag kombinerer de streaming, systematisk test og community til en samlet
+                I dag kombinerer teamet streaming, systematisk test og community til en samlet
                 platform, hvor anmeldelser bygger på reel erfaring – ikke kun skrivebordsvurdering.
               </p>
             </div>
@@ -406,7 +405,7 @@ const OmTeamet = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">Kevin</p>
-                    <p className="text-sm text-white/60">Casino-streamer & IT Medansvarlig</p>
+                    <p className="text-sm text-white/60">Casino-streamer & Spiludvikler</p>
                   </div>
                 </div>
               </CardContent>
@@ -528,18 +527,18 @@ const OmTeamet = () => {
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/kevin" className="group">
                 <div className="flex items-center gap-3 mb-3">
-                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <img src={kevinImage} alt="Kevin – Streamer & Spiludvikler" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
                   <div>
                     <p className="font-semibold group-hover:text-primary transition-colors">Kevin</p>
-                    <p className="text-xs text-muted-foreground">Casino-streamer & IT Medansvarlig</p>
+                    <p className="text-xs text-muted-foreground">Casino-streamer & Spiludvikler</p>
                   </div>
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
+                Streamer <Link to="/community/slots" className="text-primary underline hover:text-primary/80">slots</Link> live og udvikler community-spil i <Link to="/community/slots" className="text-primary underline hover:text-primary/80">spillehallen</Link>. Streamer med 4+ års erfaring.
               </p>
               <Link to="/forfatter/kevin" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                Se Kevin – Casino & IT <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                Se Kevin – Streamer & Spil <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
             {/* Ajse */}
@@ -874,7 +873,7 @@ const OmTeamet = () => {
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Frederik tester casino bonusser live på stream. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
+                  Jonas står for anmeldelser og guides. Kevin streamer slots og udvikler community-spil i spillehallen. Frederik tester casino bonusser live på stream. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
                 </p>
               </CardContent>
             </Card>
@@ -1007,7 +1006,7 @@ const OmTeamet = () => {
             </Link>
             <Link to="/forfatter/kevin">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
-                Se Kevin – Casino & IT
+                Se Kevin – Streamer & Spil
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

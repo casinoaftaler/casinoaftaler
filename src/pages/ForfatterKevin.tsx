@@ -45,7 +45,7 @@ const faqs = [
   {
     question: "Hvad er Kevins rolle på Casinoaftaler.dk?",
     answer:
-      "Kevin er streamer, forfatter og IT-medansvarlig på Casinoaftaler.dk. Han bidrager med praktisk erfaring fra live-streams, casinotests og platformudvikling.",
+      "Kevin er streamer og spiludvikler hos Casinoaftaler.dk. Han streamer slots live på Twitch og udvikler community-spil i spillehallen.",
   },
   {
     question: "Streamer Kevin casino live?",
@@ -60,7 +60,7 @@ const faqs = [
   {
     question: "Hvad er Kevins speciale?",
     answer:
-      "Kevins specialer inkluderer slot-analyse, RTP-forståelse, bonusvilkår og community-engagement. Han har desuden solid erfaring med platformudvikling og teknisk optimering.",
+      "Kevins specialer inkluderer slot-streaming, RTP-forståelse, bonusvilkår, community-engagement og udvikling af spil til spillehallen.",
   },
 ];
 
@@ -91,8 +91,8 @@ const expertiseItems = [
   },
   {
     icon: Code,
-    label: "Platformfeedback & udvikling",
-    desc: "IT-medansvarlig med erfaring fra FaZe Clan, ansvarlig for teknisk kvalitetssikring og platformoptimering.",
+    label: "Spiludvikling",
+    desc: "Udvikler community-spil i spillehallen og bidrager med kreative spilidéer til platformen.",
   },
 ];
 
@@ -103,8 +103,8 @@ const personSchema = {
   name: "Kevin",
   url: `${SITE_URL}/forfatter/kevin`,
   image: `${SITE_URL}/kevin-avatar.webp`,
-  jobTitle: "Casino Streamer & IT-medansvarlig",
-  knowsAbout: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
+  jobTitle: "Casino Streamer & Spiludvikler",
+  knowsAbout: ["online casino", "casino streaming", "spilleautomater", "spiludvikling", "community-spil"],
   nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
@@ -118,7 +118,7 @@ const personSchema = {
   },
   sameAs: KEVIN_SAME_AS,
   description:
-    "Kevin er streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.",
+    "Kevin er streamer og spiludvikler hos Casinoaftaler.dk med fokus på live-streaming af slots og udvikling af community-spil.",
 };
 
 
@@ -200,14 +200,14 @@ export default function ForfatterKevin() {
               </Badge>
               <Badge variant="secondary">
                 <Code className="mr-1.5 h-3.5 w-3.5" />
-                Medudvikler
+                Spiludvikler
               </Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Kevin – Streamer &amp; Casinoanalytiker
+              Kevin – Streamer &amp; Spiludvikler
             </h1>
             <p className="text-lg text-white/80">
-              Streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.
+              Streamer og spiludvikler hos Casinoaftaler.dk med fokus på live-streaming af slots og udvikling af community-spil i spillehallen.
             </p>
           </div>
         </div>
@@ -222,7 +222,7 @@ export default function ForfatterKevin() {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={kevinImage}
-                alt="Kevin – Casino-streamer & IT medansvarlig hos Casinoaftaler.dk"
+                alt="Kevin – Casino-streamer & Spiludvikler hos Casinoaftaler.dk"
                 className="w-64 h-64 rounded-2xl object-cover object-top shadow-lg"
                 loading="eager"
               />
@@ -234,7 +234,7 @@ export default function ForfatterKevin() {
                   <User className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
-                    <p className="text-sm font-medium">Streamer & forfatter</p>
+                    <p className="text-sm font-medium">Streamer & Spiludvikler</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
@@ -274,12 +274,11 @@ export default function ForfatterKevin() {
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Kevin er streamer og forfatter på Casinoaftaler.dk og bidrager med praktisk erfaring fra live-spil og casinotests.
-                Han deltager aktivt i community-turneringer og arbejder med udvikling og forbedring af platformens funktioner.
-                Hans ekspertise dækker alt fra{" "}
-                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og bonusanalyse til
-                teknisk optimering, og han følger nøje{" "}
-                <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">hvordan vi tester casinoer</Link>.
+                Kevin er streamer og spiludvikler hos Casinoaftaler.dk. Han streamer slots live på Twitch og udvikler
+                community-spil i <Link to="/community/slots" className="text-primary hover:underline">spillehallen</Link>.
+                Kevin blev kontaktet af Jonas for at hjælpe med streaming og spiludvikling, og bidrager
+                med sin erfaring fra{" "}
+                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og live-gameplay.
                 Læs mere om{" "}
                 <Link to="/community" className="text-primary hover:underline">vores community</Link>.
               </p>
@@ -297,11 +296,11 @@ export default function ForfatterKevin() {
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Kevin er 26 år og har streamet slots i mere end tre år. Han blev introduceret til casino-streaming gennem Twitch, hvor han mødte{" "}
-              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> og resten af teamet. Med en fælles passion for online casino og community-opbygning blev Kevin inviteret til at blive en del af Casinoaftaler-holdet – en rolle han hurtigt voksede ind i.
+              Kevin er 26 år og har streamet slots i mere end fire år. Han blev kontaktet af{" "}
+              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> med hensyn på at bidrage som streamer og spiludvikler. Kevin var allerede aktiv på Twitch, og med en fælles passion for online casino og community blev samarbejdet hurtigt en realitet.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Inden Kevin sluttede sig til Casinoaftaler, arbejdede han som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation, digital branding og community management – kompetencer han i dag aktivt anvender i sit daglige arbejde hos Casinoaftaler.dk.
+              Inden Kevin kom til Casinoaftaler, arbejdede han som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation og community management – kompetencer han i dag bruger til streaming og spiludvikling hos Casinoaftaler.dk.
             </p>
           </div>
         </section>

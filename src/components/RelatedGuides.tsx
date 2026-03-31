@@ -321,7 +321,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", icon: ShieldCheck, desc: "Vores testmetode og vurderingskriterier" },
         { to: "/kontakt", label: "Kontakt", icon: Globe, desc: "Kontakt teamet bag Casinoaftaler.dk" },
         { to: "/forfatter/jonas", label: "Jonas – Forfatter", icon: BookOpen, desc: "Grundlægger og casino-streamer" },
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Forfatter", icon: BookOpen, desc: "Juridisk redaktør & casinoanalytiker" },
         { to: "/forfatter/niklas", label: "Niklas – Forfatter", icon: BookOpen, desc: "Finansøkonom & forsikringsekspert" },
         { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
@@ -335,7 +335,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/forfatter/jonas") {
     return {
       guides: [
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", icon: BookOpen, desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", icon: BookOpen, desc: "Finansøkonom & forsikringsekspert" },
         { to: "/om", label: "Om Casinoaftaler.dk", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
@@ -364,7 +364,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: BookOpen, desc: "Grundlægger af Casinoaftaler.dk" },
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", icon: BookOpen, desc: "Finansøkonom & forsikringsekspert" },
         { to: "/casino-nyheder", label: "Casino Nyheder", icon: BookOpen, desc: "Seneste nyheder om danske casinoer" },
         { to: "/om", label: "Om Casinoaftaler.dk", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
@@ -377,7 +377,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: BookOpen, desc: "Grundlægger af Casinoaftaler.dk" },
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", icon: BookOpen, desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/omsaetningskrav", label: "Omsætningskrav", icon: BookOpen, desc: "Komplet guide til omsætningskrav" },
         { to: "/casinoer/casino-og-skat", label: "Casino & Skat", icon: BookOpen, desc: "Guide til beskatning af casinogevinster" },
