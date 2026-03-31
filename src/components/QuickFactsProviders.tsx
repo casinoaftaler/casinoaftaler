@@ -1,6 +1,8 @@
-import { Gamepad2, ShieldCheck, BarChart3 } from "lucide-react";
+import { ShieldCheck, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
+import { ProviderLogoIcon, getProviderLogoUrl } from "@/components/ProviderLogoIcon";
+import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 
 const providerRoutes: Record<string, string> = {
   "NetEnt": "/spiludviklere/netent",
