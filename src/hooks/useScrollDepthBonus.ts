@@ -18,9 +18,9 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   const depthRef = useRef(false);
   const hintRef = useRef(false);
 
-  // Track scroll depth
+  // Track scroll depth – hint tracking works before dwell completes, full depth only after
   useEffect(() => {
-    if (!user || !dwellCompleted || isClaimed) return;
+    if (!user) return;
 
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
