@@ -44,7 +44,7 @@ import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-had
 import {
   ShieldCheck,
   Zap,
-  Gamepad2,
+  
   Award,
   CheckCircle2,
   AlertTriangle,

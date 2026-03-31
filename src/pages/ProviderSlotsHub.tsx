@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
-  Gamepad2,
+  
   BarChart3,
   TrendingUp,
   Award,
