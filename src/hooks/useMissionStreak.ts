@@ -14,9 +14,9 @@ export interface StreakData {
 }
 
 const STREAK_MILESTONES = [
-  { days: 3, credits: 500, label: "3-dags streak" },
-  { days: 7, credits: 1500, label: "7-dags streak" },
-  { days: 30, credits: 5000, label: "30-dags streak" },
+  { days: 3, credits: 2000, label: "3-dags streak" },
+  { days: 7, credits: 5000, label: "7-dags streak" },
+  { days: 30, credits: 10000, label: "30-dags streak" },
 ] as const;
 
 export { STREAK_MILESTONES };
