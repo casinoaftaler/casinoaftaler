@@ -35,6 +35,11 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
       { to: "/casinoer/vr-casinoer", label: "VR Casinoer", iconName: "glasses" },
       { to: "/casinoer/spil-casino-for-sjov", label: "Spil Casino for Sjov", iconName: "gamepad-2" },
       { to: "/casinoer/casino-og-skat", label: "Casino og Skat", iconName: "receipt" },
+      { to: "/casino-med-dansk-licens", label: "Casino med Dansk Licens", iconName: "shield-check" },
+      { to: "/casino-uden-rofus", label: "Casino uden ROFUS", iconName: "shield-off" },
+      { to: "/casino-med-mitid", label: "Casino med MitID", iconName: "scan-line" },
+      { to: "/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
+      { to: "/gratis-casino-spil", label: "Gratis Casino Spil", iconName: "gamepad-2" },
     ],
   },
   {
