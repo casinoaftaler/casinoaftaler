@@ -114,6 +114,10 @@ const NoStickyBonus = lazyRetry(() => import("./pages/NoStickyBonus"));
 const StickyBonus = lazyRetry(() => import("./pages/StickyBonus"));
 const CashbackBonus = lazyRetry(() => import("./pages/CashbackBonus"));
 const ReloadBonus = lazyRetry(() => import("./pages/ReloadBonus"));
+const GratisCasinoSpil = lazyRetry(() => import("./pages/GratisCasinoSpil"));
+const HurtigUdbetaling = lazyRetry(() => import("./pages/HurtigUdbetaling"));
+const CasinoUdenRofus = lazyRetry(() => import("./pages/CasinoUdenRofus"));
+const CasinoMedMitID2 = lazyRetry(() => import("./pages/CasinoMedMitID"));
 const SpilleautomatenAnmeldelse = lazyRetry(() => import("./pages/SpilleautomatenAnmeldelse"));
 const SpilDanskNuAnmeldelse = lazyRetry(() => import("./pages/SpilDanskNuAnmeldelse"));
 const CampobetAnmeldelse = lazyRetry(() => import("./pages/CampobetAnmeldelse"));
@@ -493,6 +497,10 @@ const App = () => (
                 <Route path="/casinoer/spil-casino-for-sjov" element={<SpilForSjovGuide />} />
                 <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casino-med-dansk-licens" element={<CasinoMedDanskLicens />} />
+                <Route path="/gratis-casino-spil" element={<GratisCasinoSpil />} />
+                <Route path="/hurtig-udbetaling" element={<HurtigUdbetaling />} />
+                <Route path="/casino-uden-rofus" element={<CasinoUdenRofus />} />
+                <Route path="/casino-med-mitid" element={<CasinoMedMitID2 />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
                 <Route path="/spillemaskiner/:providerSlug" element={<ProviderSlotsHub />} />

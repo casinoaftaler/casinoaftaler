@@ -163,6 +163,10 @@ export const routeLabels: Record<string, string> = {
   "/spillemyndigheden": "Spillemyndigheden",
   "/casino-licenser": "Casino Licenser",
   "/casino-med-dansk-licens": "Casino med Dansk Licens",
+  "/gratis-casino-spil": "Gratis Casino Spil",
+  "/hurtig-udbetaling": "Hurtig Udbetaling",
+  "/casino-uden-rofus": "Casino uden ROFUS",
+  "/casino-med-mitid": "Casino med MitID",
   "/licenserede-casinoer": "Licenserede Casinoer",
   "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
   
