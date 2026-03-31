@@ -291,6 +291,7 @@ const ZimplerGuide = () => {
         { question: "Hvad sker der, hvis min bank er nede under en Zimpler-betaling?", answer: "Hvis din banks PSD2-API er utilgængeligt (driftsforstyrrelser, vedligeholdelse), vil Zimpler vise en fejlmeddelelse og foreslå, at du prøver igen senere. Ingen penge trækkes ved mislykkede transaktioner. Vi oplevede dette én gang i vores test med Nordea og kunne gennemføre betalingen efter 5 minutters ventetid. Har du brug for øjeblikkelig indbetaling under en bankafbrydelse, kan du bruge et alternativ som Visa/Mastercard eller Apple Pay." },
       ]}
       currentPath="/betalingsmetoder/zimpler"
+      responsibleGamingText="Zimplers SMS-verifikation ved hver transaktion fungerer som en ekstra tænkepause, der bryder automatikken i hurtige indbetalinger. Brug denne friktion konstruktivt og spørg dig selv, om indbetalingen er planlagt."
       howToName="Sådan indbetaler du med Zimpler på et dansk casino"
       howToTotalTime="PT3M"
       howToSteps={[
@@ -301,6 +302,8 @@ const ZimplerGuide = () => {
       ]}
       snippetAnswer="Zimpler kombinerer mobilfakturering med bankoverførsel – indbetal via SMS-bekræftelse uden at dele bankoplysninger. Lav tilgængelighed i Danmark, men stærk på svenske casinoer."
       prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]}
+      readTime="17 Min."
+      datePublished="2026-02-24"
     />
   );
 };

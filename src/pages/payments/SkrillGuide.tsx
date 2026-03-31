@@ -225,6 +225,8 @@ const SkrillGuide = () => {
       currentPath="/betalingsmetoder/skrill"
       snippetAnswer="Skrill fungerer som digital tegnebog med instant indbetalinger og 0-4 timers udbetalinger. Gebyrfri casino-transaktioner, men udelukkes ofte fra bonusser ligesom PayPal."
       prioritySlugs={["campobet", "spilleautomaten", "betinia"]}
+      readTime="18 Min."
+      datePublished="2026-02-16"
     />
   );
 };

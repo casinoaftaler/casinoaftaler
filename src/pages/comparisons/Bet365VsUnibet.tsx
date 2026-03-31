@@ -146,7 +146,7 @@ export default function Bet365VsUnibet() {
       h1="bet365 vs Unibet – Hvem vinder i 2026?"
       intro="To af Nordens største casino-brands kæmper om danske spilleres gunst. Vi har testet begge casinoer grundigt og sammenligner dem på 8 afgørende kategorier – fra velkomstbonus og spiludvalg til udbetalingshastighed og ansvarligt spil."
       path="/casino-anmeldelser/bet365-vs-unibet"
-      datePublished="2026-03-08"
+      datePublished="2026-03-06"
       author="jonas"
       heroImage={heroImage}
       heroAlt="Sammenligning af bet365 og Unibet – to af Danmarks mest populære online casinoer"

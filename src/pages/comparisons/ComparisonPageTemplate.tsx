@@ -172,7 +172,14 @@ export function ComparisonPageTemplate({
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Scale className="mr-1.5 h-3.5 w-3.5" />
-              Sammenligning 2026
+              {[
+                "Casino Sammenligning 2026",
+                "Dybdegående Sammenligning",
+                "Head-to-Head Analyse",
+                "Ekspert Sammenligning",
+                "Detaljeret Duel 2026",
+                "Side-om-Side Test",
+              ][(casinoA.name.length + casinoB.name.length) % 6]}
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">{h1}</h1>
             <p className="text-lg text-white/80">{intro}</p>

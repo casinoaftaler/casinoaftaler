@@ -93,6 +93,10 @@ interface PaymentMethodPageProps {
   snippetAnswer?: string;
   /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
   prioritySlugs?: string[];
+  /** Unique read time per page, e.g. "18 Min." */
+  readTime?: string;
+  /** Unique datePublished per page in ISO format */
+  datePublished?: string;
 }
 
 const paymentLinks = [
@@ -161,6 +165,8 @@ export function PaymentMethodPage({
   ctaCasinoSlug,
   snippetAnswer,
   prioritySlugs,
+  readTime,
+  datePublished,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -171,7 +177,7 @@ export function PaymentMethodPage({
     headline: seoTitle,
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
-    datePublished: "2026-02-15",
+    datePublished: datePublished || "2026-02-15",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
@@ -228,7 +234,7 @@ export function PaymentMethodPage({
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="22 Min." />
+        <AuthorMetaBar author="kevin" readTime={readTime || "22 Min."} />
 
        <SnippetAnswer answer={snippetAnswer || `${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
 
@@ -239,11 +245,12 @@ export function PaymentMethodPage({
           <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
           {introContent}
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Se vores komplette{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">sammenligning af betalingsmetoder</Link>{" "}
-            for at finde den metode, der passer bedst til dine behov, eller læs vores{" "}
-            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
-            for at se, hvilke metoder hvert casino understøtter.
+            {[
+              <>Se vores komplette <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">sammenligning af betalingsmetoder</Link> for at finde den metode, der passer bedst til dine behov, eller læs vores <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link> for at se, hvilke metoder hvert casino understøtter.</>,
+              <>Vil du sammenligne {name} med andre metoder? Se vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">komplette betalingsoversigt</Link> eller find det rette casino i vores <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">top 10 casinoer</Link>.</>,
+              <>Udforsk alle dine muligheder i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">guide til betalingsmetoder</Link>, eller se hvilke casinoer der tilbyder {name} i vores <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">dybdegående anmeldelser</Link>.</>,
+              <>Læs mere om alternative betalingsløsninger i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsguide</Link>, og find de bedste tilbud til {name}-brugere via vores <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusoversigt</Link>.</>,
+            ][name.length % 4]}
           </p>
         </section>
 
@@ -404,10 +411,23 @@ export function PaymentMethodPage({
 
         {/* Related payment methods — show all siblings for full cross-linking */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Relaterede Betalingsmetoder</h2>
+          <h2 className="mb-4 text-3xl font-bold">
+            {[
+              "Relaterede Betalingsmetoder",
+              "Andre Betalingsmuligheder",
+              "Alternative Indbetalingsmetoder",
+              "Sammenlign med Andre Metoder",
+              "Udforsk Flere Betalingsløsninger",
+            ][name.length % 5]}
+          </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sammenlign {name} med andre populære betalingsmetoder på danske casinoer. Se vores komplette{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">oversigt over betalingsmetoder</Link>.
+            {[
+              <>Sammenlign {name} med andre populære betalingsmetoder på danske casinoer. Se vores komplette <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">oversigt over betalingsmetoder</Link>.</>,
+              <>Ikke sikker på om {name} er det rigtige valg? Udforsk alle muligheder i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsguide</Link>.</>,
+              <>Hver betalingsmetode har sine styrker. Se hvordan {name} klarer sig mod alternativerne i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">fulde sammenligning</Link>.</>,
+              <>Find den perfekte betalingsløsning til dit spil – sammenlign {name} med alle metoder i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">detaljerede oversigt</Link>.</>,
+              <>Danske casinoer understøtter mange metoder udover {name}. Læs mere i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">guide til indbetalingsmetoder</Link>.</>,
+            ][name.length % 5]}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {paymentLinks
@@ -424,43 +444,45 @@ export function PaymentMethodPage({
           </div>
         </section>
 
-        {/* Money-page CTAs */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-            <Gift className="h-6 w-6 text-primary" />
-            Find det rette casino til {name}
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Link to="/casino-anmeldelser" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-              <Award className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold">Casino Anmeldelser</p>
-                <p className="text-sm text-muted-foreground">Se hvilke casinoer der accepterer {name} med de bedste vilkår.</p>
+        {/* Money-page CTAs — rotated per page */}
+        {(() => {
+          const ctaVariants = [
+            { url: "/casino-anmeldelser", icon: Award, title: "Casino Anmeldelser", desc: `Se hvilke casinoer der accepterer ${name} med de bedste vilkår.` },
+            { url: "/casino-bonus", icon: Wallet, title: "Casino Bonus", desc: `Bonusser du kan aktivere med ${name}-indbetalinger.` },
+            { url: "/nye-casinoer", icon: Banknote, title: "Nye Casinoer 2026", desc: `De nyeste danske casinoer med ${name}-understøttelse.` },
+            { url: "/velkomstbonus", icon: CreditCard, title: "Velkomstbonus", desc: `Bedste velkomsttilbud kompatible med ${name}.` },
+            { url: "/top-10-casino-online", icon: Award, title: "Top 10 Casinoer", desc: `Danmarks bedst ratede casinoer med ${name}-support.` },
+            { url: "/hurtig-udbetaling", icon: Banknote, title: "Hurtig Udbetaling", desc: `Casinoer med lynhurtige udbetalinger via ${name}.` },
+          ];
+          const offset = name.length % ctaVariants.length;
+          const rotated = [...ctaVariants.slice(offset), ...ctaVariants.slice(0, offset)].slice(0, 4);
+          const headingVariants = [
+            `Find det rette casino til ${name}`,
+            `Casinoer med ${name}-support`,
+            `Kom i gang med ${name}`,
+            `Udforsk ${name}-casinoer`,
+            `Brug ${name} hos de bedste`,
+          ];
+          return (
+            <section className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
+                <Gift className="h-6 w-6 text-primary" />
+                {headingVariants[name.length % headingVariants.length]}
+              </h2>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {rotated.map(({ url, icon: Icon, title, desc }) => (
+                  <Link key={url} to={url} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+                    <Icon className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold">{title}</p>
+                      <p className="text-sm text-muted-foreground">{desc}</p>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            </Link>
-            <Link to="/casino-bonus" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-              <Wallet className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold">Casino Bonus</p>
-                <p className="text-sm text-muted-foreground">Bonusser du kan aktivere med {name}-indbetalinger.</p>
-              </div>
-            </Link>
-            <Link to="/nye-casinoer" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-              <Banknote className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold">Nye Casinoer 2026</p>
-                <p className="text-sm text-muted-foreground">De nyeste danske casinoer med {name}-understøttelse.</p>
-              </div>
-            </Link>
-            <Link to="/velkomstbonus" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-              <CreditCard className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold">Velkomstbonus</p>
-                <p className="text-sm text-muted-foreground">Bedste velkomsttilbud kompatible med {name}.</p>
-              </div>
-            </Link>
-          </div>
-        </section>
+            </section>
+          );
+        })()}
 
         <Separator className="my-10" />
 
@@ -470,18 +492,19 @@ export function PaymentMethodPage({
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
                 <Award className="h-5 w-5 text-primary" />
-                Ansvarligt Spil
+                {["Ansvarligt Spil", "Spil med Omtanke", "Sæt Dine Grænser", "Beskyt Dit Spil", "Spil Trygt"][name.length % 5]}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>
                 {responsibleGamingText || `Når du bruger ${name} til casinotransaktioner, er det vigtigt at spille ansvarligt og sætte personlige grænser for indbetalinger.`}{" "}
-                Læs mere om{" "}
-                <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
-                I Danmark kan du altid søge hjælp via{" "}
-                <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-                og{" "}
-                <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
+                {[
+                  <>Læs mere om <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>. I Danmark kan du altid søge hjælp via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a> og <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.</>,
+                  <>Har du brug for hjælp? Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a> på 70 22 28 25, eller læs vores <Link to="/ansvarligt-spil/spillegraenser" className="text-primary hover:underline font-medium">guide til spillegrænser</Link>. 18+.</>,
+                  <>Du kan til enhver tid udelukke dig via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS-registeret</a>. Se også vores <Link to="/ansvarligt-spil/selvudelukkelse-guide" className="text-primary hover:underline font-medium">selvudelukkelses-guide</Link>. 18+ | Spil ansvarligt.</>,
+                  <>Udforsk vores <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ressourcer om ansvarligt spil</Link>, herunder <Link to="/ansvarligt-spil/rofus" className="text-primary hover:underline font-medium">ROFUS</Link> og <Link to="/ansvarligt-spil/ludomani" className="text-primary hover:underline font-medium">ludomani-hjælp</Link>. 18+.</>,
+                  <>Ring til <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a> (70 22 28 25) hvis du har brug for støtte. Læs vores <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary hover:underline font-medium">oversigt over hjælpelinjer</Link>. 18+ | Spil ansvarligt.</>,
+                ][name.length % 5]}
               </p>
             </CardContent>
           </Card>

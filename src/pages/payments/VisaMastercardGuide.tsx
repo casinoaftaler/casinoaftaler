@@ -294,6 +294,7 @@ const VisaMastercardGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/visa-mastercard"
+      responsibleGamingText="Brug aldrig kreditkort til gambling – spil kun med debitkort og penge du allerede har. De fleste danske banker tillader dig at sætte daglige forbrugsgrænser på dit kort, hvilket giver en ekstra sikkerhedsmekanisme."
       howToName="Sådan indbetaler du med Visa eller Mastercard på et dansk casino"
       howToTotalTime="PT3M"
       howToSteps={[
@@ -304,6 +305,8 @@ const VisaMastercardGuide = () => {
       ]}
       snippetAnswer="Visa og Mastercard er universelt accepterede på alle danske casinoer med fuld bonuskvalificering. Indbetalinger er instant, men udbetalinger tager 2-4 hverdage – langsommere end Trustly."
       prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]}
+      readTime="25 Min."
+      datePublished="2026-02-06"
     />
   );
 };

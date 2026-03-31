@@ -154,7 +154,7 @@ export default function BetiniaVsCampobet() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="betinia"
-      readTime="36 min"
+      readTime="34 min"
       snippetAnswer="Betinia og Campobet deler samme platform og licens, men adskiller sig på bonus og spiludvalg. Betinia tilbyder bredere kampagner, mens Campobet har et stærkere live casino-udbud med flere Evolution-borde."
       prioritySlugs={["spilleautomaten", "spildansknu", "swift-casino"]}
     >
