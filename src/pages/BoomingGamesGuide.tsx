@@ -110,6 +110,12 @@ const BoomingGamesGuide = () => (
         <p>
           Alle spil er certificeret af anerkendte uafhængige testlaboratorier, herunder <strong>BMM Testlabs</strong> og <strong>iTech Labs</strong>, der verificerer RNG-integritet (Random Number Generator), matematiske modeller og overensstemmelse med regulatoriske krav for fairness og tilfældighed. Booming Games' engagement i <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> understøttes yderligere af deres implementering af responsible gaming-værktøjer i Felt-platformen, herunder sessions-grænser, tabsgrænser og selvudelukkelsesmekanismer der kan aktiveres direkte i spilklienten.
         </p>
+        <ReviewScreenshot
+          src={boomingMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Booming Games er licenseret af MGA som primær regulatorisk myndighed"
+          caption="Malta Gaming Authority – Booming Games' primære licens siden grundlæggelsen"
+          size="compact"
+        />
       </div>
     }
     pros={[
