@@ -118,7 +118,7 @@ export function DwellRewardBadge() {
   const timeDisplay = minutes > 0 ? `${minutes}:${secs.toString().padStart(2, "0")}` : `${secs}s`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
+    <div className="fixed bottom-24 left-6 z-50 animate-fade-in">
       {/* Milestone toast */}
       {milestoneFlash && (
         <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap animate-fade-in">
