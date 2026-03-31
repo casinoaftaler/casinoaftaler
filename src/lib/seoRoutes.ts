@@ -487,6 +487,11 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/pragmatic-play-partner", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-21",
     author: "jonas", factCheckedBy: "kevin", articleTitle: "Officiel Pragmatic Play Partner", articleCategory: "Partner",
     articleExcerpt: "Casinoaftaler.dk er officiel affiliate partner med Pragmatic Play – læs om partnerskabet og hvad det betyder." },
+
+  // ── Casinospil vertikaler ──
+  { path: "/casinospil/bingo", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-18",
+    author: "jonas", factCheckedBy: "kevin", articleTitle: "Online Bingo i Danmark", articleCategory: "Guide",
+    articleExcerpt: "Komplet guide til online bingo med dansk licens – 90-kugle, 75-kugle, speed bingo, RTP-analyse og bonusvilkår." },
   // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
 
 ] as const).map((route): SeoRoute => ({ ...route }));

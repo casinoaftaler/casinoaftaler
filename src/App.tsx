@@ -246,6 +246,7 @@ const CrapsGuide = lazyRetry(() => import("./pages/casinospil/CrapsGuide"));
 const BaccaratGuide = lazyRetry(() => import("./pages/casinospil/BaccaratGuide"));
 const RouletteStrategiGuide = lazyRetry(() => import("./pages/casinospil/RouletteStrategiGuide"));
 const OnlineLotteriGuide = lazyRetry(() => import("./pages/casinospil/OnlineLotteriGuide"));
+const BingoGuide = lazyRetry(() => import("./pages/casinospil/BingoGuide"));
 const GameShowsGuide = lazyRetry(() => import("./pages/casinospil/GameShowsGuide"));
 const Forfatter = lazyRetry(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazyRetry(() => import("./pages/ForfatterKevin"));
@@ -565,6 +566,7 @@ const App = () => (
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
                 <Route path="/casinospil/roulette-strategi" element={<Navigate to="/casinospil/roulette" replace />} />
                 <Route path="/casinospil/online-lotteri" element={<OnlineLotteriGuide />} />
+                <Route path="/casinospil/bingo" element={<BingoGuide />} />
                 <Route path="/casinospil/game-shows" element={<Navigate to="/live-casino/game-shows" replace />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
