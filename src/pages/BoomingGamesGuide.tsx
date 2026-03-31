@@ -233,6 +233,12 @@ const BoomingGamesGuide = () => (
           Felt-platformen tilbyder fire kernefunktioner der tilsammen forklarer Booming Games' evne til at konkurrere med langt større studier: (1) <strong>Hurtig Integration</strong> via enkelt API til hele kataloget – operatører kan onboarde alle 200+ spil på under 48 timer. (2) <strong>Multi-Jurisdiktion Compliance</strong> med automatisk tilpasning per marked, inklusive RTP-varianter og reguleringsspecifikke funktioner som responsible gaming-værktøjer. (3) <strong>Adaptiv Matematik</strong> der tillader operatører at vælge mellem godkendte RTP-niveauer per jurisdiktion uden at kompromittere spilintegriteten. (4) <strong>Gamification Suite</strong> med indbyggede turneringsværktøjer, jackpot-systemer, leaderboard-funktioner og achievements der kan aktiveres direkte i spilklienten.
         </p>
         <h3 className="text-xl font-bold mt-6 mb-4">Matematisk Modellering og Kvalitetssikring</h3>
+        <ReviewScreenshot
+          src={boomingBuffaloBonus}
+          alt="Buffalo Hold and Win bonusfunktioner – Hold and Win med guldmønter og Major Free Spins med scatter-symboler fra Booming Games"
+          caption="Buffalo Hold and Win bonusrunder – Hold & Win med progressive mønter (venstre) og Major Free Spins (højre)"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hvert Booming Games-spil gennemgår en omfattende matematisk modelleringsproces der starter med definition af målvolatilitet, RTP-niveau og gevinstdistribution. Modellerne simuleres over millioner af spins for at verificere at den faktiske performance matcher det ønskede design – en proces der typisk tager 3-4 uger per titel og involverer dedikerede matematikere med baggrund i statistik og sandsynlighedsberegning. Denne stringens sikrer at spillere kan stole på at de publicerede RTP-værdier er nøjagtige, og at spillenes volatilitetsprofiler matcher det annoncerede niveau – en detalje der adskiller seriøse studier fra dem der genbruger standardiserede matematiske modeller uden tilpasning.
         </p>
