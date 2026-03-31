@@ -301,6 +301,8 @@ const ZimplerGuide = () => {
       ]}
       snippetAnswer="Zimpler kombinerer mobilfakturering med bankoverførsel – indbetal via SMS-bekræftelse uden at dele bankoplysninger. Lav tilgængelighed i Danmark, men stærk på svenske casinoer."
       prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]}
+      readTime="17 Min."
+      datePublished="2026-02-24"
     />
   );
 };

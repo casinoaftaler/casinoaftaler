@@ -284,6 +284,8 @@ const BankTransferGuide = () => {
       currentPath="/betalingsmetoder/bankoverforsler"
       snippetAnswer="Bankoverførsel er den mest pålidelige, men langsomste metode – 2-5 hverdage for udbetalinger. Ingen beløbsgrænser og fuld bonuskvalificering. Bedst til store beløb over 50.000 kr."
       prioritySlugs={["spildansknu", "betinia", "campobet"]}
+      readTime="19 Min."
+      datePublished="2026-02-18"
     />
   );
 };

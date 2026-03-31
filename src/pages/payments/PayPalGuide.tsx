@@ -245,6 +245,8 @@ const PayPalGuide = () => {
       currentPath="/betalingsmetoder/paypal"
       snippetAnswer="PayPal tilbyder køberbeskyttelse og hurtige udbetalinger (0-4 timer til saldo), men udelukkes ofte fra velkomstbonusser. Bedst som sekundær betalingsmetode efter Trustly."
       prioritySlugs={["campobet", "betinia", "spilleautomaten"]}
+      readTime="21 Min."
+      datePublished="2026-02-20"
     />
   );
 };

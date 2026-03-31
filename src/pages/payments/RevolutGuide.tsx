@@ -286,6 +286,8 @@ const RevolutGuide = () => {
       currentPath="/betalingsmetoder/revolut"
       snippetAnswer="Revolut er den eneste betalingsmetode med dedikeret gambling-blokering – ideel til ansvarligt spil. Instant indbetalinger via virtuelt kort og realtidsnotifikationer ved hver transaktion."
       prioritySlugs={["betinia", "spildansknu", "spilleautomaten"]}
+      readTime="20 Min."
+      datePublished="2026-02-22"
     />
   );
 };

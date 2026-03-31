@@ -293,6 +293,8 @@ const PaysafecardGuide = () => {
       currentPath="/betalingsmetoder/paysafecard"
       snippetAnswer="Paysafecard er den bedste metode til budgetkontrol – du køber vouchers med et fast beløb og kan aldrig overskride dit budget. Kun til indbetalinger; udbetalinger kræver Trustly eller bankoverførsel."
       prioritySlugs={["betinia", "campobet", "spildansknu"]}
+      readTime="23 Min."
+      datePublished="2026-02-14"
     />
   );
 };
