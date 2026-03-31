@@ -593,7 +593,7 @@ const BingoGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om online bingo" faqs={faqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
-      <StickyCtaBySlug slug="maria-casino" />
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };
