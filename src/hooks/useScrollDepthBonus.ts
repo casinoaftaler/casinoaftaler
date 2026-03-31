@@ -33,7 +33,7 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
         setHasReachedHint(true);
       }
 
-      if (!depthRef.current && ratio >= SCROLL_DEPTH_THRESHOLD) {
+      if (!depthRef.current && ratio >= SCROLL_DEPTH_THRESHOLD && dwellCompleted && !isClaimed) {
         depthRef.current = true;
         setHasReachedDepth(true);
       }
