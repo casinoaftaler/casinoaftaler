@@ -261,7 +261,6 @@ export function DwellRewardBadge() {
               {scrollClaimed && (
                 <p className="text-[10px] text-emerald-500/80 font-medium">inkl. +{scrollDepthCredits} scroll-dybde bonus</p>
               )}
-              {/* Scroll hint: dwell done, at 30% but not yet at 60%, bonus not claimed */}
               {!scrollClaimed && hasReachedHint && !hasReachedDepth && (
                 <p className="text-[10px] font-semibold text-amber-500 animate-pulse mt-0.5 flex items-center gap-1">
                   <ArrowDown className="h-3 w-3 animate-bounce" />
