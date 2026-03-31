@@ -69,7 +69,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Labouchère Roulette System 2026 – Cancellation-Metoden Forklaret & Testet",
   description: "Dybdegående guide til Labouchère-systemet i roulette: cancellation-mekanismen, sekvensdesign, 10.000-spins Monte Carlo simulering og sammenligning med Martingale og Fibonacci.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-04-25",
   url: `${SITE_URL}/casinospil/roulette/labouchere-roulette`,
   image: `${SITE_URL}/og/labouchere-roulette.jpg`,
 });
@@ -103,7 +103,7 @@ export default function LabouchereRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="123 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Labouchère roulette system med cancellation-sekvens på et casino-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

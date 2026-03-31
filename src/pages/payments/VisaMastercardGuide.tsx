@@ -305,7 +305,7 @@ const VisaMastercardGuide = () => {
       ]}
       snippetAnswer="Visa og Mastercard er universelt accepterede på alle danske casinoer med fuld bonuskvalificering. Indbetalinger er instant, men udbetalinger tager 2-4 hverdage – langsommere end Trustly."
       prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]}
-      readTime="25 Min."
+      readTime="82 Min."
       datePublished="2026-02-06"
     />
   );

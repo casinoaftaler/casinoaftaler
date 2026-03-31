@@ -90,7 +90,7 @@ const JamminJarsGuide = () => {
     headline: "Jammin' Jars – Cluster Pays & Multiplikator-Analyse",
     description: "Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/jammin-jars`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-04",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -113,7 +113,7 @@ const JamminJarsGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="19 min" />
+        <AuthorMetaBar author="kevin" readTime="41 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Jammin' Jars spillemaskine" loading="eager" />
         </div>

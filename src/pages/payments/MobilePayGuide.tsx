@@ -305,7 +305,7 @@ const MobilePayGuide = () => {
       ]}
       snippetAnswer="MobilePay giver instant indbetalinger med Swipe-bekræftelse og nul gebyrer. Udbetalinger sker via Trustly eller bankoverførsel. Ikke alle casinoer understøtter MobilePay – se hvilke der gør nedenfor."
       prioritySlugs={["spildansknu", "betinia", "playkasino"]}
-      readTime="26 Min."
+      readTime="151 Min."
       datePublished="2026-02-10"
     />
   );

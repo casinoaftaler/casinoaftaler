@@ -35,7 +35,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const MobilCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Mobil casino i Danmark 2026: De bedste mobilcasinoer med dansk licens, app vs. browser og betalingsmetoder.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Mobil casino i Danmark 2026: De bedste mobilcasinoer med dansk licens, app vs. browser og betalingsmetoder.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-05-22" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -65,7 +65,7 @@ const MobilCasinoerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="29 min" />
 
 
         <SnippetAnswer answer="De bedste mobilcasinoer i Danmark tilbyder PWA-apps med fuld funktionalitet, biometrisk login og optimeret touch-navigation." />

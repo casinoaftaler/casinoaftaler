@@ -36,7 +36,7 @@ const JokerStrikeGuide = () => {
     headline: "Joker Strike – 98,11 % RTP & Hi Roller",
     description: "Komplet analyse af Joker Strike: 98,11 % RTP med Hi Roller, lav volatilitet, 456× max win og den mest effektive gennemspilningsslot.",
     url: `${SITE_URL}/casinospil/spillemaskiner/joker-strike`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-04",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
@@ -48,7 +48,7 @@ const JokerStrikeGuide = () => {
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="14 min" />
+        <AuthorMetaBar author="kevin" readTime="45 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Joker Strike spillemaskine" loading="eager" />
         </div>

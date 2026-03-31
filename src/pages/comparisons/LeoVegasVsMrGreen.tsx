@@ -144,7 +144,7 @@ export default function LeoVegasVsMrGreen() {
       h1="LeoVegas vs Mr Green – Komplet Sammenligning 2026"
       intro="To ikoniske nordiske casino-brands med vidt forskellige filosofier. LeoVegas er prisbelønnet for sin mobiloplevelse og branchens hurtigste udbetalinger, mens Mr Green sætter standarden for ansvarligt spil med sit Green Gaming-værktøj. Vi sammenligner dem på 8 kategorier."
       path="/casino-anmeldelser/leovegas-vs-mr-green"
-      datePublished="2026-03-08"
+      datePublished="2026-05-11"
       author="jonas"
       heroImage={heroImage}
       heroAlt="Sammenligning af LeoVegas og Mr Green – to ikoniske nordiske casinobrands"

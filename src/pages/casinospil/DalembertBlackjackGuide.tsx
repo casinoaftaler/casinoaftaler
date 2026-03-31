@@ -125,7 +125,7 @@ const DalembertBlackjackGuide = () => {
     headline: "D'Alembert-Systemet i Blackjack 2026 – Balancens Filosofi & Casino-Virkeligheden",
     description: "Komplet analyse af D'Alembert-systemet i blackjack: lineær progression, equilibrium-teorien, 5.000-hånds simulering og ærlig vurdering af det mest konservative indsatssystem.",
     url: `${SITE_URL}/casinospil/blackjack/dalembert`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-04-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -160,7 +160,7 @@ const DalembertBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="68 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Balancerede chipstakke på blackjack-bord symboliserende D'Alembert-systemets lineære progression" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

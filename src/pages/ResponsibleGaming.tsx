@@ -164,7 +164,7 @@ const ResponsibleGaming = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="ajse" readTime="14 Min." />
+        <AuthorMetaBar author="ajse" readTime="169 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">

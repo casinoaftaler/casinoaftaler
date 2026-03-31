@@ -67,7 +67,7 @@ const BedsteAppsGuide = () => {
     headline: "Bedste Casino Apps i Danmark 2026 – Top 10 Rangering",
     description: "Komplet guide til de bedste casino apps i Danmark: Top 10 rangering med vægtet scoring, native app vs. PWA vs. browser sammenligning og sikkerhedsanalyse.",
     url: `${SITE_URL}/mobil-casino/bedste-apps`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

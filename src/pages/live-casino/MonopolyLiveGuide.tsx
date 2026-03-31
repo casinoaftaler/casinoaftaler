@@ -71,7 +71,7 @@ const MonopolyLiveGuide = () => {
     headline: "Monopoly Live – Game Show Analyse & Strategi 2026",
     description: "Komplet Monopoly Live guide 2026. RTP 96,23 %, bonusrunde-analyse, segmentfordeling og house edge-sammenligning for danske spillere.",
     url: `${SITE_URL}/live-casino/monopoly-live`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-23",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -111,7 +111,7 @@ const MonopolyLiveGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="102 Min." />
 
         <SnippetAnswer answer="Monopoly Live kombinerer money wheel med augmented reality-bonusrunder. RTP er 96,23% med op til 10.000x gevinst." />
 

@@ -83,7 +83,7 @@ const TheDogHouseGuide = () => {
     headline: "The Dog House – Sticky Wilds & Multiplikator-Analyse",
     description: "Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/the-dog-house`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-11",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -106,7 +106,7 @@ const TheDogHouseGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 min" />
+        <AuthorMetaBar author="jonas" readTime="11 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" loading="eager" />
         </div>

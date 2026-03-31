@@ -65,7 +65,7 @@ const BedsteNyeCasinoer = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="111 Min." />
 
 
         <SnippetAnswer answer="De bedste nye casinoer i Danmark kombinerer friske bonusser, moderne platforme og hurtige udbetalinger. Vi har testet og rangeret dem alle." />

@@ -74,7 +74,7 @@ const BonanzaGuide = () => {
     headline: "Bonanza Megaways – Den Komplette Megaways-Analyse",
     description: "Dybdegående analyse af Bonanza Megaways: 117.649 gevinstmuligheder, cascading wins, ubegrænset multiplier, RTP 96,00 % og strategisk EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/bonanza`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-03-27",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -100,7 +100,7 @@ const BonanzaGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="31 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Bonanza Megaways spillemaskine" loading="eager" />
         </div>

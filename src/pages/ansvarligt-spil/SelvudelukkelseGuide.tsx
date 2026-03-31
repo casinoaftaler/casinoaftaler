@@ -143,7 +143,7 @@ const SelvudelukkelseGuide = () => {
     headline: "Selvudelukkelse fra Casino – Komplet Guide til ROFUS og Alle Muligheder",
     description: "Dybdegående guide til selvudelukkelse fra danske casinoer. ROFUS vs. casinoernes egne værktøjer, trin-for-trin vejledning, internationale ordninger og juridiske rettigheder.",
     url: `${SITE_URL}/ansvarligt-spil/selvudelukkelse-guide`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-04",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -206,7 +206,7 @@ const SelvudelukkelseGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="25 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="77 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">

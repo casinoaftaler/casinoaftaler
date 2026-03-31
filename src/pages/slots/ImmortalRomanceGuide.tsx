@@ -37,7 +37,7 @@ const ImmortalRomanceGuide = () => {
     headline: "Immortal Romance – Chamber of Spins & EV",
     description: "Komplet analyse af Immortal Romance: Chamber of Spins, 96,86 % RTP, Wild Vine-mekanik og 12.150× max win.",
     url: `${SITE_URL}/casinospil/spillemaskiner/immortal-romance`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-05",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
@@ -59,7 +59,7 @@ const ImmortalRomanceGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="17 min" />
+        <AuthorMetaBar author="kevin" readTime="6 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Immortal Romance spillemaskine" loading="eager" />
         </div>

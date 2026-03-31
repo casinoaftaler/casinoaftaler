@@ -10,7 +10,7 @@ const StakelogicGuide = () => (
     seoDescription="Stakelogic slots: Hollandsk studio med Super Stake™, 150+ titler, RTP 95,5-96,5 % og fokus på regulerede europæiske markeder. Se populære spil."
     name="Stakelogic"    heroSubtitle="Stakelogic er den hollandske innovator der med Super Stake™-teknologien har skabt en helt ny dimension i online spilleautomater. Med 150+ titler og en unik position som Novomatic Groups digitale spydspids kombinerer de landbaseret casino-DNA med cutting-edge online innovation."
     currentPath="/spiludviklere/stakelogic"
-    readTime="33 Min."
+    readTime="157 Min."
     strategicTitle="Fra Landbaseret Arv til Digital Innovation: Stakelogics Unikke Markedsposition"
     technicalTitle="Super Stake™ og Teknisk Arkitektur: Stakelogics Proprietære Motor"
     gamesTitle="Seks Standout-Titler fra Stakelogics Portefølje"

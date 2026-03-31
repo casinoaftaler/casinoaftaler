@@ -79,7 +79,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Fibonacci Roulette System 2026 – Naturens Talrække på Casinobordet",
   description: "Dybdegående guide til Fibonacci-systemet i roulette: den gyldne spiral, to-trin-tilbage mekanik, 10.000-spins Monte Carlo simulering, sammenligning med Martingale og D'Alembert.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-04-22",
   url: `${SITE_URL}/casinospil/roulette/fibonacci-roulette`,
   image: `${SITE_URL}/og/fibonacci-roulette.jpg`,
 });
@@ -113,7 +113,7 @@ export default function FibonacciRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="136 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fibonacci roulette system med den gyldne spiral over et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

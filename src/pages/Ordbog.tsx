@@ -90,7 +90,7 @@ const Ordbog = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="8 min" />
+        <AuthorMetaBar author="jonas" readTime="44 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

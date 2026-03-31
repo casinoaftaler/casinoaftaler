@@ -96,7 +96,7 @@ const Spillemaskiner = () => {
     headline: "Spillemaskiner 2026 – Guide til Online Slots",
     description: "Guide til spillemaskiner online 2026. Forstå RTP, volatilitet og bonusfunktioner. Se de bedste slots med høj RTP og find dit næste yndlingsspil.",
     url: `${SITE_URL}/casinospil/spillemaskiner`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-23",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -122,7 +122,7 @@ const Spillemaskiner = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="63 Min." />
 
         <SnippetAnswer answer="Spillemaskiner (online slots) udgør 70% af casinoomsætningen. RTP varierer fra 94-97%, og volatilitet bestemmer gevinstmønsteret. Vælg spil baseret på matematik, ikke tema." />
 

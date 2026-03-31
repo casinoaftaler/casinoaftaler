@@ -72,7 +72,7 @@ const BookOfDeadGuide = () => {
     headline: "Book of Dead – Den Komplette Risikoprofil-Analyse",
     description: "Dybdegående analyse af Book of Dead: RTP, expanding symbols-matematik, bonus-compatibility og risikostyring for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/book-of-dead`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-12",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -115,7 +115,7 @@ const BookOfDeadGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="24 Min." />
+        <AuthorMetaBar author="jonas" readTime="163 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" loading="eager" />
         </div>

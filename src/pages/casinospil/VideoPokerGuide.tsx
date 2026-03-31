@@ -74,7 +74,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Video Poker Guide 2026 – RTP-analyse, Strategi & Bedste Varianter",
   description: "Komplet dansk guide til video poker. Sammenlign RTP på Jacks or Better, Deuces Wild og Joker Poker. Lær optimal hold/discard-strategi.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-05-03",
   url: `${SITE_URL}/casinospil/poker/video-poker`,
   image: `${SITE_URL}/og/video-poker.jpg`,
 });
@@ -108,7 +108,7 @@ export default function VideoPokerGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="55 Min." />
+        <AuthorMetaBar author="jonas" readTime="171 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Video poker maskine der viser Jacks or Better med Royal Flush" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

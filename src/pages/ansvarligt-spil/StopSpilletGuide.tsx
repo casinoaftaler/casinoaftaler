@@ -143,7 +143,7 @@ const StopSpilletGuide = () => {
     description:
       "Komplet guide til StopSpillet: Gratis, fortrolig rådgivning for spilleafhængighed. Telefon, chat, åbningstider, hvad du kan forvente, og hvordan tjenesten hjælper.",
     url: `${SITE_URL}/ansvarligt-spil/stopspillet`,
-    datePublished: "2026-03-07",
+    datePublished: "2026-05-30",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -186,7 +186,7 @@ const StopSpilletGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="25 Min." />
+        <AuthorMetaBar author="ajse" readTime="79 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

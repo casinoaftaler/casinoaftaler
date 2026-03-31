@@ -127,7 +127,7 @@ const ThreeCardPokerGuide = () => {
     headline: "Three Card Poker 2026 – Regler, Strategi & Udbetalinger",
     description: "Komplet dansk guide til Three Card Poker: regler, optimal Q-6-4 strategi, house edge-analyse, Pair Plus og Ante/Play forklaret.",
     url: `${SITE_URL}/casinospil/poker/three-card-poker`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-05-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -160,7 +160,7 @@ const ThreeCardPokerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" readTime="161 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Three Card Poker-bord i elegant casino med dealer og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

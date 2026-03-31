@@ -88,7 +88,7 @@ const OneCasinoAnmeldelse = () => {
     headline: "One Casino Anmeldelse 2026 – Eksklusive Spil i en Simpel Indpakning",
     description: "Dybdegående anmeldelse af One Casino. Vi tester eksklusive in-house spil, bonus uden indbetaling, udbetalingstider og kundeservice. Dansk licens fra Spillemyndigheden.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/one-casino",
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-29",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     
@@ -135,7 +135,7 @@ const OneCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="33 Min." />
+        <AuthorMetaBar author="jonas" readTime="156 Min." />
         <CasinoReviewHero slug="one-casino" casinoName="One Casino" />
         <ReviewMoneyLinks />
 

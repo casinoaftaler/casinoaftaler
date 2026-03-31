@@ -213,7 +213,7 @@ const SkrabespilGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="130 Min." />
 
         <SnippetAnswer answer="Online skrabespil i Danmark spilles lovligt hos casinoer med dansk licens fra Spillemyndigheden. Spilleren skraber digitale felter for at afsløre symboler eller beløb – match tre ens for at vinde. RTP varierer fra 85-97% for online skrabespil, markant højere end fysiske skrabelodder (50-65%). Populære varianter inkluderer klassiske skrabelodder, jackpot-skrabespil og hybrid-varianter med bonusfunktioner. Alle danske skrabespil-gevinster er skattefrie." />
 

@@ -83,7 +83,7 @@ const MoneyTrain3Guide = () => {
     headline: "Money Train 3 – Max Win Analyse & Bonusmekanik",
     description: "Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/money-train-3`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

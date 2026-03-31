@@ -98,7 +98,7 @@ const OnlineLotteriGuide = () => {
     headline: "Online Lotteri – Jackpot-Sandsynlighed og Regressionsanalyse",
     description: "Dybdegående analyse af lotteri-sandsynligheder: kombinatorik, EV, house edge, regression to the mean og jackpot-psykologi.",
     url: `${SITE_URL}/casinospil/online-lotteri`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-03-19",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -124,7 +124,7 @@ const OnlineLotteriGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="56 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lotteriHero} alt="Matematisk analyse af lotteri-sandsynligheder" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

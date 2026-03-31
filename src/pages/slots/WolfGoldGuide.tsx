@@ -100,7 +100,7 @@ const WolfGoldGuide = () => {
     headline: "Wolf Gold – Jackpot-Mekanik & RTP-Analyse",
     description: "Komplet analyse af Wolf Gold: Money Respin-jackpot, free spins med Mega Symbols, RTP 96,01 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/wolf-gold`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-15",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -143,7 +143,7 @@ const WolfGoldGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="18 min" />
+        <AuthorMetaBar author="kevin" readTime="9 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wolf Gold spillemaskine" loading="eager" />
         </div>

@@ -135,7 +135,7 @@ const LiveCasinoUdbydereGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="150 Min." />
 
 
         <SnippetAnswer answer="Evolution dominerer live casino med 85%+ markedsandel. Pragmatic Play Live og Playtech tilbyder billigere alternativer." />

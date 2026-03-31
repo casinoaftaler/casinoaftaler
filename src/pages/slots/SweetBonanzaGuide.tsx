@@ -72,7 +72,7 @@ const SweetBonanzaGuide = () => {
     headline: "Sweet Bonanza – RTP, Volatilitet & Matematisk Analyse",
     description: "Dybdegående analyse af Sweet Bonanza: RTP-varianter, EV-beregninger, multiplikator-matematik og bonusrunde-statistik.",
     url: `${SITE_URL}/casinospil/spillemaskiner/sweet-bonanza`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-10",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -116,7 +116,7 @@ const SweetBonanzaGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="83 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" loading="eager" />
         </div>

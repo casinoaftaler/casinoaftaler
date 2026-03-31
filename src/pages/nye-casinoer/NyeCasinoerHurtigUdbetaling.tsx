@@ -108,7 +108,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="104 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer med hurtig udbetaling behandler dine gevinster inden for 24 timer – ofte via Trustly eller MobilePay." />

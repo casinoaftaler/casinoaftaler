@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const SpilForSjovGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Spil Casino for Sjov 2026 – Gratis Casinospil i Danmark", description: "Guide til gratis casinospil i Danmark 2026.", url: `${SITE_URL}/casinoer/spil-casino-for-sjov`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Spil Casino for Sjov 2026 – Gratis Casinospil i Danmark", description: "Guide til gratis casinospil i Danmark 2026.", url: `${SITE_URL}/casinoer/spil-casino-for-sjov`, datePublished: "2026-05-23" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (

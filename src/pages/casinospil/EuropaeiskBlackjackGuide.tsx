@@ -111,7 +111,7 @@ const EuropaeiskBlackjackGuide = () => {
     headline: "Europæisk Blackjack 2026 – ENHC, OBO & Strategi Guide",
     description: "Europæisk blackjack: ENHC/OBO-regler, tilpasset basic strategy og house edge-sammenligning med amerikansk variant.",
     url: `${SITE_URL}/casinospil/blackjack/europaeisk-blackjack`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-04-19",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -146,7 +146,7 @@ const EuropaeiskBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="135 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Elegant europæisk blackjack-bord med grønt filt og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

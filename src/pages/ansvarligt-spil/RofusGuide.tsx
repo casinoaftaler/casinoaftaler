@@ -178,7 +178,7 @@ const RofusGuide = () => {
     description:
       "Alt om ROFUS: Tilmelding, varighed, ophævelse, lovgivning og statistik. Lær hvordan du beskytter dig selv via Danmarks officielle selvudelukkelsesregister.",
     url: `${SITE_URL}/ansvarligt-spil/rofus`,
-    datePublished: "2026-03-07",
+    datePublished: "2026-05-29",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -221,7 +221,7 @@ const RofusGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="25 Min." />
+        <AuthorMetaBar author="ajse" readTime="76 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

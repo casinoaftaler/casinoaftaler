@@ -99,7 +99,7 @@ const SpilnuAnmeldelse = () => {
     headline: "Spilnu Anmeldelse 2026 – Danmarks Bingo-Kongen Under Lup",
     description: "Dybdegående anmeldelse af Spilnu.dk. Dansk licens, populær bingo-sektion og casinospil under Danske Spil-koncernen. 5.500+ ord redaktionel analyse.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/spilnu",
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-22",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     
@@ -143,7 +143,7 @@ const SpilnuAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="49 Min." />
         <CasinoReviewHero slug="spilnu" casinoName="Spilnu" />
         <ReviewMoneyLinks showMobilePay />
 

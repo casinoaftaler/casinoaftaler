@@ -70,7 +70,7 @@ const RazorSharkGuide = () => {
     headline: "Razor Shark – Mystery Stacks, Volatilitet & Gevinstpotentiale",
     description: "Dybdegående analyse af Push Gamings Razor Shark: RTP 96,70 %, max win 50.000x, Mystery Stack-mekanik og risikoprofil.",
     url: `${SITE_URL}/casinospil/spillemaskiner/razor-shark`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -109,7 +109,7 @@ const RazorSharkGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="24 Min." />
+        <AuthorMetaBar author="jonas" readTime="164 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" loading="eager" />
         </div>

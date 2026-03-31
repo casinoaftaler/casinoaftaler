@@ -38,7 +38,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const HoejRTPGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Casinoer med Høj RTP 2026 – Bedste Tilbagebetalingsprocent", description: "Guide til casinoer og spil med den højeste RTP i Danmark 2026.", url: `${SITE_URL}/casinoer/hoej-rtp`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Casinoer med Høj RTP 2026 – Bedste Tilbagebetalingsprocent", description: "Guide til casinoer og spil med den højeste RTP i Danmark 2026.", url: `${SITE_URL}/casinoer/hoej-rtp`, datePublished: "2026-05-19" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -68,7 +68,7 @@ const HoejRTPGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="24 min" />
 
 
         <SnippetAnswer answer="Casinoer med høj RTP tilbyder slots med 96%+ tilbagebetaling. Tjek altid den specifikke RTP-konfiguration – den kan variere mellem casinoer." />

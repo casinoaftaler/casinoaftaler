@@ -107,7 +107,7 @@ const NyeCasinoerUdenRofus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="114 Min." />
 
 
         <SnippetAnswer answer="Casinoer uden ROFUS mangler dansk licens og spillerbeskyttelse. Vi anbefaler altid licenserede alternativer med fuldt tilsyn." />

@@ -10,7 +10,7 @@ const QuickspinGuide = () => (
     seoDescription="Quickspin slots: Svensk premium-studio med Achievement Engine, fast RTP 96,0-96,7 %, medium volatilitet og 80+ kvalitetsslots. Se populære spil."
     name="Quickspin"    heroSubtitle="Quickspin er det svenske premium-studio der har bevist, at spillercentreret design og gamification kan sameksistere med matematisk integritet. Med Achievement Engine og en portefølje på 80+ slots har de skabt en ny standard for spillerengagement."
     currentPath="/spiludviklere/quickspin"
-    readTime="36 Min."
+    readTime="118 Min."
     strategicTitle="Gamification som Konkurrencefordel: Quickspins Unikke Markedsposition"
     technicalTitle="Achievement Engine og Matematisk Arkitektur: Quickspins Tekniske DNA"
     gamesTitle="Seks Perler fra Quickspins Portefølje"

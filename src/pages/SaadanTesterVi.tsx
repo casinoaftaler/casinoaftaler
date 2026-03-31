@@ -160,7 +160,7 @@ const articleJsonLd = buildArticleSchema({
   headline: "Sådan tester vi casinoer",
   description: "Se hvordan vi tester og vurderer online casinoer i Danmark. Læs om vores testkriterier, vurderingsmodel og gennemsigtige metode.",
   url: "https://casinoaftaler.dk/saadan-tester-vi-casinoer",
-  datePublished: "2026-02-15",
+  datePublished: "2026-03-09",
   authorName: "Ajse",
   authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
   authorSameAs: AJSE_SAME_AS,

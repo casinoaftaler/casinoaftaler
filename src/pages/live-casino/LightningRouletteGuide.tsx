@@ -126,7 +126,7 @@ const LightningRouletteGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="100 Min." />
 
         <SnippetAnswer answer="Lightning Roulette tilbyder op til 500x på lucky numbers med 97,30% RTP. Evolutions mest populære live roulette-variant." />
 

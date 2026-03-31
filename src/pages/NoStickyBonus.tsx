@@ -174,7 +174,7 @@ const NoStickyBonus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="38 Min." />
+        <AuthorMetaBar author="niklas" readTime="131 Min." />
 
         <SnippetAnswer answer="No-sticky bonus adskiller dine egne penge fra bonusmidler – du kan hæve gevinster fra egne penge uden omsætningskrav. Det er matematisk den mest fordelagtige bonustype i Danmark." />
 

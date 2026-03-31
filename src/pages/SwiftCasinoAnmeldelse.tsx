@@ -125,7 +125,7 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 2.500+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 2.500+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 2.500+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 2.500+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-01-21", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Swift Casino", itemUrl: "https://www.swiftcasino.dk/", ratingValue: "4.6", ratingCount: "187", reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 2.500+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger." });
 
@@ -166,7 +166,7 @@ const SwiftCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="65 Min." />
 
         <CasinoReviewHero slug="swift-casino" casinoName="Swift Casino" />
         <ReviewMoneyLinks />

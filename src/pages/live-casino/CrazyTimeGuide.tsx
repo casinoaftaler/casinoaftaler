@@ -86,7 +86,7 @@ const CrazyTimeGuide = () => {
     headline: "Crazy Time – Komplet Matematisk Analyse af Evolutions Game Show",
     description: "Dybdegående analyse af Crazy Time: RTP, house edge, bonusrunder, Top Slot-multiplikatorer og matematisk breakdown af alle væddemål.",
     url: `${SITE_URL}/live-casino/crazy-time`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-12",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -125,7 +125,7 @@ const CrazyTimeGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 min" />
+        <AuthorMetaBar author="jonas" readTime="46 min" />
 
 
         <SnippetAnswer answer="Crazy Time fra Evolution har en gennemsnitlig RTP på 95,5% og fire bonus-runder med op til 25.000x. Det mest populære game show i Danmark." />

@@ -47,7 +47,7 @@ const mrgreenFaqs: { question: string; answer: ReactNode }[] = [
 const MrGreenAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Mr Green Casino testet: Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "htCLh4TK6tA", ...casinoReviewEntities("Mr Green Casino", "mr-green") });
+  const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Mr Green Casino testet: Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-01-31", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "htCLh4TK6tA", ...casinoReviewEntities("Mr Green Casino", "mr-green") });
   const faqJsonLd = buildFaqSchema(mrgreenFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Mr Green Casino", itemUrl: "https://www.mrgreen.com/dk/", ratingValue: "4.3", ratingCount: "219", reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." });
 
@@ -64,7 +64,7 @@ const MrGreenAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="124 Min." />
         <CasinoReviewHero slug="mr-green" casinoName="Mr Green Casino" />
         <ReviewMoneyLinks />
 

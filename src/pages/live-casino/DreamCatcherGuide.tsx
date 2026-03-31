@@ -82,7 +82,7 @@ const DreamCatcherGuide = () => {
     headline: "Dream Catcher – Komplet Matematisk Guide til Money Wheel",
     description: "Dream Catcher: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og volatilitetsprofil. Det originale live game show.",
     url: `${SITE_URL}/live-casino/dream-catcher`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-14",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -120,7 +120,7 @@ const DreamCatcherGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 min" />
+        <AuthorMetaBar author="jonas" readTime="37 min" />
 
 
         <SnippetAnswer answer="Dream Catcher er Evolutions enkleste money wheel med 96,58% RTP. Ideelt for begyndere i live casino game shows." />

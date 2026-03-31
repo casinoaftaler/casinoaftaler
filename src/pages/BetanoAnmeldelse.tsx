@@ -104,7 +104,7 @@ const BetanoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="43 Min." />
         <CasinoReviewHero slug="betano" casinoName="Betano" />
         <ReviewMoneyLinks />
 

@@ -210,7 +210,7 @@ const CasinoUdenKonto = () => {
     description:
       "Alt om casino uden konto i Danmark: Pay N Play, hurtig registrering via Trustly, sikkerhed, bankkompatibilitet, fordele/ulemper og de bedste casinoer uden kontooprettelse.",
     url: `${SITE_URL}/casino-uden-konto`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-06",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -253,7 +253,7 @@ const CasinoUdenKonto = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="141 Min." />
 
         <SnippetAnswer answer="Casino uden konto (Pay N Play) lader dig spille med det samme via bankidentifikation – uden registrering eller KYC-ventetid." />
 

@@ -125,7 +125,7 @@ export default function SpillemaskinerHoejRTP() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="52 Min." />
 
         <SnippetAnswer answer="Spillemaskiner med høj RTP (96%+) giver bedre langsigtede vinderchancer. RTP er en matematisk konstant beregnet over milliarder spins – ikke en garanti for den enkelte session." />
 

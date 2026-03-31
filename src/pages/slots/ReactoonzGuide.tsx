@@ -91,7 +91,7 @@ const ReactoonzGuide = () => {
     headline: "Reactoonz – Cluster Pays Analyse & Volatilitetsprofil",
     description: "Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/reactoonz`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-01",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -114,7 +114,7 @@ const ReactoonzGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="20 min" />
+        <AuthorMetaBar author="kevin" readTime="49 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
         </div>

@@ -149,7 +149,7 @@ export default function DanskeSpilVsSpilnu() {
       h1="Danske Spil Casino vs Spilnu – Dansk Duel 2026"
       intro="Begge casinoer er del af Danske Spil-koncernen og har dansk licens. Danske Spil er landets ældste spiludbyder med Lotto, Oddset og Casino, mens Spilnu er koncernens dedikerede casino- og bingo-platform med Danmarks største online bingo-community."
       path="/casino-anmeldelser/danske-spil-vs-spilnu"
-      datePublished="2026-03-08"
+      datePublished="2026-05-10"
       author="jonas"
       heroImage={heroImage}
       heroAlt="Sammenligning af Danske Spil Casino og Spilnu – to danske casinoer i Danske Spil-koncernen"

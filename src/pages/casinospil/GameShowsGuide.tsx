@@ -99,7 +99,7 @@ const GameShowsGuide = () => {
     headline: "Casino Game Shows – Matematisk Analyse af House Edge og Volatilitet",
     description: "Dybdegående analyse af casino game shows: house edge, RTP, volatilitet, EV og multiplier-matematik. Sammenligningstabeller og risikovurdering.",
     url: `${SITE_URL}/live-casino/game-shows`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -125,7 +125,7 @@ const GameShowsGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="54 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={gameShowsHero} alt="Matematisk analyse af casino game shows" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -152,7 +152,7 @@ const BlackjackGuide = () => {
     headline: "Blackjack Guide 2026 – Regler, Strategi, Varianter & Online Blackjack",
     description: "Komplet blackjack-guide for danske spillere: regler, basic strategy, online blackjack, varianter, house edge og de vigtigste fejl at undgå.",
     url: `${SITE_URL}/casinospil/blackjack`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -189,7 +189,7 @@ const BlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" readTime="158 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

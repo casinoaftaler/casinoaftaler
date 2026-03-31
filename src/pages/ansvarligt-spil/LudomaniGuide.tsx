@@ -146,7 +146,7 @@ const LudomaniGuide = () => {
     description:
       "Alt om ludomani: Symptomer, årsager, behandling, statistik og hjælpemuligheder. Lær at genkende spilleafhængighed og find gratis støtte i Danmark.",
     url: `${SITE_URL}/ansvarligt-spil/ludomani`,
-    datePublished: "2026-03-07",
+    datePublished: "2026-05-28",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -189,7 +189,7 @@ const LudomaniGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="28 Min." />
+        <AuthorMetaBar author="ajse" readTime="53 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

@@ -72,7 +72,7 @@ const DeadOrAlive2Guide = () => {
     headline: "Dead or Alive 2 – 111.111x Max Win, Volatilitet & Strategi",
     description: "Ultimativ analyse af NetEnts Dead or Alive 2: RTP 96,82 %, tre free spins-modes, max win 111.111x og strategisk valg af bonusrunde.",
     url: `${SITE_URL}/casinospil/spillemaskiner/dead-or-alive-2`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-01-09",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -116,7 +116,7 @@ const DeadOrAlive2Guide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="152 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
         </div>

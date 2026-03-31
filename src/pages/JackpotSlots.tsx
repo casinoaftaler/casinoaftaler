@@ -146,7 +146,7 @@ const JackpotSlots = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="85 Min." />
 
         <SnippetAnswer answer="Progressive jackpot-slots samler en pulje fra alle spillere i netværket – Mega Moolah holder rekorden med 130+ mio. kr. Basis-RTP er 88–94%, da en del af indsatsen går til puljen. Gevinster er skattefri i Danmark." />
 

@@ -169,7 +169,7 @@ const HurtigUdbetaling = () => {
     headline: "Hurtig Udbetaling Casino – Casinoer med Hurtigste Udbetalinger",
     description: "Find casinoer med hurtige udbetalinger i Danmark. Sammenlign udbetalingstider, betalingsmetoder og find casinoer der udbetaler inden for minutter.",
     url: `${SITE_URL}/hurtig-udbetaling`,
-    datePublished: "2026-03-31",
+    datePublished: "2026-06-04",
   });
 
   return (
@@ -208,7 +208,7 @@ const HurtigUdbetaling = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="20 Min." />
+        <AuthorMetaBar author="kevin" readTime="107 Min." />
 
         <SnippetAnswer answer="De hurtigste danske casinoer udbetaler via Trustly inden for 5-15 minutter direkte til din bankkonto. E-wallets som Skrill og PayPal tager 1-4 timer, MobilePay 1-24 timer, mens kort og bankoverførsler tager 1-5 hverdage. KYC-verifikation ved første udbetaling kan tilføje 1-24 timer – verificer proaktivt ved registrering for at undgå forsinkelser." />
 

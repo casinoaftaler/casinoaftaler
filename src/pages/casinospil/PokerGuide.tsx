@@ -155,7 +155,7 @@ const PokerGuide = () => {
     description:
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-14",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -190,7 +190,7 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="137 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

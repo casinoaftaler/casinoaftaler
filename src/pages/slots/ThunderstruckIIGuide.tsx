@@ -36,7 +36,7 @@ const ThunderstruckIIGuide = () => {
     headline: "Thunderstruck II – Progressive Bonus & RTP",
     description: "Komplet analyse af Thunderstruck II: progressiv Great Hall of Spins, 96,65 % RTP, 8.000× max win og fire unikke bonusniveauer.",
     url: `${SITE_URL}/casinospil/spillemaskiner/thunderstruck-ii`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-12",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
@@ -48,7 +48,7 @@ const ThunderstruckIIGuide = () => {
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="16 min" />
+        <AuthorMetaBar author="kevin" readTime="39 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Thunderstruck II spillemaskine" loading="eager" />
         </div>

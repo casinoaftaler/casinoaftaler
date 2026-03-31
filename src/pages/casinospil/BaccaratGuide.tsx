@@ -80,7 +80,7 @@ const BaccaratGuide = () => {
     description:
       "Matematisk analyse af baccarat: Banker vs Player edge, kommissionsberegning, varians, korttælling og high roller-perspektiv.",
     url: `${SITE_URL}/casinospil/baccarat`,
-    datePublished: "2026-02-15",
+    datePublished: "2026-01-19",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -117,7 +117,7 @@ const BaccaratGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="80 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

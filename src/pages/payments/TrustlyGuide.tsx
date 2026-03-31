@@ -239,7 +239,7 @@ const TrustlyGuide = () => {
       ]}
       snippetAnswer="Trustly er den hurtigste betalingsmetode på danske casinoer – gennemsnitlig udbetalingstid på 45 minutter i vores test. Direkte bankforbindelse via MitID, ingen registrering og fuld bonuskvalificering."
       prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}
-      readTime="28 Min."
+      readTime="61 Min."
       datePublished="2026-02-08"
     />
   );

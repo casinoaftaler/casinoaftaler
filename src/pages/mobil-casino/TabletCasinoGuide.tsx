@@ -92,7 +92,7 @@ const TabletCasinoGuide = () => {
     headline: "Casino på Tablet – Komplet Guide til iPad & Android Tablets 2026",
     description: "Casino på tablet: iPad vs. Android tablets, landscape vs. portrait, live casino-optimering, multi-tabling og de bedste tablet-casinoer i Danmark.",
     url: `${SITE_URL}/mobil-casino/tablet`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

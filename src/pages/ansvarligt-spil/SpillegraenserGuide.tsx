@@ -164,7 +164,7 @@ const SpillegraenserGuide = () => {
     headline: "Spillegrænser i Danmark – Komplet Guide til Indbetalings-, Tids- og Tabsgrænser",
     description: "Dybdegående guide til alle typer spillegrænser på danske casinoer. Lær om indbetalingsgrænser, tidsgrænser, tabsgrænser, selvtest (PGSI) og dansk lovgivning (BEK 1494).",
     url: `${SITE_URL}/ansvarligt-spil/spillegraenser`,
-    datePublished: "2026-03-08",
+    datePublished: "2026-05-05",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -214,7 +214,7 @@ const SpillegraenserGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="25 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="78 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">

@@ -152,7 +152,7 @@ const LiveCasino = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="86 Min." />
 
         <SnippetAnswer answer="De bedste live casinoer i Danmark 2026 tilbyder blackjack, roulette og baccarat fra Evolution Gaming i HD/4K med lav house edge. Alle har dansk licens og ROFUS-tilslutning. Sammenlign bordudvalg og bonusvilkår nedenfor." />
 

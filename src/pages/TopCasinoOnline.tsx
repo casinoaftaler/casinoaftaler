@@ -186,7 +186,7 @@ const TopCasinoOnline = () => {
     headline: "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
     description: "Top 10 bedste online casinoer i Danmark 2026 – testet og rangeret. Sammenlign bonus, udbetalingstid og spiludvalg. Se hvilke casinoer der scorer højest.",
     url: `${SITE_URL}/top-10-casino-online`,
-    datePublished: "2026-01-15",
+    datePublished: "2026-06-02",
   });
 
   // ItemList schema for SERP carousel eligibility
@@ -243,7 +243,7 @@ const TopCasinoOnline = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="73 Min." />
 
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 

@@ -54,7 +54,7 @@ const CryptoCasinoGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="23 min" />
 
 
         <SnippetAnswer answer="Crypto casinoer accepterer Bitcoin og Ethereum, men i Danmark kræver alle lovlige casinoer dansk licens uanset betalingsmetode." />

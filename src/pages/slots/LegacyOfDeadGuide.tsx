@@ -79,7 +79,7 @@ const LegacyOfDeadGuide = () => {
     headline: "Legacy of Dead – Progressiv Expanding Symbol-Analyse",
     description: "Dybdegående analyse af Legacy of Dead: progressivt expanding symbol-system, sammenligning med Book of Dead, RTP 96,58 % og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-04-05",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -110,7 +110,7 @@ const LegacyOfDeadGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="19 min" />
+        <AuthorMetaBar author="jonas" readTime="42 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Legacy of Dead spillemaskine" loading="eager" />
         </div>

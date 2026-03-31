@@ -89,7 +89,7 @@ const NyeCasinoerLavWagering = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="113 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer med lave omsætningskrav (5-10x) giver dig reel mulighed for at hæve bonusgevinster. Sammenlign vilkår nedenfor." />
