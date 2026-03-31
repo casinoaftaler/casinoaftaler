@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
