@@ -5,15 +5,18 @@ import { useQueryClient } from "@tanstack/react-query";
 import { getTodayDanish } from "@/lib/danishDate";
 
 export const SCROLL_DEPTH_THRESHOLD = 0.6; // 60%
+export const SCROLL_DEPTH_HINT_THRESHOLD = 0.3; // 30% – show hint
 export const SCROLL_DEPTH_BONUS_CREDITS = 300;
 
 export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [hasReachedDepth, setHasReachedDepth] = useState(false);
+  const [hasReachedHint, setHasReachedHint] = useState(false);
   const [isClaimed, setIsClaimed] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
   const depthRef = useRef(false);
+  const hintRef = useRef(false);
 
   // Track scroll depth
   useEffect(() => {
