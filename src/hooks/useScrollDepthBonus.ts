@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { getTodayDanish } from "@/lib/danishDate";
 
 export const SCROLL_DEPTH_THRESHOLD = 0.6; // 60%
-export const SCROLL_DEPTH_BONUS_CREDITS = 100;
+export const SCROLL_DEPTH_BONUS_CREDITS = 300;
 
 export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   const { user } = useAuth();
