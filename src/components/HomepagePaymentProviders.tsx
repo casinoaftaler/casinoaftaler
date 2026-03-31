@@ -67,25 +67,25 @@ export function HomepageProviderSection() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {[
-          { name: "NetEnt", to: "/spiludviklere/netent", logo: "/src/assets/providers/netent.webp" },
-          { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play", logo: "/src/assets/providers/pragmatic-play.webp" },
-          { name: "Play'n GO", to: "/spiludviklere/play-n-go", logo: "/src/assets/providers/play-n-go.webp" },
-          { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming", logo: "/src/assets/providers/evolution-gaming.webp" },
-          { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming", logo: "/src/assets/providers/hacksaw-gaming.webp" },
-          { name: "Nolimit City", to: "/spiludviklere/nolimit-city", logo: "/src/assets/providers/nolimit-city.webp" },
-          { name: "Relax Gaming", to: "/spiludviklere/relax-gaming", logo: "/src/assets/providers/relax-gaming.webp" },
-          { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming", logo: "/src/assets/providers/big-time-gaming.webp" },
-          { name: "Red Tiger", to: "/spiludviklere/red-tiger", logo: "/src/assets/providers/red-tiger.webp" },
-          { name: "ELK Studios", to: "/spiludviklere/elk-studios", logo: "/src/assets/providers/elk-studios.webp" },
-          { name: "Yggdrasil", to: "/spiludviklere/yggdrasil", logo: "/src/assets/providers/yggdrasil.webp" },
-          { name: "Microgaming", to: "/spiludviklere/microgaming", logo: "/src/assets/providers/microgaming.webp" },
+          { name: "NetEnt", to: "/spiludviklere/netent", slug: "netent" },
+          { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play", slug: "pragmatic-play" },
+          { name: "Play'n GO", to: "/spiludviklere/play-n-go", slug: "play-n-go" },
+          { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming", slug: "evolution-gaming" },
+          { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming", slug: "hacksaw-gaming" },
+          { name: "Nolimit City", to: "/spiludviklere/nolimit-city", slug: "nolimit-city" },
+          { name: "Relax Gaming", to: "/spiludviklere/relax-gaming", slug: "relax-gaming" },
+          { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming", slug: "big-time-gaming" },
+          { name: "Red Tiger", to: "/spiludviklere/red-tiger", slug: "red-tiger" },
+          { name: "ELK Studios", to: "/spiludviklere/elk-studios", slug: "elk-studios" },
+          { name: "Yggdrasil", to: "/spiludviklere/yggdrasil", slug: "yggdrasil" },
+          { name: "Microgaming", to: "/spiludviklere/microgaming", slug: "microgaming" },
         ].map((provider) => (
           <Link
             key={provider.name}
             to={provider.to}
             className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
           >
-            <ProviderLogo logoPath={provider.logo} alt={provider.name} />
+            <ProviderLogoIcon slug={provider.slug} alt={provider.name} />
             {provider.name}
           </Link>
         ))}
