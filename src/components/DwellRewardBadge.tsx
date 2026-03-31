@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
+import { useScrollDepthBonus } from "@/hooks/useScrollDepthBonus";
+import { useMissionStreak } from "@/hooks/useMissionStreak";
 import { Check, Gift, ArrowDown, ArrowRight, Flame, Zap, Trophy } from "lucide-react";
 
 const MILESTONES = [
@@ -22,15 +24,31 @@ export function DwellRewardBadge() {
     hasScrolled,
   } = useDwellReward(pathname);
 
-  const { pages } = useDwellRewardProgress();
+  const { pages, completedCount, totalPages } = useDwellRewardProgress();
+  const { hasReachedDepth, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
+  const { currentStreak, checkAndUpdateStreak } = useMissionStreak();
 
   const [visible, setVisible] = useState(true);
   const [milestoneFlash, setMilestoneFlash] = useState<string | null>(null);
   const [prevSeconds, setPrevSeconds] = useState(DWELL_DURATION_SECONDS);
+  const [streakFlash, setStreakFlash] = useState<string | null>(null);
   const hasPlayedSound = useRef(false);
 
   const completed = isClaimed || alreadyCompleted;
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
+
+  // Check streak when all missions complete
+  useEffect(() => {
+    if (completedCount === totalPages && completedCount > 0) {
+      checkAndUpdateStreak().then((result: any) => {
+        if (result?.rewards?.length > 0) {
+          const reward = result.rewards[0];
+          setStreakFlash(`🔥 ${reward.type} streak! +${reward.credits} credits!`);
+          setTimeout(() => setStreakFlash(null), 5000);
+        }
+      });
+    }
+  }, [completedCount, totalPages]);
 
   // Current milestone message
   const currentMilestone = useMemo(() => {
@@ -238,8 +256,17 @@ export function DwellRewardBadge() {
           {completed ? (
             <div className="animate-fade-in">
               <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
-                +300 credits! 🎉
+                +{300 + (scrollClaimed ? scrollDepthCredits : 0)} credits! 🎉
               </span>
+              {scrollClaimed && (
+                <p className="text-[10px] text-emerald-500/80 font-medium">inkl. +{scrollDepthCredits} scroll-dybde bonus</p>
+              )}
+              {streakFlash && (
+                <p className="text-xs font-bold text-amber-500 animate-pulse mt-0.5">{streakFlash}</p>
+              )}
+              {currentStreak > 0 && !streakFlash && (
+                <p className="text-[10px] text-muted-foreground mt-0.5">🔥 {currentStreak}-dags streak</p>
+              )}
               {nextMission ? (
                 <Link
                   to={nextMission.path}

@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
-import { Check, Coins, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
 
 /** Full Daily Missions widget for the community left sidebar */
 export function DailyMissionsWidget() {
   const { user } = useAuth();
   const { pages, completedCount, totalPages, isLoading } = useDwellRewardProgress();
+  const { currentStreak, nextMilestone } = useMissionStreak();
 
   if (!user) return null;
   if (isLoading) return null;
@@ -128,6 +130,21 @@ export function DailyMissionsWidget() {
           </Link>
         ))}
       </div>
+
+      {/* Streak section */}
+      {currentStreak > 0 && (
+        <div className="mt-3 flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
+          <Flame className="h-4 w-4 text-amber-500 flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-bold text-amber-500">{currentStreak}-dags streak 🔥</p>
+            {nextMilestone && (
+              <p className="text-[10px] text-muted-foreground">
+                Næste bonus: {nextMilestone.days} dage → +{nextMilestone.credits} credits
+              </p>
+            )}
+          </div>
+        </div>
+      )}
 
       {allCompleted && (
         <p className="mt-3 text-center text-xs font-medium text-emerald-600 dark:text-emerald-400">

@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Coins, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 /** Full-size card for the /community hub page */
 export function DailyMissionsCard() {
   const { user } = useAuth();
   const { pages, completedCount, totalPages, isLoading } = useDwellRewardProgress();
+  const { currentStreak, nextMilestone, longestStreak } = useMissionStreak();
 
   if (!user || isLoading) return null;
 
@@ -140,6 +142,39 @@ export function DailyMissionsCard() {
             </Link>
           ))}
         </div>
+
+        {/* Streak progress */}
+        {(currentStreak > 0 || longestStreak > 0) && (
+          <div className="mt-5 flex items-center gap-4 rounded-xl border border-amber-500/20 bg-amber-500/5 px-5 py-3">
+            <Flame className="h-6 w-6 text-amber-500 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-sm font-bold text-foreground">{currentStreak}-dags streak 🔥</p>
+              {nextMilestone && (
+                <p className="text-xs text-muted-foreground">
+                  {nextMilestone.days - currentStreak} dage til næste bonus: +{nextMilestone.credits} credits
+                </p>
+              )}
+              {longestStreak > currentStreak && (
+                <p className="text-[10px] text-muted-foreground/60">Personlig rekord: {longestStreak} dage</p>
+              )}
+            </div>
+            <div className="flex gap-1">
+              {STREAK_MILESTONES.map((m) => (
+                <div
+                  key={m.days}
+                  className={`flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold ${
+                    currentStreak >= m.days
+                      ? "bg-amber-500 text-white"
+                      : "bg-muted/30 text-muted-foreground"
+                  }`}
+                  title={`${m.days}-dags streak: +${m.credits} credits`}
+                >
+                  {m.days}d
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {allCompleted && (
           <p className="mt-4 text-center text-sm font-medium text-emerald-600 dark:text-emerald-400">
