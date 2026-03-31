@@ -1,0 +1,1 @@
+UPDATE site_settings SET value = '40' WHERE key = 'slot_max_bet';
