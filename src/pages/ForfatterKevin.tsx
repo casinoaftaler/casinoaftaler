@@ -200,14 +200,14 @@ export default function ForfatterKevin() {
               </Badge>
               <Badge variant="secondary">
                 <Code className="mr-1.5 h-3.5 w-3.5" />
-                Medudvikler
+                Spiludvikler
               </Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Kevin – Streamer &amp; Casinoanalytiker
+              Kevin – Streamer &amp; Spiludvikler
             </h1>
             <p className="text-lg text-white/80">
-              Streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.
+              Streamer og spiludvikler hos Casinoaftaler.dk med fokus på live-streaming af slots og udvikling af community-spil i spillehallen.
             </p>
           </div>
         </div>
