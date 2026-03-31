@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import btgLogo from "@/assets/screenshots/btg-logo-officielt.webp";
+import btgExtraChilli from "@/assets/screenshots/btg-extra-chilli-megaways.webp";
+import btgWhiteRabbit from "@/assets/screenshots/btg-white-rabbit-megaways.webp";
+import btgSlotsUdvalg from "@/assets/screenshots/btg-slots-udvalg.webp";
 
 const BigTimeGamingGuide = () => (
   <ProviderPage
