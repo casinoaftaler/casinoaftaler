@@ -291,6 +291,7 @@ export const routeLabels: Record<string, string> = {
   // "/casinospil/roulette-strategi" – removed (301 redirect to /casinospil/roulette)
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/bingo": "Bingo",
+  "/casinospil/keno": "Keno",
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
   "/casinoer": "Casinoer",
@@ -471,6 +472,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/live-casino/deal-or-no-deal": [{ name: "Live Casino", path: "/live-casino" }, { name: "Game Shows", path: "/live-casino/game-shows" }],
   "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/bingo": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/keno": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
 
   // Provider Slot Hubs – bound to /casinospil/spillemaskiner
