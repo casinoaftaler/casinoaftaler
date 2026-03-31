@@ -128,6 +128,9 @@ export const POKER_LINKS: NavLink[] = [
 ];
 
 export const OTHER_CASINOSPIL_LINKS: NavLink[] = [
+  { to: "/casinospil/bingo", label: "Bingo", iconName: "bingo" },
+  { to: "/casinospil/keno", label: "Keno", iconName: "keno" },
+  { to: "/casinospil/skrabespil", label: "Skrabespil", iconName: "scratch-card" },
   { to: "/casinospil/craps", label: "Craps", iconName: "dice-5" },
   { to: "/casinospil/baccarat", label: "Baccarat", iconName: "spade" },
   { to: "/casinospil/online-lotteri", label: "Online Lotteri", iconName: "ticket" },
