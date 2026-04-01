@@ -103,7 +103,7 @@ export function LiveCommunityDataStrip({ context = "general" }: LiveCommunityDat
     },
     stats && stats.totalSpins > 0 && {
       icon: <Gamepad2 className="h-4 w-4 text-amber-400" />,
-      label: "Spins spillet",
+      label: "Spins spillet i alt",
       value: stats.totalSpins.toLocaleString("da-DK"),
       to: "/community/slots",
     },
