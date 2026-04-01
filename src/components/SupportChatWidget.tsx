@@ -125,6 +125,18 @@ export function SupportChatWidget() {
             ) : (
               messages.map((msg) => {
                 const isUser = msg.sender_role === "user";
+                const isSystem = msg.sender_role === "system";
+
+                if (isSystem) {
+                  return (
+                    <div key={msg.id} className="flex justify-center">
+                      <div className="text-xs text-muted-foreground bg-muted/50 rounded-full px-3 py-1.5 italic">
+                        {msg.message}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div
                     key={msg.id}
