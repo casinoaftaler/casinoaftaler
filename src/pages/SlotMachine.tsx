@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
+
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
 import { SlotIntroScreen } from "@/components/slots/SlotIntroScreen";
 import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
@@ -14,6 +15,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
+
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSlotScale } from "@/hooks/useSlotScale";
@@ -23,26 +25,29 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 
-type LoadingPhase = "loading" | "intro" | "ready";
-const GAME_ID = "book-of-fedesvin";
+
+
+type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
   const isMobile = useIsMobile();
-  const { hasAccess, isLoading: accessLoading, isVerifying, verifyPassword, error: accessError } = useSlotPageAccess(GAME_ID);
-
-  useSlotSoundLoader(GAME_ID);
-
-  const {
-    isBlockedByOtherDevice,
-    otherDeviceInfo,
+  const { hasAccess, isLoading: accessLoading, isVerifying, verifyPassword, error: accessError } = useSlotPageAccess("book-of-fedesvin");
+  
+  // Load custom sound files at page level so they're ready for intro screen music
+  useSlotSoundLoader("book-of-fedesvin");
+  
+  const { 
+    isSessionActive, 
+    isBlockedByOtherDevice, 
+    otherDeviceInfo, 
     timeSinceOtherActive,
     isLoading: sessionLoading,
     takeOverSession,
-    refreshSession,
-  } = useSlotSession(GAME_ID);
+    refreshSession 
+  } = useSlotSession("book-of-fedesvin");
   const { scale } = useSlotScale({
     baseWidth: 1200,
     baseHeight: 920,
@@ -50,21 +55,26 @@ export default function SlotMachine() {
     safetyPadding: 16,
     minScale: 0.2,
   });
-
-  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>("loading");
-
+  
+  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
+  
   useEffect(() => {
-    sessionStorage.removeItem("slot_initialized");
+    sessionStorage.removeItem('slot_initialized');
   }, []);
 
-  const handleLoadingComplete = useCallback(() => setLoadingPhase("intro"), []);
+  const handleLoadingComplete = useCallback(() => {
+    setLoadingPhase('intro');
+  }, []);
+
   const handleIntroComplete = useCallback(() => {
-    sessionStorage.setItem("slot_initialized", "true");
-    setLoadingPhase("ready");
+    sessionStorage.setItem('slot_initialized', 'true');
+    setLoadingPhase('ready');
   }, []);
-
+  
+  
   const backgroundImage = siteSettings?.slot_background_image || defaultSlotBackground;
-  const topCasino = casinos?.find((c) => c.is_active) || null;
+  
+  const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow;
@@ -85,13 +95,18 @@ export default function SlotMachine() {
     };
   }, []);
 
+  // Background component for reuse
   const PageBackground = () => (
     <>
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})` }} />
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
     </>
   );
 
+  // 1. Show loading while checking auth or access
   if (loading || accessLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -103,6 +118,7 @@ export default function SlotMachine() {
     );
   }
 
+  // 2. Show lock gate if page is locked and user doesn't have access
   if (!hasAccess) {
     return (
       <SlotPageLockGate
@@ -115,6 +131,7 @@ export default function SlotMachine() {
     );
   }
 
+  // 3. Show login prompt if not logged in
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -125,7 +142,9 @@ export default function SlotMachine() {
               <Gamepad2 className="h-10 w-10 text-amber-500" />
             </div>
             <h1 className="text-2xl font-bold">Log ind for at spille</h1>
-            <p className="text-muted-foreground">Du skal være logget ind for at spille på spillemaskinen og optjene point til ranglisten.</p>
+            <p className="text-muted-foreground">
+              Du skal være logget ind for at spille på spillemaskinen og optjene point til ranglisten.
+            </p>
             <Button asChild size="lg" className="bg-[#9146FF] hover:bg-[#772ce8]">
               <Link to="/auth">Log ind med Twitch</Link>
             </Button>
@@ -135,6 +154,7 @@ export default function SlotMachine() {
     );
   }
 
+  // 4. Show session loading/gate for authenticated users
   if (sessionLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
@@ -159,16 +179,20 @@ export default function SlotMachine() {
     );
   }
 
-  if (loadingPhase === "loading") {
-    return <SlotLoadingScreen onComplete={handleLoadingComplete} gameId={GAME_ID} />;
+  // 5. Show loading screen for authenticated users with access
+  if (loadingPhase === 'loading') {
+    return <SlotLoadingScreen onComplete={handleLoadingComplete} />;
   }
 
-  if (loadingPhase === "intro") {
-    return <SlotIntroScreen onStart={handleIntroComplete} gameId={GAME_ID} />;
+  // 6. Show intro screen
+  if (loadingPhase === 'intro') {
+    return <SlotIntroScreen onStart={handleIntroComplete} />;
   }
 
+  // Side panel content for desktop
   const sidePanelContent = null;
 
+  // 7. Show the game
   return (
     <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
@@ -176,9 +200,14 @@ export default function SlotMachine() {
         description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
         noindex
       />
+      
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
 
-      <PageBackground />
-
+      {/* Back button */}
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
           asChild
@@ -194,20 +223,32 @@ export default function SlotMachine() {
       </div>
 
       {isMobile ? (
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="w-full px-1">
+        /* ── MOBILE: CSS transform scaling (same as desktop) ── */
+        <div className="flex-1 flex items-start justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1200px',
+              transform: `scale(${scale})`,
+              transformOrigin: 'top center',
+              marginBottom: `${-(920 * (1 - scale))}px`,
+              marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1200 * (1 - scale)) / 2}px`,
+            }}
+          >
             <SlotPageLayout sidePanel={null}>
-              <SlotGame gameId={GAME_ID} isMobile />
+              <SlotGame />
             </SlotPageLayout>
           </div>
         </div>
       ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
         <div className="flex-1 flex items-center justify-center overflow-hidden">
           <div
             className="slot-viewport-container flex items-center justify-center"
             style={{
-              width: "1200px",
-              height: "920px",
+              width: '1200px',
+              height: '920px',
               transform: `scale(${scale})`,
               marginTop: `${-(920 * (1 - scale)) / 2}px`,
               marginBottom: `${-(920 * (1 - scale)) / 2}px`,
@@ -216,7 +257,7 @@ export default function SlotMachine() {
             }}
           >
             <SlotPageLayout sidePanel={sidePanelContent}>
-              <SlotGame gameId={GAME_ID} />
+              <SlotGame />
             </SlotPageLayout>
           </div>
         </div>

@@ -15,31 +15,17 @@ interface SlotSymbolProps {
   isDarkened?: boolean;
   gameId?: string;
   shimmerClass?: string;
-  size?: number;
 }
 
-export const SlotSymbol = React.memo(function SlotSymbol({
-  symbol,
-  isWinning,
-  isSpinning,
-  isExpanded,
-  isNewlyExpanded,
-  hasLanded,
-  isTeasing,
-  isScatterCelebrating,
-  isDarkened,
-  gameId,
-  shimmerClass,
-  size = 150,
-}: SlotSymbolProps) {
+// Fixed base size: 150×150 container, 136×136 image
+export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
-  const imageSize = Math.max(40, Math.round(size * 0.907));
-  const emojiSize = Math.max(32, Math.round(size * 0.53));
-
+  
   return (
     <div
       className={cn(
         "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
+        "w-[150px] h-[150px]",
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
@@ -57,29 +43,28 @@ export const SlotSymbol = React.memo(function SlotSymbol({
           : "border-amber-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]")
       )}
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
         ...(isWinning ? {
           boxShadow: isWizard
-            ? "0 0 20px rgba(168,85,247,0.5)"
-            : "0 0 20px rgba(251,191,36,0.5)"
+            ? '0 0 20px rgba(168,85,247,0.5)'
+            : '0 0 20px rgba(251,191,36,0.5)'
         } : {}),
         ...(isScatterCelebrating ? {
           boxShadow: isWizard
-            ? "0 0 30px rgba(168,85,247,0.8), 0 0 60px rgba(168,85,247,0.4)"
-            : "0 0 30px rgba(251,191,36,0.8), 0 0 60px rgba(251,191,36,0.4)"
+            ? '0 0 30px rgba(168,85,247,0.8), 0 0 60px rgba(168,85,247,0.4)'
+            : '0 0 30px rgba(251,191,36,0.8), 0 0 60px rgba(251,191,36,0.4)'
         } : {}),
-        filter: isDarkened ? "brightness(0.35)" : "brightness(1)",
-        transition: "filter 0.15s ease-out"
+        filter: isDarkened ? 'brightness(0.35)' : 'brightness(1)',
+        transition: 'filter 0.15s ease-out'
       }}
     >
       {symbol.image_url ? (
         <div
-          className={cn("rounded-lg", shimmerClass)}
+          className={cn(
+            "w-[136px] h-[136px] rounded-lg",
+            shimmerClass
+          )}
           style={{
-            width: `${imageSize}px`,
-            height: `${imageSize}px`,
-            filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))",
+            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
           }}
         >
           <img
@@ -95,26 +80,26 @@ export const SlotSymbol = React.memo(function SlotSymbol({
           />
         </div>
       ) : (
-        <span
-          className={cn(
-            "transition-transform duration-300",
-            isExpanded && "scale-110",
-            isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
-          )}
-          style={{ fontSize: `${emojiSize}px` }}
-        >
+        <span className={cn(
+          "text-8xl transition-transform duration-300",
+          isExpanded && "scale-110",
+          isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
+        )}>
           {getSymbolEmoji(symbol.name)}
         </span>
       )}
-
+      
+      {/* Glow effect for winning */}
       {isWinning && (
         <div className={cn("absolute inset-0 rounded-lg animate-pulse", isWizard ? "bg-purple-400/20" : "bg-amber-400/20")} />
       )}
-
+      
+      {/* Expanded glow effect */}
       {isExpanded && (
         <div className={cn("absolute inset-0 rounded-lg animate-pulse", isWizard ? "bg-purple-400/20" : "bg-amber-400/20")} />
       )}
-
+      
+      {/* Expansion burst effect */}
       {isNewlyExpanded && (
         <>
           <div className={cn(
@@ -129,6 +114,7 @@ export const SlotSymbol = React.memo(function SlotSymbol({
           )} />
         </>
       )}
+      
     </div>
   );
 });
