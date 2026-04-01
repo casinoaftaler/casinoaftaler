@@ -582,6 +582,12 @@ Deno.serve(async (req) => {
     const { data: publicImage } = supabase.storage.from("news-images").getPublicUrl(imagePath);
     const featuredImageUrl = publicImage.publicUrl;
 
+    // ═══ AUTHOR ROUTING: Markedspuls rotates between Jonas and Kevin ═══
+    const markedspulsAuthors = ["jonas", "kevin"];
+    const weekNumber = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+    const resolvedAuthor = markedspulsAuthors[weekNumber % markedspulsAuthors.length];
+    console.log(`Market pulse author routing: week=${weekNumber} → author="${resolvedAuthor}"`);
+
     const { data: inserted, error: insertError } = await supabase
       .from("casino_news")
       .insert({
@@ -594,7 +600,7 @@ Deno.serve(async (req) => {
         status: "draft",
         meta_title: article.meta_title,
         meta_description: article.meta_description,
-        author_id: "ajse",
+        author_id: resolvedAuthor,
         featured_image: featuredImageUrl,
       })
       .select("id, slug")
