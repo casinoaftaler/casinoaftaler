@@ -24,7 +24,6 @@ export function SupportChatWidget() {
     unreadCount,
     userProfile,
     adminProfile,
-    startConversation,
     sendMessage,
     markAsRead,
     deleteConversation,
