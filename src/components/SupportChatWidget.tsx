@@ -140,9 +140,7 @@ export function SupportChatWidget() {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {/* Welcome message */}
             <div className="flex justify-start gap-2">
-              <Avatar className="h-7 w-7 mt-1 shrink-0">
-                <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">CA</AvatarFallback>
-              </Avatar>
+              <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
               <div className="max-w-[75%] rounded-2xl rounded-bl-sm px-4 py-2.5 bg-muted text-foreground text-sm">
                 👋 Velkommen! Hvad kan vi hjælpe dig med?
               </div>
