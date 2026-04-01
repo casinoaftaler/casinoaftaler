@@ -70,6 +70,7 @@ import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
+import { SupportAdminSection } from "@/components/SupportAdminSection";
 import { StaleContentAlerts } from "@/components/admin/StaleContentAlerts";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -786,6 +787,7 @@ function AdminDashboard() {
     { value: "factcheck", label: "Fact-Check", icon: Shield },
     { value: "link-density", label: "Link Monitor", icon: Link2 },
     { value: "settings", label: "Indstillinger", icon: Settings },
+    { value: "support", label: "Support", icon: MessageSquare },
     { value: "users", label: "Brugere", icon: Users },
   ];
 
@@ -1237,6 +1239,11 @@ function AdminDashboard() {
           {/* Reviews Tab */}
           <TabsContent value="reviews">
             <ReviewModerationSection />
+          </TabsContent>
+
+          {/* Support Tab */}
+          <TabsContent value="support">
+            <SupportAdminSection />
           </TabsContent>
         </Tabs>
         </div>

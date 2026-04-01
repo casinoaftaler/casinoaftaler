@@ -5,6 +5,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { CookieConsent } from "./CookieConsent";
 import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
+import { SupportChatWidget } from "./SupportChatWidget";
 import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { ScrollToTop } from "./ScrollToTop";
@@ -37,6 +38,7 @@ export function Layout() {
       <BackToTop />
       {isCommunityPage && <TwitchLivePlayer />}
       <ProfileCompletionPrompt />
+      <SupportChatWidget />
     </div>
   );
 }
