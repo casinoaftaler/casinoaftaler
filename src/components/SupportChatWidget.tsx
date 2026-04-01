@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupportChat } from "@/hooks/useSupportChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 
 export function SupportChatWidget() {
   const { user } = useAuth();
