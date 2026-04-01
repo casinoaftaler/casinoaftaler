@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { AuthorNewsSection } from "@/components/AuthorNewsSection";
 import { AuthorArticleCard } from "@/components/AuthorArticleCard";
 import { getAuthorArticles } from "@/data/authorContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
