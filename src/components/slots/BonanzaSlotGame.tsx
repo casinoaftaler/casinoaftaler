@@ -873,9 +873,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       setIsBuyingBonus(false);
       return;
     }
-    // Send bonus buy system message to chat AFTER credit check passes
-    const name = userDisplayNameRef.current || "Anonym";
-    sendSystemMessage(`🎰 ${name} har købt en bonus for ${bet * 100} credits!`, "bonus_buy");
     // Use the same spin flow but with buyBonus flag
     spinLockRef.current = true;
     nonceRef.current += 1;
