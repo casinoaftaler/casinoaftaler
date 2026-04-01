@@ -134,6 +134,38 @@ export function useSupportChat() {
     return () => { supabase.removeChannel(channel); };
   }, [conversation?.id]);
 
+  // Realtime: listen for conversation updates (e.g. admin assignment)
+  useEffect(() => {
+    if (!conversation) return;
+
+    const channel = supabase
+      .channel(`support-conv-${conversation.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "support_conversations",
+          filter: `id=eq.${conversation.id}`,
+        },
+        async (payload) => {
+          const updated = payload.new as SupportConversation;
+          setConversation(updated);
+          if (updated.assigned_admin_id && updated.assigned_admin_id !== conversation.assigned_admin_id) {
+            const { data: ap } = await supabase
+              .from("profiles")
+              .select("display_name, avatar_url")
+              .eq("user_id", updated.assigned_admin_id)
+              .single();
+            if (ap) setAdminProfile(ap as SupportProfile);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [conversation?.id, conversation?.assigned_admin_id]);
+
   // Start a new conversation
   const startConversation = useCallback(async (subject?: string) => {
     if (!userId) return null;
