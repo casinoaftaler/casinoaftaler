@@ -72,7 +72,19 @@ export function useSupportChat() {
         .maybeSingle();
 
       if (data) {
-        setConversation(data as SupportConversation);
+        const conv = data as SupportConversation;
+        setConversation(conv);
+
+        // Load admin profile if assigned
+        if (conv.assigned_admin_id) {
+          const { data: ap } = await supabase
+            .from("profiles")
+            .select("display_name, avatar_url")
+            .eq("user_id", conv.assigned_admin_id)
+            .single();
+          if (ap) setAdminProfile(ap as SupportProfile);
+        }
+
         // Load messages
         const { data: msgs } = await supabase
           .from("support_messages")
