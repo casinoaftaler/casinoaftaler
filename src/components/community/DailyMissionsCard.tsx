@@ -45,7 +45,7 @@ export function DailyMissionsCard() {
               <Coins className={`h-5 w-5 ${hasNoneCompleted ? "text-amber-500 animate-bounce" : "text-amber-500"}`} />
               Daily Missions
             </h2>
-            <p className={`text-sm mt-1 ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
+            <p className={`text-sm mt-1 ${hasNoneCompleted ? "text-amber-700 dark:text-amber-200/80" : "text-muted-foreground"}`}>
               {hasNoneCompleted
                 ? "🔥 Start dine missioner og optjen op til 3.600 credits!"
                 : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
@@ -123,7 +123,7 @@ export function DailyMissionsCard() {
                     page.completed
                       ? "text-emerald-600 dark:text-emerald-400"
                       : hasNoneCompleted && index === 0
-                        ? "text-amber-400 font-semibold"
+                        ? "text-amber-600 dark:text-amber-400 font-semibold"
                         : "text-foreground"
                   }`}
                 >

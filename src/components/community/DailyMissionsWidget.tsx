@@ -55,7 +55,7 @@ export function DailyMissionsWidget() {
         </span>
       </div>
 
-      <p className={`text-[11px] mb-3 leading-relaxed ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
+      <p className={`text-[11px] mb-3 leading-relaxed ${hasNoneCompleted ? "text-amber-700 dark:text-amber-200/80" : "text-muted-foreground"}`}>
         {hasNoneCompleted
           ? "🔥 Optjen op til 3.600 credits i dag – start din første mission!"
           : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
@@ -111,7 +111,7 @@ export function DailyMissionsWidget() {
                   page.completed
                     ? "text-emerald-600 dark:text-emerald-400"
                     : hasNoneCompleted && index === 0
-                      ? "text-amber-400"
+                      ? "text-amber-600 dark:text-amber-400"
                       : "text-foreground"
                 }`}
               >
