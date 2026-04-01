@@ -887,6 +887,30 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
     // Use article content as-is (no sources section appended)
     const finalContent = articleData.content || "";
 
+    // ═══ AUTHOR ROUTING: Map category → expert author (E-E-A-T) ═══
+    const CATEGORY_AUTHOR_MAP: Record<string, string> = {
+      "regulering": "ajse",        // Juridisk Redaktør
+      "juridisk": "ajse",          // Juridisk Redaktør
+      "lovgivning": "ajse",        // Juridisk Redaktør
+      "ansvarligt-spil": "ajse",   // Juridisk Redaktør
+      "bonusser": "niklas",        // Finansiel Økonom
+      "spilleafgifter": "niklas",  // Finansiel Økonom
+      "markedsbevægelser": "jonas", // Grundlægger, 5+ års erfaring
+      "nye-casinoer": "jonas",     // Grundlægger
+      "dataanalyse": "jonas",      // Grundlægger
+      "spiludviklere": "kevin",    // Streamer & Spiludvikler
+      "spilanmeldelser": "kevin",  // Streamer & Spiludvikler
+      "teknologi-sikkerhed": "kevin", // Streamer & Spiludvikler
+      "betalingsteknologi": "frederik", // Streamer
+      "betalingsmetoder": "frederik",   // Streamer
+      "live-casino": "frederik",   // Streamer
+      "mobilcasino": "frederik",   // Streamer
+      "kundeservice": "jonas",     // Grundlægger
+      "nordisk-marked": "jonas",   // Grundlægger
+    };
+    const resolvedAuthor = CATEGORY_AUTHOR_MAP[articleData.category] || "jonas";
+    console.log(`Author routing: category="${articleData.category}" → author="${resolvedAuthor}"`);
+
     // ═══ All guardrails passed – Insert as DRAFT ═══
     const { data: inserted, error: insertErr } = await supabase
       .from("casino_news")
@@ -901,7 +925,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         meta_description: articleData.meta_description,
         featured_image: featuredImageUrl,
         status: "draft",
-        author_id: "ajse",
+        author_id: resolvedAuthor,
       })
       .select()
       .single();
