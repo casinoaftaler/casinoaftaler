@@ -70,6 +70,7 @@ import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
+import { SupportAdminSection } from "@/components/SupportAdminSection";
 import { StaleContentAlerts } from "@/components/admin/StaleContentAlerts";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
