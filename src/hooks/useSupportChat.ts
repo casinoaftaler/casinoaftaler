@@ -260,6 +260,8 @@ export function useSupportChat() {
     messages,
     isLoading,
     unreadCount,
+    userProfile,
+    adminProfile,
     userId,
     startConversation,
     sendMessage,
