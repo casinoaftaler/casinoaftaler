@@ -507,6 +507,11 @@ export default function ForfatterKevin() {
 
         <Separator className="my-10" />
 
+        {/* Nyheder af Kevin fra database */}
+        <AuthorNewsSection authorId="kevin" authorName="Kevin" />
+
+        <Separator className="my-10" />
+
         {/* Artikler skrevet af Kevin – paginated */}
         <section className="mb-12">
           <div className="mb-6 flex items-center justify-between">
