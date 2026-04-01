@@ -255,8 +255,11 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
               { rank: 8, points: 4000 },
               { rank: 9, points: 3000 },
               { rank: 10, points: 2000 },
-            ].map(({ rank, points }) => (
-              <div key={rank} className="flex items-center justify-between px-2.5 py-1.5 bg-background/50">
+            ].map(({ rank, points }, idx, arr) => (
+              <div key={rank} className={cn(
+                "flex items-center justify-between px-2.5 py-1.5 bg-background/50",
+                idx === arr.length - 1 && arr.length % 2 !== 0 && "col-span-2"
+              )}>
                 <span className="text-[11px] text-muted-foreground font-medium">{rank}. plads</span>
                 <span className="text-[11px] font-bold text-purple-400">{points.toLocaleString('da-DK')} pts</span>
               </div>
