@@ -28,35 +28,21 @@ import { Loader2, Gamepad2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-// Fixed symbol dimensions at base resolution (scaling is handled at container level)
-const SYMBOL_SIZE = 150;
-const SYMBOL_GAP = 16;
+// Fixed desktop dimensions. Mobile dimensions are derived from viewport width.
+const DEFAULT_SYMBOL_SIZE = 150;
+const DEFAULT_SYMBOL_GAP = 16;
+const MOBILE_REEL_COUNT = 5;
+const MOBILE_SIDE_PADDING = 8;
+const MOBILE_REEL_DIVIDERS = 8;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
-// Helper to generate a display grid from symbols (for initial display only)
-function generateDisplayGrid(symbols: SlotSymbol[]): string[][] {
-  const grid: string[][] = [];
-  for (let col = 0; col < 5; col++) {
-    const column: string[] = [];
-    const usedIds: string[] = [];
-    for (let row = 0; row < 3; row++) {
-      // Simple random selection for display only (actual results come from server)
-      const availableSymbols = symbols.filter(s => !usedIds.includes(s.id));
-      const symbol = availableSymbols[Math.floor(Math.random() * availableSymbols.length)] || symbols[0];
-      column.push(symbol.id);
-      usedIds.push(symbol.id);
-    }
-    grid.push(column);
-  }
-  return grid;
-}
-
 interface SlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
-export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
+export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: SlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
@@ -65,6 +51,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const { settings: slotSettings } = useSlotSettings();
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
+
+  const mobileSymbolSize = React.useMemo(() => {
+    if (!isMobile || typeof window === "undefined") return DEFAULT_SYMBOL_SIZE;
+    const viewportWidth = window.innerWidth;
+    return Math.max(
+      58,
+      Math.floor((viewportWidth - MOBILE_SIDE_PADDING - MOBILE_REEL_DIVIDERS) / MOBILE_REEL_COUNT)
+    );
+  }, [isMobile]);
+  const symbolSize = isMobile ? mobileSymbolSize : DEFAULT_SYMBOL_SIZE;
+  const symbolGap = isMobile ? Math.max(6, Math.floor(mobileSymbolSize * 0.08)) : DEFAULT_SYMBOL_GAP;
+  const reelDividerWidth = isMobile ? 1 : 2;
 
   // Derive controls gap from site settings
   const controlsGapKey = gameId === "book-of-fedesvin" ? "slot_controls_gap" : `${gameId.replace(/-/g, "_")}_controls_gap`;
