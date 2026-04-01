@@ -58,7 +58,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
-  const { sendSystemMessage } = useSlotChat(gameId);
+  
   const userDisplayNameRef = useRef<string | null>(null);
 
   // Fetch display name for system messages
