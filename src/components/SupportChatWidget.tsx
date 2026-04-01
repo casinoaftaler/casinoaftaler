@@ -81,14 +81,32 @@ export function SupportChatWidget() {
               <h3 className="font-bold text-sm">Casinoaftaler Support</h3>
               <p className="text-xs opacity-80">Vi svarer hurtigst muligt</p>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
-              onClick={handleClose}
-            >
-              <X className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-1">
+              {conversation && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+                  onClick={async () => {
+                    if (confirm("Er du sikker på du vil slette samtalen?")) {
+                      await deleteConversation();
+                      setIsOpen(false);
+                    }
+                  }}
+                  title="Slet samtale"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+                onClick={handleClose}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Messages */}
