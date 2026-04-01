@@ -160,7 +160,7 @@ export default function ForfatterAjse() {
     gameProviders: casino.game_providers ?? [],
   });
 
-  const newsArticles = newsData?.articles ?? [];
+  
   const ajseStaticArticles = getAuthorArticles("ajse");
 
   const ITEMS_PER_PAGE = 6;
