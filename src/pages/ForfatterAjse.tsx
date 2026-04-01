@@ -177,18 +177,7 @@ export default function ForfatterAjse() {
     [totalStaticPages]
   );
 
-  // Pagination for news
-  const [newsPage, setNewsPage] = useState(0);
-  const totalNewsPages = Math.max(1, Math.ceil(newsArticles.length / ITEMS_PER_PAGE));
-  const visibleNews = newsArticles.slice(
-    newsPage * ITEMS_PER_PAGE,
-    (newsPage + 1) * ITEMS_PER_PAGE
-  );
-  const prevNewsPage = useCallback(() => setNewsPage((p) => Math.max(0, p - 1)), []);
-  const nextNewsPage = useCallback(
-    () => setNewsPage((p) => Math.min(totalNewsPages - 1, p + 1)),
-    [totalNewsPages]
-  );
+  
 
   const faqJsonLd = buildFaqSchema(faqs);
 
