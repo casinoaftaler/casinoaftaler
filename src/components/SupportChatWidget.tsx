@@ -3,6 +3,7 @@ import { MessageCircle, X, Send, Loader2, Trash2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupportChat } from "@/hooks/useSupportChat";
+import { useBroadcastChat } from "@/hooks/useBroadcastChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
