@@ -476,6 +476,11 @@ export default function ForfatterNiklas() {
 
         <Separator className="my-10" />
 
+        {/* Nyheder af Niklas fra database */}
+        <AuthorNewsSection authorId="niklas" authorName="Niklas" />
+
+        <Separator className="my-10" />
+
         {/* Artikler skrevet af Niklas */}
         <section className="mb-12">
           <div className="mb-6 flex items-center justify-between">
