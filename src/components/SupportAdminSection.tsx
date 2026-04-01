@@ -19,6 +19,7 @@ export function SupportAdminSection() {
     markUserMessagesRead,
     closeConversation,
     assignToMe,
+    deleteConversation,
   } = useSupportAdmin();
 
   const [replyText, setReplyText] = useState("");
@@ -152,6 +153,17 @@ export function SupportAdminSection() {
                   onClick={() => closeConversation(selectedConv)}
                 >
                   <CheckCircle className="h-3.5 w-3.5 mr-1" /> Luk samtale
+                </Button>
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => {
+                    if (window.confirm("Er du sikker på du vil slette denne samtale permanent?")) {
+                      deleteConversation(selectedConv);
+                    }
+                  }}
+                >
+                  <CloseIcon className="h-3.5 w-3.5 mr-1" /> Slet samtale
                 </Button>
               </div>
 
