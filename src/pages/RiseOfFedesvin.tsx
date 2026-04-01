@@ -221,19 +221,9 @@ export default function RiseOfFedesvin() {
       </div>
 
       {isMobile ? (
-        /* ── MOBILE: CSS transform scaling (same as desktop) ── */
-        <div className="flex-1 flex items-start justify-center overflow-hidden">
-          <div
-            className="slot-viewport-container"
-            style={{
-              width: '1200px',
-              transform: `scale(${scale})`,
-              transformOrigin: 'top center',
-              marginBottom: `${-(920 * (1 - scale))}px`,
-              marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
-              marginRight: `${-(1200 * (1 - scale)) / 2}px`,
-            }}
-          >
+        /* ── MOBILE: Native width layout (matches Bonanza) ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
             <SlotPageLayout sidePanel={null}>
               <SlotGame gameId={GAME_ID} />
             </SlotPageLayout>
