@@ -23,6 +23,19 @@ export function SupportChatWidget() {
     sendMessage,
     markAsRead,
   } = useSupportChat();
+  // Auto-scroll on new messages
+  useEffect(() => {
+    if (isOpen && scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isOpen]);
+
+  // Mark as read when opened
+  useEffect(() => {
+    if (isOpen && unreadCount > 0) {
+      markAsRead();
+    }
+  }, [isOpen, unreadCount, markAsRead]);
 
   // Don't show for non-authenticated users
   if (!user) return null;
@@ -40,11 +53,9 @@ export function SupportChatWidget() {
   const handleSend = async () => {
     if (!input.trim() || sending) return;
     setSending(true);
-
     if (!conversation) {
       await startConversation("Support");
     }
-
     await sendMessage(input.trim());
     setInput("");
     setSending(false);
@@ -56,20 +67,6 @@ export function SupportChatWidget() {
       handleSend();
     }
   };
-
-  // Auto-scroll on new messages
-  useEffect(() => {
-    if (isOpen && scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, isOpen]);
-
-  // Mark as read when opened
-  useEffect(() => {
-    if (isOpen && unreadCount > 0) {
-      markAsRead();
-    }
-  }, [isOpen, unreadCount, markAsRead]);
 
   return (
     <>
