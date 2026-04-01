@@ -24,6 +24,9 @@ export function SupportChatWidget() {
     markAsRead,
   } = useSupportChat();
 
+  // Don't show for non-authenticated users
+  if (!user) return null;
+
   const handleOpen = async () => {
     setIsOpen(true);
     if (!conversation) {

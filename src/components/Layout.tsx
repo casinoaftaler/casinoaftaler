@@ -38,6 +38,7 @@ export function Layout() {
       <BackToTop />
       {isCommunityPage && <TwitchLivePlayer />}
       <ProfileCompletionPrompt />
+      <SupportChatWidget />
     </div>
   );
 }
