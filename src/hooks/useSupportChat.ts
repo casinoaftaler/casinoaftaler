@@ -22,12 +22,19 @@ export interface SupportMessage {
   created_at: string;
 }
 
+export interface SupportProfile {
+  display_name: string | null;
+  avatar_url: string | null;
+}
+
 export function useSupportChat() {
   const [conversation, setConversation] = useState<SupportConversation | null>(null);
   const [messages, setMessages] = useState<SupportMessage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [unreadCount, setUnreadCount] = useState(0);
   const [userId, setUserId] = useState<string | null>(null);
+  const [userProfile, setUserProfile] = useState<SupportProfile | null>(null);
+  const [adminProfile, setAdminProfile] = useState<SupportProfile | null>(null);
 
   // Get current user
   useEffect(() => {
