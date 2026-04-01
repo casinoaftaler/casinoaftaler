@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupportChat } from "@/hooks/useSupportChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 
 export function SupportChatWidget() {
   const { user } = useAuth();
@@ -92,14 +93,19 @@ export function SupportChatWidget() {
                   </Avatar>
                   <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-500 border-2 border-primary" />
                 </div>
-              ) : null}
-              <div>
-                <h3 className="font-bold text-sm">
-                  {adminProfile ? adminProfile.display_name || "Support Agent" : "Casinoaftaler Support"}
-                </h3>
-                <p className="text-xs opacity-80">
-                  {adminProfile ? "Support Agent" : "Vi svarer hurtigst muligt"}
-                </p>
+              ) : (
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-9 w-9 rounded-full object-cover" />
+              )}
+              <div className="flex items-center gap-2">
+                <div>
+                  <h3 className="font-bold text-sm">
+                    {adminProfile ? adminProfile.display_name || "Support Agent" : "Casinoaftaler Support"}
+                  </h3>
+                  <p className="text-xs opacity-80">
+                    {adminProfile ? "Support Agent" : "Vi svarer hurtigst muligt"}
+                  </p>
+                </div>
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-6 w-6 rounded-full object-cover opacity-80" />
               </div>
             </div>
             <div className="flex items-center gap-1">
@@ -134,9 +140,7 @@ export function SupportChatWidget() {
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {/* Welcome message */}
             <div className="flex justify-start gap-2">
-              <Avatar className="h-7 w-7 mt-1 shrink-0">
-                <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">CA</AvatarFallback>
-              </Avatar>
+              <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
               <div className="max-w-[75%] rounded-2xl rounded-bl-sm px-4 py-2.5 bg-muted text-foreground text-sm">
                 👋 Velkommen! Hvad kan vi hjælpe dig med?
               </div>
@@ -168,12 +172,16 @@ export function SupportChatWidget() {
                   >
                     {/* Admin avatar on left */}
                     {!isUser && (
-                      <Avatar className="h-7 w-7 mt-1 shrink-0">
-                        <AvatarImage src={adminProfile?.avatar_url || undefined} />
-                        <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">
-                          {adminProfile?.display_name?.[0]?.toUpperCase() || "S"}
-                        </AvatarFallback>
-                      </Avatar>
+                      adminProfile?.avatar_url ? (
+                        <Avatar className="h-7 w-7 mt-1 shrink-0">
+                          <AvatarImage src={adminProfile.avatar_url} />
+                          <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">
+                            {adminProfile.display_name?.[0]?.toUpperCase() || "S"}
+                          </AvatarFallback>
+                        </Avatar>
+                      ) : (
+                        <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
+                      )
                     )}
                     <div
                       className={cn(
