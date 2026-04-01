@@ -159,6 +159,18 @@ export function SupportAdminSection() {
               <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[300px]">
                 {messages.map((msg) => {
                   const isAdmin = msg.sender_role === "admin";
+                  const isSystem = msg.sender_role === "system";
+
+                  if (isSystem) {
+                    return (
+                      <div key={msg.id} className="flex justify-center">
+                        <div className="text-xs text-muted-foreground bg-muted/50 rounded-full px-3 py-1.5 italic">
+                          {msg.message}
+                        </div>
+                      </div>
+                    );
+                  }
+
                   return (
                     <div
                       key={msg.id}
