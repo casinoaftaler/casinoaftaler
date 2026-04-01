@@ -579,8 +579,8 @@ Deno.serve(async (req) => {
         .select("*", { count: "exact", head: true })
         .gte("created_at", weekAgo.toISOString());
 
-      if ((weekCount ?? 0) >= 4) {
-        return await failWithLog("Max 4 artikler pr. uge nået", { search_query: "n/a" });
+      if ((weekCount ?? 0) >= 2) {
+        return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
       }
     }
 
