@@ -190,11 +190,15 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
             />
           ))}
         </div>
-        <div className={cn(
-          "tournament-countdown absolute top-2 left-2 z-[2] flex items-center gap-1 backdrop-blur-md rounded-md px-2.5 py-1 shadow-lg bg-black/70"
-        )}>
-          <Clock className="h-3.5 w-3.5 text-white" />
-          <span className="text-xs font-mono text-white font-medium">Aktiv nu</span>
+        <div className="absolute top-2 left-2 z-[2] flex flex-col gap-1">
+          <div className="flex items-center gap-1 backdrop-blur-md rounded-md px-2.5 py-1 shadow-lg bg-emerald-600/90">
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-white">LIVE NU</span>
+          </div>
+          <div className="flex items-center gap-1 backdrop-blur-md rounded-md px-2 py-0.5 shadow-lg bg-black/70">
+            <Clock className="h-3 w-3 text-amber-400" />
+            <span className="text-[10px] font-mono text-white/90">Slut: 01/05/2026</span>
+          </div>
         </div>
       </div>
 
