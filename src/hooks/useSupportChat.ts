@@ -415,6 +415,7 @@ export function useSupportAdmin() {
     markUserMessagesRead,
     closeConversation,
     assignToMe,
+    deleteConversation,
     loadConversations,
   };
 }
