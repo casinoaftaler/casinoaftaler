@@ -127,7 +127,7 @@ const AJSE_FEATURED_SLUGS = ["spilleautomaten", "spildansknu", "campobet"];
 export default function ForfatterAjse() {
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
-  const { data: newsData } = usePublishedNewsByAuthor("ajse", 1, 100);
+  
   const [articlePage, setArticlePage] = useState(0);
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background;
