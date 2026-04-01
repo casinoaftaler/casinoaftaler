@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSupportChat } from "@/hooks/useSupportChat";
@@ -22,6 +22,7 @@ export function SupportChatWidget() {
     startConversation,
     sendMessage,
     markAsRead,
+    deleteConversation,
   } = useSupportChat();
   // Auto-scroll on new messages
   useEffect(() => {
@@ -80,14 +81,32 @@ export function SupportChatWidget() {
               <h3 className="font-bold text-sm">Casinoaftaler Support</h3>
               <p className="text-xs opacity-80">Vi svarer hurtigst muligt</p>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
-              onClick={handleClose}
-            >
-              <X className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-1">
+              {conversation && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+                  onClick={async () => {
+                    if (confirm("Er du sikker på du vil slette samtalen?")) {
+                      await deleteConversation();
+                      setIsOpen(false);
+                    }
+                  }}
+                  title="Slet samtale"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+                onClick={handleClose}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -106,6 +125,18 @@ export function SupportChatWidget() {
             ) : (
               messages.map((msg) => {
                 const isUser = msg.sender_role === "user";
+                const isSystem = msg.sender_role === "system";
+
+                if (isSystem) {
+                  return (
+                    <div key={msg.id} className="flex justify-center">
+                      <div className="text-xs text-muted-foreground bg-muted/50 rounded-full px-3 py-1.5 italic">
+                        {msg.message}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div
                     key={msg.id}

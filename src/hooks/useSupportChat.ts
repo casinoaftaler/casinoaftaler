@@ -175,6 +175,22 @@ export function useSupportChat() {
     setUnreadCount(0);
   }, [conversation, userId, messages]);
 
+  // Delete/withdraw conversation
+  const deleteConversation = useCallback(async () => {
+    if (!conversation || !userId) return false;
+    const { error } = await supabase
+      .from("support_conversations")
+      .delete()
+      .eq("id", conversation.id)
+      .eq("user_id", userId);
+    if (!error) {
+      setConversation(null);
+      setMessages([]);
+      setUnreadCount(0);
+    }
+    return !error;
+  }, [conversation, userId]);
+
   return {
     conversation,
     messages,
@@ -184,6 +200,7 @@ export function useSupportChat() {
     startConversation,
     sendMessage,
     markAsRead,
+    deleteConversation,
   };
 }
 
@@ -329,14 +346,35 @@ export function useSupportAdmin() {
     loadConversations();
   }, [loadConversations]);
 
-  // Assign admin
+  // Assign admin + send system notification
   const assignToMe = useCallback(async (conversationId: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
+
+    // Get admin display name
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("display_name, avatar_url")
+      .eq("user_id", user.id)
+      .single();
+
+    const adminName = profile?.display_name || "Admin";
+
     await supabase
       .from("support_conversations")
       .update({ assigned_admin_id: user.id })
       .eq("id", conversationId);
+
+    // Insert system message visible to user
+    await supabase
+      .from("support_messages")
+      .insert({
+        conversation_id: conversationId,
+        sender_id: user.id,
+        sender_role: "system",
+        message: `${adminName} har tilknyttet sig samtalen`,
+      });
+
     loadConversations();
   }, [loadConversations]);
 
