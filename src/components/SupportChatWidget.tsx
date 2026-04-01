@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Trash2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Trash2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupportChat } from "@/hooks/useSupportChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
@@ -19,11 +19,14 @@ export function SupportChatWidget() {
     messages,
     isLoading,
     unreadCount,
+    userProfile,
+    adminProfile,
     startConversation,
     sendMessage,
     markAsRead,
     deleteConversation,
   } = useSupportChat();
+
   // Auto-scroll on new messages
   useEffect(() => {
     if (isOpen && scrollRef.current) {
@@ -38,7 +41,6 @@ export function SupportChatWidget() {
     }
   }, [isOpen, unreadCount, markAsRead]);
 
-  // Don't show for non-authenticated users
   if (!user) return null;
 
   const handleOpen = async () => {
@@ -73,13 +75,32 @@ export function SupportChatWidget() {
     <>
       {/* Chat Panel */}
       {isOpen && (
-        <div className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
-          style={{ height: "min(500px, 70vh)" }}>
+        <div
+          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          style={{ height: "min(500px, 70vh)" }}
+        >
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
-            <div>
-              <h3 className="font-bold text-sm">Casinoaftaler Support</h3>
-              <p className="text-xs opacity-80">Vi svarer hurtigst muligt</p>
+            <div className="flex items-center gap-3">
+              {adminProfile ? (
+                <div className="relative">
+                  <Avatar className="h-9 w-9 border-2 border-primary-foreground/30">
+                    <AvatarImage src={adminProfile.avatar_url || undefined} />
+                    <AvatarFallback className="bg-primary-foreground/20 text-primary-foreground text-xs">
+                      {adminProfile.display_name?.[0]?.toUpperCase() || "A"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-500 border-2 border-primary" />
+                </div>
+              ) : null}
+              <div>
+                <h3 className="font-bold text-sm">
+                  {adminProfile ? adminProfile.display_name || "Support Agent" : "Casinoaftaler Support"}
+                </h3>
+                <p className="text-xs opacity-80">
+                  {adminProfile ? "Support Agent" : "Vi svarer hurtigst muligt"}
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-1">
               {conversation && (
@@ -112,9 +133,12 @@ export function SupportChatWidget() {
           {/* Messages */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {/* Welcome message */}
-            <div className="flex justify-start">
-              <div className="max-w-[80%] rounded-2xl rounded-bl-sm px-4 py-2.5 bg-muted text-foreground text-sm">
-                👋 Velkommen! Hvad kan vi hjælpe dig med? Skriv din besked, og vi vender tilbage hurtigst muligt.
+            <div className="flex justify-start gap-2">
+              <Avatar className="h-7 w-7 mt-1 shrink-0">
+                <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">CA</AvatarFallback>
+              </Avatar>
+              <div className="max-w-[75%] rounded-2xl rounded-bl-sm px-4 py-2.5 bg-muted text-foreground text-sm">
+                👋 Velkommen! Hvad kan vi hjælpe dig med?
               </div>
             </div>
 
@@ -140,11 +164,20 @@ export function SupportChatWidget() {
                 return (
                   <div
                     key={msg.id}
-                    className={cn("flex", isUser ? "justify-end" : "justify-start")}
+                    className={cn("flex gap-2", isUser ? "justify-end" : "justify-start")}
                   >
+                    {/* Admin avatar on left */}
+                    {!isUser && (
+                      <Avatar className="h-7 w-7 mt-1 shrink-0">
+                        <AvatarImage src={adminProfile?.avatar_url || undefined} />
+                        <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">
+                          {adminProfile?.display_name?.[0]?.toUpperCase() || "S"}
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
                     <div
                       className={cn(
-                        "max-w-[80%] rounded-2xl px-4 py-2.5 text-sm",
+                        "max-w-[75%] rounded-2xl px-4 py-2.5 text-sm",
                         isUser
                           ? "bg-primary text-primary-foreground rounded-br-sm"
                           : "bg-muted text-foreground rounded-bl-sm"
@@ -163,6 +196,15 @@ export function SupportChatWidget() {
                         })}
                       </div>
                     </div>
+                    {/* User avatar on right */}
+                    {isUser && (
+                      <Avatar className="h-7 w-7 mt-1 shrink-0">
+                        <AvatarImage src={userProfile?.avatar_url || undefined} />
+                        <AvatarFallback className="bg-primary/20 text-primary text-[10px]">
+                          <User className="h-3.5 w-3.5" />
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
                   </div>
                 );
               })
