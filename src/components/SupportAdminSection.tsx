@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon } from "lucide-react";
+import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useSupportAdmin } from "@/hooks/useSupportChat";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 export function SupportAdminSection() {
@@ -22,8 +26,12 @@ export function SupportAdminSection() {
     deleteConversation,
   } = useSupportAdmin();
 
+  const { user } = useAuth();
   const [replyText, setReplyText] = useState("");
   const [sending, setSending] = useState(false);
+  const [broadcastText, setBroadcastText] = useState("");
+  const [broadcastSending, setBroadcastSending] = useState(false);
+  const [broadcastOpen, setBroadcastOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll
@@ -46,6 +54,22 @@ export function SupportAdminSection() {
     await sendReply(selectedConv, replyText.trim());
     setReplyText("");
     setSending(false);
+  };
+
+  const handleSendBroadcast = async () => {
+    if (!broadcastText.trim() || broadcastSending || !user) return;
+    setBroadcastSending(true);
+    const { error } = await supabase
+      .from("chat_broadcasts")
+      .insert({ admin_id: user.id, message: broadcastText.trim() });
+    if (error) {
+      toast({ title: "Fejl", description: "Kunne ikke sende broadcast", variant: "destructive" });
+    } else {
+      toast({ title: "Sendt!", description: "Broadcast-besked sendt til alle brugere" });
+      setBroadcastText("");
+      setBroadcastOpen(false);
+    }
+    setBroadcastSending(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -74,6 +98,41 @@ export function SupportAdminSection() {
               : "Administrer brugerhenvendelser"}
           </p>
         </div>
+        <Dialog open={broadcastOpen} onOpenChange={setBroadcastOpen}>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="gap-2">
+              <Megaphone className="h-4 w-4" />
+              Skriv besked til alle
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Send broadcast-besked</DialogTitle>
+            </DialogHeader>
+            <p className="text-sm text-muted-foreground">
+              Beskeden vises som en chat-boble for alle indloggede brugere.
+            </p>
+            <textarea
+              value={broadcastText}
+              onChange={(e) => setBroadcastText(e.target.value)}
+              placeholder="Skriv din besked her..."
+              className="w-full resize-none rounded-xl border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring min-h-[120px]"
+              maxLength={2000}
+            />
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setBroadcastOpen(false)}>
+                Annuller
+              </Button>
+              <Button
+                onClick={handleSendBroadcast}
+                disabled={!broadcastText.trim() || broadcastSending}
+              >
+                {broadcastSending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
+                Send til alle
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-[500px]">
