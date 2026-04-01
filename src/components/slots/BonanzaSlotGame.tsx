@@ -192,27 +192,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   }, []);
 
   // Keep desktop chat locked to exact slot machine column height
-  useEffect(() => {
-    if (isMobile) return;
-    const el = gridColumnRef.current;
-    if (!el) return;
-
-    const updateHeight = () => {
-      const next = Math.ceil(el.getBoundingClientRect().height);
-      setDesktopChatHeight(next);
-    };
-
-    updateHeight();
-
-    const resizeObserver = new ResizeObserver(updateHeight);
-    resizeObserver.observe(el);
-    window.addEventListener("resize", updateHeight);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", updateHeight);
-    };
-  }, [isMobile, SYMBOL_WIDTH, SYMBOL_HEIGHT, isBonusActive, showBonusTrigger, showRetrigger, showBonusComplete]);
 
   // Load persisted bonus state
   const [bonusLoaded, setBonusLoaded] = useState(false);
