@@ -3,7 +3,7 @@ import { SEO } from "@/components/SEO";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink, Sparkles, User, CalendarDays, BookOpen } from "lucide-react";
+import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink, Sparkles, User, CalendarDays, BookOpen, Gift, Star, TrendingUp, Package } from "lucide-react";
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 
 function ShopHero() {
   const { data: siteSettings } = useSiteSettings();
@@ -36,11 +37,11 @@ function ShopHero() {
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-            Køb med Point
+            Community Butik
           </Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Butik</h1>
           <p className="text-lg text-white/80">
-            Her kan du shoppe eksklusive varer med point, som du optjener ved at se vores streams på Twitch. Jo mere du ser, desto flere fede produkter kan du få fat i!
+            Brug dine Twitch-point på eksklusive produkter fra vores butik. Jo mere du engagerer dig i vores community, desto flere fede varer kan du få fat i!
           </p>
         </div>
       </div>
@@ -48,222 +49,151 @@ function ShopHero() {
   );
 }
 
-function PointsDisplay() {
+function PointsCard() {
   const { points, isLoading, isConfigured, isLoggedIn, hasTwitchUsername } = useStreamElementsPoints();
   const { data: settings } = useSiteSettings();
   const twitchUrl = settings?.twitch_url;
 
-  // If points system isn't configured yet, still show a friendly info box for users
-  if (!isConfigured) {
-    return (
-      <div className="container py-8">
-        <Card className="mx-auto max-w-2xl border-muted bg-muted/50">
-          <CardContent className="flex flex-col items-center gap-3 p-6 text-center sm:flex-row sm:text-left">
-            <div className="rounded-full bg-muted p-3">
-              <Coins className="h-6 w-6 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">Point er på vej</h3>
-              <p className="text-sm text-muted-foreground">
-                Points-systemet er ikke sat op endnu. Når det er klar, kan du logge ind og se dine point her.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  if (!isConfigured) return null;
 
-  // Show login prompt if not logged in
   if (!isLoggedIn) {
     return (
-      <div className="container py-8">
-        <Card className="mx-auto max-w-2xl border-2 border-primary/30 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 shadow-lg">
-          <CardContent className="flex flex-col items-center gap-4 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
-            <div className="flex flex-col items-center gap-3 sm:flex-row">
-              <div className="rounded-full bg-primary/20 p-3">
-                <Coins className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">Se dine point</h3>
-                <p className="text-sm text-muted-foreground">
-                  Log ind med Twitch for at se hvor mange point du har optjent
-                </p>
-              </div>
+      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 shadow-lg">
+        <CardContent className="p-5">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <Coins className="h-7 w-7 text-primary" />
             </div>
-            <Button asChild size="lg" className="w-full sm:w-auto">
+            <div className="flex-1 text-center sm:text-left">
+              <h3 className="font-bold text-foreground">Se dine point</h3>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Log ind med Twitch for at se din point-balance og handle i butikken
+              </p>
+            </div>
+            <Button asChild className="w-full sm:w-auto shrink-0">
               <Link to="/auth">
-                <LogIn className="mr-2 h-5 w-5" />
-                Log ind med Twitch
+                <LogIn className="mr-2 h-4 w-4" />
+                Log ind
               </Link>
             </Button>
-          </CardContent>
-        </Card>
-        
-        {/* Points earning explanation for non-logged in users */}
-        <Card className="mx-auto mt-4 max-w-2xl border-muted/50 bg-muted/30">
-          <CardContent className="p-4">
-            <h4 className="mb-2 text-sm font-semibold text-foreground">Hvordan optjener jeg point?</h4>
-            <ul className="space-y-1 text-xs text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Se streams:</strong> Du optjener automatisk point mens du ser live streams på Twitch</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Deltag i raffles:</strong> Vind ekstra point ved at deltage i raffles under streams</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Vær aktiv:</strong> Jo mere du engagerer dig i chatten, jo flere point kan du optjene</span>
-              </li>
-            </ul>
-            {twitchUrl && (
-              <div className="mt-3 pt-3 border-t border-muted">
-                <a 
-                  href={twitchUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-                >
-                  <ExternalLink className="h-3.5 w-3.5" />
-                  Gå til Twitch-kanalen
-                </a>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  // Show message if logged in but no Twitch username
-  if (!hasTwitchUsername) {
-    return (
-      <div className="container py-6">
-        <Card className="mx-auto max-w-md border-muted bg-muted/50">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="rounded-full bg-muted p-2">
-              <Coins className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Log ind med Twitch for at se dine point
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="container py-6">
-        <Card className="mx-auto max-w-md border-primary/20 bg-primary/5">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="rounded-full bg-primary/10 p-2">
-              <Loader2 className="h-5 w-5 animate-spin text-primary" />
-            </div>
-            <p className="text-sm text-muted-foreground">Henter dine point...</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  // Show points
-  return (
-    <div className="container py-6">
-      <Card className="mx-auto max-w-md border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10">
-        <CardContent className="flex items-center justify-between gap-4 p-4">
-          <div className="flex items-center gap-3">
-            <div className="rounded-full bg-primary/20 p-2">
-              <Coins className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <p className="text-lg font-bold">
-                {points?.toLocaleString("da-DK") ?? 0} point
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Se streams for at optjene flere!
-              </p>
-            </div>
           </div>
         </CardContent>
       </Card>
-      
-      {/* Points earning explanation */}
-      <Card className="mx-auto mt-4 max-w-2xl border-muted/50 bg-muted/30">
-        <CardContent className="p-4">
-          <h4 className="mb-2 text-sm font-semibold text-foreground">Hvordan optjener jeg point?</h4>
-          <ul className="space-y-1 text-xs text-muted-foreground">
-            <li className="flex items-start gap-2">
-              <span className="text-primary">•</span>
-              <span><strong>Se streams:</strong> Du optjener automatisk point mens du ser live streams på Twitch</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary">•</span>
-              <span><strong>Deltag i raffles:</strong> Vind ekstra point ved at deltage i raffles under streams</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary">•</span>
-              <span><strong>Vær aktiv:</strong> Jo mere du engagerer dig i chatten, jo flere point kan du optjene</span>
-            </li>
-          </ul>
-          {twitchUrl && (
-            <div className="mt-3 pt-3 border-t border-muted">
-              <a 
-                href={twitchUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                Gå til Twitch-kanalen
-              </a>
-            </div>
-          )}
+    );
+  }
+
+  if (!hasTwitchUsername) {
+    return (
+      <Card className="border-muted bg-muted/30">
+        <CardContent className="flex items-center gap-3 p-4">
+          <Coins className="h-5 w-5 text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">Log ind med Twitch for at se dine point</p>
         </CardContent>
       </Card>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <Card className="border-primary/20 bg-primary/5">
+        <CardContent className="flex items-center gap-3 p-4">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+          <p className="text-sm text-muted-foreground">Henter dine point...</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="border-primary/20 bg-gradient-to-r from-primary/10 via-background to-accent/10 shadow-lg">
+      <CardContent className="p-5">
+        <div className="flex items-center gap-4">
+          <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
+            <Coins className="h-7 w-7 text-white" />
+          </div>
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Din balance</p>
+            <p className="text-2xl font-bold text-foreground">
+              {points?.toLocaleString("da-DK") ?? 0} <span className="text-base font-medium text-muted-foreground">point</span>
+            </p>
+          </div>
+          {twitchUrl && (
+            <a
+              href={twitchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 text-xs font-medium text-primary hover:underline flex items-center gap-1"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              Twitch
+            </a>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function HowToEarnSection() {
+  const { data: settings } = useSiteSettings();
+  const twitchUrl = settings?.twitch_url;
+
+  const steps = [
+    {
+      icon: <TrendingUp className="h-5 w-5" />,
+      title: "Se streams",
+      description: "Du optjener automatisk point mens du ser live streams på Twitch.",
+    },
+    {
+      icon: <Gift className="h-5 w-5" />,
+      title: "Deltag i raffles",
+      description: "Vind ekstra point ved at deltage i raffles under streams.",
+    },
+    {
+      icon: <Star className="h-5 w-5" />,
+      title: "Vær aktiv",
+      description: "Engagér dig i chatten og community for at optjene bonus-point.",
+    },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+        <Sparkles className="h-5 w-5 text-primary" />
+        Sådan optjener du point
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {steps.map((step, i) => (
+          <Card key={i} className="border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors">
+            <CardContent className="p-4 flex flex-col items-center text-center gap-2">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                {step.icon}
+              </div>
+              <h3 className="font-semibold text-sm text-foreground">{step.title}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">{step.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      {twitchUrl && (
+        <div className="text-center">
+          <a
+            href={twitchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+            Gå til Twitch-kanalen og begynd at optjene point
+          </a>
+        </div>
+      )}
     </div>
   );
 }
 
 export default function Shop() {
   const { data: items, isLoading, error } = useShopItems(false);
-
-  if (isLoading) {
-    return (
-      <>
-        <ShopHero />
-        <div className="container py-8 md:py-12">
-          <PointsDisplay />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="space-y-4">
-                <Skeleton className="aspect-video w-full" />
-                <Skeleton className="h-6 w-3/4" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-10 w-full" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <ShopHero />
-        <div className="container py-8 md:py-12">
-          <PointsDisplay />
-          <p className="mt-8 text-destructive">Der opstod en fejl ved indlæsning af produkter.</p>
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -284,7 +214,7 @@ export default function Shop() {
         }
       >
         {/* Meta info bar */}
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+        <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <User className="h-4 w-4" />
             <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
@@ -299,24 +229,71 @@ export default function Shop() {
           </div>
         </div>
 
-        <PointsDisplay />
+        {/* Points balance */}
+        <div className="space-y-6">
+          <PointsCard />
 
-        {items && items.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {items.map((item) => (
-              <ShopItemCard key={item.id} item={item} />
-            ))}
+          {/* How to earn section */}
+          <HowToEarnSection />
+
+          {/* Products section */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+                <Package className="h-5 w-5 text-primary" />
+                Produkter
+              </h2>
+              {items && items.length > 0 && (
+                <Badge variant="outline" className="text-muted-foreground">
+                  {items.length} {items.length === 1 ? 'produkt' : 'produkter'}
+                </Badge>
+              )}
+            </div>
+
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[...Array(6)].map((_, i) => (
+                  <Card key={i} className="overflow-hidden">
+                    <Skeleton className="aspect-video w-full" />
+                    <div className="p-4 space-y-3">
+                      <Skeleton className="h-5 w-3/4" />
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-9 w-full" />
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            ) : error ? (
+              <Card className="border-destructive/30 bg-destructive/5">
+                <CardContent className="p-6 text-center">
+                  <p className="text-destructive">Der opstod en fejl ved indlæsning af produkter.</p>
+                </CardContent>
+              </Card>
+            ) : items && items.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {items.map((item) => (
+                  <ShopItemCard key={item.id} item={item} />
+                ))}
+              </div>
+            ) : (
+              <Card className="border-dashed border-border/60 bg-muted/10">
+                <CardContent className="flex flex-col items-center justify-center py-16 text-muted-foreground">
+                  <div className="w-16 h-16 rounded-2xl bg-muted/30 flex items-center justify-center mb-4">
+                    <ShoppingBag className="h-8 w-8" />
+                  </div>
+                  <p className="text-lg font-medium">Ingen produkter endnu</p>
+                  <p className="text-sm mt-1">Der er ingen produkter i butikken lige nu. Kom snart tilbage!</p>
+                </CardContent>
+              </Card>
+            )}
           </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
-            <ShoppingBag className="h-16 w-16 mb-4" />
-            <p className="text-lg">Der er ingen produkter i butikken endnu.</p>
-          </div>
-        )}
+        </div>
 
         <div className="mt-12">
           <RelatedGuides currentPath="/butik" />
         </div>
+
+        <div className="pb-12" />
       </CommunityContentShell>
     </>
   );
