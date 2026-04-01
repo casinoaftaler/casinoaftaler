@@ -42,7 +42,7 @@ export function CommunityStatsStaticBlock({ className = "" }: CommunityStatsStat
     },
     {
       icon: Gamepad2,
-      label: "Spins spillet",
+      label: "Spins spillet i alt",
       value: data?.totalSpins ?? 50000,
       color: "text-amber-400",
     },
