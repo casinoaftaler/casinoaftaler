@@ -172,12 +172,16 @@ export function SupportChatWidget() {
                   >
                     {/* Admin avatar on left */}
                     {!isUser && (
-                      <Avatar className="h-7 w-7 mt-1 shrink-0">
-                        <AvatarImage src={adminProfile?.avatar_url || undefined} />
-                        <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">
-                          {adminProfile?.display_name?.[0]?.toUpperCase() || "S"}
-                        </AvatarFallback>
-                      </Avatar>
+                      adminProfile?.avatar_url ? (
+                        <Avatar className="h-7 w-7 mt-1 shrink-0">
+                          <AvatarImage src={adminProfile.avatar_url} />
+                          <AvatarFallback className="bg-muted text-muted-foreground text-[10px]">
+                            {adminProfile.display_name?.[0]?.toUpperCase() || "S"}
+                          </AvatarFallback>
+                        </Avatar>
+                      ) : (
+                        <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
+                      )
                     )}
                     <div
                       className={cn(
