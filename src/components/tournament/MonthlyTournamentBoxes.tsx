@@ -211,7 +211,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       </div>
 
       {/* Prize section */}
-      <div className="px-3 py-3">
+      <div className="px-3 py-3 space-y-2">
         <div className="rounded-lg border border-border/40 bg-muted/30 overflow-hidden">
           <div className="grid grid-cols-3 divide-x divide-border/40">
             <div className="flex flex-col items-center py-2.5 px-1">
@@ -235,6 +235,32 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
               <span className="text-xs text-muted-foreground">3. præmie</span>
               <span className="text-sm font-bold text-foreground">{config.prize_3} kr</span>
             </div>
+          </div>
+        </div>
+
+        {/* Places 4-10: Point prizes */}
+        <div className="rounded-lg border border-border/40 bg-muted/20 overflow-hidden">
+          <div className="px-2.5 py-1.5 border-b border-border/30 bg-muted/30">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+              <Coins className="h-3 w-3" />
+              Point-præmier (4.-10. plads)
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-px bg-border/20">
+            {[
+              { rank: 4, points: 10000 },
+              { rank: 5, points: 8000 },
+              { rank: 6, points: 6000 },
+              { rank: 7, points: 5000 },
+              { rank: 8, points: 4000 },
+              { rank: 9, points: 3000 },
+              { rank: 10, points: 2000 },
+            ].map(({ rank, points }) => (
+              <div key={rank} className="flex items-center justify-between px-2.5 py-1.5 bg-background/50">
+                <span className="text-[11px] text-muted-foreground font-medium">{rank}. plads</span>
+                <span className="text-[11px] font-bold text-purple-400">{points.toLocaleString('da-DK')} pts</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
