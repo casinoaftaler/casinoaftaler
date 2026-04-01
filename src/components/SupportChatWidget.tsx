@@ -30,6 +30,7 @@ export function SupportChatWidget() {
     deleteConversation,
   } = useSupportChat();
 
+  const { broadcast, dismissBroadcast } = useBroadcastChat();
   // Auto-scroll on new messages
   useEffect(() => {
     if (isOpen && scrollRef.current) {
