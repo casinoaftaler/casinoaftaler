@@ -22,6 +22,7 @@ export function SupportChatWidget() {
     startConversation,
     sendMessage,
     markAsRead,
+    deleteConversation,
   } = useSupportChat();
   // Auto-scroll on new messages
   useEffect(() => {
