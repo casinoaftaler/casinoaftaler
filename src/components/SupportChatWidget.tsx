@@ -252,6 +252,67 @@ export function SupportChatWidget() {
         </div>
       )}
 
+      {/* Broadcast Expanded View */}
+      {broadcastExpanded && broadcast && (
+        <div
+          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          style={{ maxHeight: "min(400px, 60vh)" }}
+        >
+          <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
+            <div className="flex items-center gap-3">
+              <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-9 w-9 rounded-full object-cover" />
+              <div>
+                <h3 className="font-bold text-sm">Casinoaftaler</h3>
+                <p className="text-xs opacity-80">Besked til alle</p>
+              </div>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
+              onClick={async () => {
+                await dismissBroadcast(broadcast.id);
+                setBroadcastExpanded(false);
+              }}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="p-5 overflow-y-auto">
+            <div className="flex gap-3">
+              <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-8 w-8 rounded-full object-cover mt-0.5 shrink-0" />
+              <div className="bg-muted rounded-2xl rounded-bl-sm px-4 py-3 text-sm text-foreground whitespace-pre-wrap">
+                {broadcast.message}
+                <div className="text-[10px] text-muted-foreground mt-2">
+                  {new Date(broadcast.created_at).toLocaleString("da-DK", {
+                    day: "numeric",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Broadcast Preview Bubble */}
+      {!isOpen && !broadcastExpanded && broadcast && (
+        <button
+          onClick={() => setBroadcastExpanded(true)}
+          className="fixed bottom-20 right-4 z-[59] flex items-center gap-2.5 rounded-2xl border border-border bg-card shadow-lg px-4 py-3 max-w-[280px] hover:shadow-xl transition-all duration-200 animate-in slide-in-from-bottom-2 cursor-pointer group"
+        >
+          <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-8 w-8 rounded-full object-cover shrink-0" />
+          <div className="text-left min-w-0">
+            <span className="text-xs font-semibold text-foreground block">Casinoaftaler</span>
+            <p className="text-sm text-muted-foreground truncate">
+              {broadcast.message.split(/\s+/).slice(0, 6).join(" ")}…
+            </p>
+          </div>
+        </button>
+      )}
+
       {/* Floating Button */}
       <button
         onClick={isOpen ? handleClose : handleOpen}
@@ -263,9 +324,9 @@ export function SupportChatWidget() {
         ) : (
           <>
             <MessageCircle className="h-6 w-6" />
-            {unreadCount > 0 && (
+            {(unreadCount > 0 || broadcast) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
-                {unreadCount}
+                {unreadCount > 0 ? unreadCount : "!"}
               </span>
             )}
           </>
