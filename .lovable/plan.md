@@ -1,78 +1,37 @@
 
 
-# Live Support Chat — Professionel Kundesupport
+## Problem
 
-## Overblik
+Book of Fedesvin and Rise of Fedesvin bruger CSS `transform: scale()` på mobil, hvilket skrumper hele spillet ned og efterlader et stort tomt område under maskinen. Fedesvin Bonanza bruger derimod native bredde på mobil (`w-full px-1`), som fylder skærmen korrekt.
 
-En floating support-widget (som Intercom/Zendesk) i nederste højre hjørne, hvor indloggede brugere kan starte en samtale med jeres admin-team. Admins håndterer beskeder via en ny fane i Admin-panelet.
+## Løsning
 
-## Brugeroplevelse
+Ændre mobile-layoutet i begge siders page-filer til at matche Bonanza-tilgangen: native bredde uden CSS transform scaling.
 
-```text
-┌─────────────────────────────────┐
-│  Hjemmesiden                    │
-│                                 │
-│                          ┌────┐ │
-│                          │ 💬 │ │  ← Floating chat-knap
-│                          └────┘ │
-└─────────────────────────────────┘
+## Ændringer
 
-Klik → åbner chat-panel:
-┌──────────────────────┐
-│ ✕  Casinoaftaler      │
-│     Support           │
-├──────────────────────┤
-│ Velkommen! Hvad kan  │
-│ vi hjælpe med?       │
-│                      │
-│ [Bruger besked]  →   │
-│        ← [Admin svar]│
-│                      │
-├──────────────────────┤
-│ Skriv en besked...   │
-│              [Send]  │
-└──────────────────────┘
+### 1. `src/pages/SlotMachine.tsx` (Book of Fedesvin)
+- Erstat mobile-blokken (linje 225-242) fra CSS transform scaling til native width layout:
+```tsx
+// FRA (transform scaling):
+<div className="flex-1 flex items-start justify-center overflow-hidden">
+  <div style={{ width: '1200px', transform: `scale(${scale})`, ... }}>
+    ...
+  </div>
+</div>
+
+// TIL (native width, matcher Bonanza):
+<div className="flex-1 flex flex-col overflow-hidden">
+  <div className="w-full px-1">
+    <SlotPageLayout sidePanel={null}>
+      <SlotGame />
+    </SlotPageLayout>
+  </div>
+</div>
 ```
 
-**Admin-side** (ny fane i /admin):
-- Liste over aktive samtaler med ubesvarede markeret
-- Realtids-opdatering via Supabase Realtime
-- Kan se brugerens profil (display_name, twitch, avatar)
-- Kan lukke/arkivere samtaler
+### 2. `src/pages/RiseOfFedesvin.tsx` (Rise of Fedesvin)
+- Samme ændring i mobile-blokken (linje 222-239): erstat CSS transform scaling med native width layout.
 
-## Database (2 nye tabeller)
-
-**support_conversations**
-- `id`, `user_id` (references auth.users), `status` (open/closed), `subject`, `created_at`, `updated_at`, `last_message_at`, `assigned_admin_id` (nullable)
-
-**support_messages**
-- `id`, `conversation_id` (FK), `sender_id`, `sender_role` (user/admin), `message` (text, max 2000 chars), `read_at` (nullable), `created_at`
-
-Realtime aktiveres på begge tabeller. RLS: brugere ser kun egne samtaler, admins ser alle.
-
-## Komponenter
-
-1. **SupportChatWidget** — floating knap + chat-panel, vises for indloggede brugere (ikke på /admin)
-2. **SupportChatPanel** — selve chat-vinduet med besked-historik og input
-3. **SupportAdminSection** — ny fane i Admin med samtaleliste + svar-interface
-4. **NotificationBadge** — ubesvarede beskeder tæller (for bruger + admin)
-
-## Nøglefunktioner
-
-- Realtime beskeder (Supabase postgres_changes)
-- Ulæste-badge på chat-knappen for brugere
-- Ulæste-badge i admin-nav for admins
-- Automatisk velkomstbesked ved ny samtale
-- Samtale-status (åben/lukket)
-- Admin kan tildele sig selv en samtale
-- Professionelt, animeret UI med slide-up panel
-- Mobilresponsivt
-
-## Implementeringsrækkefølge
-
-1. Database-migration (2 tabeller + RLS + realtime)
-2. SupportChatWidget + SupportChatPanel (brugerside)
-3. SupportAdminSection (adminside, ny fane)
-4. Realtime + ulæste-notifikationer begge veje
-5. Tilføj widget til Layout.tsx, fane til Admin.tsx
+Ingen funktionalitet ændres. Kun mobile layout-wrapperen i de to page-filer opdateres.
 
