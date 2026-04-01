@@ -118,6 +118,28 @@ export function useCreateSlotRequest() {
         throw new Error("Denne slot er allerede blevet requested af en anden bruger");
       }
 
+      // Also check against ALL non-rejected requests in the current hunt (any status)
+      const { data: activeSession } = await supabase
+        .from("bonus_hunt_sessions" as any)
+        .select("hunt_number")
+        .eq("status", "active")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      const currentHuntNum = (activeSession as any)?.hunt_number;
+      if (currentHuntNum) {
+        const { data: huntRequests } = await supabase
+          .from("slot_requests" as any)
+          .select("id, slot_name")
+          .eq("hunt_number", currentHuntNum)
+          .neq("status", "rejected");
+
+        if ((huntRequests as any[])?.some((r: any) => fuzzyMatch(reqName, r.slot_name.toLowerCase().trim()))) {
+          throw new Error("Denne slot er allerede blevet requested i den aktive bonus hunt");
+        }
+      }
+
       // Get active hunt to scope the check
       const { data: activeSessionCheck } = await supabase
         .from("bonus_hunt_sessions" as any)
