@@ -22,12 +22,19 @@ export interface SupportMessage {
   created_at: string;
 }
 
+export interface SupportProfile {
+  display_name: string | null;
+  avatar_url: string | null;
+}
+
 export function useSupportChat() {
   const [conversation, setConversation] = useState<SupportConversation | null>(null);
   const [messages, setMessages] = useState<SupportMessage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [unreadCount, setUnreadCount] = useState(0);
   const [userId, setUserId] = useState<string | null>(null);
+  const [userProfile, setUserProfile] = useState<SupportProfile | null>(null);
+  const [adminProfile, setAdminProfile] = useState<SupportProfile | null>(null);
 
   // Get current user
   useEffect(() => {
@@ -35,6 +42,19 @@ export function useSupportChat() {
       setUserId(user?.id || null);
     });
   }, []);
+
+  // Load user profile
+  useEffect(() => {
+    if (!userId) return;
+    supabase
+      .from("profiles")
+      .select("display_name, avatar_url")
+      .eq("user_id", userId)
+      .single()
+      .then(({ data }) => {
+        if (data) setUserProfile(data as SupportProfile);
+      });
+  }, [userId]);
 
   // Load or find existing open conversation
   useEffect(() => {
@@ -52,7 +72,19 @@ export function useSupportChat() {
         .maybeSingle();
 
       if (data) {
-        setConversation(data as SupportConversation);
+        const conv = data as SupportConversation;
+        setConversation(conv);
+
+        // Load admin profile if assigned
+        if (conv.assigned_admin_id) {
+          const { data: ap } = await supabase
+            .from("profiles")
+            .select("display_name, avatar_url")
+            .eq("user_id", conv.assigned_admin_id)
+            .single();
+          if (ap) setAdminProfile(ap as SupportProfile);
+        }
+
         // Load messages
         const { data: msgs } = await supabase
           .from("support_messages")
@@ -101,6 +133,38 @@ export function useSupportChat() {
 
     return () => { supabase.removeChannel(channel); };
   }, [conversation?.id]);
+
+  // Realtime: listen for conversation updates (e.g. admin assignment)
+  useEffect(() => {
+    if (!conversation) return;
+
+    const channel = supabase
+      .channel(`support-conv-${conversation.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "support_conversations",
+          filter: `id=eq.${conversation.id}`,
+        },
+        async (payload) => {
+          const updated = payload.new as SupportConversation;
+          setConversation(updated);
+          if (updated.assigned_admin_id && updated.assigned_admin_id !== conversation.assigned_admin_id) {
+            const { data: ap } = await supabase
+              .from("profiles")
+              .select("display_name, avatar_url")
+              .eq("user_id", updated.assigned_admin_id)
+              .single();
+            if (ap) setAdminProfile(ap as SupportProfile);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [conversation?.id, conversation?.assigned_admin_id]);
 
   // Start a new conversation
   const startConversation = useCallback(async (subject?: string) => {
@@ -196,6 +260,8 @@ export function useSupportChat() {
     messages,
     isLoading,
     unreadCount,
+    userProfile,
+    adminProfile,
     userId,
     startConversation,
     sendMessage,
