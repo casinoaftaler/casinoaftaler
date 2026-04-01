@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { AuthorNewsSection } from "@/components/AuthorNewsSection";
 import { AuthorArticleCard } from "@/components/AuthorArticleCard";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -605,6 +606,11 @@ export default function Forfatter() {
             </div>
           </div>
         </section>
+
+        <Separator className="my-10" />
+
+        {/* Nyheder af Jonas fra database */}
+        <AuthorNewsSection authorId="jonas" authorName="Jonas" />
 
         <Separator className="my-10" />
 
