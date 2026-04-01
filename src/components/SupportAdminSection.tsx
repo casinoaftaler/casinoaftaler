@@ -26,8 +26,12 @@ export function SupportAdminSection() {
     deleteConversation,
   } = useSupportAdmin();
 
+  const { user } = useAuth();
   const [replyText, setReplyText] = useState("");
   const [sending, setSending] = useState(false);
+  const [broadcastText, setBroadcastText] = useState("");
+  const [broadcastSending, setBroadcastSending] = useState(false);
+  const [broadcastOpen, setBroadcastOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll
