@@ -54,7 +54,7 @@ export default function FedesvinBonanza() {
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
 
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
-  const [desktopChatOpen, setDesktopChatOpen] = useState(true);
+  
 
   useEffect(() => { sessionStorage.removeItem('slot_initialized'); }, []);
 
