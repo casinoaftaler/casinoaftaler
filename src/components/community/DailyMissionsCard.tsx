@@ -123,7 +123,7 @@ export function DailyMissionsCard() {
                     page.completed
                       ? "text-emerald-600 dark:text-emerald-400"
                       : hasNoneCompleted && index === 0
-                        ? "text-amber-400 font-semibold"
+                        ? "text-amber-600 dark:text-amber-400 font-semibold"
                         : "text-foreground"
                   }`}
                 >
