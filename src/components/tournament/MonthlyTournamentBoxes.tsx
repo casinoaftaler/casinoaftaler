@@ -205,6 +205,9 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           {config.icon}
           <span className="text-sm text-muted-foreground">{config.categoryLabel}</span>
         </div>
+        <div className="mt-1.5 inline-flex items-center gap-1 bg-emerald-500/15 border border-emerald-500/30 rounded-full px-2.5 py-0.5">
+          <span className="text-[11px] font-semibold text-emerald-400">Max Bet: 40</span>
+        </div>
       </div>
 
       {/* Prize section */}
