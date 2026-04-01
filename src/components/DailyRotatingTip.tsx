@@ -66,7 +66,7 @@ export function DailyRotatingTip() {
 
   return (
     <section className="py-4 border-b border-border/30" aria-label="Dagens casino-tip">
-      <div className="container">
+      <div>
         <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
           <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0 mt-0.5">
             <Lightbulb className="h-4 w-4 text-primary" />

@@ -47,7 +47,7 @@ const teamMembers = [
 export function MeetTheTeam() {
   return (
     <section className="py-12 md:py-16">
-      <div className="container">
+      <div>
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold mb-3">👥 Mød redaktionen bag Casinoaftaler</h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">

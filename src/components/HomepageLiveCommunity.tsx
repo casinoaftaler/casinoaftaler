@@ -87,7 +87,7 @@ export function HomepageLiveCommunity() {
 
   return (
     <section className="py-8 md:py-12" aria-label="Live fra communityet">
-      <div className="container">
+      <div>
         <div className="flex items-center gap-3 mb-6">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <h2 className="text-2xl md:text-3xl font-bold">

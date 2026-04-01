@@ -53,7 +53,7 @@ export function HomepagePopularSlots() {
   if (isLoading || !slots?.length) return null;
 
   return (
-    <section className="container py-8 md:py-12">
+    <section className="py-8 md:py-12">
       <h2 className="mb-2 text-2xl font-bold flex items-center gap-2">
         <span aria-hidden="true">🔥</span>
         Populære Spillemaskiner
