@@ -391,6 +391,19 @@ export function useSupportAdmin() {
     loadConversations();
   }, [loadConversations]);
 
+  // Admin delete conversation
+  const deleteConversation = useCallback(async (conversationId: string) => {
+    const { error } = await supabase
+      .from("support_conversations")
+      .delete()
+      .eq("id", conversationId);
+    if (!error) {
+      if (selectedConv === conversationId) setSelectedConv(null);
+      loadConversations();
+    }
+    return !error;
+  }, [selectedConv, loadConversations]);
+
   return {
     conversations,
     selectedConv,
