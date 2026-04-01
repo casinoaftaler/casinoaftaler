@@ -1,29 +1,78 @@
 
 
-# Plan: Erstat Lucide-ikoner med 3D WebP menu-ikoner på forsiden
+# Live Support Chat — Professionel Kundesupport
 
-## Problem
-Forsiden bruger generiske Lucide-ikoner (CreditCard, Gamepad2, Trophy, etc.) til betalingsmetoder, spiludviklere og link-knapper — mens mega-menuen bruger flotte 3D WebP-ikoner fra `MENU_ICON_MAP`. Det skaber visuel inkonsistens.
+## Overblik
 
-## Berørte filer og ændringer
+En floating support-widget (som Intercom/Zendesk) i nederste højre hjørne, hvor indloggede brugere kan starte en samtale med jeres admin-team. Admins håndterer beskeder via en ny fane i Admin-panelet.
 
-### 1. `src/components/HomepagePaymentProviders.tsx`
-- **Betalingsmetoder-sektionen**: Erstat `<CreditCard>` Lucide-ikon med det korrekte 3D WebP-ikon per betalingsmetode (baseret på `PAYMENT_LINKS` i navData: apple→apple.webp, smartphone→mobile, wallet, credit-card, banknote, send, shield, landmark, circle-dollar-sign)
-- **Spiludvikler-sektionen**: Erstat `<Gamepad2>` Lucide-ikon med `gamepad-fun.webp` fra MENU_ICON_MAP
+## Brugeroplevelse
 
-### 2. `src/components/HomepageBottomSections.tsx`
-- **Bonus Hunt links** (linje 146-174): Erstat Lucide-ikoner (Target, BookOpen, Gamepad2, Trophy, TrendingUp, Users) med matchende 3D WebP-ikoner (target-aim, book-glossary, gamepad-fun, trophy-casino, trending-rtp, users-group)
-- **Slot Showcase links** (linje 301-312): Erstat Zap→lightning-fast, Trophy→trophy-casino, Gift→gift-bonus
-- **Nyheder-link** (linje 191): Erstat Newspaper→newspaper.webp
+```text
+┌─────────────────────────────────┐
+│  Hjemmesiden                    │
+│                                 │
+│                          ┌────┐ │
+│                          │ 💬 │ │  ← Floating chat-knap
+│                          └────┘ │
+└─────────────────────────────────┘
 
-### 3. Implementeringsmetode
-- Importér `MENU_ICON_MAP` fra `@/components/header/menuIconMap`
-- Lav en lille hjælpekomponent `MenuIcon` der renderer `<img>` med det korrekte WebP-ikon baseret på iconName, med fallback til Lucide-ikon
-- Tilføj `iconName` til betalingsmetode-arrayet (matching navData's PAYMENT_LINKS)
-- Erstat alle inline `<LucideIcon>` med `<MenuIcon>` i link-cards
+Klik → åbner chat-panel:
+┌──────────────────────┐
+│ ✕  Casinoaftaler      │
+│     Support           │
+├──────────────────────┤
+│ Velkommen! Hvad kan  │
+│ vi hjælpe med?       │
+│                      │
+│ [Bruger besked]  →   │
+│        ← [Admin svar]│
+│                      │
+├──────────────────────┤
+│ Skriv en besked...   │
+│              [Send]  │
+└──────────────────────┘
+```
 
-### 4. Ikke berørt
-- `HomepageTopProviders.tsx` bruger allerede provider-logoer (korrekt)
-- `HomepageAnmeldelserSection` bruger allerede casino-logoer (korrekt)
-- Trends-sektionens CheckCircle2 er generisk og passer fint som er
+**Admin-side** (ny fane i /admin):
+- Liste over aktive samtaler med ubesvarede markeret
+- Realtids-opdatering via Supabase Realtime
+- Kan se brugerens profil (display_name, twitch, avatar)
+- Kan lukke/arkivere samtaler
+
+## Database (2 nye tabeller)
+
+**support_conversations**
+- `id`, `user_id` (references auth.users), `status` (open/closed), `subject`, `created_at`, `updated_at`, `last_message_at`, `assigned_admin_id` (nullable)
+
+**support_messages**
+- `id`, `conversation_id` (FK), `sender_id`, `sender_role` (user/admin), `message` (text, max 2000 chars), `read_at` (nullable), `created_at`
+
+Realtime aktiveres på begge tabeller. RLS: brugere ser kun egne samtaler, admins ser alle.
+
+## Komponenter
+
+1. **SupportChatWidget** — floating knap + chat-panel, vises for indloggede brugere (ikke på /admin)
+2. **SupportChatPanel** — selve chat-vinduet med besked-historik og input
+3. **SupportAdminSection** — ny fane i Admin med samtaleliste + svar-interface
+4. **NotificationBadge** — ubesvarede beskeder tæller (for bruger + admin)
+
+## Nøglefunktioner
+
+- Realtime beskeder (Supabase postgres_changes)
+- Ulæste-badge på chat-knappen for brugere
+- Ulæste-badge i admin-nav for admins
+- Automatisk velkomstbesked ved ny samtale
+- Samtale-status (åben/lukket)
+- Admin kan tildele sig selv en samtale
+- Professionelt, animeret UI med slide-up panel
+- Mobilresponsivt
+
+## Implementeringsrækkefølge
+
+1. Database-migration (2 tabeller + RLS + realtime)
+2. SupportChatWidget + SupportChatPanel (brugerside)
+3. SupportAdminSection (adminside, ny fane)
+4. Realtime + ulæste-notifikationer begge veje
+5. Tilføj widget til Layout.tsx, fane til Admin.tsx
 
