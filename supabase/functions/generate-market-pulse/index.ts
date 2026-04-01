@@ -344,6 +344,9 @@ Artiklen skal være 1000-1500 ord i HTML format med følgende struktur:
 
 ${h2Template}
 
+<h2>Redaktionens vurdering</h2>
+<p>[OBLIGATORISK sektion: Inkludér en konkret vurdering fra Casinoaftaler-redaktionen. Brug formuleringer som "Vores redaktion har gennemgået...", "Baseret på vores daglige overvågning af markedet...", "I vores test af de berørte casinoer observerede vi...". Denne sektion SKAL give first-hand indsigt der ikke kan kopieres fra andre kilder.]</p>
+
 <h2>FAQ</h2>
 ${faqTemplate}
 
@@ -357,6 +360,14 @@ VIGTIGE REGLER:
 - Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke
 - Variér sætningsstrukturer – undgå at starte flere afsnit med samme ordmønster
 - Brug IKKE ordene "markedspuls" eller "markedsopdatering" i overskriften
+- INGEN generisk AI-sprog ("i en verden hvor...", "det er vigtigt at bemærke...", "i takt med...", "det skal dog nævnes...")
+
+REDAKTIONEL BERIGELSE (OBLIGATORISK):
+- Inkludér mindst ÉN sætning der demonstrerer first-hand experience, fx:
+  "I vores compliance-database kan vi se at..."
+  "Da vi senest testede [casino], observerede vi at..."
+  "Vores markedsovervågning viser at..."
+- Artiklen skal fremstå som skrevet af en ekspert med AI som data-assistent – IKKE omvendt
 
 INTERNE LINKS (MEGET VIGTIGT):
 - Indsæt 3-5 naturlige inline links i brødteksten til relevante sider på Casinoaftaler.dk.
