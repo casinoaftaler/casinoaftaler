@@ -1017,7 +1017,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
     onReelStopRef.current?.(reelIndex);
   }, []);
 
-  const symbolDimensions = { size: SYMBOL_SIZE, gap: SYMBOL_GAP };
+  const symbolDimensions = { size: symbolSize, gap: symbolGap };
 
   if (symbolsLoading) {
     return (
@@ -1043,10 +1043,8 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
   const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : hasEnoughSpins(bet);
 
   return (
-    <div className="transition-all duration-300 relative">
-      {/* Credits expired overlay */}
+    <div className={cn("transition-all duration-300 relative", isMobile && "w-full")}> 
       <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !bonusState.isActive && !isSpinning && !showWinLines} />
-      {/* Bonus Overlays */}
       <BonusOverlay
         isVisible={showRetrigger}
         type="retrigger"
@@ -1065,13 +1063,11 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
         onClose={() => {
           setShowRetrigger(false);
           setPendingRetriggerSymbol(null);
-          // Clean up any lingering expansion state from pre-retrigger
           expandedReelSymbolMapRef.current = {};
           setExpandedReels([]);
           setShowExpansionDarken(false);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
-            // Restore the locked-in bet from the bonus state
             const lockedBet = pendingBonusStateRef.current.betAmount || bonusBetAmount;
             if (lockedBet > 0) {
               setBet(lockedBet);
@@ -1092,7 +1088,6 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
           setBonusBarsReady(true);
           resumeRealtimeUpdates();
           if (pendingBonusStateRef.current) {
-            // Restore the locked-in bet from the bonus state BEFORE auto-spin fires
             const lockedBet = pendingBonusStateRef.current.betAmount || bonusBetAmount;
             if (lockedBet > 0) {
               setBet(lockedBet);
@@ -1120,13 +1115,11 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
         gameId={gameId}
       />
 
-      <div className="max-w-fit mx-auto">
-        <div className="p-4 space-y-2">
-          {/* Slot machine reels with frame */}
+      <div className={cn(isMobile ? "w-full" : "max-w-fit mx-auto")}>
+        <div className={cn(isMobile ? "p-2 space-y-2" : "p-4 space-y-2")}>
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning} gameId={gameId}>
-              <div className="relative p-6 rounded-xl">
-                {/* Win Celebration Effects */}
+              <div className={cn("relative rounded-xl", isMobile ? "p-2" : "p-6")}>
                 <WinCelebration
                   isActive={isWinAnimating}
                   winAmount={winAmount}
@@ -1140,7 +1133,6 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
                     }
                   }}
                 />
-                {/* Idle effects */}
                 <SlotAmbientLight
                   isIdle={!isSpinning && !isWinAnimating && !bonusState.isActive}
                   theme={gameId === "rise-of-fedesvin" ? "purple" : "gold"}
@@ -1148,11 +1140,10 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
                 <SlotIdleEffects
                   isIdle={!isSpinning && !isWinAnimating && !bonusState.isActive}
                   theme={gameId === "rise-of-fedesvin" ? "purple" : "gold"}
-                  width={5 * SYMBOL_SIZE + 4 * 2}
-                  height={3 * SYMBOL_SIZE + 2 * SYMBOL_GAP}
+                  width={5 * symbolSize + 4 * reelDividerWidth}
+                  height={3 * symbolSize + 2 * symbolGap}
                 />
 
-                {/* Reel container */}
                 <div className="relative flex gap-0">
                   {grid?.map((column, colIndex) => (
                     <React.Fragment key={colIndex}>
@@ -1180,14 +1171,18 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
                         isBonusActive={bonusState.isActive}
+                        symbolSize={symbolSize}
+                        symbolGap={symbolGap}
                       />
                       {colIndex < 4 && (
-                        <div className={cn("w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
+                        <div
+                          className={cn("self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")}
+                          style={{ width: reelDividerWidth }}
+                        />
                       )}
                     </React.Fragment>
                   ))}
-                  
-                  {/* Win Lines Overlay */}
+
                   {lastResult && lastResult.wins.length > 0 && (
                     <WinLines
                       wins={lastResult.wins}
@@ -1202,14 +1197,13 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
             </SlotMachineFrame>
           </div>
 
-          {/* Bonus Status Bar + Control Panel */}
           <div style={{ marginTop: `${controlsGap}px` }}>
-            <div className={cn(
-              "max-w-fit mx-auto mb-3 space-y-2",
-              gameId === "rise-of-fedesvin"
-                ? "min-h-[100px]"
-                : "min-h-[56px]"
-            )}>
+            <div
+              className={cn(
+                isMobile ? "w-full mb-3 space-y-2" : "max-w-fit mx-auto mb-3 space-y-2",
+                gameId === "rise-of-fedesvin" ? "min-h-[100px]" : "min-h-[56px]"
+              )}
+            >
               <BonusStatusBar
                 isActive={bonusState.isActive && bonusBarsReady}
                 freeSpinsRemaining={bonusState.freeSpinsRemaining}
@@ -1228,7 +1222,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
                 />
               )}
             </div>
-            
+
             <BonanzaControlBar
               bet={effectiveBet}
               onBetChange={setBet}
@@ -1252,12 +1246,12 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
               showBonusTrigger={showBonusTrigger}
               winAmount={winAmount}
               gameId={gameId}
+              isMobile={isMobile}
             />
           </div>
 
-          {/* No spins message */}
           {!canSpinNow && !bonusState.isActive && (
-            <div className="text-center p-4 bg-muted/50 rounded-lg mt-3">
+            <div className={cn("text-center p-4 bg-muted/50 rounded-lg mt-3", isMobile && "mx-2")}>
               <p className="text-muted-foreground">
                 Du har brugt alle dine spins i dag. Kom tilbage i morgen for {maxSpins} nye!
               </p>

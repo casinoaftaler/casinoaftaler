@@ -2,7 +2,6 @@ import "@/styles/slot-animations.css";
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SEO } from "@/components/SEO";
-
 import { SlotGame } from "@/components/slots/SlotGame";
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
@@ -24,30 +23,24 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
 
-
-
-
 const GAME_ID = "rise-of-fedesvin";
-
-type LoadingPhase = 'loading' | 'intro' | 'ready';
+type LoadingPhase = "loading" | "intro" | "ready";
 
 export default function RiseOfFedesvin() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
   const isMobile = useIsMobile();
-  
-  // Load custom sound files at page level so they're ready for intro screen music
+
   useSlotSoundLoader(GAME_ID);
-  
-  const { 
-    isSessionActive, 
-    isBlockedByOtherDevice, 
-    otherDeviceInfo, 
+
+  const {
+    isBlockedByOtherDevice,
+    otherDeviceInfo,
     timeSinceOtherActive,
     isLoading: sessionLoading,
     takeOverSession,
-    refreshSession 
+    refreshSession,
   } = useSlotSession(GAME_ID);
   const { scale } = useSlotScale({
     baseWidth: 1200,
@@ -57,24 +50,21 @@ export default function RiseOfFedesvin() {
     minScale: 0.2,
   });
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
-  
-  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
-  
+
+  const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>("loading");
+
   useEffect(() => {
-    sessionStorage.removeItem('slot_initialized');
+    sessionStorage.removeItem("slot_initialized");
   }, []);
 
-  const handleLoadingComplete = useCallback(() => {
-    setLoadingPhase('intro');
-  }, []);
-
+  const handleLoadingComplete = useCallback(() => setLoadingPhase("intro"), []);
   const handleIntroComplete = useCallback(() => {
-    sessionStorage.setItem('slot_initialized', 'true');
-    setLoadingPhase('ready');
+    sessionStorage.setItem("slot_initialized", "true");
+    setLoadingPhase("ready");
   }, []);
-  
+
   const backgroundImage = siteSettings?.rise_of_fedesvin_background_image || defaultSlotBackground;
-  const topCasino = casinos?.find(c => c.is_active) || null;
+  const topCasino = casinos?.find((c) => c.is_active) || null;
 
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow;
@@ -97,12 +87,8 @@ export default function RiseOfFedesvin() {
 
   const PageBackground = () => (
     <>
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})` }} />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 -z-10" />
-      {/* Purple/mystical overlay for Rise of Fedesvin */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-transparent to-indigo-900/20 -z-10" />
     </>
   );
@@ -145,9 +131,7 @@ export default function RiseOfFedesvin() {
               <Gamepad2 className="h-10 w-10 text-purple-400" />
             </div>
             <h1 className="text-2xl font-bold">Log ind for at spille</h1>
-            <p className="text-muted-foreground">
-              Du skal være logget ind for at spille Rise of Fedesvin og optjene point til ranglisten.
-            </p>
+            <p className="text-muted-foreground">Du skal være logget ind for at spille Rise of Fedesvin og optjene point til ranglisten.</p>
             <Button asChild size="lg" className="bg-[#9146FF] hover:bg-[#772ce8]">
               <Link to="/auth">Log ind med Twitch</Link>
             </Button>
@@ -181,11 +165,11 @@ export default function RiseOfFedesvin() {
     );
   }
 
-  if (loadingPhase === 'loading') {
+  if (loadingPhase === "loading") {
     return <SlotLoadingScreen onComplete={handleLoadingComplete} gameId={GAME_ID} />;
   }
 
-  if (loadingPhase === 'intro') {
+  if (loadingPhase === "intro") {
     return <SlotIntroScreen onStart={handleIntroComplete} gameId={GAME_ID} />;
   }
 
@@ -198,13 +182,8 @@ export default function RiseOfFedesvin() {
         description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
         noindex
       />
-      
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-indigo-900/15 -z-10" />
+
+      <PageBackground />
 
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
@@ -221,32 +200,20 @@ export default function RiseOfFedesvin() {
       </div>
 
       {isMobile ? (
-        /* ── MOBILE: CSS transform scaling (same as desktop) ── */
-        <div className="flex-1 flex items-start justify-center overflow-hidden">
-          <div
-            className="slot-viewport-container"
-            style={{
-              width: '1200px',
-              transform: `scale(${scale})`,
-              transformOrigin: 'top center',
-              marginBottom: `${-(920 * (1 - scale))}px`,
-              marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
-              marginRight: `${-(1200 * (1 - scale)) / 2}px`,
-            }}
-          >
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
             <SlotPageLayout sidePanel={null}>
-              <SlotGame gameId={GAME_ID} />
+              <SlotGame gameId={GAME_ID} isMobile />
             </SlotPageLayout>
           </div>
         </div>
       ) : (
-        /* ── DESKTOP: CSS transform scaling ── */
         <div className="flex-1 flex items-center justify-center overflow-hidden">
           <div
             className="slot-viewport-container flex items-center justify-center"
             style={{
-              width: '1200px',
-              height: '920px',
+              width: "1200px",
+              height: "920px",
               transform: `scale(${scale})`,
               marginTop: `${-(920 * (1 - scale)) / 2}px`,
               marginBottom: `${-(920 * (1 - scale)) / 2}px`,
