@@ -337,8 +337,21 @@ export function useSupportAdmin() {
     setTotalUnread((c) => Math.max(0, c - 1));
   }, []);
 
-  // Close conversation
+  // Close conversation + send system message
   const closeConversation = useCallback(async (conversationId: string) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    // Insert system message before closing
+    await supabase
+      .from("support_messages")
+      .insert({
+        conversation_id: conversationId,
+        sender_id: user.id,
+        sender_role: "system",
+        message: "Samtalen er blevet lukket af support. Tak for din henvendelse!",
+      });
+
     await supabase
       .from("support_conversations")
       .update({ status: "closed" })
