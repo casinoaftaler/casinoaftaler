@@ -786,6 +786,7 @@ function AdminDashboard() {
     { value: "factcheck", label: "Fact-Check", icon: Shield },
     { value: "link-density", label: "Link Monitor", icon: Link2 },
     { value: "settings", label: "Indstillinger", icon: Settings },
+    { value: "support", label: "Support", icon: MessageSquare },
     { value: "users", label: "Brugere", icon: Users },
   ];
 
