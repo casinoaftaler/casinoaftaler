@@ -213,16 +213,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
   // Initialize grid with random symbols (display only)
   const initializeGrid = useCallback(() => {
     if (!symbols || symbols.length === 0) return;
-    const nonScatter = symbols.filter(s => !s.is_scatter);
-    const newGrid: string[][] = [];
-    for (let col = 0; col < 5; col++) {
-      const column: string[] = [];
-      for (let row = 0; row < 3; row++) {
-        const sym = nonScatter[Math.floor(Math.random() * nonScatter.length)];
-        column.push(sym.id);
-      }
-      newGrid.push(column);
-    }
+    const newGrid = generateDisplayGrid(symbols);
     setGrid(newGrid);
   }, [symbols]);
 
