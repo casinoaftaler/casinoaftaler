@@ -93,14 +93,19 @@ export function SupportChatWidget() {
                   </Avatar>
                   <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-500 border-2 border-primary" />
                 </div>
-              ) : null}
-              <div>
-                <h3 className="font-bold text-sm">
-                  {adminProfile ? adminProfile.display_name || "Support Agent" : "Casinoaftaler Support"}
-                </h3>
-                <p className="text-xs opacity-80">
-                  {adminProfile ? "Support Agent" : "Vi svarer hurtigst muligt"}
-                </p>
+              ) : (
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-9 w-9 rounded-full object-cover" />
+              )}
+              <div className="flex items-center gap-2">
+                <div>
+                  <h3 className="font-bold text-sm">
+                    {adminProfile ? adminProfile.display_name || "Support Agent" : "Casinoaftaler Support"}
+                  </h3>
+                  <p className="text-xs opacity-80">
+                    {adminProfile ? "Support Agent" : "Vi svarer hurtigst muligt"}
+                  </p>
+                </div>
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-6 w-6 rounded-full object-cover opacity-80" />
               </div>
             </div>
             <div className="flex items-center gap-1">
