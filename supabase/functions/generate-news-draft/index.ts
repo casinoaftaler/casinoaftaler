@@ -119,9 +119,18 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 🚫 REGLER:
 - Undgå hallucinationer – basér dig på den research du modtager
 - INGEN affiliate-links eller kommercielle CTA'er
-- INGEN generisk AI-sprog ("i en verden hvor...", "det er vigtigt at bemærke...")
+- INGEN generisk AI-sprog ("i en verden hvor...", "det er vigtigt at bemærke...", "i takt med...", "det skal dog nævnes...")
 - Minimum 700 ord, maximum 1500 ord
 - Du SKAL altid skrive en artikel baseret på den research der gives dig. Afvis KUN hvis researchen er HELT tom eller irrelevant.
+
+📌 REDAKTIONEL BERIGELSE (KRITISK FOR E-E-A-T):
+- Inkludér mindst ÉN redaktionel vurdering fra Casinoaftaler-redaktionen, fx:
+  "Hos Casinoaftaler har vi fulgt [emnet] tæt, og vores vurdering er at..."
+  "Vi har gennemgået [kilde/data] og kan konstatere at..."
+  "Baseret på vores test af [casino/funktion] vurderer vi at..."
+- Nævn specifikke observationer fra redaktionens daglige arbejde med at teste casinoer
+- Brug formuleringer der viser first-hand experience: "da vi testede", "i vores gennemgang", "ifølge vores data"
+- Artiklen skal læses som om en menneske-ekspert har skrevet den med AI som research-assistent – IKKE omvendt
 
 📌 GODKENDTE KATEGORIER (vælg kun én):
 - regulering: Nye licenser, regulatoriske ændringer i DK/EU
@@ -166,7 +175,7 @@ Du MÅ bruge disse som kilder hvis de er relevante for artiklen.
    - Hvad der skete (med kildehenvisninger)
    - Kontekst i dansk marked
    - Konsekvenser for spillerne
-   - Ekspertanalyse
+   - Redaktionens vurdering (OBLIGATORISK – inkludér specifik first-hand indsigt)
 4) FAQ: 2-3 spørgsmål med faktuelle svar
 VIGTIGT: Tilføj IKKE en "Kilder" sektion i artiklen. Kilder skal KUN returneres i JSON sources-arrayet til intern validering.
 
@@ -579,8 +588,8 @@ Deno.serve(async (req) => {
         .select("*", { count: "exact", head: true })
         .gte("created_at", weekAgo.toISOString());
 
-      if ((weekCount ?? 0) >= 4) {
-        return await failWithLog("Max 4 artikler pr. uge nået", { search_query: "n/a" });
+      if ((weekCount ?? 0) >= 2) {
+        return await failWithLog("Max 2 artikler pr. uge nået", { search_query: "n/a" });
       }
     }
 
@@ -887,6 +896,30 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
     // Use article content as-is (no sources section appended)
     const finalContent = articleData.content || "";
 
+    // ═══ AUTHOR ROUTING: Map category → expert author (E-E-A-T) ═══
+    const CATEGORY_AUTHOR_MAP: Record<string, string> = {
+      "regulering": "ajse",        // Juridisk Redaktør
+      "juridisk": "ajse",          // Juridisk Redaktør
+      "lovgivning": "ajse",        // Juridisk Redaktør
+      "ansvarligt-spil": "ajse",   // Juridisk Redaktør
+      "bonusser": "niklas",        // Finansiel Økonom
+      "spilleafgifter": "niklas",  // Finansiel Økonom
+      "markedsbevægelser": "jonas", // Grundlægger, 5+ års erfaring
+      "nye-casinoer": "jonas",     // Grundlægger
+      "dataanalyse": "jonas",      // Grundlægger
+      "spiludviklere": "kevin",    // Streamer & Spiludvikler
+      "spilanmeldelser": "kevin",  // Streamer & Spiludvikler
+      "teknologi-sikkerhed": "kevin", // Streamer & Spiludvikler
+      "betalingsteknologi": "frederik", // Streamer
+      "betalingsmetoder": "frederik",   // Streamer
+      "live-casino": "frederik",   // Streamer
+      "mobilcasino": "frederik",   // Streamer
+      "kundeservice": "jonas",     // Grundlægger
+      "nordisk-marked": "jonas",   // Grundlægger
+    };
+    const resolvedAuthor = CATEGORY_AUTHOR_MAP[articleData.category] || "jonas";
+    console.log(`Author routing: category="${articleData.category}" → author="${resolvedAuthor}"`);
+
     // ═══ All guardrails passed – Insert as DRAFT ═══
     const { data: inserted, error: insertErr } = await supabase
       .from("casino_news")
@@ -901,7 +934,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         meta_description: articleData.meta_description,
         featured_image: featuredImageUrl,
         status: "draft",
-        author_id: "ajse",
+        author_id: resolvedAuthor,
       })
       .select()
       .single();
