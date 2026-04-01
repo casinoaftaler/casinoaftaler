@@ -661,6 +661,56 @@ export type Database = {
         }
         Relationships: []
       }
+      chat_broadcast_dismissals: {
+        Row: {
+          broadcast_id: string
+          dismissed_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          broadcast_id: string
+          dismissed_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          broadcast_id?: string
+          dismissed_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_broadcast_dismissals_broadcast_id_fkey"
+            columns: ["broadcast_id"]
+            isOneToOne: false
+            referencedRelation: "chat_broadcasts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_broadcasts: {
+        Row: {
+          admin_id: string
+          created_at: string | null
+          id: string
+          message: string
+        }
+        Insert: {
+          admin_id: string
+          created_at?: string | null
+          id?: string
+          message: string
+        }
+        Update: {
+          admin_id?: string
+          created_at?: string | null
+          id?: string
+          message?: string
+        }
+        Relationships: []
+      }
       chat_timeouts: {
         Row: {
           created_at: string
