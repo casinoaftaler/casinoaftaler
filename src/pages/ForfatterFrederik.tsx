@@ -489,6 +489,11 @@ export default function ForfatterFrederik() {
 
         <Separator className="my-10" />
 
+        {/* Nyheder af Frederik fra database */}
+        <AuthorNewsSection authorId="frederik" authorName="Frederik" />
+
+        <Separator className="my-10" />
+
         {/* Artikler skrevet af Frederik – paginated */}
         {frederikArticles.length > 0 && (
           <section className="mb-12">
