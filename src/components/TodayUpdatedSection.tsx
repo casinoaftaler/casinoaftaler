@@ -29,7 +29,7 @@ export function TodayUpdatedSection() {
 
   return (
     <section className="py-6 border-b border-border/30 bg-muted/30" style={{ minHeight: "120px" }}>
-      <div className="container">
+      <div>
         <div className="mb-3 flex items-center gap-2">
           <RefreshCw className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold text-primary">Dagens overblik</span>
