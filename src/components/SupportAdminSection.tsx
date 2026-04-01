@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon } from "lucide-react";
+import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useSupportAdmin } from "@/hooks/useSupportChat";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 export function SupportAdminSection() {
