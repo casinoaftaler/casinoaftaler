@@ -56,6 +56,22 @@ export function SupportAdminSection() {
     setSending(false);
   };
 
+  const handleSendBroadcast = async () => {
+    if (!broadcastText.trim() || broadcastSending || !user) return;
+    setBroadcastSending(true);
+    const { error } = await supabase
+      .from("chat_broadcasts")
+      .insert({ admin_id: user.id, message: broadcastText.trim() });
+    if (error) {
+      toast({ title: "Fejl", description: "Kunne ikke sende broadcast", variant: "destructive" });
+    } else {
+      toast({ title: "Sendt!", description: "Broadcast-besked sendt til alle brugere" });
+      setBroadcastText("");
+      setBroadcastOpen(false);
+    }
+    setBroadcastSending(false);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
