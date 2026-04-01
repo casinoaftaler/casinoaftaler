@@ -175,6 +175,22 @@ export function useSupportChat() {
     setUnreadCount(0);
   }, [conversation, userId, messages]);
 
+  // Delete/withdraw conversation
+  const deleteConversation = useCallback(async () => {
+    if (!conversation || !userId) return false;
+    const { error } = await supabase
+      .from("support_conversations")
+      .delete()
+      .eq("id", conversation.id)
+      .eq("user_id", userId);
+    if (!error) {
+      setConversation(null);
+      setMessages([]);
+      setUnreadCount(0);
+    }
+    return !error;
+  }, [conversation, userId]);
+
   return {
     conversation,
     messages,
@@ -184,6 +200,7 @@ export function useSupportChat() {
     startConversation,
     sendMessage,
     markAsRead,
+    deleteConversation,
   };
 }
 
