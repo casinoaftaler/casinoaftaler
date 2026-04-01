@@ -24,7 +24,6 @@ export function SupportChatWidget() {
     unreadCount,
     userProfile,
     adminProfile,
-    startConversation,
     sendMessage,
     markAsRead,
     deleteConversation,
@@ -49,9 +48,6 @@ export function SupportChatWidget() {
 
   const handleOpen = async () => {
     setIsOpen(true);
-    if (!conversation) {
-      await startConversation("Support");
-    }
     markAsRead();
   };
 
@@ -60,9 +56,6 @@ export function SupportChatWidget() {
   const handleSend = async () => {
     if (!input.trim() || sending) return;
     setSending(true);
-    if (!conversation) {
-      await startConversation("Support");
-    }
     await sendMessage(input.trim());
     setInput("");
     setSending(false);

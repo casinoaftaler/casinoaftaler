@@ -187,16 +187,30 @@ export function useSupportChat() {
     return conv;
   }, [userId]);
 
-  // Send a message
+  // Send a message (creates conversation on first message if needed)
   const sendMessage = useCallback(async (text: string) => {
-    if (!userId || !conversation) return false;
+    if (!userId) return false;
     const trimmed = text.trim();
     if (!trimmed || trimmed.length > 2000) return false;
+
+    let conv = conversation;
+
+    // Create conversation on first message
+    if (!conv) {
+      const { data: newConv, error: convError } = await supabase
+        .from("support_conversations")
+        .insert({ user_id: userId, subject: "Support" })
+        .select("*")
+        .single();
+      if (convError || !newConv) return false;
+      conv = newConv as SupportConversation;
+      setConversation(conv);
+    }
 
     const { data, error } = await supabase
       .from("support_messages")
       .insert({
-        conversation_id: conversation.id,
+        conversation_id: conv.id,
         sender_id: userId,
         sender_role: "user",
         message: trimmed,
@@ -209,11 +223,10 @@ export function useSupportChat() {
         if (prev.some((m) => m.id === (data as SupportMessage).id)) return prev;
         return [...prev, data as SupportMessage];
       });
-      // Update last_message_at
       await supabase
         .from("support_conversations")
         .update({ last_message_at: new Date().toISOString() })
-        .eq("id", conversation.id);
+        .eq("id", conv.id);
     }
     return !error;
   }, [userId, conversation]);
