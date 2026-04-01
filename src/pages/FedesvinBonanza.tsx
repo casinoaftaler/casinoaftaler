@@ -12,7 +12,7 @@ import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
-import { SlotChat } from "@/components/slots/SlotChat";
+
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
