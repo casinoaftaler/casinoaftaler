@@ -15,13 +15,51 @@ import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { countInternalLinksInHtml } from "@/lib/newsInternalLinks";
 import { capWagerInText } from "@/lib/wagerCap";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
-import { AJSE_SAME_AS, buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import {
+  AJSE_SAME_AS,
+  JONAS_SAME_AS,
+  KEVIN_SAME_AS,
+  NIKLAS_SAME_AS,
+  FREDERIK_SAME_AS,
+  buildArticleSchema,
+  buildFaqSchema,
+  SITE_URL,
+} from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const MAX_RELATED_ARTICLES = 3;
+type NewsAuthorId = "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
+
+const NEWS_AUTHOR_SEO: Record<NewsAuthorId, { name: string; url: string; sameAs: string[] }> = {
+  jonas: {
+    name: "Jonas",
+    url: `${SITE_URL}/forfatter/jonas`,
+    sameAs: JONAS_SAME_AS,
+  },
+  kevin: {
+    name: "Kevin",
+    url: `${SITE_URL}/forfatter/kevin`,
+    sameAs: KEVIN_SAME_AS,
+  },
+  ajse: {
+    name: "Ajse",
+    url: `${SITE_URL}/forfatter/ajse`,
+    sameAs: AJSE_SAME_AS,
+  },
+  niklas: {
+    name: "Niklas",
+    url: `${SITE_URL}/forfatter/niklas`,
+    sameAs: NIKLAS_SAME_AS,
+  },
+  frederik: {
+    name: "Frederik Merkel",
+    url: `${SITE_URL}/forfatter/frederik`,
+    sameAs: FREDERIK_SAME_AS,
+  },
+};
 
 const CasinoNyhedArticle = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -95,6 +133,9 @@ const CasinoNyhedArticle = () => {
     return <Navigate to="/casino-nyheder" replace />;
   }
 
+  const articleAuthor = (article.author_id in NEWS_AUTHOR_SEO ? article.author_id : "ajse") as NewsAuthorId;
+  const authorSeo = NEWS_AUTHOR_SEO[articleAuthor];
+
   const publishedDate = article.published_at
     ? formatTimestampDanish(article.published_at)
     : "Ikke publiceret";
@@ -113,9 +154,9 @@ const CasinoNyhedArticle = () => {
     datePublished: article.published_at || article.created_at,
     dateModified: article.updated_at,
     image: article.featured_image || undefined,
-    authorName: "Ajse",
-    authorUrl: `${SITE_URL}/forfatter/ajse`,
-    authorSameAs: AJSE_SAME_AS,
+    authorName: authorSeo.name,
+    authorUrl: authorSeo.url,
+    authorSameAs: authorSeo.sameAs,
   });
 
   const faqJsonLd = faqs.length > 0 ? buildFaqSchema(faqs) : null;
@@ -173,7 +214,7 @@ const CasinoNyhedArticle = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar
-          author="ajse"
+          author={articleAuthor}
           readTime="5 min"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
@@ -275,7 +316,7 @@ const CasinoNyhedArticle = () => {
         )}
 
         <RelatedGuides currentPath={`/casino-nyheder/${slug}`} maxLinks={5} />
-        <AuthorBio author="ajse" showCommunity={false} />
+        <AuthorBio author={articleAuthor} showCommunity={false} />
       </div>
     </>
   );
