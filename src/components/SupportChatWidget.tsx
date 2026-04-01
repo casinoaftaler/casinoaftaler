@@ -49,9 +49,6 @@ export function SupportChatWidget() {
 
   const handleOpen = async () => {
     setIsOpen(true);
-    if (!conversation) {
-      await startConversation("Support");
-    }
     markAsRead();
   };
 
