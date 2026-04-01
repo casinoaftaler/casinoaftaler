@@ -43,6 +43,19 @@ export function useSupportChat() {
     });
   }, []);
 
+  // Load user profile
+  useEffect(() => {
+    if (!userId) return;
+    supabase
+      .from("profiles")
+      .select("display_name, avatar_url")
+      .eq("user_id", userId)
+      .single()
+      .then(({ data }) => {
+        if (data) setUserProfile(data as SupportProfile);
+      });
+  }, [userId]);
+
   // Load or find existing open conversation
   useEffect(() => {
     if (!userId) { setIsLoading(false); return; }
