@@ -608,6 +608,11 @@ export default function Forfatter() {
 
         <Separator className="my-10" />
 
+        {/* Nyheder af Jonas fra database */}
+        <AuthorNewsSection authorId="jonas" authorName="Jonas" />
+
+        <Separator className="my-10" />
+
         {/* 3️⃣ Artikler skrevet af Jonas – horizontal carousel */}
         <section className="mb-12">
           <div className="mb-6 flex items-center justify-between">
