@@ -1,37 +1,54 @@
 
 
-## Problem
+## Broadcast Chat-besked til alle brugere
 
-Book of Fedesvin and Rise of Fedesvin bruger CSS `transform: scale()` på mobil, hvilket skrumper hele spillet ned og efterlader et stort tomt område under maskinen. Fedesvin Bonanza bruger derimod native bredde på mobil (`w-full px-1`), som fylder skærmen korrekt.
+### Koncept
+Admins kan sende en broadcast-besked via chat-systemet. Brugere ser en kompakt preview (forste 5-6 ord) ved chat-ikonet. Klik udvider til fuld besked. Kryds dismisser permanent.
 
-## Løsning
+### Trin
 
-Ændre mobile-layoutet i begge siders page-filer til at matche Bonanza-tilgangen: native bredde uden CSS transform scaling.
+**1. Ny database-tabel: `chat_broadcasts`**
+```sql
+CREATE TABLE public.chat_broadcasts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  admin_id uuid REFERENCES auth.users(id) NOT NULL,
+  message text NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
 
-## Ændringer
-
-### 1. `src/pages/SlotMachine.tsx` (Book of Fedesvin)
-- Erstat mobile-blokken (linje 225-242) fra CSS transform scaling til native width layout:
-```tsx
-// FRA (transform scaling):
-<div className="flex-1 flex items-start justify-center overflow-hidden">
-  <div style={{ width: '1200px', transform: `scale(${scale})`, ... }}>
-    ...
-  </div>
-</div>
-
-// TIL (native width, matcher Bonanza):
-<div className="flex-1 flex flex-col overflow-hidden">
-  <div className="w-full px-1">
-    <SlotPageLayout sidePanel={null}>
-      <SlotGame />
-    </SlotPageLayout>
-  </div>
-</div>
+CREATE TABLE public.chat_broadcast_dismissals (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  broadcast_id uuid REFERENCES public.chat_broadcasts(id) ON DELETE CASCADE NOT NULL,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  dismissed_at timestamptz DEFAULT now(),
+  UNIQUE(broadcast_id, user_id)
+);
 ```
+- RLS: Admins kan INSERT broadcasts. Authenticated users kan SELECT broadcasts + INSERT egne dismissals.
+- Realtime enabled pa `chat_broadcasts`.
 
-### 2. `src/pages/RiseOfFedesvin.tsx` (Rise of Fedesvin)
-- Samme ændring i mobile-blokken (linje 222-239): erstat CSS transform scaling med native width layout.
+**2. Admin UI -- "Skriv besked" knap i SupportAdminSection**
+- Ny knap i header: "Skriv besked til alle"
+- Klik abner en dialog med textarea + send-knap
+- Sender INSERT til `chat_broadcasts`
+- Toast bekraeftelse
 
-Ingen funktionalitet ændres. Kun mobile layout-wrapperen i de to page-filer opdateres.
+**3. Bruger-side -- Broadcast preview ved chat-ikonet**
+- `SupportChatWidget` henter seneste ikke-dismissede broadcast
+- Viser en lille boble ved chat-knappen (som billede 1): avatar + forste 5-6 ord + afsender
+- Klik pa boblen abner en modal/expanded view med fuld besked (som billede 2)
+- X-knap i expanded view INSERTer dismissal og skjuler alt
+
+**4. Hook: `useBroadcastChat`**
+- Ny hook der fetcher seneste broadcast fra `chat_broadcasts` WHERE id NOT IN user's dismissals
+- Funktion `dismissBroadcast(broadcastId)` -- inserter i `chat_broadcast_dismissals`
+- Realtime subscription for nye broadcasts
+
+### Filer der oprettes/aendres
+| Fil | Handling |
+|-----|---------|
+| Migration SQL | Ny tabel + RLS |
+| `src/hooks/useBroadcastChat.ts` | Ny hook |
+| `src/components/SupportChatWidget.tsx` | Tilfoej broadcast preview + expanded view |
+| `src/components/SupportAdminSection.tsx` | Tilfoej "Skriv besked" knap + dialog |
 
