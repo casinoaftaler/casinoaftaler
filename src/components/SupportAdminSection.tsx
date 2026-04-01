@@ -19,6 +19,7 @@ export function SupportAdminSection() {
     markUserMessagesRead,
     closeConversation,
     assignToMe,
+    deleteConversation,
   } = useSupportAdmin();
 
   const [replyText, setReplyText] = useState("");
