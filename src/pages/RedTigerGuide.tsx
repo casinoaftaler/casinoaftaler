@@ -144,6 +144,12 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gaming har licenser fra fire regulatorer: Malta Gaming Authority, UK Gambling Commission, HM Government of Gibraltar og Alderney Gambling Control Commission. De er en af ganske få spiludviklere med ISO 27001 certificering – den internationale standard for informationssikkerhedsstyring – hvilket dækker spillerdata, transaktionsdata og Daily Jackpot-algoritmens integritet. Under Evolution-paraplyen overholder de koncernens compliance-standarder der er blandt branchens strengeste.
         </p>
+        <ReviewScreenshot
+          src={rtAwards}
+          alt="Red Tiger Gaming awards – EGR B2B Awards, GIA Awards og WhichBingo Awards fra 2017-2020"
+          caption="Red Tigers imponerende prissamling – 15+ branchepriser inkl. EGR B2B Slot Supplier, Innovation in Mobile og Casino Supplier of the Year."
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Daily Jackpot-algoritmen er separat certificeret for at sikre at must-drop-before-mekanikken fungerer som annonceret: jackpotten SKAL falde inden midnat UTC, og triggerchancen øges matematisk korrekt i løbet af dagen. Tournaments-funktionens point-system er verificeret for fairness – multiplikator-baseret scoring sikrer at spillere med forskellige indsatsniveauer konkurrerer på lige vilkår. Megaways-titlerne bruger BTGs patenterede Random Reel Modifier under licensaftale, certificeret af BMM Testlabs.
         </p>
