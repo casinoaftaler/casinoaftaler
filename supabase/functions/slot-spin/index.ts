@@ -1594,10 +1594,7 @@ Deno.serve(async (req) => {
     // GATES OF FEDESVIN - completely different game engine
     // ============================================================
     if (isGatesOfFedesvin) {
-      // Load Gates settings from DB (cached 5 min)
       await loadGatesSettings(serviceClient);
-      
-      // Create provably fair PRNG from serverSecret + userId + clientSeed + nonce
       const serverSecret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "default-server-secret";
       const prng = await SeededPRNG.create(serverSecret, userId, clientSeed, nonce);
       
@@ -1622,31 +1619,44 @@ Deno.serve(async (req) => {
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
           // DEMO MODE: Skip leaderboard recording for Gates
-          // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bonus bg err:", e); } })();
         }
         return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: gatesResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
       }
-      // Gates normal spin
+
+      // Gates normal spin — supports doubleChance and buyBonus
+      const isDoubleChance = !!doubleChance && !isBonusSpin;
+      const isBuyBonus = !!buyBonus && !isBonusSpin;
+      const effectiveBetCost = isBuyBonus ? bet * 100 : isDoubleChance ? bet * 2 : bet;
+
       const nowG = new Date();
       const todayG = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(nowG);
       const bonusSpinsPerm = profileRes.data?.bonus_spins_permanent || 0;
       const isSub = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
       const subBon = isSub ? SUBSCRIBER_BONUS : 0;
       const maxSp = dailySpinsValue + subBon + bonusSpinsPerm;
-      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp, p_game_id: "shared" });
+      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: effectiveBetCost, p_max_spins: maxSp, p_game_id: "shared" });
       if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng);
+
+      let forceScatters = isBuyBonus;
+      if (debugScatters && !isBuyBonus) {
+        const { data: isAdminData } = await serviceClient.rpc("has_role", { _user_id: userId, _role: "admin" });
+        if (isAdminData === true) forceScatters = true;
+      }
+      const scatterWeightMult = isDoubleChance ? 2 : 1;
+
+      const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng, forceScatters, scatterWeightMult);
+      console.log(`[gates] userId=${userId}, scatterCount=${gatesResult.scatterCount}, bonusTriggered=${gatesResult.bonusTriggered}, totalWin=${gatesResult.totalWin}, tumbleSteps=${gatesResult.tumbleSteps.length}`);
       let gatesBonusState = null;
       if (gatesResult.bonusTriggered) {
-        const awardedSpins = gatesResult.scatterCount >= 6 ? 15 : gatesResult.scatterCount >= 5 ? 12 : 10;
+        const sc = gatesResult.scatterCount;
+        const awardedSpins = sc >= 6 ? 15 : sc >= 5 ? 12 : 10;
         await serviceClient.from("slot_bonus_state").delete().eq("user_id", userId).eq("game_id", gameId);
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
         gatesBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
       // DEMO MODE: Skip leaderboard recording for Gates
-      // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();
       return new Response(JSON.stringify({ success: true, result: gatesResult, spinsRemaining: newRem, maxSpins: maxSp, bonusState: gatesBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
