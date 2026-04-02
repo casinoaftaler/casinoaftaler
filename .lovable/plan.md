@@ -1,22 +1,28 @@
 
 
-# Fix Admin Panel Tab Persistence
+# Afvis Alle Requests — Manuel knap + Automatisk ved settle
 
-## Problem
-The admin panel stores the active tab in React state (`useState("")`), which resets to the default ("Indhold") on every re-render or navigation. When you switch to e.g. "Requests" and then navigate elsewhere and back, it always reverts.
+## Hvad der bygges
+1. **Manuel "Afvis Alle" knap** i Request-fanen i admin panelet, der afviser alle ventende requests med ét klik (med bekræftelsesdialog).
+2. **Automatisk afvisning** af alle ventende slot requests når bonus hunt settles (i `bonus-hunt-settle` edge function).
 
-## Solution
-Persist the active tab in the URL using a query parameter (e.g. `?tab=requests`). This way the browser's back/forward and re-navigation preserves the tab.
+## Ændringer
 
-## Changes — `src/pages/Admin.tsx`
+### 1. `src/components/SlotRequestsAdminSection.tsx`
+- Tilføj en "Afvis Alle" knap ved siden af "Ventende Requests" overskriften.
+- Knappen viser en `AlertDialog` bekræftelse før den udfører handlingen.
+- Ved bekræftelse: opdater alle pending requests til `status: 'rejected'` via en enkelt Supabase update query.
 
-1. **Read `tab` from URL on mount**: Use `useSearchParams()` to initialize `activeTab` from `?tab=...` instead of `""`.
+### 2. `supabase/functions/bonus-hunt-settle/index.ts`
+- Tilføj et nyt trin i slutningen af settle-flowet (efter GTW/AVG X settlement, før response).
+- Hent hunt_number fra sessionen og afvis alle `slot_requests` med `status = 'pending'` for den pågældende hunt, samt alle globale pending requests uden hunt_number.
+- SQL: `UPDATE slot_requests SET status = 'rejected' WHERE status = 'pending'`
 
-2. **Sync tab changes to URL**: When `setActiveTab` is called, also update the search param via `setSearchParams({ tab: value })` (using `replace: true` to avoid polluting history).
+### 3. `src/hooks/useSlotRequests.ts`
+- Tilføj en ny `useRejectAllPendingRequests` mutation hook der opdaterer alle pending requests til rejected og invaliderer relevante queries.
 
-3. **Remove the initialization `useEffect`**: Replace the `useEffect` that sets `activeTab` on mount with direct initialization from URL params, falling back to the role-based default.
-
-4. **Update sidebar click handler**: Ensure clicking a nav item calls both `setActiveTab` and updates the URL param.
-
-This is a small, focused change — only the tab state management in `AdminDashboard` needs updating.
+## Teknisk detalje
+- Den manuelle knap bruger `supabase.from('slot_requests').update({ status: 'rejected' }).eq('status', 'pending')` direkte.
+- Edge function bruger service role client til samme operation, hvilket sikrer at RLS ikke blokerer.
+- Begge metoder invaliderer/trigger realtime updates via det eksisterende channel subscription.
 
