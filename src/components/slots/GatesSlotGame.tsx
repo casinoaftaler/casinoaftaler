@@ -973,16 +973,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         <div className="flex flex-col items-center">
           {/* Main game grid */}
           <div className="relative" style={{ width: gridWidth }}>
-            {/* Title art — top right corner */}
+            {/* Title art — top right outside the grid */}
             <div className="absolute z-20 pointer-events-none" style={{
-              top: isMobile ? 4 : 8,
-              right: isMobile ? 4 : 8,
-              width: isMobile ? gridWidth * 0.18 : gridWidth * 0.20,
+              top: isMobile ? -20 : -30,
+              right: isMobile ? -10 : -40,
+              width: isMobile ? gridWidth * 0.18 : gridWidth * 0.22,
             }}>
               <img
                 src={gatesTitleArt}
                 alt="Gates of Fedesvin"
-                className="w-full pointer-events-none block"
+                className="w-full pointer-events-none block drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
                 draggable={false}
               />
             </div>
