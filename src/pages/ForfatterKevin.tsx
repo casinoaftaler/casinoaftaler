@@ -297,7 +297,7 @@ export default function ForfatterKevin() {
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Kevin er 26 år og har streamet slots i mere end fire år. Han blev kontaktet af{" "}
+              Kevin er 26 år og har streamet slots i over 4 år. Han blev kontaktet af{" "}
               <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> med hensyn på at bidrage som streamer og spiludvikler. Kevin var allerede aktiv på Twitch, og med en fælles passion for online casino og community blev samarbejdet hurtigt en realitet.
             </p>
             <p className="text-muted-foreground leading-relaxed">
