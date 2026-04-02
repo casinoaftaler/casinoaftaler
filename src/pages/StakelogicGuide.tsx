@@ -115,7 +115,13 @@ const StakelogicGuide = () => (
       { year: "2023", event: "Større uafhængighed fra Novomatic – eget kreativt team og brandidentitet styrkes" },
       { year: "2024", event: "150+ titler, nye markeder i Latinamerika og Nordamerika udforskes" },
     ]}
-    gamesIntro={<p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler viser bredden i Stakelogics portefølje – fra klassiske Book-of-varianter til moderne megaways-implementeringer, alle med Super Stake™-support.</p>}
+    gamesIntro={<><p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler viser bredden i Stakelogics portefølje – fra klassiske Book-of-varianter til moderne megaways-implementeringer, alle med Super Stake™-support.</p>
+        <ReviewScreenshot
+          src={stakeKatalog}
+          alt="Stakelogic komplet spilkatalog – Candy Links Bonanza, Penguin Payday, Soul Slayer, Runner Runner og flere populære titler"
+          caption="Stakelogics fulde spilkatalog med Super Wheel™-badge synlig på næsten alle titler."
+        />
+      </>}
     games={[
       { name: "Book of Adventure", desc: "Stakelogics flagskib – en Indiana Jones-inspireret Book-of-slot med expanding symbols i free spins og Super Stake™ integration. Solid matematik og gennemtænkt tematik gør det til et godt alternativ til Play'n GOs Book of Dead. RTP: 96,1%. Høj volatilitet. Maks. gevinst: 5.000x. 10 Free Spins med expanding symbols der kan dække hele hjul.", highlight: "5.000x maks. – Expanding Symbols + Super Stake™" },
       { name: "Runner Runner Megaways™", desc: "Stakelogics mest ambitiøse megaways-implementering med op til 117.649 gevinstmuligheder. Poker-tematisk med et unikt respin-system hvor gevinstende symboler forbliver på plads mens resten re-spinner. RTP: 96,0%. Høj volatilitet. Maks. gevinst: 10.000x. Super Stake™ er særligt effektiv i denne titel.", highlight: "10.000x maks. – 117.649 Ways + Respin-system" },
