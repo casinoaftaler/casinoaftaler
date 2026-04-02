@@ -175,6 +175,13 @@ const HacksawGamingGuide = () => (
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">RNG & Certificering</p><p className="text-lg font-bold">Uafhængigt certificeret</p><p className="text-xs text-muted-foreground">MGA + UKGC reguleret</p></CardContent></Card>
         </div>
 
+        <ReviewScreenshot
+          src={hacksawPaylines}
+          alt="Wanted Dead or a Wild gevinstlinjer – 15 faste linjer vist med grøn markering på det kompakte 5x5 grid"
+          caption="Wanted Dead or a Wilds 15 faste gevinstlinjer – et eksempel på Hacksaws kompakte grid-design med klare vindermønstre"
+          size="full"
+        />
+
         <h3 className="text-xl font-bold mb-3 mt-6">Cluster Pays: Hacksaws Mekaniske Rygrad</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De fleste Hacksaw-spil bruger cluster pays fremfor traditionelle gevinstlinjer. I et cluster pays-system tæller gevinster når klynger af identiske symboler rører hinanden horisontalt eller vertikalt – typisk kræves minimum 5 sammenhængende symboler. Denne mekanik tillader langt flere potentielle gevinstkombinationer per spin end faste linjer, og er optimeret til kompakte grids hvor pladsen er begrænset. Cluster pays-systemet er matematisk mere fleksibelt end linjebaserede systemer: det tillader dynamisk justering af gevinst-sandsynligheder baseret på grid-størrelse og symbolfordeling.
