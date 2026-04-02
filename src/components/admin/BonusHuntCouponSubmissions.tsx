@@ -123,6 +123,7 @@ export function BonusHuntCouponSubmissions({ session }: Props) {
     },
     staleTime: 15_000,
     refetchInterval: 30_000,
+    refetchIntervalInBackground: false,
   });
 
   const hasResults = couponResults && Object.values(couponResults).some(v => v !== null && v !== undefined);
