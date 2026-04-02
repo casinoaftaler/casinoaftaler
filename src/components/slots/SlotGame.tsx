@@ -54,9 +54,10 @@ function generateDisplayGrid(symbols: SlotSymbol[]): string[][] {
 
 interface SlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
-export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
+export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: SlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
