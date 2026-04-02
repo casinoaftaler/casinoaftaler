@@ -44,6 +44,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { getRouteLastmod } from "@/lib/seoRoutes";
 import { Separator } from "@/components/ui/separator";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 

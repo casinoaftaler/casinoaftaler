@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -449,7 +450,7 @@ const JackpotSlots = () => {
               { to: "/bonus-buy-slots", title: "Bonus Buy Slots", desc: "Køb bonus direkte – spring base game over" },
               { to: "/casinospil/spillemaskiner", title: "Spillemaskiner Guide", desc: "Komplet guide til alle spilleautomater" },
               { to: "/casinospil/spillemaskiner/hoej-rtp", title: "Høj RTP Slots", desc: "Spillemaskiner med bedst tilbagebetaling" },
-              { to: "/slot-database", title: "Slot Database", desc: "1.640+ slots med community-statistik" },
+              { to: "/slot-database", title: "Slot Database", desc: "${SLOT_COUNT_LABEL} slots med community-statistik" },
               { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link

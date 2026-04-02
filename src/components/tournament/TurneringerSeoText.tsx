@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 /**
  * Deep SEO text for /community/turneringer – placed after "Afsluttede turneringer".
@@ -288,7 +289,7 @@ export function TurneringerSeoText() {
             Derudover bidrager turneringsdata til vores{" "}
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
-            </Link>, som samler performance-statistik på tværs af 1.640+ spilleautomater — inklusiv
+            </Link>, som samler performance-statistik på tværs af ${SLOT_COUNT_LABEL} spilleautomater — inklusiv
             community-maskinerne. Data fra hundredvis af daglige spins giver et statistisk grundlag,
             som langt overgår det, man kan opnå ved individuel test. Det er denne datamængde, der gør
             vores{" "}

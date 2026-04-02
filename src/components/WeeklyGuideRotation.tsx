@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, ArrowRight } from "lucide-react";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 interface Guide {
   title: string;
@@ -25,7 +26,7 @@ const GUIDES: Guide[] = [
   { title: "Ansvarligt Spil", description: "Værktøjer, grænser og hjælp til sunde spillevaner", path: "/ansvarligt-spil" },
   { title: "Casino Anmeldelser", description: "Dybdegående tests af alle danske casinoer", path: "/casino-anmeldelser" },
   { title: "Hurtig Udbetaling", description: "Casinoer med de hurtigste udbetalingstider i Danmark", path: "/hurtig-udbetaling" },
-  { title: "Slot Database", description: "1.640+ spilleautomater med RTP, volatilitet og statistik", path: "/slot-database" },
+  { title: "Slot Database", description: "${SLOT_COUNT_LABEL} spilleautomater med RTP, volatilitet og statistik", path: "/slot-database" },
   { title: "Omsætningskrav Forklaret", description: "Hvad omsætningskrav betyder og hvordan du opfylder dem", path: "/omsaetningskrav" },
   { title: "Baccarat Guide", description: "En af casinoets mest elegante spil med lav house edge", path: "/casinospil/baccarat" },
 ];

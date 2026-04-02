@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MenuIcon } from "@/components/MenuIcon";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 const trustPoints = [
   {
@@ -12,7 +13,7 @@ const trustPoints = [
     iconName: "chart-bar",
     title: "Matematisk bonusanalyse",
     description: "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
-    stat: "1.640+ slots i database",
+    stat: "${SLOT_COUNT_LABEL} slots i database",
   },
   {
     iconName: "scale",

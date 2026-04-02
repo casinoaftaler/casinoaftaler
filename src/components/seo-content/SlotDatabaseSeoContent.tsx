@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 /**
  * Deep SEO content for /slot-database
@@ -595,7 +596,7 @@ export function SlotDatabaseSeoContent() {
 
         <h3 className="text-xl font-bold text-foreground mt-6">Statistisk pålidelighed</h3>
         <p className="text-muted-foreground leading-relaxed">
-          Det er vigtigt at anerkende begrænsningerne i vores data. Med 1.640+ spillemaskiner og hundredvis af
+          Det er vigtigt at anerkende begrænsningerne i vores data. Med ${SLOT_COUNT_LABEL} spillemaskiner og hundredvis af
           bonusåbninger har vi en solid datamængde, men det er stadig en relativt lille sample size i statistisk
           forstand. For de mest testede maskiner (30-50+ hunts) er vores data rimelig pålidelig som indikator
           for generel performance, men for maskiner med kun 1-5 hunts bør tallene betragtes som anekdotiske

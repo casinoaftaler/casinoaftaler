@@ -29,6 +29,7 @@ import {
   Shuffle,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 interface GuideLink {
   to: string;
@@ -101,7 +102,7 @@ function resolveHubs(p: string) {
 }
 
 // === COMMUNITY ENTERPRISE HUBS ===
-const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.640+ slots med community-data og statistik" };
+const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "${SLOT_COUNT_LABEL} slots med community-data og statistik" };
 const bonusHuntArkivHub: GuideLink = { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: Trophy, desc: "Alle dokumenterede hunt-resultater" };
 const turneringsArkivHub: GuideLink = { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", icon: Trophy, desc: "Månedlige vindere og leaderboards" };
 
@@ -475,7 +476,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Se aktive og kommende bonus hunts" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.640+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "${SLOT_COUNT_LABEL} spillemaskiner med community-data" },
         { to: "/community/turneringer", label: "Turneringer", icon: Trophy, desc: "Deltag i månedlige turneringer" },
         reviewHub,
         bonusHub,
@@ -490,7 +491,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Følg med i live bonus hunts på Twitch" },
         { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: BarChart3, desc: "Alle dokumenterede hunt-resultater" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.640+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "${SLOT_COUNT_LABEL} spillemaskiner med community-data" },
         { to: "/spiludviklere", label: "Spiludviklere", icon: BookOpen, desc: "Dybdegående guides til alle providers" },
         casinospilHub,
         reviewHub,

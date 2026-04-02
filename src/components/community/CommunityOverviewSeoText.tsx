@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 /**
  * Deep SEO text for /community (overview page).
@@ -42,7 +43,7 @@ export function CommunityOverviewSeoText() {
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
             </Link>{" "}
-            med 1.640+ analyserede spilleautomater.
+            med ${SLOT_COUNT_LABEL} analyserede spilleautomater.
           </p>
           <p>
             Idéen bag communityet opstod fra Jonas' erfaring som casino-streamer. I stedet for kun at se
@@ -246,7 +247,7 @@ export function CommunityOverviewSeoText() {
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
             </Link>{" "}
-            samler performance-data på tværs af 1.640+ spilleautomater med metrics som bonus-frekvens,
+            samler performance-data på tværs af ${SLOT_COUNT_LABEL} spilleautomater med metrics som bonus-frekvens,
             gennemsnitlige multiplikatorer og community-performance. Denne data er tilgængelig for alle
             og giver et statistisk grundlag for at vurdere, hvilke spil der performer bedst under
             forskellige forhold. For eksempel viser vores data, at{" "}
