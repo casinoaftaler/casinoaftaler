@@ -84,6 +84,7 @@ function useUsersWithPoints(searchQuery: string) {
       return users.sort((a, b) => b.total_points - a.total_points);
     },
     refetchInterval: 5000,
+    refetchIntervalInBackground: false,
   });
 }
 

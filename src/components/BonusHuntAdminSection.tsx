@@ -53,6 +53,7 @@ function useSessionForHunt(huntNumber?: number) {
     },
     enabled: !!huntNumber,
     refetchInterval: 10000,
+    refetchIntervalInBackground: false,
   });
 }
 
