@@ -4,6 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import hacksawLogo from "@/assets/screenshots/hacksaw-logo.webp";
+import hacksawStats from "@/assets/screenshots/hacksaw-stats.webp";
+import hacksawGameplay from "@/assets/screenshots/hacksaw-gameplay.webp";
+import hacksawBonuskob from "@/assets/screenshots/hacksaw-bonuskob.webp";
+import hacksawVsSymbol from "@/assets/screenshots/hacksaw-vs-symbol.webp";
+import hacksawPaylines from "@/assets/screenshots/hacksaw-paylines.webp";
+import hacksawSearch from "@/assets/screenshots/hacksaw-search.webp";
 
 const HacksawGamingGuide = () => (
   <ProviderPage
