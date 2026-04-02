@@ -316,7 +316,7 @@ export function TestMetodeSeoContent() {
       {/* ── Scoring-metodik i dybden ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Scale className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="scale" className="h-6 w-6" />
           Scoring-metodik i Dybden
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
