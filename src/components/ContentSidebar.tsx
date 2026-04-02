@@ -115,15 +115,6 @@ function CategorySection({
                       loading="lazy"
                     />
                   </span>
-                ) : LinkIcon ? (
-                  <span
-                    className={cn(
-                      "inline-flex items-center justify-center h-5 w-5 rounded flex-shrink-0",
-                      isActive ? "bg-primary/15 text-primary" : iconColor
-                    )}
-                  >
-                    <LinkIcon className="h-3 w-3" />
-                  </span>
                 ) : null}
                 <span className="truncate flex-1">{link.label}</span>
                 <ChevronRight
