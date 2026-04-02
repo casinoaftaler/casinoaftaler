@@ -94,7 +94,16 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   }, [processFrame]);
 
   return (
-    <div className={className} style={{ width, height }}>
+    <div
+      className={className}
+      style={{
+        width,
+        height,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <video
         ref={videoRef}
         src={src}
@@ -108,7 +117,13 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
         ref={canvasRef}
         width={width}
         height={height}
-        style={{ width: "100%", height: "100%", display: "block" }}
+        style={{
+          width: "auto",
+          height: "auto",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          display: "block",
+        }}
       />
     </div>
   );
