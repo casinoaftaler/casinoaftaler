@@ -76,7 +76,7 @@ function CategorySection({
               : "bg-primary/10 text-primary"
           )}
         >
-          <Icon className="h-4.5 w-4.5" />
+          <MenuIcon iconName={menuIconName} className="h-4.5 w-4.5" />
         </span>
         <span>{category.title}</span>
       </div>
