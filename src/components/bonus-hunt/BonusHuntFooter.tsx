@@ -48,7 +48,7 @@ export function BonusHuntFooter({ stats }: Props) {
             // icon resolved via iconName on item
             return (
               <div key={item.label} className="group/tl text-center rounded-lg bg-muted/30 py-1.5 px-1 transition-all duration-[180ms] hover:-translate-y-0.5 hover:bg-muted/50">
-                <MenuIcon iconName={iconName} className="h-3 w-3 text-primary mx-auto mb-0.5 transition-all duration-[180ms] group-hover/tl:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
+                <MenuIcon iconName={item.iconName} className="h-3 w-3 text-primary mx-auto mb-0.5 transition-all duration-[180ms] group-hover/tl:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
                 <p className="text-[9px] text-muted-foreground">{item.label}</p>
                 <p className="text-xs font-semibold transition-transform duration-[180ms] group-hover/tl:scale-[1.02]">{item.value}</p>
               </div>

@@ -396,7 +396,7 @@ const HurtigUdbetaling = () => {
               { iconName: "alert-triangle", title: "Langsomt udbetalende casino (24+ timer)", desc: "Kendetegn: Manuel behandling, lang pending time (24-72 timer), reverse withdrawal aktiveret, langsom KYC. Undgå disse casinoer – langsomme udbetalinger korrelerer stærkt med andre kvalitetsproblemer.", color: "text-destructive" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className={`mt-0.5 h-5 w-5 flex-shrink-0 ${item.color}`} />
+                <MenuIcon iconName={item.iconName} className={`mt-0.5 h-5 w-5 flex-shrink-0 ${item.color}`} />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

@@ -23,7 +23,7 @@ function StatCard({
   subValue,
   variant = "default",
 }: {
-  icon: React.ElementType;
+  iconName: string;
   label: string;
   value: string | number;
   subValue?: string;

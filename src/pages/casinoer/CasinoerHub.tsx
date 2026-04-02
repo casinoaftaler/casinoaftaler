@@ -237,7 +237,7 @@ export default function CasinoerHub() {
                     <CardHeader className="pb-2">
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <MenuIcon iconName={iconName} className="h-5 w-5 text-primary flex-shrink-0" />
+                          <MenuIcon iconName={cat.iconName} className="h-5 w-5 text-primary flex-shrink-0" />
                           <CardTitle className="text-base leading-snug">{cat.title}</CardTitle>
                         </div>
                         <Badge variant={cat.badgeVariant} className="text-xs flex-shrink-0">{cat.badge}</Badge>

@@ -99,7 +99,7 @@ const pairTotals: { hand: string; actions: Action[] }[] = [
 
 /* ─────────────────── STRATEGY TABLE COMPONENT ─────────────────── */
 
-function StrategyTable({ title, iconName, rows, id }: { title: string; icon: typeof Target; rows: { hand: string; actions: Action[] }[]; id: string }) {
+function StrategyTable({ title, iconName, rows, id }: { title: string; iconName: string; rows: { hand: string; actions: Action[] }[]; id: string }) {
   const [hoveredAction, setHoveredAction] = useState<Action | null>(null);
 
   return (

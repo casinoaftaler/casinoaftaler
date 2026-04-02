@@ -58,7 +58,7 @@ function StatCard({
   subValue,
   accentColor = "primary"
 }: { 
-  icon: React.ElementType; 
+  iconName: string;
   label: string; 
   value: string | number | null; 
   subValue?: string | null;

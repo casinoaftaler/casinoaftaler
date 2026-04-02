@@ -155,7 +155,7 @@ function LeaderboardSection({
   isLoading,
 }: {
   title: string;
-  icon: React.ElementType;
+  iconName: string;
   entries: any[];
   valueKey: string;
   valueLabel: string;
