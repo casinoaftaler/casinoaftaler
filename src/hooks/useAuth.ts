@@ -1,73 +1,218 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
-export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [rolesLoading, setRolesLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isModerator, setIsModerator] = useState(false);
+interface AuthState {
+  user: User | null;
+  session: Session | null;
+  loading: boolean;
+  rolesLoading: boolean;
+  isAdmin: boolean;
+  isModerator: boolean;
+}
 
-  useEffect(() => {
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        // Check roles after auth state change
-        if (session?.user) {
-          setTimeout(() => {
-            checkRoles(session.user.id, { background: event === "TOKEN_REFRESHED" });
-          }, 0);
-        } else {
-          setIsAdmin(false);
-          setIsModerator(false);
-          setRolesLoading(false);
-        }
-      }
-    );
+const listeners = new Set<() => void>();
 
-    // THEN check for existing session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        await checkRoles(session.user.id);
-      }
-      setLoading(false);
-    });
+let authState: AuthState = {
+  user: null,
+  session: null,
+  loading: true,
+  rolesLoading: false,
+  isAdmin: false,
+  isModerator: false,
+};
 
-    return () => subscription.unsubscribe();
-  }, []);
+let authInitialized = false;
+let latestRoleRequestId = 0;
 
-  const checkRoles = async (
-    userId: string,
-    options: { background?: boolean } = {}
-  ) => {
-    if (!options.background) {
-      setRolesLoading(true);
-    }
+const emitChange = () => {
+  listeners.forEach((listener) => listener());
+};
 
-    const { data, error } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", userId);
+const setAuthState = (updater: AuthState | Partial<AuthState> | ((prev: AuthState) => AuthState)) => {
+  const nextState = typeof updater === "function"
+    ? (updater as (prev: AuthState) => AuthState)(authState)
+    : { ...authState, ...updater };
 
-    if (!error && data) {
-      setIsAdmin(data.some((r: any) => r.role === "admin"));
-      setIsModerator(data.some((r: any) => r.role === "moderator"));
-    } else {
-      setIsAdmin(false);
-      setIsModerator(false);
-    }
+  if (
+    authState.user === nextState.user &&
+    authState.session === nextState.session &&
+    authState.loading === nextState.loading &&
+    authState.rolesLoading === nextState.rolesLoading &&
+    authState.isAdmin === nextState.isAdmin &&
+    authState.isModerator === nextState.isModerator
+  ) {
+    return;
+  }
 
-    if (!options.background) {
-      setRolesLoading(false);
-    }
+  authState = nextState;
+  emitChange();
+};
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  initializeAuth();
+
+  return () => {
+    listeners.delete(listener);
   };
+};
+
+const getSnapshot = () => authState;
+
+const stabilizeUser = (prevUser: User | null, nextUser: User | null) => {
+  if (prevUser?.id && nextUser?.id && prevUser.id === nextUser.id) {
+    return prevUser;
+  }
+
+  return nextUser;
+};
+
+const stabilizeSession = (
+  prevSession: Session | null,
+  nextSession: Session | null,
+  event?: string
+) => {
+  if (!prevSession || !nextSession) {
+    return nextSession;
+  }
+
+  if (
+    event === "TOKEN_REFRESHED" &&
+    prevSession.user.id === nextSession.user.id
+  ) {
+    return prevSession;
+  }
+
+  if (
+    prevSession.user.id === nextSession.user.id &&
+    prevSession.access_token === nextSession.access_token &&
+    prevSession.expires_at === nextSession.expires_at
+  ) {
+    return prevSession;
+  }
+
+  return nextSession;
+};
+
+const clearRoleState = () => {
+  latestRoleRequestId += 1;
+  setAuthState({
+    isAdmin: false,
+    isModerator: false,
+    rolesLoading: false,
+  });
+};
+
+const checkRoles = async (
+  userId: string,
+  options: { background?: boolean } = {}
+) => {
+  const requestId = ++latestRoleRequestId;
+
+  if (!options.background) {
+    setAuthState({ rolesLoading: true });
+  }
+
+  const { data, error } = await supabase
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", userId);
+
+  if (requestId !== latestRoleRequestId || authState.user?.id !== userId) {
+    return;
+  }
+
+  const nextRoleState = !error && data
+    ? {
+        isAdmin: data.some((roleEntry: any) => roleEntry.role === "admin"),
+        isModerator: data.some((roleEntry: any) => roleEntry.role === "moderator"),
+      }
+    : {
+        isAdmin: false,
+        isModerator: false,
+      };
+
+  setAuthState({
+    ...nextRoleState,
+    ...(options.background ? null : { rolesLoading: false }),
+  });
+};
+
+const initializeAuth = () => {
+  if (authInitialized) return;
+  authInitialized = true;
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "INITIAL_SESSION") {
+      return;
+    }
+
+    const nextUser = session?.user ?? null;
+    const previousUserId = authState.user?.id ?? null;
+    const nextUserId = nextUser?.id ?? null;
+    const userChanged = previousUserId !== nextUserId;
+
+    if (!nextUser) {
+      setAuthState({
+        user: null,
+        session: null,
+        loading: false,
+      });
+      clearRoleState();
+      return;
+    }
+
+    if (event !== "TOKEN_REFRESHED" || userChanged || !authState.session) {
+      setAuthState((prev) => ({
+        ...prev,
+        user: stabilizeUser(prev.user, nextUser),
+        session: stabilizeSession(prev.session, session, event),
+        loading: false,
+      }));
+    }
+
+    if (userChanged) {
+      void checkRoles(nextUser.id);
+    }
+  });
+
+  supabase.auth.getSession().then(async ({ data: { session } }) => {
+    const nextUser = session?.user ?? null;
+
+    setAuthState((prev) => ({
+      ...prev,
+      user: stabilizeUser(prev.user, nextUser),
+      session: stabilizeSession(prev.session, session ?? null),
+      loading: false,
+      ...(nextUser ? null : {
+        isAdmin: false,
+        isModerator: false,
+        rolesLoading: false,
+      }),
+    }));
+
+    if (nextUser) {
+      await checkRoles(nextUser.id);
+    }
+  }).catch(() => {
+    setAuthState({
+      user: null,
+      session: null,
+      loading: false,
+      rolesLoading: false,
+      isAdmin: false,
+      isModerator: false,
+    });
+  });
+};
+
+export function useAuth() {
+  const { user, session, loading, rolesLoading, isAdmin, isModerator } = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getSnapshot
+  );
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -90,13 +235,14 @@ export function useAuth() {
   };
 
   const signOut = async () => {
-    // Always clear local state first, even if server request fails
-    // This handles cases where the session is already invalid on the server
-    setUser(null);
-    setSession(null);
-    setIsAdmin(false);
-    setIsModerator(false);
-    setRolesLoading(false);
+    setAuthState({
+      user: null,
+      session: null,
+      rolesLoading: false,
+      isAdmin: false,
+      isModerator: false,
+    });
+    latestRoleRequestId += 1;
     
     const { error } = await supabase.auth.signOut();
     return { error };
