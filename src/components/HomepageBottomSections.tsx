@@ -268,7 +268,7 @@ export function HomepageSlotShowcase() {
           {" "}– Zeus' multiplikator-slot med op til 500× per spin og 96,50 % RTP.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className="text-primary hover:underline font-medium">Wanted Dead or a Wild</Link>
           {" "}– Hacksaw Gamings westernslot med Duel at Dawn og 12.500× max win.
         </li>
