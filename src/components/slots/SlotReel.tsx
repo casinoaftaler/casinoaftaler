@@ -77,6 +77,7 @@ export const SlotReel = React.memo(function SlotReel({
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
   const shimmeringCells = useIdleShimmer(3, !isSpinning && spinState === "idle" && !isBonusActive);
   const animationRef = useRef<number | null>(null);
+  const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
   const containerRef = useRef<HTMLDivElement>(null);
   const stripContainerRef = useRef<HTMLDivElement>(null);
   const hasStartedSpinRef = useRef(false);
@@ -121,8 +122,14 @@ export const SlotReel = React.memo(function SlotReel({
     const el = stripContainerRef.current;
     if (!el) return;
     el.style.transform = `translateY(-${offset}px)`;
-    el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
-    el.style.transition = isSlowing ? 'filter 0.2s ease-out' : 'none';
+    // Skip blur filter entirely on mobile — major GPU bottleneck
+    if (isMobileRef.current) {
+      el.style.filter = 'none';
+      el.style.transition = 'none';
+    } else {
+      el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+      el.style.transition = isSlowing ? 'filter 0.2s ease-out' : 'none';
+    }
   }, []);
 
   useEffect(() => {
@@ -250,7 +257,7 @@ export const SlotReel = React.memo(function SlotReel({
         <div 
           ref={stripContainerRef}
           className="absolute left-0 right-0 flex flex-col"
-          style={{ gap: `${GAP}px`, willChange: 'transform, filter' }}
+          style={{ gap: `${GAP}px`, willChange: isMobileRef.current ? 'transform' : 'transform, filter' }}
         >
           {spinningStripJsx}
         </div>

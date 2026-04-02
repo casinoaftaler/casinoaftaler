@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
@@ -21,18 +21,21 @@ interface SlotSymbolProps {
 // Base size: 150×150 container, 136×136 image (overridable via size prop)
 export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass, size = 150 }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
+  const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
   const imgSize = Math.floor(size * 136 / 150);
   
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center rounded-lg border-2 overflow-hidden",
+        // Use specific transition properties instead of transition-all to avoid unnecessary repaints
+        "transition-[border-color,transform,background-color] duration-300",
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
             : "border-amber-400 scale-105 bg-amber-900/30"
           : "border-transparent",
-        isSpinning && "animate-pulse",
+        // Skip animate-pulse on spinning symbols — invisible while reels move fast and wastes GPU
         isExpanded && (isWizard ? "scale-110 border-purple-400/50" : "scale-110 border-amber-400/50"),
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
         symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]",
@@ -69,7 +72,10 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
           style={{
             width: `${imgSize}px`,
             height: `${imgSize}px`,
-            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+            // Drop-shadow is extremely expensive on mobile GPUs — skip it
+            ...(isMobileRef.current ? {} : {
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+            }),
           }}
         >
           <img
