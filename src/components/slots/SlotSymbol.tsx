@@ -63,7 +63,14 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
       {symbol.image_url ? (
         <div
           className={cn(
-            "w-[136px] h-[136px] rounded-lg",
+            "rounded-lg",
+            shimmerClass
+          )}
+          style={{
+            width: `${imgSize}px`,
+            height: `${imgSize}px`,
+            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+          }}
             shimmerClass
           )}
           style={{
