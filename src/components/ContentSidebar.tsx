@@ -1,17 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  ChevronRight,
-  Crown,
-  Sparkles,
-  Gift,
-  Dices,
-  CreditCard,
-  Gamepad2,
-  Tv,
-  Star,
-  LayoutGrid,
-  Cherry,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
