@@ -1197,6 +1197,8 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
                         isBonusActive={bonusState.isActive}
+                        symbolSize={SYMBOL_SIZE}
+                        symbolGap={SYMBOL_GAP}
                       />
                       {colIndex < 4 && (
                         <div className={cn("w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
