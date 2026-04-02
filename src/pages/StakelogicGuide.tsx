@@ -68,6 +68,11 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hollands regulering af online gambling i 2021 skabte et nyt marked med strenge krav til spillerbeskyttelse, reklame og compliance. Som hollandsk-baseret studio var Stakelogic naturligt positioneret som first-mover i dette marked, og de har brugt erfaringen til at opbygge en regulatorisk kompetence der gør dem attraktive for operatører i andre nylicenserede markeder. Denne "regulatory-first" tilgang harmonerer perfekt med den danske markedsstruktur.
         </p>
+        <ReviewScreenshot
+          src={stakeStats1}
+          alt="Stakelogic Company Stats – 5 kontorer, 9 awards, 250+ slots og 950+ operatører"
+          caption="Stakelogics nøgletal: 250+ spilleautomater distribueret til over 950 operatører globalt."
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Live Casino-Integration og Omni-Channel Vision</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic har ekspanderet ind i live casino-segmentet med Stakelogic Live – et satsning der udnytter Novomatics erfaring med fysiske casino-operationer. Denne omni-channel tilgang (slots + live casino fra samme udbyder) giver operatører en mere integreret platform og spillere en sammenhængende brandoplevelse. Det er en strategi der minder om <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gamings</Link> vertikale integration, men i en mere beskeden skala.
