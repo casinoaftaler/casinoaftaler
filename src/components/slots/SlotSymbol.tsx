@@ -72,7 +72,10 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
           style={{
             width: `${imgSize}px`,
             height: `${imgSize}px`,
-            filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+            // Drop-shadow is extremely expensive on mobile GPUs — skip it
+            ...(isMobileRef.current ? {} : {
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+            }),
           }}
         >
           <img
