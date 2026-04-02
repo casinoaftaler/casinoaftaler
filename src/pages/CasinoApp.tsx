@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import { Apple, ArrowRight, Badge, Bell, Download, Gavel, Globe, Link, Lock, MonitorSmartphone, Play, Search, Settings, Shield, Smartphone } from "lucide-react"
+import { Apple, ArrowRight, Bell, Download, Gavel, Globe, Lock, MonitorSmartphone, Play, Search, Settings, Shield, Smartphone } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────
@@ -174,7 +174,6 @@ const CasinoApp = () => {
         <SnippetAnswer answer="De bedste casino apps i Danmark er fra licenserede casinoer med native iOS/Android apps eller optimerede PWA-versioner. Alle tilbyder biometrisk login, hurtige indbetalinger via MobilePay og samme spiludvalg som desktop." />
 
         <QuickComparisonTable count={3} title="Top 3 Casino Apps – Hurtig Sammenligning" prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]} />
-
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER EN CASINO APP?

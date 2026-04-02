@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import { Badge, Star } from "lucide-react"
+import { Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface StickyCTAProps {

@@ -16,7 +16,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle, Badge, BarChart3, Calculator, CheckCircle2, Gift, Link, Sparkles, Target, XCircle, Zap } from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, CheckCircle2, Gift, Sparkles, Target, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -106,7 +106,6 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="103 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med bonus uden indbetaling giver dig free spins eller bonuspenge helt gratis – dog altid med omsætningskrav." />
 

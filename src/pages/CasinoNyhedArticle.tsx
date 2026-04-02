@@ -25,7 +25,7 @@ import {
   buildFaqSchema,
   SITE_URL,
 } from "@/lib/seo";
-import { Badge, Link, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -248,7 +248,6 @@ const CasinoNyhedArticle = () => {
           className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:mt-10 [&>h3]:mb-3 [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>ul]:mb-5 [&>ol]:mb-5 [&>h2:first-of-type]:mt-0 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
-
 
         {/* Contextual CTA Bridge – category-based money-page links */}
         <NewsContextualCTA category={article.category} />

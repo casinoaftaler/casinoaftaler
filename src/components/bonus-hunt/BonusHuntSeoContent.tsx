@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BarChart3, Link, ShieldCheck, Target, Users } from "lucide-react"
+import { BarChart3, ShieldCheck, Target, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const steps = [

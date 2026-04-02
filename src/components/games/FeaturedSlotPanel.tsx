@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Badge, Clock, Link, Play, Scroll } from "lucide-react"
+import { Clock, Play, Scroll } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useRef, useState } from "react";
 import { AgeVerificationDialog } from "./AgeVerificationDialog";

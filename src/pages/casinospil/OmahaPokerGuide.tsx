@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Badge, Cpu, Gauge, Link, Map, Shuffle, Timer } from "lucide-react"
+import { Cpu, Gauge, Map, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/omaha-poker-hero.jpg";
@@ -166,7 +166,6 @@ const OmahaPokerGuide = () => {
             <strong>Uge 2-4 – Genopbygning:</strong> Efter den brutale første uge droppede jeg ned til PLO10 og begyndte at studere systematisk. Jeg læste "Mastering Pot-Limit Omaha" af Herbert Lui og så timer af training-videoer. De vigtigste aha-oplevelser: (1) I PLO skal du altid tænke i nødder – den næstbedste flush er farlig. (2) Position er endnu mere værdifuld, fordi potterne vokser eksponentielt. (3) Tiltcontrol er afgørende, fordi bad beats forekommer langt oftere end i Hold'em. Efter fire uger var jeg break-even på PLO25 – en sejr i sig selv.
           </p>
         </section>
-
 
         <InlineCasinoCards title="Casinoer med Omaha og poker" count={4} />
 

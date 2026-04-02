@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Dices, Lightbulb, Link, MessageSquare, Shuffle, Timer } from "lucide-react"
+import { ArrowRight, Dices, Lightbulb, MessageSquare, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/poker-bedste-sider-hero.jpg";
@@ -139,7 +139,6 @@ export default function PokerBedsteSiderGuide() {
             I denne guide gennemgår vi de bedste pokersider med dansk licens, analyserer deres styrker og svagheder, og giver dig konkrete anbefalinger baseret på din spillestil – uanset om du er nybegynder, recreational spiller eller aspirerende grinder. For en bredere oversigt over alle pokervarianter, se vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
         </section>
-
 
         <InlineCasinoCards title="Bedste casinoer med poker" count={5} />
 

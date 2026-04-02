@@ -14,7 +14,7 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Badge, Check, Link, Star, X } from "lucide-react"
+import { Check, Star, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import type { ReactNode } from "react";
 

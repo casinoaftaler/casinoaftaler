@@ -20,7 +20,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle, Building2, CheckCircle2, Clock, Link, Play, ShieldCheck, Smartphone, Sparkles, XCircle, Zap } from "lucide-react"
+import { AlertTriangle, Building2, CheckCircle2, Clock, Play, ShieldCheck, Smartphone, Sparkles, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -79,7 +79,6 @@ const NyeCasinoerMitID = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="105 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med MitID giver hurtig verifikation og øjeblikkelig adgang til spil med dansk licens og fuld ROFUS-integration." />
 

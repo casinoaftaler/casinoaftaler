@@ -11,7 +11,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import { ArrowRight, Badge, BookOpen, CreditCard, FileText, Gamepad2, HandCoins, Link, Play, Scale, Search, ShieldCheck, Sparkles, Star, Trophy, Users } from "lucide-react"
+import { ArrowRight, BookOpen, CreditCard, FileText, Gamepad2, HandCoins, Play, Scale, Search, ShieldCheck, Sparkles, Star, Trophy, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

@@ -17,7 +17,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Apple, Badge, Battery, Dog, Download, Link, Play, Settings, Smartphone, Wifi } from "lucide-react"
+import { Apple, Battery, Dog, Download, Play, Settings, Smartphone, Wifi } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -67,7 +67,6 @@ const MobilCasinoerGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="29 min" />
-
 
         <SnippetAnswer answer="De bedste mobilcasinoer i Danmark tilbyder PWA-apps med fuld funktionalitet, biometrisk login og optimeret touch-navigation." />
 

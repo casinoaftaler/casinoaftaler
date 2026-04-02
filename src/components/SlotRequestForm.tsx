@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useMySlotRequests, useCreateSlotRequest, usePendingQueuePositions } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
-import { Badge, CheckCircle2, Clock, Filter, Link, Loader2, Minus, Plus, Search, Send, User, XCircle } from "lucide-react"
+import { CheckCircle2, Clock, Filter, Loader2, Minus, Plus, Search, Send, User, XCircle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 

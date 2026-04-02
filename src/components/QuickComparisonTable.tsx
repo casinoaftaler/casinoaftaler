@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Clock, ExternalLink, Flame, Gift, Landmark, Link, RotateCw, Star, ThumbsUp } from "lucide-react"
+import { CheckCircle2, Clock, ExternalLink, Flame, Gift, Landmark, RotateCw, Star, ThumbsUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";

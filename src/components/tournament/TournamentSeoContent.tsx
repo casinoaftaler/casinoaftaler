@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BarChart3, Gamepad2, Gift, Link, Trophy } from "lucide-react"
+import { BarChart3, Gamepad2, Gift, Trophy } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";

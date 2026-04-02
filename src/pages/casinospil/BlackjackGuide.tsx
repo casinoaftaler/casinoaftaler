@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Badge, Eye, Layers, Link, Play, Scale, Shuffle, Sparkles, Target, TrendingUp } from "lucide-react"
+import { ArrowRight, Eye, Layers, Play, Scale, Shuffle, Sparkles, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import blackjackHero from "@/assets/heroes/blackjack-hero.jpg";

@@ -7,7 +7,6 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 
-
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -17,7 +16,7 @@ import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboar
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { Button } from "@/components/ui/button";
-import { Link, Rocket } from "lucide-react"
+import { Rocket } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
@@ -152,7 +151,6 @@ export default function GameLibrary() {
 
           {/* Community CTA for logged-out users */}
           {!user && <CommunityJoinCTA description="Opret en gratis konto og spil community-slots som Book of Fedesvin. Optjen points og kæmp om pladser på ranglisten." />}
-
 
 
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { usePublishedNewsByAuthor } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { Badge } from "@/components/ui/badge";
-import { Badge, ChevronLeft, ChevronRight, Link } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface AuthorNewsSectionProps {

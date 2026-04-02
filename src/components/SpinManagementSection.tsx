@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowDown, ArrowUp, ArrowUpDown, Badge, Ban, Check, Loader2, Plus, Search, X } from "lucide-react"
+import { ArrowDown, ArrowUp, ArrowUpDown, Ban, Check, Loader2, Plus, Search, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useProfileCompletionStats, type UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 import { toast } from "sonner";

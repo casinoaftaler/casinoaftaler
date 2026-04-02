@@ -16,7 +16,7 @@ import { AuthorNewsSection } from "@/components/AuthorNewsSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Badge, BadgeCheck, ChevronLeft, ChevronRight, Gamepad2, Gavel, Link, Pen, Play, ShieldCheck, Users } from "lucide-react"
+import { BadgeCheck, ChevronLeft, ChevronRight, Gamepad2, Gavel, Pen, Play, ShieldCheck, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import ajseImage from "@/assets/ajse-avatar.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -66,7 +66,6 @@ const expertiseItems = [
     desc: "Aktiv i casino-community siden 2022 og følger markedet tæt via analyser, streams og branchekilder.",
   },
 ];
-
 
 const personSchema = {
   "@context": "https://schema.org",

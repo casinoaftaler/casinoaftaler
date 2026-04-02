@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { getCategoryVisual } from "@/lib/categoryThumbnails";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { getHeroImageForPath } from "@/lib/heroImageMap";
-import { Badge, BookOpen, CreditCard, FileText, Gamepad2, Link, Newspaper, Pen, Scale, ShieldCheck, Star, Users, Wrench } from "lucide-react"
+import { BookOpen, CreditCard, FileText, Gamepad2, Newspaper, Pen, Scale, ShieldCheck, Star, Users, Wrench } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {

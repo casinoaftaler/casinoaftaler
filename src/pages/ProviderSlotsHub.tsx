@@ -21,7 +21,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
-import { ArrowRight, Badge, Database, Link } from "lucide-react"
+import { ArrowRight, Database } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 export default function ProviderSlotsHub() {

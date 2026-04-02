@@ -30,7 +30,7 @@ import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
 import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
 import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
 import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
-import { AlertTriangle, ArrowRight, Badge, Ban, BarChart3, ChevronLeft, ChevronRight, Clock, Dog, DollarSign, Flame, Link, Play } from "lucide-react"
+import { AlertTriangle, ArrowRight, Ban, BarChart3, ChevronLeft, ChevronRight, Clock, Dog, DollarSign, Flame, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const SLOT_DATA = [

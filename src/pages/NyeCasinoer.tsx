@@ -28,7 +28,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState, useMemo, type ReactNode } from "react";
-import { ArrowRight, Badge, Database, Dog, Gem, Link, Loader2, Play, UserCheck, UserX } from "lucide-react"
+import { ArrowRight, Database, Dog, Gem, Loader2, Play, UserCheck, UserX } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];

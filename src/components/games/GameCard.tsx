@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Badge, Clock, Link, Play } from "lucide-react"
+import { Clock, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { useState } from "react";

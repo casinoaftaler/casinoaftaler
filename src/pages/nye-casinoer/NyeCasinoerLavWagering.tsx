@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gem, Link, TrendingDown } from "lucide-react"
+import { Gem, TrendingDown } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -91,7 +91,6 @@ const NyeCasinoerLavWagering = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="113 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med lave omsætningskrav (5-10x) giver dig reel mulighed for at hæve bonusgevinster. Sammenlign vilkår nedenfor." />
 

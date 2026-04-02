@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Dog, Link, Play } from "lucide-react"
+import { Award, Dog, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";

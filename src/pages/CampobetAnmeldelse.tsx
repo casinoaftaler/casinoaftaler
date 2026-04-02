@@ -29,7 +29,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
-import { Badge, Check, Coins, Gamepad2, Gift, Globe, Link, Play, RotateCcw, Sparkles, Target, TrendingUp, Trophy, X } from "lucide-react"
+import { Check, Coins, Gamepad2, Gift, Globe, Play, RotateCcw, Sparkles, Target, TrendingUp, Trophy, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";

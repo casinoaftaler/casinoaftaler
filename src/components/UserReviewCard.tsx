@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Badge, Clock, Gamepad2, Gift, Headphones, ShieldCheck, Star, ThumbsUp, Zap } from "lucide-react"
+import { Clock, Gamepad2, Gift, Headphones, ShieldCheck, Star, ThumbsUp, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

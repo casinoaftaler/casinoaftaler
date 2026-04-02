@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { activateMissionMode } from "@/hooks/useDwellReward";
-import { ArrowRight, Check, Flame, Link } from "lucide-react"
+import { ArrowRight, Check, Flame } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";

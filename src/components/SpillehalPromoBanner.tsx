@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Link } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import spillehalPromo from "@/assets/spillehal-promo-small.webp";
 import risePromo from "@/assets/rise-of-fedesvin-promo-small.webp";

@@ -16,7 +16,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { Badge, BarChart3, Database, Dog, Gavel, Link, Play, Scale, TrendingUp, Zap } from "lucide-react"
+import { BarChart3, Database, Dog, Gavel, Play, Scale, TrendingUp, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";

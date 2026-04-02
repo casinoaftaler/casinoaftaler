@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { AlertTriangle, Award, Badge, BarChart3, BookOpen, Clock, Coins, Crown, Gamepad2, Gift, Info, Medal, Search, ShieldCheck, Star, TrendingUp, Trophy, Users, Zap } from "lucide-react"
+import { AlertTriangle, Award, BarChart3, BookOpen, Clock, Coins, Crown, Gamepad2, Gift, Info, Medal, Search, ShieldCheck, Star, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ScrollArea } from "@/components/ui/scroll-area";
 import "./tournament-effects.css";

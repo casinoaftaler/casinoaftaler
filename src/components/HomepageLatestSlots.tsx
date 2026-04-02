@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { SITE_URL } from "@/lib/seo";
-import { Gamepad2, Link } from "lucide-react"
+import { Gamepad2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface LatestSlot {

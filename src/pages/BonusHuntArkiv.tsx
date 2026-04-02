@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Archive, ArrowRight, Badge, Link } from "lucide-react"
+import { Archive, ArrowRight } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArkivSeoContent";

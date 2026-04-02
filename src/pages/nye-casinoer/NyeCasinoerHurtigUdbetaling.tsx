@@ -16,7 +16,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge, Link, Play, Timer } from "lucide-react"
+import { Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -110,7 +110,6 @@ const NyeCasinoerHurtigUdbetaling = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="104 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med hurtig udbetaling behandler dine gevinster inden for 24 timer – ofte via Trustly eller MobilePay." />
 

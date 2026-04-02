@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Badge, BadgeCheck, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, FileText, Info, Link, Play, Search, ShieldCheck, Tv } from "lucide-react"
+import { ArrowRight, BadgeCheck, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, FileText, Info, Play, Search, ShieldCheck, Tv } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import jonasImage from "@/assets/jonas-forfatter.webp";
 
@@ -120,7 +120,6 @@ const personSchema = {
   description:
     "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 5 års erfaring.",
 };
-
 
 const casinoReviewVideos = getAuthorReviewVideos("jonas");
 

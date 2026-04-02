@@ -16,7 +16,7 @@ import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { Badge } from "@/components/ui/badge";
-import { Activity, ArrowDown, ArrowUp, Badge, GraduationCap, Lightbulb, LineChart, Link, Timer } from "lucide-react"
+import { Activity, ArrowDown, ArrowUp, GraduationCap, Lightbulb, LineChart, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/dalembert-blackjack-hero.jpg";

@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { ArrowRight, Badge, Battery, Clock, Dog, Download, Eye, Link, Monitor, Play, RefreshCw, Settings, Wifi, Zap } from "lucide-react"
+import { ArrowRight, Battery, Clock, Dog, Download, Eye, Monitor, Play, RefreshCw, Settings, Wifi, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

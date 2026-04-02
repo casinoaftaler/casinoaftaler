@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Coins, Gamepad2, Link, ShoppingBag, Sparkles, Zap } from "lucide-react"
+import { Coins, Gamepad2, ShoppingBag, Sparkles, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Confetti } from "./Confetti";
 import "@/styles/spin-the-reel.css";

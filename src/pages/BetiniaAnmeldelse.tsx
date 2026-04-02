@@ -27,13 +27,12 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
-import { ArrowRight, Badge, Check, DollarSign, Link, MessageSquare, Play, RotateCcw, Search, Smartphone, Timer, Trophy, Wallet, X } from "lucide-react"
+import { ArrowRight, Check, DollarSign, MessageSquare, Play, RotateCcw, Search, Smartphone, Timer, Trophy, Wallet, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

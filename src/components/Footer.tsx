@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Database, Instagram, Link, Play } from "lucide-react";
+import { Database, Instagram, Play } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import { MenuIcon } from "@/components/MenuIcon";

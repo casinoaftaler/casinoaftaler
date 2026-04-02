@@ -17,7 +17,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gavel, Link } from "lucide-react"
+import { Gavel } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -103,7 +103,6 @@ const NyeCasinoerDanskLicens = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="112 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med dansk licens fra Spillemyndigheden sikrer ROFUS-tilslutning, skattefri gevinster og fuld spillerbeskyttelse." />
 

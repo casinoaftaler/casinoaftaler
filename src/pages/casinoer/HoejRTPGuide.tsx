@@ -20,7 +20,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { AlertTriangle, Award, Badge, BarChart3, Calculator, CheckCircle2, Dog, Eye, Gamepad2, Layers, Link, Percent, Play, ShieldCheck, Star, Target, TrendingUp, Zap } from "lucide-react"
+import { AlertTriangle, Award, BarChart3, Calculator, CheckCircle2, Dog, Eye, Gamepad2, Layers, Percent, Play, ShieldCheck, Star, Target, TrendingUp, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -70,7 +70,6 @@ const HoejRTPGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="24 min" />
-
 
         <SnippetAnswer answer="Casinoer med høj RTP tilbyder slots med 96%+ tilbagebetaling. Tjek altid den specifikke RTP-konfiguration – den kan variere mellem casinoer." />
 

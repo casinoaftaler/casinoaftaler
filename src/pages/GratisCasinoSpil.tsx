@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, Badge, BookOpen, Calculator, Clock, Database, Dice1, DollarSign, Eye, Gamepad2, Gift, Link, Monitor, Play, ShieldCheck, Smartphone, Sparkles, Target, TrendingUp, Trophy, Users } from "lucide-react"
+import { AlertTriangle, ArrowRight, BookOpen, Calculator, Clock, Database, Dice1, DollarSign, Eye, Gamepad2, Gift, Monitor, Play, ShieldCheck, Smartphone, Sparkles, Target, TrendingUp, Trophy, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

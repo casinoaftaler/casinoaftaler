@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { MenuIcon } from "@/components/MenuIcon";
-import { Link } from "lucide-react";
+;
 import "@/styles/community-micro.css";
 
 /** Check if there's an active bonus hunt session */

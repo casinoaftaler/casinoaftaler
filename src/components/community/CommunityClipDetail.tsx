@@ -21,7 +21,7 @@ import {
   useAddComment,
   useDeleteComment,
 } from "@/hooks/useCommunityClipComments";
-import { Badge, Loader2, Trash2 } from "lucide-react"
+import { Loader2, Trash2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";

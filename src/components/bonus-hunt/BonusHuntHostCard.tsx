@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Link, Video } from "lucide-react"
+import { Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { KEVIN_SAME_AS, JONAS_SAME_AS } from "@/lib/seo";
 

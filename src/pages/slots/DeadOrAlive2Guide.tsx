@@ -20,7 +20,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Link, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -132,7 +132,6 @@ const DeadOrAlive2Guide = () => {
             Men det er netop denne asymmetri mellem risiko og belønning, der definerer Dead or Alive 2. Det er et spil for spillere, der forstår og accepterer, at de sandsynligvis aldrig rammer max win – men nyder jagten alligevel. Denne guide analyserer hvert aspekt af spillets matematiske model, fra bonusmode-valg til optimal bankroll-strategi, for at give dig det mest ærlige billede af, hvad du kan forvente.
           </p>
         </section>
-
 
         <YoutubeEmbed videoId="oz_VUxjLXZ0" title="Dead or Alive 2 gennemgang – Tre bonusmodes og max win" description="Se en komplet gennemgang af Dead or Alive 2: sticky wilds, tre free spins-modes og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT2M30S" />
         <VideoContextBox heading="Her gennemgår vores streamer Dead or Alive 2 i praksis">

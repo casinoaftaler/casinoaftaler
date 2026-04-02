@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CasinoLatestNews } from "@/components/CasinoLatestNews";
-import { Apple, BarChart3, Bitcoin, BookOpen, Brain, CreditCard, Database, Gamepad2, Gift, Globe, Landmark, Layers, Link, Play, RefreshCw, Shield, ShieldCheck, ShoppingCart, Shuffle, Smartphone, Sparkles, Star, Target, TrendingUp, Trophy, Tv, Wallet, Zap } from "lucide-react"
+import { Apple, BarChart3, Bitcoin, BookOpen, Brain, CreditCard, Database, Gamepad2, Gift, Globe, Landmark, Layers, Play, RefreshCw, Shield, ShieldCheck, ShoppingCart, Shuffle, Smartphone, Sparkles, Star, Target, TrendingUp, Trophy, Tv, Wallet, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";

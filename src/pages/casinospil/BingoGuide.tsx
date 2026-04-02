@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, Badge, BarChart3, Calculator, Clock, Dice1, Dog, DollarSign, Eye, Gift, Grid3X3, Hash, Link, Lock, Monitor, Percent, Play, Smartphone, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
+import { AlertTriangle, ArrowRight, BarChart3, Calculator, Clock, Dice1, Dog, DollarSign, Eye, Gift, Grid3X3, Hash, Lock, Monitor, Percent, Play, Smartphone, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

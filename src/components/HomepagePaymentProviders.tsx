@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
-import { Apple, Link, Play } from "lucide-react";
+import { Apple, Play } from "lucide-react";
 
 function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
   const src = MENU_ICON_MAP[iconName];

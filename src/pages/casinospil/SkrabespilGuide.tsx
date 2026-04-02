@@ -11,7 +11,7 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, Badge, BarChart3, Calculator, CheckCircle2, Dice1, DollarSign, Gem, Gift, Heart, Layers, Link, Lock, Monitor, Play, ShieldCheck, Sparkles, Ticket, Trophy, Users, Zap } from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, CheckCircle2, Dice1, DollarSign, Gem, Gift, Heart, Layers, Lock, Monitor, Play, ShieldCheck, Sparkles, Ticket, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

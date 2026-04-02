@@ -13,7 +13,7 @@ import {
   isCasinoTrustHubPath,
   isCasinoTrustPath,
 } from "@/lib/casinoTrust";
-import { Badge, Clock3, FileClock, Loader2 } from "lucide-react"
+import { Clock3, FileClock, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface CasinoTrustPanelProps {

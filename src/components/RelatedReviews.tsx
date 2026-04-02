@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Link } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";

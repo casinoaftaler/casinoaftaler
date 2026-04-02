@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Badge, ChevronDown, Link } from "lucide-react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

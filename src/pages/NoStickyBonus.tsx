@@ -21,7 +21,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, Badge, Calculator, Check, Clock, CreditCard, Dog, DollarSign, Eye, Gamepad2, Link, Lock, X } from "lucide-react"
+import { AlertTriangle, Calculator, Check, Clock, CreditCard, Dog, DollarSign, Eye, Gamepad2, Lock, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

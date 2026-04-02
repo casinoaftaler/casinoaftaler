@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Apple, ArrowRight, Badge, Battery, Clock, CreditCard, Dog, Download, Eye, Link, Lock, Monitor, Play, RefreshCw, Scroll, Settings, Shield, Smartphone, Wallet, Wifi } from "lucide-react"
+import { Apple, ArrowRight, Battery, Clock, CreditCard, Dog, Download, Eye, Lock, Monitor, Play, RefreshCw, Scroll, Settings, Shield, Smartphone, Wallet, Wifi } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

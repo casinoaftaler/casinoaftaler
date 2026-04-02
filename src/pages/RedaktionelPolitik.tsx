@@ -9,7 +9,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import { Badge, BookMarked, Bot, Eye, Link, Pen, Play, RefreshCw, Search } from "lucide-react"
+import { BookMarked, Bot, Eye, Pen, Play, RefreshCw, Search } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

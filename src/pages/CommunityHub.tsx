@@ -13,7 +13,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Badge, BarChart3, Gamepad2, Gift, Link, Scroll, ShoppingBag, Target, Trophy, Users, Video } from "lucide-react"
+import { ArrowRight, BarChart3, Gamepad2, Gift, Scroll, ShoppingBag, Target, Trophy, Users, Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useAuth } from "@/hooks/useAuth";
 import { useMemo } from "react";
@@ -211,7 +211,6 @@ export default function CommunityHub() {
         <div className="pb-8 md:pb-12 space-y-8">
 
 
-
           {/* First row – 3 cards */}
           <RevealSection>
             <EnergySweep>
@@ -222,7 +221,6 @@ export default function CommunityHub() {
               </div>
             </EnergySweep>
           </RevealSection>
-
 
 
 

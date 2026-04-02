@@ -14,7 +14,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Activity, Dices, Gauge, LineChart, Link, Table } from "lucide-react"
+import { Activity, Dices, Gauge, LineChart } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {

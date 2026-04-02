@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Link, Star } from "lucide-react"
+import { Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";

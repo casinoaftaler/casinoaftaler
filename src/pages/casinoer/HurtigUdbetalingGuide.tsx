@@ -18,7 +18,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Apple, ArrowRight, Badge, BadgeCheck, Dog, Link, Timer } from "lucide-react"
+import { Apple, ArrowRight, BadgeCheck, Dog, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -129,7 +129,6 @@ const HurtigUdbetalingGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="26 min" />
 
-
         <SnippetAnswer answer="De hurtigste casinoer i Danmark udbetaler via Trustly inden for 2 timer. MobilePay og bankoverførsler tager typisk 1-3 hverdage." />
 
         <QuickComparisonTable count={3} title="Hurtigste Udbetalinger – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]} />
@@ -155,7 +154,6 @@ const HurtigUdbetalingGuide = () => {
             </p>
           </div>
         </section>
-
 
         <InlineCasinoCards title="Anbefalede casinoer med hurtige udbetalinger" />
 

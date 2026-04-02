@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe2, Link, Play, Rocket } from "lucide-react"
+import { Globe2, Play, Rocket } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import boomingLogo from "@/assets/screenshots/booming-games-logo-officielt.webp";

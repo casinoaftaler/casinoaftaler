@@ -22,7 +22,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Activity, Badge, Check, Dog, Link, Play, RotateCcw, X } from "lucide-react"
+import { Activity, Check, Dog, Play, RotateCcw, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoSportsbook from "@/assets/screenshots/betano-sportsbook.webp";

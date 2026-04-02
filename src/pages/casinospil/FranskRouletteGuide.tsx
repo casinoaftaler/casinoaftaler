@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Activity, Badge, Link, Play, Timer } from "lucide-react"
+import { Activity, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/fransk-roulette-hero.jpg";
@@ -135,7 +135,6 @@ export default function FranskRouletteGuide() {
             </CardContent>
           </Card>
         </section>
-
 
         <InlineCasinoCards title="Casinoer med Fransk Roulette & La Partage" count={3} />
 

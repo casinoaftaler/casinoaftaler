@@ -18,7 +18,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Apple, Badge, Cpu, Dog, Eye, Glasses, Link, Wifi } from "lucide-react"
+import { Apple, Cpu, Dog, Eye, Glasses, Wifi } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -67,7 +67,6 @@ const VRCasinoerGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="47 min" />
 
-
         <SnippetAnswer answer="VR casinoer er stadig i tidlig fase i Danmark. De bedste oplevelser kræver Meta Quest headset og tilbyder immersive bordspil." />
 
         <QuickComparisonTable count={3} title="Fremtidens casinoer – top 3" prioritySlugs={["campobet", "spilleautomaten", "betinia"]} />
@@ -77,7 +76,6 @@ const VRCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casinoer repræsenterer skæringspunktet mellem to massive industrier: Virtual reality (forventet global markedsværdi på $50+ mia. i 2026) og online gambling (forventet global markedsværdi på $100+ mia.). Denne kombination skaber en unik underholdningsform, der fusionerer den bekvemmelighed, du kender fra online casinoer, med den immersive sociale oplevelse fra fysiske casinoer. Det er en kategori i hurtig vækst, drevet af teknologiske fremskridt, faldende hardware-priser og ændrede forbrugervaner.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om VR casinoer i 2026: Teknologiens nuværende tilstand, de tilgængelige platforme og spil, det nødvendige udstyr, samt fordelene og begrænsningerne. Vi analyserer også, hvordan VR-gambling forholder sig til dansk regulering og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, samt giver vores vurdering af, hvornår VR casinoer vil blive mainstream i Danmark.</p>
         </section>
-
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer med innovative spil" />
 

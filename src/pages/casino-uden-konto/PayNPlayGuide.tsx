@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { Apple, ArrowRight, Badge, Ban, Eye, FileText, Link, Lock, Play, Server, Shield } from "lucide-react"
+import { Apple, ArrowRight, Ban, Eye, FileText, Lock, Play, Server, Shield } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -131,7 +131,6 @@ const PayNPlayGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="51 Min." />
-
 
         <SnippetAnswer answer="Pay N Play bruger Trustly til øjeblikkelig bank-identifikation og betaling i ét trin – ingen konto, ingen ventetid." />
 
@@ -549,7 +548,6 @@ const PayNPlayGuide = () => {
         </section>
 
         <Separator className="my-10" />
-
 
         <Separator className="my-10" />
 

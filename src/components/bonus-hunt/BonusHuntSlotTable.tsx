@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, Link, Rocket, Search, Table } from "lucide-react"
+import { ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, Rocket, Search, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";

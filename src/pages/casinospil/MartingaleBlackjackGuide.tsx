@@ -15,7 +15,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
-import { AlertTriangle, Badge, BarChart3, BookOpen, Brain, CheckCircle, Layers, Link, Scale, ShieldCheck, Skull, Target, TrendingUp } from "lucide-react"
+import { AlertTriangle, BarChart3, BookOpen, Brain, CheckCircle, Layers, Scale, ShieldCheck, Skull, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/martingale-blackjack-hero.jpg";

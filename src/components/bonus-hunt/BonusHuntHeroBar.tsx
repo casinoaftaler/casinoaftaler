@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Badge, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Radio } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Radio } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
