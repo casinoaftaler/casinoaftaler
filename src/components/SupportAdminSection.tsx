@@ -89,8 +89,81 @@ export function SupportAdminSection() {
     }
     setBroadcastSending(false);
   };
+  // Private message search
+  const handleDmSearch = async (query: string) => {
+    setDmSearch(query);
+    if (query.trim().length < 2) { setDmResults([]); return; }
+    setDmSearching(true);
+    const { data } = await supabase
+      .from("profiles")
+      .select("user_id, display_name, avatar_url")
+      .ilike("display_name", `%${query.trim()}%`)
+      .limit(10);
+    setDmResults((data || []) as ProfileResult[]);
+    setDmSearching(false);
+  };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  // Send private message
+  const handleSendDm = async () => {
+    if (!dmSelectedUser || !dmMessage.trim() || dmSending || !user) return;
+    setDmSending(true);
+    try {
+      // Find or create conversation for this user
+      const { data: existing } = await supabase
+        .from("support_conversations")
+        .select("id")
+        .eq("user_id", dmSelectedUser.user_id)
+        .eq("status", "open")
+        .limit(1);
+
+      let convId: string;
+      if (existing && existing.length > 0) {
+        convId = existing[0].id;
+      } else {
+        const { data: newConv, error: convErr } = await supabase
+          .from("support_conversations")
+          .insert({
+            user_id: dmSelectedUser.user_id,
+            subject: "Besked fra admin",
+            status: "open",
+          })
+          .select("id")
+          .single();
+        if (convErr || !newConv) throw new Error("Kunne ikke oprette samtale");
+        convId = newConv.id;
+      }
+
+      // Insert admin message
+      const { error: msgErr } = await supabase
+        .from("support_messages")
+        .insert({
+          conversation_id: convId,
+          sender_id: user.id,
+          sender_role: "admin",
+          message: dmMessage.trim(),
+        });
+      if (msgErr) throw msgErr;
+
+      await supabase
+        .from("support_conversations")
+        .update({ last_message_at: new Date().toISOString() })
+        .eq("id", convId);
+
+      toast({ title: "Sendt!", description: `Privat besked sendt til ${dmSelectedUser.display_name || "bruger"}` });
+      setDmMessage("");
+      setDmSelectedUser(null);
+      setDmSearch("");
+      setDmResults([]);
+      setDmOpen(false);
+      loadConversations();
+      setSelectedConv(convId);
+    } catch (err: any) {
+      toast({ title: "Fejl", description: err.message || "Kunne ikke sende besked", variant: "destructive" });
+    }
+    setDmSending(false);
+  };
+
+
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
