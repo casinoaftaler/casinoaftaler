@@ -751,8 +751,14 @@ function SortableCasinoCard({
 }
 
 
-function AdminDashboard() {
-  const { user, isAdmin, isModerator, signOut } = useAuth();
+interface AdminDashboardProps {
+  user: ReturnType<typeof useAuth>["user"];
+  isAdmin: boolean;
+  isModerator: boolean;
+  signOut: ReturnType<typeof useAuth>["signOut"];
+}
+
+function AdminDashboard({ user, isAdmin, isModerator, signOut }: AdminDashboardProps) {
   const { data: casinos, isLoading } = useCasinos(true);
   const { data: siteSettings } = useSiteSettings();
   const deleteCasino = useDeleteCasino();
@@ -1260,7 +1266,7 @@ function AdminDashboard() {
 export default function Admin() {
   const { user, loading, isAdmin, isModerator, signOut } = useAuth();
 
-  if (loading) {
+  if (loading && (!user || (!isAdmin && !isModerator))) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -1299,5 +1305,12 @@ export default function Admin() {
     );
   }
 
-  return <AdminDashboard />;
+  return (
+    <AdminDashboard
+      user={user}
+      isAdmin={isAdmin}
+      isModerator={isModerator}
+      signOut={signOut}
+    />
+  );
 }
