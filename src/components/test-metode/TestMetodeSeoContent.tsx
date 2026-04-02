@@ -1,20 +1,8 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  Shield,
-  TrendingUp,
-  Clock,
-  AlertTriangle,
-  CheckCircle2,
-  BarChart3,
-  Zap,
-  Target,
-  FileText,
-  Scale,
-  Eye,
-  Database,
-} from "lucide-react";
+import { AlertTriangle } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
