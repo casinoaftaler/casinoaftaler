@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
-import { useMultiplierSymbols } from "@/hooks/useMultiplierSymbols";
+import { useBombSymbols } from "@/hooks/useBombSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -11,7 +11,7 @@ import { useServerSpin } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { GatesControlBar } from "./GatesControlBar";
+import { BonanzaControlBar } from "./BonanzaControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
 import { SlotIdleEffects } from "./SlotIdleEffects";
@@ -21,10 +21,10 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
 import {
-  GATES_COLS, GATES_ROWS, generateGatesDisplayGrid, countGatesScatters,
-  flatToColRow, type GatesWin, type MultiplierOrb, type TumbleStep,
+  GATES_COLS, GATES_ROWS, generateGatesDisplayGrid, flatToColRow,
+  isBombSymbol, getBombValue, scanGridBombs,
 } from "@/lib/gatesGameLogic";
-import { isMultiplierSymbol, getMultiplierValue } from "@/lib/gatesMultiplierSymbols";
+import { countGatesScatters } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { GatesColumn, type ColumnSpinState, type CellAnimState } from "./GatesColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
@@ -33,6 +33,10 @@ import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
 import { GatesZeusCharacter } from "./GatesZeusCharacter";
+import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
+import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
+import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
+import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -42,31 +46,34 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
 interface GatesSlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
-export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGameProps) {
+export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }: GatesSlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
-  const { data: multSymbols } = useMultiplierSymbols();
+  const { data: bombSymbols } = useBombSymbols(gameId);
   const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins(gameId);
   const { settings: slotSettings } = useSlotSettings();
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
 
-  const multiplierSymbolsMap = useMemo(() => {
-    if (!multSymbols) return undefined;
-    return new Map(multSymbols.map(s => [s.id, s]));
-  }, [multSymbols]);
+  const bombSymbolsMap = useMemo(() => {
+    if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
+    return new Map(bombSymbols.map(b => [b.value, b]));
+  }, [bombSymbols]);
 
   const [bet, setBet] = useState(1);
+  const [doubleChance, setDoubleChance] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
-  const [winAmount, setWinAmount] = useState(0);
+  const [winAmount, setWinAmountRaw] = useState(0);
+  const [isBuyingBonus, setIsBuyingBonus] = useState(false);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
+  const [currentSpinWin, setCurrentSpinWin] = useState(0);
   const [winningPositions, setWinningPositions] = useState<Set<number>>(new Set());
-  const [multiplierOrbs, setMultiplierOrbs] = useState<MultiplierOrb[]>([]); // kept for type compat
   const [totalMultiplier, setTotalMultiplier] = useState(0);
   const [tumblePhase, setTumblePhase] = useState<'idle' | 'spinning' | 'showing-wins' | 'tumbling'>('idle');
   const [currentTumbleStep, setCurrentTumbleStep] = useState(0);
@@ -81,10 +88,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [runningMultiplier, setRunningMultiplier] = useState(0);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [showLightningFlash, setShowLightningFlash] = useState(false);
-  const [animationEpoch, setAnimationEpoch] = useState(0); // force CSS animation restarts
-  const [isSlowMotion, setIsSlowMotion] = useState(false);
+  const [animationEpoch, setAnimationEpoch] = useState(0);
   const [tumbleChainLength, setTumbleChainLength] = useState(0);
-  
+  const [tumbleWinPopups, setTumbleWinPopups] = useState<TumbleWinPopup[]>([]);
+  const [collisionPhase, setCollisionPhase] = useState<CollisionPhase>('idle');
+  const [tumbleBarVisible, setTumbleBarVisible] = useState(false);
+  const [flyingMultipliers, setFlyingMultipliers] = useState<FlyingMultiplier[]>([]);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
   const [freeSpinsRemaining, setFreeSpinsRemaining] = useState(0);
@@ -104,10 +115,26 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
+  const autoSpinsRemainingRef = useRef<number | null>(null);
   const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
+  const isAutoSpinningRef = useRef(false);
+  const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);
+  const freeSpinsRemainingRef = useRef(0);
+  const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
-  const [showReelFlash, setShowReelFlash] = useState(false);
+
+  // Persist winAmount to localStorage when bonus is active
+  const bonusWinKey = `gates_win_${gameId}_${user?.id}`;
+  const setWinAmount = useCallback((val: number | ((prev: number) => number)) => {
+    setWinAmountRaw(prev => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      if (isBonusActiveRef.current) {
+        try { localStorage.setItem(bonusWinKey, String(next)); } catch {}
+      }
+      return next;
+    });
+  }, [bonusWinKey]);
 
   // Initialize grid
   useEffect(() => {
@@ -116,15 +143,31 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     }
   }, [symbols, grid]);
 
+  // Unlock audio
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      slotSounds.unlockAudio();
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
   // Cleanup
   useEffect(() => {
     return () => {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
       columnStopTimersRef.current.forEach(t => clearTimeout(t));
+      slotSounds.stopMusic();
     };
   }, []);
 
-  // Load persisted bonus state on mount (resume if user left mid-bonus)
+  // Load persisted bonus state
   const [bonusLoaded, setBonusLoaded] = useState(false);
   useEffect(() => {
     if (!user?.id || bonusLoaded) return;
@@ -136,18 +179,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           .eq("user_id", user.id)
           .eq("game_id", gameId)
           .maybeSingle();
-
         if (!error && data && data.is_active && data.free_spins_remaining > 0) {
           setIsBonusActive(true);
           setFreeSpinsRemaining(data.free_spins_remaining);
           setTotalFreeSpins(data.total_free_spins);
           setBonusWinnings(Number(data.bonus_winnings) || 0);
           setBet(Number(data.bet_amount) || 1);
-          // expanding_symbol_name is repurposed to store cumulative multiplier
           setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
           setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
-          // Trigger auto-spin to resume bonus
-          setBonusAutoSpinPending(true);
+          try {
+            const savedWin = localStorage.getItem(`gates_win_${gameId}_${user.id}`);
+            if (savedWin) setWinAmountRaw(Number(savedWin) || 0);
+          } catch {}
         }
       } catch (err) {
         console.error("Failed to load Gates bonus state:", err);
@@ -164,14 +207,19 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   const stopAutoSpin = useCallback(() => {
     setIsAutoSpinning(false);
+    isAutoSpinningRef.current = false;
     setAutoSpinsRemaining(null);
+    autoSpinsRemainingRef.current = null;
     shouldStopAutoSpinRef.current = true;
     if (autoSpinTimeoutRef.current) { clearTimeout(autoSpinTimeoutRef.current); autoSpinTimeoutRef.current = null; }
   }, []);
 
   const startAutoSpin = useCallback(() => {
+    const count = autoSpinCount === "infinite" ? null : autoSpinCount;
     setIsAutoSpinning(true);
-    setAutoSpinsRemaining(autoSpinCount === "infinite" ? null : autoSpinCount);
+    isAutoSpinningRef.current = true;
+    setAutoSpinsRemaining(count);
+    autoSpinsRemainingRef.current = count;
     shouldStopAutoSpinRef.current = false;
   }, [autoSpinCount]);
 
@@ -181,252 +229,230 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   const [bonusAutoSpinPending, setBonusAutoSpinPending] = useState(false);
 
+  useEffect(() => { freeSpinsRemainingRef.current = freeSpinsRemaining; }, [freeSpinsRemaining]);
+  useEffect(() => { isBonusActiveRef.current = isBonusActive; }, [isBonusActive]);
+
+  const handleSpinRef = useRef<() => void>(() => {});
+
   const handleBonusEntryComplete = useCallback(() => {
     const bs = pendingBonusStateRef.current;
     setShowBonusTrigger(false);
     showBonusTriggerRef.current = false;
+    spinLockRef.current = false;
     if (bs) {
       setIsBonusActive(true);
+      isBonusActiveRef.current = true;
       setFreeSpinsRemaining(bs.freeSpinsRemaining);
+      freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
       setTotalFreeSpins(bs.totalFreeSpins);
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
       pendingBonusStateRef.current = null;
-      setBonusAutoSpinPending(true);
+      if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+        if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+        autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
+      }
     }
+    setBonusAutoSpinPending(false);
   }, []);
 
-  // Process tumble steps with full visual animation sequence
-  const processTumbleSteps = useCallback(async (steps: TumbleStep[]) => {
+  // Process tumble steps — Bonanza-style with sequential bomb blow-up
+  const processTumbleSteps = useCallback(async (steps: any[]) => {
     let winningStepCount = 0;
-    
+
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
-      
-      if (i === 0) {
-        await new Promise(r => setTimeout(r, 200));
-      }
+      if (i === 0) await new Promise(r => setTimeout(r, 200));
 
-      if (step.wins.length > 0) {
+      const hasWins = step.wins.length > 0;
+
+      if (hasWins) {
         winningStepCount++;
         setTumbleChainLength(winningStepCount);
-        
-        // Activate slow-motion on long chains (4+ winning tumbles)
-        if (winningStepCount >= 4 && !isSlowMotion) {
-          setIsSlowMotion(true);
-        }
-        
-        // 1. Highlight winning symbols with glow + pulse
+        if (winningStepCount === 1) setTumbleBarVisible(true);
+
         setTumblePhase('showing-wins');
-        const winPositions = new Set(step.winningPositions);
+        const winPositions = new Set<number>(step.winningPositions);
         setWinningPositions(winPositions);
         slotSounds.playSymbolHighlight();
-        
-        // Increment running win counter
         setRunningWin(prev => prev + step.stepWin);
-        
-        // Check if this is the last winning step (next step has no wins or doesn't exist)
-        const isLastWinningStep = (i + 1 >= steps.length) || (steps[i + 1].wins.length === 0);
-        
-        // Show multiplier orbs visually but don't accumulate yet (they persist on grid)
-        // Only accumulate + collect on the last winning step
-        if (step.multiplierOrbs.length > 0) {
-          // Screen shake + lightning on 50x+ multiplier orb (visual only)
-          const maxOrb = Math.max(...step.multiplierOrbs.map(o => o.value));
-          if (maxOrb >= 100) {
-            setScreenShake('intense');
-            setShowLightningFlash(true);
-            slotSounds.playBigWin();
-            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
-          } else if (maxOrb >= 50) {
-            setScreenShake('normal');
-            setShowLightningFlash(true);
-            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
-          }
-        }
-        
-        // Accumulate multiplier to bank ONLY on the last winning step
-        if (isLastWinningStep && step.multiplierOrbs.length > 0) {
-          const orbSum = step.multiplierOrbs.reduce((sum, o) => sum + o.value, 0);
-          setRunningMultiplier(prev => prev + orbSum);
-          // Enhanced multiplier collection in bonus: thunder boom + screen pulse
-          if (isBonusActive) {
-            slotSounds.playMultiplierSlam();
-            setScreenShake('normal');
-            setShowLightningFlash(true);
-            setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
-          }
-        }
-        
-        // Mark winning cells for highlight (multipliers only highlighted on last winning step)
+
         const winAnims = new Map<number, CellAnimState>();
-        for (const pos of step.winningPositions) {
-          winAnims.set(pos, 'winning');
-        }
-        // Only highlight multiplier symbols when they'll actually be collected (last winning step)
-        if (isLastWinningStep) {
-          for (const orb of step.multiplierOrbs) {
-            winAnims.set(orb.position, 'winning');
-          }
-        }
+        for (const pos of step.winningPositions) winAnims.set(pos, 'winning');
         setCellAnimStates(winAnims);
-        
-        // Hold gold highlight (Step 1 — longer for dramatic effect)
-        const holdTime = isSlowMotion ? 1600 : 1200;
-        await new Promise(r => setTimeout(r, holdTime));
-        
-        // 2. Fly multipliers to bank ONLY on last winning step
-        if (isLastWinningStep && step.multiplierOrbs.length > 0) {
-          // --- Pause between win display and multiplier explosion ---
-          const preMultDelay = isSlowMotion ? 800 : 600;
-          await new Promise(r => setTimeout(r, preMultDelay));
-          
-          // First: highlight multiplier orbs with a pulsing glow before collecting
-          const pulseAnims = new Map<number, CellAnimState>();
-          for (const pos of step.winningPositions) {
-            pulseAnims.set(pos, 'winning');
-          }
-          for (const orb of step.multiplierOrbs) {
-            pulseAnims.set(orb.position, 'winning');
-          }
-          setCellAnimStates(pulseAnims);
-          
-          // Hold the multiplier highlight pulse
-          const pulseHoldTime = isSlowMotion ? 700 : 500;
-          await new Promise(r => setTimeout(r, pulseHoldTime));
-          
-          const collectAnims = new Map<number, CellAnimState>();
-          // Keep winning symbols highlighted while multipliers fly
-          for (const pos of step.winningPositions) {
-            collectAnims.set(pos, 'winning');
-          }
-          // Multipliers get the fly-to-bank animation
-          for (const orb of step.multiplierOrbs) {
-            collectAnims.set(orb.position, 'collecting');
-          }
-          setCellAnimStates(collectAnims);
-          
-          // Wait for fly animation
-          const flyTime = isSlowMotion ? 900 : 700;
-          await new Promise(r => setTimeout(r, flyTime));
-        }
-        
-        // Step 2: EXPLOSION — symbols burst into sparks
+
+        await new Promise(r => setTimeout(r, 1200));
+
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, CellAnimState>();
-        // Only winning positions are removed; multipliers only removed on last winning step
-        const allRemovedPositions = new Set(step.winningPositions);
-        if (isLastWinningStep) {
-          for (const orb of step.multiplierOrbs) {
-            allRemovedPositions.add(orb.position);
+        for (const pos of step.winningPositions) removeAnims.set(pos, 'exploding');
+        setCellAnimStates(removeAnims);
+        slotSounds.playCrackle();
+
+        // Floating win popups
+        for (const win of step.wins) {
+          if (win.payout > 0 && win.positions.length > 0) {
+            let sumX = 0, sumY = 0;
+            for (const pos of win.positions) {
+              const { col, row } = flatToColRow(pos);
+              sumX += SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2;
+              sumY += SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2;
+            }
+            const cx = sumX / win.positions.length;
+            const cy = sumY / win.positions.length;
+            const popupId = `${i}-${win.symbolId}-${Date.now()}`;
+            setTumbleWinPopups(prev => [...prev, { id: popupId, amount: win.payout, x: cx, y: cy }]);
+            setTimeout(() => { setTumbleWinPopups(prev => prev.filter(p => p.id !== popupId)); }, 1300);
           }
         }
-        for (const pos of allRemovedPositions) {
-          removeAnims.set(pos, 'exploding');
-        }
-        setCellAnimStates(removeAnims);
-        
-        // Play crackling explosion sound
-        slotSounds.playCrackle();
-        
-        // Wait for explosion animation (longer in slow-motion)
-        const removeTime = isSlowMotion ? 800 : 500;
-        await new Promise(r => setTimeout(r, removeTime));
-        
-        // Step 3: Clear winning positions — pause after explosion before gravity
-        const postExplodePause = isSlowMotion ? 250 : 150;
-        await new Promise(r => setTimeout(r, postExplodePause));
+
+        await new Promise(r => setTimeout(r, 500));
         setWinningPositions(new Set());
-        
+
+        // Gravity fill
         if (i + 1 < steps.length) {
           const nextGrid = steps[i + 1].grid;
           const dropAnims = new Map<number, CellAnimState>();
           const offsets = new Map<number, number>();
           const CELL_HEIGHT = SYMBOL_HEIGHT + SYMBOL_GAP;
-          
+          const allRemovedPositions = new Set<number>(step.winningPositions);
+
           for (let col = 0; col < GATES_COLS; col++) {
-            // Count how many were removed in this column
             let removedInCol = 0;
             for (let row = 0; row < GATES_ROWS; row++) {
               const flat = col * GATES_ROWS + row;
-              if (allRemovedPositions.has(flat)) {
-                removedInCol++;
-              }
+              if (allRemovedPositions.has(flat)) removedInCol++;
             }
-            
             if (removedInCol > 0) {
-              // Collect surviving rows in this column (original positions)
               const survivorRows: number[] = [];
               for (let row = 0; row < GATES_ROWS; row++) {
                 const flat = col * GATES_ROWS + row;
-                if (!allRemovedPositions.has(flat)) {
-                  survivorRows.push(row);
-                }
+                if (!allRemovedPositions.has(flat)) survivorRows.push(row);
               }
-
-              // New symbols fill the top `removedInCol` rows
               for (let row = 0; row < removedInCol; row++) {
                 const flat = col * GATES_ROWS + row;
                 dropAnims.set(flat, 'filling');
               }
-
-              // Each survivor compacts to bottom: survivor[i] -> new row (removedInCol + i)
-              for (let i = 0; i < survivorRows.length; i++) {
-                const oldRow = survivorRows[i];
-                const newRow = removedInCol + i;
+              for (let idx = 0; idx < survivorRows.length; idx++) {
+                const oldRow = survivorRows[idx];
+                const newRow = removedInCol + idx;
                 const dropRows = newRow - oldRow;
                 if (dropRows > 0) {
                   const flat = col * GATES_ROWS + newRow;
                   dropAnims.set(flat, 'dropping');
                   offsets.set(flat, dropRows * CELL_HEIGHT);
                 }
-                // dropRows === 0 means no movement, no animation needed
               }
             }
-            // Columns with no removals: no animation needed, symbols stay in place
           }
-          
+
           setGrid(nextGrid);
           setCellAnimStates(dropAnims);
           setCellDropOffsets(offsets);
           setAnimationEpoch(prev => prev + 1);
-          
-          // Play clack sound when symbols land
           slotSounds.playClack();
-          
-          // Step 3: Gravity drop timing
-          const dropTime = isSlowMotion ? 700 : 500;
-          await new Promise(r => setTimeout(r, dropTime));
-          
-          // Step 4: Post-fill pause
-          const postFillPause = isSlowMotion ? 300 : 200;
-          await new Promise(r => setTimeout(r, postFillPause));
+          await new Promise(r => setTimeout(r, 500));
+          await new Promise(r => setTimeout(r, 200));
         }
-        
+
+        await new Promise(r => setTimeout(r, 100));
         setCellAnimStates(new Map());
         setCellDropOffsets(new Map());
       } else {
-        // No win - multipliers persist on grid (no action needed, they're in the grid data)
         await new Promise(r => setTimeout(r, 300));
       }
     }
-    // Clean up
-    setCellAnimStates(new Map());
-    setCellDropOffsets(new Map());
-    setIsSlowMotion(false);
-    setTumbleChainLength(0);
-  }, [isSlowMotion, isBonusActive]);
 
-  // Client seed + nonce for provably fair RNG
+    // Sequential bomb blow-up AFTER all tumbles
+    const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
+    if (lastStepWithBombs?.multiplierBombs?.length) {
+      const sorted = [...lastStepWithBombs.multiplierBombs].sort((a: any, b: any) => a.position - b.position);
+      const explodedPositions = new Map<number, CellAnimState>();
+
+      const gridEl = gridContainerRef.current;
+      const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
+      const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
+
+      const targetX = fallbackWidth / 2;
+      const targetY = 20;
+
+      for (const bomb of sorted) {
+        const animState: CellAnimState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
+        const currentAnims = new Map(explodedPositions);
+        currentAnims.set(bomb.position, animState);
+        setCellAnimStates(currentAnims);
+        if (bomb.activated) {
+          slotSounds.playCrackle();
+          const { col, row } = flatToColRow(bomb.position);
+          const bombX = SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2;
+          const bombY = SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2;
+          const flyId = `fly-${bomb.position}-${Date.now()}`;
+          setFlyingMultipliers(prev => [...prev, {
+            id: flyId, value: bomb.value, startX: bombX, startY: bombY, targetX, targetY,
+          }]);
+          setScreenShake('normal');
+          setTimeout(() => setScreenShake('none'), 400);
+          setTimeout(() => {
+            explodedPositions.set(bomb.position, 'bomb-exploded');
+            setCellAnimStates(new Map(explodedPositions));
+          }, 150);
+          await new Promise(r => setTimeout(r, 500));
+          setRunningMultiplier(prev => prev + bomb.value);
+          setFlyingMultipliers(prev => prev.filter(f => f.id !== flyId));
+        } else {
+          await new Promise(r => setTimeout(r, 400));
+          explodedPositions.set(bomb.position, 'bomb-exploded');
+        }
+      }
+      setCellAnimStates(new Map(explodedPositions));
+      await new Promise(r => setTimeout(r, 500));
+    }
+
+    // Clean up
+    setCellAnimStates(prev => {
+      const kept = new Map<number, CellAnimState>();
+      for (const [pos, state] of prev) {
+        if (state === 'bomb-exploded') kept.set(pos, state);
+      }
+      return kept;
+    });
+    setCellDropOffsets(new Map());
+    setTumbleChainLength(0);
+
+    // Calculate final win
+    if (winningStepCount > 0) {
+      const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
+      const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter((b: any) => b.activated) || [];
+      const totalMultiplierValue = activatedBombs.reduce((sum: number, b: any) => sum + b.value, 0);
+      const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
+      setWinAmount(prev => prev + finalWin);
+    }
+
+    // Collision effect
+    if (winningStepCount > 0) {
+      if (isBonusActiveRef.current && lastStepWithBombs?.multiplierBombs?.some((b: any) => b.activated)) {
+        setCollisionPhase('colliding');
+        await new Promise(r => setTimeout(r, 600));
+        setCollisionPhase('resolved');
+        await new Promise(r => setTimeout(r, 1200));
+        setCollisionPhase('idle');
+        setTumbleBarVisible(false);
+      } else {
+        await new Promise(r => setTimeout(r, 800));
+        setTumbleBarVisible(false);
+      }
+    }
+  }, []);
+
+  // Client seed for provably fair
   const clientSeedRef = useRef<string>(crypto.randomUUID());
   const nonceRef = useRef<number>(0);
 
   const handleSpin = useCallback(async () => {
-    // Step 1: Lock inputs — prevent any duplicate calls
     if (spinLockRef.current || !symbols || !user || isSpinning) return;
     if (showBonusTriggerRef.current || showBonusCompleteRef.current || showRetriggerRef.current) return;
-    
+
     const isBonusSpin = isBonusActive && freeSpinsRemaining > 0;
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
@@ -434,163 +460,108 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
-    setWinAmount(0);
+    if (!isBonusSpin) setWinAmount(0);
     setRunningWin(0);
-    // In bonus, keep cumulative multiplier across spins; in base game, reset
-    if (!isBonusSpin) {
-      setRunningMultiplier(0);
-    }
-    // Optimistically decrement free spins counter immediately
+    setRunningMultiplier(0);
     if (isBonusSpin) {
       setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+      freeSpinsRemainingRef.current = Math.max(0, freeSpinsRemainingRef.current - 1);
     }
-    let shouldWaitForWinAnimation = false;
     setIsWinAnimating(false);
+    pendingPostWinSpinRef.current = null;
     setWinningPositions(new Set());
-    setMultiplierOrbs([]);
     setScreenShake('none');
     setShowLightningFlash(false);
-    setIsSlowMotion(false);
     setTumbleChainLength(0);
+    setTumbleWinPopups([]);
+    setCollisionPhase('idle');
+    setTumbleBarVisible(false);
+    setFlyingMultipliers([]);
     serverResultRef.current = null;
 
-    // Phase 1: Drop-off — stagger columns left to right
     const STAGGER_MS = 80;
-    const DROP_OFF_DURATION = 350; // matches CSS .gates-drop-off duration
-    const DROP_IN_DURATION = 400; // matches CSS .gates-drop-in duration
+    const DROP_OFF_DURATION = 350;
+    const DROP_IN_DURATION = 400;
+    const DROP_OFF_ROW_STAGGER_MS = 40;
 
     for (let c = 0; c < GATES_COLS; c++) {
       setTimeout(() => {
-        setColumnSpinStates(prev => {
-          const next = [...prev];
-          next[c] = 'dropping-off';
-          return next;
-        });
+        setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-off'; return next; });
       }, c * STAGGER_MS);
     }
 
+    slotSounds.unlockAudio();
     slotSounds.playSpinStart();
 
+    let shouldWaitForWinAnimation = false;
+
     try {
-      // Fire server request in parallel with drop-off animation
-      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, undefined, !isBonusSpin && doubleChance, false);
+      const totalDropOffTime = DROP_OFF_DURATION + (GATES_COLS - 1) * STAGGER_MS + (GATES_ROWS - 1) * DROP_OFF_ROW_STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropOffTime + 100));
 
-      // Wait for all drop-off animations to complete
-      const totalDropOffTime = DROP_OFF_DURATION + (GATES_COLS - 1) * STAGGER_MS;
-      await new Promise(r => setTimeout(r, totalDropOffTime));
+      setCellAnimStates(new Map());
 
-      // Grid is now visually empty — wait for server result
       const response = await serverPromise;
-      if (!response) {
-        // Error already toasted by useServerSpin — just bail out
-        return;
-      }
-
+      if (!response) return;
       const result = response.result as any;
 
-      // Set the new grid data
       if (result.tumbleSteps && result.tumbleSteps.length > 0) {
         setGrid(result.tumbleSteps[0].grid);
       }
 
-      // Pre-detect scatters for slow-motion tease on final columns
-      let scatterTeaseActive = false;
-      if (result.tumbleSteps && result.tumbleSteps.length > 0 && symbols) {
-        const { count: preScatterCount } = countGatesScatters(result.tumbleSteps[0].grid, symbols);
-        scatterTeaseActive = preScatterCount >= 2;
-      }
-
-      // Phase 2: Drop-in — stagger columns left to right with column stop sounds
-      // Apply slow-motion on final 2 columns when scatter tease is active
+      // Drop in
+      slotSounds.playSymbolDropIn();
       for (let c = 0; c < GATES_COLS; c++) {
-        const isSlowColumn = scatterTeaseActive && c >= GATES_COLS - 2;
-        const delay = isSlowColumn
-          ? (GATES_COLS - 2) * STAGGER_MS + (c - (GATES_COLS - 2)) * (STAGGER_MS * 2.5)
-          : c * STAGGER_MS;
         setTimeout(() => {
-          setColumnSpinStates(prev => {
-            const next = [...prev];
-            next[c] = 'dropping-in';
-            return next;
-          });
-          // Play column stop — heavier sound in bonus mode
-          if (isBonusSpin) {
-            if (c === GATES_COLS - 1) {
-              slotSounds.playBonusThunderCrack();
-            } else {
-              slotSounds.playBonusColumnStop();
-            }
-          } else {
-            slotSounds.playColumnStop();
-          }
-        }, delay);
+          setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-in'; return next; });
+          slotSounds.playColumnStop();
+        }, c * STAGGER_MS);
       }
 
-      // Wait for all drop-in animations to complete (account for slow columns)
-      const lastColumnDelay = scatterTeaseActive
-        ? (GATES_COLS - 2) * STAGGER_MS + 1 * (STAGGER_MS * 2.5)
-        : (GATES_COLS - 1) * STAGGER_MS;
-      const totalDropInTime = DROP_IN_DURATION + lastColumnDelay;
+      const totalDropInTime = DROP_IN_DURATION + (GATES_COLS - 1) * STAGGER_MS;
       await new Promise(r => setTimeout(r, totalDropInTime));
-
-      // Reel stop flash removed (was too flashy)
-
-      // All columns landed — reset to idle
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
-      // Scatter tease: detect 2-3 scatters and highlight them before proceeding
-      if (result.tumbleSteps && result.tumbleSteps.length > 0 && symbols) {
-        const firstGrid = result.tumbleSteps[0].grid;
-        const { count: scatterCount, positions: scatterPositions } = countGatesScatters(firstGrid, symbols);
-        
-        if (scatterCount >= 2 && scatterCount <= 3) {
-          // Apply scatter tease glow to detected scatter positions
-          const teaseAnims = new Map<number, CellAnimState>();
-          const teaseClass = scatterCount >= 3 ? 'scatter-tease-intense' : 'scatter-tease';
-          scatterPositions.forEach(pos => teaseAnims.set(pos, teaseClass as CellAnimState));
-          setCellAnimStates(teaseAnims);
-          
-          // Play rising pitch tease sound
-          slotSounds.playScatterTease(scatterCount);
-          
-          // Hold tease visual — longer for 3 scatters
-          const teaseDuration = scatterCount >= 3 ? 1200 : 800;
-          await new Promise(r => setTimeout(r, teaseDuration));
-          
-          // Clear tease animations
-          setCellAnimStates(new Map());
-        }
-      }
-
       if (result.tumbleSteps) {
-        
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
-        setWinAmount(totalWin);
-        
-        if (totalWin > 0) {
-          shouldWaitForWinAnimation = true;
-          setIsWinAnimating(true);
-          if (totalWin >= bet * 10) {
-            slotSounds.playBigWin();
-          } else if (totalWin >= bet * 3) {
-            slotSounds.playMediumWin();
-          } else {
-            slotSounds.playSmallWin();
+
+        // Scatter celebration
+        const hasBonusState = !!response.bonusState;
+        const finalGridForScatter = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+        if (!hasBonusState && finalGridForScatter && symbols) {
+          const { count: scatCount, positions: scatPos } = countGatesScatters(finalGridForScatter, symbols);
+          if (scatCount >= 4) {
+            const scatterAnims = new Map<number, CellAnimState>();
+            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+            setCellAnimStates(scatterAnims);
+            slotSounds.playScatterCelebration();
+            await new Promise(r => setTimeout(r, 1500));
+            setCellAnimStates(new Map());
           }
-          // Invalidate leaderboard
-          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
 
-        // Handle bonus state — defer if win celebration is playing
+        if (totalWin > 0) {
+          setCurrentSpinWin(totalWin);
+          if (totalWin >= bet * 15) {
+            setIsWinAnimating(true);
+            shouldWaitForWinAnimation = true;
+            slotSounds.playBigWin();
+          }
+        }
+
+        // Handle bonus state
         if (response.bonusState) {
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
             const executeBonusAction = () => {
-              if (!isBonusActive && bs.freeSpinsRemaining > 0) {
+              if (!isBonusSpin && bs.freeSpinsRemaining > 0) {
                 pendingBonusStateRef.current = bs;
-                if (grid && symbols) {
-                  const { positions: scatterPos } = countGatesScatters(grid, symbols);
+                showBonusTriggerRef.current = true;
+                const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+                if (finalGrid && symbols) {
+                  const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
                   if (scatterPos.length > 0) {
                     const scatterAnims = new Map<number, CellAnimState>();
                     scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
@@ -599,7 +570,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                     setTimeout(() => {
                       setCellAnimStates(new Map());
                       setShowBonusTrigger(true);
-                      showBonusTriggerRef.current = true;
                       setScreenShake('intense');
                       setShowLightningFlash(true);
                       setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
@@ -610,25 +580,50 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                   }
                 }
                 setShowBonusTrigger(true);
-                showBonusTriggerRef.current = true;
                 setScreenShake('intense');
                 setShowLightningFlash(true);
                 setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
                 setRunningWin(0);
                 setRunningMultiplier(0);
               } else if (bs.isRetrigger) {
+                showRetriggerRef.current = true;
+                const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+                if (finalGrid && symbols) {
+                  const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
+                  if (scatterPos.length > 0) {
+                    const scatterAnims = new Map<number, CellAnimState>();
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    setCellAnimStates(scatterAnims);
+                    slotSounds.playScatterCelebration();
+                    setTimeout(() => {
+                      setCellAnimStates(new Map());
+                      setScreenShake('intense');
+                      setShowLightningFlash(true);
+                      setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
+                      setShowRetrigger(true);
+                      setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                      freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
+                      setTotalFreeSpins(bs.totalFreeSpins);
+                      setBonusWinnings(bs.bonusWinnings || 0);
+                      setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                      setRunningMultiplier(bs.cumulativeMultiplier || 0);
+                    }, 1500);
+                    return;
+                  }
+                }
                 setScreenShake('intense');
                 setShowLightningFlash(true);
                 setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
                 setShowRetrigger(true);
-                showRetriggerRef.current = true;
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
               } else {
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
@@ -639,6 +634,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
                   setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
                   setShowBonusComplete(true);
                   showBonusCompleteRef.current = true;
+                } else {
+                  spinLockRef.current = false;
                 }
               }
             };
@@ -651,7 +648,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           }
         }
 
-        // Update spins remaining immediately via cache + refetch
         if (response.spinsRemaining !== undefined) {
           const today = getTodayDanish();
           queryClient.setQueryData(
@@ -669,50 +665,209 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     } finally {
       setIsSpinning(false);
       setTumblePhase('idle');
-      spinLockRef.current = false;
+      if (!pendingBonusActionRef.current) {
+        spinLockRef.current = false;
+      }
 
-      // Auto-spin: bonus free spins always auto-spin, or manual auto-spin
-      // If win celebration is pending, don't auto-spin yet — WinCelebration onComplete handles it
-      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current && !pendingBonusActionRef.current) {
+      const shouldContinueBonus =
+        isBonusActiveRef.current &&
+        freeSpinsRemainingRef.current > 0 &&
+        !showBonusTriggerRef.current &&
+        !showBonusCompleteRef.current &&
+        !showRetriggerRef.current &&
+        !pendingBonusActionRef.current;
+
+      if (shouldContinueBonus && isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
         if (shouldWaitForWinAnimation) {
-          // Will be handled by WinCelebration onAnimationComplete
+          pendingPostWinSpinRef.current = 'bonus';
         } else {
+          if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
-      } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
-        if (autoSpinsRemaining !== null) {
-          const newCount = autoSpinsRemaining - 1;
+      } else if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current && !pendingBonusActionRef.current) {
+        if (!hasEnoughSpins(bet)) { stopAutoSpin(); return; }
+        if (autoSpinsRemainingRef.current !== null) {
+          const newCount = autoSpinsRemainingRef.current - 1;
           setAutoSpinsRemaining(newCount);
+          autoSpinsRemainingRef.current = newCount;
           if (newCount <= 0) { stopAutoSpin(); return; }
         }
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1500);
+        if (shouldWaitForWinAnimation) {
+          pendingPostWinSpinRef.current = 'auto';
+        } else {
+          if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+          autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1500);
+        }
       }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, isAutoSpinning, autoSpinsRemaining, stopAutoSpin]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, stopAutoSpin, doubleChance]);
+
+  handleSpinRef.current = handleSpin;
 
   const handleRetriggerComplete = useCallback(() => {
     setShowRetrigger(false);
     showRetriggerRef.current = false;
-    // Auto-spin after retrigger overlay closes
-    setBonusAutoSpinPending(true);
+    spinLockRef.current = false;
+    if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+      if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+      autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
+    }
   }, []);
 
-  // Auto-spin trigger (manual auto-spin)
   useEffect(() => {
     if (isAutoSpinning && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
   }, [isAutoSpinning]);
 
-  // Bonus auto-spin trigger (after entry/retrigger overlay)
   useEffect(() => {
-    if (bonusAutoSpinPending && isBonusActive && !isSpinning) {
+    if (bonusAutoSpinPending && isBonusActive && freeSpinsRemainingRef.current > 0 && !isSpinning && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
       setBonusAutoSpinPending(false);
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
   }, [bonusAutoSpinPending, isBonusActive, isSpinning, handleSpin]);
 
-  // Visual intensity state
+  const handleSpinWithPress = useCallback(async () => {
+    setSpinPressed(true);
+    setTimeout(() => setSpinPressed(false), 200);
+    handleSpin();
+  }, [handleSpin]);
+
+  const handleBuyBonus = useCallback(async () => {
+    if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive || isBuyingBonus) return;
+    setIsBuyingBonus(true);
+    if (!hasEnoughSpins(bet * 100)) {
+      toast.error("Du har ikke nok credits til at købe bonus");
+      setIsBuyingBonus(false);
+      return;
+    }
+    spinLockRef.current = true;
+    nonceRef.current += 1;
+    setIsSpinning(true);
+    setTumblePhase('spinning');
+    setRunningWin(0);
+    setRunningMultiplier(0);
+    setIsWinAnimating(false);
+    pendingPostWinSpinRef.current = null;
+    setWinningPositions(new Set());
+    setScreenShake('none');
+    setShowLightningFlash(false);
+    setTumbleChainLength(0);
+    setTumbleWinPopups([]);
+    setCollisionPhase('idle');
+    setTumbleBarVisible(false);
+    setFlyingMultipliers([]);
+    serverResultRef.current = null;
+
+    const STAGGER_MS = 80;
+    const DROP_OFF_DURATION = 350;
+    const DROP_OFF_ROW_STAGGER_MS = 40;
+    const DROP_IN_DURATION = 400;
+
+    for (let c = 0; c < GATES_COLS; c++) {
+      setTimeout(() => {
+        setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-off'; return next; });
+      }, c * STAGGER_MS);
+    }
+    slotSounds.unlockAudio();
+    slotSounds.playSpinStart();
+
+    try {
+      const serverPromise = serverSpin(bet, false, clientSeedRef.current, nonceRef.current, undefined, false, true);
+      const totalDropOffTime = DROP_OFF_DURATION + (GATES_COLS - 1) * STAGGER_MS + (GATES_ROWS - 1) * DROP_OFF_ROW_STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropOffTime + 100));
+      setCellAnimStates(new Map());
+
+      const response = await serverPromise;
+      if (!response) return;
+      const result = response.result as any;
+
+      if (result.tumbleSteps && result.tumbleSteps.length > 0) setGrid(result.tumbleSteps[0].grid);
+
+      slotSounds.playSymbolDropIn();
+      for (let c = 0; c < GATES_COLS; c++) {
+        setTimeout(() => {
+          setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-in'; return next; });
+          slotSounds.playColumnStop();
+        }, c * STAGGER_MS);
+      }
+      const totalDropInTime = DROP_IN_DURATION + (GATES_COLS - 1) * STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropInTime));
+      setColumnSpinStates(Array(GATES_COLS).fill('idle'));
+
+      if (result.tumbleSteps) {
+        await processTumbleSteps(result.tumbleSteps);
+        const totalWin = result.totalWin || 0;
+        setWinAmount(totalWin);
+      }
+
+      if (response.bonusState) {
+        const bs = response.bonusState as any;
+        if (bs.freeSpinsRemaining > 0) {
+          pendingBonusStateRef.current = bs;
+          const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+          if (finalGrid && symbols) {
+            const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
+            if (scatterPos.length > 0) {
+              const scatterAnims = new Map<number, CellAnimState>();
+              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+              setCellAnimStates(scatterAnims);
+              slotSounds.playScatterCelebration();
+              setTimeout(() => {
+                setCellAnimStates(new Map());
+                setShowBonusTrigger(true);
+                showBonusTriggerRef.current = true;
+                setScreenShake('intense');
+                setShowLightningFlash(true);
+                setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
+                setRunningWin(0);
+                setRunningMultiplier(0);
+              }, 1500);
+            } else {
+              setShowBonusTrigger(true);
+              showBonusTriggerRef.current = true;
+            }
+          }
+        }
+      }
+
+      if (response.spinsRemaining !== undefined) {
+        const today = getTodayDanish();
+        queryClient.setQueryData(
+          ["slot-spins", user?.id, today, "shared"],
+          (old: any) => old
+            ? { ...old, spins_remaining: response.spinsRemaining }
+            : { spins_remaining: response.spinsRemaining, user_id: user?.id, date: today, game_id: "shared" }
+        );
+        queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+      }
+    } catch (err) {
+      console.error("Buy bonus error:", err);
+      toast.error("Der opstod en fejl. Prøv igen.");
+    } finally {
+      setIsSpinning(false);
+      setTumblePhase('idle');
+      if (!pendingBonusActionRef.current) {
+        spinLockRef.current = false;
+      }
+    }
+  }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
+
+  // Spacebar to spin
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+        e.preventDefault();
+        handleSpinWithPress();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleSpinWithPress]);
+
+  // Visual intensity
   const { intensityState, bonusIntensityTier } = useGatesIntensity({
     tumblePhase,
     tumbleChainLength,
@@ -721,13 +876,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     isBonusActive,
     cumulativeMultiplier,
   });
-
-  // Spin button press animation
-  const handleSpinWithPress = useCallback(async () => {
-    setSpinPressed(true);
-    setTimeout(() => setSpinPressed(false), 200);
-    handleSpin();
-  }, [handleSpin]);
 
   if (symbolsLoading || !symbols) {
     return (
@@ -739,202 +887,234 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   const gridWidth = GATES_COLS * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_GAP;
   const gridHeight = GATES_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
+  const totalLayoutWidth = isMobile ? gridWidth : gridWidth + 140 + 16;
 
   return (
     <div
-      className="flex flex-col items-center gap-4 relative"
+      className={cn("flex flex-col items-center relative", isMobile ? "gap-2 w-full" : "gap-4")}
+      style={isMobile ? undefined : { width: totalLayoutWidth, maxWidth: "100%" }}
       data-intensity={intensityState}
       data-bonus={isBonusActive ? "true" : "false"}
       data-mult-tier={bonusIntensityTier}
       data-last-spin={isBonusActive && freeSpinsRemaining === 1 ? "true" : "false"}
     >
-      {/* Credits expired overlay */}
       <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive && !isSpinning && tumblePhase === 'idle'} />
-      {/* Ambient lightning overlay */}
       <div className="gates-lightning-ambient" />
-      {/* Ambient glow background */}
       <div className="gates-ambient-glow" />
 
-      {/* Zeus character - top center */}
       <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} isBonusActive={isBonusActive} />
 
-      {/* Bonus bar - only in bonus (free spins + multiplier shown above grid) */}
-      {isBonusActive && (
-        <div className="w-full flex justify-center animate-fade-in">
-          <div className="flex items-center gap-6 px-8 py-3 rounded-2xl border-2 bg-gradient-to-b from-yellow-900/90 via-amber-950/95 to-yellow-950/90 border-yellow-500/60 shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)] animate-[bonus-bar-glow_2s_ease-in-out_infinite]">
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
-              <div className="flex items-baseline gap-1">
-                <AnimatedSpinCounter
-                  value={freeSpinsRemaining}
-                  className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums"
-                />
-                <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
-              </div>
-            </div>
-            <div className="w-px h-10 bg-yellow-500/30" />
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
-              <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Bonus entry sequence */}
-      <BonusEntrySequence
-        isActive={showBonusTrigger}
-        freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 15}
-        onComplete={handleBonusEntryComplete}
-      />
-
-      {/* Retrigger overlay */}
-      <GatesRetriggerOverlay
-        isActive={showRetrigger}
-        spinsAwarded={5}
-        onComplete={handleRetriggerComplete}
-      />
-
-      {/* Bonus complete overlay - animated count-up */}
-      <GatesBonusEndOverlay
-        isActive={showBonusComplete}
-        totalWin={bonusWinnings}
-        totalMultiplier={cumulativeMultiplier}
-        totalSpins={totalFreeSpins}
-        onComplete={() => {
-          setShowBonusComplete(false);
-          showBonusCompleteRef.current = false;
-          setIsBonusActive(false);
-          setCumulativeMultiplier(0);
-          setRunningMultiplier(0);
-          setBonusWinnings(0);
-          setRunningWin(0);
-          setWinAmount(0);
-        }}
-      />
-
-      {/* Lightning flash overlay */}
-      {showLightningFlash && <div className="gates-lightning-overlay" />}
-
       {/* Win celebration */}
-      {isWinAnimating && winAmount > 0 && (
+      {isWinAnimating && currentSpinWin > 0 && (
         <WinCelebration
           isActive={true}
-          winAmount={winAmount}
+          winAmount={currentSpinWin}
           bet={bet}
           onAnimationComplete={() => {
             setIsWinAnimating(false);
             if (pendingBonusActionRef.current) {
               const action = pendingBonusActionRef.current;
               pendingBonusActionRef.current = null;
-              setTimeout(() => action(), 300);
+              setTimeout(() => {
+                action();
+                if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+                  setTimeout(() => setBonusAutoSpinPending(true), 120);
+                }
+              }, 300);
+              return;
             }
+            if (pendingPostWinSpinRef.current === 'bonus') {
+              pendingPostWinSpinRef.current = null;
+              if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+              autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
+              return;
+            }
+            if (pendingPostWinSpinRef.current === 'auto' && !shouldStopAutoSpinRef.current) {
+              pendingPostWinSpinRef.current = null;
+              if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+              autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+              return;
+            }
+            pendingPostWinSpinRef.current = null;
           }}
           gameId={gameId}
         />
       )}
 
-      {/* Main game grid */}
-      <div 
-        className={cn(
-          "gates-grid-container relative rounded-xl border-2 overflow-hidden",
-          "bg-gradient-to-b from-blue-950/95 via-slate-950/90 to-blue-950/95",
-          "border-blue-500/30",
-          "gates-grid-intensity-glow",
-          screenShake === 'normal' && "gates-shake",
-          screenShake === 'intense' && "gates-shake-intense",
-          isSlowMotion && "gates-slow-motion",
-          tumbleChainLength >= 3 && "gates-intensity-high"
-        )}
-        style={{
-          width: gridWidth,
-          height: gridHeight,
-        }}
-      >
-        <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" />
-        <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" width={gridWidth} height={gridHeight} />
-        {/* Grid of symbols - column-based rendering */}
-        <div 
-          className="relative flex"
-          style={{ 
-            gap: `${SYMBOL_GAP}px`,
-            padding: `${SYMBOL_GAP}px`,
-          }}
-        >
-          {Array.from({ length: GATES_COLS }).map((_, col) => {
-            const colSymbolIds = grid ? grid[col] || [] : [];
-
-            return (
-              <GatesColumn
-                key={col}
-                col={col}
-                spinState={columnSpinStates[col]}
-                symbols={symbols}
-                symbolsById={symbolsById}
-                finalSymbolIds={colSymbolIds}
-                winningPositions={winningPositions}
-                cellAnimStates={cellAnimStates}
-                cellDropOffsets={cellDropOffsets}
-                tumblePhase={tumblePhase}
-                animationEpoch={animationEpoch}
-                multiplierSymbolsMap={multiplierSymbolsMap}
-              />
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Running win counter removed - consolidated into Gevinst bar */}
-
-      {/* Gevinst bar - always visible, above control panel */}
-      <div className="w-full flex justify-center">
-        <div className={cn(
-          "flex items-center gap-4 px-6 py-2 rounded-xl border",
-          isBonusActive
-            ? "bg-gradient-to-b from-yellow-900/60 via-amber-950/70 to-yellow-950/60 border-yellow-500/40"
-            : "bg-gradient-to-b from-blue-950/60 via-slate-950/60 to-blue-950/60 border-blue-500/20"
-        )}>
-          <div className="flex flex-col items-center">
-            <span className={cn(
-              "text-[10px] uppercase tracking-widest font-semibold",
-              isBonusActive ? "text-green-400/80" : "text-green-400/70"
-            )}>Gevinst</span>
-            <span className={cn(
-              "text-2xl font-black tabular-nums",
-              isBonusActive
-                ? "text-green-300 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)]"
-                : "text-green-300/90 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]"
-            )}>
-              {isBonusActive
-                ? (tumblePhase !== 'idle' ? (bonusWinnings + runningWin) : bonusWinnings).toLocaleString()
-                : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
-              }
-            </span>
+      {/* Side panels + Grid */}
+      <div className={cn("relative", isMobile ? "flex flex-col w-full" : "w-fit mx-auto")}>
+        {!isMobile && (
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4">
+            <BonanzaSidePanels
+              bet={bet}
+              doubleChance={doubleChance}
+              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+              onBuyBonus={handleBuyBonus}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive || isBuyingBonus}
+              isBonusActive={isBonusActive}
+            />
           </div>
-          {/* Tumble win - shown during active tumbles in bonus */}
-          {isBonusActive && tumblePhase !== 'idle' && runningWin > 0 && (
-            <>
-              <div className="w-px h-8 bg-yellow-500/30" />
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest font-semibold text-yellow-400/70">Tumble</span>
-                <span className="text-lg font-bold tabular-nums text-yellow-300 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]">
-                  +{runningWin.toLocaleString()}
-                </span>
+        )}
+
+        <div className="flex flex-col items-center">
+          {/* Bonus bar */}
+          {isBonusActive && (
+            <div className="w-full flex justify-center animate-fade-in mb-2">
+              <div className="flex items-center gap-6 px-8 py-3 rounded-2xl border-2 bg-gradient-to-b from-yellow-900/90 via-amber-950/95 to-yellow-950/90 border-yellow-500/60 shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)]">
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
+                  <div className="flex items-baseline gap-1">
+                    <AnimatedSpinCounter value={freeSpinsRemaining} className="text-4xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums" />
+                    <span className="text-lg text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
+                  </div>
+                </div>
+                <div className="w-px h-10 bg-yellow-500/30" />
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
+                  <span className="text-2xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
+                    x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
+                  </span>
+                </div>
               </div>
-            </>
+            </div>
           )}
+
+          {/* Main game grid */}
+          <div className="relative" style={{ width: gridWidth }}>
+            <div
+              ref={gridContainerRef}
+              className={cn(
+                "gates-grid-container relative rounded-xl border-2 overflow-hidden",
+                "bg-gradient-to-b from-blue-950/95 via-slate-950/90 to-blue-950/95",
+                "border-blue-500/30",
+                "gates-grid-intensity-glow",
+                screenShake === 'normal' && "gates-shake",
+                screenShake === 'intense' && "gates-shake-intense",
+                tumbleChainLength >= 3 && "gates-intensity-high"
+              )}
+              style={{ width: gridWidth, height: gridHeight }}
+            >
+              <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" />
+              <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" width={gridWidth} height={gridHeight} />
+              <div className="relative flex" style={{ gap: `${SYMBOL_GAP}px`, padding: `${SYMBOL_GAP}px` }}>
+                {Array.from({ length: GATES_COLS }).map((_, col) => {
+                  const colSymbolIds = grid ? grid[col] || [] : [];
+                  return (
+                    <GatesColumn
+                      key={col}
+                      col={col}
+                      spinState={columnSpinStates[col]}
+                      symbols={symbols}
+                      symbolsById={symbolsById}
+                      finalSymbolIds={colSymbolIds}
+                      winningPositions={winningPositions}
+                      cellAnimStates={cellAnimStates}
+                      cellDropOffsets={cellDropOffsets}
+                      tumblePhase={tumblePhase}
+                      animationEpoch={animationEpoch}
+                      bombSymbolsMap={bombSymbolsMap}
+                      symbolWidth={SYMBOL_WIDTH}
+                      symbolHeight={SYMBOL_HEIGHT}
+                      isBonusActive={isBonusActive}
+                    />
+                  );
+                })}
+              </div>
+              {/* Floating tumble win popups */}
+              <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
+              {/* Flying multipliers */}
+              <BonanzaFlyingMultiplier flyers={flyingMultipliers} />
+              {/* Tumble win bar */}
+              {!isMobile && (
+                <BonanzaTumbleWinBar
+                  runningWin={runningWin}
+                  runningMultiplier={runningMultiplier}
+                  collisionPhase={collisionPhase}
+                  visible={tumbleBarVisible}
+                  hideMultiplier={!isBonusActive}
+                />
+              )}
+              {/* Bonus overlays */}
+              <BonusEntrySequence
+                isActive={showBonusTrigger}
+                freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 15}
+                onComplete={handleBonusEntryComplete}
+              />
+              <GatesRetriggerOverlay
+                isActive={showRetrigger}
+                spinsAwarded={5}
+                onComplete={handleRetriggerComplete}
+              />
+              <GatesBonusEndOverlay
+                isActive={showBonusComplete}
+                totalWin={bonusWinnings}
+                totalMultiplier={cumulativeMultiplier}
+                totalSpins={totalFreeSpins}
+                onComplete={() => {
+                  slotSounds.playBonusEnd();
+                  setShowBonusComplete(false);
+                  showBonusCompleteRef.current = false;
+                  setIsBonusActive(false);
+                  isBonusActiveRef.current = false;
+                  setBonusAutoSpinPending(false);
+                  setCumulativeMultiplier(0);
+                  setRunningMultiplier(0);
+                  setBonusWinnings(0);
+                  setRunningWin(0);
+                  setWinAmount(0);
+                  setIsBuyingBonus(false);
+                  try { localStorage.removeItem(bonusWinKey); } catch {}
+                  if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+                    if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+                    autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+                  }
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Lightning flash */}
+          {showLightningFlash && <div className="gates-lightning-overlay" />}
         </div>
       </div>
+
+      {/* Mobile side panels */}
+      {isMobile && (
+        <div className="w-full px-1">
+          <BonanzaSidePanels
+            bet={bet}
+            doubleChance={doubleChance}
+            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+            onBuyBonus={handleBuyBonus}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBuyingBonus}
+            isBonusActive={isBonusActive}
+            horizontal
+            compact
+          />
+        </div>
+      )}
+
+      {/* Bonus remaining spins */}
+      {isBonusActive && isMobile && (
+        <div className="w-full flex justify-center">
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm uppercase tracking-widest font-black text-white" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>
+              Resterende spins
+            </span>
+            <AnimatedSpinCounter value={freeSpinsRemaining} className="text-2xl font-black text-white tabular-nums" />
+            <span className="text-sm text-white/60 font-black">/ {totalFreeSpins}</span>
+          </div>
+        </div>
+      )}
+
       {/* Control panel */}
-      <div className="w-full">
-        <GatesControlBar
+      <div className="w-full relative">
+        <BonanzaControlBar
           bet={bet}
           onBetChange={setBet}
+          onSpin={handleSpinWithPress}
           minBet={slotSettings.minBet}
           maxBet={slotSettings.maxBet}
-          onSpin={handleSpinWithPress}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
           isSpinLocked={spinLockRef.current}
           canSpin={canSpin}
@@ -945,10 +1125,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           autoSpinsRemaining={autoSpinsRemaining}
           onAutoSpinCountChange={setAutoSpinCount}
           onAutoSpinToggle={toggleAutoSpin}
-          bonusState={{ isActive: isBonusActive, freeSpinsRemaining: 0 }}
+          bonusState={{ isActive: isBonusActive, freeSpinsRemaining, totalFreeSpins }}
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
+          isMobile={isMobile}
+          tumbleRunningWin={runningWin}
+          tumbleRunningMultiplier={runningMultiplier}
+          tumbleCollisionPhase={collisionPhase}
+          tumbleVisible={isMobile && tumbleBarVisible}
+          tumbleHideMultiplier={!isBonusActive}
         />
       </div>
     </div>
