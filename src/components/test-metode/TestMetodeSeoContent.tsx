@@ -12,7 +12,7 @@ export function TestMetodeSeoContent() {
       {/* ── Case Study 1: SpilDanskNu ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Target className="h-6 w-6 text-primary" />
+           <MenuIcon iconName="target" className="h-6 w-6" />
           Case Study: SpilDanskNu – Fra Registrering til Udbetaling
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
