@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import rtLogo from "@/assets/screenshots/rt-logo.webp";
+import rtKatalog from "@/assets/screenshots/rt-katalog.webp";
+import rtGameplay from "@/assets/screenshots/rt-gameplay.webp";
+import rtAwards from "@/assets/screenshots/rt-awards.webp";
+import rtGonzos from "@/assets/screenshots/rt-gonzos.webp";
 
 const RedTigerGuide = () => (
   <ProviderPage
@@ -24,6 +30,13 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gaming er en spiludvikler grundlagt i 2014 i St. Julians, Malta, af en gruppe erfarne branchefolk med baggrund i spiludvikling i både Europa og Asien. Det asiatiske DNA er synligt i Red Tigers designæstetik: farvemætte visuals, lykke-temaer og en æstetisk sensibilitet der skiller sig ud fra de typisk skandinavisk-minimalistiske konkurrenter. Med over 220 spilleautomater og en unik specialisering i gamification-features har Red Tiger skabt en niche der kombinerer slots med konkurrence- og engagement-elementer som ingen anden udvikler har mestret.
         </p>
+        <ReviewScreenshot
+          src={rtLogo}
+          alt="Red Tiger Gaming officielt logo – rød tiger-maskot og studionavn"
+          caption="Red Tiger Gamings ikoniske logo med den røde tiger – det maltesisk-grundlagte studio bag Daily Jackpots og Tournaments."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De to innovationer der definerer Red Tiger er Daily Jackpots og Tournaments. Daily Jackpots er et must-drop-before-system: jackpotten SKAL udbetales inden midnat (23:59 UTC) hver dag. Jo tættere på deadline, desto højere sandsynlighed for at den falder – matematisk styret via en dynamisk algoritme der gradvist øger triggerchancen. Beløbene er moderate (typisk €500-€5.000), men den garanterede daglige udbetaling skaber en forudsigelig spænding der er fundamentalt anderledes end traditionelle progressive jackpots hvor man kan vente uger eller måneder.
         </p>
@@ -55,6 +68,12 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Volatilitetsprofilen er medium til høj med RTP-intervallet 94,0-96,5%. Red Tigers Megaways-titler (Piggy Riches Megaways, Gonzo's Quest Megaways) har naturligt højere volatilitet pga. de dynamiske hjul, mens Daily Jackpot-spil typisk er medium-volatilitet med højere hitfrekvens. Denne bredde gør Red Tiger til et mere versatilt studio end niche-spillere som <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> eller <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>.
         </p>
+        <ReviewScreenshot
+          src={rtGameplay}
+          alt="Red Tiger spilkatalog hos Videoslots med Temple Tumble Megaways og Battle of Slots"
+          caption="Red Tigers slots i lobbyen hos Videoslots – her med Temple Tumble Megaways i fokus og det karakteristiske Battle of Slots-turneringssystem."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Sammenlignet med <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link>, der også har turnerings-funktionalitet, differentierer Red Tiger sig ved integrationsdybden. Pragmatic Plays turneringer fungerer som et separat lag over spillet; Red Tigers er bygget direkte ind i spilgrænsefladen med native UI-elementer der viser leaderboard-position, point-optjening og countdown-timere i real-time. Denne native integration skaber en sømløs oplevelse hvor turneringen føles som en del af spillet snarere end en påklistret tilføjelse.
         </p>
@@ -95,9 +114,21 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gamings spilkatalog er opdelt i tre kategorier: Megaways-varianter (licenseret fra <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">BTG</Link>), Daily Jackpot-spil med garanterede daglige udbetalinger, og standard slots med gamification-features. De mest kommercielt succesfulde er Megaways-varianterne der genopfinder klassiske NetEnt-brands i en høj-volatilitet-kontekst.
         </p>
+        <ReviewScreenshot
+          src={rtKatalog}
+          alt="Red Tiger Gaming – Most Popular, Hot as Hell og Cold as Ice slots med Cash Volt, 777 Strike og Diamond Blitz"
+          caption="Red Tigers mest populære og hotteste slots – Cash Volt, 777 Strike og Diamond Blitz dominerer med Daily Jackpots-integration."
+          size="full"
+        />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Tournaments tilføjer en unik dimension: spillere der spiller Daily Jackpot-spil under en aktiv turnering optjener point baseret på gevinstmultiplikatorer. En 50x gevinst giver flere point end en 5x gevinst, uanset absolut beløb. Præmier inkluderer kontant, free spins og eksklusive bonusser. Det er et system der appellerer til spillere der søger mere end bare individuel gevinstjagt.
         </p>
+        <ReviewScreenshot
+          src={rtGonzos}
+          alt="Gonzo's Quest Megaways gameplay – Red Tiger x NetEnt samarbejde med Avalanche-mekanik"
+          caption="Gonzo's Quest Megaways i aktion – Red Tigers definerende NetEnt-samarbejde med 117.649 vinderkombinationer og cascading wins."
+          size="full"
+        />
       </>
     }
     games={[
@@ -113,6 +144,12 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gaming har licenser fra fire regulatorer: Malta Gaming Authority, UK Gambling Commission, HM Government of Gibraltar og Alderney Gambling Control Commission. De er en af ganske få spiludviklere med ISO 27001 certificering – den internationale standard for informationssikkerhedsstyring – hvilket dækker spillerdata, transaktionsdata og Daily Jackpot-algoritmens integritet. Under Evolution-paraplyen overholder de koncernens compliance-standarder der er blandt branchens strengeste.
         </p>
+        <ReviewScreenshot
+          src={rtAwards}
+          alt="Red Tiger Gaming awards – EGR B2B Awards, GIA Awards og WhichBingo Awards fra 2017-2020"
+          caption="Red Tigers imponerende prissamling – 15+ branchepriser inkl. EGR B2B Slot Supplier, Innovation in Mobile og Casino Supplier of the Year."
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Daily Jackpot-algoritmen er separat certificeret for at sikre at must-drop-before-mekanikken fungerer som annonceret: jackpotten SKAL falde inden midnat UTC, og triggerchancen øges matematisk korrekt i løbet af dagen. Tournaments-funktionens point-system er verificeret for fairness – multiplikator-baseret scoring sikrer at spillere med forskellige indsatsniveauer konkurrerer på lige vilkår. Megaways-titlerne bruger BTGs patenterede Random Reel Modifier under licensaftale, certificeret af BMM Testlabs.
         </p>
