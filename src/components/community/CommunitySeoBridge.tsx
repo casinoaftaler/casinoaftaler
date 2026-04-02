@@ -116,7 +116,7 @@ export function CommunitySeoBridge() {
               "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
           }}
         >
-          <primaryLink.icon className="h-4 w-4" />
+          <MenuIcon iconName={primaryLink.iconName} className="h-4 w-4" />
           {primaryLink.label}
           <ArrowRight className="h-3.5 w-3.5 ml-auto" />
         </Button>
