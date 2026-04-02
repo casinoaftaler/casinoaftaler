@@ -458,7 +458,7 @@ export function TestMetodeSeoContent() {
       {/* ── Compliance & Kvalitetskontrol ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <FileText className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="file-text" className="h-6 w-6" />
           Compliance & Kvalitetskontrol
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
