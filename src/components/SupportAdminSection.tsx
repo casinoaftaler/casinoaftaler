@@ -188,41 +188,142 @@ export function SupportAdminSection() {
               : "Administrer brugerhenvendelser"}
           </p>
         </div>
-        <Dialog open={broadcastOpen} onOpenChange={setBroadcastOpen}>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="gap-2">
-              <Megaphone className="h-4 w-4" />
-              Skriv besked til alle
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Send broadcast-besked</DialogTitle>
-            </DialogHeader>
-            <p className="text-sm text-muted-foreground">
-              Beskeden vises som en chat-boble for alle indloggede brugere.
-            </p>
-            <textarea
-              value={broadcastText}
-              onChange={(e) => setBroadcastText(e.target.value)}
-              placeholder="Skriv din besked her..."
-              className="w-full resize-none rounded-xl border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring min-h-[120px]"
-              maxLength={2000}
-            />
-            <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setBroadcastOpen(false)}>
-                Annuller
+        <div className="flex items-center gap-2">
+          {/* Private message dialog */}
+          <Dialog open={dmOpen} onOpenChange={(open) => {
+            setDmOpen(open);
+            if (!open) { setDmSelectedUser(null); setDmSearch(""); setDmResults([]); setDmMessage(""); }
+          }}>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="gap-2">
+                <Mail className="h-4 w-4" />
+                Skriv privat besked
               </Button>
-              <Button
-                onClick={handleSendBroadcast}
-                disabled={!broadcastText.trim() || broadcastSending}
-              >
-                {broadcastSending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
-                Send til alle
+            </DialogTrigger>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>Send privat besked</DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-muted-foreground">
+                Beskeden vises i brugerens support-chat.
+              </p>
+
+              {!dmSelectedUser ? (
+                <div className="space-y-3">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      value={dmSearch}
+                      onChange={(e) => handleDmSearch(e.target.value)}
+                      placeholder="Søg efter brugernavn..."
+                      className="pl-9"
+                      autoFocus
+                    />
+                  </div>
+                  {dmSearching && (
+                    <div className="flex justify-center py-3">
+                      <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                    </div>
+                  )}
+                  {dmResults.length > 0 && (
+                    <div className="max-h-[240px] overflow-y-auto space-y-1 border rounded-lg p-1">
+                      {dmResults.map((p) => (
+                        <button
+                          key={p.user_id}
+                          onClick={() => setDmSelectedUser(p)}
+                          className="w-full flex items-center gap-3 px-3 py-2 rounded-md hover:bg-muted/60 transition-colors text-left"
+                        >
+                          <Avatar className="h-8 w-8">
+                            <AvatarImage src={p.avatar_url || undefined} />
+                            <AvatarFallback><User className="h-3.5 w-3.5" /></AvatarFallback>
+                          </Avatar>
+                          <span className="text-sm font-medium truncate">
+                            {p.display_name || "Anonym"}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {dmSearch.length >= 2 && !dmSearching && dmResults.length === 0 && (
+                    <p className="text-sm text-muted-foreground text-center py-3">Ingen brugere fundet</p>
+                  )}
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-3 bg-muted/40 rounded-lg">
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage src={dmSelectedUser.avatar_url || undefined} />
+                      <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <span className="text-sm font-semibold">{dmSelectedUser.display_name || "Anonym"}</span>
+                    </div>
+                    <Button size="sm" variant="ghost" onClick={() => { setDmSelectedUser(null); setDmSearch(""); setDmResults([]); }}>
+                      Skift
+                    </Button>
+                  </div>
+                  <textarea
+                    value={dmMessage}
+                    onChange={(e) => setDmMessage(e.target.value)}
+                    placeholder="Skriv din besked her..."
+                    className="w-full resize-none rounded-xl border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring min-h-[120px]"
+                    maxLength={2000}
+                    autoFocus
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button variant="outline" onClick={() => setDmOpen(false)}>
+                      Annuller
+                    </Button>
+                    <Button
+                      onClick={handleSendDm}
+                      disabled={!dmMessage.trim() || dmSending}
+                    >
+                      {dmSending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
+                      Send besked
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
+
+          {/* Broadcast dialog */}
+          <Dialog open={broadcastOpen} onOpenChange={setBroadcastOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="gap-2">
+                <Megaphone className="h-4 w-4" />
+                Skriv besked til alle
               </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Send broadcast-besked</DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-muted-foreground">
+                Beskeden vises som en chat-boble for alle indloggede brugere.
+              </p>
+              <textarea
+                value={broadcastText}
+                onChange={(e) => setBroadcastText(e.target.value)}
+                placeholder="Skriv din besked her..."
+                className="w-full resize-none rounded-xl border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring min-h-[120px]"
+                maxLength={2000}
+              />
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setBroadcastOpen(false)}>
+                  Annuller
+                </Button>
+                <Button
+                  onClick={handleSendBroadcast}
+                  disabled={!broadcastText.trim() || broadcastSending}
+                >
+                  {broadcastSending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="h-4 w-4 mr-2" />}
+                  Send til alle
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-[500px]">
