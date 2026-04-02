@@ -326,32 +326,32 @@ export function TestMetodeSeoContent() {
         </p>
 
         <div className="space-y-4">
-          {[
-            {
-              title: "Sikkerhed & Licens (30%)",
-              icon: Shield,
-              content: `Denne kategori er binær i sin kernevurdering: Har casinoet en gyldig dansk licens fra Spillemyndigheden? Hvis nej, scorer casinoet 0 og anmeldes ikke. Hvis ja, evaluerer vi yderligere: SSL-krypteringsstyrke (TLS 1.3 er standard), implementering af ansvarligt spil-værktøjer (indbetalingsgrænser, tabsgrænser, session-påmindelser, selvudelukkelse via ROFUS), KYC-processer (hastighed og grundighed), samt databeskyttelse i henhold til GDPR. Et casino kan score mellem 3.0 og 5.0 i denne kategori – 3.0 for minimum compliance, 5.0 for eksemplarisk implementering af spillerbeskyttelse.`,
-            },
-            {
-              title: "Spiludvalg (20%)",
-              icon: Database,
-              content: `Vi evaluerer både kvantitet og kvalitet. Et casino med 3.000 spil er ikke nødvendigvis bedre end et med 1.500, hvis sidstnævnte har bedre kurering. Vi tjekker: Antal unikke spiludbydere (minimum 10 for en god score), tilstedeværelse af tier-1 udbydere (NetEnt, Pragmatic Play, Play'n GO, Evolution Gaming), live casino-kvalitet (antal borde, åbningstider, dealer-kvalitet), RTP-gennemsigtighed (oplyser casinoet RTP pr. spil?), og eksklusivt indhold. Vi krydstjekker med data fra vores bonus hunts og slot-database for at sikre, at de oplyste RTP-værdier er korrekte.`,
-            },
-            {
-              title: "Bonus & Vilkår (20%)",
-              icon: TrendingUp,
-              content: `Bonusvurdering handler ikke om størrelse, men om reel værdi. Vi beregner Expected Value (EV) for hver bonus: EV = Bonusbeløb × (1 - House Edge × Omsætningskrav). For en typisk dansk bonus på 1.000 kr. med 10x omsætning og 3% house edge er EV = 1.000 × (1 - 0.03 × 10) = 700 kr. Det er en positiv EV, som bekræfter, at den danske 10x-grænse giver reel værdi for spilleren. Vi evaluerer desuden: non-sticky vs. sticky bonus (non-sticky er altid bedre), gyldighedsperiode, maksimal indsats under omsætning, og klarhed i vilkårsformulering.`,
-            },
-            {
-              title: "Udbetaling (15%)",
-              icon: Clock,
-              content: `Vi gennemfører minimum to testudbetalinger pr. casino med forskellige metoder. Vi måler: Behandlingstid fra anmodning til godkendelse, total tid fra anmodning til penge på konto, eventuelle gebyrer, minimumsgrænser for udbetaling, og om casinoet respekterer den annoncerede behandlingstid. Et casino, der lover "op til 24 timer" men konsekvent bruger 48 timer, straffes i vores scoring. Omvendt belønner vi casinoer, der konsekvent leverer hurtigere end annonceret.`,
-            },
-            {
-              title: "Brugeroplevelse (15%)",
-              icon: Eye,
-              content: `Denne kategori dækker alt, der påvirker den daglige spilleoplevelse: Navigationsstruktur og søgefunktionalitet, mobilresponsivitet og app-kvalitet, indlæsningstider (vi benchmarker med Lighthouse), kundeservicekvalitet (svartid, kompetence, sprogunderstøttelse), og spilfiltreringsmuligheder. Vi tester på minimum tre enheder: desktop (Windows/Chrome), mobil (iPhone/Safari) og tablet (iPad/Safari) for at sikre en konsistent oplevelse.`,
-            },
+           {[
+             {
+               title: "Sikkerhed & Licens (30%)",
+               iconName: "shield-check",
+               content: `Denne kategori er binær i sin kernevurdering: Har casinoet en gyldig dansk licens fra Spillemyndigheden? Hvis nej, scorer casinoet 0 og anmeldes ikke. Hvis ja, evaluerer vi yderligere: SSL-krypteringsstyrke (TLS 1.3 er standard), implementering af ansvarligt spil-værktøjer (indbetalingsgrænser, tabsgrænser, session-påmindelser, selvudelukkelse via ROFUS), KYC-processer (hastighed og grundighed), samt databeskyttelse i henhold til GDPR. Et casino kan score mellem 3.0 og 5.0 i denne kategori – 3.0 for minimum compliance, 5.0 for eksemplarisk implementering af spillerbeskyttelse.`,
+             },
+             {
+               title: "Spiludvalg (20%)",
+               iconName: "database",
+               content: `Vi evaluerer både kvantitet og kvalitet. Et casino med 3.000 spil er ikke nødvendigvis bedre end et med 1.500, hvis sidstnævnte har bedre kurering. Vi tjekker: Antal unikke spiludbydere (minimum 10 for en god score), tilstedeværelse af tier-1 udbydere (NetEnt, Pragmatic Play, Play'n GO, Evolution Gaming), live casino-kvalitet (antal borde, åbningstider, dealer-kvalitet), RTP-gennemsigtighed (oplyser casinoet RTP pr. spil?), og eksklusivt indhold. Vi krydstjekker med data fra vores bonus hunts og slot-database for at sikre, at de oplyste RTP-værdier er korrekte.`,
+             },
+             {
+               title: "Bonus & Vilkår (20%)",
+               iconName: "trending-up",
+               content: `Bonusvurdering handler ikke om størrelse, men om reel værdi. Vi beregner Expected Value (EV) for hver bonus: EV = Bonusbeløb × (1 - House Edge × Omsætningskrav). For en typisk dansk bonus på 1.000 kr. med 10x omsætning og 3% house edge er EV = 1.000 × (1 - 0.03 × 10) = 700 kr. Det er en positiv EV, som bekræfter, at den danske 10x-grænse giver reel værdi for spilleren. Vi evaluerer desuden: non-sticky vs. sticky bonus (non-sticky er altid bedre), gyldighedsperiode, maksimal indsats under omsætning, og klarhed i vilkårsformulering.`,
+             },
+             {
+               title: "Udbetaling (15%)",
+               iconName: "clock",
+               content: `Vi gennemfører minimum to testudbetalinger pr. casino med forskellige metoder. Vi måler: Behandlingstid fra anmodning til godkendelse, total tid fra anmodning til penge på konto, eventuelle gebyrer, minimumsgrænser for udbetaling, og om casinoet respekterer den annoncerede behandlingstid. Et casino, der lover "op til 24 timer" men konsekvent bruger 48 timer, straffes i vores scoring. Omvendt belønner vi casinoer, der konsekvent leverer hurtigere end annonceret.`,
+             },
+             {
+               title: "Brugeroplevelse (15%)",
+               iconName: "eye",
+               content: `Denne kategori dækker alt, der påvirker den daglige spilleoplevelse: Navigationsstruktur og søgefunktionalitet, mobilresponsivitet og app-kvalitet, indlæsningstider (vi benchmarker med Lighthouse), kundeservicekvalitet (svartid, kompetence, sprogunderstøttelse), og spilfiltreringsmuligheder. Vi tester på minimum tre enheder: desktop (Windows/Chrome), mobil (iPhone/Safari) og tablet (iPad/Safari) for at sikre en konsistent oplevelse.`,
+             },
           ].map((item) => (
             <Card key={item.title} className="border-border bg-card">
               <CardContent className="p-5">
