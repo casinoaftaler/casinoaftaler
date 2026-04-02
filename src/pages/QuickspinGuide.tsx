@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import qsLogo from "@/assets/screenshots/qs-logo.webp";
+import qsGames from "@/assets/screenshots/qs-games.webp";
+import qsKatalog from "@/assets/screenshots/qs-katalog.webp";
+import qsGameplay from "@/assets/screenshots/qs-gameplay.webp";
 
 const QuickspinGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const QuickspinGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche hvor de fleste spiludviklere konkurrerer på enten volumen eller volatilitet, har Quickspin valgt en tredje vej: spillerengagement. Det Stockholm-baserede studio, grundlagt i 2011 af tre <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-veteraner, har opbygget sin identitet på en deceptivt simpel præmis – at den bedste spilleautomat ikke nødvendigvis er den med den højeste maks. gevinst eller den mest eksotiske mekanik, men den der får spilleren til at vende tilbage dag efter dag. Denne filosofi manifesterer sig i alt hvad Quickspin producerer: fra deres patenterede Achievement Engine til den omhyggelige balancering af RTP og hitfrekvens i hvert eneste spil.
         </p>
+        <ReviewScreenshot
+          src={qsLogo}
+          alt="Quickspin officielt logo – svensk premium-spiludvikler"
+          caption="Quickspins orange signaturlogo – det Stockholm-baserede studio bag Achievement Engine og Big Bad Wolf."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Quickspins grundlæggere – Daniel Lindberg, Mats Westerlund og Joachim Timmermans – forlod NetEnt med en præcis diagnose af branchens fundamentale problem: spillemaskiner var designet til at tiltrække spillere, men ikke til at fastholde dem. Den gennemsnitlige spiller prøver et nyt spil i 3-5 minutter og går videre til det næste. Quickspins løsning var at integrere gamification-principper fra mobilspilindustrien – XP-progression, achievements, daglige missioner – direkte i slot-oplevelsen. Resultatet var Achievement Engine, et proprietært system der transformerer passive slot-spillere til aktive deltagere i en progressions-mekanisme.
         </p>
@@ -64,6 +76,12 @@ const QuickspinGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den afgørende differentiering er dog Achievement Engine. NetEnt har intet tilsvarende, og ingen af de andre store studios har replikeret Quickspins gamification-system med samme dybde. I en branche der i stigende grad konkurrerer om spillernes opmærksomhed (mod sociale medier, streaming, mobile spil), er evnen til at fastholde spillere via progression og mål en strategisk superpower. Quickspin har ikke bare lånt fra mobilspilindustrien – de har integreret dens bedste principper i casino-konteksten mere effektivt end nogen konkurrent.
         </p>
+        <ReviewScreenshot
+          src={qsGames}
+          alt="Quickspin Games og Quickspin Live – officiel hjemmeside med Big Bad Wolf Live og Sakura Fortune"
+          caption="Quickspins officielle spilsektion med nye titler og Quickspin Live – studiets udvidelse til live casino."
+          size="full"
+        />
 
         <h3 className="text-xl font-bold mb-3 mt-6">Playtech-Alliancen: Kreativ Frihed Under Koncernparaply</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -135,12 +153,24 @@ const QuickspinGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={qsKatalog}
+          alt="Quickspin spilkatalog på CampoBet casino med titler som Savannah Fortune og Sakura Fortune"
+          caption="Quickspins katalog på CampoBet – Robbits, El Copy, Sakura Fortune og mange flere kvalitetsslots."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Quickspins portefølje er kurateret med kirurgisk præcision. Hvert spil er designet til at udfylde en specifik rolle i casinolobbyen – fra entry-level titler med lav volatilitet til premium-slots med avancerede bonusstrukturer. Fælles for dem alle er den karakteristiske Quickspin-polering: flydende animationer, intuitiv navigation, og en matematisk model der belønner vedholdenhed over impulsivitet.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere der bruger <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> til bonusomsætning, er Quickspin-slots generelt solide valg takket være den høje hitfrekvens og forudsigelige volatilitet. Den mediumlave varians reducerer risikoen for hurtig saldotømning under wagering-perioden – en praktisk fordel der ofte overses i slot-anmeldelser.
         </p>
+        <ReviewScreenshot
+          src={qsGameplay}
+          alt="Robbits gameplay – farverig grid-slot fra Quickspin med bonus-køb og kanin-karakterer"
+          caption="Robbits gameplay – Quickspins nyeste titel med farverige kanin-karakterer, wild-symboler og bonus-køb for 10 DKK ekstra."
+          size="full"
+        />
       </>
     }
     games={[
