@@ -81,6 +81,11 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den mest relevante sammenligning for Thunderkick er ikke Pragmatic Play eller NetEnt, men <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> – det andet svenske indie-studio der har skabt en niché baseret på kvalitet over kvantitet. Begge deler den skandinaviske design-æstetik, begge prioriterer innovation over volumen, og begge har opbygget loyale fanbases i niche-communities. Men der er afgørende forskelle.
         </p>
+        <ReviewScreenshot
+          src={tkProviders}
+          alt="Campobet udbyderoversigt – Thunderkick med 55 titler blandt 80+ spiludviklere inklusiv Pragmatic, NetEnt og Yggdrasil"
+          caption="Thunderkick med 55 titler på Campobet – en boutique-portefølje sammenlignet med Pragmatics 527 og PlaynGOs 434."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios har specialiseret sig i funktionelle innovationer: Avalanche Reels-varianter (Kaiju), Walking Wilds (Cygnus), og deres signaturtilgang til gamification med XP-progression. Thunderkick prioriterer æstetisk innovation: unikke visuelle stilarter, uventede temaer og en fortællemæssig dybde der overskrider det funktionelle. ELK-spil er mekanisk interessante; Thunderkick-spil er oplevelsesmæssigt unikke. For spillere der prioriterer gameplay-dybde er ELK det bedre valg. For spillere der søger en immersiv, kunstnerisk oplevelse er Thunderkick uovertruffen.
         </p>
