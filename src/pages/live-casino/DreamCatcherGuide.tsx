@@ -107,10 +107,10 @@ const DreamCatcherGuide = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(170 60% 22%), hsl(200 50% 18%) 40%, hsl(220 65% 15%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><Dices className="mr-1.5 h-3.5 w-3.5" /> Money Wheel-pioneren</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Dream Catcher – Det Originale Money Wheel</h1>
             <p className="text-lg text-white/80">
               Evolutions første live game show med 54 segmenter, multiplikator-mekanik og RTP op til 96,6 %. Den komplette matematiske analyse.
