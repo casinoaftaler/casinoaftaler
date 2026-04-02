@@ -153,12 +153,24 @@ const QuickspinGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={qsKatalog}
+          alt="Quickspin spilkatalog på CampoBet casino med titler som Savannah Fortune og Sakura Fortune"
+          caption="Quickspins katalog på CampoBet – Robbits, El Copy, Sakura Fortune og mange flere kvalitetsslots."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Quickspins portefølje er kurateret med kirurgisk præcision. Hvert spil er designet til at udfylde en specifik rolle i casinolobbyen – fra entry-level titler med lav volatilitet til premium-slots med avancerede bonusstrukturer. Fælles for dem alle er den karakteristiske Quickspin-polering: flydende animationer, intuitiv navigation, og en matematisk model der belønner vedholdenhed over impulsivitet.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere der bruger <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> til bonusomsætning, er Quickspin-slots generelt solide valg takket være den høje hitfrekvens og forudsigelige volatilitet. Den mediumlave varians reducerer risikoen for hurtig saldotømning under wagering-perioden – en praktisk fordel der ofte overses i slot-anmeldelser.
         </p>
+        <ReviewScreenshot
+          src={qsGameplay}
+          alt="Robbits gameplay – farverig grid-slot fra Quickspin med bonus-køb og kanin-karakterer"
+          caption="Robbits gameplay – Quickspins nyeste titel med farverige kanin-karakterer, wild-symboler og bonus-køb for 10 DKK ekstra."
+          size="full"
+        />
       </>
     }
     games={[
