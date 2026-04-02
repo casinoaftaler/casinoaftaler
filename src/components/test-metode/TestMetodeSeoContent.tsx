@@ -569,7 +569,7 @@ export function TestMetodeSeoContent() {
       {/* ── Datakilder & Metodik ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Database className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="database" className="h-6 w-6" />
           Datakilder & Evidensbaseret Tilgang
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
