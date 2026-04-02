@@ -135,9 +135,21 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic opererer under licenser fra Malta Gaming Authority (MGA), UK Gambling Commission (UKGC) og den hollandske Kansspelautoriteit (KSA). Deres hollandske licens er særligt bemærkelsesværdig – som et af de første studier certificeret til det nylicenserede hollandske marked har de opbygget en regulatorisk ekspertise der er direkte overførbar til lignende jurisdiktioner. Alle spil er RNG-certificeret af BMM Testlabs og eCOGRA.
         </p>
+        <ReviewScreenshot
+          src={stakeStats2}
+          alt="Stakelogic Company Stats – 550+ medarbejdere, 20+ markeder, 10+ gaming-licenser, 5 kontorer"
+          caption="Stakelogics globale tilstedeværelse: 550+ medarbejdere, 10+ licenser og distribution til 20+ markeder."
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Stakelogic-titler tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Novomatics regulatoriske track record – over 30 års erfaring med verdens strengeste gaming-myndigheder – giver en ekstra troværdighedsdimension til Stakelogics compliance-profil.
         </p>
+        <ReviewScreenshot
+          src={stakeGameplay}
+          alt="Penguin Payday gameplay – Stakelogic spilleautomat med vinterarktisk tema, multiplikator og Super Stake-knap"
+          caption="Penguin Payday i aktion: isblåt tema med multiplikator-mekanik og den karakteristiske Super Stake™-toggle i højre side."
+          size="medium"
+        />
       </>
     }
     pros={[
