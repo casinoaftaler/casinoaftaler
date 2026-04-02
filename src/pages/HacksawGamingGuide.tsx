@@ -32,6 +32,12 @@ const HacksawGamingGuide = () => (
     introTitle="Skrabelodder, Punk-Attitude og 55.000x: Hacksaw Gamings Usandsynlige Oprejsning"
     introContent={
       <>
+        <ReviewScreenshot
+          src={hacksawLogo}
+          alt="Hacksaw Gaming officielt logo – sort tekst med karakteristisk split-design der afspejler studiets disruptive tilgang"
+          caption="Hacksaw Gamings officielle logo fra deres hjemmeside – det grafiske split-design symboliserer studiets brud med konventioner"
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I 2018 registrerede en gruppe iværksættere et nyt spiludviklingsselskab på Malta. Deres produkt? Skrabelodder – den digitale ækvivalent til de fysiske skrabespil du finder i kiosken. Ingen tog notits. Ingen burde have gjort det. Skrabelodder er casinoindustriens parkeringsplads: funktionelle, uinspirerende og med en margen der næppe retfærdiggør investeringen. Men Hacksaw Gaming havde aldrig intentioner om at blive på parkeringspladsen. De brugte skrabelodderne som et laboratorium – en kontrolleret sandkasse hvor de testede kompakte spilflader, øjeblikkelig feedback og visuelle overdrev, der ville forme alt hvad de efterfølgende skabte.
         </p>
