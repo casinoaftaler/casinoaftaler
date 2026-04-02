@@ -115,11 +115,11 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
               </span>
             </div>
           )}
-          <StatRow icon={Dice3} label="Avg Bet" value={`${s.averageBet} kr`} />
-          <StatRow icon={BarChart3} label="Average X" value={s.averageX !== null ? `${s.averageX}x` : '—'} highlight />
-          <StatRow icon={Scale} label="Break-Even X" value={`${s.breakEvenX}x`} />
-          <StatRow icon={Trophy} label="Highest Win" value={`${s.highestWin.toLocaleString('da-DK')} kr`} />
-          <StatRow icon={Rocket} label="Highest Multiplier" value={`${s.highestMultiplier}x`} />
+          <StatRow iconName="dice-3" label="Avg Bet" value={`${s.averageBet} kr`} />
+          <StatRow iconName="bar-chart-3" label="Average X" value={s.averageX !== null ? `${s.averageX}x` : '—'} highlight />
+          <StatRow iconName="scale" label="Break-Even X" value={`${s.breakEvenX}x`} />
+          <StatRow iconName="trophy" label="Highest Win" value={`${s.highestWin.toLocaleString('da-DK')} kr`} />
+          <StatRow iconName="rocket" label="Highest Multiplier" value={`${s.highestMultiplier}x`} />
         </div>
 
         {/* Review CTA – matching "Se Free Spins" style */}

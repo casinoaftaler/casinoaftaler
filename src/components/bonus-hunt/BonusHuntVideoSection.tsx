@@ -187,7 +187,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
                   key={badge.label}
                   className="inline-flex items-center gap-1 rounded-full bg-muted/40 px-2.5 py-1 text-[11px] text-muted-foreground transition-all duration-[180ms] hover:bg-muted/60"
                 >
-                  <Icon className={`h-3 w-3 ${badge.color}`} />
+                  <MenuIcon iconName={badge.iconName} className={`h-3 w-3`} />
                   {badge.label}
                 </span>
               );
