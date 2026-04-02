@@ -79,7 +79,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${applyDropOff ? 'off' : applyDropIn ? 'in' : 'idle'}`}
             className={cn(
               "relative rounded-lg overflow-visible",
-              "bg-blue-950/50 border border-blue-500/10",
+              "bg-transparent",
               isWinning && "gates-win-highlight",
               isLanding && "gates-column-stop-impact",
               applyDropOff && "gates-drop-off",
