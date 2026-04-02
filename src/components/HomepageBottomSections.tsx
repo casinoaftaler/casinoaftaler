@@ -3,21 +3,13 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  CheckCircle2,
   ArrowRight,
   Search,
-  Star,
 } from "lucide-react";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
+import { MenuIcon } from "@/components/MenuIcon";
 
-function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
-  const src = MENU_ICON_MAP[iconName];
-  if (!src) return null;
-  return <img src={src} alt={alt} className={className} loading="lazy" />;
-}
+// MenuIcon is now imported from @/components/MenuIcon
 
 /* ─── Logo imports ─── */
 const casinoLogos = import.meta.glob<{ default: string }>(
@@ -214,7 +206,7 @@ export function HomepageTrendsSection() {
             key={trend.title}
             className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
           >
-            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <MenuIcon iconName="circle-check" className="mt-0.5 h-5 w-5 flex-shrink-0" />
             <div>
               <h3 className="font-semibold">{trend.title}</h3>
               <p className="text-sm text-muted-foreground">
@@ -266,27 +258,27 @@ export function HomepageSlotShowcase() {
       </p>
       <ul className="space-y-2 mb-4">
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline font-medium">Sweet Bonanza</Link>
           {" "}– Pragmatic Plays cluster-pays hit med 96,48 % RTP og 21.175× max win.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/gates-of-olympus" className="text-primary hover:underline font-medium">Gates of Olympus</Link>
           {" "}– Zeus' multiplikator-slot med op til 500× per spin og 96,50 % RTP.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className="text-primary hover:underline font-medium">Wanted Dead or a Wild</Link>
           {" "}– Hacksaw Gamings westernslot med Duel at Dawn og 12.500× max win.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className="text-primary hover:underline font-medium">Big Bass Bonanza</Link>
           {" "}– Money Collect-mekanikken fra Pragmatic Play med 96,71 % RTP.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/mega-moolah" className="text-primary hover:underline font-medium">Mega Moolah</Link>
           {" "}– Den progressive jackpot-legende fra Microgaming med milliongevinster.
         </li>
@@ -350,7 +342,7 @@ export function HomepageKonverteringsSection() {
     <section className="mb-12">
       <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
         <CardContent className="py-10 text-center space-y-4">
-          <Search className="h-12 w-12 mx-auto text-primary" />
+           <Search className="h-12 w-12 mx-auto text-primary" />
           <h2 className="text-2xl md:text-3xl font-bold">🏆 Find dit Online Casino i Danmark</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Vi har gjort forarbejdet, så du ikke behøver det. Sammenlign de bedste online casinoer med dansk licens – filtrér efter betalingsmetoder, spiludvalg og udbetalingshastighed, og find præcis det spillested, der passer til dig.
@@ -358,13 +350,13 @@ export function HomepageKonverteringsSection() {
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Button asChild size="lg" className="gap-2">
               <a href="#top-casinos">
-                <Trophy className="h-5 w-5" />
+                <MenuIcon iconName="trophy" className="h-5 w-5" />
                 Sammenlign Casinoer
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="gap-2">
               <Link to="/top-10-casino-online">
-                <Star className="h-5 w-5" />
+                <MenuIcon iconName="star" className="h-5 w-5" />
                 Se Top 10 Liste
                 <ArrowRight className="h-4 w-4" />
               </Link>

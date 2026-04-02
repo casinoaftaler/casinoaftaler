@@ -1,22 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  ChevronRight,
-  Crown,
-  Sparkles,
-  Gift,
-  Dices,
-  CreditCard,
-  Gamepad2,
-  Tv,
-  Star,
-  LayoutGrid,
-  Cherry,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { MENU_ICON_MAP } from "./header/menuIconMap";
+import { MenuIcon } from "@/components/MenuIcon";
 
 /* ─── Eager-load logo assets for sidebar ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
@@ -38,38 +27,18 @@ function resolveLogoUrl(path?: string): string | null {
   return all[path]?.default ?? null;
 }
 
-const iconMap: Record<string, React.ElementType> = {
-  crown: Crown,
-  sparkles: Sparkles,
-  gift: Gift,
-  dices: Dices,
-  creditCard: CreditCard,
-  gamepad2: Gamepad2,
-  tv: Tv,
-  star: Star,
-};
-/* ─── Direct icon map for sidebar fallback (no wildcard import) ─── */
-const SIDEBAR_ICON_MAP: Record<string, React.ElementType> = {
-  "dices": Dices,
-  "layout-grid": LayoutGrid,
-  "cherry": Cherry,
-  "creditCard": CreditCard,
-  "gamepad2": Gamepad2,
+/* iconName → MENU_ICON_MAP kebab-case name for category headers */
+const CATEGORY_ICON_MAP: Record<string, string> = {
+  crown: "crown",
+  sparkles: "sparkles",
+  gift: "gift",
+  dices: "dice-5",
+  creditCard: "credit-card",
+  gamepad2: "gamepad-2",
+  tv: "tv",
+  star: "star",
 };
 
-function getLucideIcon(name?: string): React.ElementType | null {
-  if (!name) return null;
-  return SIDEBAR_ICON_MAP[name] ?? null;
-}
-
-/* ─── Icon accent colors (matching mega menu) ─── */
-const ICON_COLORS = [
-  "bg-purple-500/15 text-purple-400",
-  "bg-blue-500/15 text-blue-400",
-  "bg-emerald-500/15 text-emerald-400",
-  "bg-amber-500/15 text-amber-400",
-  "bg-rose-500/15 text-rose-400",
-];
 
 function CategorySection({
   category,
@@ -79,7 +48,7 @@ function CategorySection({
   isActiveCategory: boolean;
 }) {
   const location = useLocation();
-  const Icon = iconMap[category.iconName] || Crown;
+  const menuIconName = CATEGORY_ICON_MAP[category.iconName] || "crown";
 
   return (
     <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
@@ -99,15 +68,13 @@ function CategorySection({
               : "bg-primary/10 text-primary"
           )}
         >
-          <Icon className="h-4.5 w-4.5" />
+          <MenuIcon iconName={menuIconName} className="h-4.5 w-4.5" />
         </span>
         <span>{category.title}</span>
       </div>
       <ul className="bg-card/80 dark:bg-card">
         {category.links.map((link, idx) => {
           const isActive = location.pathname === link.to;
-          const LinkIcon = getLucideIcon(link.iconName);
-          const iconColor = ICON_COLORS[idx % ICON_COLORS.length];
           const logoSrc = resolveLogoUrl(link.logoUrl);
 
           return (
@@ -139,15 +106,6 @@ function CategorySection({
                       className="h-5 w-5 object-contain"
                       loading="lazy"
                     />
-                  </span>
-                ) : LinkIcon ? (
-                  <span
-                    className={cn(
-                      "inline-flex items-center justify-center h-5 w-5 rounded flex-shrink-0",
-                      isActive ? "bg-primary/15 text-primary" : iconColor
-                    )}
-                  >
-                    <LinkIcon className="h-3 w-3" />
                   </span>
                 ) : null}
                 <span className="truncate flex-1">{link.label}</span>

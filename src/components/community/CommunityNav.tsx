@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Gamepad2, Trophy, Video, Gift, ShoppingBag, Home, Target, Crown } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { MenuIcon } from "@/components/MenuIcon";
 import "@/styles/community-micro.css";
 
 /** Check if there's an active bonus hunt session */
@@ -22,14 +22,14 @@ function useHasLiveHunt() {
 }
 
 const NAV_ITEMS = [
-  { href: "/community", label: "Oversigt", icon: Home, exact: true },
-  { href: "/community/slots", label: "Spillehal", icon: Gamepad2 },
-  { href: "/bonus-hunt", label: "Bonus Hunt", icon: Target, liveKey: true },
-  { href: "/community/turneringer", label: "Turneringer", icon: Trophy },
-  { href: "/highlights", label: "Highlights", icon: Video },
-  { href: "/community/hall-of-fame", label: "Hall of Fame", icon: Crown },
-  { href: "/community/rewards", label: "Rewards", icon: Gift },
-  { href: "/butik", label: "Butik", icon: ShoppingBag },
+  { href: "/community", label: "Oversigt", iconName: "home", exact: true },
+  { href: "/community/slots", label: "Spillehal", iconName: "gamepad-2" },
+  { href: "/bonus-hunt", label: "Bonus Hunt", iconName: "target", liveKey: true },
+  { href: "/community/turneringer", label: "Turneringer", iconName: "trophy" },
+  { href: "/highlights", label: "Highlights", iconName: "tv" },
+  { href: "/community/hall-of-fame", label: "Hall of Fame", iconName: "crown" },
+  { href: "/community/rewards", label: "Rewards", iconName: "gift" },
+  { href: "/butik", label: "Butik", iconName: "shopping-bag" },
 ];
 
 export function CommunityNav() {
@@ -47,7 +47,6 @@ export function CommunityNav() {
         <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-1">
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href, item.exact);
-            const Icon = item.icon;
             const showLive = item.liveKey && hasLiveHunt;
             return (
               <Link
@@ -60,7 +59,7 @@ export function CommunityNav() {
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50 community-nav-tab"
                 )}
               >
-                <Icon className="h-4 w-4" />
+                <MenuIcon iconName={item.iconName} className="h-4 w-4" />
                 {item.label}
                 {showLive && (
                   <span className="relative flex h-2 w-2 ml-0.5">

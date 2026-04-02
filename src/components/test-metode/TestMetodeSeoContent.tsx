@@ -1,20 +1,8 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  Shield,
-  TrendingUp,
-  Clock,
-  AlertTriangle,
-  CheckCircle2,
-  BarChart3,
-  Zap,
-  Target,
-  FileText,
-  Scale,
-  Eye,
-  Database,
-} from "lucide-react";
+import { AlertTriangle } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -24,7 +12,7 @@ export function TestMetodeSeoContent() {
       {/* ── Case Study 1: SpilDanskNu ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Target className="h-6 w-6 text-primary" />
+           <MenuIcon iconName="target" className="h-6 w-6" />
           Case Study: SpilDanskNu – Fra Registrering til Udbetaling
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -160,7 +148,7 @@ export function TestMetodeSeoContent() {
       {/* ── Case Study 2: Betinia ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Target className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="target" className="h-6 w-6" />
           Case Study: Betinia – Bonusvilkår Under Luppen
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -187,7 +175,7 @@ export function TestMetodeSeoContent() {
                 "Alle slots tæller 100% mod omsætning. Bordspil tæller typisk 10-20%. Live casino kan have begrænsninger – tjek altid de specifikke vilkår.",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/70" />
+                  <MenuIcon iconName="circle-check" className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -245,7 +233,7 @@ export function TestMetodeSeoContent() {
       {/* ── Aggregerede Testresultater ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <BarChart3 className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="chart-bar" className="h-6 w-6" />
           Aggregerede Testresultater – Alle Anmeldte Casinoer
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -305,13 +293,13 @@ export function TestMetodeSeoContent() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon: Clock, label: "Gns. udbetalingstid", value: "21 timer", desc: "Baseret på 28 testudbetalinger" },
-            { icon: Zap, label: "Gns. support-svartid", value: "1 min 31 sek", desc: "Baseret på 42 kontaktforsøg" },
-            { icon: Shield, label: "Dansk licens", value: "100%", desc: "Alle anmeldte casinoer har licens" },
+             { label: "Gns. udbetalingstid", value: "21 timer", desc: "Baseret på 28 testudbetalinger", iconName: "clock" },
+             { label: "Gns. support-svartid", value: "1 min 31 sek", desc: "Baseret på 42 kontaktforsøg", iconName: "zap" },
+             { label: "Dansk licens", value: "100%", desc: "Alle anmeldte casinoer har licens", iconName: "shield-check" },
           ].map((stat) => (
             <Card key={stat.label} className="border-border bg-card">
               <CardContent className="p-4 flex items-start gap-3">
-                <stat.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <MenuIcon iconName={stat.iconName} className="h-5 w-5 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
                   <p className="text-lg font-bold">{stat.value}</p>
@@ -328,7 +316,7 @@ export function TestMetodeSeoContent() {
       {/* ── Scoring-metodik i dybden ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Scale className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="scale" className="h-6 w-6" />
           Scoring-metodik i Dybden
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -338,37 +326,37 @@ export function TestMetodeSeoContent() {
         </p>
 
         <div className="space-y-4">
-          {[
-            {
-              title: "Sikkerhed & Licens (30%)",
-              icon: Shield,
-              content: `Denne kategori er binær i sin kernevurdering: Har casinoet en gyldig dansk licens fra Spillemyndigheden? Hvis nej, scorer casinoet 0 og anmeldes ikke. Hvis ja, evaluerer vi yderligere: SSL-krypteringsstyrke (TLS 1.3 er standard), implementering af ansvarligt spil-værktøjer (indbetalingsgrænser, tabsgrænser, session-påmindelser, selvudelukkelse via ROFUS), KYC-processer (hastighed og grundighed), samt databeskyttelse i henhold til GDPR. Et casino kan score mellem 3.0 og 5.0 i denne kategori – 3.0 for minimum compliance, 5.0 for eksemplarisk implementering af spillerbeskyttelse.`,
-            },
-            {
-              title: "Spiludvalg (20%)",
-              icon: Database,
-              content: `Vi evaluerer både kvantitet og kvalitet. Et casino med 3.000 spil er ikke nødvendigvis bedre end et med 1.500, hvis sidstnævnte har bedre kurering. Vi tjekker: Antal unikke spiludbydere (minimum 10 for en god score), tilstedeværelse af tier-1 udbydere (NetEnt, Pragmatic Play, Play'n GO, Evolution Gaming), live casino-kvalitet (antal borde, åbningstider, dealer-kvalitet), RTP-gennemsigtighed (oplyser casinoet RTP pr. spil?), og eksklusivt indhold. Vi krydstjekker med data fra vores bonus hunts og slot-database for at sikre, at de oplyste RTP-værdier er korrekte.`,
-            },
-            {
-              title: "Bonus & Vilkår (20%)",
-              icon: TrendingUp,
-              content: `Bonusvurdering handler ikke om størrelse, men om reel værdi. Vi beregner Expected Value (EV) for hver bonus: EV = Bonusbeløb × (1 - House Edge × Omsætningskrav). For en typisk dansk bonus på 1.000 kr. med 10x omsætning og 3% house edge er EV = 1.000 × (1 - 0.03 × 10) = 700 kr. Det er en positiv EV, som bekræfter, at den danske 10x-grænse giver reel værdi for spilleren. Vi evaluerer desuden: non-sticky vs. sticky bonus (non-sticky er altid bedre), gyldighedsperiode, maksimal indsats under omsætning, og klarhed i vilkårsformulering.`,
-            },
-            {
-              title: "Udbetaling (15%)",
-              icon: Clock,
-              content: `Vi gennemfører minimum to testudbetalinger pr. casino med forskellige metoder. Vi måler: Behandlingstid fra anmodning til godkendelse, total tid fra anmodning til penge på konto, eventuelle gebyrer, minimumsgrænser for udbetaling, og om casinoet respekterer den annoncerede behandlingstid. Et casino, der lover "op til 24 timer" men konsekvent bruger 48 timer, straffes i vores scoring. Omvendt belønner vi casinoer, der konsekvent leverer hurtigere end annonceret.`,
-            },
-            {
-              title: "Brugeroplevelse (15%)",
-              icon: Eye,
-              content: `Denne kategori dækker alt, der påvirker den daglige spilleoplevelse: Navigationsstruktur og søgefunktionalitet, mobilresponsivitet og app-kvalitet, indlæsningstider (vi benchmarker med Lighthouse), kundeservicekvalitet (svartid, kompetence, sprogunderstøttelse), og spilfiltreringsmuligheder. Vi tester på minimum tre enheder: desktop (Windows/Chrome), mobil (iPhone/Safari) og tablet (iPad/Safari) for at sikre en konsistent oplevelse.`,
-            },
+           {[
+             {
+               title: "Sikkerhed & Licens (30%)",
+               iconName: "shield-check",
+               content: `Denne kategori er binær i sin kernevurdering: Har casinoet en gyldig dansk licens fra Spillemyndigheden? Hvis nej, scorer casinoet 0 og anmeldes ikke. Hvis ja, evaluerer vi yderligere: SSL-krypteringsstyrke (TLS 1.3 er standard), implementering af ansvarligt spil-værktøjer (indbetalingsgrænser, tabsgrænser, session-påmindelser, selvudelukkelse via ROFUS), KYC-processer (hastighed og grundighed), samt databeskyttelse i henhold til GDPR. Et casino kan score mellem 3.0 og 5.0 i denne kategori – 3.0 for minimum compliance, 5.0 for eksemplarisk implementering af spillerbeskyttelse.`,
+             },
+             {
+               title: "Spiludvalg (20%)",
+               iconName: "database",
+               content: `Vi evaluerer både kvantitet og kvalitet. Et casino med 3.000 spil er ikke nødvendigvis bedre end et med 1.500, hvis sidstnævnte har bedre kurering. Vi tjekker: Antal unikke spiludbydere (minimum 10 for en god score), tilstedeværelse af tier-1 udbydere (NetEnt, Pragmatic Play, Play'n GO, Evolution Gaming), live casino-kvalitet (antal borde, åbningstider, dealer-kvalitet), RTP-gennemsigtighed (oplyser casinoet RTP pr. spil?), og eksklusivt indhold. Vi krydstjekker med data fra vores bonus hunts og slot-database for at sikre, at de oplyste RTP-værdier er korrekte.`,
+             },
+             {
+               title: "Bonus & Vilkår (20%)",
+               iconName: "trending-up",
+               content: `Bonusvurdering handler ikke om størrelse, men om reel værdi. Vi beregner Expected Value (EV) for hver bonus: EV = Bonusbeløb × (1 - House Edge × Omsætningskrav). For en typisk dansk bonus på 1.000 kr. med 10x omsætning og 3% house edge er EV = 1.000 × (1 - 0.03 × 10) = 700 kr. Det er en positiv EV, som bekræfter, at den danske 10x-grænse giver reel værdi for spilleren. Vi evaluerer desuden: non-sticky vs. sticky bonus (non-sticky er altid bedre), gyldighedsperiode, maksimal indsats under omsætning, og klarhed i vilkårsformulering.`,
+             },
+             {
+               title: "Udbetaling (15%)",
+               iconName: "clock",
+               content: `Vi gennemfører minimum to testudbetalinger pr. casino med forskellige metoder. Vi måler: Behandlingstid fra anmodning til godkendelse, total tid fra anmodning til penge på konto, eventuelle gebyrer, minimumsgrænser for udbetaling, og om casinoet respekterer den annoncerede behandlingstid. Et casino, der lover "op til 24 timer" men konsekvent bruger 48 timer, straffes i vores scoring. Omvendt belønner vi casinoer, der konsekvent leverer hurtigere end annonceret.`,
+             },
+             {
+               title: "Brugeroplevelse (15%)",
+               iconName: "eye",
+               content: `Denne kategori dækker alt, der påvirker den daglige spilleoplevelse: Navigationsstruktur og søgefunktionalitet, mobilresponsivitet og app-kvalitet, indlæsningstider (vi benchmarker med Lighthouse), kundeservicekvalitet (svartid, kompetence, sprogunderstøttelse), og spilfiltreringsmuligheder. Vi tester på minimum tre enheder: desktop (Windows/Chrome), mobil (iPhone/Safari) og tablet (iPad/Safari) for at sikre en konsistent oplevelse.`,
+             },
           ].map((item) => (
             <Card key={item.title} className="border-border bg-card">
               <CardContent className="p-5">
                 <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
-                  <item.icon className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="h-5 w-5" />
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.content}</p>
@@ -383,7 +371,7 @@ export function TestMetodeSeoContent() {
       {/* ── Matematisk Grundlag ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <TrendingUp className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="trending-up" className="h-6 w-6" />
           Matematisk Grundlag for Bonusvurdering
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -470,7 +458,7 @@ export function TestMetodeSeoContent() {
       {/* ── Compliance & Kvalitetskontrol ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <FileText className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="file-text" className="h-6 w-6" />
           Compliance & Kvalitetskontrol
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -524,7 +512,7 @@ export function TestMetodeSeoContent() {
       {/* ── Interessekonflikt-politik ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Eye className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="eye" className="h-6 w-6" />
           Interessekonflikt & Objektivitetspolitik
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -558,7 +546,7 @@ export function TestMetodeSeoContent() {
           ].map((item, i) => (
             <Card key={i} className="border-border bg-card">
               <CardContent className="p-4 flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <MenuIcon iconName="circle-check" className="h-5 w-5 mt-0.5 shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -581,7 +569,7 @@ export function TestMetodeSeoContent() {
       {/* ── Datakilder & Metodik ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Database className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="database" className="h-6 w-6" />
           Datakilder & Evidensbaseret Tilgang
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">

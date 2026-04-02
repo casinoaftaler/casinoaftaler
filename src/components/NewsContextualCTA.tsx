@@ -1,88 +1,78 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ShieldCheck, Sparkles, CreditCard, BarChart3, Landmark, Gift } from "lucide-react";
-import { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
+import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 
 interface CTAMapping {
   title: string;
   description: string;
-  links: { to: string; label: string; icon: LucideIcon }[];
+  links: { to: string; label: string; iconName: string }[];
 }
 
-/**
- * Maps article categories to contextual money-page CTAs.
- * Each category links to 2-3 highly relevant commercial pages.
- */
 const CATEGORY_CTA_MAP: Record<string, CTAMapping> = {
   regulering: {
     title: "Forstå det regulerede danske marked",
-    description:
-      "Reguleringsændringer påvirker direkte din spiloplevelse. Udforsk vores dybdegående guides til det danske licenssystem og ansvarligt spil.",
+    description: "Reguleringsændringer påvirker direkte din spiloplevelse. Udforsk vores dybdegående guides til det danske licenssystem og ansvarligt spil.",
     links: [
-      { to: "/casino-licenser", label: "Casino Licenser i Danmark", icon: ShieldCheck },
-      { to: "/spillemyndigheden", label: "Spillemyndigheden – Tilsyn & Regler", icon: Landmark },
-      { to: "/ansvarligt-spil", label: "Guide til Ansvarligt Spil", icon: ShieldCheck },
+      { to: "/casino-licenser", label: "Casino Licenser i Danmark", iconName: "shield-check" },
+      { to: "/spillemyndigheden", label: "Spillemyndigheden – Tilsyn & Regler", iconName: "landmark" },
+      { to: "/ansvarligt-spil", label: "Guide til Ansvarligt Spil", iconName: "shield-check" },
     ],
   },
   licenser: {
     title: "Vælg altid et licenseret casino",
-    description:
-      "Licensændringer kan betyde nye muligheder – eller risici. Se hvilke casinoer der aktuelt har dansk licens og lever op til de strengeste krav.",
+    description: "Licensændringer kan betyde nye muligheder – eller risici. Se hvilke casinoer der aktuelt har dansk licens og lever op til de strengeste krav.",
     links: [
-      { to: "/casino-licenser", label: "Casinoer med Dansk Licens", icon: ShieldCheck },
-      { to: "/casino-anmeldelser", label: "Se Alle Casino Anmeldelser", icon: BarChart3 },
-      { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
+      { to: "/casino-licenser", label: "Casinoer med Dansk Licens", iconName: "shield-check" },
+      { to: "/casino-anmeldelser", label: "Se Alle Casino Anmeldelser", iconName: "chart-bar" },
+      { to: "/nye-casinoer", label: "Nye Casinoer 2026", iconName: "sparkles" },
     ],
   },
   "nye-casinoer": {
     title: "Udforsk de nyeste casinoer på markedet",
-    description:
-      "Nye operatører bringer friske bonusser og innovative features. Se vores kuraterede oversigt over de bedste nye casinoer i Danmark.",
+    description: "Nye operatører bringer friske bonusser og innovative features. Se vores kuraterede oversigt over de bedste nye casinoer i Danmark.",
     links: [
-      { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
-      { to: "/casino-bonus", label: "Sammenlign Velkomstbonusser", icon: Gift },
-      { to: "/nye-casinoer/dansk-licens", label: "Nye Casinoer med Dansk Licens", icon: ShieldCheck },
+      { to: "/nye-casinoer", label: "Nye Casinoer 2026", iconName: "sparkles" },
+      { to: "/casino-bonus", label: "Sammenlign Velkomstbonusser", iconName: "gift" },
+      { to: "/nye-casinoer/dansk-licens", label: "Nye Casinoer med Dansk Licens", iconName: "shield-check" },
     ],
   },
   betalingsmetoder: {
     title: "Sammenlign betalingsmetoder på danske casinoer",
-    description:
-      "Ændringer i betalingsløsninger påvirker din mulighed for hurtige ind- og udbetalinger. Se hvilke metoder de bedste casinoer tilbyder.",
+    description: "Ændringer i betalingsløsninger påvirker din mulighed for hurtige ind- og udbetalinger. Se hvilke metoder de bedste casinoer tilbyder.",
     links: [
-      { to: "/betalingsmetoder", label: "Alle Betalingsmetoder", icon: CreditCard },
-      { to: "/betalingsmetoder/mobilepay", label: "MobilePay Casino", icon: CreditCard },
-      { to: "/hurtig-udbetaling", label: "Casinoer med Hurtig Udbetaling", icon: ArrowRight },
+      { to: "/betalingsmetoder", label: "Alle Betalingsmetoder", iconName: "credit-card" },
+      { to: "/betalingsmetoder/mobilepay", label: "MobilePay Casino", iconName: "credit-card" },
+      { to: "/hurtig-udbetaling", label: "Casinoer med Hurtig Udbetaling", iconName: "zap" },
     ],
   },
   "markedsbevægelser": {
     title: "Hvad betyder det for danske spillere?",
-    description:
-      "Markedsudviklinger former fremtidens casinolandskab. Se vores aktuelle anbefalinger baseret på de nyeste tendenser.",
+    description: "Markedsudviklinger former fremtidens casinolandskab. Se vores aktuelle anbefalinger baseret på de nyeste tendenser.",
     links: [
-      { to: "/casino-anmeldelser", label: "Casino Anmeldelser 2026", icon: BarChart3 },
-      { to: "/casino-bonus", label: "Bedste Casino Bonusser", icon: Gift },
-      { to: "/nye-casinoer", label: "Nye Casinoer i Danmark", icon: Sparkles },
+      { to: "/casino-anmeldelser", label: "Casino Anmeldelser 2026", iconName: "chart-bar" },
+      { to: "/casino-bonus", label: "Bedste Casino Bonusser", iconName: "gift" },
+      { to: "/nye-casinoer", label: "Nye Casinoer i Danmark", iconName: "sparkles" },
     ],
   },
   juridisk: {
     title: "Juridiske rammer for online casino i Danmark",
-    description:
-      "Lovændringer har direkte konsekvenser for spillere og operatører. Forstå dine rettigheder og de gældende regler.",
+    description: "Lovændringer har direkte konsekvenser for spillere og operatører. Forstå dine rettigheder og de gældende regler.",
     links: [
-      { to: "/spillemyndigheden", label: "Spillemyndigheden", icon: Landmark },
-      { to: "/casino-licenser", label: "Licenssystemet i Danmark", icon: ShieldCheck },
-      { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck },
+      { to: "/spillemyndigheden", label: "Spillemyndigheden", iconName: "landmark" },
+      { to: "/casino-licenser", label: "Licenssystemet i Danmark", iconName: "shield-check" },
+      { to: "/ansvarligt-spil", label: "Ansvarligt Spil", iconName: "shield-check" },
     ],
   },
 };
 
 const FALLBACK_CTA: CTAMapping = {
   title: "Udforsk mere på Casinoaftaler.dk",
-  description:
-    "Hold dig opdateret med vores dybdegående guides, anmeldelser og sammenligninger af danske casinoer.",
+  description: "Hold dig opdateret med vores dybdegående guides, anmeldelser og sammenligninger af danske casinoer.",
   links: [
-    { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BarChart3 },
-    { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift },
-    { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
+    { to: "/casino-anmeldelser", label: "Casino Anmeldelser", iconName: "chart-bar" },
+    { to: "/casino-bonus", label: "Casino Bonusser", iconName: "gift" },
+    { to: "/nye-casinoer", label: "Nye Casinoer 2026", iconName: "sparkles" },
   ],
 };
 
@@ -106,7 +96,7 @@ export function NewsContextualCTA({ category }: NewsContextualCTAProps) {
             to={link.to}
             className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:border-primary/50 hover:bg-accent"
           >
-            <link.icon className="h-4 w-4 text-primary" />
+            <MenuIcon iconName={link.iconName} className="h-4 w-4" />
             {link.label}
             <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
           </Link>
