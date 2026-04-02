@@ -32,14 +32,14 @@ import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
-import { GatesZeusCharacter } from "./GatesZeusCharacter";
+
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
-const SYMBOL_WIDTH = 140;
-const SYMBOL_HEIGHT = 108;
+const DEFAULT_SYMBOL_WIDTH = 180;
+const DEFAULT_SYMBOL_HEIGHT = 140;
 const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
@@ -60,10 +60,23 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
 
+  // On mobile, calculate symbol size to fill viewport width
+  const mobileSymbolWidth = useMemo(() => {
+    if (!isMobile || typeof window === 'undefined') return DEFAULT_SYMBOL_WIDTH;
+    const viewportWidth = window.innerWidth;
+    const totalGaps = (GATES_COLS + 1) * SYMBOL_GAP;
+    const padding = 8;
+    return Math.floor((viewportWidth - totalGaps - padding) / GATES_COLS);
+  }, [isMobile]);
+
+  const SYMBOL_WIDTH = isMobile ? mobileSymbolWidth : DEFAULT_SYMBOL_WIDTH;
+  const SYMBOL_HEIGHT = isMobile ? Math.floor(mobileSymbolWidth * 0.78) : DEFAULT_SYMBOL_HEIGHT;
+
   const bombSymbolsMap = useMemo(() => {
     if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
     return new Map(bombSymbols.map(b => [b.value, b]));
   }, [bombSymbols]);
+
 
   const [bet, setBet] = useState(1);
   const [doubleChance, setDoubleChance] = useState(false);
@@ -902,7 +915,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       <div className="gates-lightning-ambient" />
       <div className="gates-ambient-glow" />
 
-      <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} isBonusActive={isBonusActive} />
+      
 
       {/* Win celebration */}
       {isWinAnimating && currentSpinWin > 0 && (
