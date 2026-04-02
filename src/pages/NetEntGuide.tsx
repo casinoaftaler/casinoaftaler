@@ -177,6 +177,11 @@ const NetEntGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={netentKatalog}
+          alt="NetEnt spilkatalog hos Betinia casino – oversigt over populære slots som Starburst, Gonzo's Quest og Dead or Alive"
+          caption="NetEnts spilkatalog hos et dansk casino – fra Starburst og Gonzo's Quest til nyere titler som Flock Me og Dead West."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           NetEnts portefølje på 200+ titler spænder fra verdens mest spillede slot til branchens mest generøse jackpot-system. Nedenstående seks spil repræsenterer bredden i kataloget – fra den ikoniske simplicitet i Starburst til den ekstreme volatilitet i Dead or Alive 2. Hvert spil analyseres med konkrete tal og kontekst for danske spillere.
         </p>
@@ -185,7 +190,12 @@ const NetEntGuide = () => (
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins-tilbud</Link>{" "}
           og bonusomsætning takket være den høje hitfrekvens og stabile RTP. Starburst alene bruges i over 80% af alle danske free spins-kampagner – ikke fordi det er det mest spændende spil, men fordi dets matematiske profil minimerer operatørens risiko og maksimerer spillerens chance for at opfylde omsætningskrav.
         </p>
-      </>
+        <ReviewScreenshot
+          src={netentGames}
+          alt="NetEnt nyeste spiludgivelser – Dead or Alive 3, Godbreaker, Rabid Randy og Piggy Riches 3 med ratings"
+          caption="NetEnts seneste releases – nye titler som Dead or Alive 3: Wanted og Godbreaker viser fortsat innovation."
+          size="medium"
+        />
     }
     games={[
       { name: "Starburst", desc: "Det mest ikoniske online slot nogensinde – og der er gode grunde til det. Simpelt 5x3 layout med 10 gevinstlinjer, expanding wilds der dækker hele hjul og udløser re-spins, og en visuel æstetik der har ældet bedre end de fleste spil fra 2013. RTP: 96,08%. Hitfrekvens: ~23%. Maks. gevinst: 800x (80.000 DKK ved maks. indsats). Lav volatilitet gør Starburst til det ultimative omsætningsspil – bankrollet slides langsomt og forudsigeligt. Det er ikke spændende, men det er effektivt.", highlight: "Verdens mest spillede slot – 96,08% RTP" },
