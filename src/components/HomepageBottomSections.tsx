@@ -206,7 +206,7 @@ export function HomepageTrendsSection() {
             key={trend.title}
             className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
           >
-            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <MenuIcon iconName="circle-check" className="mt-0.5 h-5 w-5 flex-shrink-0" />
             <div>
               <h3 className="font-semibold">{trend.title}</h3>
               <p className="text-sm text-muted-foreground">
