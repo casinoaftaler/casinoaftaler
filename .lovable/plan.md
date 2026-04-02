@@ -1,54 +1,77 @@
 
+# Audit: Erstat Lucide-ikoner med 3D WebP menu-ikoner sitewide
 
-## Broadcast Chat-besked til alle brugere
+## Oversigt
+En gennemgang af hele kodebasen viser **12+ offentligt synlige komponenter** der stadig bruger generiske Lucide SVG-ikoner, hvor de autentiske 3D WebP-billeder fra `MENU_ICON_MAP` burde bruges i stedet. Admin-paneler, UI-primitiver (checkboxes, dropdowns) og slot-spil gameplay-kontroller er **ikke** inkluderet — kun brugervendte indholdssektioner.
 
-### Koncept
-Admins kan sende en broadcast-besked via chat-systemet. Brugere ser en kompakt preview (forste 5-6 ord) ved chat-ikonet. Klik udvider til fuld besked. Kryds dismisser permanent.
+## Komponenter der skal opdateres
 
-### Trin
+### 1. Footer.tsx (~40 Lucide-ikoner)
+Den største synder. Hver footer-link bruger Lucide-ikoner (`Star`, `Trophy`, `Gamepad2`, `CreditCard`, `Shield`, `Scale`, `FileText`, `Newspaper` osv.). Alle har direkte mappings i `MENU_ICON_MAP`.
 
-**1. Ny database-tabel: `chat_broadcasts`**
-```sql
-CREATE TABLE public.chat_broadcasts (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  admin_id uuid REFERENCES auth.users(id) NOT NULL,
-  message text NOT NULL,
-  created_at timestamptz DEFAULT now()
-);
+### 2. CommunityNav.tsx (8 ikoner)
+Bruger Lucide-komponenter (`Home`, `Gamepad2`, `Target`, `Trophy`, `Video`, `Crown`, `Gift`, `ShoppingBag`). Skal erstattes med `<img>` fra `MENU_ICON_MAP`.
 
-CREATE TABLE public.chat_broadcast_dismissals (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  broadcast_id uuid REFERENCES public.chat_broadcasts(id) ON DELETE CASCADE NOT NULL,
-  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
-  dismissed_at timestamptz DEFAULT now(),
-  UNIQUE(broadcast_id, user_id)
-);
+### 3. BonusHuntCommunityLinks.tsx (10 ikoner)
+Alle community-kort bruger Lucide (`Gamepad2`, `Trophy`, `Video`, `RotateCw`, `Gift`, `ShoppingBag`, `Archive`, `Database`, `Crown`, `BarChart3`).
+
+### 4. BonusHuntRelatedGuides.tsx (6 ikoner)
+Guide-kort med `TrendingUp`, `BookOpen`, `ShieldCheck`, `Gamepad2`, `CreditCard`, `Users`.
+
+### 5. BonusHuntStatStrip.tsx (3 ikoner)
+Stat-kort med `Target`, `Film`, `BarChart3`.
+
+### 6. WhyTrustUs.tsx (5 ikoner)
+Trust-sektion med `ShieldCheck`, `BarChart3`, `Scale`, `Eye`, `Award`.
+
+### 7. ReviewMoneyLinks.tsx (4-5 ikoner)
+Pills med `Trophy`, `Gift`, `Sparkles`, `Smartphone`.
+
+### 8. CommunityPromoSection.tsx (3 ikoner)
+Bruger `Sparkles`, `Video`, `Trophy` i knapper.
+
+### 9. NewsContextualCTA.tsx (6+ ikoner)
+Kontekstuelle CTA-links med `ShieldCheck`, `Sparkles`, `CreditCard`, `BarChart3`, `Landmark`, `Gift`.
+
+### 10. ContentSidebar.tsx (8+ ikoner)
+Sidebar-kategori-ikoner med `Crown`, `Sparkles`, `Gift`, `Dices`, `CreditCard`, `Gamepad2`, `Tv`, `Star`.
+
+### 11. TestMetodeSeoContent.tsx (12+ ikoner)
+Test-metode sektionen med `Shield`, `TrendingUp`, `Target`, `BarChart3`, `Zap`, `Scale`, `Eye`, `Database` osv.
+
+### 12. HomepageBottomSections.tsx (delvist allerede konverteret)
+`HomepageBonusHuntSection` bruger allerede `MenuIcon`, men `HomepageTrendsSection` bruger stadig `CheckCircle2`, og `HomepageSlotShowcase` bruger `Sparkles`.
+
+### 13. QuickFactsProviders.tsx
+Bruger `ShieldCheck`, `BarChart3` som Lucide.
+
+## Teknisk tilgang
+
+Opretter en genbrugelig `MenuIcon`-komponent (eller genbruger den eksisterende fra `HomepageBottomSections.tsx`) og importerer den i alle berørte filer. Mønsteret:
+
+```text
+// FØR:
+<Trophy className="h-4 w-4" />
+
+// EFTER:
+<MenuIcon iconName="trophy" alt="Trophy" className="h-4 w-4" />
 ```
-- RLS: Admins kan INSERT broadcasts. Authenticated users kan SELECT broadcasts + INSERT egne dismissals.
-- Realtime enabled pa `chat_broadcasts`.
 
-**2. Admin UI -- "Skriv besked" knap i SupportAdminSection**
-- Ny knap i header: "Skriv besked til alle"
-- Klik abner en dialog med textarea + send-knap
-- Sender INSERT til `chat_broadcasts`
-- Toast bekraeftelse
+For ikoner der ikke har en mapping (fx `Eye`, `Film`), beholdes Lucide som fallback, eller der tilføjes en fallback i `MenuIcon`-komponenten.
 
-**3. Bruger-side -- Broadcast preview ved chat-ikonet**
-- `SupportChatWidget` henter seneste ikke-dismissede broadcast
-- Viser en lille boble ved chat-knappen (som billede 1): avatar + forste 5-6 ord + afsender
-- Klik pa boblen abner en modal/expanded view med fuld besked (som billede 2)
-- X-knap i expanded view INSERTer dismissal og skjuler alt
+### Fælles MenuIcon-komponent
+Flyttes til sin egen fil `src/components/MenuIcon.tsx` så alle komponenter kan importere den uden circular dependencies.
 
-**4. Hook: `useBroadcastChat`**
-- Ny hook der fetcher seneste broadcast fra `chat_broadcasts` WHERE id NOT IN user's dismissals
-- Funktion `dismissBroadcast(broadcastId)` -- inserter i `chat_broadcast_dismissals`
-- Realtime subscription for nye broadcasts
+## Scope-afgrænsning
 
-### Filer der oprettes/aendres
-| Fil | Handling |
-|-----|---------|
-| Migration SQL | Ny tabel + RLS |
-| `src/hooks/useBroadcastChat.ts` | Ny hook |
-| `src/components/SupportChatWidget.tsx` | Tilfoej broadcast preview + expanded view |
-| `src/components/SupportAdminSection.tsx` | Tilfoej "Skriv besked" knap + dialog |
+**Inkluderet**: Alle offentligt synlige sektioner (footer, navigation, promo-sektioner, guide-kort, sidebars, trust-sektioner, CTA-pills, stat-strips).
 
+**Ekskluderet**: 
+- Admin-paneler og dashboards
+- UI-primitiver (checkbox, dropdown, toast, calendar)
+- Slot-spil gameplay-kontroller (spin-knapper, bet-kontroller)
+- Social media SVG-ikoner (custom SVGs i footer)
+- Casino-anmeldelse sider (individuelle review-pages bruger ikoner i kontekst-specifik body-tekst)
+
+## Estimeret omfang
+~12-15 filer ændres. Ingen database- eller backendændringer.
