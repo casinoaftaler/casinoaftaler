@@ -155,7 +155,7 @@ function MobileExpandableLinks({ links, initialCount, onClose, indent = "ml-6" }
 }
 
 /* ─── Section accordion ─── */
-function MobileSection({ label, iconName: "icon", sectionKey, expanded, onToggle, children }: {
+function MobileSection({ label, icon: Icon, sectionKey, expanded, onToggle, children }: {
   label: string; icon: any; sectionKey: string; expanded: boolean; onToggle: (key: string) => void; children: React.ReactNode;
 }) {
   return (
@@ -177,7 +177,7 @@ function MobileSection({ label, iconName: "icon", sectionKey, expanded, onToggle
 }
 
 /* ─── Sub-section accordion ─── */
-function MobileSubSection({ label, iconName: "icon", expanded, onToggle, children }: {
+function MobileSubSection({ label, icon: Icon, expanded, onToggle, children }: {
   label: string; icon: any; expanded: boolean; onToggle: () => void; children: React.ReactNode;
 }) {
   return (

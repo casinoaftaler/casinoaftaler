@@ -53,7 +53,7 @@ interface TournamentBoxConfig {
   gameSlug: string;
   gameId: string;
   image: string;
-  iconName: "react".ReactNode;
+  icon: React.ReactNode;
   categoryLabel: string;
   prize_1: number;
   prize_2: number;

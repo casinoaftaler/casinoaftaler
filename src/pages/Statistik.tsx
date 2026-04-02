@@ -723,7 +723,7 @@ export default function Statistik() {
 }
 
 /* ── Sub-components ── */
-function KpiCard({ icon, label, value, accent }: { iconName: "react".ReactNode; label: string; value: string; accent?: boolean }) {
+function KpiCard({ icon, label, value, accent }: { icon: React.ReactNode; label: string; value: string; accent?: boolean }) {
   return (
     <Card className={`border-border ${accent ? 'bg-primary/5 border-primary/20' : 'bg-card'}`}>
       <CardContent className="pt-5 pb-4 flex flex-col items-center gap-1">
