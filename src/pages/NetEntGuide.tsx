@@ -26,6 +26,13 @@ const NetEntGuide = () => (
     introTitle="Den Svenske Standard: Hvorfor NetEnt Stadig Definerer Hvad en God Slot Er"
     introContent={
       <>
+        <ReviewScreenshot
+          src={netentLogo}
+          alt="NetEnt officielt logo – svensk spiludvikler grundlagt i 1996 i Stockholm"
+          caption="NetEnts ikoniske logo – branchens kvalitetsstandard siden 1996."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er et spørgsmål, som ethvert nyt casinoslot-studio uundgåeligt konfronteres med: "Er det bedre end Starburst?" Det er ikke et retorisk spørgsmål. Starburst, udgivet af NetEnt i 2013, genererer stadig mere end 5 milliarder spins årligt globalt – tretten år efter lanceringen. Ingen anden spilleautomat i historien har opnået den kombination af levetid, udbredelse og kulturel genkendelighed. Og det er netop pointen: NetEnt har ikke bare lavet gode spil. De har skabt den standard, som resten af branchen måles imod.
         </p>
