@@ -24,6 +24,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
 export function SlotRequestsAdminSection() {
   const { data: requests, isLoading } = useAllSlotRequests();
   const updateStatus = useUpdateSlotRequestStatus();
+  const rejectAll = useRejectAllPendingRequests();
   const { data: siteSettings } = useSiteSettings();
   const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
