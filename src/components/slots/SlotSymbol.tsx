@@ -15,17 +15,18 @@ interface SlotSymbolProps {
   isDarkened?: boolean;
   gameId?: string;
   shimmerClass?: string;
+  size?: number;
 }
 
-// Fixed base size: 150×150 container, 136×136 image
-export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass }: SlotSymbolProps) {
+// Base size: 150×150 container, 136×136 image (overridable via size prop)
+export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass, size = 150 }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
+  const imgSize = Math.floor(size * 136 / 150);
   
   return (
     <div
       className={cn(
         "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
-        "w-[150px] h-[150px]",
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
@@ -43,6 +44,8 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
           : "border-amber-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]")
       )}
       style={{
+        width: `${size}px`,
+        height: `${size}px`,
         ...(isWinning ? {
           boxShadow: isWizard
             ? '0 0 20px rgba(168,85,247,0.5)'
@@ -60,10 +63,12 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
       {symbol.image_url ? (
         <div
           className={cn(
-            "w-[136px] h-[136px] rounded-lg",
+            "rounded-lg",
             shimmerClass
           )}
           style={{
+            width: `${imgSize}px`,
+            height: `${imgSize}px`,
             filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
           }}
         >

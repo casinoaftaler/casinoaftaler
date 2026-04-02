@@ -223,18 +223,11 @@ export default function SlotMachine() {
       </div>
 
       {isMobile ? (
-        /* ── MOBILE: Scale to fill width, scroll vertically if needed ── */
-        <div className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div
-            style={{
-              width: '1200px',
-              transform: `scale(${Math.min(window.innerWidth / 1200, 1)})`,
-              transformOrigin: 'top left',
-              marginBottom: `${-(920 * (1 - Math.min(window.innerWidth / 1200, 1)))}px`,
-            }}
-          >
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
             <SlotPageLayout sidePanel={null}>
-              <SlotGame />
+              <SlotGame isMobile />
             </SlotPageLayout>
           </div>
         </div>

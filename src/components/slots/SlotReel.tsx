@@ -5,11 +5,9 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
 
-// Fixed dimensions at base resolution
-const SYMBOL_HEIGHT = 150;
-const GAP = 16;
-const TOTAL_SYMBOL_HEIGHT = SYMBOL_HEIGHT + GAP;
-const VIEWPORT_HEIGHT = 3 * SYMBOL_HEIGHT + 2 * GAP;
+// Default dimensions at base resolution (can be overridden via props)
+const DEFAULT_SYMBOL_HEIGHT = 150;
+const DEFAULT_GAP = 16;
 
 interface SlotReelProps {
   symbols: SlotSymbolType[];
@@ -35,6 +33,8 @@ interface SlotReelProps {
   isDarkenedForTease?: boolean;
   isDarkenedForExpansion?: boolean;
   gameId?: string;
+  symbolSize?: number;
+  symbolGap?: number;
 }
 
 export const SlotReel = React.memo(function SlotReel({
@@ -61,7 +61,14 @@ export const SlotReel = React.memo(function SlotReel({
   isDarkenedForTease = false,
   isDarkenedForExpansion = false,
   gameId,
+  symbolSize,
+  symbolGap,
 }: SlotReelProps) {
+  const SYMBOL_HEIGHT = symbolSize ?? DEFAULT_SYMBOL_HEIGHT;
+  const GAP = symbolGap ?? DEFAULT_GAP;
+  const TOTAL_SYMBOL_HEIGHT = SYMBOL_HEIGHT + GAP;
+  const VIEWPORT_HEIGHT = 3 * SYMBOL_HEIGHT + 2 * GAP;
+
   const isWizard = gameId === "rise-of-fedesvin";
   const isBonanza = gameId === "fedesvin-bonanza";
   const shimmerTheme = isBonanza ? "slot-idle-shimmer-pink" : isWizard ? "slot-idle-shimmer-purple" : "slot-idle-shimmer-gold";
@@ -221,7 +228,7 @@ export const SlotReel = React.memo(function SlotReel({
   const spinningStripJsx = useMemo(() => {
     if (reelStrip.length === 0) return null;
     return reelStrip.map((symbol, index) => (
-      <SlotSymbol key={`reel-${index}-${symbol.id}`} symbol={symbol} isSpinning={true} isTeasing={false} gameId={gameId} />
+      <SlotSymbol key={`reel-${index}-${symbol.id}`} symbol={symbol} isSpinning={true} isTeasing={false} gameId={gameId} size={SYMBOL_HEIGHT} />
     ));
   }, [reelStrip, gameId]);
 
@@ -276,6 +283,7 @@ export const SlotReel = React.memo(function SlotReel({
                     isDarkened={shouldDarkenSymbol}
                     gameId={gameId}
                     shimmerClass={shimmeringCells.has(rowIndex) && spinState === "idle" ? `slot-idle-shimmer ${shimmerTheme}` : undefined}
+                    size={SYMBOL_HEIGHT}
                   />
               </div>
             );

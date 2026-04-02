@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
@@ -29,8 +29,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Fixed symbol dimensions at base resolution (scaling is handled at container level)
-const SYMBOL_SIZE = 150;
-const SYMBOL_GAP = 16;
+const DEFAULT_SYMBOL_SIZE = 150;
+const DEFAULT_SYMBOL_GAP = 16;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -54,9 +54,10 @@ function generateDisplayGrid(symbols: SlotSymbol[]): string[][] {
 
 interface SlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
-export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
+export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: SlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
@@ -1019,6 +1020,20 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     onReelStopRef.current?.(reelIndex);
   }, []);
 
+  // On mobile, calculate symbol size to fill viewport width natively (no CSS transform scaling)
+  const mobileSymbolSize = useMemo(() => {
+    if (!isMobile || typeof window === 'undefined') return DEFAULT_SYMBOL_SIZE;
+    const viewportWidth = window.innerWidth;
+    const reelCount = 5;
+    const dividerWidth = 2; // w-[2px] dividers between reels
+    const framePadding = 8; // p-1 = 4px each side on mobile
+    const outerPadding = 8; // px-1 = 4px each side
+    return Math.floor((viewportWidth - outerPadding - framePadding - (reelCount - 1) * dividerWidth) / reelCount);
+  }, [isMobile]);
+
+  const SYMBOL_SIZE = isMobile ? mobileSymbolSize : DEFAULT_SYMBOL_SIZE;
+  const SYMBOL_GAP = isMobile ? Math.max(4, Math.floor(DEFAULT_SYMBOL_GAP * (mobileSymbolSize / DEFAULT_SYMBOL_SIZE))) : DEFAULT_SYMBOL_GAP;
+
   const symbolDimensions = { size: SYMBOL_SIZE, gap: SYMBOL_GAP };
 
   if (symbolsLoading) {
@@ -1127,7 +1142,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           {/* Slot machine reels with frame */}
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning} gameId={gameId}>
-              <div className="relative p-6 rounded-xl">
+              <div className={cn("relative rounded-xl", isMobile ? "p-1" : "p-6")}>
                 {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
@@ -1182,6 +1197,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
                         isBonusActive={bonusState.isActive}
+                        symbolSize={SYMBOL_SIZE}
+                        symbolGap={SYMBOL_GAP}
                       />
                       {colIndex < 4 && (
                         <div className={cn("w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />
@@ -1254,6 +1271,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
               showBonusTrigger={showBonusTrigger}
               winAmount={winAmount}
               gameId={gameId}
+              isMobile={isMobile}
             />
           </div>
 
