@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import netentLogo from "@/assets/screenshots/netent-logo.webp";
+import netentKatalog from "@/assets/screenshots/netent-katalog.webp";
+import netentStarburst from "@/assets/screenshots/netent-starburst.webp";
+import netentGames from "@/assets/screenshots/netent-games.webp";
 
 const NetEntGuide = () => (
   <ProviderPage
@@ -21,6 +26,13 @@ const NetEntGuide = () => (
     introTitle="Den Svenske Standard: Hvorfor NetEnt Stadig Definerer Hvad en God Slot Er"
     introContent={
       <>
+        <ReviewScreenshot
+          src={netentLogo}
+          alt="NetEnt officielt logo – svensk spiludvikler grundlagt i 1996 i Stockholm"
+          caption="NetEnts ikoniske logo – branchens kvalitetsstandard siden 1996."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er et spørgsmål, som ethvert nyt casinoslot-studio uundgåeligt konfronteres med: "Er det bedre end Starburst?" Det er ikke et retorisk spørgsmål. Starburst, udgivet af NetEnt i 2013, genererer stadig mere end 5 milliarder spins årligt globalt – tretten år efter lanceringen. Ingen anden spilleautomat i historien har opnået den kombination af levetid, udbredelse og kulturel genkendelighed. Og det er netop pointen: NetEnt har ikke bare lavet gode spil. De har skabt den standard, som resten af branchen måles imod.
         </p>
@@ -83,6 +95,11 @@ const NetEntGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Matematisk er forskellen dramatisk. 100 spins i Starburst til 10 DKK vil typisk returnere 85-110 DKK med konsistente små gevinster undervejs. 100 spins i San Quentin til 10 DKK vil typisk returnere enten 20-30 DKK (85% sandsynlighed) eller 500-5.000 DKK (15% sandsynlighed). NetEnt giver dig en forudsigelig oplevelse; Nolimit City giver dig en lotteriseddel pakket ind i en spilleautomat.
         </p>
+        <ReviewScreenshot
+          src={netentStarburst}
+          alt="Starburst XXXtreme gameplay screenshot – NetEnts ikoniske slot med expanding wilds og 4.160 kr. gevinst"
+          caption="Starburst XXXtreme i aktion – NetEnts moderniserede klassiker med x10 multiplikator og expanding wilds."
+        />
         <p className="text-muted-foreground leading-relaxed">
           For spillere der prioriterer underholdningsværdi per time – den mest rationelle tilgang – er NetEnt det overlegne valg. For spillere der søger den ene transformative oplevelse – det store hit der ændrer sessionen – er Nolimit City svaret. Begge er legitime, men de kræver fundamentalt forskellige bankroll-strategier og forventningsindstillinger.
         </p>
@@ -160,6 +177,11 @@ const NetEntGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={netentKatalog}
+          alt="NetEnt spilkatalog hos Betinia casino – oversigt over populære slots som Starburst, Gonzo's Quest og Dead or Alive"
+          caption="NetEnts spilkatalog hos et dansk casino – fra Starburst og Gonzo's Quest til nyere titler som Flock Me og Dead West."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           NetEnts portefølje på 200+ titler spænder fra verdens mest spillede slot til branchens mest generøse jackpot-system. Nedenstående seks spil repræsenterer bredden i kataloget – fra den ikoniske simplicitet i Starburst til den ekstreme volatilitet i Dead or Alive 2. Hvert spil analyseres med konkrete tal og kontekst for danske spillere.
         </p>
@@ -168,6 +190,12 @@ const NetEntGuide = () => (
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins-tilbud</Link>{" "}
           og bonusomsætning takket være den høje hitfrekvens og stabile RTP. Starburst alene bruges i over 80% af alle danske free spins-kampagner – ikke fordi det er det mest spændende spil, men fordi dets matematiske profil minimerer operatørens risiko og maksimerer spillerens chance for at opfylde omsætningskrav.
         </p>
+        <ReviewScreenshot
+          src={netentGames}
+          alt="NetEnt nyeste spiludgivelser – Dead or Alive 3, Godbreaker, Rabid Randy og Piggy Riches 3 med ratings"
+          caption="NetEnts seneste releases – nye titler som Dead or Alive 3: Wanted og Godbreaker viser fortsat innovation."
+          size="medium"
+        />
       </>
     }
     games={[
