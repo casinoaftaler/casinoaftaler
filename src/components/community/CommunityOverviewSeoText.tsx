@@ -234,8 +234,8 @@ export function CommunityOverviewSeoText() {
         </h2>
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
-            En af de unikke fordele ved Casinoaftaler Community er, at data fra tusindvis af daglige
-            spins og hundredvis af dokumenterede bonus hunts integreres direkte i vores{" "}
+            En af de unikke fordele ved Casinoaftaler Community er, at data fra næsten 200.000
+            spins og 185+ dokumenterede bonus hunts integreres direkte i vores{" "}
             <Link to="/casino-anmeldelser" className="text-primary hover:underline">
               casino-anmeldelser
             </Link>{" "}

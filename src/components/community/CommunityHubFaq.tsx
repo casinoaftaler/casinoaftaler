@@ -15,7 +15,7 @@ export const communityHubFaqs = [
   {
     question: "Hvordan fungerer turneringerne?",
     answer:
-      "Turneringer kører typisk over en uge eller måned. Du tilmelder dig gratis, spiller med virtuelle credits og konkurrerer om topplaceringer. De bedste spillere vinder præmier.",
+      "Turneringer kører i månedlige cyklusser med tre kategorier: Flest Point, Højeste X og Største Gevinst. Du deltager gratis med dine daglige credits og konkurrerer om kontante præmier (500/300/200 kr. til top 3).",
   },
   {
     question: "Hvad er en bonus hunt?",
@@ -25,7 +25,7 @@ export const communityHubFaqs = [
   {
     question: "Kan jeg vinde rigtige penge i community?",
     answer:
-      "Nej, alle spil i community bruger virtuelle credits. Du kan dog vinde præmier som gavekort og merchandise gennem turneringer og butikken.",
+      "Nej, alle spil i community bruger virtuelle credits. Du kan dog vinde kontante præmier (500/300/200 kr.) gennem de månedlige turneringer, og du kan bruge optjente points i vores butik.",
   },
   {
     question: "Hvordan optjener jeg bonus spins?",

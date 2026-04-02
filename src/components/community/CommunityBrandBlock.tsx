@@ -23,7 +23,7 @@ export const CommunityBrandBlock = forwardRef<HTMLElement>(function CommunityBra
           <Link to="/forfatter/kevin" className="flex flex-col items-center gap-2 group">
             <img
               src="/kevin-avatar.webp"
-              alt="Kevin – medstifter af Casinoaftaler.dk"
+              alt="Kevin – Streamer & Spiludvikler hos Casinoaftaler.dk"
               className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
               loading="lazy"
               fetchPriority="low"
