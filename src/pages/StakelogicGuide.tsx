@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import stakeLogo from "@/assets/screenshots/stake-logo.webp";
+import stakeStats1 from "@/assets/screenshots/stake-stats1.webp";
+import stakeStats2 from "@/assets/screenshots/stake-stats2.webp";
+import stakeKatalog from "@/assets/screenshots/stake-katalog.webp";
+import stakeGameplay from "@/assets/screenshots/stake-gameplay.webp";
 
 const StakelogicGuide = () => (
   <ProviderPage
@@ -27,6 +33,13 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic blev grundlagt i 2014 som Novomatic Groups digitale satsning med hovedkvarter i Eindhoven, Holland. Novomatics landbaserede slots – Book of Ra, Sizzling Hot, Lucky Lady's Charm – er blandt de mest ikoniske spilleautomater nogensinde produceret, med en samlet installationsbase på hundredtusindvis af maskiner globalt. Stakelogics mission var at oversætte denne arvs essens til online-formatet: den umiddelbare spænding ved hjulet der spinner, det taktile ved knapperne, den simple elegance ved en veldesignet matematisk model. Men i stedet for blot at porte landbaserede titler til browseren (som mange konkurrenter har gjort med varierende succes) valgte Stakelogic at skabe originale online-spil med landbaseret DNA.
         </p>
+        <ReviewScreenshot
+          src={stakeLogo}
+          alt="Stakelogic officielt logo – grøn og mørkeblå tekst med tagline Think Bigger"
+          caption="Stakelogics brand-identitet: 'Think Bigger' understreger studioets ambition om at overskride landbaseret casino-traditioner."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Resultatet er en portefølje på 150+ titler der er umiddelbart genkendelige for spillere med landbaseret erfaring, men som fuldt udnytter de muligheder online-platformen tilbyder. Super Stake™ – Stakelogics signaturfeature – eksemplificerer denne fusion. Mekanikken giver spillere mulighed for at fordoble deres indsats til gengæld for en dramatisk forøget chance for at udløse bonusfunktioner. Det er en simpel, intuitiv idé der trækker på den landbaserede traditions fokus på spillervalg og risikostyring, men som implementeres med en sofistikering der kun er mulig i det digitale format.
         </p>
@@ -55,6 +68,11 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hollands regulering af online gambling i 2021 skabte et nyt marked med strenge krav til spillerbeskyttelse, reklame og compliance. Som hollandsk-baseret studio var Stakelogic naturligt positioneret som first-mover i dette marked, og de har brugt erfaringen til at opbygge en regulatorisk kompetence der gør dem attraktive for operatører i andre nylicenserede markeder. Denne "regulatory-first" tilgang harmonerer perfekt med den danske markedsstruktur.
         </p>
+        <ReviewScreenshot
+          src={stakeStats1}
+          alt="Stakelogic Company Stats – 5 kontorer, 9 awards, 250+ slots og 950+ operatører"
+          caption="Stakelogics nøgletal: 250+ spilleautomater distribueret til over 950 operatører globalt."
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Live Casino-Integration og Omni-Channel Vision</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic har ekspanderet ind i live casino-segmentet med Stakelogic Live – et satsning der udnytter Novomatics erfaring med fysiske casino-operationer. Denne omni-channel tilgang (slots + live casino fra samme udbyder) giver operatører en mere integreret platform og spillere en sammenhængende brandoplevelse. Det er en strategi der minder om <Link to="/spiludviklere/evolution-gaming" className="text-primary underline hover:text-primary/80">Evolution Gamings</Link> vertikale integration, men i en mere beskeden skala.
@@ -97,7 +115,13 @@ const StakelogicGuide = () => (
       { year: "2023", event: "Større uafhængighed fra Novomatic – eget kreativt team og brandidentitet styrkes" },
       { year: "2024", event: "150+ titler, nye markeder i Latinamerika og Nordamerika udforskes" },
     ]}
-    gamesIntro={<p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler viser bredden i Stakelogics portefølje – fra klassiske Book-of-varianter til moderne megaways-implementeringer, alle med Super Stake™-support.</p>}
+    gamesIntro={<><p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler viser bredden i Stakelogics portefølje – fra klassiske Book-of-varianter til moderne megaways-implementeringer, alle med Super Stake™-support.</p>
+        <ReviewScreenshot
+          src={stakeKatalog}
+          alt="Stakelogic komplet spilkatalog – Candy Links Bonanza, Penguin Payday, Soul Slayer, Runner Runner og flere populære titler"
+          caption="Stakelogics fulde spilkatalog med Super Wheel™-badge synlig på næsten alle titler."
+        />
+      </>}
     games={[
       { name: "Book of Adventure", desc: "Stakelogics flagskib – en Indiana Jones-inspireret Book-of-slot med expanding symbols i free spins og Super Stake™ integration. Solid matematik og gennemtænkt tematik gør det til et godt alternativ til Play'n GOs Book of Dead. RTP: 96,1%. Høj volatilitet. Maks. gevinst: 5.000x. 10 Free Spins med expanding symbols der kan dække hele hjul.", highlight: "5.000x maks. – Expanding Symbols + Super Stake™" },
       { name: "Runner Runner Megaways™", desc: "Stakelogics mest ambitiøse megaways-implementering med op til 117.649 gevinstmuligheder. Poker-tematisk med et unikt respin-system hvor gevinstende symboler forbliver på plads mens resten re-spinner. RTP: 96,0%. Høj volatilitet. Maks. gevinst: 10.000x. Super Stake™ er særligt effektiv i denne titel.", highlight: "10.000x maks. – 117.649 Ways + Respin-system" },
@@ -111,9 +135,21 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic opererer under licenser fra Malta Gaming Authority (MGA), UK Gambling Commission (UKGC) og den hollandske Kansspelautoriteit (KSA). Deres hollandske licens er særligt bemærkelsesværdig – som et af de første studier certificeret til det nylicenserede hollandske marked har de opbygget en regulatorisk ekspertise der er direkte overførbar til lignende jurisdiktioner. Alle spil er RNG-certificeret af BMM Testlabs og eCOGRA.
         </p>
+        <ReviewScreenshot
+          src={stakeStats2}
+          alt="Stakelogic Company Stats – 550+ medarbejdere, 20+ markeder, 10+ gaming-licenser, 5 kontorer"
+          caption="Stakelogics globale tilstedeværelse: 550+ medarbejdere, 10+ licenser og distribution til 20+ markeder."
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Stakelogic-titler tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Novomatics regulatoriske track record – over 30 års erfaring med verdens strengeste gaming-myndigheder – giver en ekstra troværdighedsdimension til Stakelogics compliance-profil.
         </p>
+        <ReviewScreenshot
+          src={stakeGameplay}
+          alt="Penguin Payday gameplay – Stakelogic spilleautomat med vinterarktisk tema, multiplikator og Super Stake-knap"
+          caption="Penguin Payday i aktion: isblåt tema med multiplikator-mekanik og den karakteristiske Super Stake™-toggle i højre side."
+          size="medium"
+        />
       </>
     }
     pros={[
