@@ -223,22 +223,11 @@ export function BonanzaControlBar({
           </button>
         </div>
 
-        {/* ─── Bottom row: Info + Volume + Credit/Bet (centered) + WIN ─── */}
+        {/* ─── Credit / Bet / Win row ─── */}
         <div className="w-full px-2">
-          <div className="relative flex items-center justify-between w-full" style={{ minHeight: tumbleVisible ? 52 : 38 }}>
-            <div className="flex items-center gap-1.5">
-              {gameId === "gates-of-fedesvin" ? (
-                <GatesPayTable gameId={gameId} bet={bet} />
-              ) : gameId === "fedesvin-bonanza" ? (
-                <BonanzaPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
-              ) : (
-                <PayTable gameId={gameId} bet={bet} />
-              )}
-              <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
-            </div>
-
+          <div className="relative flex items-center justify-center w-full" style={{ minHeight: tumbleVisible ? 52 : 38 }}>
             {tumbleVisible && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <div className="pointer-events-none z-10">
                 <BonanzaTumbleWinBar
                   runningWin={tumbleRunningWin}
                   runningMultiplier={tumbleRunningMultiplier}
@@ -251,7 +240,7 @@ export function BonanzaControlBar({
             )}
 
             {!bonusState.isActive && !tumbleVisible && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5">
                   <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
                   <span className="text-lg font-black tabular-nums text-white" style={valueStyle}>
@@ -265,11 +254,25 @@ export function BonanzaControlBar({
               </div>
             )}
 
-            <div className="flex items-center gap-1.5">
-              <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
-              <AnimatedWinCounter targetValue={winAmount} className="text-2xl font-black tabular-nums text-white" style={valueStyle} />
-            </div>
+            {!tumbleVisible && (
+              <div className="flex items-center gap-1.5 ml-3">
+                <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
+                <AnimatedWinCounter targetValue={winAmount} className="text-2xl font-black tabular-nums text-white" style={valueStyle} />
+              </div>
+            )}
           </div>
+        </div>
+
+        {/* ─── Bottom row: PayTable + Volume ─── */}
+        <div className="w-full flex items-center justify-center gap-2 pb-1">
+          {gameId === "gates-of-fedesvin" ? (
+            <GatesPayTable gameId={gameId} bet={bet} />
+          ) : gameId === "fedesvin-bonanza" ? (
+            <BonanzaPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+          ) : (
+            <PayTable gameId={gameId} bet={bet} />
+          )}
+          <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
         </div>
       </div>
     );
