@@ -428,7 +428,7 @@ export default function SlotDatabase() {
               <a href="/casino-bonus" className="text-primary underline"> casino bonusser</a>.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.470+ spillemaskiner.
+              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.640+ spillemaskiner.
             </p>
           </div>
         </noscript>
