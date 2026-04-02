@@ -77,6 +77,12 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Play'n GO er en af branchens sidste store udviklere der konsekvent ikke tilbyder Bonus Buy. I en branche hvor Pragmatic Play, Nolimit City, Hacksaw Gaming, <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> og næsten alle andre udviklere tilbyder feature purchase, er fravalget bemærkelsesværdigt og kommercielt modigt. Play'n GOs officielle position er at bonusrunden skal optjenes gennem naturligt gameplay – at den anticipation der bygges op over 100-200 basis-spins er en integral del af spiloplevelsen. De argumenterer at Bonus Buy trivialiserer bonusrunden og reducerer den til en transaktion snarere end en belønning.
         </p>
+        <ReviewScreenshot
+          src={pngFreespins}
+          alt="Book of Dead free spins-funktion med expanding symbols – Play'n GO"
+          caption="Book of Deads ikoniske Free Spins-bog: 3 scatter-symboler udløser 10 free spins med expanding symbol-mekanik."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Regulatorisk er Play'n GOs holdning fremtidssikret: flere jurisdiktioner overvejer at begrænse eller forbyde Bonus Buy. Storbritannien har allerede implementeret restriktioner på feature purchase i flere spilkategorier. Sverige diskuterer tilsvarende regulering. Spanien har begrænsninger under overvejelse. Play'n GO vil være upåvirket af sådanne reguleringer – deres spil er allerede compliant med de strengeste potentielle regler. Men kommercielt har fravalget en pris: spillere der ønsker øjeblikkelig adgang til bonusrunder vælger andre udviklere. Streamer-segmentet – en vigtig markedsføringskanal i moderne casinobranche – foretrækker Bonus Buy for content-produktion fordi det garanterer visuel action hvert 2-3 minut i stedet for 15-20 minutters basis-spil.
         </p>
