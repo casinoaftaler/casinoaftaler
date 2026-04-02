@@ -117,6 +117,11 @@ const RelaxGamingGuide = () => (
           Dream Drop-titlerne tilføjer en ekstra dimension: progressive jackpots der kan falde under enhver session, uafhængigt af bonusrunden. Jackpot-bidraget er gennemsnitligt under 1% af indsatsen, hvilket gør det til det mindst invasive jackpot-system i branchen – basis-RTP forringes næsten ikke. Relax Gaming-spil er populære i{" "}
           <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-tilbud takket være kombinationen af høj maks. gevinst og acceptabel RTP.
         </p>
+        <ReviewScreenshot
+          src={relaxMoneytrainIntro}
+          alt="Money Train 2 intro-skærm med Money Cart Bonusrunde, 50.000x maks. gevinst og Re-Spin funktion"
+          caption="Money Train 2's intro-skærm præsenterer de tre kernefeatures: Money Cart Bonusrunde, 50.000x maks. og Re-Spin."
+        />
       </>
     }
     games={[
