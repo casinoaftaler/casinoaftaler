@@ -28,6 +28,13 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er en grundlæggende forskel mellem udviklere der laver spil og udviklere der bygger universer. Play'n GO tilhører den anden kategori. Grundlagt i Örebro, Sverige i 2005 – før iPhone, før Instagram, før Twitch – har dette studio brugt to årtier på at perfektionere en tilgang til spiludvikling der prioriterer narrativ sammenhæng, franchise-building og spillerloyalitet over de kortsigtede gevinster ved trend-jagt og kopimaskine-taktik. I en branche domineret af udviklere der jager den næste virale mekanik, har Play'n GO valgt den modsatte vej: byg karakterer, fortæl historier, og lad spillerne vende tilbage fordi de vil vide hvad der sker næste gang.
         </p>
+        <ReviewScreenshot
+          src={pngLogo}
+          alt="Play'n GO officielt logo – svensk spiludvikler med 434 titler"
+          caption="Play'n GOs logo – 5x Slot Provider of the Year og skaberne af Book of Dead og Reactoonz."
+          size="compact"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Rich Wilde er casinobranchens svar på Indiana Jones. Ikke bare et karakter-symbol, men en gennemgående protagonist der optræder i en serie af eventyr-slots med unikke mekanikker men fælles narrativ identitet: Book of Dead (Egypten, expanding symbols, 96,21% RTP), Pearls of India (indisk mytologi), Shield of Athena (græsk gudelære), Tome of Madness (Lovecraftian horror med cascading wins). Hver titel er selvstændig med sin egen mekanik, men deler karakteruniverset – Rich Wilde som den gennemgående eventyrerfigur. Denne franchise-tænkning skaber en spillerloyalitet og genkendelse der er ekstremt sjælden i slot-branchen, hvor 99% af spil er enkeltstående titler uden narrativ forbindelse. Cat Wilde-spin-offs har udvidet universet yderligere med en kvindelig protagonist der udforsker sit eget eventyr-narrativ.
         </p>
