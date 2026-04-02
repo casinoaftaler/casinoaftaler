@@ -356,7 +356,7 @@ export function HomepageKonverteringsSection() {
             </Button>
             <Button asChild size="lg" variant="outline" className="gap-2">
               <Link to="/top-10-casino-online">
-                <Star className="h-5 w-5" />
+                <MenuIcon iconName="star" className="h-5 w-5" />
                 Se Top 10 Liste
                 <ArrowRight className="h-4 w-4" />
               </Link>
