@@ -100,7 +100,7 @@ export default function FibonacciRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Talrække & simulering
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci Roulette System 2026 – Den Gyldne Spiral på Casinobordet

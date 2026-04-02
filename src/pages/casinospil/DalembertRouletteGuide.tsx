@@ -65,7 +65,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "D'Alembert Roulette System 2026 – Matematik, Simulering & Ærlig Analyse",
   description: "D'Alembert i roulette: Lineær progression, equilibrium-teori, 10.000-spins simulering, sammenligning med Martingale og Fibonacci.",
-  datePublished: "2026-04-17",
+  datePublished: "2026-04-14",
   url: `${SITE_URL}/casinospil/roulette/dalembert-roulette`,
   image: `${SITE_URL}/og/dalembert-roulette.jpg`,
 });
@@ -86,7 +86,7 @@ export default function DalembertRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Scale className="mr-1.5 h-3.5 w-3.5" /> Lineær progression
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert Roulette-Systemet – Den Konservative Progressions Ærlige Matematik

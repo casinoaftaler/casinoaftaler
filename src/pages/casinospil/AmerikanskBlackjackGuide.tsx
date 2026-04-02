@@ -110,7 +110,7 @@ const AmerikanskBlackjackGuide = () => {
     headline: "Amerikansk Blackjack 2026 – Regler, Strategi & House Edge",
     description: "Amerikansk blackjack: Hole card-regler, optimal strategi, house edge-analyse og sammenligning med europæisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/amerikansk-blackjack`,
-    datePublished: "2026-03-02",
+    datePublished: "2026-02-27",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -121,7 +121,7 @@ const AmerikanskBlackjackGuide = () => {
         title="Amerikansk Blackjack 2026 – Regler, Hole Card & Strategi"
         description="Amerikansk blackjack: Hole card-regler, optimal basic strategy, house edge-analyse og sammenligning med europæisk variant. Se hvad der passer dig."
         type="article"
-        datePublished="2026-03-02"
+        datePublished="2026-02-27"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

@@ -111,7 +111,7 @@ const EuropaeiskBlackjackGuide = () => {
     headline: "Europæisk Blackjack 2026 – ENHC, OBO & Strategi Guide",
     description: "Europæisk blackjack: ENHC/OBO-regler, tilpasset basic strategy og house edge-sammenligning med amerikansk variant.",
     url: `${SITE_URL}/casinospil/blackjack/europaeisk-blackjack`,
-    datePublished: "2026-04-19",
+    datePublished: "2026-04-11",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

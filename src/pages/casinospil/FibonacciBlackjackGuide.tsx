@@ -118,7 +118,7 @@ const FibonacciBlackjackGuide = () => {
     headline: "Fibonacci-Systemet i Blackjack 2026 – Sekvensen, Matematikken & Realiteten",
     description: "Komplet analyse af Fibonacci-indsatssystemet i blackjack: sekvensmeknik, 5.000-hånds simulering, sammenligning med Martingale og D'Alembert, og ærlige konklusioner.",
     url: `${SITE_URL}/casinospil/blackjack/fibonacci`,
-    datePublished: "2026-04-21",
+    datePublished: "2026-04-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -140,7 +140,7 @@ const FibonacciBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Sekvensanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci-Systemet i Blackjack – Naturens Talrække Møder Casino-Matematikken

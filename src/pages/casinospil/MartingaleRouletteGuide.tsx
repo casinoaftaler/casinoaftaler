@@ -80,7 +80,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Martingale Roulette System 2026 – Matematik, Simulering & Ærlig Test",
   description: "Dybdegående guide til Martingale-systemet i roulette: fordoblingsprincippet, eksponentiel risiko, 10.000-spins Monte Carlo simulering, bordgrænse-fælden og realistiske alternativer.",
-  datePublished: "2026-04-27",
+  datePublished: "2026-03-26",
   url: `${SITE_URL}/casinospil/roulette/martingale-roulette`,
   image: `${SITE_URL}/og/martingale-roulette.jpg`,
 });
@@ -101,7 +101,7 @@ export default function MartingaleRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Fordoblingsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale Roulette System 2026 – Fordoblingsprincippet Under Mikroskop
