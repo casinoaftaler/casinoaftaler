@@ -1,4 +1,5 @@
-import { Coins, Zap, XCircle } from "lucide-react";
+import { Coins, Zap, XCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const REWARDS = [
   { label: "100 Points", icon: Coins, type: "points" },

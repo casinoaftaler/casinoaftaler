@@ -27,7 +27,8 @@ import {
   Skull,
   Target,
   TrendingUp,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/martingale-blackjack-hero.jpg";
 
@@ -103,7 +104,7 @@ const MartingaleBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <AlertTriangle className="mr-1.5 h-3.5 w-3.5" /> Kritisk analyse
+              <MenuIcon iconName="alert-triangle" className="mr-1.5 h-3.5 w-3.5" /> Kritisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale-Systemet i Blackjack – Hvorfor Fordoblingsstrategien Fejler
@@ -133,7 +134,7 @@ const MartingaleBlackjackGuide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
-            <Skull className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="skull" className="h-7 w-7 text-destructive" />
             Hvorfor Martingale kollapser hurtigere end de fleste tror
           </h2>
           <p className="mb-4 leading-relaxed text-muted-foreground">
@@ -147,7 +148,7 @@ const MartingaleBlackjackGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Layers className="h-5 w-5 text-primary" /> Eksponentiel vækst
+                  <MenuIcon iconName="layers" className="h-5 w-5 text-primary" /> Eksponentiel vækst
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
@@ -157,7 +158,7 @@ const MartingaleBlackjackGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" /> Lille gevinst, stor risiko
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" /> Lille gevinst, stor risiko
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
@@ -167,7 +168,7 @@ const MartingaleBlackjackGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Scale className="h-5 w-5 text-primary" /> House edge består
+                  <MenuIcon iconName="scale" className="h-5 w-5 text-primary" /> House edge består
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
@@ -181,7 +182,7 @@ const MartingaleBlackjackGuide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
-            <BarChart3 className="h-7 w-7 text-primary" /> Sammenligning: Martingale vs. mildere systemer
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Sammenligning: Martingale vs. mildere systemer
           </h2>
           <p className="mb-4 leading-relaxed text-muted-foreground">
             Hvis man absolut vil analysere progressioner, er det vigtigt at forstå, at Martingale er den mest aggressive model. De langsommere systemer føles mere stabile, men de slår stadig ikke blackjack.
@@ -215,24 +216,24 @@ const MartingaleBlackjackGuide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
-            <ShieldCheck className="h-7 w-7 text-primary" /> Hvad du bør gøre i stedet
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" /> Hvad du bør gøre i stedet
           </h2>
           <div className="space-y-4">
             <Card>
               <CardContent className="pt-6">
-                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><CheckCircle className="h-5 w-5 text-primary" /> Perfektionér basic strategy</h3>
+                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" /> Perfektionér basic strategy</h3>
                 <p className="text-muted-foreground">Brug energi på beslutningerne ved bordet, ikke på at fordoble efter tab. Det er her den reelle EV-forbedring ligger.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
-                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><CheckCircle className="h-5 w-5 text-primary" /> Vælg bedre regler</h3>
+                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" /> Vælg bedre regler</h3>
                 <p className="text-muted-foreground">S17, 3:2 og gode split-regler gør mere for dig end noget indsatssystem. Sammenlign især <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk</Link> og <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk blackjack</Link>.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
-                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><CheckCircle className="h-5 w-5 text-primary" /> Brug fast indsats og tabsloft</h3>
+                <h3 className="mb-2 flex items-center gap-2 font-bold text-lg"><MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" /> Brug fast indsats og tabsloft</h3>
                 <p className="text-muted-foreground">Fast indsats, korte sessioner og et klart loft er stadig den sundeste tilgang til blackjack som underholdning.</p>
               </CardContent>
             </Card>
@@ -250,7 +251,7 @@ const MartingaleBlackjackGuide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
-            <BookOpen className="h-7 w-7 text-primary" /> Konklusion
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" /> Konklusion
           </h2>
           <p className="mb-4 leading-relaxed text-muted-foreground">
             Martingale er ikke en fordelagtig blackjack-strategi. Det er en måde at komprimere mange små sejre og få store nederlag ind i samme sessionstype. Det kan føles effektivt kortvarigt, men det er netop dét, der gør systemet farligt.

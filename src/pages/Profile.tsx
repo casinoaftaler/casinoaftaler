@@ -17,7 +17,8 @@ import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgr
 import { ProfileCommunityBonusSection } from "@/components/profile/ProfileCommunityBonusSection";
 import { ProfileSlotRequestStats } from "@/components/profile/ProfileSlotRequestStats";
 import { TwitchBadges } from "@/components/TwitchBadges";
-import { Loader2, Save, User, Trophy, Heart, Zap, Shield, Coins } from "lucide-react";
+import { Loader2, Save } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -189,7 +190,7 @@ export default function Profile() {
           {/* Points */}
           <div className="flex items-center gap-2">
             <div className="flex items-center justify-center rounded-full bg-primary/10 p-1.5">
-              <Coins className="h-3.5 w-3.5 text-primary" />
+              <MenuIcon iconName="coins" className="h-3.5 w-3.5 text-primary" />
             </div>
             <span className="text-sm text-muted-foreground">Butik Points:</span>
             {pointsLoading ? (
@@ -207,23 +208,23 @@ export default function Profile() {
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList className="grid w-full grid-cols-5 h-auto">
             <TabsTrigger value="profile" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
-              <User className="h-4 w-4" />
+              <MenuIcon iconName="user" className="h-4 w-4" />
               <span className="hidden sm:inline">Profil</span>
             </TabsTrigger>
             <TabsTrigger value="stats" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
-              <Trophy className="h-4 w-4" />
+              <MenuIcon iconName="trophy" className="h-4 w-4" />
               <span className="hidden sm:inline">Stats</span>
             </TabsTrigger>
             <TabsTrigger value="favorites" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
-              <Heart className="h-4 w-4" />
+              <MenuIcon iconName="heart" className="h-4 w-4" />
               <span className="hidden sm:inline">Favoritter</span>
             </TabsTrigger>
             <TabsTrigger value="playstyle" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
-              <Zap className="h-4 w-4" />
+              <MenuIcon iconName="zap" className="h-4 w-4" />
               <span className="hidden sm:inline">Spillestil</span>
             </TabsTrigger>
             <TabsTrigger value="privacy" className="flex flex-col sm:flex-row gap-1 sm:gap-2 py-2.5 text-xs sm:text-sm">
-              <Shield className="h-4 w-4" />
+              <MenuIcon iconName="shield" className="h-4 w-4" />
               <span className="hidden sm:inline">Privatliv</span>
             </TabsTrigger>
           </TabsList>

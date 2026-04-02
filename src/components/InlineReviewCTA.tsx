@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Gift, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual inline CTA for casino reviews.
@@ -50,7 +51,7 @@ export function InlineReviewCTA({
         size="lg"
         className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"
       >
-        <Gift className="mr-2 h-5 w-5" />
+        <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
         {copy.label} hos {casinoName}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>

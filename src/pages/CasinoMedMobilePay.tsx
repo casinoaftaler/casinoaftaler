@@ -17,29 +17,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Smartphone,
-  Shield,
-  Clock,
-  CheckCircle,
-  AlertTriangle,
-  Lock,
-  Scale,
-  BarChart3,
-  ArrowRight,
-  Zap,
-  CreditCard,
-  Info,
-  Users,
-  Globe,
-  Eye,
-  TrendingUp,
-  Star,
-  Settings,
-  Banknote,
-  ShieldCheck,
-  Timer,
-} from "lucide-react";
+import { ArrowRight, Settings, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data
@@ -191,7 +170,7 @@ const CasinoMedMobilePay = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <CreditCard className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="credit-card" className="mr-1.5 h-3.5 w-3.5" />
               Betalingsmetoder
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -220,7 +199,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvorfor-mobilepay">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Hvorfor MobilePay er den foretrukne betalingsmetode på danske casinoer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -264,28 +243,28 @@ const CasinoMedMobilePay = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <Card>
               <CardContent className="pt-6 text-center">
-                <Zap className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="zap" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Øjeblikkelig</h4>
                 <p className="text-sm text-muted-foreground">Indbetaling på 5-30 sek.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6 text-center">
-                <Banknote className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="banknote" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Nul gebyrer</h4>
                 <p className="text-sm text-muted-foreground">Ingen transaktionsgebyrer</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6 text-center">
-                <ShieldCheck className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="shield-check" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Bankklasse sikkerhed</h4>
                 <p className="text-sm text-muted-foreground">Biometri + PSD2-compliant</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6 text-center">
-                <Star className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="star" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Bonuskvalificeret</h4>
                 <p className="text-sm text-muted-foreground">Ingen e-wallet-restriktioner</p>
               </CardContent>
@@ -307,7 +286,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="casinoer-med-mobilepay">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Alle danske casinoer med MobilePay
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -492,7 +471,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="graenser-og-gebyrer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Beløbsgrænser, gebyrer og behandlingstid
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -593,7 +572,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="mobilepay-vs-alternativer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             MobilePay vs. Trustly vs. Apple Pay – detaljeret sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -606,7 +585,7 @@ const CasinoMedMobilePay = () => {
             <Card className="border-primary/30">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Smartphone className="h-5 w-5 text-blue-500" />
+                  <MenuIcon iconName="smartphone" className="h-5 w-5 text-blue-500" />
                   MobilePay
                 </CardTitle>
               </CardHeader>
@@ -624,7 +603,7 @@ const CasinoMedMobilePay = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Lock className="h-5 w-5 text-green-500" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-green-500" />
                   Trustly
                 </CardTitle>
               </CardHeader>
@@ -642,7 +621,7 @@ const CasinoMedMobilePay = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <CreditCard className="h-5 w-5 text-gray-500" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-gray-500" />
                   Apple Pay
                 </CardTitle>
               </CardHeader>
@@ -684,7 +663,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="bonuskvalificering">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Bonuskvalificering med MobilePay
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -699,7 +678,7 @@ const CasinoMedMobilePay = () => {
           </p>
           <ul className="space-y-2 text-muted-foreground mb-4 ml-4">
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
               <span>
                 <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
                   Velkomstbonusser
@@ -708,7 +687,7 @@ const CasinoMedMobilePay = () => {
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
               <span>
                 <Link to="/free-spins" className="text-primary underline hover:text-primary/80">
                   Free spins
@@ -717,7 +696,7 @@ const CasinoMedMobilePay = () => {
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
               <span>
                 <Link to="/reload-bonus" className="text-primary underline hover:text-primary/80">
                   Reload bonusser
@@ -726,7 +705,7 @@ const CasinoMedMobilePay = () => {
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
               <span>
                 <Link to="/cashback-bonus" className="text-primary underline hover:text-primary/80">
                   Cashback-programmer
@@ -735,7 +714,7 @@ const CasinoMedMobilePay = () => {
               </span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
               <span>VIP-loyalitetsprogrammer – comp points optjenes fuldt ud (se vores{" "}
                 <Link to="/vip-program" className="text-primary underline hover:text-primary/80">
                   VIP-guide
@@ -761,7 +740,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="udbetalinger">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Banknote className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="banknote" className="h-7 w-7 text-primary" />
             Udbetalinger: Kan du hæve via MobilePay?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -778,7 +757,7 @@ const CasinoMedMobilePay = () => {
             <Card>
               <CardContent className="pt-6">
                 <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-green-500" />
+                  <MenuIcon iconName="zap" className="h-4 w-4 text-green-500" />
                   Trustly (anbefalet)
                 </h4>
                 <p className="text-sm text-muted-foreground">
@@ -825,7 +804,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Sikkerhed og regulering – MitID, Spillemyndigheden og AML
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -858,7 +837,7 @@ const CasinoMedMobilePay = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Lock className="h-5 w-5 text-green-500" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-green-500" />
                   Sikkerhedslag
                 </CardTitle>
               </CardHeader>
@@ -874,7 +853,7 @@ const CasinoMedMobilePay = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Eye className="h-5 w-5 text-blue-500" />
+                  <MenuIcon iconName="eye" className="h-5 w-5 text-blue-500" />
                   Dit ansvar
                 </CardTitle>
               </CardHeader>
@@ -911,7 +890,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="mobilepay-paa-mobil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             MobilePay på mobil casino – den perfekte kombination
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -951,7 +930,7 @@ const CasinoMedMobilePay = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Ansvarligt spil med MobilePay
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

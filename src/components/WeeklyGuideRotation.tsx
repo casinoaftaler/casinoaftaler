@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 interface Guide {

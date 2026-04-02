@@ -8,7 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users, Play } from "lucide-react";
+import { Film, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
@@ -188,7 +189,7 @@ function LeaderboardSection({
                 >
                   <span className="w-6 text-center font-bold text-sm">
                     {i < 3 ? (
-                      <Medal className={`h-4 w-4 inline ${MEDAL_COLORS[i]}`} />
+                      <MenuIcon iconName="medal" className="h-5 w-5" />
                     ) : (
                       <span className="text-muted-foreground">{i + 1}</span>
                     )}
@@ -291,7 +292,7 @@ export default function HallOfFame() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />
               Community Legender
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -323,7 +324,7 @@ export default function HallOfFame() {
         {/* All-Time Leaderboards */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2" id="all-time-leaderboard">
-            <Trophy className="h-6 w-6 text-yellow-400" />
+            <MenuIcon iconName="trophy" className="h-6 w-6 text-yellow-400" />
             All-Time Leaderboard
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
@@ -388,7 +389,7 @@ export default function HallOfFame() {
                       {/* Play button overlay */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="rounded-full bg-primary/80 p-3 transition-transform group-hover:scale-110 group-hover:bg-primary">
-                          <Play className="h-6 w-6 text-primary-foreground" fill="currentColor" />
+                          <MenuIcon iconName="play" className="h-6 w-6 text-primary-foreground" />
                         </div>
                       </div>
                       <Badge className="absolute top-2 right-2 text-xs" variant="secondary">
@@ -419,7 +420,7 @@ export default function HallOfFame() {
         {/* Tournament Winners */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2" id="turneringsvindere">
-            <Crown className="h-6 w-6 text-primary" />
+            <MenuIcon iconName="crown" className="h-6 w-6 text-primary" />
             Seneste Turneringsvindere
           </h2>
           {winnersLoading ? (
@@ -427,7 +428,7 @@ export default function HallOfFame() {
           ) : tournamentWinners.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center text-muted-foreground">
-                <Trophy className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <MenuIcon iconName="trophy" className="h-12 w-12 mx-auto mb-4 opacity-50" />
                 <p>Ingen turneringsvindere endnu. <Link to="/community/turneringer" className="text-primary hover:underline">Deltag i den næste turnering!</Link></p>
               </CardContent>
             </Card>
@@ -448,7 +449,7 @@ export default function HallOfFame() {
                     </CardHeader>
                     <CardContent className="pt-4">
                       <div className="flex items-center gap-3">
-                        <Crown className="h-5 w-5 text-yellow-400 shrink-0" />
+                        <MenuIcon iconName="crown" className="h-5 w-5 text-yellow-400 shrink-0" />
                         <Avatar className="h-8 w-8">
                           <AvatarImage src={winner.winner_avatar_url || undefined} />
                           <AvatarFallback className="text-xs">

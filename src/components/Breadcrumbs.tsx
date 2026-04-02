@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { getBreadcrumbItems } from "@/lib/breadcrumbs";
 
 /**
@@ -42,7 +43,7 @@ export function Breadcrumbs({ dynamicLabel }: BreadcrumbsProps = {}) {
                 to={item.path}
                 className="flex items-center gap-1 hover:text-foreground transition-colors flex-shrink-0"
               >
-                <Home className="h-3.5 w-3.5" />
+                <MenuIcon iconName="home" className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">{item.name}</span>
               </Link>
             ) : (

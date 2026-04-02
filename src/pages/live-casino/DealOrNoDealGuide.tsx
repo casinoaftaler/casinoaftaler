@@ -18,11 +18,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles, Target, BarChart3, AlertTriangle, DollarSign,
-  TrendingUp, Shield, Zap, Brain, Calculator, Activity,
-  Dices, Timer, Gauge, Layers, Users, Crown, Scale, Flame,
-} from "lucide-react";
+import { DollarSign, Activity, Dices, Timer, Gauge } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
@@ -107,7 +104,7 @@ const DealOrNoDealGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Target className="mr-1.5 h-3.5 w-3.5" /> Interaktivt game show</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="target" className="mr-1.5 h-3.5 w-3.5" /> Interaktivt game show</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Deal or No Deal Live – Bankierens Matematik</h1>
             <p className="text-lg text-white/80">
               Evolutions interaktive game show med kufferter, bankier-tilbud og spillervalg. Den komplette matematiske analyse af odds, strategi og prospect theory.
@@ -125,7 +122,7 @@ const DealOrNoDealGuide = () => {
         <QuickComparisonTable count={3} title="Bedste Casinoer til Deal or No Deal" prioritySlugs={["luna-casino", "campobet", "swift-casino"]} />
         {/* ── H2 1 ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Deal or No Deal Live – det interaktive game show</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="crown" className="h-5 w-5 text-primary" />Hvad er Deal or No Deal Live – det interaktive game show</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deal Live er et live <Link to="/live-casino/game-shows" className={linkClass}>casino game show</Link> udviklet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>, baseret på det ikoniske tv-show, der har været en global underholdningssucces siden 2005. Casino-versionen bevarer kernekonceptet – kufferter med skjulte værdier, en mystisk bankier, og spillerens valg mellem sikkerhed og risiko – men tilføjer en kvalifikationsrunde og tilpasser formatet til online casino-miljøet.
           </p>
@@ -151,7 +148,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 2: Spillets tre faser ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Spillets tre faser – fra kvalifikation til bankierens tilbud</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="layers" className="h-5 w-5 text-primary" />Spillets tre faser – fra kvalifikation til bankierens tilbud</h2>
 
           <div className="grid gap-4 md:grid-cols-3 mb-6">
             <Card className="border-border">
@@ -190,14 +187,14 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 3: Bankierens matematik ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Bankierens tilbuds-matematik – den algoritmiske forhandler</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Bankierens tilbuds-matematik – den algoritmiske forhandler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bankierens tilbud er ikke tilfældigt – det beregnes algoritmisk baseret på den <Link to="/ordbog/expected-value" className={linkClass}>forventede værdi</Link> (EV) af de resterende kufferter. Formlen er: Tilbud = EV × Rabatfaktor, hvor rabatfaktoren stiger med hver runde. Bankieren tilbyder aldrig den fulde EV – altid en rabatteret version – fordi casinoet skal sikre en positiv forventet margin.
           </p>
 
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" /> Bankierens tilbuds-model</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" /> Bankierens tilbuds-model</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
@@ -234,7 +231,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 4: House Edge og RTP ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />House Edge og RTP – den samlede omkostningsanalyse</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />House Edge og RTP – den samlede omkostningsanalyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deal Lives samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> er ca. 95,42 % (<Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> 4,58 %). Men denne RTP inkluderer kvalifikationsomkostningen, som mange spillere overser. Den effektive omkostning fordeler sig over to komponenter:
           </p>
@@ -296,7 +293,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 5: Prospect Theory ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Prospect Theory og beslutningspsykologi i Deal or No Deal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="brain" className="h-5 w-5 text-primary" />Prospect Theory og beslutningspsykologi i Deal or No Deal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deal er et nærmest perfekt laboratorium for adfærdsøkonomisk teori. Prospect theory – udviklet af Kahneman og Tversky (1979) – forklarer præcist, hvorfor spillere systematisk afviger fra den matematisk optimale strategi, og hvorfor denne afvigelse er forudsigelig og konsistent.
           </p>
@@ -319,7 +316,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 6: Optimal strategi ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Optimal strategi – hvornår du tager Deal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Optimal strategi – hvornår du tager Deal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Selvom Deal or No Deal har en beslutningskomponent, kan ingen strategi eliminere house edge. Men du kan optimere dine beslutninger for at minimere tab og maksimere underholdningsværdi:
           </p>
@@ -436,7 +433,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 9: Bedste casinoer ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Bedste danske casinoer med Deal or No Deal Live</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Bedste danske casinoer med Deal or No Deal Live</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deal Live er tilgængeligt hos alle danske Evolution Gaming-casinoer med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link>. Spillet er identisk uanset operatør – vælg baseret på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, udbetalingshastighed og kundeservice. Husk: live casino bidrager typisk kun 10 % til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> – spil med egne midler.
           </p>
@@ -450,7 +447,7 @@ const DealOrNoDealGuide = () => {
 
         {/* ── H2 10: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="brain" className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deals kvalifikationsrunde skaber en unik risiko for "chasing" – spillere, der øger indsatsen eller boost-niveauet for at kvalificere sig hurtigere efter en dårlig runde. Denne eskaleringsadfærd kan hurtigt overskride budgettet, fordi kvalifikationsomkostningen er "skjult" i mange små indsatser snarere end én synlig stor indsats.
           </p>

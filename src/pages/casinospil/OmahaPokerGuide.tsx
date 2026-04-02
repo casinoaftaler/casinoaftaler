@@ -16,36 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Award,
-  Shuffle,
-  Cpu,
-  Gauge,
-  Crosshair,
-  Calculator,
-  Map,
-  Flame,
-} from "lucide-react";
+import { Timer, Shuffle, Cpu, Gauge, Map } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/omaha-poker-hero.jpg";
 
@@ -146,7 +118,7 @@ const OmahaPokerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Omaha guide
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Omaha guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Omaha Poker – Fire Kort, Uendelig Strategi
@@ -172,7 +144,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Min Første Uge med PLO: Fra Hold'em til Omaha
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -203,7 +175,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Omaha Regler – Det Vigtigste du Skal Vide
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -236,7 +208,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Starthands-Rangering i Omaha
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -246,7 +218,7 @@ const OmahaPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Top 10 Omaha Starthænder
               </CardTitle>
             </CardHeader>
@@ -289,7 +261,7 @@ const OmahaPokerGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Crosshair className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="crosshair" className="h-5 w-5 text-primary" />
             Positionsbaseret Starthands-Selektion
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -339,7 +311,7 @@ const OmahaPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Wrap-Typer og Outs
               </CardTitle>
             </CardHeader>
@@ -385,7 +357,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Omaha Hi-Lo (8-or-Better) – Split Pot Strategi
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -402,7 +374,7 @@ const OmahaPokerGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Hi-Lo Starthands-Tiers
           </h3>
           <Card className="mb-6">
@@ -438,7 +410,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Post-Flop Strategi i PLO
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -504,7 +476,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Blocker-Strategi i PLO – Det Usynlige Våben
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -529,7 +501,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Flame className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="flame" className="h-7 w-7 text-primary" />
             5-Card Omaha (PLO5) – Endnu Mere Action
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -554,7 +526,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Bankroll Management i PLO – Overlev Variansen
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -564,7 +536,7 @@ const OmahaPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Bankroll-Krav per Format
               </CardTitle>
             </CardHeader>
@@ -629,7 +601,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Award className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
             PLO Turneringer vs. Cash Games
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -654,67 +626,67 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             10 Mest Kostbare PLO-Leaks og Løsninger
           </h2>
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 1: Overspille bare-aces (AAxx uden sideconnectivity)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 1: Overspille bare-aces (AAxx uden sideconnectivity)</p>
                 <p className="text-sm text-muted-foreground">AA72 rainbow er en marginal hånd, ikke en premium. Løsning: evaluer altid alle fire kort som en enhed.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 2: Chase med non-nut draws</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 2: Chase med non-nut draws</p>
                 <p className="text-sm text-muted-foreground">Den tredjebedste flush er ofte en tabende hånd i PLO. Løsning: fokuser på nut draws og fold non-nut draws i store potter.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 3: Ignorere position</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 3: Ignorere position</p>
                 <p className="text-sm text-muted-foreground">PLO-winrates fra UTG vs. BTN er endnu mere spredte end i Hold'em. Løsning: spil 15-18 % fra UTG, 35-45 % fra BTN.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 4: Overcommitte med top two pair</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 4: Overcommitte med top two pair</p>
                 <p className="text-sm text-muted-foreground">Top two er sårbar mod sets og wraps i PLO. Løsning: kontroller pot med medium-stærke made hands på våde boards.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 5: Spille for mange hænder preflop</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 5: Spille for mange hænder preflop</p>
                 <p className="text-sm text-muted-foreground">Fire kort giver "illusionen" af potentiale. Løsning: disciplineret VPIP – max 25-30 % i 6-max.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 6: Glemme "must use 2"-reglen</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 6: Glemme "must use 2"-reglen</p>
                 <p className="text-sm text-muted-foreground">Selv erfarne Hold'em-spillere glemmer det under pres. Løsning: dobbelttjek din hånd ved showdown i live poker.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 7: Undlade at blokere-tænke</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 7: Undlade at blokere-tænke</p>
                 <p className="text-sm text-muted-foreground">Blockers er afgørende i PLO for bluffs og hero-calls. Løsning: altid spørg "hvad blokerer mine kort?"</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 8: C-bette for bredt i multi-way pots</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 8: C-bette for bredt i multi-way pots</p>
                 <p className="text-sm text-muted-foreground">60 % c-bet i heads-up → 30 % i 3-way. Løsning: reducer c-bet frekvens drastisk med flere modstandere.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 9: Utilstrækkelig bankroll</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 9: Utilstrækkelig bankroll</p>
                 <p className="text-sm text-muted-foreground">PLO kræver 2-3x større bankroll end NLHE. Løsning: minimum 40 buy-ins for PLO4, 60 for PLO5.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Leak 10: Tilt efter "unfair" bad beats</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Leak 10: Tilt efter "unfair" bad beats</p>
                 <p className="text-sm text-muted-foreground">Bad beats er MERE frekvente i PLO pga. tætte equities. Løsning: accept variansen, tag pauser, og sæt stop-loss.</p>
               </CardContent>
             </Card>
@@ -726,7 +698,7 @@ const OmahaPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Omaha vs. Texas Hold'em – Den Komplette Sammenligning
           </h2>
 

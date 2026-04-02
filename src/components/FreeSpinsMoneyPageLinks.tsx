@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star, BookOpen } from "lucide-react";
+import { Star, BookOpen } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 
 interface CampaignOffer {
@@ -40,7 +41,7 @@ export function FreeSpinsMoneyPageLinks({ campaigns }: { campaigns: CampaignOffe
   return (
     <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
       <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-        <BookOpen className="h-5 w-5 text-primary" />
+        <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
         Læs vores anmeldelser af disse casinoer
       </h3>
       <p className="text-sm text-muted-foreground mb-3">
@@ -49,7 +50,7 @@ export function FreeSpinsMoneyPageLinks({ campaigns }: { campaigns: CampaignOffe
       <ul className="space-y-2">
         {links.map((casino) => (
           <li key={casino.slug} className="flex items-center gap-2">
-            <Star className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+            <MenuIcon iconName="star" className="h-3.5 w-3.5 text-primary flex-shrink-0" />
             <Link
               to={`/casino-anmeldelser/${casino.slug}`}
               className="text-sm text-primary hover:underline font-medium"

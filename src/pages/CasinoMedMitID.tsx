@@ -12,34 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  Lock,
-  Fingerprint,
-  Smartphone,
-  Clock,
-  Zap,
-  Eye,
-  Users,
-  AlertTriangle,
-  Shield,
-  Key,
-  Star,
-  Timer,
-  Globe,
-  BookOpen,
-  Phone,
-  Heart,
-  Settings,
-  RefreshCw,
-  Scan,
-  Ban,
-  CircleCheck,
-  FileWarning,
-  Landmark,
-  Cpu,
-} from "lucide-react";
+import { Fingerprint, Key, Timer, Settings, Scan, Ban, FileWarning, Cpu } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -298,7 +272,7 @@ const CasinoMedMitID = () => {
 
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
-                <Lock className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                 Kryptering og datasikkerhed
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -308,7 +282,7 @@ const CasinoMedMitID = () => {
 
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 Beskyttelse mod svindel
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -512,7 +486,7 @@ const CasinoMedMitID = () => {
 
           <div className="mt-6 rounded-lg border border-border bg-muted/30 p-5">
             <div className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="phone" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <p className="font-semibold mb-1">MitID-support kontaktinfo</p>
                 <p className="text-sm text-muted-foreground">
@@ -564,7 +538,7 @@ const CasinoMedMitID = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-primary" />
                   Sverige (BankID)
                 </CardTitle>
               </CardHeader>
@@ -578,7 +552,7 @@ const CasinoMedMitID = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-muted-foreground" />
                   Storbritannien (GamStop + manuel KYC)
                 </CardTitle>
               </CardHeader>
@@ -592,7 +566,7 @@ const CasinoMedMitID = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-muted-foreground" />
                   Malta (manuel KYC)
                 </CardTitle>
               </CardHeader>

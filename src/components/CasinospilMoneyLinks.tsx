@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, Gamepad2, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual money-page CTA + sibling cross-links for casinospil spoke pages.
@@ -139,7 +140,7 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="gamepad2" className="h-6 w-6 text-primary" />
         Spil {gameName} hos de bedste casinoer
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -168,7 +169,7 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
       {/* Direct links to specific casino reviews */}
       <div className="mt-4 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <ShieldCheck className="h-3.5 w-3.5" />
+          <MenuIcon iconName="shield-check" className="h-3.5 w-3.5" />
           Bedste casinoer til {gameName}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -178,7 +179,7 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
               to={`/casino-anmeldelser/${slug}`}
               className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
             >
-              <Star className="h-3 w-3 text-primary" />
+              <MenuIcon iconName="star" className="h-3 w-3 text-primary" />
               {name}
               <span className="text-muted-foreground">({score})</span>
             </Link>
@@ -189,7 +190,7 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
       {/* Cross-links to sibling casinospil pages */}
       <div className="mt-3 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <Gamepad2 className="h-3.5 w-3.5" />
+          <MenuIcon iconName="gamepad2" className="h-3.5 w-3.5" />
           Udforsk flere casinospil
         </p>
         <div className="flex flex-wrap gap-2">

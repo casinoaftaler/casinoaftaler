@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual money-page links for provider hub pages (/spillemaskiner/*).
@@ -68,7 +69,7 @@ export function ProviderMoneyLinks({ providerName, providerSlug, slotCount }: Pr
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Gift className="h-7 w-7 text-primary" />
+        <MenuIcon iconName="gift" className="h-7 w-7 text-primary" />
         Bonus & Casinoer med {providerName}
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">

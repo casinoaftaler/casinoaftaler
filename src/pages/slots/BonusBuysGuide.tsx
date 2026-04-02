@@ -30,11 +30,8 @@ import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
 import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
 import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
 import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
-import {
-  ShoppingCart, TrendingUp, Target, Shield, Zap, BarChart3,
-  Calculator, Flame, Scale, AlertTriangle, Trophy, DollarSign,
-  Clock, BookOpen, Percent, ArrowRight, Ban, Coins, ChevronLeft, ChevronRight
-} from "lucide-react";
+import { DollarSign, ArrowRight, Ban, ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const SLOT_DATA = [
   { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
@@ -250,7 +247,7 @@ const BonusBuysGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><ShoppingCart className="mr-1.5 h-3.5 w-3.5" /> Spillemaskine-mekanik</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shopping-cart" className="mr-1.5 h-3.5 w-3.5" /> Spillemaskine-mekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bonus Buys – Guide, Matematik & Strategi</h1>
             <p className="text-lg text-white/80">Hvad betaler du reelt for genvej til bonusrunden? En matematisk analyse af buy features i moderne spillemaskiner.</p>
           </div>
@@ -267,7 +264,7 @@ const BonusBuysGuide = () => {
         {/* H2: Hvad er Bonus Buys? */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <ShoppingCart className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shopping-cart" className="h-7 w-7 text-primary" />
             Hvad er Bonus Buys?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -285,7 +282,7 @@ const BonusBuysGuide = () => {
           <Card className="border-primary/20 bg-primary/5 mb-6">
             <CardContent className="pt-6">
               <div className="flex items-start gap-3">
-                <BookOpen className="h-5 w-5 text-primary mt-0.5" />
+                <MenuIcon iconName="book-open" className="h-5 w-5 text-primary mt-0.5" />
                 <div>
                   <p className="font-semibold mb-2">Hurtig definition</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -332,7 +329,7 @@ const BonusBuysGuide = () => {
         {/* H2: Matematikken bag bonus buy */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Matematikken bag bonus buy (EV & sandsynlighed)
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -342,7 +339,7 @@ const BonusBuysGuide = () => {
           <Card className="mb-6 border-primary/20">
             <CardContent className="pt-6">
               <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 EV-formel for Bonus Buy
               </h3>
               <div className="bg-muted/50 rounded-lg p-4 font-mono text-sm mb-4">
@@ -422,7 +419,7 @@ const BonusBuysGuide = () => {
         {/* H2: RTP ved bonus buy vs. normal spinning */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Percent className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="percent" className="h-7 w-7 text-primary" />
             RTP ved bonus buy vs. normal spinning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -509,7 +506,7 @@ const BonusBuysGuide = () => {
         {/* H2: Volatilitet og risiko ved køb af bonus */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Flame className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="flame" className="h-7 w-7 text-primary" />
             Volatilitet og risiko ved køb af bonus
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -522,7 +519,7 @@ const BonusBuysGuide = () => {
           <Card className="mb-6 border-destructive/20 bg-destructive/5">
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-4 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                 Risiko-simulation: 10 bonus buys á 500 kr.
               </h3>
               <div className="space-y-3 text-sm">
@@ -575,7 +572,7 @@ const BonusBuysGuide = () => {
         {/* H2: Typiske bonus buy-priser */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Typiske bonus buy-priser (50x–200x)
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -620,7 +617,7 @@ const BonusBuysGuide = () => {
         {/* H2: Slots med bonus buy – vores analyser */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Slots med bonus buy – vores analyser
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-8">
@@ -637,7 +634,7 @@ const BonusBuysGuide = () => {
         {/* H2: Er bonus buys en god strategi? */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Er bonus buys en god strategi?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -692,7 +689,7 @@ const BonusBuysGuide = () => {
         {/* H2: Regler i Danmark */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Regler i Danmark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -712,7 +709,7 @@ const BonusBuysGuide = () => {
         {/* H2: Bankroll management ved buy feature */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Bankroll management ved buy feature
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -766,7 +763,7 @@ const BonusBuysGuide = () => {
         {/* H2: Bonus buy vs. free spins */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Bonus buy vs. free spins (naturlig trigger)
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -843,7 +840,7 @@ const BonusBuysGuide = () => {
         {/* H2: Konklusion */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Konklusion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -868,7 +865,7 @@ const BonusBuysGuide = () => {
         <Card className="mb-12 border-destructive/30 bg-destructive/5">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-6 w-6 text-destructive mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive mt-0.5 flex-shrink-0" />
               <div>
                 <p className="font-bold text-destructive mb-2">Vigtigt: Ansvarligt spil</p>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-2">

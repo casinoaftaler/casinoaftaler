@@ -6,7 +6,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Coins, Zap, Gamepad2, ShoppingBag } from "lucide-react";
+import { Sparkles, Coins, Zap, Gamepad2, ShoppingBag } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Confetti } from "./Confetti";
 import "@/styles/spin-the-reel.css";
 
@@ -61,12 +62,12 @@ export function RewardModal({
                       }}
                     >
                       {rewardType === "points" ? (
-                        <Coins className="h-12 w-12 text-primary" />
+                        <MenuIcon iconName="coins" className="h-12 w-12 text-primary" />
                       ) : (
-                        <Zap className="h-12 w-12 text-primary" />
+                        <MenuIcon iconName="zap" className="h-12 w-12 text-primary" />
                       )}
                     </div>
-                    <Sparkles className="absolute -top-2 -right-2 h-6 w-6 text-primary animate-bounce" />
+                    <MenuIcon iconName="sparkles" className="absolute -top-2 -right-2 h-6 w-6 text-primary animate-bounce" />
                     <Sparkles className="absolute -bottom-1 -left-2 h-5 w-5 text-primary/70 animate-bounce [animation-delay:0.3s]" />
                   </div>
                 </div>
@@ -106,13 +107,13 @@ export function RewardModal({
               <>
                 <Button asChild className="flex-1 gap-2">
                   <Link to="/community/slots" onClick={onClose}>
-                    <Gamepad2 className="h-4 w-4" />
+                    <MenuIcon iconName="gamepad2" className="h-4 w-4" />
                     Gå til Spillehal
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="flex-1 gap-2">
                   <Link to="/butik" onClick={onClose}>
-                    <ShoppingBag className="h-4 w-4" />
+                    <MenuIcon iconName="shopping-bag" className="h-4 w-4" />
                     Gå til Butik
                   </Link>
                 </Button>
@@ -121,7 +122,7 @@ export function RewardModal({
               <>
                 <Button asChild className="flex-1 gap-2">
                   <Link to="/community/slots" onClick={onClose}>
-                    <Gamepad2 className="h-4 w-4" />
+                    <MenuIcon iconName="gamepad2" className="h-4 w-4" />
                     Gå til Spillehal
                   </Link>
                 </Button>

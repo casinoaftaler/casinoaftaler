@@ -27,7 +27,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -54,7 +55,7 @@ const Casino888Anmeldelse = () => {
       <SEO title="888 Casino Anmeldelse 2026 – Eksklusiv Bonus & Pioner" description="888 Casino testet: Børsnoteret pioner med eksklusive spil, 888 Club loyalitetsprogram, dansk licens og bonus uden indbetaling. Se vores rating." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/888-casino", "crhpDPocTrQ", { title: "888 Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan 888 Casino ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Online Casino Pioner</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Online Casino Pioner</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">888 Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af 888 Casino – en af online gamblings absolut ældste og mest respekterede brands. Eksklusive spil, generøst loyalitetsprogram og dansk licens siden branchens tidligste dage.</p>
         </div></div>
@@ -75,7 +76,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – 888 Casino</CardTitle></CardHeader><CardContent>
+          <Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – 888 Casino</CardTitle></CardHeader><CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
               <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 888 kr.</p></div>
               <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
@@ -170,8 +171,8 @@ const Casino888Anmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Supportoplevelsen – responstid og kvalitet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino tilbyder kundeservice via live chat (24/7), e-mail og en omfattende FAQ-sektion. Vi testede live chatten to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Onsdag kl. 14:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 30 sek. Agent var kompetent og besvarede spørgsmål om 888 Club-niveauer korrekt. Kommunikation på engelsk med forståelse for danske forhold.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Søndag kl. 22:30</h3><p className="text-sm text-muted-foreground">Svartid: 7 min 45 sek. Længere ventetid men stadig tilgængelig. Agent henviste til FAQ for detaljer om bonusvilkår – mindre hjælpsomt.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Onsdag kl. 14:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 30 sek. Agent var kompetent og besvarede spørgsmål om 888 Club-niveauer korrekt. Kommunikation på engelsk med forståelse for danske forhold.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Søndag kl. 22:30</h3><p className="text-sm text-muted-foreground">Svartid: 7 min 45 sek. Længere ventetid men stadig tilgængelig. Agent henviste til FAQ for detaljer om bonusvilkår – mindre hjælpsomt.</p></div></div>
           </div>
           <p className="text-muted-foreground leading-relaxed">En vigtig note: kundeservicen er primært på engelsk. Selvom agenterne forstår danske spilleres behov, er kommunikationen ikke på dansk. For spillere, der foretrækker modersmålssupport, er det en ulempe sammenlignet med platforme som <Link to="/casino-anmeldelser/casinostuen" className={linkClass}>Casinostuen</Link> eller <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link>, der tilbyder udelukkende dansk kundeservice.</p>
         </section>
@@ -250,7 +251,7 @@ const Casino888Anmeldelse = () => {
 
         {/* William Hill Synergier */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />William Hill-fusionen – hvad betyder det for danske spillere?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />William Hill-fusionen – hvad betyder det for danske spillere?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Fusionen mellem Evoke PLC (tidl. 888 Holdings) og William Hill International i 2022 var en af de mest transformative begivenheder i online gambling-branchen i det seneste årti. Handlen, der var værdiansat til ca. £2,2 milliarder, skabte en global gigant med en samlet omsætning på over £3 milliarder og tilstedeværelse i mere end 20 regulerede markeder. For den danske spiller på 888 Casino har denne fusion konkrete implikationer – både positive og potentielt bekymrende.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">På den positive side har fusionen givet 888 Casino adgang til William Hills omfattende teknologiske infrastruktur, inklusiv avancerede odds-motorer, personaliserings-AI og en bredere portefølje af spiludbyder-aftaler. I praksis har det allerede resulteret i et udvidet spiludvalg med titler fra udbydere, der tidligere var eksklusive for William Hill-platformen. Desuden har koncernens samlede forhandlingsstyrke overfor spiludbydere forbedret vilkårene – herunder de Enhanced RTP-versioner, som nu er tilgængelige på udvalgte slots. For en spiller, der omsætter 50.000 kr. årligt, kan en RTP-forbedring på 0,5% betyde en besparelse på 250 kr. i forventet tab.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den potentielt bekymrende side er konsolidering. Når to store operatører fusionerer, reduceres konkurrencen – og i en branche, hvor konkurrence er den primære driver af innovation og spillervenlige vilkår, er det en strukturel risiko. Derudover har fusionsprocessen krævet betydelige ressourcer, der potentielt har forsinket platformmodernisering og produktudvikling. Det daterede designet, vi kritiserede tidligere, kan delvist tilskrives denne prioritering af integration over innovation i 2022-2024.</p>
@@ -261,10 +262,10 @@ const Casino888Anmeldelse = () => {
 
         {/* Årlig EV-beregning */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Årlig spilværdi – hvad koster det reelt at være 888-spiller?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="bar-chart3" className="inline h-7 w-7 text-primary mr-2" />Årlig spilværdi – hvad koster det reelt at være 888-spiller?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et komplet billede har vi beregnet den samlede årlige Expected Value for en typisk 888 Casino-spiller. Vi definerer tre spillerprofiler med realistiske aktivitetsniveauer og beregner nettoværdien af at spille på 888 Casino versus de nærmeste konkurrenter.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig EV-sammenligning: 888 Casino vs. markedet</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />Årlig EV-sammenligning: 888 Casino vs. markedet</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Casual spiller (5.000 kr./måned omsætning)</p>
@@ -329,8 +330,8 @@ const Casino888Anmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.3/5 afspejler vores vurdering en platform med exceptionel troværdighed og unikke features, der trækkes ned af et dateret design og gennemsnitlige udbetalingstider. For spillere, der planlægger langsigtede relationer med deres casino og værdsætter loyalitetsbelønning, er 888 Casino et stærkt valg. For dem, der prioriterer hastighed og den nyeste teknologi, er der bedre alternativer. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["888-casino"].scores} total={CASINO_SCORES["888-casino"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
         <UserReviewSection casinoSlug="888-casino" casinoName="888 Casino" />

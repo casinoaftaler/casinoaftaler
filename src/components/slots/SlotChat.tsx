@@ -3,7 +3,8 @@ import { useSlotChat, type ChatMessage } from "@/hooks/useSlotChat";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, Send, Users, Trash2, X, Ban, Clock, ChevronLeft, Eraser } from "lucide-react";
+import { Trash2, X, Ban, ChevronLeft, Eraser } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
@@ -172,10 +173,10 @@ function ChatBubble({
                 {onTimeout && (
                   <>
                     <DropdownMenuItem onClick={() => onTimeout(msg.user_id, 5)} className="text-amber-400 text-xs">
-                      <Clock className="h-3 w-3 mr-1.5" /> Timeout 5 min
+                      <MenuIcon iconName="clock" className="h-3 w-3 mr-1.5" /> Timeout 5 min
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onTimeout(msg.user_id, 10)} className="text-amber-400 text-xs">
-                      <Clock className="h-3 w-3 mr-1.5" /> Timeout 10 min
+                      <MenuIcon iconName="clock" className="h-3 w-3 mr-1.5" /> Timeout 10 min
                     </DropdownMenuItem>
                   </>
                 )}
@@ -326,7 +327,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
           className
         )}
       >
-        <MessageCircle className="h-4 w-4 text-pink-400" />
+        <MenuIcon iconName="message-circle" className="h-4 w-4 text-pink-400" />
         <span className="text-[11px] font-semibold text-white/80">Chat</span>
         {onlineCount > 0 && (
           <span className="bg-pink-500 text-white text-[9px] font-bold rounded-full px-1.5 py-0.5 ml-1">
@@ -356,7 +357,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
 
         {/* Center: Chat label + admin clear */}
         <div className="flex items-center gap-1.5">
-          <MessageCircle className="h-3.5 w-3.5 text-pink-400" />
+          <MenuIcon iconName="message-circle" className="h-3.5 w-3.5 text-pink-400" />
           <span className="text-xs font-bold text-white/90 uppercase tracking-wider">Chat</span>
           {isAdmin && (
             <button
@@ -376,7 +377,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
         <Popover>
           <PopoverTrigger asChild>
             <button className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors">
-              <Users className="h-3.5 w-3.5" />
+              <MenuIcon iconName="users" className="h-3.5 w-3.5" />
               <span className="text-[10px] font-semibold">{onlineCount}</span>
             </button>
           </PopoverTrigger>
@@ -461,7 +462,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
                   disabled={!input.trim() || isSending}
                   className="h-8 w-8 shrink-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10"
                 >
-                  <Send className="h-3.5 w-3.5" />
+                  <MenuIcon iconName="send" className="h-3.5 w-3.5" />
                 </Button>
               </div>
               <span className="text-[9px] text-white/20 mt-0.5 block">{input.length}/200</span>

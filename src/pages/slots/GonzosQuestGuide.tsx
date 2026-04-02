@@ -20,7 +20,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -108,7 +109,7 @@ const GonzosQuestGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" /> Historisk Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" /> Historisk Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Gonzo's Quest</h1>
             <p className="text-lg text-white/80">Slotten der opfandt Avalanche-mekanikken og ændrede branchen for altid. Holder den stadig i 2026?</p>
           </div>
@@ -139,7 +140,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk Profil: Klassisk Grid med Revolutionær Mekanik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk Profil: Klassisk Grid med Revolutionær Mekanik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -183,7 +184,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: AVALANCHE MATEMATIK ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Avalanche-Multiplikatorer: Matematikken bag Cascade-Kæder</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Avalanche-Multiplikatorer: Matematikken bag Cascade-Kæder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gonzo's Quests multiplikator-system er deterministisk, ikke tilfældigt – og det har store matematiske konsekvenser. Hver avalanche-kæde starter ved 1x og eskalerer sekventielt. Sandsynligheden for at nå de højere multiplikatorer afhænger direkte af, hvor mange consecutive vindende cascades du rammer.
           </p>
@@ -219,7 +220,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: RTP & HOUSE EDGE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> 95,97 % RTP: Under Gennemsnittet – Er Det et Problem?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> 95,97 % RTP: Under Gennemsnittet – Er Det et Problem?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Lad os adressere elefanten i rummet: Gonzo's Quest har en RTP, der er ca. 0,5 procentpoint under branchens gennemsnit. Det er ikke dramatisk, men over mange spins akkumulerer forskellen. Over 1.000 spins á 10 kr. er det forventede tab 403 kr. – ca. 50 kr. mere end en 96,48 %-slot og 85 kr. mere end Dead or Alive 2.
           </p>
@@ -235,7 +236,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: FREE FALL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Free Fall: Bonusrunden Hvor 15x Multiplikatoren Venter</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Free Fall: Bonusrunden Hvor 15x Multiplikatoren Venter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Free Fall udløses med 3+ Free Fall-symboler på de første 3 hjul – en sandsynlighed på ca. 1:200 spins. Du starter med 10 free falls, og retrigger er muligt med 3+ scatters for 5 ekstra. Den gennemsnitlige bonusrunde (med retriggering) varer ca. 12–14 free falls.
           </p>
@@ -254,7 +255,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Volatilitet: Det Tilgivende Midterfelt</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitet: Det Tilgivende Midterfelt</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gonzo's Quest klassificeres som medium-høj volatilitet (3/5) – en kategori, der gør den tilgængelig for de fleste spillertyper. Med en estimeret standardafvigelse på ca. 5–6x indsatsen pr. spin er bankroll-svingningerne moderate. Over 100 spins á 10 kr. vil din saldo typisk svinge inden for ±350 kr. af startpunktet – mere end <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (±200 kr.) men markant mindre end Razor Shark (±1.500 kr.).
           </p>
@@ -270,7 +271,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Gonzo's Quest vs. Sweet Bonanza: Avalanche vs. Tumble</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Gonzo's Quest vs. Sweet Bonanza: Avalanche vs. Tumble</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest naturlige sammenligning er med Sweet Bonanza, der bruger en udviklet version af Gonzo's Quests cascade-mekanik. Her er de objektive forskelle:
           </p>
@@ -307,7 +308,7 @@ const GonzosQuestGuide = () => {
 
         {/* ── SEKTION: HVEM PASSER SPILLET TIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Den Perfekte Spiller: Hvem Nyder Gonzo's Quest Mest?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Den Perfekte Spiller: Hvem Nyder Gonzo's Quest Mest?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gonzo's Quest appellerer stærkest til spillere, der værdsætter mekanik over max win. Den er ideel for mellemniveau-spillere med et moderate budget (500–2.000 kr.), der ønsker en tilgængelig slot med tilstrækkeligt spænding og potentiale for anstændige gevinster. Den er også et fremragende valg for spillere, der er nye til cascade-mekanikken og ønsker at opleve konceptet i dets originale og simpleste form.
           </p>

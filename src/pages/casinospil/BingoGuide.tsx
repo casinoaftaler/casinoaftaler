@@ -15,37 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Dice1,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Sparkles,
-  TrendingUp,
-  Lock,
-  Eye,
-  Zap,
-  BookOpen,
-  Star,
-  Users,
-  Monitor,
-  Smartphone,
-  DollarSign,
-  BarChart3,
-  Percent,
-  Calculator,
-  Heart,
-  Trophy,
-  ArrowRight,
-  Info,
-  Flame,
-  Grid3X3,
-  Hash,
-  CircleDot,
-} from "lucide-react";
+import { Dice1, DollarSign, ArrowRight, Grid3X3 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -553,7 +524,7 @@ const BingoGuide = () => {
 
           <div className="rounded-lg border-2 border-yellow-500/50 bg-yellow-500/5 p-5 mb-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-500" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-500" />
               <div>
                 <p className="font-semibold mb-2">Faresignaler specifikt for bingo-spillere</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
@@ -569,7 +540,7 @@ const BingoGuide = () => {
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">
             <div className="flex items-start gap-3">
-              <Heart className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="heart" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <p className="font-semibold mb-2">Ressourcer for hjælp</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">

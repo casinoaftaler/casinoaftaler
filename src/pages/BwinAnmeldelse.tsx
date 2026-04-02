@@ -24,7 +24,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -122,7 +123,7 @@ const BwinAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
               4.1 / 5 – Europæisk Gigant
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -145,7 +146,7 @@ const BwinAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                 Hurtige Fakta – bwin
               </CardTitle>
             </CardHeader>
@@ -191,7 +192,7 @@ const BwinAnmeldelse = () => {
         {/* [C] SEGMENT FIRST – Hvem er bwin til? */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvem er bwin egentlig til?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -252,7 +253,7 @@ const BwinAnmeldelse = () => {
         {/* Casino Game Selection */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Casino-spiludvalget i detaljer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -358,7 +359,7 @@ const BwinAnmeldelse = () => {
         {/* Payment Methods Table */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Wallet className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="wallet" className="h-7 w-7 text-primary" />
             Betalingsmetoder og testresultater
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -438,7 +439,7 @@ const BwinAnmeldelse = () => {
         {/* Customer Support */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Headphones className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />
             Kundeservice og mobiloplevelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -491,10 +492,10 @@ const BwinAnmeldelse = () => {
 
         {/* EV Analysis */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Expected Value – er bwin matematisk fordelagtigt?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Expected Value – er bwin matematisk fordelagtigt?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere den reelle værdi af bwin som gambling-platform analyserer vi den forventede værdi (EV) separat for casino og sport. bwins unikke position som hybrid-platform gør denne dobbelte analyse relevant – en ren casino-vurdering ville undervurdere platformens samlede proposition, da den primære værdiskabelse ligger i sportsvæddemål.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />3-trins EV-beregning – bwin (Casino + Sport)</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />3-trins EV-beregning – bwin (Casino + Sport)</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Trin 1: Casino-velkomstbonus EV</p>

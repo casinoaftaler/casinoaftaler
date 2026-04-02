@@ -1,4 +1,5 @@
-import { Play } from "lucide-react";
+import { Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface YoutubeEmbedProps {
   videoId: string;
@@ -39,7 +40,7 @@ export function YoutubeEmbed({
     <div className="my-8 overflow-hidden rounded-xl border border-border shadow-sm">
       {/* Label */}
       <div className="flex items-center gap-2 border-b border-border bg-muted/40 px-4 py-2.5">
-        <Play className="h-4 w-4 text-primary fill-primary" />
+        <MenuIcon iconName="play" className="h-4 w-4 text-primary fill-primary" />
         <span className="text-sm font-medium text-foreground">{title}</span>
       </div>
 

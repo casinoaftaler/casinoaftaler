@@ -24,7 +24,8 @@ import { useSlotScale } from "@/hooks/useSlotScale";
 import { GatesSlotGame } from "@/components/slots/GatesSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Gamepad2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
@@ -103,7 +104,7 @@ export default function GatesOfFedesvin() {
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-blue-500/20">
             <div className="h-20 w-20 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center">
-              <Gamepad2 className="h-10 w-10 text-blue-400" />
+              <MenuIcon iconName="gamepad2" className="h-10 w-10 text-blue-400" />
             </div>
             <h1 className="text-2xl font-bold">Log ind for at spille</h1>
             <p className="text-muted-foreground">
@@ -125,7 +126,7 @@ export default function GatesOfFedesvin() {
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-blue-500/20">
             <div className="h-20 w-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center">
-              <Gamepad2 className="h-10 w-10 text-amber-400" />
+              <MenuIcon iconName="gamepad2" className="h-10 w-10 text-amber-400" />
             </div>
             <h1 className="text-2xl font-bold">Kommer snart!</h1>
             <p className="text-muted-foreground">

@@ -14,7 +14,8 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Check, X, Star, Smartphone, Trophy, Zap, Scale } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import type { ReactNode } from "react";
 
 export interface ComparisonCategory {
@@ -171,7 +172,7 @@ export function ComparisonPageTemplate({
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />
               {[
                 "Casino Sammenligning 2026",
                 "Dybdegående Sammenligning",
@@ -231,12 +232,12 @@ export function ComparisonPageTemplate({
                   <div className="flex items-center gap-3">
                     {casino.mobileFriendly && (
                       <span className="flex items-center gap-1 text-xs text-emerald-500">
-                        <Smartphone className="h-3.5 w-3.5" /> Mobil
+                        <MenuIcon iconName="smartphone" className="h-3.5 w-3.5" /> Mobil
                       </span>
                     )}
                     {casino.liveCasino && (
                       <span className="flex items-center gap-1 text-xs text-violet-400">
-                        <Zap className="h-3.5 w-3.5" /> Live
+                        <MenuIcon iconName="zap" className="h-3.5 w-3.5" /> Live
                       </span>
                     )}
                   </div>
@@ -302,7 +303,7 @@ export function ComparisonPageTemplate({
         <Card className="border-primary/30 bg-card mb-10">
           <CardContent className="pt-6">
             <div className="flex items-center gap-2 mb-3">
-              <Trophy className="h-5 w-5 text-amber-400" />
+              <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-400" />
               <h2 className="text-xl font-bold">Konklusion</h2>
             </div>
             <p className="text-muted-foreground leading-relaxed">{verdict}</p>

@@ -17,7 +17,8 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ShieldCheck, Scale, Lock, CheckCircle2, AlertTriangle, Star, FileText, BadgeCheck, Globe, Gavel, Eye, Wallet, Users, Clock, BookOpen, Search, Shield, Ban } from "lucide-react";
+import { BadgeCheck, Gavel, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -49,7 +50,7 @@ const LicenseredeCasinoerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
               Licensguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -81,13 +82,13 @@ const LicenseredeCasinoerGuide = () => {
         <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Hvad er den danske casino-licens?</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Hvad er den danske casino-licens?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den danske online casino-licens udstedes af Spillemyndigheden (Danish Gambling Authority), som blev etableret i 2000 og regulerer alt lovligt spil i Danmark. Spillemyndigheden opererer under Skatteministeriet og har til formål at beskytte danske spillere, forebygge problematisk spil og sikre, at gambling foregår på en ordentlig og gennemsigtig måde.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at opnå en dansk casino-licens skal operatøren gennemgå en omfattende ansøgningsproces, der typisk tager 4-6 måneder. Ansøgningen vurderes på tværs af flere dimensioner: Teknisk infrastruktur, finansiel stabilitet, ejerskabsstruktur, compliance-programmer, anti-hvidvask procedurer og implementering af ansvarligt spil-værktøjer. Ansøgningsgebyret er ca. 350.000 kr., og dertil kommer den løbende årlige afgift på 28 % af bruttospilleindtægten (GGR).</p>
           <p className="text-muted-foreground mb-6">Licensen er tidsbegrænset og skal fornyes med jævne mellemrum, hvilket sikrer, at operatørerne løbende lever op til de gældende krav. Spillemyndigheden kan også gennemføre uanmeldte inspektioner og kræve dokumentation for compliance til enhver tid.</p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><FileText className="h-5 w-5 text-primary" /> Tekniske og operationelle licenskrav</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
+            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="file-text" className="h-5 w-5 text-primary" /> Tekniske og operationelle licenskrav</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
               <li>• MitID-integration for identitetsverifikation af alle spillere</li>
               <li>• ROFUS-tilslutning for national selvudelukkelse</li>
               <li>• Segregerede spillermiddelkonti hos godkendte pengeinstitutter</li>
@@ -117,7 +118,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Licensprocessen: Fra ansøgning til godkendelse</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Licensprocessen: Fra ansøgning til godkendelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">At opnå en dansk casino-licens er en krævende proces, der afspejler den høje standard, Spillemyndigheden opretholder. Processen involverer flere faser, og mange ansøgere oplever, at de skal supplere med yderligere dokumentation undervejs. Her gennemgår vi de vigtigste trin i licensprocessen, så du kan forstå, hvad der ligger bag det licensmærke, du ser på et dansk casino.</p>
         <ReviewScreenshot
           src={spildanskForside}
@@ -140,7 +141,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" /> Dansk licens vs. internationale licenser</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Dansk licens vs. internationale licenser</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ikke alle casino-licenser er skabt lige. Der er enorme forskelle i krav, spillerbeskyttelse og troværdighed mellem forskellige jurisdiktioner. Mange danske spillere støder på casinoer med licenser fra Malta, Gibraltar, Curaçao eller andre jurisdiktioner. Her er en detaljeret sammenligning, der hjælper dig med at forstå forskellen og hvorfor den danske licens tilbyder den bedste beskyttelse for dig som dansk spiller.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
@@ -163,17 +164,17 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" /> Risici ved ulicenserede casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" /> Risici ved ulicenserede casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ulicenserede casinoer udgør en reel og alvorlig risiko for danske spillere. Desværre er disse platforme ofte designet til at se professionelle og pålidelige ud, hvilket gør det svært for uerfarne spillere at skelne dem fra legitime, licenserede alternativer. Der er adskillige dokumenterede tilfælde af ulicenserede casinoer, der har nægtet at udbetale gevinster, lukket uden varsel med spillermidler, eller manipuleret spilresultater.</p>
           <p className="text-muted-foreground mb-6">Spillemyndigheden opretholder en aktiv blokeringsliste over ulicenserede sider, der målretter danske spillere, og samarbejder med danske internetudbydere om at blokere adgangen. Alligevel finder nye ulicenserede casinoer konstant vej til markedet, ofte via social medie-markedsføring eller affiliate-netværk.</p>
           <div className="space-y-4 mb-6">
             {[
               { title: "Ingen forbrugerbeskyttelse under dansk lov", desc: "Uden dansk licens har du ingen klagemulighed via Spillemyndigheden. Danske domstole kan ikke håndhæve krav mod udenlandske uregulerede operatører. Du er fuldstændig overladt til operatørens velvilje, hvis der opstår en tvist om gevinster eller kontoindeståender.", icon: <Gavel className="h-5 w-5 text-destructive" /> },
-              { title: "Skattepligtige gevinster – op til 52 %", desc: "Gevinster fra casinoer uden EU-licens er som udgangspunkt skattepligtige som personlig indkomst. Afhængigt af din øvrige indkomst kan marginalskatten være helt op til 52 %. En gevinst på 100.000 kr. kan altså reduceres til under 50.000 kr. efter skat. Manglende selvangivelse kan medføre bøder og skattetillæg.", icon: <Wallet className="h-5 w-5 text-destructive" /> },
-              { title: "Ingen ROFUS-beskyttelse", desc: "Selvudelukkelse via ROFUS gælder kun licenserede danske spillesider. Har du meldt dig ind i ROFUS for at kontrollere dit spil, kan du stadig tilgå ulicenserede sider, som ikke er forpligtet til at tjekke registret. Dette underminerer et vigtigt sikkerhedsnet for sårbare spillere.", icon: <Eye className="h-5 w-5 text-destructive" /> },
-              { title: "Ubeskyttede spillermidler", desc: "Ulicenserede operatører har ingen lovkrav om at holde spillermidler adskilt fra driftsmidler. Dine indsatte penge kan bruges til at dække operatørens driftsomkostninger, og ved konkurs eller lukning er der ingen garanti for, at du får dine penge tilbage.", icon: <Lock className="h-5 w-5 text-destructive" /> },
+              { title: "Skattepligtige gevinster – op til 52 %", desc: "Gevinster fra casinoer uden EU-licens er som udgangspunkt skattepligtige som personlig indkomst. Afhængigt af din øvrige indkomst kan marginalskatten være helt op til 52 %. En gevinst på 100.000 kr. kan altså reduceres til under 50.000 kr. efter skat. Manglende selvangivelse kan medføre bøder og skattetillæg.", icon: <MenuIcon iconName="wallet" className="h-5 w-5 text-destructive" /> },
+              { title: "Ingen ROFUS-beskyttelse", desc: "Selvudelukkelse via ROFUS gælder kun licenserede danske spillesider. Har du meldt dig ind i ROFUS for at kontrollere dit spil, kan du stadig tilgå ulicenserede sider, som ikke er forpligtet til at tjekke registret. Dette underminerer et vigtigt sikkerhedsnet for sårbare spillere.", icon: <MenuIcon iconName="eye" className="h-5 w-5 text-destructive" /> },
+              { title: "Ubeskyttede spillermidler", desc: "Ulicenserede operatører har ingen lovkrav om at holde spillermidler adskilt fra driftsmidler. Dine indsatte penge kan bruges til at dække operatørens driftsomkostninger, og ved konkurs eller lukning er der ingen garanti for, at du får dine penge tilbage.", icon: <MenuIcon iconName="lock" className="h-5 w-5 text-destructive" /> },
               { title: "Risiko for manipulerede spilresultater", desc: "Uden krav om certificerede tilfældighedsgeneratorer (RNG) og uafhængig auditering kan ulicenserede casinoer teoretisk manipulere spilresultater til ugunst for spilleren. Der er ingen garanti for, at de annoncerede RTP-procenter er korrekte.", icon: <Ban className="h-5 w-5 text-destructive" /> },
-              { title: "Hvidvask og identitetstyveri", desc: "Ulicenserede casinoer kan have utilstrækkelige KYC-procedurer (Know Your Customer), hvilket øger risikoen for identitetstyveri. Dine personlige oplysninger og betalingsoplysninger kan potentielt misbruges eller sælges videre.", icon: <Users className="h-5 w-5 text-destructive" /> },
+              { title: "Hvidvask og identitetstyveri", desc: "Ulicenserede casinoer kan have utilstrækkelige KYC-procedurer (Know Your Customer), hvilket øger risikoen for identitetstyveri. Dine personlige oplysninger og betalingsoplysninger kan potentielt misbruges eller sælges videre.", icon: <MenuIcon iconName="users" className="h-5 w-5 text-destructive" /> },
             ].map((risk, i) => (
               <Card key={i} className="border-destructive/30"><CardContent className="flex items-start gap-4 pt-4">{risk.icon}<div><h3 className="font-semibold mb-1">{risk.title}</h3><p className="text-sm text-muted-foreground">{risk.desc}</p></div></CardContent></Card>
             ))}
@@ -183,7 +184,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Search className="h-7 w-7 text-primary" /> Sådan verificerer du et casinos licens</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="search" className="h-7 w-7 text-primary" /> Sådan verificerer du et casinos licens</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">At verificere et casinos licens bør være det allerførste, du gør, inden du opretter en konto. Processen er heldigvis enkel og tager kun få minutter. Her er en trin-for-trin guide til at sikre, at du spiller på en legitimt licenseret platform.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -201,7 +202,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BookOpen className="h-7 w-7 text-primary" /> Ansvarligt spil og licenserede casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="book-open" className="h-7 w-7 text-primary" /> Ansvarligt spil og licenserede casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de vigtigste fordele ved at spille på licenserede danske casinoer er den omfattende beskyttelse inden for ansvarligt spil. Det danske reguleringssystem er designet med spillerbeskyttelse som kerneprioritiet, og licenserede casinoer skal implementere en række obligatoriske værktøjer og procedurer, der hjælper spillere med at opretholde kontrol over deres spil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle licenserede casinoer skal tilbyde indbetalingsgrænser, som spilleren selv fastsætter. Disse grænser kan sættes dagligt, ugentligt eller månedligt, og en sænkning af grænsen træder i kraft øjeblikkeligt, mens en forhøjelse først træder i kraft efter 24 timers afkølingsperiode. Denne asymmetri er designet til at beskytte spillere mod impulsive beslutninger om at hæve deres grænser i et øjeblik af ophidselse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Derudover skal alle licenserede casinoer implementere sessionstidsadvarsler, der minder spilleren om, hvor længe de har spillet. Spilleren kan selv indstille tidsintervallet for disse advarsler. Casinoerne skal også tilbyde muligheden for midlertidig selvudelukkelse (cooldown) direkte på platformen, ud over den nationale ROFUS-ordning.</p>
@@ -211,7 +212,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Clock className="h-7 w-7 text-primary" /> Historien om dansk casino-regulering</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="clock" className="h-7 w-7 text-primary" /> Historien om dansk casino-regulering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det danske online gambling-marked har gennemgået en bemærkelsesværdig udvikling siden årtusindskiftet. Før 2012 havde Danske Spil monopol på online gambling i Danmark. Monopolet blev kritiseret for at begrænse forbrugernes valgmuligheder og skabe et gråzonemarked, hvor danske spillere søgte til uregulerede udenlandske sider.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med vedtagelsen af Spilleloven i 2012 blev det danske marked åbnet for konkurrence under streng regulering. Loven var et kompromis mellem at sikre statsindtægter, beskytte spillere og skabe et attraktivt reguleret marked, der kunne konkurrere med det uregulerede. Resultatet var et licenssystem, der hurtigt blev anerkendt som et af Europas mest velfungerende.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Siden 2012 har lovgivningen gennemgået flere revisioner for at tilpasse sig nye teknologier og udfordringer. Vigtige milepæle inkluderer indførelsen af obligatoriske indbetalingsgrænser i 2018, strengere markedsføringskrav i 2020, og den seneste revision i 2024 der styrkede anti-hvidvask procedurerne og indførte strengere sanktioner for overtrædelser. I 2025 blev der indført nye krav til AI-baseret overvågning af spilleradfærd for tidlig identifikation af problematisk spil.</p>
@@ -221,7 +222,7 @@ const LicenseredeCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><CheckCircle2 className="h-7 w-7 text-primary" /> Sådan vælger du det rigtige licenserede casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-7 w-7 text-primary" /> Sådan vælger du det rigtige licenserede casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle licenserede casinoer opfylder de samme grundlæggende krav, men der er stadig markante forskelle i kvalitet, spiludvalg, bonusvilkår og brugeroplevelse. At have en dansk licens er den nødvendige minimumstandard, men det bør ikke være det eneste kriterium i dit valg. Her er vores anbefalinger til, hvordan du finder det bedste licenserede casino for netop dine behov.</p>
           <div className="space-y-3 mb-6">
             {[

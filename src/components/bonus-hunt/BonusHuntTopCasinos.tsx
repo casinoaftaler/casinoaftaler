@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
@@ -70,7 +71,7 @@ export function BonusHuntTopCasinos() {
               </span>
               <span className="inline-flex items-center gap-1 text-xs text-primary/70 group-hover:text-primary transition-colors mt-0.5">
                 Læs anmeldelse
-                <ExternalLink className="h-3 w-3" />
+                <MenuIcon iconName="external-link" className="h-3 w-3" />
               </span>
             </div>
           </Link>

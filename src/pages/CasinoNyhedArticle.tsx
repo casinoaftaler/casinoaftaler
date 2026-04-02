@@ -25,7 +25,8 @@ import {
   buildFaqSchema,
   SITE_URL,
 } from "@/lib/seo";
-import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -192,12 +193,12 @@ const CasinoNyhedArticle = () => {
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Badge variant="secondary">
-                <Newspaper className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="newspaper" className="mr-1.5 h-3.5 w-3.5" />
                 {getCategoryLabel(article.category)}
               </Badge>
               {isCornerstone && (
                 <Badge variant="default" className="flex items-center gap-1">
-                  <Crown className="h-3.5 w-3.5" />
+                  <MenuIcon iconName="crown" className="h-3.5 w-3.5" />
                   Løbende opdateret
                 </Badge>
               )}
@@ -223,7 +224,7 @@ const CasinoNyhedArticle = () => {
         {/* Cornerstone: show last-updated date */}
         {isCornerstone && updatedDate && updatedDate !== publishedDate && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2">
-            <RefreshCw className="h-4 w-4 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-4 w-4 text-primary" />
             <span>Senest opdateret: {updatedDate}</span>
           </div>
         )}
@@ -297,7 +298,7 @@ const CasinoNyhedArticle = () => {
                   )}
                   <div className="p-3">
                     <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1.5">
-                      <CalendarDays className="h-3 w-3" />
+                      <MenuIcon iconName="calendar-days" className="h-3 w-3" />
                       {related.published_at &&
                         new Date(related.published_at).toLocaleDateString("da-DK", {
                           day: "numeric",

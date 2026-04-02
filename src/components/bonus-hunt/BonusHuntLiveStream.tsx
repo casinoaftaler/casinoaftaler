@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
-import { Play, Radio, ExternalLink } from "lucide-react";
+import { Radio } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 
 export function BonusHuntLiveStream({ huntNumber }: { huntNumber: number }) {
@@ -49,7 +50,7 @@ export function BonusHuntLiveStream({ huntNumber }: { huntNumber: number }) {
             >
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
               <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-200">
-                <Play className="h-6 w-6 ml-0.5" />
+                <MenuIcon iconName="play" className="h-6 w-6 ml-0.5" />
               </div>
               <span className="relative z-10 text-sm font-semibold text-foreground drop-shadow-md">Se live stream</span>
               <span className="relative z-10 text-xs text-muted-foreground drop-shadow-md">Klik for at indlæse Twitch-stream</span>
@@ -69,7 +70,7 @@ export function BonusHuntLiveStream({ huntNumber }: { huntNumber: number }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 rounded-full bg-muted/40 px-2.5 py-1 text-[11px] text-muted-foreground hover:bg-muted/60 transition-colors"
           >
-            <ExternalLink className="h-3 w-3" />
+            <MenuIcon iconName="external-link" className="h-3 w-3" />
             Åbn på Twitch
           </a>
         </div>

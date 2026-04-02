@@ -15,7 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Landmark, Sparkles, CheckCircle2, Zap, ShieldCheck, AlertTriangle, Clock, Building2, XCircle } from "lucide-react";
+import { Landmark, Sparkles, CheckCircle2, Zap, ShieldCheck, AlertTriangle, Clock, Building2, XCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -86,7 +87,7 @@ const NyeCasinoerTrustly = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Landmark className="mr-1.5 h-3.5 w-3.5" />Trustly Casinoer</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="landmark" className="mr-1.5 h-3.5 w-3.5" />Trustly Casinoer</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med Trustly</h1>
           <p className="text-lg text-white/80">Pay N Play hos nye danske casinoer. Bankkompatibilitet, beløbsgrænser og onboarding-oplevelse testet hos 15+ nye spillesteder.</p>
         </div></div>
@@ -131,7 +132,7 @@ const NyeCasinoerTrustly = () => {
               { step: "5. Spil øjeblikkeligt", desc: "Du lander direkte i casinoets lobby med penge på kontoen og eventuel velkomstbonus aktiveret. Fra første klik til gameplay: under 60 sekunder. Ingen e-mail-bekræftelse, ingen yderligere trin." },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.step}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -263,7 +264,7 @@ const NyeCasinoerTrustly = () => {
               { title: "Høje beløbsgrænser", desc: "Trustly tillader typisk transaktioner op til 50.000-100.000 kr. afhængigt af din bank og casinoets grænser. Det er markant højere end MobilePay (typisk 10.000-20.000 kr.) og e-wallets. Ideel for high-volume spillere." },
             ].map((benefit) => (
               <div key={benefit.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
+                <MenuIcon iconName="check-circle2" className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-semibold">{benefit.title}</h3>
                   <p className="text-sm text-muted-foreground">{benefit.desc}</p>
@@ -289,7 +290,7 @@ const NyeCasinoerTrustly = () => {
               { title: "Transaktionsgaranti", desc: "Trustly garanterer, at alle transaktioner gennemføres korrekt. Hvis en transaktion fejler – f.eks. pga. timeout eller teknisk fejl – refunderes beløbet automatisk til din bankkonto inden for 24 timer. Du mister aldrig penge pga. tekniske fejl i Trustly-systemet." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -317,7 +318,7 @@ const NyeCasinoerTrustly = () => {
               { problem: "Dobbeltbetaling – penge trukket to gange", solution: "Sjældent, men det sker. Kontakt omgående casinoets support med begge transaktions-ID'er. Trustly har en automatiseret duplikerings-detektion, og det overskydende beløb refunderes typisk inden for 24 timer. Din bank kan også hjælpe med at tilbageføre den ekstra transaktion." },
             ].map((item) => (
               <div key={item.problem} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.problem}</h3>
                   <p className="text-sm text-muted-foreground">{item.solution}</p>
@@ -338,7 +339,7 @@ const NyeCasinoerTrustly = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Trustly Pay N Play</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Trustly Pay N Play</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• <strong>Tid:</strong> Under 60 sekunder</p>
@@ -352,7 +353,7 @@ const NyeCasinoerTrustly = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-muted-foreground/30">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Clock className="h-5 w-5 text-muted-foreground" />Standard + Trustly betaling</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="clock" className="h-5 w-5 text-muted-foreground" />Standard + Trustly betaling</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• <strong>Tid:</strong> 2-4 minutter</p>
@@ -386,7 +387,7 @@ const NyeCasinoerTrustly = () => {
               { title: "Maksimal udbetaling", desc: "Typisk 50.000-200.000 kr. pr. transaktion, 100.000-500.000 kr. pr. uge. Store gevinster (over 200.000 kr.) kan kræve opdeling i flere transaktioner eller håndtering via casinoets VIP-team." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="building2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -409,7 +410,7 @@ const NyeCasinoerTrustly = () => {
               { to: "/nye-casinoer/mitid", label: "Med MitID", desc: "Nye casinoer med MitID-verifikation" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
               </Link>
             ))}

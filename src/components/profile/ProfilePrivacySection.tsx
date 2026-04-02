@@ -1,7 +1,8 @@
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { Shield, Eye, EyeOff } from "lucide-react";
+import { EyeOff } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface ProfilePrivacySectionProps {
   formData: {
@@ -16,7 +17,7 @@ export function ProfilePrivacySection({ formData, onChange }: ProfilePrivacySect
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
           Privatliv & Synlighed
         </CardTitle>
         <CardDescription>
@@ -29,7 +30,7 @@ export function ProfilePrivacySection({ formData, onChange }: ProfilePrivacySect
           <div className="space-y-1">
             <Label htmlFor="stats_public" className="flex items-center gap-2 cursor-pointer">
               {formData.stats_public ? (
-                <Eye className="h-4 w-4 text-green-500" />
+                <MenuIcon iconName="eye" className="h-4 w-4 text-green-500" />
               ) : (
                 <EyeOff className="h-4 w-4 text-muted-foreground" />
               )}

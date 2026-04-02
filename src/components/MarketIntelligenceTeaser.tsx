@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Radar, ShieldCheck } from "lucide-react";
+import { ArrowRight, Radar } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
@@ -91,7 +92,7 @@ export function MarketIntelligenceTeaser({ pagePath }: MarketIntelligenceTeaserP
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   Verificeret signal
                 </div>
               </div>

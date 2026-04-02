@@ -16,31 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Heart,
-  MessageCircle,
-  Mail,
-  Info,
-  HandHeart,
-  Headphones,
-  Calendar,
-  UserCheck,
-} from "lucide-react";
+import { Gavel, ArrowRight, HandHeart, UserCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -171,7 +148,7 @@ const StopSpilletGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Phone className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="phone" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -208,7 +185,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-stopspillet">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Phone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="phone" className="h-7 w-7 text-primary" />
             Hvad er StopSpillet?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -240,7 +217,7 @@ const StopSpilletGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               StopSpillet i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -280,7 +257,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="kontakt">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Headphones className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />
             Sådan kontakter du StopSpillet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -323,7 +300,7 @@ const StopSpilletGuide = () => {
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.desc}</p>
                   <Button variant="outline" size="sm" asChild className="w-full">
                     <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}>
-                      <ExternalLink className="mr-2 h-3.5 w-3.5" />
+                      <MenuIcon iconName="external-link" className="mr-2 h-3.5 w-3.5" />
                       {item.cta}
                     </a>
                   </Button>
@@ -334,7 +311,7 @@ const StopSpilletGuide = () => {
 
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-5 flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-sm text-foreground mb-1">Akut krise?</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -427,7 +404,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvem-henvender-sig">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Hvem henvender sig til StopSpillet?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -472,7 +449,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="statistik">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             StopSpillet i tal
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -504,7 +481,7 @@ const StopSpilletGuide = () => {
 
           <div className="rounded-xl border border-border bg-muted/30 p-5">
             <h3 className="text-base font-semibold mb-2 flex items-center gap-2">
-              <Info className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="info" className="h-4 w-4 text-primary" />
               Kilde
             </h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -588,7 +565,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="behandlingsnetvaerk">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             StopSpillets behandlingsnetværk
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -652,7 +629,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="forebyggelse">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Forebyggende rådgivning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -671,7 +648,7 @@ const StopSpilletGuide = () => {
               "Vejledning om blokeringssoftware (BetBlocker, Gamban) og bankblokering",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm leading-relaxed">{item}</span>
               </li>
             ))}
@@ -694,7 +671,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="organisationen">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Om organisationen bag StopSpillet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -736,7 +713,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="selvhjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Selvhjælpsressourcer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -771,7 +748,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sammenligning">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             StopSpillet vs. andre tilbud
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -825,7 +802,7 @@ const StopSpilletGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Phone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="phone" className="h-7 w-7 text-primary" />
             Få hjælp nu
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -870,7 +847,7 @@ const StopSpilletGuide = () => {
                   </p>
                   <Button variant="outline" asChild className="w-full">
                     <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-3.5 w-3.5" />
+                      <MenuIcon iconName="external-link" className="mr-2 h-3.5 w-3.5" />
                       {resource.label}
                     </a>
                   </Button>
@@ -890,13 +867,13 @@ const StopSpilletGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     Ring til StopSpillet: 70 22 28 25
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>

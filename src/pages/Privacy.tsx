@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { Shield, Lock, Eye, FileText, Calendar, User, CalendarDays, BookOpen } from "lucide-react";
+import { Shield, Lock, Eye, FileText, Calendar, User, CalendarDays, BookOpen } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -72,7 +73,7 @@ const Privacy = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Databeskyttelse & GDPR
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -101,7 +102,7 @@ const Privacy = () => {
         {/* Section 1 */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <FileText className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="file-text" className="h-8 w-8 text-primary" />
             1. Indledning
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -114,7 +115,7 @@ const Privacy = () => {
         {/* Section 2 */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="eye" className="h-8 w-8 text-primary" />
             2. Oplysninger vi indsamler
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -197,7 +198,7 @@ const Privacy = () => {
         {/* Section 6 - GDPR */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="lock" className="h-8 w-8 text-primary" />
             6. Dine rettigheder (GDPR)
           </h2>
           <p className="mb-6 text-muted-foreground">Under GDPR har du følgende rettigheder:</p>
@@ -235,7 +236,7 @@ const Privacy = () => {
         {/* Section 8 */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calendar className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="calendar" className="h-8 w-8 text-primary" />
             8. Opbevaring af data
           </h2>
           <p className="text-muted-foreground leading-relaxed">

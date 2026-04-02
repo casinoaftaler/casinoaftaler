@@ -29,13 +29,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
-import {
-  ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, BookOpen, Smartphone, Headphones,
-  Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
-  Clock, Target, TrendingUp, Users, Lock, Layers, Flame,
-  BarChart3, Activity,
-} from "lucide-react";
+import { RotateCcw, Check, X, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -151,7 +146,7 @@ const SwiftCasinoAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4">
-              <Badge variant="secondary"><Star className="mr-1.5 h-3.5 w-3.5" />4.7 / 5 – Anbefalet</Badge>
+              <Badge variant="secondary"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.7 / 5 – Anbefalet</Badge>
               <Badge variant="outline" className="border-white/40 text-white">Data-Innovatøren</Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Swift Casino Anmeldelse 2026</h1>
@@ -159,7 +154,7 @@ const SwiftCasinoAnmeldelse = () => {
               14 dages dybdegående test af Swift Casino – Data-Innovatøren med den unikke Hot Or Cold-funktion. 100 % bonus op til 500 kr. med bonuskode SWIFT, kun 10x omsætningskrav, 2.500+ spiltitler, PayPal &amp; Trustly og hurtige udbetalinger.
             </p>
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8">
-              <Gift className="mr-2 h-5 w-5" />Hent Bonus hos Swift Casino
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent Bonus hos Swift Casino
             </Button>
           </div>
         </div>
@@ -176,7 +171,7 @@ const SwiftCasinoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Swift Casino</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Swift Casino</CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
               </div>
             </CardHeader>
@@ -393,7 +388,7 @@ const SwiftCasinoAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Flame className="h-5 w-5 text-orange-500" />Hypotesen: "Hot" Slots</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="flame" className="h-5 w-5 text-orange-500" />Hypotesen: "Hot" Slots</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">
                   Teorien er, at en maskine der udbetaler meget ("Hot"), er i en "givende cyklus".
@@ -442,7 +437,7 @@ const SwiftCasinoAnmeldelse = () => {
             <Card className="border-border bg-card border-l-4 border-l-accent">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <Flame className="h-6 w-6 text-accent" />
+                  <MenuIcon iconName="flame" className="h-6 w-6 text-accent" />
                   <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Hvad Hot Or Cold VIS</h3>
                 </div>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -496,7 +491,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater (2.500+)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater (2.500+)</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2">Premium-udbydere:{" "}
                   <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
@@ -508,14 +503,14 @@ const SwiftCasinoAnmeldelse = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Bordspil (200+)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Bordspil (200+)</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2">Bredt udvalg: europæisk roulette, fransk roulette, blackjack (multi-hand, single deck, surrender), baccarat, video poker (Jacks or Better, Deuces Wild, Joker Poker).</p>
                 <p className="text-sm text-muted-foreground">RTP-niveauer: European Roulette 97,3 %, Blackjack Classic 99,5 %, Jacks or Better 99,54 %.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Live Casino (100+)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Live Casino (100+)</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2">Drevet af{" "}
                   <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med professionelle dealere og HD-streaming.</p>
@@ -651,9 +646,9 @@ const SwiftCasinoAnmeldelse = () => {
             Swift Casino tilbyder kundeservice via live chat og e-mail. Under vores 14-dages test kontaktede vi live chat fire gange med varierende forespørgsler og oplevede konsekvent hurtige svartider (1–3 minutter).
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Headphones className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat</h3><p className="text-sm text-muted-foreground">Svartid: 1–3 min. Kompetent, venlig og løsningsorienteret.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><CreditCard className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 24 timer. Velegnet til dokumentation og komplekse sager.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><BookOpen className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ-sektion</h3><p className="text-sm text-muted-foreground">Dækker bonusregler, betalingsmetoder og kontospørgsmål.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="headphones" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat</h3><p className="text-sm text-muted-foreground">Svartid: 1–3 min. Kompetent, venlig og løsningsorienteret.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="credit-card" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 24 timer. Velegnet til dokumentation og komplekse sager.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="book-open" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ-sektion</h3><p className="text-sm text-muted-foreground">Dækker bonusregler, betalingsmetoder og kontospørgsmål.</p></CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Test 1 – Bonuskode-problem:</strong> Kontaktede chat efter at vi glemte bonuskoden SWIFT. Svar efter 1 minut. Rådgiveren tilføjede bonussen manuelt uden komplikationer. Positivt: ingen "det er din egen skyld"-attitude.
@@ -698,10 +693,10 @@ const SwiftCasinoAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Hvem er Swift Casino det ideelle valg for?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { icon: <BarChart3 className="h-5 w-5 text-primary" />, title: "Data-orienterede spillere", desc: "Du vil gerne have indblik i realtidsdata og bruge Hot Or Cold til at inspirere dit spilvalg. Du værdsætter transparens og information." },
-              { icon: <Layers className="h-5 w-5 text-primary" />, title: "Bredde-elskere", desc: "Du vil have 2.500+ spil at vælge imellem, inkl. nichetitler fra Nolimit City, Hacksaw Gaming og Push Gaming. Du browser gerne og opdager nye spil." },
-              { icon: <Wallet className="h-5 w-5 text-primary" />, title: "Betalingsfleksible spillere", desc: "Du vil have PayPal, Trustly, MobilePay og Skrill. Hurtige udbetalinger er afgørende for dig – under 6 timer via PayPal, under 4 timer via Trustly." },
-              { icon: <Gift className="h-5 w-5 text-primary" />, title: "Bonusbevidste spillere", desc: "Du forstår vigtigheden af 10x omsætningskrav og vil maksimere den forventede bonusværdi. Du husker bonuskoden SWIFT." },
+              { icon: <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />, title: "Data-orienterede spillere", desc: "Du vil gerne have indblik i realtidsdata og bruge Hot Or Cold til at inspirere dit spilvalg. Du værdsætter transparens og information." },
+              { icon: <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />, title: "Bredde-elskere", desc: "Du vil have 2.500+ spil at vælge imellem, inkl. nichetitler fra Nolimit City, Hacksaw Gaming og Push Gaming. Du browser gerne og opdager nye spil." },
+              { icon: <MenuIcon iconName="wallet" className="h-5 w-5 text-primary" />, title: "Betalingsfleksible spillere", desc: "Du vil have PayPal, Trustly, MobilePay og Skrill. Hurtige udbetalinger er afgørende for dig – under 6 timer via PayPal, under 4 timer via Trustly." },
+              { icon: <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />, title: "Bonusbevidste spillere", desc: "Du forstår vigtigheden af 10x omsætningskrav og vil maksimere den forventede bonusværdi. Du husker bonuskoden SWIFT." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card border-l-4 border-l-primary">
                 <CardContent className="pt-6">
@@ -853,7 +848,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8">
-              <Gift className="mr-2 h-5 w-5" />Hent din bonus hos Swift Casino
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent din bonus hos Swift Casino
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/casino-anmeldelser">Se alle casino anmeldelser</Link>

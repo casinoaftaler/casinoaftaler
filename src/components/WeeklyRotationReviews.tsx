@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star, RefreshCw } from "lucide-react";
+import { Star, RefreshCw } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { seoRoutes } from "@/lib/seoRoutes";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 
@@ -94,7 +95,7 @@ export function WeeklyRotationReviews() {
               <div className="flex items-center gap-2 mt-1">
                 {review.score > 0 && (
                   <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Star className="h-3 w-3 fill-primary text-primary" />
+                    <MenuIcon iconName="star" className="h-3 w-3 fill-primary text-primary" />
                     {review.score.toFixed(1)}
                   </span>
                 )}

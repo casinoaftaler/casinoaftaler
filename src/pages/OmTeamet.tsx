@@ -7,33 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import {
-  Users,
-  Target,
-  Briefcase,
-  Shield,
-  CheckCircle2,
-  Search,
-  RefreshCw,
-  Scale,
-  Eye,
-  Heart,
-  Sparkles,
-  ArrowRight,
-  BookOpen,
-  ShieldCheck,
-  Gamepad2,
-  Quote,
-  
-  Tv,
-  MessageSquare,
-  Trophy,
-  Zap,
-  Newspaper,
-  Pen,
-  FileCheck,
-  XCircle,
-} from "lucide-react";
+import { ArrowRight, Quote, MessageSquare, Pen, FileCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
@@ -201,7 +176,7 @@ const OmTeamet = () => {
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <Badge variant="secondary" className="mb-6">
-              <Users className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="users" className="mr-1.5 h-3.5 w-3.5" />
               Om Teamet
             </Badge>
             <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl">
@@ -287,7 +262,7 @@ const OmTeamet = () => {
         <AuthorMetaBar author="ajse" readTime="18 Min." showFactCheck={true} showAffiliateDisclaimer={false} />
         <section className="mb-16">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
-            <Tv className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="tv" className="h-7 w-7 text-primary" />
             Fra Twitch til Casinoaftaler.dk
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
@@ -320,7 +295,7 @@ const OmTeamet = () => {
         {/* ═══ VORES MISSION ═══ */}
         <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Vores mission
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -342,19 +317,19 @@ const OmTeamet = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Vores testproces
               </Button>
             </Link>
             <Link to="/nye-casinoer">
               <Button variant="outline" size="sm">
-                <Sparkles className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="sparkles" className="mr-1.5 h-4 w-4" />
                 Nye Casinoer
               </Button>
             </Link>
             <Link to="/ansvarligt-spil">
               <Button variant="outline" size="sm">
-                <Shield className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield" className="mr-1.5 h-4 w-4" />
                 Spil med omtanke
               </Button>
             </Link>
@@ -475,7 +450,7 @@ const OmTeamet = () => {
       <div className="container py-12 md:py-16">
         <section className="mb-16">
           <h2 className="mb-8 text-center text-3xl font-bold flex items-center justify-center gap-2 md:text-4xl">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Teamet i tal
           </h2>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
@@ -604,7 +579,7 @@ const OmTeamet = () => {
         {latestArticles.length > 0 && (
           <section className="mb-16">
             <h2 className="mb-2 text-3xl font-bold flex items-center gap-2 md:text-4xl">
-              <Newspaper className="h-7 w-7 text-primary" />
+              <MenuIcon iconName="newspaper" className="h-7 w-7 text-primary" />
               Seneste artikler fra redaktionen
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -650,7 +625,7 @@ const OmTeamet = () => {
             <div className="mt-6 text-center">
               <Link to="/casino-nyheder">
                 <Button variant="outline" size="sm">
-                  <Newspaper className="mr-1.5 h-4 w-4" />
+                  <MenuIcon iconName="newspaper" className="mr-1.5 h-4 w-4" />
                   Se alle nyheder
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Button>
@@ -686,25 +661,25 @@ const OmTeamet = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/redaktionel-politik">
               <Button variant="outline" size="sm">
-                <BookOpen className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="book-open" className="mr-1.5 h-4 w-4" />
                 Redaktionel politik
               </Button>
             </Link>
             <Link to="/forretningsmodel">
               <Button variant="outline" size="sm">
-                <Scale className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="scale" className="mr-1.5 h-4 w-4" />
                 Forretningsmodel
               </Button>
             </Link>
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Se vores testmetode
               </Button>
             </Link>
             <Link to="/ansvarligt-spil">
               <Button variant="outline" size="sm">
-                <Shield className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield" className="mr-1.5 h-4 w-4" />
                 Om ansvarligt spil
               </Button>
             </Link>
@@ -716,7 +691,7 @@ const OmTeamet = () => {
         {/* ═══ HVAD DISKVALIFICERER ET CASINO? ═══ */}
         <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
-            <XCircle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="x-circle" className="h-7 w-7 text-destructive" />
             Hvad diskvalificerer et casino?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -727,7 +702,7 @@ const OmTeamet = () => {
             <ul className="space-y-3">
               {disqualificationCriteria.map((item) => (
                 <li key={item.text} className="flex items-start gap-3">
-                  <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                   <span className="text-sm font-medium">
                     {item.link ? (
                       <>
@@ -746,7 +721,7 @@ const OmTeamet = () => {
           <div className="mt-6">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Læs mere om vores testkriterier
                 <ArrowRight className="ml-1.5 h-4 w-4" />
               </Button>
@@ -759,7 +734,7 @@ const OmTeamet = () => {
         {/* ═══ VORES TESTMETODE ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Vores testmetode
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -769,7 +744,7 @@ const OmTeamet = () => {
           </p>
           <Link to="/saadan-tester-vi-casinoer">
             <Button variant="outline" size="sm">
-              <ShieldCheck className="mr-1.5 h-4 w-4" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
               Læs om vores testproces
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
@@ -781,7 +756,7 @@ const OmTeamet = () => {
         {/* ═══ SÅDAN ARBEJDER TEAMET ═══ */}
         <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Sådan arbejder teamet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-8">
@@ -802,7 +777,7 @@ const OmTeamet = () => {
           <div className="mt-8">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Sådan tester vi casinoer
               </Button>
             </Link>
@@ -814,14 +789,14 @@ const OmTeamet = () => {
         {/* ═══ HVORFOR STOLE PÅ OS ═══ */}
         <section className="mb-16">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Hvorfor stole på Casinoaftaler.dk?
           </h2>
           <div className="rounded-xl border border-border bg-card p-6 md:p-8">
             <div className="space-y-4">
               {trustPoints.map((point) => (
                 <div key={point} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                   <span className="font-medium">{point}</span>
                 </div>
               ))}
@@ -834,7 +809,7 @@ const OmTeamet = () => {
         {/* ═══ FORRETNINGSMODEL ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Forretningsmodel
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -844,7 +819,7 @@ const OmTeamet = () => {
           </p>
           <Link to="/forretningsmodel">
             <Button variant="outline" size="sm">
-              <Scale className="mr-1.5 h-4 w-4" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-4 w-4" />
               Læs vores forretningsmodel
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
@@ -856,7 +831,7 @@ const OmTeamet = () => {
         {/* ═══ REDAKTIONEL POLITIK ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Redaktionel politik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -869,7 +844,7 @@ const OmTeamet = () => {
             <Card className="border-border bg-card">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -880,7 +855,7 @@ const OmTeamet = () => {
             <Card className="border-border bg-card">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-sm">Faktatjek</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -891,7 +866,7 @@ const OmTeamet = () => {
             <Card className="border-border bg-card">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-2">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-sm">Opdateringsfrekvens</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -903,7 +878,7 @@ const OmTeamet = () => {
 
           <Link to="/redaktionel-politik">
             <Button variant="outline" size="sm">
-              <BookOpen className="mr-1.5 h-4 w-4" />
+              <MenuIcon iconName="book-open" className="mr-1.5 h-4 w-4" />
               Læs den fulde redaktionelle politik
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
@@ -915,7 +890,7 @@ const OmTeamet = () => {
         {/* ═══ ANSVARLIGT SPIL ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Ansvarligt spil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -926,7 +901,7 @@ const OmTeamet = () => {
           </p>
           <Link to="/ansvarligt-spil">
             <Button variant="outline" size="sm">
-              <Shield className="mr-1.5 h-4 w-4" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-4 w-4" />
               Læs mere om ansvarligt spil
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
@@ -958,7 +933,7 @@ const OmTeamet = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 GPWA-godkendt affiliate portal
               </CardTitle>
             </CardHeader>
@@ -994,7 +969,7 @@ const OmTeamet = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/saadan-tester-vi-casinoer">
               <Button size="lg" className="font-semibold">
-                <ShieldCheck className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="shield-check" className="mr-2 h-5 w-5" />
                 Sådan tester vi casinoer
               </Button>
             </Link>

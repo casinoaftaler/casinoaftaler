@@ -15,12 +15,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, AlertTriangle,
-  TrendingUp, Scale, Eye, Layers, Clock, CheckCircle,
-  XCircle, Brain, BookOpen, Calculator,
-  Activity, LineChart, ArrowRight, ListOrdered,
-} from "lucide-react";
+import { Activity, LineChart, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/labouchere-roulette-hero.jpg";
 
@@ -91,7 +87,7 @@ export default function LabouchereRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ListOrdered className="mr-1.5 h-3.5 w-3.5" /> Cancellation-system
+              <MenuIcon iconName="list-ordered" className="mr-1.5 h-3.5 w-3.5" /> Cancellation-system
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Labouchère Roulette System 2026 – Cancellation-Metoden Analyseret
@@ -115,7 +111,7 @@ export default function LabouchereRouletteGuide() {
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Labouchère: Det strategiske roulette-system
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -135,7 +131,7 @@ export default function LabouchereRouletteGuide() {
         {/* Sådan fungerer det */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Trin-for-trin: Labouchère-systemet i praksis
           </h2>
 
@@ -218,7 +214,7 @@ export default function LabouchereRouletteGuide() {
         {/* Sekvensdesign */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Sekvensdesign: Skræddersyet risikoprofil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -283,7 +279,7 @@ export default function LabouchereRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Kortsigtet (500 spins)</p>
                 </div>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -321,7 +317,7 @@ export default function LabouchereRouletteGuide() {
         {/* Fordele/ulemper */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Fordele og ulemper ved Labouchère
           </h2>
 
@@ -329,7 +325,7 @@ export default function LabouchereRouletteGuide() {
             <Card className="border-primary/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2 text-primary">
-                  <CheckCircle className="h-4 w-4" /> Fordele
+                  <MenuIcon iconName="check-circle" className="h-4 w-4" /> Fordele
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -345,7 +341,7 @@ export default function LabouchereRouletteGuide() {
             <Card className="border-destructive/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2 text-destructive">
-                  <XCircle className="h-4 w-4" /> Ulemper
+                  <MenuIcon iconName="x-circle" className="h-4 w-4" /> Ulemper
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -364,7 +360,7 @@ export default function LabouchereRouletteGuide() {
         {/* Historisk kontekst */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Henry Labouchère: Politikeren der designede et roulettesystem
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -384,7 +380,7 @@ export default function LabouchereRouletteGuide() {
         {/* Avanceret sekvensanalyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Avanceret sekvensanalyse: Matematik bag cancellation-mekanikken
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -434,7 +430,7 @@ export default function LabouchereRouletteGuide() {
         {/* Risk of Ruin */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Risk of Ruin: Labouchère over alle tidshorisonter
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -477,7 +473,7 @@ export default function LabouchereRouletteGuide() {
         {/* Psykologisk analyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
             Psykologien bag Labouchère: Kontrol-illusionen som fælde
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -527,7 +523,7 @@ export default function LabouchereRouletteGuide() {
         {/* Live vs RNG */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
             Labouchère i Live vs. RNG Roulette: Tracking-udfordringen
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -572,7 +568,7 @@ export default function LabouchereRouletteGuide() {
         {/* Variant-performance */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Labouchère på forskellige roulette-varianter
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -631,7 +627,7 @@ export default function LabouchereRouletteGuide() {
         {/* Bonus-EV */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Labouchère til bonusomsætning: EV-analyse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -662,7 +658,7 @@ export default function LabouchereRouletteGuide() {
         {/* Praktiske tips */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Praktiske anbefalinger for danske Labouchère-spillere
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -683,7 +679,7 @@ export default function LabouchereRouletteGuide() {
         {/* Konklusion */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Konklusion: Det mest intellektuelle system – med samme begrænsning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

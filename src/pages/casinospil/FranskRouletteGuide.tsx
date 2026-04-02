@@ -16,11 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, AlertTriangle, TrendingUp, Scale, Eye,
-  Layers, Clock, Users, CheckCircle, XCircle, Coins, Brain, Gamepad2,
-  BookOpen, Timer, Shield, Calculator, Activity, Crown, Star, Gem,
-} from "lucide-react";
+import { Timer, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/fransk-roulette-hero.jpg";
 
@@ -86,7 +83,7 @@ export default function FranskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
+              <MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fransk Roulette – La Partage og Den Laveste House Edge i Roulette
@@ -110,7 +107,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 1 – Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gem className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gem" className="h-7 w-7 text-primary" />
             Hvad er Fransk Roulette? Det Originale – og Stadig Det Bedste
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -126,7 +123,7 @@ export default function FranskRouletteGuide() {
           <Card className="mb-6 border-primary/30 bg-primary/5">
             <CardContent className="pt-6">
               <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <Star className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                 Nøgletal: Fransk Roulette med La Partage
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-muted-foreground">
@@ -145,7 +142,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 2 – La Partage & En Prison */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             La Partage vs. En Prison: To Veje til 1,35 % House Edge
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -162,7 +159,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   La Partage (Mest Udbredt Online)
                 </CardTitle>
               </CardHeader>
@@ -179,7 +176,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Shield className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 text-muted-foreground" />
                   En Prison (Traditionel / Fysiske Casinoer)
                 </CardTitle>
               </CardHeader>
@@ -221,7 +218,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 3 – Bordlayoutet */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Det Franske Bordlayout: Betegnelser og Opbygning
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -268,7 +265,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 4 – Simulering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Simuleringsdata: Fransk Roulette vs. Alle Varianter
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -313,7 +310,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 5 – Optimal Strategi */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Optimal Strategi for Fransk Roulette: Fokuser på Even Money
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -327,7 +324,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-primary/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Optimal: Even Money Bets (1,35 % HE)
                 </CardTitle>
               </CardHeader>
@@ -344,7 +341,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-destructive/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Suboptimal: Inside Bets (2,70 % HE)
                 </CardTitle>
               </CardHeader>
@@ -371,7 +368,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 6 – Historisk Kontekst */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Historisk Kontekst: Fra Versailles til Danske Online Casinoer
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -388,7 +385,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 7 – Live vs. RNG */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Live Dealer vs. RNG: Hvor Finder Du La Partage?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -399,7 +396,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Fransk Roulette (Anbefalet)
                 </CardTitle>
               </CardHeader>
@@ -418,7 +415,7 @@ export default function FranskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-muted-foreground" />
                   RNG Fransk Roulette
                 </CardTitle>
               </CardHeader>
@@ -490,7 +487,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 9 – Bonusomsætning */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             La Partage og Bonusomsætning: Den Matematiske Fordel
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -527,7 +524,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 10 – Psykologiske Overvejelser */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Psykologiske Fordele ved Fransk Roulette
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -550,7 +547,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 11 – Strategier og Progressive Systemer */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Progressive Systemer på Fransk Roulette: Stadig Negative EV
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -599,7 +596,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 12 – Bankroll & Konklusion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Bankroll Management og Praktiske Anbefalinger
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -608,10 +605,10 @@ export default function FranskRouletteGuide() {
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
-              { title: "3 % Indsatsregel", icon: <ShieldCheck className="h-5 w-5 text-primary" />, desc: "Den lavere house edge tillader marginalt højere indsatser: op til 3 % af bankroll pr. spin (vs. 1-2 % på amerikansk/europæisk). Med 10.000 kr. er max 300 kr. Vores simulering viser, at denne regel giver 200+ spins overlevelse i 95 % af sessions." },
-              { title: "Kun Even Money", icon: <Target className="h-5 w-5 text-primary" />, desc: "For at udnytte La Partage-fordelen: spil udelukkende Rouge/Noir, Pair/Impair eller Manque/Passe. Inside bets har dobbelt så høj house edge (2,70 %) og drager ikke fordel af La Partage." },
+              { title: "3 % Indsatsregel", icon: <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />, desc: "Den lavere house edge tillader marginalt højere indsatser: op til 3 % af bankroll pr. spin (vs. 1-2 % på amerikansk/europæisk). Med 10.000 kr. er max 300 kr. Vores simulering viser, at denne regel giver 200+ spins overlevelse i 95 % af sessions." },
+              { title: "Kun Even Money", icon: <MenuIcon iconName="target" className="h-5 w-5 text-primary" />, desc: "For at udnytte La Partage-fordelen: spil udelukkende Rouge/Noir, Pair/Impair eller Manque/Passe. Inside bets har dobbelt så høj house edge (2,70 %) og drager ikke fordel af La Partage." },
               { title: "90 Min. Sessions", icon: <Timer className="h-5 w-5 text-primary" />, desc: "Den lavere drain-rate tillader længere sessions end andre varianter. Men sæt stadig et tidslimit for at bevare beslutningskvalitet. 90 minutter live = ca. 45 spins – en behagelig session." },
-              { title: "Take Profit: 50 %", icon: <TrendingUp className="h-5 w-5 text-primary" />, desc: "Med 14,2 % profit-sandsynlighed over lange sessions kan du sætte et mere ambitiøst take-profit mål end på andre varianter. Stop ved 50 % af din session-bankroll i profit." },
+              { title: "Take Profit: 50 %", icon: <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />, desc: "Med 14,2 % profit-sandsynlighed over lange sessions kan du sætte et mere ambitiøst take-profit mål end på andre varianter. Stop ved 50 % af din session-bankroll i profit." },
             ].map((rule) => (
               <Card key={rule.title}>
                 <CardContent className="pt-6">
@@ -630,7 +627,7 @@ export default function FranskRouletteGuide() {
         {/* SECTION 13 – Konklusion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Crown className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="crown" className="h-7 w-7 text-primary" />
             Konklusion: Fransk Roulette er Spillerens Optimale Valg
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

@@ -3,7 +3,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, Ticket } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -52,7 +53,7 @@ export function RedeemCodeDialog({ open, onOpenChange }: RedeemCodeDialogProps) 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Ticket className="h-5 w-5" />
+            <MenuIcon iconName="ticket" className="h-5 w-5" />
             Indløs Kode
           </DialogTitle>
         </DialogHeader>

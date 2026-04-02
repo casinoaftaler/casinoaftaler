@@ -24,7 +24,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PAY_LINES, getScatterTeaseReels, type TeaseInfo, type SlotSymbol } from "@/lib/slotGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Loader2, Gamepad2 } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -1050,7 +1051,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
     return (
       <Card className={cn("border-opacity-20", gameId === "rise-of-fedesvin" ? "border-purple-500/20" : "border-amber-500/20")}>
         <CardContent className="flex flex-col items-center justify-center min-h-[400px] text-center">
-          <Gamepad2 className="h-12 w-12 text-muted-foreground mb-4" />
+          <MenuIcon iconName="gamepad2" className="h-12 w-12 text-muted-foreground mb-4" />
           <p className="text-muted-foreground">Symboler indlæses...</p>
         </CardContent>
       </Card>

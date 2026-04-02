@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Rocket } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpDown, ChevronDown, Rocket } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
@@ -82,7 +83,7 @@ function WinBadge({ win, multiplier }: { win: number; multiplier: number }) {
   return (
     <span className={`inline-flex items-center gap-1 ${multiplier >= 100 ? 'font-semibold text-green-500' : ''}`}>
       {formatNum(win)} kr
-      {showTrophy && <Trophy className="h-3 w-3 text-amber-400" />}
+      {showTrophy && <MenuIcon iconName="trophy" className="h-3 w-3 text-amber-400" />}
       {showRocket && <Rocket className="h-3 w-3 text-primary" />}
     </span>
   );
@@ -203,7 +204,7 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                             <BonusHuntSlotPopoverContent slotName={slot.slot} />
                           </PopoverContent>
                         </Popover>
-                        {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
+                        {slot.multiplier >= 100 && slot.opened && <MenuIcon iconName="trophy" className="h-3 w-3 text-amber-400" />}
                       </div>
                       <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
                         {(() => {

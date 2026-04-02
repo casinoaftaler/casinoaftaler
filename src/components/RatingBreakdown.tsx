@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CATEGORY_WEIGHTS_DISPLAY, type CategoryScores } from "@/lib/reviewScoring";
-import { BarChart3 } from "lucide-react";
+import { BarChart3 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface RatingBreakdownProps {
   scores: CategoryScores;
@@ -12,7 +13,7 @@ export function RatingBreakdown({ scores, total }: RatingBreakdownProps) {
     <Card className="border-border bg-card">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-xl">
-          <BarChart3 className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
           Samlet vurdering: {total} / 5
         </CardTitle>
       </CardHeader>

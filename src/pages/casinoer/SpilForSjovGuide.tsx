@@ -21,7 +21,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Sparkles, Star, AlertTriangle, Target, Heart, Smile, Gamepad2, Gift, BookOpen, Shield, Zap, Users } from "lucide-react";
+import { Sparkles, Star, AlertTriangle, Target, Heart, Smile, Gamepad2, Gift, BookOpen, Shield, Zap, Users } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -53,7 +54,7 @@ const SpilForSjovGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Smile className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="smile" className="mr-1.5 h-3.5 w-3.5" />
               Gratis spilguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -84,7 +85,7 @@ const SpilForSjovGuide = () => {
         <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> 3 måder at spille casino gratis på</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> 3 måder at spille casino gratis på</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             <Card className="border-border bg-card"><CardContent className="pt-6"><h3 className="font-bold mb-3 text-lg">1. Demo-tilstand (Play for Fun)</h3><p className="text-sm text-muted-foreground mb-3">Den enkleste og mest risikofrie metode. Næsten alle spilleautomater og bordspil kan spilles i demo-tilstand direkte i din browser – ingen registrering, ingen indbetaling, ingen personlige oplysninger. Du starter med en virtuel saldo (typisk 5.000-10.000 kreditter) og kan spille så længe du vil. Når saldoen er opbrugt, genindlæser du blot spillet for at starte forfra.</p><Badge className="bg-green-500/20 text-green-500">100 % risikofri</Badge></CardContent></Card>
             <Card className="border-border bg-card"><CardContent className="pt-6"><h3 className="font-bold mb-3 text-lg">2. Bonus uden indbetaling</h3><p className="text-sm text-muted-foreground mb-3"><Link to="/bonus-uden-indbetaling" className={linkClass}>Bonusser uden indbetaling</Link> giver dig rigtige penge at spille for – typisk 50–200 kr. – uden at du skal indsætte noget selv. Du kan vinde rigtige penge, men der gælder <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på maksimalt 10x bonusbeløbet (dansk lovkrav). Kræver oprettelse af konto med MitID-verifikation.</p><Badge className="bg-yellow-500/20 text-yellow-500">Kan vinde rigtige penge</Badge></CardContent></Card>
@@ -95,7 +96,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Demo-tilstand: Den dybdegående guide</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" /> Demo-tilstand: Den dybdegående guide</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Demo-tilstand er den mest tilgængelige og helt risikofrie måde at spille casino på. Den lader dig opleve casinospil i deres fulde funktionalitet med virtuelle penge i stedet for rigtige penge. Her dykker vi ned i, hvordan demo-tilstand fungerer teknisk, hvilke spil du kan spille, og hvordan du bruger det mest effektivt.</p>
         <ReviewScreenshot
           src={onecasinoSpillemaskiner}
@@ -105,7 +106,7 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Teknisk set fungerer demo-tilstand identisk med rigtige penge-versioner af spillene. Den samme tilfældighedsgenerator (RNG), den samme Return to Player (<Link to="/ordbog/rtp" className={linkClass}>RTP</Link>), de samme bonusfunktioner og den samme matematik ligger bag begge versioner. Denne lighed er ikke frivillig – det er et lovkrav for licenserede casinoer i Danmark. Spillemyndigheden kræver, at demo-versioner er en præcis repræsentation af det rigtige spil, så spillere ikke lokkes af urealistisk høje gevinstfrekvenser i demo-tilstand.</p>
           
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Star className="h-5 w-5 text-primary" /> Spil tilgængelige i demo</CardTitle></CardHeader><CardContent>
+            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="star" className="h-5 w-5 text-primary" /> Spil tilgængelige i demo</CardTitle></CardHeader><CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• <strong>Spilleautomater:</strong> 95 %+ af alle slots er tilgængelige i demo – den største kategori med tusindvis af titler fra alle store udbydere</li>
                 <li>• <strong>Bordspil:</strong> Blackjack, roulette, baccarat og poker i computer-styrede versioner</li>
@@ -113,7 +114,7 @@ const SpilForSjovGuide = () => {
                 <li>• <strong>Videpoker:</strong> Alle varianter inkl. Jacks or Better, Deuces Wild og Joker Poker</li>
               </ul>
             </CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-yellow-500" /> Ikke tilgængelige i demo</CardTitle></CardHeader><CardContent>
+            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-yellow-500" /> Ikke tilgængelige i demo</CardTitle></CardHeader><CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• <strong><Link to="/live-casino" className={linkClass}>Live casino</Link>:</strong> Kræver altid rigtige penge, da der bruges rigtige dealers i realtid</li>
                 <li>• <strong>Progressive jackpots:</strong> Nogle slots deaktiverer jackpot-bidraget i demo-tilstand</li>
@@ -138,7 +139,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gift className="h-7 w-7 text-primary" /> Gratis bonusser og free spins: Spil med casinoets penge</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gift" className="h-7 w-7 text-primary" /> Gratis bonusser og free spins: Spil med casinoets penge</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ud over demo-tilstand tilbyder mange danske casinoer gratis bonusser og free spins, der giver dig mulighed for at spille med rigtige penge – uden at indbetale dine egne midler. Disse tilbud er en fantastisk måde at prøve et nyt casino på og potentielt vinde rigtige penge, men de kommer med vigtige vilkår og betingelser, som du bør forstå grundigt.</p>
           
           <h3 className="text-xl font-bold mb-3">Bonus uden indbetaling – detaljeret gennemgang</h3>
@@ -153,7 +154,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Fordele ved at spille casino for sjov</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Fordele ved at spille casino for sjov</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Gratis casinospil tilbyder en lang række fordele, der gør det til en værdifuld aktivitet for både nye og erfarne spillere. Her dykker vi ned i de vigtigste fordele og forklarer, hvordan du kan udnytte dem optimalt.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -163,7 +164,7 @@ const SpilForSjovGuide = () => {
               { title: "Ren underholdning uden finansiel stress", desc: "Uden finansiel risiko kan du nyde casinospillet som ren underholdning. Mange spillere finder, at gratis casinospil tilbyder den samme spænding og afslapning som andre former for digital underholdning – streaming, mobilspil eller sociale medier – men med den ekstra tiltrækning af casinomiljøets unikke æstetik og gameplay-mekanik." },
               { title: "Ansvarligt spil starter med gratis spil", desc: "Gratis spil er den perfekte start for nye spillere, der vil udforske casinoverden uden risiko. Ved at starte med demo-tilstand og gratis bonusser kan du udvikle en sund og informeret tilgang til casinospil, forstå odds og sandsynligheder, og lære at sætte grænser – alt sammen inden du bruger dine egne penge. Dette fundament er afgørende for at opretholde et sundt forhold til gambling." },
             ].map((benefit, i) => (
-              <Card key={i} className="border-border bg-card"><CardContent className="flex items-start gap-4 pt-4"><Heart className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{benefit.title}</h3><p className="text-sm text-muted-foreground">{benefit.desc}</p></div></CardContent></Card>
+              <Card key={i} className="border-border bg-card"><CardContent className="flex items-start gap-4 pt-4"><MenuIcon iconName="heart" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{benefit.title}</h3><p className="text-sm text-muted-foreground">{benefit.desc}</p></div></CardContent></Card>
             ))}
           </div>
         </section>
@@ -171,7 +172,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BookOpen className="h-7 w-7 text-primary" /> Brug demo-tilstand til at lære spilmekanik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="book-open" className="h-7 w-7 text-primary" /> Brug demo-tilstand til at lære spilmekanik</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest undervurderede fordele ved demo-tilstand er muligheden for systematisk at lære casinospillets mekanik. I stedet for blot at trykke på "spin"-knappen kan du bruge demo-spil som et læringsværktøj, der giver dig dybere forståelse af, hvordan spillene fungerer. Her er en praktisk guide til at bruge demo-tilstand effektivt som læringsredskab.</p>
           
           <h3 className="text-xl font-bold mb-3">Spilleautomater: Forstå volatilitet og bonusfunktioner</h3>
@@ -191,7 +192,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Sociale casinospil og alternativer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Sociale casinospil og alternativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ud over demo-tilstand og gratis bonusser findes der en hel kategori af sociale casinospil (social casino games), der tilbyder casinooplevelser uden rigtige penge overhovedet. Disse spil er designet som ren underholdning og bruger virtuelle valutaer, der ikke kan veksles til rigtige penge. De er populære på mobilplatforme og sociale medier og tiltrækker millioner af spillere globalt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sociale casinospil inkluderer apps som Slotomania, DoubleDown Casino, Big Fish Casino og mange andre. Disse apps tilbyder hundredvis af spilleautomater og bordspil med virtuelle mønter. Du kan typisk tjene gratis mønter dagligt, spille turneringer mod andre spillere, og dele resultater med venner. Spillene er gratis at downloade og spille, men tilbyder in-app køb af ekstra virtuelle mønter.</p>
           <p className="text-muted-foreground leading-relaxed">Det er dog vigtigt at skelne mellem sociale casinospil og regulerede demo-tilstande på licenserede casinoer. Sociale casinospil er ikke reguleret af Spillemyndigheden og bruger ofte langt mere aggressive monetarisering og engagement-mekanikker. De kan også vise urealistiske gevinstfrekvenser for at fremme in-app køb. Vi anbefaler demo-tilstand på licenserede casinoer som den mest pålidelige og ærlige måde at opleve gratis casinospil.</p>
@@ -207,14 +208,14 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-yellow-500" /> Ting du skal være opmærksom på</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-yellow-500" /> Ting du skal være opmærksom på</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Selvom gratis casinospil er risikofrit i finansiel forstand, er der vigtige psykologiske og praktiske aspekter, du bør være opmærksom på. At forstå disse nuancer hjælper dig med at opretholde et sundt forhold til casinospil – uanset om du spiller gratis eller med rigtige penge.</p>
           <Card className="bg-yellow-500/5 border-yellow-500/20 mb-6"><CardContent className="pt-6">
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Demo-spil kan skabe urealistiske forventninger:</strong> Virtuelle penge fjerner den emotionelle komponent ved rigtige penge. Du træffer sandsynligvis anderledes beslutninger med virtuelle penge end med dine egne midler – du tager større risici, spiller længere, og oplever gevinster og tab anderledes. Vær opmærksom på denne psykologiske forskel, og forvent ikke, at din demo-oplevelse vil oversættes direkte til rigtige penge-spil.</div></li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Gratis bonusser har altid vilkår og betingelser:</strong> Læs altid de fulde vilkår for bonusser uden indbetaling. Vær opmærksom på omsætningskrav, maksimal gevinstgrænse, tidsbegrænsning, spilbidrag (slots tæller typisk 100 %, bordspil ofte kun 10-20 %), og eventuelle begrænsede spil. Mange spillere overser disse vilkår og bliver frustrerede, når de forsøger at hæve gevinster.</div></li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Overgangen fra gratis til rigtige penge kræver bevidsthed:</strong> Vær bevidst om skiftet fra gratis til rigtige penge-spil. Brug <Link to="/ansvarligt-spil" className={linkClass}>selvbegrænsningsværktøjer</Link> fra dag ét – sæt indbetalingsgrænser, tidsgrænser og tabsgrænser. Husk, at casino altid har en matematisk fordel (husets edge), og at langsigtet profit ikke er realistisk for de fleste spillere.</div></li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Sociale casinospil kan være vanedannende:</strong> Selvom du ikke risikerer penge, kan de engagement-mekanikker, der bruges i sociale casinospil (daglige bonusser, streak-systemer, leaderboards), skabe vanedannende adfærdsmønstre. Vær opmærksom på, hvor meget tid du bruger, og om spillet stadig er sjovt og afslappende.</div></li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Demo-spil kan skabe urealistiske forventninger:</strong> Virtuelle penge fjerner den emotionelle komponent ved rigtige penge. Du træffer sandsynligvis anderledes beslutninger med virtuelle penge end med dine egne midler – du tager større risici, spiller længere, og oplever gevinster og tab anderledes. Vær opmærksom på denne psykologiske forskel, og forvent ikke, at din demo-oplevelse vil oversættes direkte til rigtige penge-spil.</div></li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Gratis bonusser har altid vilkår og betingelser:</strong> Læs altid de fulde vilkår for bonusser uden indbetaling. Vær opmærksom på omsætningskrav, maksimal gevinstgrænse, tidsbegrænsning, spilbidrag (slots tæller typisk 100 %, bordspil ofte kun 10-20 %), og eventuelle begrænsede spil. Mange spillere overser disse vilkår og bliver frustrerede, når de forsøger at hæve gevinster.</div></li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Overgangen fra gratis til rigtige penge kræver bevidsthed:</strong> Vær bevidst om skiftet fra gratis til rigtige penge-spil. Brug <Link to="/ansvarligt-spil" className={linkClass}>selvbegrænsningsværktøjer</Link> fra dag ét – sæt indbetalingsgrænser, tidsgrænser og tabsgrænser. Husk, at casino altid har en matematisk fordel (husets edge), og at langsigtet profit ikke er realistisk for de fleste spillere.</div></li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> <div><strong>Sociale casinospil kan være vanedannende:</strong> Selvom du ikke risikerer penge, kan de engagement-mekanikker, der bruges i sociale casinospil (daglige bonusser, streak-systemer, leaderboards), skabe vanedannende adfærdsmønstre. Vær opmærksom på, hvor meget tid du bruger, og om spillet stadig er sjovt og afslappende.</div></li>
             </ul>
           </CardContent></Card>
         </section>
@@ -222,7 +223,7 @@ const SpilForSjovGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Ansvarligt gratis spil</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Ansvarligt gratis spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Selv gratis casinospil bør tilgås med en bevidst og ansvarlig tilgang. Selvom der ikke er nogen direkte finansiel risiko ved demo-tilstand, kan spillevanerne og attituder, du udvikler under gratis spil, påvirke din tilgang, hvis du senere begynder at spille med rigtige penge. Her er vores anbefalinger for ansvarligt gratis spil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sæt tidsgrænser – også for gratis spil. Det er let at miste tidsfornemmelsen, når der ikke er finansielle konsekvenser. Beslut på forhånd, hvor længe du vil spille, og hold dig til det. Brug casinoets indbyggede sessionstidsadvarsel, hvis den er tilgængelig, eller sæt en timer på din telefon. En god tommelfingerregel er at holde sessioner under 60 minutter med mindst 15 minutters pause imellem.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vær opmærksom på dine motiver for at spille. Spiller du for underholdning og afslapning, eller bruger du gratis spil som en flugt fra stress, kedsomhed eller negative følelser? Hvis det sidste er tilfældet, kan det være et tidligt tegn på problematisk spilleadfærd, uanset om du spiller med penge eller ej. I så fald kan du kontakte StopSpillet.dk for fortrolig rådgivning.</p>

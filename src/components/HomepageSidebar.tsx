@@ -2,19 +2,8 @@ import { LatestNewsSidebar } from "./LatestNewsSidebar";
 import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { Link, useLocation } from "react-router-dom";
-import {
-  ChevronRight,
-  Crown,
-  Sparkles,
-  Gift,
-  Dices,
-  CreditCard,
-  Gamepad2,
-  Tv,
-  Star,
-  LayoutGrid,
-  Cherry,
-} from "lucide-react";
+import { ChevronRight, Dices, LayoutGrid, Cherry } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { MENU_ICON_MAP } from "./header/menuIconMap";

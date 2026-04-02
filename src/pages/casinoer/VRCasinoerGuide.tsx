@@ -18,7 +18,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Glasses, Gamepad2, Star, TrendingUp, Monitor, Headphones, Cpu, Wifi, Eye, Shield, AlertTriangle, Heart, Zap, Users } from "lucide-react";
+import { Glasses, Cpu, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -86,8 +87,8 @@ const VRCasinoerGuide = () => {
           <p className="text-muted-foreground mb-6">Den teknologiske grundpille i VR casinoer er realtids-3D-rendering kombineret med præcis bevægelsessporing. Moderne VR-headsets sporer din hovedbevægelse med submillimeter-præcision og opdaterer billedet op til 120 gange pr. sekund, hvilket skaber en overbevisende illusion af at befinde sig i et andet rum. Denne teknologi er nu avanceret nok til at levere en stabil og komfortabel oplevelse for de fleste brugere.</p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Monitor className="h-10 w-10 text-primary mx-auto mb-3" /><h3 className="font-bold mb-2">3D-rendering i realtid</h3><p className="text-sm text-muted-foreground">Avancerede grafik-motorer renderer casinomiljøet i fuld 3D med realistisk belysning, teksturer og fysik-simulation. Frame rates på 90+ FPS er essentielle for en komfortabel oplevelse og forebyggelse af motion sickness. Moderne mobile chips som Qualcomm Snapdragon XR2 Gen 3 kan levere denne ydeevne i standalone headsets.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Headphones className="h-10 w-10 text-primary mx-auto mb-3" /><h3 className="font-bold mb-2">Spatial audio og voice chat</h3><p className="text-sm text-muted-foreground">Rumlig lyd placerer lydeffekter præcist i 3D-rummet. Du kan høre spilleautomaterne til din venstre, samtaler fra bordet bag dig og dealerens stemme foran dig. Integreret voice chat med spatial positioning gør det muligt at føre naturlige samtaler med andre spillere baseret på deres position i rummet.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="monitor" className="h-10 w-10 text-primary mx-auto mb-3" /><h3 className="font-bold mb-2">3D-rendering i realtid</h3><p className="text-sm text-muted-foreground">Avancerede grafik-motorer renderer casinomiljøet i fuld 3D med realistisk belysning, teksturer og fysik-simulation. Frame rates på 90+ FPS er essentielle for en komfortabel oplevelse og forebyggelse af motion sickness. Moderne mobile chips som Qualcomm Snapdragon XR2 Gen 3 kan levere denne ydeevne i standalone headsets.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="headphones" className="h-10 w-10 text-primary mx-auto mb-3" /><h3 className="font-bold mb-2">Spatial audio og voice chat</h3><p className="text-sm text-muted-foreground">Rumlig lyd placerer lydeffekter præcist i 3D-rummet. Du kan høre spilleautomaterne til din venstre, samtaler fra bordet bag dig og dealerens stemme foran dig. Integreret voice chat med spatial positioning gør det muligt at føre naturlige samtaler med andre spillere baseret på deres position i rummet.</p></CardContent></Card>
             <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Cpu className="h-10 w-10 text-primary mx-auto mb-3" /><h3 className="font-bold mb-2">Hånd- og bevægelsessporing</h3><p className="text-sm text-muted-foreground">Moderne VR-headsets sporer dine håndbevægelser og fingre i realtid via indbyggede kameraer og sensorer. Dette gør det muligt at gribe chips, flytte kort, trække i spilleautomathåndtag og interagere naturligt med alle elementer i det virtuelle casino – uden separate controllere.</p></CardContent></Card>
           </div>
         </section>
@@ -95,7 +96,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> VR-headsets til casinospil: Hardware-guide</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> VR-headsets til casinospil: Hardware-guide</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Valget af VR-headset er afgørende for din casinooplevelse. I 2026 er markedet domineret af tre hovedkategorier: Budget standalone headsets, premium standalone headsets og PC-tilsluttede headsets. Her gennemgår vi de mest relevante modeller for VR casinospil og deres styrker og svagheder.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg">Meta Quest 3 (Budget-valg)</CardTitle></CardHeader><CardContent>
@@ -145,7 +146,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Tilgængelige VR casinospil i 2026</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" /> Tilgængelige VR casinospil i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casinospillets kvalitet er steget markant de seneste år, drevet af forbedret hardware og øget udviklerinvestering. Dog er udvalget stadig begrænset sammenlignet med traditionelle online casinoer, og kvaliteten varierer betydeligt mellem platforme. Her er en detaljeret gennemgang af de tilgængelige spilkategorier og vores vurdering af deres VR-modenhed.</p>
         <ReviewScreenshot
           src={videoslotsForside}
@@ -159,7 +160,7 @@ const VRCasinoerGuide = () => {
               { title: "VR Roulette", desc: "Realistisk roulettehjul med fysik-baseret kugleanimation, der følger troværdige baner. Du kan placere chips på bordet med dine hænder, følge kuglens bane i 3D og opleve spændingen fra alle vinkler. Multiplayer-tilstand lader dig spille med andre og diskutere strategi. Den visuelle og auditive immersion gør VR roulette til en overbevisende oplevelse, selvom gameplay i sig selv ikke ændres fundamentalt.", rating: "★★★★☆" },
               { title: "VR Spilleautomater", desc: "3D-spilleautomater med immersive bonusrunder, der udnytter VR til fulde – f.eks. bonusspil hvor du fysisk åbner skattekister eller navigerer en labyrint. Den grundlæggende slot-mekanik er dog den samme som 2D-versionen, og variationen er stadig begrænset. De bedste VR slots bruger hele rummet omkring dig til visuelle effekter, men kategorien mangler stadig den dybde og variation, traditionelle online slots tilbyder.", rating: "★★★☆☆" },
             ].map((game, i) => (
-              <Card key={i} className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center justify-between"><span className="flex items-center gap-2"><Star className="h-5 w-5 text-primary" /> {game.title}</span><Badge variant="outline">{game.rating}</Badge></CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{game.desc}</p></CardContent></Card>
+              <Card key={i} className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center justify-between"><span className="flex items-center gap-2"><MenuIcon iconName="star" className="h-5 w-5 text-primary" /> {game.title}</span><Badge variant="outline">{game.rating}</Badge></CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{game.desc}</p></CardContent></Card>
             ))}
           </div>
         </section>
@@ -167,7 +168,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Heart className="h-7 w-7 text-primary" /> Fordele ved VR casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="heart" className="h-7 w-7 text-primary" /> Fordele ved VR casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casinoer tilbyder en række unikke fordele, der adskiller dem fra både traditionelle online casinoer og fysiske casinoer. Den immersive teknologi skaber en oplevelse, der kombinerer det bedste fra begge verdener og tilføjer elementer, som ingen af dem kan tilbyde alene.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -177,7 +178,7 @@ const VRCasinoerGuide = () => {
               { title: "Øget kontrol over spillemiljøet", desc: "I modsætning til fysiske casinoer kan du tilpasse dit VR-casino efter dine præferencer: Justér lydniveauet, vælg dit foretrukne virtuelle miljø, og tag pauser uden at miste din plads ved bordet. Denne kontrol kan bidrage til mere bevidst og ansvarligt spil." },
               { title: "Tilgængelighed og inklusivitet", desc: "VR casinoer gør casino-oplevelsen tilgængelig for personer, der af fysiske, geografiske eller sociale årsager ikke kan besøge et fysisk casino. Det er en demokratisering af en underholdningsform, der traditionelt har været forbeholdt dem med adgang til fysiske spillesteder." },
             ].map((benefit, i) => (
-              <Card key={i} className="border-border bg-card"><CardContent className="flex items-start gap-4 pt-4"><Heart className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{benefit.title}</h3><p className="text-sm text-muted-foreground">{benefit.desc}</p></div></CardContent></Card>
+              <Card key={i} className="border-border bg-card"><CardContent className="flex items-start gap-4 pt-4"><MenuIcon iconName="heart" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{benefit.title}</h3><p className="text-sm text-muted-foreground">{benefit.desc}</p></div></CardContent></Card>
             ))}
           </div>
         </section>
@@ -185,7 +186,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-yellow-500" /> Begrænsninger og udfordringer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-yellow-500" /> Begrænsninger og udfordringer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Trods det store potentiale er VR casinoer i 2026 stadig behæftet med vigtige begrænsninger, som du bør være opmærksom på, før du investerer i udstyr og begynder at spille. Teknologien er i hurtig udvikling, men der er stadig et stykke vej til en moden og fuldt reguleret VR casinooplevelse.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -195,7 +196,7 @@ const VRCasinoerGuide = () => {
               { title: "Tekniske krav og barriere for indgang", desc: "Selvom priserne falder, kræver VR stadig en investering i hardware (minimum 3.500 kr. for et kvalitets-headset) samt stabil og hurtig internetforbindelse. Opsætningen kan være teknisk udfordrende for ikke-teknisk kyndige brugere." },
               { title: "Ansvarligt spil-bekymringer", desc: "Den immersive natur af VR kan potentielt gøre det vanskeligere for spillere at opretholde tids- og pengekontrol. Den fysiske isolation i et headset kan forstærke en 'zone'-tilstand, der gør det lettere at miste tidsfornemmelse og overblik over udgifter." },
             ].map((issue, i) => (
-              <Card key={i} className="border-yellow-500/20"><CardContent className="flex items-start gap-4 pt-4"><AlertTriangle className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{issue.title}</h3><p className="text-sm text-muted-foreground">{issue.desc}</p></div></CardContent></Card>
+              <Card key={i} className="border-yellow-500/20"><CardContent className="flex items-start gap-4 pt-4"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-0.5" /><div><h3 className="font-semibold mb-1">{issue.title}</h3><p className="text-sm text-muted-foreground">{issue.desc}</p></div></CardContent></Card>
             ))}
           </div>
         </section>
@@ -203,7 +204,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> VR casinoer og ansvarligt spil</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> VR casinoer og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ansvarligt spil er en særlig vigtig overvejelse i konteksten af VR casinoer. Den immersive natur af virtual reality kan potentielt forstærke de psykologiske mekanismer, der driver problematisk spil, og det er derfor afgørende, at både spillere og platforme tager ansvarligt spil-principper alvorligt i VR-konteksten.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den fysiske isolation i et VR-headset fjerner de naturlige sociale kontrolmekanismer, der eksisterer i fysiske casinoer – en bekymret ven eller partner kan ikke se, hvad du laver. Derudover kan den immersive oplevelse gøre det lettere at miste tidsfornemmelse, da du bogstaveligt talt er lukket inde i en virtuel verden uden ydre påvirkning som sollys, ur eller andre mennesker i rummet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De bedste VR casinoplatforme implementerer ansvarligt spil-funktioner tilpasset VR-mediet: Indbyggede timere synlige i VR-interfacet, automatiske pausepåmindelser der bryder immersionen for at minde spilleren om virkeligheden, indbetalingsgrænser tilgængelige via VR-menuen, og mulighed for øjeblikkelig selvudelukkelse. Nogle platforme eksperimenterer også med biometrisk overvågning via headset-sensorer (puls, pupildilatation) for at identificere stress-relaterede spillemønstre.</p>
@@ -213,7 +214,7 @@ const VRCasinoerGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> Fremtidsudsigter for VR casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Fremtidsudsigter for VR casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casino-industrien er i hurtig udvikling, og de næste 3-5 år forventes at bringe transformative forandringer. Konvergensen af forbedret hardware, faldende priser, øget forbrugeraccept og regulatorisk tilpasning skaber det perfekte grundlag for massiv vækst i segmentet. Her er de vigtigste trends og forventninger.</p>
           <div className="space-y-4 mb-6">
             {[

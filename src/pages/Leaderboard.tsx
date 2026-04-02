@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen, Users, Target, BarChart3, ChevronRight } from "lucide-react";
+import { ArrowRight, LogIn, Timer, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
@@ -47,18 +48,18 @@ function RankBadge({ rank }: { rank: number }) {
     <div className="relative flex items-center justify-center w-10 h-10">
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
       <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
-        <Crown className="h-4 w-4 text-amber-900" />
+        <MenuIcon iconName="crown" className="h-4 w-4 text-amber-900" />
       </div>
     </div>
   );
   if (rank === 2) return (
     <div className="w-8 h-8 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
-      <Medal className="h-4 w-4 text-gray-700" />
+      <MenuIcon iconName="medal" className="h-4 w-4 text-gray-700" />
     </div>
   );
   if (rank === 3) return (
     <div className="w-8 h-8 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
-      <Award className="h-4 w-4 text-amber-200" />
+      <MenuIcon iconName="award" className="h-4 w-4 text-amber-200" />
     </div>
   );
   return (
@@ -203,7 +204,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3 min-w-0">
             <div className="p-2 rounded-xl bg-primary/10 shrink-0">
-              <Trophy className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
@@ -216,7 +217,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
                 )}
                 {isUpcoming && (
                   <Badge variant="secondary" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
-                    <Clock className="h-2.5 w-2.5" />
+                    <MenuIcon iconName="clock" className="h-2.5 w-2.5" />
                     Starter om {countdown}
                   </Badge>
                 )}
@@ -235,7 +236,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
           <div className="flex items-center gap-2 shrink-0">
             {isActive && hasJoined && (
               <Badge variant="outline" className="text-xs border-green-500/40 text-green-500 bg-green-500/10">
-                <Sparkles className="h-3 w-3 mr-1" /> Du deltager
+                <MenuIcon iconName="sparkles" className="h-3 w-3 mr-1" /> Du deltager
               </Badge>
             )}
           </div>
@@ -245,7 +246,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
         <div className="flex flex-wrap items-center gap-3 mt-2">
           {tournament.prize_text && (
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
-              <Gift className="h-3.5 w-3.5" />
+              <MenuIcon iconName="gift" className="h-3.5 w-3.5" />
               Præmie: {tournament.prize_text}
             </span>
           )}
@@ -255,7 +256,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
             </span>
           )}
           <span className="text-xs text-muted-foreground inline-flex items-center gap-1">
-            <Gamepad2 className="h-3 w-3" />
+            <MenuIcon iconName="gamepad2" className="h-3 w-3" />
             {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
           </span>
           {tournament.exclude_from_global_leaderboard && (
@@ -278,7 +279,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
               size="sm"
               className="gap-2 shrink-0"
             >
-              <Trophy className="h-3.5 w-3.5" />
+              <MenuIcon iconName="trophy" className="h-3.5 w-3.5" />
               {joinMutation.isPending ? "Tilmelder..." : "Deltag"}
             </Button>
           </div>
@@ -305,7 +306,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
         {/* Winner for ended */}
         {isEnded && winner && (
           <div className="mb-4 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] text-center">
-            <Crown className="h-8 w-8 mx-auto mb-2 text-primary" />
+            <MenuIcon iconName="crown" className="h-8 w-8 mx-auto mb-2 text-primary" />
             <p className="text-sm text-muted-foreground">Vinder</p>
             <p className="font-bold text-lg text-foreground">{winner.display_name || "Anonym"}</p>
             <p className="font-bold text-xl text-primary">{winner.total_points.toLocaleString()} point</p>
@@ -314,7 +315,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
 
         {isUpcoming ? (
           <div className="text-center py-8">
-            <Clock className="h-12 w-12 mx-auto mb-3 opacity-30 text-primary" />
+            <MenuIcon iconName="clock" className="h-12 w-12 mx-auto mb-3 opacity-30 text-primary" />
             <p className="text-muted-foreground">Turneringen er ikke startet endnu</p>
           </div>
         ) : isLoading ? (
@@ -347,7 +348,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
           </div>
         ) : (
           <div className="text-center py-6">
-            <Trophy className="h-10 w-10 mx-auto mb-2 opacity-30 text-primary" />
+            <MenuIcon iconName="trophy" className="h-10 w-10 mx-auto mb-2 opacity-30 text-primary" />
             <p className="text-muted-foreground">Ingen har spillet endnu</p>
             <p className="text-sm text-muted-foreground/70">Vær den første på ranglisten!</p>
           </div>
@@ -357,7 +358,7 @@ function TournamentCard({ tournament }: { tournament: Tournament }) {
         {participants && participants.length > 0 && (
           <div className={cn(top10.length > 0 ? "mt-4 pt-4 border-t border-border/30" : "")}>
             <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
-              <Users className="h-3.5 w-3.5" />
+              <MenuIcon iconName="users" className="h-3.5 w-3.5" />
               {participants.length} tilmeldte spillere
             </p>
             <div className="flex flex-wrap gap-2">
@@ -528,7 +529,7 @@ export default function Leaderboard() {
               {active.length > 0 && (
                 <div>
                   <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2 mb-4">
-                    <Trophy className="h-4 w-4" /> Aktive turneringer
+                    <MenuIcon iconName="trophy" className="h-4 w-4" /> Aktive turneringer
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {active.map((t) => <TournamentCard key={t.id} tournament={t} />)}
@@ -540,7 +541,7 @@ export default function Leaderboard() {
               {upcoming.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <Clock className="h-4 w-4" /> Kommende turneringer
+                    <MenuIcon iconName="clock" className="h-4 w-4" /> Kommende turneringer
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {upcoming.map((t) => <TournamentCard key={t.id} tournament={t} />)}

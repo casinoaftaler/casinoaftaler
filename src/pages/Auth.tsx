@@ -7,7 +7,8 @@ import { TwitchAuthButton } from "@/components/TwitchAuthButton";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Unlink, ExternalLink } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -130,7 +131,7 @@ export default function Auth() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-sm text-primary hover:underline"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <MenuIcon iconName="external-link" className="h-4 w-4" />
                   Se Twitch-kanal
                 </a>
 
@@ -143,7 +144,7 @@ export default function Auth() {
                   {unlinking ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   ) : (
-                    <Unlink className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="unlink" className="mr-2 h-4 w-4" />
                   )}
                   Fjern Twitch-tilknytning
                 </Button>

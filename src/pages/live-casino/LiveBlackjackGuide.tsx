@@ -27,9 +27,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Sparkles, ShieldCheck, Target, Brain, BarChart3, Users, AlertTriangle, Timer, Zap, TrendingUp, Eye, DollarSign,
-} from "lucide-react";
+import { Timer, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -118,7 +117,7 @@ const LiveBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Live strategi & regler
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -212,7 +211,7 @@ const LiveBlackjackGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Brain className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
                 Nøgletal: Basisstrategi vs. intuition
               </CardTitle>
             </CardHeader>
@@ -620,7 +619,7 @@ const LiveBlackjackGuide = () => {
             <Card className="border-primary/20 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <Target className="h-5 w-5" />
+                  <MenuIcon iconName="target" className="h-5 w-5" />
                   Ideelt for dig, der...
                 </CardTitle>
               </CardHeader>
@@ -639,7 +638,7 @@ const LiveBlackjackGuide = () => {
             <Card className="border-destructive/20 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                  <AlertTriangle className="h-5 w-5" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5" />
                   Overvej alternativer, hvis du...
                 </CardTitle>
               </CardHeader>

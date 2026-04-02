@@ -16,11 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, BarChart3, Eye, Coins, Brain, BookOpen, Shield, Gamepad2,
-  TrendingUp, AlertTriangle, Calculator, Scale, Users, Award, Clock,
-  CheckCircle, XCircle, Layers, Shuffle,
-} from "lucide-react";
+import { Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/caribbean-stud-hero.jpg";
 
@@ -91,7 +88,7 @@ export default function CaribbeanStudGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Coins className="mr-1.5 h-3.5 w-3.5" /> Casino bordspil
+              <MenuIcon iconName="coins" className="mr-1.5 h-3.5 w-3.5" /> Casino bordspil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Caribbean Stud Poker – Komplet Guide til Odds, Regler & Optimal Strategi
@@ -115,7 +112,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 1: Historisk kontekst & spillets DNA ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Caribbean Studs oprindelse – fra lystbåd til globalt casinofænomen
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -147,7 +144,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 2: Odds & Sandsynligheder ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Odds og sandsynligheder – den matematiske grundpille
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -157,7 +154,7 @@ export default function CaribbeanStudGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Komplet udbetalingstabel – standard version
               </CardTitle>
             </CardHeader>
@@ -208,7 +205,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 3: Regler ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Regler for Caribbean Stud Poker – komplet trin-for-trin gennemgang
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -254,7 +251,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 4: Optimal strategi ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Optimal strategi for Caribbean Stud – fra simpel til avanceret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -264,7 +261,7 @@ export default function CaribbeanStudGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 Niveau 1: Den simplificerede 3-trins strategi (begynder)
               </CardTitle>
             </CardHeader>
@@ -306,7 +303,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 5: Progressiv Jackpot Matematik ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Progressiv jackpot-matematik – dybdegående break-even analyse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -316,7 +313,7 @@ export default function CaribbeanStudGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Progressive jackpot-udbetalinger – standard struktur
               </CardTitle>
             </CardHeader>
@@ -363,7 +360,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 6: EV-model og timepris ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Coins className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />
             EV-model: Hvad koster Caribbean Stud pr. time?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -373,7 +370,7 @@ export default function CaribbeanStudGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                 Forventet tab pr. time – scenarieanalyse
               </CardTitle>
             </CardHeader>
@@ -411,7 +408,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 7: Avanceret collusion & informationsudnyttelse ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Informationsudnyttelse og collusion-teori
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -433,7 +430,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 8: Varianter og relaterede spil ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Gamepad2 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
             Caribbean Stud varianter og relaterede casino-pokerspil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -489,7 +486,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 9: De dyreste strategiske fejl ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             De 8 mest kostbare fejl i Caribbean Stud Poker
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -499,49 +496,49 @@ export default function CaribbeanStudGuide() {
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 1: Folde lave par mod høje dealer-upcards (+3,5 % ekstra)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 1: Folde lave par mod høje dealer-upcards (+3,5 % ekstra)</p>
                 <p className="text-sm text-muted-foreground">Et par toere mod en dealer-Ace ser skræmmende ud, men raise er altid korrekt. Folding af ethvert par er den dyreste enkeltstående fejl i Caribbean Stud, fordi du opgiver en profitable situation.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 2: Raise med alle AK-hænder uden strategi (+1,8 % ekstra)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 2: Raise med alle AK-hænder uden strategi (+1,8 % ekstra)</p>
                 <p className="text-sm text-muted-foreground">Mange spillere raiser automatisk med Ace-King, uanset kickers og dealerens upcard. Korrekt AK-strategi sparer ca. 1,8 procentpoint i husets fordel.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 3: Altid spille progressive jackpot (+variabel)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 3: Altid spille progressive jackpot (+variabel)</p>
                 <p className="text-sm text-muted-foreground">Ved lave jackpot-niveauer har denne side-bet en husets fordel på 26 %+. Det er den dyreste indsats på hele bordet og bør undgås af seriøse spillere.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 4: Folde alle hænder under et par (+2,1 % ekstra)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 4: Folde alle hænder under et par (+2,1 % ekstra)</p>
                 <p className="text-sm text-muted-foreground">Mange begyndere folder alt under et par, inklusiv AK-hænder der kvalificerer til raise. Husk: AK med den rigtige kicker-kombination er en profitable raise.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 5: Ignorere udbetalingstabelvariationer (+0,5-2 %)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 5: Ignorere udbetalingstabelvariationer (+0,5-2 %)</p>
                 <p className="text-sm text-muted-foreground">Ikke alle Caribbean Stud-borde har identiske udbetalingstabeller. Nogle reducerer flush fra 5:1 til 4:1, hvilket øger husets fordel med ca. 1,1 procentpoint. Tjek altid tabellen.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 6: Chase tab med stigende indsatser (variabel)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 6: Chase tab med stigende indsatser (variabel)</p>
                 <p className="text-sm text-muted-foreground">Martingale eller andre progressionssystemer ændrer ikke husets matematiske fordel. De øger kun din risiko for ruin uden at forbedre din langsigtede forventning.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 7: Spille for hurtigt online (+0 % men højere eksponering)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 7: Spille for hurtigt online (+0 % men højere eksponering)</p>
                 <p className="text-sm text-muted-foreground">Online RNG-Caribbean Stud kan spilles med 80+ hænder/time. Hvert ekstra spil pr. time øger dit samlede forventede tab proportionelt. Tag dig tid og nyd spillet.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 8: Spille 5+1 Bonus side-bets (+10-18 % ekstra)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 8: Spille 5+1 Bonus side-bets (+10-18 % ekstra)</p>
                 <p className="text-sm text-muted-foreground">Sekundære side-bets som 5+1 Bonus har typisk en husets fordel på 10-18 %. De er designet til at dræne din bankroll langsomt og bør undgås af alle spillere undtagen de mest casual underholdningsorienterede.</p>
               </CardContent>
             </Card>
@@ -551,7 +548,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 10: Bankroll management for Caribbean Stud ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Bankroll management – overlev variansen i Caribbean Stud
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -571,7 +568,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 11: Live Casino vs. RNG ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Live Casino vs. RNG – hvilket format passer dig?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -582,7 +579,7 @@ export default function CaribbeanStudGuide() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   RNG (Software-baseret)
                 </CardTitle>
               </CardHeader>
@@ -598,7 +595,7 @@ export default function CaribbeanStudGuide() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Live Casino
                 </CardTitle>
               </CardHeader>
@@ -624,7 +621,7 @@ export default function CaribbeanStudGuide() {
         {/* ──── Sektion 12: Dansk lovgivning og skatteforhold ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Caribbean Stud i Danmark – licenser, skat og lovgivning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

@@ -20,9 +20,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Sparkles, ShieldCheck, Target, Brain, BarChart3, Users, Tv, Timer, Zap, TrendingUp, Globe, Star, Building, Eye, Shield, Cpu, Layers, Award,
-} from "lucide-react";
+import { Timer, Building, Cpu } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -121,7 +120,7 @@ const LiveCasinoUdbydereGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Udbyderguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -197,7 +196,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #2 – Evolution Gaming ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Award className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
             Evolution Gaming – den ubestridte markedsleder
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -208,7 +207,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Spilkatalog – Highlights
                 </CardTitle>
               </CardHeader>
@@ -258,7 +257,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #3 – Pragmatic Play Live ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Pragmatic Play Live – den aggressive challenger
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -269,7 +268,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Spilkatalog – Highlights
                 </CardTitle>
               </CardHeader>
@@ -318,7 +317,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #4 – Playtech Live ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Playtech Live – europæisk tradition og innovation
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -356,7 +355,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #5 – Ezugi ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Ezugi – niche-specialist med regional fokus
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -422,7 +421,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #7 – Sammenligningstabel ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Komplet sammenligning: Alle udbydere side om side
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -481,7 +480,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Eye className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="eye" className="h-4 w-4 text-primary" />
                   OCR – Optical Character Recognition
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -493,7 +492,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield" className="h-4 w-4 text-primary" />
                   Fair play og sikkerhed
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -505,7 +504,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Tv className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="tv" className="h-4 w-4 text-primary" />
                   Adaptiv streaming
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -517,7 +516,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="users" className="h-4 w-4 text-primary" />
                   Skaleringsarkitektur
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -537,7 +536,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #9 – Licensering og regulering ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Licensering og regulering af live casino-udbydere
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -573,7 +572,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #10 – Danske casinoers udbyder-porteføljer ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Danske casinoers udbyder-porteføljer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -620,7 +619,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #11 – Fremtiden ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Fremtiden: AI-dealers, VR-borde og gamification
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -631,7 +630,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
                   AI-assisterede dealere og personalisering
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -643,7 +642,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Eye className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
                   VR og immersive oplevelser
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -655,7 +654,7 @@ const LiveCasinoUdbydereGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Gamification og community-features
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -675,7 +674,7 @@ const LiveCasinoUdbydereGuide = () => {
         {/* ═══ H2 #12 – Ansvarligt spil ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Ansvarligt spil hos live casino-udbydere
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -19,7 +19,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck, AlertTriangle, Gamepad2, Users, Target, Trophy, Headphones, CreditCard, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import stakeForside from "@/assets/screenshots/stake-forside.webp";
@@ -51,7 +52,7 @@ const StakeCasinoAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />Dansk licens ✓</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />Dansk licens ✓</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Stake Casino – Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Verdens mest omtalte crypto-casino er nu officielt lanceret i Danmark med dansk licens via opkøbet af VinderCasino. Vi anmelder den danske version af den globale gambling-gigant.</p>
         </div></div>
@@ -65,7 +66,7 @@ const StakeCasinoAnmeldelse = () => {
         {/* License Confirmation Card */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><ShieldCheck className="h-6 w-6 text-primary" />Stake har nu dansk licens – Bekræftet 18. februar 2026</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />Stake har nu dansk licens – Bekræftet 18. februar 2026</CardTitle></CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed mb-4">Stake Casino har pr. 18. februar 2026 officielt fået dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> til både onlinekasino og væddemål. Licensen er opnået via opkøbet af MocinoPlay A/S, selskabet bag VinderCasino.dk. Stake Denmark A/S opererer nu med domænerne <strong>vindercasino.dk</strong> og <strong>stake.dk</strong> fra adressen Borgergade 3, 1300 København K.</p>
               <p className="text-muted-foreground leading-relaxed mb-4">Med dansk licens er Stake nu tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>, underlagt dansk lovgivning om ansvarligt spil, og danske spillere har fuld beskyttelse ved tvister via Spillemyndighedens klageinstans. Registrering sker via MitID, og platformen opfylder alle danske krav til hvidvaskforebyggelse og spillerbeskyttelse.</p>
@@ -77,7 +78,7 @@ const StakeCasinoAnmeldelse = () => {
         {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Stake Danmark</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Stake Danmark</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Status</p><p className="text-sm sm:text-lg font-bold text-primary break-words leading-tight">Dansk licens ✓</p></div>
@@ -123,7 +124,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Stake Originals Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Gamepad2 className="inline h-7 w-7 text-primary mr-2" />Stake Originals – revolutionerende eller overvurderet?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="gamepad2" className="inline h-7 w-7 text-primary mr-2" />Stake Originals – revolutionerende eller overvurderet?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Stake Originals er platformens DNA – det, der adskiller Stake fra ethvert andet online casino i verden. Samlingen tæller over 20 unikke spiltitler, alle udviklet internt af Stakes udviklingshold. Ingen af disse spil er tilgængelige på andre platforme. De bruger alle provably fair-teknologi baseret på SHA-256 kryptografiske hash-funktioner, hvilket giver spillere mulighed for at verificere, at hvert eneste resultat er tilfældigt og ikke manipuleret af operatøren. Det er en fundamentalt anderledes tillidspræmis end traditionelle <Link to="/casinospil" className={linkClass}>casinospil</Link>, der er afhængige af tredjepartsaudits og RNG-certificeringer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Crash</strong> er flagskibsspillet og det mest populære spil på hele platformen. Mekanikken er elegant i sin simpelhed: du placerer en indsats, og en multiplikator stiger eksponentielt fra 1.0x. Når som helst kan du trykke "Cash Out" for at sikre din gevinst. Men multiplikatoren kan crashe til 0x når som helst – det kan ske ved 1.01x eller ved 1.000x. Husfordelen er blot 1%, hvilket gør det markant mere fordelagtigt end de fleste <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> med 3-5% husfordel. Psykologisk er spillet uhyre engagerende – den stigende multiplikator aktiverer dopamin-responser på en måde, der er fundamentalt anderledes fra traditionelle slots. Du er ikke passiv observatør af hjulspinds – du træffer en aktiv beslutning i realtid.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Plinko</strong> er inspireret af det klassiske TV-gameshowspil: en kugle droppes fra toppen af en pyramide af pins og lander i en af bundens slots med multiplier-værdier fra 0.1x til 1.000x. Du vælger risikoniveau (Low, Medium, High) og antal rækker (8-16), hvilket ændrer multiplier-fordelingen. På High risk med 16 rækker kan en enkelt kugle ramme 1.000x – men 80% af kuglerne lander på 0.1-0.3x. Det er et spil, der belønner tålmodighed og volumen. <strong>Mines</strong> er en minesweeper-variant, hvor du åbner felter i et 5x5 gitter og undgår miner. Hver åbnet felt øger din multiplikator, og du kan cashe ud når som helst. Med 3 miner starter multiplikatoren lavt men stiger eksponentielt – at åbne alle 22 sikre felter giver en massiv udbetaling, men sandsynligheden er mikroskopisk.</p>
@@ -147,7 +148,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* VIP Program Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Trophy className="inline h-7 w-7 text-primary mr-2" />VIP-programmet – branchens mest generøse?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trophy" className="inline h-7 w-7 text-primary mr-2" />VIP-programmet – branchens mest generøse?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Stakes VIP-program er legendarisk i gambling-communityet og en central årsag til platformens retention-rate. Programmet opererer med et tier-system fra Bronze til Diamond med 10 niveauer i alt, og hvert niveau låser op for stigende fordele. Det fundamentale koncept er rakeback – en procentdel af dine samlede indsatser (ikke tab) returneret automatisk, uanset om du vinder eller taber. Det er fundamentalt anderledes fra traditionelle <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link>, der typisk er engangstilbud med omsætningskrav.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">På de laveste niveauer modtager spillere ca. 5% rakeback beregnet på husfordelen. Det lyder beskedent, men matematikken er tiltalende: med en husfordel på eksempelvis 2% og en rakeback på 5% af indsatserne, reduceres den effektive husfordel til ca. 1.9%. På de højeste VIP-niveauer kan rakeback overstige 15%, og dedikerede VIP-hosts tilbyder personaliserede bonusser, invitationer til eksklusive events (Stake har arrangeret events i Dubai, Las Vegas og Monaco), og prioriteret udbetaling. VIP-niveauer er permanente – du degraderes aldrig, hvilket er en markant fordel over programmer, der kræver vedvarende aktivitet for at beholde status.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udover rakeback tilbyder VIP-programmet daily, weekly og monthly bonusser baseret på aktivitetsniveau. Disse bonusser krediteres automatisk uden omsætningskrav – du kan trække dem ud med det samme. Det er i skarp kontrast til traditionelle danske casinoers bonusprogrammer, hvor gevinster typisk er bundet af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x. Stakes model er simplere og mere spillervenlig: du spiller, du modtager automatisk rakeback og periodiske bonusser, og du kan gøre med pengene, hvad du vil.</p>
@@ -158,7 +159,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Community & Social */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Users className="inline h-7 w-7 text-primary mr-2" />Community – det sociale element, der mangler andre steder</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="users" className="inline h-7 w-7 text-primary mr-2" />Community – det sociale element, der mangler andre steder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det mest undervurderede aspekt af Stake er community-dimensionen. Platformen har en persistent global chat, der er aktiv 24/7 med tusindvis af samtidige brugere. Chatten er modereret og opdelt i sprogspecifikke kanaler – en dansk kanal vil sandsynligvis være tilgængelig ved lancering. Brugere deler gevinster, diskuterer strategier, og der er en aktiv tipping-kultur, hvor spillere sender krypto til hinanden. Moderatorer deler regelmæssigt "rain" – automatiserede micro-bonusser til aktive chatdeltagere.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Grundlæggeren Ed Craven er personligt engageret i communityet på en måde, der er uhørt i gambling-branchen. Han streamer regelmæssigt på Twitch og Kick med millioner af følgere, interagerer med spillere i chatten og giver indblik i platformens udvikling. Det skaber en personlig forbindelse mellem operatøren og brugerbasen, der er fundamentalt anderledes fra den anonyme, corporate-drevne tilgang hos traditionelle casinoer. Ingen CEO hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> er en offentlig figur på denne måde.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Stake har også et forum, et affiliate-program med generøse vilkår, og et gamified belønningssystem, der inkluderer udfordringer, leaderboards og races med præmiepuljer. Weekly og monthly races har præmiepuljer på over $100.000, fordelt på de mest aktive spillere baseret på samlet omsætning. Det er et system, der belønner engagement og volumen – ikke nødvendigvis tab – og det skaber en konkurrenceånd, som traditionelle casinoer mangler.</p>
@@ -170,7 +171,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Forventede betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><CreditCard className="inline h-7 w-7 text-primary mr-2" />Forventede betalingsmetoder i Danmark</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="credit-card" className="inline h-7 w-7 text-primary mr-2" />Forventede betalingsmetoder i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den internationale Stake-platform er primært bygget på kryptovaluta – Bitcoin, Ethereum, Litecoin, Dogecoin, Ripple og flere andre kryptoer understøttes med instant deposits og near-instant withdrawals. Det er denne krypto-native infrastruktur, der muliggør de ekstremt hurtige udbetalingstider (under 10 minutter). Men den danske version vil operere under helt andre vilkår.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Dansk regulering kræver, at alle ind- og udbetalinger sker via identificerbare betalingsmetoder, der kan spores til en verificeret person via MitID. Det betyder, at den danske version sandsynligvis vil understøtte: <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> (Danmarks foretrukne mobile betalingsmetode), <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Dankort/Visa/Mastercard</Link> (standard kortbetalinger), <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> (instant bankoverførsel) og <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsel</Link> (traditionel bankoverførsel). <Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link> og Google Pay er også sandsynlige baseret på markedstendenser.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovaluta-betalinger er usikre i den danske version. Spillemyndighedens krav til hvidvaskforebyggelse (AML) og kundeidentifikation (KYC) gør anonyme krypto-transaktioner problematiske. Det er muligt, at Stake tilbyder krypto som en supplerende betalingsmetode med ekstra verifikationskrav – men det er lige så sandsynligt, at krypto-optionen droppes helt i den danske version. For spillere, der specifikt vælger Stake for krypto-muligheder, er dette et kritisk punkt at overveje.</p>
@@ -192,7 +193,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Headphones className="inline h-7 w-7 text-primary mr-2" />Supportapparat – hvad vi kan forvente i Danmark</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="headphones" className="inline h-7 w-7 text-primary mr-2" />Supportapparat – hvad vi kan forvente i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den internationale platforms kundeservice er tilgængelig 24/7 via live chat og e-mail. Vi testede chatten tre gange under vores testperiode – svartiderne var 1 minut, 3 minutter og 6 minutter, henholdsvis morgen, eftermiddag og nat (europæisk tid). Kvaliteten af svarene var blandet: standard-forespørgsler om bonus og betalinger blev håndteret effektivt, mens mere tekniske spørgsmål om provably fair-verifikation krævede eskalering og længere ventetid. Supporten er primært på engelsk med begrænset flersproget support.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">For den danske version er det endnu ubekræftet, om Stake vil tilbyde dansktalende kundeservice. De fleste internationale operatører, der lancerer i Danmark, starter med engelsksproget support og tilføjer gradvist dansk personale. Platforme som <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> og <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> har sat en høj standard for dansktalende support, og Stake vil blive målt op imod dette.</p>
           <p className="text-muted-foreground leading-relaxed">Et unikt aspekt af Stakes support er den community-drevne hjælp. Erfarne brugere i chatten besvarer ofte nye spilleres spørgsmål hurtigere end den officielle support. Der er også en omfattende hjælpecenter-sektion med artikler om alle aspekter af platformen, fra grundlæggende navigation til teknisk forklaring af provably fair-mekanismen. Denne vidensbase er på engelsk, men vil sandsynligvis oversættes til dansk ved lancering.</p>
@@ -202,7 +203,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Regulering, Spillemyndigheden og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="shield-check" className="inline h-7 w-7 text-primary mr-2" />Regulering, Spillemyndigheden og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med dansk licens opererer Stake nu under <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighedens</Link> tilsyn. Platformen er tilsluttet ROFUS, registrering sker via MitID, og alle danske krav til spillerbeskyttelse er opfyldt. Det inkluderer lovpligtige indbetalingsgrænser, tabsgrænser, session-timere, og adgang til klageinstans ved Spillemyndigheden. Den danske version har fuld hvidvask-compliance og opfylder kravene i EU's hvidvaskdirektiv.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Teknisk set er Stake-platformen velbygget med industristandard sikkerhedsprotokoller: SSL/TLS-kryptering, to-faktor-autentificering (2FA), og regelmæssige sikkerhedsaudits. Selvom et hack i september 2023 på den internationale platform resulterede i tab af ca. $41 millioner fra hot wallets, blev alle berørte spilleres midler dækket fuldt ud af Stake – et tegn på finansiel styrke.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den danske version opfylder alle krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>: automatiske påmindelser, obligatoriske pauseintervaller, og integration med <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. Det er en markant forbedring i forhold til den internationale platforms mere basale ansvarligt spil-værktøjer.</p>
@@ -213,10 +214,10 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* EV og matematisk analyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Matematisk analyse – er Stake Originals virkelig bedre odds?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Matematisk analyse – er Stake Originals virkelig bedre odds?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest gentagne påstande om Stake er, at Originals-spillene har markant lavere husfordel end traditionelle casinospil. Lad os verificere dette med konkret matematik. Husfordelen er den procentdel af hver indsats, som casinoet statistisk beholder over tid. Jo lavere husfordel, jo mere får spilleren for pengene – og jo længere kan en given bankroll vare.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Husfordel-sammenligning: Stake Originals vs. Traditionelle Casinospil</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />Husfordel-sammenligning: Stake Originals vs. Traditionelle Casinospil</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Stake Originals</p>
@@ -253,7 +254,7 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Regulatorisk dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Den danske licens – VinderCasino-opkøbet og regulatoriske implikationer</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="shield-check" className="inline h-7 w-7 text-primary mr-2" />Den danske licens – VinderCasino-opkøbet og regulatoriske implikationer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Stake opnåede dansk licens via en velkendt strategi: opkøbet af en eksisterende licensindehaver. Ved at erhverve MocinoPlay A/S – selskabet bag VinderCasino.dk – overtog Stake Denmark A/S en allerede godkendt dansk licens til onlinekasino og væddemål hos <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Denne tilgang eliminerede behovet for en fuld ny licensansøgningsproces og fremskyndte markedsindgangen markant. Stake opererer nu med domænerne vindercasino.dk og stake.dk.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et centralt spørgsmål er, om Stake Originals er godkendt under den danske licens. Spillemyndigheden kræver, at alle casinospil er certificeret af akkrediterede testlaboratorier. Provably fair-teknologien er en fundamentalt anderledes arkitektur end traditionelle RNG-systemer, og godkendelsesprocessen kan kræve særlig evaluering. Vi opdaterer denne sektion, når der er klarhed over, hvilke Originals-titler der er tilgængelige i den danske version.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Bonusregulering er tilpasset dansk lovgivning. Stakes internationale rakeback-model – der tilbyder automatisk tilbagebetaling uden omsætningskrav – er sandsynligvis modificeret til den danske version for at overholde danske bonusregler. Den danske version opererer med standard <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og bonusvilkår i overensstemmelse med Spillemyndighedens retningslinjer.</p>
@@ -286,10 +287,10 @@ const StakeCasinoAnmeldelse = () => {
 
         {/* Target Audience – Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Target className="inline h-7 w-7 text-primary mr-2" />Hvem bør vente på Stake – og hvem bør kigge andetsteds?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="target" className="inline h-7 w-7 text-primary mr-2" />Hvem bør vente på Stake – og hvem bør kigge andetsteds?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Users className="h-5 w-5" />Stake kan være perfekt for dig, hvis:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><MenuIcon iconName="users" className="h-5 w-5" />Stake kan være perfekt for dig, hvis:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   <li className="text-sm text-muted-foreground"><strong className="text-foreground">Tech-entusiasten:</strong> Du forstår og værdsætter kryptografi, provably fair-teknologi og transparent gambling-matematikk. Stake Originals er designet til dig.</li>

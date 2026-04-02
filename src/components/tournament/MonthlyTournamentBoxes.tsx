@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle, Crown } from "lucide-react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle, Crown } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ScrollArea } from "@/components/ui/scroll-area";
 import "./tournament-effects.css";
 import { Badge } from "@/components/ui/badge";
@@ -39,10 +40,10 @@ const GAME_IMAGES: Record<string, string> = {
 
 function getCategoryIcon(category: LeaderboardCategory): React.ReactNode {
   switch (category) {
-    case "highest_x": return <Zap className="h-3.5 w-3.5" />;
-    case "highest_win": return <Star className="h-3.5 w-3.5" />;
+    case "highest_x": return <MenuIcon iconName="zap" className="h-3.5 w-3.5" />;
+    case "highest_win": return <MenuIcon iconName="star" className="h-3.5 w-3.5" />;
     case "total_points":
-    default: return <TrendingUp className="h-3.5 w-3.5" />;
+    default: return <MenuIcon iconName="trending-up" className="h-3.5 w-3.5" />;
   }
 }
 
@@ -64,18 +65,18 @@ function RankBadge({ rank }: { rank: number }) {
     <div className="relative flex items-center justify-center w-8 h-8">
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
       <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-7 h-7 flex items-center justify-center shadow-lg">
-        <Trophy className="h-3.5 w-3.5 text-amber-900" />
+        <MenuIcon iconName="trophy" className="h-3.5 w-3.5 text-amber-900" />
       </div>
     </div>
   );
   if (rank === 2) return (
     <div className="w-7 h-7 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
-      <Medal className="h-3.5 w-3.5 text-gray-700" />
+      <MenuIcon iconName="medal" className="h-3.5 w-3.5 text-gray-700" />
     </div>
   );
   if (rank === 3) return (
     <div className="w-7 h-7 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
-      <Award className="h-3.5 w-3.5 text-amber-200" />
+      <MenuIcon iconName="award" className="h-3.5 w-3.5 text-amber-200" />
     </div>
   );
   return (
@@ -161,7 +162,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       {/* Badge header with shine */}
       <div className="tournament-header-shine bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-center py-1.5 px-2">
         <span className="text-xs font-bold uppercase tracking-wider text-amber-950 flex items-center justify-center gap-1.5">
-          <Crown className="h-3 w-3 tournament-crown" />
+          <MenuIcon iconName="crown" className="h-3 w-3 tournament-crown" />
           Månedens Turnering
         </span>
       </div>
@@ -216,21 +217,21 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           <div className="grid grid-cols-3 divide-x divide-border/40">
             <div className="flex flex-col items-center py-2.5 px-1">
               <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 mb-1.5 shadow-md">
-                <Trophy className="h-3.5 w-3.5 text-amber-900" />
+                <MenuIcon iconName="trophy" className="h-3.5 w-3.5 text-amber-900" />
               </div>
               <span className="text-xs text-muted-foreground">1. præmie</span>
               <span className="text-sm font-bold text-amber-400">{config.prize_1} kr</span>
             </div>
             <div className="flex flex-col items-center py-2.5 px-1">
               <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 mb-1.5 shadow-md">
-                <Medal className="h-3.5 w-3.5 text-gray-700" />
+                <MenuIcon iconName="medal" className="h-3.5 w-3.5 text-gray-700" />
               </div>
               <span className="text-xs text-muted-foreground">2. præmie</span>
               <span className="text-sm font-bold text-foreground">{config.prize_2} kr</span>
             </div>
             <div className="flex flex-col items-center py-2.5 px-1">
               <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 mb-1.5 shadow-md">
-                <Award className="h-3.5 w-3.5 text-amber-200" />
+                <MenuIcon iconName="award" className="h-3.5 w-3.5 text-amber-200" />
               </div>
               <span className="text-xs text-muted-foreground">3. præmie</span>
               <span className="text-sm font-bold text-foreground">{config.prize_3} kr</span>
@@ -242,7 +243,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
         <div className="rounded-lg border border-border/40 bg-muted/20 overflow-hidden">
           <div className="px-2.5 py-1.5 border-b border-border/30 bg-muted/30">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
-              <Coins className="h-3 w-3" />
+              <MenuIcon iconName="coins" className="h-3 w-3" />
               Point-præmier (4.-10. plads)
             </span>
           </div>
@@ -293,7 +294,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           asChild
         >
           <a href={`/community/slots/${config.gameSlug}`}>
-            <Gamepad2 className="h-4 w-4 mr-1.5" />
+            <MenuIcon iconName="gamepad2" className="h-4 w-4 mr-1.5" />
             Spil nu
           </a>
         </Button>
@@ -305,14 +306,14 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                 size="sm"
                 className="flex-1 text-xs h-8"
               >
-                <Info className="h-3 w-3 mr-1" />
+                <MenuIcon iconName="info" className="h-3 w-3 mr-1" />
                 Information
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-lg">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   Vilkår & Betingelser
                 </DialogTitle>
               </DialogHeader>
@@ -325,7 +326,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                   {/* 1. Alderskrav */}
                   <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
                     <div className="flex items-center gap-2">
-                      <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
+                      <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-amber-500 shrink-0" />
                       <h4 className="font-semibold text-sm text-foreground">1. Alderskrav</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
@@ -336,7 +337,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                   {/* 2. Credits */}
                   <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
                     <div className="flex items-center gap-2">
-                      <Coins className="h-4 w-4 text-primary shrink-0" />
+                      <MenuIcon iconName="coins" className="h-4 w-4 text-primary shrink-0" />
                       <h4 className="font-semibold text-sm text-foreground">2. Credits</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
@@ -368,7 +369,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                   {/* 3. Gevinster */}
                   <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
                     <div className="flex items-center gap-2">
-                      <Gift className="h-4 w-4 text-amber-500 shrink-0" />
+                      <MenuIcon iconName="gift" className="h-4 w-4 text-amber-500 shrink-0" />
                       <h4 className="font-semibold text-sm text-foreground">3. Gevinster</h4>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">
@@ -389,14 +390,14 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                 size="sm"
                 className="flex-1 text-xs h-8"
               >
-                <BarChart3 className="h-3 w-3 mr-1" />
+                <MenuIcon iconName="bar-chart3" className="h-3 w-3 mr-1" />
                 Leaderboard
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-lg">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-amber-400" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-400" />
                   {config.gameName} — {config.categoryLabel}
                 </DialogTitle>
               </DialogHeader>
@@ -467,7 +468,7 @@ export function MonthlyTournamentBoxes() {
             <div className="relative">
               <div className="absolute inset-0 bg-amber-400 rounded-full animate-ping opacity-20" />
               <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg shadow-amber-500/30">
-                <Trophy className="h-5 w-5 text-amber-900" />
+                <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-900" />
               </div>
             </div>
             <div>
@@ -483,7 +484,7 @@ export function MonthlyTournamentBoxes() {
             </div>
           </div>
           <div className="flex items-center gap-2 bg-background/60 backdrop-blur-sm rounded-lg border border-border/50 px-4 py-2.5 shadow-sm">
-            <Clock className="h-4 w-4 text-amber-400" />
+            <MenuIcon iconName="clock" className="h-4 w-4 text-amber-400" />
             <div className="text-center">
               <span className="text-xs text-muted-foreground block">Slutter om</span>
               <span className="text-sm font-bold font-mono text-foreground">{countdown.label}</span>

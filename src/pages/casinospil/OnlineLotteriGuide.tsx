@@ -15,23 +15,8 @@ import danskespilForside from "@/assets/screenshots/danskespil-forside.webp";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Calculator,
-  Percent,
-  Activity,
-  Target,
-  BarChart3,
-  Brain,
-  Users,
-  Zap,
-  Layers,
-  TrendingUp,
-  ShieldCheck,
-  AlertTriangle,
-  Gauge,
-  Dices,
-  LineChart,
-} from "lucide-react";
+import { Activity, Gauge, Dices, LineChart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -117,7 +102,7 @@ const OnlineLotteriGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Sandsynlighedsanalyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Sandsynlighedsanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Online Lotteri – Jackpot-Odds og Regressionsanalyse</h1>
             <p className="text-lg text-white/80">Kombinatorik, forventet værdi og den reelle pris for drømmen – en matematisk gennemgang.</p>
           </div>
@@ -136,7 +121,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Calculator className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="calculator" className="mr-2 inline h-6 w-6 text-primary" />
             Hvad er online lotteri – matematisk defineret
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -162,7 +147,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 2 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Target className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="target" className="mr-2 inline h-6 w-6 text-primary" />
             Sandsynlighedsstruktur i klassiske lotterier
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -217,7 +202,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 4 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Layers className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="layers" className="mr-2 inline h-6 w-6 text-primary" />
             Jackpot-sandsynlighed vs mindre gevinster
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -227,7 +212,7 @@ const OnlineLotteriGuide = () => {
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Dansk Lotto – sandsynligheder pr. gevinstniveau
               </CardTitle>
             </CardHeader>
@@ -265,7 +250,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 5 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Calculator className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="calculator" className="mr-2 inline h-6 w-6 text-primary" />
             Expected Value (EV) i lotterier
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -300,7 +285,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 6 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <TrendingUp className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="trending-up" className="mr-2 inline h-6 w-6 text-primary" />
             Når jackpotten vokser – ændrer EV sig?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -363,7 +348,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 9 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Percent className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="percent" className="mr-2 inline h-6 w-6 text-primary" />
             House edge i lotterier vs casinospil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -373,7 +358,7 @@ const OnlineLotteriGuide = () => {
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 House edge – komplet spiltype-sammenligning
               </CardTitle>
             </CardHeader>
@@ -418,7 +403,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 10 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <ShieldCheck className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="shield-check" className="mr-2 inline h-6 w-6 text-primary" />
             Online vs statslige lotterier – forskelle i struktur
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -438,7 +423,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 11 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Users className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="users" className="mr-2 inline h-6 w-6 text-primary" />
             Syndikater og andelsspil – ændrer det odds?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -458,7 +443,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 12 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <AlertTriangle className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="mr-2 inline h-6 w-6 text-primary" />
             Myter om "tal der er forsinkede"
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -478,7 +463,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 13 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Brain className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="brain" className="mr-2 inline h-6 w-6 text-primary" />
             Progressiv jackpot-psykologi
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -518,7 +503,7 @@ const OnlineLotteriGuide = () => {
         {/* ── H2 15 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Users className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="users" className="mr-2 inline h-6 w-6 text-primary" />
             Hvem bør spille lotteri – og hvem bør undgå det?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

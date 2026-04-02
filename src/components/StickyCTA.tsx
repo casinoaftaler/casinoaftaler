@@ -4,7 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
-import { Star } from "lucide-react";
+import { Star } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface StickyCTAProps {
   casinoSlug: string;
@@ -203,7 +204,7 @@ export function StickyCTA({
           <div className="min-w-0">
             <div className="flex items-center gap-1">
               <span className="text-sm font-bold text-foreground truncate">{casinoName}</span>
-              <Star className="h-3 w-3 fill-primary text-primary flex-shrink-0" />
+              <MenuIcon iconName="star" className="h-3 w-3 fill-primary text-primary flex-shrink-0" />
               <span className="text-xs font-semibold text-foreground flex-shrink-0">{rating.toFixed(1)}</span>
             </div>
             <p className="text-[11px] text-muted-foreground truncate">

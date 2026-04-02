@@ -22,7 +22,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -98,7 +99,7 @@ const TheDogHouseGuide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
             <p className="text-lg text-white/80">Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.</p>
           </div>
@@ -114,7 +115,7 @@ const TheDogHouseGuide = () => {
         {/* ── Data First: RTP & Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Teknisk Profil: RTP, Volatilitet og Kernetal
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -155,7 +156,7 @@ const TheDogHouseGuide = () => {
         {/* ── Sticky Wild-mekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Sticky Wild-Mekanikken: Multiplikator-Magi Forklaret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -198,7 +199,7 @@ const TheDogHouseGuide = () => {
         {/* ── Free Spins-analyse ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Free Spins-Dynamik og Genudløsning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -218,7 +219,7 @@ const TheDogHouseGuide = () => {
         {/* ── EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             EV-Analyse og Sessionsøkonomi
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -258,7 +259,7 @@ const TheDogHouseGuide = () => {
         {/* ── Volatilitet ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Volatilitetsprofil: Hvad Tallene Siger
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -275,7 +276,7 @@ const TheDogHouseGuide = () => {
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Bankroll-Management og Risikokontrol
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -311,7 +312,7 @@ const TheDogHouseGuide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             The Dog House vs. Sweet Bonanza vs. Gates of Olympus
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

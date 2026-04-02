@@ -21,30 +21,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  DollarSign,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Scale,
-  Calculator,
-  BarChart3,
-  Percent,
-  Users,
-  Zap,
-  Check,
-  X,
-  Eye,
-  BookOpen,
-} from "lucide-react";
+import { DollarSign, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -160,7 +138,7 @@ const NoStickyBonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Bonusanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -297,7 +275,7 @@ const NoStickyBonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 1: Du vinder tidligt med egne penge
                 </CardTitle>
               </CardHeader>
@@ -313,7 +291,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 2: Du taber hele indbetalingen, bonusdelen redder dig
                 </CardTitle>
               </CardHeader>
@@ -328,7 +306,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 3: Gennemspilning af bonusdelen – det realistiske forløb
                 </CardTitle>
               </CardHeader>
@@ -344,7 +322,7 @@ const NoStickyBonus = () => {
             <Card className="border-destructive/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 4: Worst case – alt tabes
                 </CardTitle>
               </CardHeader>
@@ -466,7 +444,7 @@ const NoStickyBonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Bonusjægeren – ✅ Stærk anbefaling
                 </CardTitle>
               </CardHeader>
@@ -479,7 +457,7 @@ const NoStickyBonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Casual-spilleren – ✅ Anbefales
                 </CardTitle>
               </CardHeader>
@@ -503,7 +481,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Strategispilleren – ✅ Stærk anbefaling
                 </CardTitle>
               </CardHeader>
@@ -515,7 +493,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live casino-spilleren – ⚠️ Begrænset værdi
                 </CardTitle>
               </CardHeader>
@@ -529,7 +507,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Scale className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
                   Sports-bettoren – ❌ Ikke relevant
                 </CardTitle>
               </CardHeader>
@@ -663,7 +641,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link>
                 </CardTitle>
               </CardHeader>
@@ -682,7 +660,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>
                 </CardTitle>
               </CardHeader>
@@ -701,7 +679,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>
                 </CardTitle>
               </CardHeader>
@@ -720,7 +698,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link>
                 </CardTitle>
               </CardHeader>
@@ -739,7 +717,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>
                 </CardTitle>
               </CardHeader>
@@ -758,7 +736,7 @@ const NoStickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>
                 </CardTitle>
               </CardHeader>

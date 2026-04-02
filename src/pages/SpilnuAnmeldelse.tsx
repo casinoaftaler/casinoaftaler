@@ -24,7 +24,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, Gamepad2, ShieldCheck, Trophy, Headphones, Wallet, Users, Target, CreditCard, Smartphone, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -129,7 +130,7 @@ const SpilnuAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
               4.0 / 5 – Dansk Bingo-Tradition
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -152,7 +153,7 @@ const SpilnuAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                 Hurtige Fakta – Spilnu
               </CardTitle>
             </CardHeader>
@@ -219,7 +220,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Bingo Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Gamepad2 className="inline h-7 w-7 text-primary mr-2" />Bingo – Danmarks foretrukne digitale bingohal</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="gamepad2" className="inline h-7 w-7 text-primary mr-2" />Bingo – Danmarks foretrukne digitale bingohal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Bingo er Spilnus ubestridte flagskib og den primære grund til, at platformen har en loyal brugerbasis, som ingen konkurrent i Danmark kan matche. Udvalget inkluderer 75-bolde bingo (det mest populære format), 90-bolde bingo (britisk stil med tre gevinstrækker) og hurtigvarianter med kortere rundetider for spillere, der foretrækker højere tempo. Daglige turneringer kører fra morgen til sen aften med garanterede præmiepuljer, der varierer fra nogle hundrede kroner i hverdagsspil til tocifrede tusindbeløb i weekend-events og specielle tema-turneringer.</p>
           <ReviewScreenshot src={spilnuBingo} alt="Spilnu bingo-sektion med Bingo og Banko rum, Midnight Bingo spilleautomat og megapræmier" caption="Bingo-sektionen er Spilnus flagskib med flere formater, megapræmier og aktive vindere i realtid." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">De progressive jackpots er et særligt trækplaster og en primær drivkraft bag bingo-sektionens popularitet. Spilnu tilbyder flere samtidige jackpots, der akkumulerer over tid og kan nå beløb på over 500.000 kr. Jackpotten udløses tilfældigt og er ikke bundet til en specifik bingo-variant, hvilket betyder, at alle aktive bingospillere har en chance uanset deres indsatsniveau. Det er en simpel men effektiv mekanik, der holder engagementet højt – og den psykologiske effekt af at vide, at en massiv jackpot kan falde når som helst, er ikke til at undervurdere.</p>
@@ -256,7 +257,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Payment Table */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><CreditCard className="inline h-7 w-7 text-primary mr-2" />Indskuds- og hævningskanaler – resultater fra vores test</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="credit-card" className="inline h-7 w-7 text-primary mr-2" />Indskuds- og hævningskanaler – resultater fra vores test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnus betalingsmetoder er rettet mod det danske mainstream-marked. Platformen understøtter de mest gængse danske betalingsformer, men mangler internationale alternativer. Her er vores testede erfaringer med præcise tidsmålinger:</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
@@ -376,7 +377,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Customer Support */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Headphones className="inline h-7 w-7 text-primary mr-2" />Dansk hjælp – den lokale advantage</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="headphones" className="inline h-7 w-7 text-primary mr-2" />Dansk hjælp – den lokale advantage</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnus kundeservice er tilgængelig via live chat, e-mail og telefon – sidstnævnte er en sjældenhed blandt online casinoer i 2026 og noget, der virkelig adskiller Danske Spil-platformene fra internationale konkurrenter. Alle kanaler betjenes på dansk af medarbejdere, der sidder i Danmark. Vi testede alle tre kanaler systematisk.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Live chat: Svartiden var under 4 minutter i vores tre test (2 min, 3 min 45 sek, 4 min 10 sek – morgen, eftermiddag, aften). Agenten var venlig, kompetent og løste vores forespørgsel om bonusvilkår hurtigt og præcist. Vi stillede et opfølgende spørgsmål om bingo-turneringers præmiepuljestruktur og modtog et detaljeret svar, der indikerede reel produktkendskab – ikke et generisk standardsvar.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">E-mail: Vi sendte en forespørgsel om udbetalingsprocessen klokken 14:30 på en tirsdag og modtog et uddybende svar inden klokken 09:00 næste morgen – ca. 18 timers svartid. Svaret var grundigt og besvarede vores spørgsmål fuldt ud. Telefon: Vi ringede på en torsdag formiddag med et spørgsmål om ROFUS-integration. Ventetiden var under 2 minutter, og agenten var dansk, venlig og kyndig. Telefonsupport er tilgængelig i begrænset omfang, men det er en uvurderlig kanal for spillere, der foretrækker mundtlig kommunikation.</p>
@@ -388,7 +389,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Smartphone className="inline h-7 w-7 text-primary mr-2" />Browser-casino på mobil – ydeevne og navigation</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="smartphone" className="inline h-7 w-7 text-primary mr-2" />Browser-casino på mobil – ydeevne og navigation</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnu har valgt en ren browser-baseret mobilstrategi fremfor at udvikle dedikerede apps. Fordelen er, at spillere ikke behøver at downloade eller opdatere en app – du åbner blot mobilbrowseren, logger ind via MitID, og er klar til at spille. Det responsive design tilpasser sig automatisk til skærmstørrelsen med touch-optimerede knapper og forenklet navigation. Ulempen er fraværet af push-notifikationer for kampagner og turneringer, som kun er mulige via en dedikeret app.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores mobiltest på en iPhone 15 Pro og en Samsung Galaxy S24 var den generelle oplevelse tilfredsstillende. Spilleautomater indlæses direkte i browseren, og de fleste titler kører flydende. Bingo-sektionen er overraskende velfungerende på mobil – automatisk pladekøb, realtidsopdateringer af numre og chatfunktionen er alle tilgængelige i et kompakt mobilformat. Vi målte en gennemsnitlig indlæsningstid på 2,8 sekunder for spilleautomater – acceptabelt, men mærkbart langsommere end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, der konsistent leverer under 1,5 sekunder via deres dedikerede app.</p>
           <p className="text-muted-foreground leading-relaxed">Live casino-sektionen var den mest ressourcekrævende – ældre enheder (testet på en iPhone 12 mini) havde periodevis framerate-dyk under live streaming af roulette-borde. Samlet set er mobiloplevelsen funktionel og tilstrækkelig for Spilnus kernepublikum, men den polerede, native app-oplevelse hos LeoVegas eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> er et niveau over. For bingo-spillere, der primært bruger mobil, fungerer det godt nok – for casino-spillere, der forventer den bedste mobiloplevelse, er det et kompromis.</p>
@@ -398,7 +399,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Security */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Statslig garanti – licens, ROFUS og spillerbeskyttelse</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="shield-check" className="inline h-7 w-7 text-primary mr-2" />Statslig garanti – licens, ROFUS og spillerbeskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnu opererer under den strengeste regulering, der er tilgængelig på det danske marked. Platformen har licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS (Register Over Frivilligt Udelukkede Spillere). Som en del af den statskontrollerede Danske Spil-koncern er Spilnu underlagt et ekstra lag af regulatorisk overvågning, der går ud over standardkravene for private operatører. Danske Spil rapporterer direkte til det danske Finansministerium, og regnskaberne revideres af Rigsrevisionen – et kontrolniveau, der er unikt i den danske gambling-industri.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle transaktioner er krypteret med SSL-teknologi, og MitID-integration sikrer, at ingen mindreårige kan oprette konti. Spilnu tilbyder en komplet suite af <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer: indbetalingsgrænser (daglige, ugentlige og månedlige), tabsgrænser, sessionsgrænser med automatiske påmindelser og mulighed for midlertidig selvudelukkelse. Disse værktøjer er let tilgængelige via kontomenuen og kræver ikke kontakt med kundeservice.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I 2025 lancerede Danske Spil-koncernen et nyt AI-baseret overvågningssystem, der proaktivt kontakter spillere med ændrede spillemønstre – et initiativ, der sætter branchestandarden i Danmark og overgår alt, hvad private operatører har implementeret. Systemet analyserer spilleadfærd i realtid og identificerer potentielt problematisk spil, hvorefter en ansat tager personlig kontakt til spilleren. Det er proaktiv spillerbeskyttelse på det højeste niveau.</p>
@@ -409,12 +410,12 @@ const SpilnuAnmeldelse = () => {
 
         {/* Target Audience – Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Target className="inline h-7 w-7 text-primary mr-2" />Hvem passer Spilnu til – og hvem bør IKKE vælge platformen?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="target" className="inline h-7 w-7 text-primary mr-2" />Hvem passer Spilnu til – og hvem bør IKKE vælge platformen?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <Users className="h-5 w-5" />
+                  <MenuIcon iconName="users" className="h-5 w-5" />
                   Ideelt for
                 </CardTitle>
               </CardHeader>
@@ -463,7 +464,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* EV-analyse – Archetype D */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Bonussens reelle værdi – Expected Value og matematisk analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Bonussens reelle værdi – Expected Value og matematisk analyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give en objektiv vurdering af Spilnus velkomstbonus anvender vi en matematisk Expected Value (EV) model, der kvantificerer bonussens statistiske værdi for den gennemsnitlige spiller. Dette er ikke teori – det er den mest præcise metode til at sammenligne bonusser på tværs af operatører.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
             <CardContent className="pt-6">

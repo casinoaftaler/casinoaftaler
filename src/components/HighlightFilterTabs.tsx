@@ -1,6 +1,7 @@
 import { useHighlightCategories } from "@/hooks/useHighlightCategories";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Filter, Loader2, Youtube } from "lucide-react";
+import { Loader2, Youtube } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface HighlightFilterTabsProps {
   activeCategory: string;
@@ -28,7 +29,7 @@ export function HighlightFilterTabs({
             : "border-border bg-card hover:bg-accent"
         }`}
       >
-        <Filter className="mr-1 inline-block h-3.5 w-3.5" />
+        <MenuIcon iconName="filter" className="mr-1 inline-block h-3.5 w-3.5" />
         Alle
       </button>
       <button

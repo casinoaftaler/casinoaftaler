@@ -8,35 +8,8 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Award,
-  ShieldCheck,
-  CheckCircle2,
-  BookOpen,
-  ArrowRight,
-  Scale,
-  Search,
-  Eye,
-  BarChart3,
-  Star,
-  Trophy,
-  Gamepad2,
-  Sparkles,
-  Globe,
-  FileCheck,
-  Users,
-  Zap,
-  Target,
-  TrendingUp,
-  Clock,
-  Layers,
-  Monitor,
-  Flame,
-  Cpu,
-  HeartHandshake,
-  Swords,
-  Lightbulb,
-} from "lucide-react";
+import { ArrowRight, FileCheck, Cpu, Lightbulb } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -117,7 +90,7 @@ const PragmaticPlayPartner = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Award className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="award" className="mr-1.5 h-3.5 w-3.5" />
               Officiel Partner
             </Badge>
             <div className="mb-6 flex justify-center">
@@ -159,11 +132,11 @@ const PragmaticPlayPartner = () => {
             <div className="text-center md:text-left">
               <div className="mb-3 flex flex-wrap items-center justify-center gap-2 md:justify-start">
                 <Badge variant="default" className="bg-green-600 text-white hover:bg-green-700">
-                  <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+                  <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
                   Verificeret samarbejde
                 </Badge>
                 <Badge variant="outline" className="border-primary/30 text-primary">
-                  <Award className="mr-1.5 h-3.5 w-3.5" />
+                  <MenuIcon iconName="award" className="mr-1.5 h-3.5 w-3.5" />
                   Officiel Partner
                 </Badge>
               </div>
@@ -174,15 +147,15 @@ const PragmaticPlayPartner = () => {
               </p>
               <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-600" />
                   Officiel partner
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-600" />
                   Direkte relation til spiludvikler
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-600" />
                   Verificeret samarbejde
                 </span>
               </div>
@@ -421,7 +394,7 @@ const PragmaticPlayPartner = () => {
         <section className="mb-12">
           <div className="mb-6 flex items-center gap-2">
             <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
-              <ShieldCheck className="mr-1 h-3 w-3" />
+              <MenuIcon iconName="shield-check" className="mr-1 h-3 w-3" />
               Verificeret af officiel partner
             </Badge>
           </div>
@@ -690,7 +663,7 @@ const PragmaticPlayPartner = () => {
         <section className="mb-12">
           <div className="mb-6 flex items-center gap-2">
             <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
-              <CheckCircle2 className="mr-1 h-3 w-3" />
+              <MenuIcon iconName="check-circle2" className="mr-1 h-3 w-3" />
               Direkte relation til spiludvikler
             </Badge>
           </div>
@@ -753,7 +726,7 @@ const PragmaticPlayPartner = () => {
         <section className="mb-12">
           <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
             <div className="flex items-start gap-4">
-              <CheckCircle2 className="mt-1 h-8 w-8 shrink-0 text-primary" />
+              <MenuIcon iconName="check-circle2" className="mt-1 h-8 w-8 shrink-0 text-primary" />
               <div>
                 <h2 className="mb-4 text-2xl font-bold md:text-3xl">Redaktionel uafhængighed – partnerskab ≠ bias</h2>
                 <div className="prose prose-lg max-w-none text-muted-foreground">

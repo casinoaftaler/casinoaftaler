@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, Play } from "lucide-react";
+import { Clock, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { AgeVerificationDialog } from "./AgeVerificationDialog";
@@ -89,7 +90,7 @@ export function GameCard({ title, description, image, href, status, badge, title
                 />
                 {!isActive && (
                   <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
-                    <Clock className="h-3.5 w-3.5" />
+                    <MenuIcon iconName="clock" className="h-3.5 w-3.5" />
                     Kommer snart
                   </Badge>
                 )}
@@ -101,7 +102,7 @@ export function GameCard({ title, description, image, href, status, badge, title
           {!isActive && !titleLogo && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-[2px]">
               <Badge className="border-amber-500/30 bg-amber-500/20 text-amber-300 text-sm px-4 py-1.5 gap-1.5">
-                <Clock className="h-3.5 w-3.5" />
+                <MenuIcon iconName="clock" className="h-3.5 w-3.5" />
                 Kommer snart
               </Badge>
             </div>
@@ -121,13 +122,13 @@ export function GameCard({ title, description, image, href, status, badge, title
                 className="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2"
               >
                 <Link to={href} onClick={handlePlayClick}>
-                  <Play className="h-4 w-4" />
+                  <MenuIcon iconName="play" className="h-4 w-4" />
                   Spil nu
                 </Link>
               </Button>
             ) : (
               <Button disabled size="sm" className="w-full gap-2" variant="secondary">
-                <Clock className="h-4 w-4" />
+                <MenuIcon iconName="clock" className="h-4 w-4" />
                 Kommer snart
               </Button>
             )}

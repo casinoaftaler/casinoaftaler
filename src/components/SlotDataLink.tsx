@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { BarChart3, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Cross-link from static slot guide pages to their /slot-katalog/ data counterpart.
@@ -14,7 +15,7 @@ export function SlotDataLink({ slotSlug, slotName }: SlotDataLinkProps) {
   return (
     <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 mb-8">
       <div className="flex items-start gap-3">
-        <BarChart3 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+        <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
         <div>
           <p className="font-medium mb-1">Live Community-Data</p>
           <p className="text-sm text-muted-foreground mb-2">

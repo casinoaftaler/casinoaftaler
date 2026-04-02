@@ -17,7 +17,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -49,7 +50,7 @@ const SugarRushGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & multiplikator-logik</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & multiplikator-logik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sugar Rush – Cluster Pays & Akkumulerende Multiplikatorer</h1>
             <p className="text-lg text-white/80">Pragmatic Play's innovative slik-slot med positionsbaserede multiplikatorer: en matematisk analyse af 7×7 cluster pays-dynamikken og den akkumulerende mekanik, der belønner hvert eneste spin i bonusrunden.</p>
           </div>
@@ -63,7 +64,7 @@ const SugarRushGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Akkumulerende Multiplikatorer: Sugar Rush's Revolutionære Mekanik</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Akkumulerende Multiplikatorer: Sugar Rush's Revolutionære Mekanik</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sugar Rush introducerer en <Link to="/ordbog/multiplikator" className={linkClass}>multiplikator</Link>-mekanik, der er fundamentalt anderledes fra alle andre <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler. I stedet for tilfældige multiplikatorer (som i <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>) eller stacking-multiplikatorer (som i <Link to="/casinospil/spillemaskiner/buffalo-king" className={linkClass}>Buffalo King</Link>), bruger Sugar Rush positionsbaserede akkumulerende multiplikatorer. Hver af de 49 positioner på 7×7 griddet har sin egen uafhængige multiplikator-tæller.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Mekanikken fungerer således: når en cluster-gevinst inkluderer symboler på en given position, øges den positions multiplikator med 1×. Multiplikatoren forbliver aktiv for resten af free spins-runden. Næste gang en gevinst rammer samme position, ganges gevinsten med den akkumulerede multiplikator. Over en lang bonusrunde kan individuelle positioner akkumulere multiplikatorer på 5×, 10× eller endda højere.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den strategiske implikation er, at Sugar Rush belønner længere bonusrunder disproportionalt. De første spins i en bonusrunde bygger multiplikator-fundamentet – de opbygger værdier på positioner. De sidste spins høster udbyttet – gevinster, der lander på positioner med akkumulerede multiplikatorer, forstørres dramatisk. Denne back-loaded gevinststruktur er kendetegnende for Sugar Rush og adskiller den fra slots med front-loaded bonus-mekanikker.</p>
@@ -71,7 +72,7 @@ const SugarRushGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Cluster Pays på 7×7 Grid</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil: Cluster Pays på 7×7 Grid</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Pragmatic Play</strong></div>
@@ -91,7 +92,7 @@ const SugarRushGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins og Bonus Buy-Analyse</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Free Spins og Bonus Buy-Analyse</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Free spins aktiveres ved 3+ scatter-symboler med en progressiv belønningsstruktur: 3 scatters = 10 free spins, 4 = 12, 5 = 15, 6 = 20, 7+ = 25. Bonus Buy er tilgængelig for 100× indsatsen og garanterer en bonusrunde med tilfældigt antal free spins (vægtet mod lavere antal). Triggerfrekvens for naturlige free spins er estimeret til 1 pr. 180-250 spins.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins er multiplikator-akkumuleringen aktiv. Hvert spin, der genererer gevinster, øger multiplikatorer på de involverede positioner. Fordi tumble/cascade-mekanikken kan skabe flere gevinster pr. spin, kan en enkelt free spin aktivere multiplikatorer på mange positioner. Over en 10-spin bonusrunde vil typisk 20-30 af de 49 positioner have akkumuleret mindst 1× multiplikator.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den forventede gennemsnitlige bonusrunde-gevinst er estimeret til 50-80× indsatsen for 10-spin runder, stigende til 100-200× for 20-25 spin runder. Max win-scenariet (5.000×) kræver en lang bonusrunde med mange retriggers, høje akkumulerede multiplikatorer, og store premium-symbol-klynger, der rammer de højest multiplied positioner.</p>
@@ -101,7 +102,7 @@ const SugarRushGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Perspektiv og Volatilitetsprofil</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Perspektiv og Volatilitetsprofil</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 5 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -116,7 +117,7 @@ const SugarRushGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Sugar Rush vs. Sweet Bonanza: Det Definitive Showdown</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Sugar Rush vs. Sweet Bonanza: Det Definitive Showdown</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b"><th className="text-left py-2">Parameter</th><th className="text-center py-2">Sugar Rush</th><th className="text-center py-2">Sweet Bonanza</th></tr></thead>
             <tbody className="text-muted-foreground">
@@ -132,13 +133,13 @@ const SugarRushGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Risikoprofil og Ansvarligt Spil</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Risikoprofil og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sugar Rush's høje volatilitet kræver en bankroll på minimum 200 spins (1.000 kr. ved 5 kr./spin). Den akkumulerende multiplikator-mekanik giver en mere forudsigelig bonusrunde-oplevelse end rene tilfældigheds-baserede slots, men base game-drain er stadig betydelig. Vi anbefaler et tabsstop på 50 % og et gevinststop på 250-300 %.</p>
           <p className="text-muted-foreground leading-relaxed">Bonus Buy-funktionen bør bruges med omtanke – 100× indsatsen er et betydeligt beløb, og den forventede return matcher "kun" gennemsnittet. Behandl Bonus Buy som underholdning, ikke som en investering. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper og sæt klare grænser før sessionen starter.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Slik-Slotten Med Det Smarteste System</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Slik-Slotten Med Det Smarteste System</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sugar Rush beviser, at Pragmatic Play kan innovere inden for cluster pays-genren. Det akkumulerende multiplikator-system er en elegant mekanik, der tilføjer strategisk dybde til et ellers tilfældigheds-baseret spil. Visuelt er det en fest for øjnene, matematisk er det fair (96,50 % RTP), og gameplay-mæssigt er det engagerende fra første spin.</p>
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der søger en cluster pays-oplevelse med en unik twist, er Sugar Rush vores top-anbefaling i Pragmatic Play's portefølje. Den kombinerer det bedste fra tumble-mekanik, cluster pays og progressiv multiplikator-opbygning i en tilgængelig og visuelt tiltalende pakke. Udforsk flere guides på vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link>.</p>
         </section>

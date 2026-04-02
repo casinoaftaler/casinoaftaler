@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, Tv } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual money-page CTA section for live casino spoke pages.
@@ -64,7 +65,7 @@ export function LiveCasinoMoneyLinks({ gameName, currentPath }: LiveCasinoMoneyL
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <Tv className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="tv" className="h-6 w-6 text-primary" />
         Spil {gameName} hos de bedste casinoer
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -93,7 +94,7 @@ export function LiveCasinoMoneyLinks({ gameName, currentPath }: LiveCasinoMoneyL
       {/* Cross-links to sibling live casino pages */}
       <div className="mt-4 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <Tv className="h-3.5 w-3.5" />
+          <MenuIcon iconName="tv" className="h-3.5 w-3.5" />
           Udforsk flere live casino-spil
         </p>
         <div className="flex flex-wrap gap-2">

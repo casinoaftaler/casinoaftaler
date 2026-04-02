@@ -27,14 +27,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
-import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
-  Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
-  Globe, Target, AlertTriangle, BarChart3, Layers, Timer, Users,
-  Shield, Flame, ArrowRight, Percent, DollarSign, Eye, Search,
-  ThumbsUp, ThumbsDown, MessageSquare, Mail,
-} from "lucide-react";
+import { RotateCcw, Check, X, Timer, ArrowRight, DollarSign, MessageSquare } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -157,7 +151,7 @@ const BetiniaAnmeldelse = () => {
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4">
               <Badge variant="secondary">
-                <Star className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />
                 4.9 / 5 – Anbefalet Casino
               </Badge>
               <Badge variant="outline" className="border-white/40 text-white">
@@ -178,7 +172,7 @@ const BetiniaAnmeldelse = () => {
               size="lg"
               className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"
             >
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent Bonus hos Betinia
             </Button>
           </div>
@@ -197,7 +191,7 @@ const BetiniaAnmeldelse = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Zap className="h-6 w-6 text-primary" />
+                  <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                   Hurtige Fakta – Betinia
                 </CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
@@ -308,7 +302,7 @@ const BetiniaAnmeldelse = () => {
                   { day: "Dag 12–14", title: "Bonusomsætning og kundeservice", desc: "Gennemspillede casinobonussen: 2.000 kr. × 10 = 20.000 kr. omsætning nået på dag 13. Resterende bonussaldo efter omsætning: 340 kr. – hævet direkte. Kundeservice testet 5 gange: gennemsnitlig svartid 2 min. 40 sek. i live chat. Søndag aften kl. 23:50 – 4 min. ventetid, men kompetent svar om bonusvilkår." },
                 ].map((item) => (
                   <div key={item.day} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                    <CalendarDays className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="calendar-days" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold text-foreground">{item.day}</h4>
@@ -415,7 +409,7 @@ const BetiniaAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Gift className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                 Sådan aktiverer du velkomstbonussen – trin for trin
               </CardTitle>
             </CardHeader>
@@ -446,7 +440,7 @@ const BetiniaAnmeldelse = () => {
           <Card className="border-border bg-card mb-6 border-l-4 border-l-accent">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
-                <ShieldCheck className="h-6 w-6 text-accent" />
+                <MenuIcon iconName="shield-check" className="h-6 w-6 text-accent" />
                 <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">No-Sticky vs. Sticky – den kritiske forskel</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -518,7 +512,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   Akkumulatorboost – op til 100 %
                 </CardTitle>
               </CardHeader>
@@ -547,7 +541,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   "Foran med 2" – Tidlig udbetaling
                 </CardTitle>
               </CardHeader>
@@ -565,7 +559,7 @@ const BetiniaAnmeldelse = () => {
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Gift className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                 Sports-velkomstbonus – alternativ til casinobonussen
               </CardTitle>
             </CardHeader>
@@ -613,7 +607,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilleautomater
                 </CardTitle>
               </CardHeader>
@@ -627,7 +621,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   Bordspil
                 </CardTitle>
               </CardHeader>
@@ -641,7 +635,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Live Casino
                 </CardTitle>
               </CardHeader>
@@ -656,7 +650,7 @@ const BetiniaAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Globe className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-primary" />
                   Sportsbetting
                 </CardTitle>
               </CardHeader>
@@ -787,14 +781,14 @@ const BetiniaAnmeldelse = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Mail className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="mail" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">E-mail</h3>
                 <p className="text-sm text-muted-foreground">Svar inden for 24 timer. Bedst til dokumentation og komplekse forespørgsler.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <BookOpen className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="book-open" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">FAQ & Hjælpecenter</h3>
                 <p className="text-sm text-muted-foreground">Omfattende selvbetjening med svar på de mest almindelige spørgsmål om bonus, udbetalinger og kontoindstillinger.</p>
               </CardContent>
@@ -823,21 +817,21 @@ const BetiniaAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <ShieldCheck className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="shield-check" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">Spillemyndigheden</h3>
                 <p className="text-sm text-muted-foreground">Licensnr. 20-6359 – fuldt reguleret i Danmark med løbende overvågning</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Globe className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="globe" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">Malta Gaming Authority</h3>
                 <p className="text-sm text-muted-foreground">International MGA-licens med ekstra kapitalreserver og revision</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Award className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="award" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">ROFUS & StopSpillet</h3>
                 <p className="text-sm text-muted-foreground">Tilsluttet selvudelukkelses- og rådgivningstjenester for ansvarligt spil</p>
               </CardContent>
@@ -877,7 +871,7 @@ const BetiniaAnmeldelse = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
                 <div>
                   <h3 className="font-semibold text-foreground">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
@@ -946,12 +940,12 @@ const BetiniaAnmeldelse = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button onClick={handleBonusClick} size="lg" className="flex-1 font-bold">
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent No-Sticky Bonus hos Betinia
             </Button>
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
-                <Trophy className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>

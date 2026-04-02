@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronDown, BarChart3, TrendingUp, Users, Eye, Loader2, MousePointerClick } from "lucide-react";
+import { ChevronDown, Loader2, MousePointerClick } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -304,7 +305,7 @@ export function CombinedAnalyticsDashboard() {
         <CollapsibleTrigger className="w-full">
           <CardHeader className="flex flex-row items-center justify-between cursor-pointer hover:bg-muted/50 transition-colors [&[data-state=open]>svg]:rotate-180">
             <CardTitle className="flex items-center gap-2">
-              <BarChart3 className="h-5 w-5" />
+              <MenuIcon iconName="bar-chart3" className="h-5 w-5" />
               Analytik
             </CardTitle>
             <ChevronDown className="h-5 w-5 transition-transform duration-200" />
@@ -348,7 +349,7 @@ export function CombinedAnalyticsDashboard() {
             <Tabs defaultValue="clicks" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="page" className="flex items-center gap-2">
-                  <Eye className="h-4 w-4" />
+                  <MenuIcon iconName="eye" className="h-4 w-4" />
                   Side Analytik
                 </TabsTrigger>
                 <TabsTrigger value="clicks" className="flex items-center gap-2">
@@ -365,7 +366,7 @@ export function CombinedAnalyticsDashboard() {
                   </div>
                 ) : !hasPageData ? (
                   <div className="text-center py-12">
-                    <BarChart3 className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                    <MenuIcon iconName="bar-chart3" className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                     <p className="text-muted-foreground">
                       Ingen analytik data tilgængelig endnu.
                     </p>
@@ -379,7 +380,7 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <Users className="h-4 w-4" />
+                            <MenuIcon iconName="users" className="h-4 w-4" />
                             <span className="text-xs">Unikke Besøgende</span>
                           </div>
                           <p className="text-2xl font-bold">{pageStats.uniqueVisitors.toLocaleString()}</p>
@@ -388,7 +389,7 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <Eye className="h-4 w-4" />
+                            <MenuIcon iconName="eye" className="h-4 w-4" />
                             <span className="text-xs">Sidevisninger</span>
                           </div>
                           <p className="text-2xl font-bold">{pageStats.totalPageViews.toLocaleString()}</p>
@@ -397,7 +398,7 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <Users className="h-4 w-4" />
+                            <MenuIcon iconName="users" className="h-4 w-4" />
                             <span className="text-xs">Loggede Brugere</span>
                           </div>
                           <p className="text-2xl font-bold">{pageStats.loggedInViews.toLocaleString()}</p>
@@ -406,7 +407,7 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <TrendingUp className="h-4 w-4" />
+                            <MenuIcon iconName="trending-up" className="h-4 w-4" />
                             <span className="text-xs">Tendens</span>
                           </div>
                           <p className={`text-2xl font-bold ${pageStats.trend >= 0 ? "text-emerald-500" : "text-destructive"}`}>
@@ -503,7 +504,7 @@ export function CombinedAnalyticsDashboard() {
                       <Card>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                            <TrendingUp className="h-4 w-4" />
+                            <MenuIcon iconName="trending-up" className="h-4 w-4" />
                             <span className="text-xs">Top Casino</span>
                           </div>
                           <p className="text-lg font-bold truncate">{clickStats.topCasino || "-"}</p>

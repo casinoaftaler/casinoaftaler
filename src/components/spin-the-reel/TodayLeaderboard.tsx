@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Trophy, Coins, Zap } from "lucide-react";
+import { Trophy, Coins, Zap } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export function TodayLeaderboard() {
   const { data: topSpins } = useQuery({
@@ -44,7 +45,7 @@ export function TodayLeaderboard() {
   return (
     <div className="space-y-2">
       <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-        <Trophy className="h-4 w-4 text-primary" />
+        <MenuIcon iconName="trophy" className="h-4 w-4 text-primary" />
         Top Gevinster i Dag
       </h2>
       <div className="space-y-1.5">
@@ -66,9 +67,9 @@ export function TodayLeaderboard() {
             </div>
             <div className="flex items-center gap-1.5">
               {entry.reward_type === "points" ? (
-                <Coins className="h-3.5 w-3.5 text-primary" />
+                <MenuIcon iconName="coins" className="h-3.5 w-3.5 text-primary" />
               ) : (
-                <Zap className="h-3.5 w-3.5 text-accent" />
+                <MenuIcon iconName="zap" className="h-3.5 w-3.5 text-accent" />
               )}
               <span className="text-sm font-bold text-foreground">
                 {entry.reward_value} {entry.reward_type === "points" ? "Points" : "Spins"}

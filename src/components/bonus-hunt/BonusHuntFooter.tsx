@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
-import { Play, Timer, Gamepad2, Hourglass, Square, Package } from "lucide-react";
+import { Timer, Hourglass, Square, Package } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import type { LucideIcon } from "lucide-react";
 
 interface Props {

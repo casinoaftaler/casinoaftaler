@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ShoppingCart, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import type { ShopItem } from "@/hooks/useShopItems";
 
 interface ShopItemCardProps {
@@ -34,7 +35,7 @@ export function ShopItemCard({ item }: ShopItemCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-muted/50">
-            <ShoppingCart className="h-12 w-12 text-muted-foreground" />
+            <MenuIcon iconName="shopping-cart" className="h-12 w-12 text-muted-foreground" />
           </div>
         )}
       </AspectRatio>

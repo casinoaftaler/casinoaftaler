@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Trophy } from "lucide-react";
+import { Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 
 interface LeaderboardEntry {
@@ -64,7 +65,7 @@ export function MiniLeaderboard() {
       />
 
       <div className="flex items-center gap-2 mb-3">
-        <Trophy className="h-4 w-4 text-amber-400" />
+        <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-400" />
         <h3 className="text-sm font-bold text-foreground">Månedsturnering</h3>
       </div>
 

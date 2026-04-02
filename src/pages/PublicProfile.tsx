@@ -9,22 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PointsBalanceCard } from "@/components/PointsBalanceCard";
 import { TwitchBadges } from "@/components/TwitchBadges";
-import { 
-  User, 
-  Trophy, 
-  Sparkles, 
-  TrendingUp, 
-  Heart, 
-  Gamepad2, 
-  Building2, 
-  Zap,
-  Gauge,
-  Lock,
-  ArrowLeft,
-  Crown,
-  Target,
-  Flame
-} from "lucide-react";
+import { Gauge, ArrowLeft } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 
 const PLAY_STYLE_LABELS: Record<string, string> = {
@@ -135,7 +121,7 @@ function PrivateProfile() {
       <Card className="max-w-md mx-4 bg-card/50 backdrop-blur-sm border-border/50">
         <CardContent className="p-8 text-center">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-            <Lock className="h-8 w-8 text-muted-foreground" />
+            <MenuIcon iconName="lock" className="h-8 w-8 text-muted-foreground" />
           </div>
           <h2 className="text-xl font-semibold mb-2">Privat Profil</h2>
           <p className="text-muted-foreground mb-6">
@@ -159,7 +145,7 @@ function NotFound() {
       <Card className="max-w-md mx-4 bg-card/50 backdrop-blur-sm border-border/50">
         <CardContent className="p-8 text-center">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-            <User className="h-8 w-8 text-muted-foreground" />
+            <MenuIcon iconName="user" className="h-8 w-8 text-muted-foreground" />
           </div>
           <h2 className="text-xl font-semibold mb-2">Profil ikke fundet</h2>
           <p className="text-muted-foreground mb-6">
@@ -230,11 +216,11 @@ export default function PublicProfile() {
               <Avatar className="relative h-28 w-28 sm:h-36 sm:w-36 border-4 border-background shadow-2xl">
                 <AvatarImage src={profile.avatar_url || undefined} alt={profile.display_name || "Bruger"} />
                 <AvatarFallback className="text-4xl bg-gradient-to-br from-primary/20 to-primary/10">
-                  <User className="h-12 w-12" />
+                  <MenuIcon iconName="user" className="h-12 w-12" />
                 </AvatarFallback>
               </Avatar>
               <div className="absolute -bottom-2 -right-2 p-2 bg-primary rounded-full shadow-lg">
-                <Crown className="h-5 w-5 text-primary-foreground" />
+                <MenuIcon iconName="crown" className="h-5 w-5 text-primary-foreground" />
               </div>
             </div>
             
@@ -264,7 +250,7 @@ export default function PublicProfile() {
                 )}
                 {profile.preferred_game_type && GAME_TYPE_LABELS[profile.preferred_game_type] && (
                   <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30">
-                    <Gamepad2 className="h-3 w-3 mr-1" />
+                    <MenuIcon iconName="gamepad2" className="h-3 w-3 mr-1" />
                     {GAME_TYPE_LABELS[profile.preferred_game_type]}
                   </Badge>
                 )}
@@ -287,7 +273,7 @@ export default function PublicProfile() {
         {hasStats && (
           <section>
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Trophy className="h-5 w-5 text-yellow-400" />
+              <MenuIcon iconName="trophy" className="h-5 w-5 text-yellow-400" />
               Gambling Stats
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -324,7 +310,7 @@ export default function PublicProfile() {
         {hasFavorites && (
           <section>
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Heart className="h-5 w-5 text-red-400" />
+              <MenuIcon iconName="heart" className="h-5 w-5 text-red-400" />
               Favoritter
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -360,7 +346,7 @@ export default function PublicProfile() {
         {hasPlayStyle && (
           <section>
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Zap className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
               Spillestil
             </h2>
             
@@ -373,9 +359,9 @@ export default function PublicProfile() {
                     variant="secondary"
                     className="px-3 py-1.5 text-sm"
                   >
-                    {style === "bonus_hunter" && <Target className="h-3 w-3 mr-1.5" />}
-                    {style === "high_roller" && <Flame className="h-3 w-3 mr-1.5" />}
-                    {style === "slot_spinner" && <Sparkles className="h-3 w-3 mr-1.5" />}
+                    {style === "bonus_hunter" && <MenuIcon iconName="target" className="h-3 w-3 mr-1.5" />}
+                    {style === "high_roller" && <MenuIcon iconName="flame" className="h-3 w-3 mr-1.5" />}
+                    {style === "slot_spinner" && <MenuIcon iconName="sparkles" className="h-3 w-3 mr-1.5" />}
                     {PLAY_STYLE_LABELS[style] || style}
                   </Badge>
                 ))}
@@ -387,7 +373,7 @@ export default function PublicProfile() {
               <Card className="bg-card/50 border-border/50">
                 <CardContent className="p-4 flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-muted">
-                    <Target className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Typisk Indsats</p>
@@ -403,7 +389,7 @@ export default function PublicProfile() {
         {!hasStats && !hasFavorites && !hasPlayStyle && (
           <Card className="bg-card/50 border-border/50">
             <CardContent className="p-8 text-center">
-              <User className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <MenuIcon iconName="user" className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
               <h3 className="text-lg font-medium mb-2">Ingen oplysninger endnu</h3>
               <p className="text-muted-foreground">
                 Denne bruger har ikke udfyldt sin profil endnu.

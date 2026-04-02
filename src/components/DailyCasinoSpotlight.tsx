@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star, Crown } from "lucide-react";
+import { Star, Crown } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { getTodayDanish } from "@/lib/danishDate";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 
@@ -48,7 +49,7 @@ export function DailyCasinoSpotlight() {
       aria-label={`Dagens anbefaling: ${casino.name}`}
     >
       <div className="rounded-lg bg-primary/10 p-2.5 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-        <Crown className="h-5 w-5 text-primary" />
+        <MenuIcon iconName="crown" className="h-5 w-5 text-primary" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -61,7 +62,7 @@ export function DailyCasinoSpotlight() {
         <div className="flex items-center gap-2 mt-1">
           {score > 0 && (
             <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Star className="h-3 w-3 fill-primary text-primary" />
+              <MenuIcon iconName="star" className="h-3 w-3 fill-primary text-primary" />
               {score.toFixed(1)}/10
             </span>
           )}

@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Wand2, CheckCircle, XCircle, Play, Volume2 } from "lucide-react";
+import { Loader2, Wand2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
@@ -205,11 +206,11 @@ export function BatchSoundGenerator({ gameId }: BatchSoundGeneratorProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   {status === "generating" && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
-                  {status === "done" && <CheckCircle className="h-4 w-4 text-green-500" />}
-                  {status === "error" && <XCircle className="h-4 w-4 text-destructive" />}
+                  {status === "done" && <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500" />}
+                  {status === "error" && <MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" />}
                   {hasAudio && (
                     <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => handlePlay(sound.key)}>
-                      <Play className="h-3 w-3" />
+                      <MenuIcon iconName="play" className="h-3 w-3" />
                     </Button>
                   )}
                   {status !== "generating" && !isRunning && (

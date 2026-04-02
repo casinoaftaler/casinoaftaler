@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Newspaper, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCasinoNewsByName } from "@/hooks/useCasinoNewsByName";
 
@@ -17,7 +18,7 @@ export function CasinoLatestNews({ casinoName }: CasinoLatestNewsProps) {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <Newspaper className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="newspaper" className="h-5 w-5 text-primary" />
             Seneste nyheder om {casinoName}
           </CardTitle>
         </CardHeader>

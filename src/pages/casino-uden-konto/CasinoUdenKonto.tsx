@@ -18,29 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Zap,
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Lock,
-  Scale,
-  BarChart3,
-  ExternalLink,
-  HelpCircle,
-  ArrowRight,
-  Globe,
-  CreditCard,
-  Landmark,
-  Users,
-  Eye,
-  Ban,
-  RefreshCw,
-  TrendingUp,
-  FileText,
-  Smartphone,
-} from "lucide-react";
+import { ArrowRight, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -238,7 +217,7 @@ const CasinoUdenKonto = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />
               Casino Guides
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -267,7 +246,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-casino-uden-konto">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Hvad er casino uden konto?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -297,7 +276,7 @@ const CasinoUdenKonto = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Casino uden konto i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -351,7 +330,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="saadan-fungerer-pay-n-play">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Sådan fungerer Pay N Play – trin for trin
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -428,7 +407,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sammenligning">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Pay N Play vs. MitID vs. standard registrering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -516,7 +495,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sikkerhed-og-kyc">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Sikkerhed og KYC-compliance
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -583,7 +562,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="fordele-og-ulemper">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Fordele og ulemper ved casino uden konto
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -600,7 +579,7 @@ const CasinoUdenKonto = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-primary">
-                  <CheckCircle className="h-5 w-5" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5" />
                   Fordele
                 </CardTitle>
               </CardHeader>
@@ -616,7 +595,7 @@ const CasinoUdenKonto = () => {
                   "Samme ansvarligt spil-værktøjer som traditionelle casinoer",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -626,7 +605,7 @@ const CasinoUdenKonto = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-destructive">
-                  <AlertTriangle className="h-5 w-5" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5" />
                   Ulemper
                 </CardTitle>
               </CardHeader>
@@ -642,7 +621,7 @@ const CasinoUdenKonto = () => {
                   "Potentielt lavere friktion kan øge impulsivt spil",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 mt-0.5 text-destructive shrink-0" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -658,7 +637,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="bankkompatibilitet">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Landmark className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />
             Bankkompatibilitet i Danmark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -736,7 +715,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Ansvarligt spil og casino uden konto
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -754,7 +733,7 @@ const CasinoUdenKonto = () => {
               "Reality checks under spil (påmindelser om tid og tab)",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -787,7 +766,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="relaterede-guides">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <FileText className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />
             Dybdegående guides i dette cluster
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -831,7 +810,7 @@ const CasinoUdenKonto = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Hjælp og ressourcer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">

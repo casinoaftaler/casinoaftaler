@@ -18,11 +18,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles, Target, BarChart3, AlertTriangle, DollarSign,
-  TrendingUp, Shield, Zap, Brain, Calculator, Percent,
-  Dices, Activity, Layers, Users, Gauge, Timer, Scale, Crown, Flame,
-} from "lucide-react";
+import { DollarSign, Dices, Activity, Gauge, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
@@ -115,7 +112,7 @@ const CrazyTimeGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Flame className="mr-1.5 h-3.5 w-3.5" /> Evolutions flagskib</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="flame" className="mr-1.5 h-3.5 w-3.5" /> Evolutions flagskib</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Crazy Time – Det Ultimative Casino Game Show</h1>
             <p className="text-lg text-white/80">
               Evolutions mest populære live game show med 4 bonusspil, Top Slot-multiplikatorer og max gevinst på 25.000x. Her er den fulde matematiske analyse.
@@ -133,7 +130,7 @@ const CrazyTimeGuide = () => {
         <QuickComparisonTable count={3} title="Bedste Casinoer til Crazy Time" prioritySlugs={["campobet", "swift-casino", "luna-casino"]} />
         {/* ── H2 1: Hvad er Crazy Time ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Crazy Time – og hvorfor dominerer det live casino</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="crown" className="h-5 w-5 text-primary" />Hvad er Crazy Time – og hvorfor dominerer det live casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Time er et live <Link to="/live-casino/game-shows" className={linkClass}>casino game show</Link> udviklet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og lanceret i juni 2020. Det er baseret på et stort pengehjul med 54 segmenter, suppleret af en Top Slot-multiplikator og fire unikke bonusspil: <strong>Coin Flip</strong>, <strong>Cash Hunt</strong>, <strong>Pachinko</strong> og <strong>Crazy Time</strong>-bonusrunden. Spillet streames live 24/7 fra Evolutions flagskibsstudie med professionelle, højt energiske værter, der skaber en tv-lignende underholdningsoplevelse.
           </p>
@@ -166,7 +163,7 @@ const CrazyTimeGuide = () => {
 
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" /> Komplet segmentfordeling</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" /> Komplet segmentfordeling</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
@@ -207,14 +204,14 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 3: De fire bonusspil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />De fire bonusspil – mekanik, matematik og gevinstprofil</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="layers" className="h-5 w-5 text-primary" />De fire bonusspil – mekanik, matematik og gevinstprofil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Times unikke appeal ligger i de fire bonusspil, der aktiveres når hjulet stopper på et bonussegment. Hvert spil har sin egen mekanik, volatilitetsprofil og gevinststruktur. At forstå forskellen mellem dem er afgørende for at træffe informerede væddemålsbeslutninger – selvom ingen beslutning kan eliminere house edge.
           </p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card className="border-border">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Zap className="h-5 w-5 text-primary" /> Coin Flip</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" /> Coin Flip</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Den simpleste bonus: en virtuel mønt med to sider, hver med en tilfældig RNG-genereret multiplikator. Den røde side har typisk en lavere multiplikator (2x-25x), den blå side en højere (5x-100x). Mønten flippes, og din gevinst svarer til den landede sides multiplikator gange din indsats.</p>
                 <p>Coin Flip er den hyppigste bonus (4 segmenter = 7,41 % sandsynlighed) og den mest forudsigelige. De fleste flips giver 2-10x, med lejlighedsvise hits på 25-50x. Med en Top Slot-multiplikator kan gevinsten nå op til 5.000x, men dette kræver en ekstremt sjælden kombination.</p>
@@ -222,7 +219,7 @@ const CrazyTimeGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Cash Hunt</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" /> Cash Hunt</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>En AR-skydebane med 108 tilfældige multiplikatorer skjult bag symboler (kanoner, stjerner, fugle osv.). Alle multiplikatorer bestemmes af RNG før runden starter – dit valg af symbol er derfor kosmetisk, ikke strategisk. Du vælger ét symbol, kameraet zoomer ind, og din multiplikator afsløres.</p>
                 <p>Cash Hunt har den mest jævne gevinstfordeling af bonusspillene. De 108 multiplikatorer spænder fra 1x til 25.000x, men fordelingen er stærkt skæv: ca. 60 % af felterne har multiplikatorer under 10x, ca. 30 % ligger mellem 10x-50x, og under 5 % har multiplikatorer over 100x. Den sjældne 25.000x-markør optræder statistisk i færre end 0,1 % af runderne.</p>
@@ -238,7 +235,7 @@ const CrazyTimeGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" /> Crazy Time-bonussen</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" /> Crazy Time-bonussen</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Det mest eksklusive og spektakulære bonusspil: et enormt virtuelt hjul med multiplikatorer, DOUBLE-segmenter og TRIPLE-segmenter. Værten spinner hjulet, og det stopper på en multiplikator. DOUBLE fordobler alle multiplikatorer og genstarter spinnet; TRIPLE tredobler og genstarter. Denne mekanik kan eskalere gevinsterne eksponentielt.</p>
                 <p>Crazy Time-bonussen har den højeste teoretiske max gevinst og den mest dramatiske gameplay. En typisk runde giver 5-20x, men med konsekutive DOUBLE/TRIPLE-hits kan gevinsterne eksplodere. De mest spektakulære Crazy Time-gevinster (10.000x+) involverer altid 2-3 konsekutive DOUBLE/TRIPLE-hits kombineret med en Top Slot-multiplikator. Sandsynligheden for dette er under 0,001 % pr. runde.</p>
@@ -260,7 +257,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 4: Top Slot-mekanikken ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Top Slot-multiplikatoren – den skjulte volatilitetsmotor</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Top Slot-multiplikatoren – den skjulte volatilitetsmotor</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Top Slot er Crazy Times mest innovative mekanisme og den primære driver af spillets ultra-høje volatilitet. Før hvert spin aktiveres en virtuel slotmaskine placeret over det fysiske hjul. Top Slot har to hjul: det venstre viser væddemålstyper (1, 2, 5, 10, Coin Flip, Cash Hunt, Pachinko, Crazy Time, All), og det højre viser multiplikatorer (2x, 3x, 5x, 10x, 15x, 20x, 25x, 50x).
           </p>
@@ -280,7 +277,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 5: EV-analyse ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Expected Value – hvad koster det at spille Crazy Time</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Expected Value – hvad koster det at spille Crazy Time</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at forstå den reelle pris for at spille Crazy Time er <Link to="/ordbog/expected-value" className={linkClass}>Expected Value (EV)</Link> det vigtigste mål. Med en gennemsnitlig house edge på ~4,5 % kan vi beregne den forventede omkostning præcist:
           </p>
@@ -346,7 +343,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 7: Væddemålsstrategi ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Væddemålsstrategi – hvad giver lavest house edge</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Væddemålsstrategi – hvad giver lavest house edge</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Selvom der ikke findes en strategi, der kan eliminere house edge i Crazy Time, kan du vælge væddemål med lavere matematisk omkostning. Her er en komplet ranking af alle 8 væddemål efter deres estimerede house edge:
           </p>
@@ -417,7 +414,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 9: Psykologien bag Crazy Time ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Psykologien bag Crazy Time – hvorfor det er så vanedannende</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="brain" className="h-5 w-5 text-primary" />Psykologien bag Crazy Time – hvorfor det er så vanedannende</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Times succes er ikke en tilfældighed – det er resultatet af sofistikeret spildesign, der udnytter flere psykologiske mekanismer til at maksimere engagement og spilletid. At forstå disse mekanismer er vigtigt for at kunne træffe informerede beslutninger om dit spil.
           </p>
@@ -437,7 +434,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 10: Bankroll management ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Bankroll Management til Crazy Time – kvantitativ tilgang</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Bankroll Management til Crazy Time – kvantitativ tilgang</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Givet Crazy Times ultra-høje volatilitet er bankroll management afgørende for at undgå tidlig bust og sikre en fornuftig spilletid. Vi præsenterer her en kvantitativ model baseret på Kelly-kriteriet tilpasset negative-EV spil:
           </p>
@@ -476,7 +473,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 11: Bedste casinoer ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Bedste danske casinoer til Crazy Time</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Bedste danske casinoer til Crazy Time</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Time er tilgængeligt hos alle danske casinoer, der samarbejder med Evolution Gaming. Da spillet er identisk uanset casino (samme studie, samme hjul, samme odds), er valget af casino primært baseret på bonus, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed. Vi anbefaler kun casinoer med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link> fra Spillemyndigheden.
           </p>
@@ -493,7 +490,7 @@ const CrazyTimeGuide = () => {
 
         {/* ── H2 12: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Times kombination af ultra-høj volatilitet, konstante bonusspil, energiske værter og social interaktion gør det til et af de mest vanedannende casino-spil. De psykologiske virkemidler (AR-effekter, near-miss-oplevelser, variable belønninger) er bevidst designet til at forlænge spilletiden og øge indsatserne. Det er afgørende at sætte og overholde faste grænser.
           </p>

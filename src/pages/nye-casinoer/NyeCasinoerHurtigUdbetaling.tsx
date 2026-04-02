@@ -16,7 +16,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Zap, Clock, Sparkles, CreditCard, CheckCircle2, AlertTriangle, XCircle, ShieldCheck, TrendingUp, Timer } from "lucide-react";
+import { Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -100,7 +101,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Zap className="mr-1.5 h-3.5 w-3.5" />Hurtige Udbetalinger</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />Hurtige Udbetalinger</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med Hurtig Udbetaling</h1>
             <p className="text-lg text-white/80">De hurtigste nye casinoer i Danmark med instant-udbetalinger via Trustly, MobilePay og moderne open banking-løsninger.</p>
           </div>
@@ -202,7 +203,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { method: "Bankoverførsel", time: "2–5 bankdage", desc: "Den langsomste metode. Kun relevant for beløb over de grænser, andre metoder tillader. Vores gennemsnit: 2,8 bankdage. Behandles ikke i weekender eller helligdage. Anbefales kun til udbetalinger over 100.000 kr., hvor andre metoder har beløbsgrænser." },
             ].map((item) => (
               <div key={item.method} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{item.method}</h3>
@@ -231,7 +232,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { title: "Ingen legacy-systemer eller teknisk gæld", desc: "Etablerede casinoer kæmper med betalingssystemer implementeret for 10–15 år siden. Migration til moderne arkitektur er kompleks og risikabel, da det kræver nul-nedetid for en aktiv spillerbase. Nye casinoer starter med blank tavle og vælger de mest effektive løsninger fra dag ét – ingen kompromiser eller workarounds." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -251,7 +252,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Trustly & MobilePay</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Trustly & MobilePay</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Hverdag 09–17:</strong> Gns. 2 min. 10 sek.</p>
@@ -263,7 +264,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Clock className="h-5 w-5 text-primary" />Visa/Mastercard</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="clock" className="h-5 w-5 text-primary" />Visa/Mastercard</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Hverdag 09–15:</strong> Gns. 0,8 bankdage</p>
@@ -298,7 +299,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { title: "Over 50.000 kr. – Forstærket due diligence", desc: "Store udbetalinger udløser lovpligtig forstærket due diligence (EDD). Det kan inkludere manuel gennemgang af transaktionshistorik, kilde-til-midler-verifikation og eventuel kontakt fra compliance-afdelingen. Behandlingstiden kan strække sig fra 2 timer til 24 timer. Vi anbefaler at opdele store beløb i flere udbetalinger under 50.000 kr. for hurtigere behandling – det er lovligt og helt normalt." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -331,7 +332,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { title: "Mistanke om bonus-misbrug eller multiple konti", desc: "Casinoers automatiserede overvågningssystemer kan flage konti ved mistænkelig adfærd: multiple konti fra samme IP, systematisk bonus-udnyttelse eller usædvanlige spillemønstre. Det kan udløse en manuel gennemgang, der typisk tager 24–48 timer. Løsning: Spil normalt og hav kun én konto pr. casino." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -377,7 +378,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Pay N Play Casino</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Pay N Play Casino</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Første udbetaling:</strong> Gns. 1 min. 47 sek.</p>
@@ -390,7 +391,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-muted">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Clock className="h-5 w-5 text-muted-foreground" />Standard Registrering</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="clock" className="h-5 w-5 text-muted-foreground" />Standard Registrering</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Første udbetaling:</strong> Gns. 15 min.–48 timer</p>
@@ -423,7 +424,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { bank: "Lunar / andre mobilbanker", time: "1–3 minutter", desc: "Moderne mobilbanker som Lunar matcher de store bankers hastighed. Trustly-udbetalinger vises typisk inden for 1–3 minutter. Push-notifikationer giver dig besked, når pengene lander." },
             ].map((item) => (
               <div key={item.bank} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{item.bank}</h3>
@@ -460,7 +461,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               "Vælg et Pay N Play-casino, hvis hastighed er din absolutte topprioritet – vores data viser 40–60% hurtigere udbetalinger sammenlignet med standard-casinoer",
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground"><strong>{i + 1}.</strong> {tip}</p>
               </div>
             ))}
@@ -481,7 +482,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { title: "Indbetalingsgrænser og session-timere", desc: "Hurtige udbetalinger fjerner ikke behovet for selvregulering. Brug altid de indbetalingsgrænser og session-timere, som alle danske casinoer tilbyder. Sæt et budget før du begynder at spille, og hold dig til det – uanset om du vinder eller taber." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -503,7 +504,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
               { to: "/betalingsmetoder", label: "Betalingsmetoder", desc: "Alle betalingsmetoder sammenlignet" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

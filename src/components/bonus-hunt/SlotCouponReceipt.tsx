@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { Check, X, Clock, Ticket } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { DEFAULT_MARKETS, type CouponMarket } from "./slotCouponMarkets";
 import "@/styles/slot-coupon-receipt.css";
@@ -51,7 +52,7 @@ export function SlotCouponReceipt({ huntNumber, answers, results, isLive, market
       {/* Header */}
       <div className="slot-receipt-header">
         <div className="flex items-center justify-center gap-2">
-          <Ticket className="h-5 w-5" />
+          <MenuIcon iconName="ticket" className="h-5 w-5" />
           <span className="text-xl font-black tracking-tight">Slot Kupon</span>
           <span className="text-[10px] font-semibold opacity-60">®</span>
         </div>
@@ -106,7 +107,7 @@ export function SlotCouponReceipt({ huntNumber, answers, results, isLive, market
                   </span>
                 ) : (
                   <span className="slot-receipt-badge-pending">
-                    <Clock className="h-3 w-3" />
+                    <MenuIcon iconName="clock" className="h-3 w-3" />
                   </span>
                 )}
               </div>

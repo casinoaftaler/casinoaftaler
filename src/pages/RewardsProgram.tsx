@@ -6,7 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { Separator } from "@/components/ui/separator";
-import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2 } from "lucide-react";
+import { Video, UserCircle, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { SlotRequestForm } from "@/components/SlotRequestForm";
@@ -52,7 +53,7 @@ export default function RewardsProgram() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Optjen Bonus Spins
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -110,7 +111,7 @@ export default function RewardsProgram() {
                   "Dine klips hjælper fællesskabet med at vokse",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-muted-foreground">{item}</span>
                   </div>
                 ))}
@@ -162,7 +163,7 @@ export default function RewardsProgram() {
                   { section: "Spillestil", desc: "Volatilitet og præferencer" },
                 ].map((item) => (
                   <div key={item.section} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <div>
                       <span className="text-sm font-medium text-foreground">{item.section}</span>
                       <span className="text-sm text-muted-foreground"> — {item.desc}</span>
@@ -195,7 +196,7 @@ export default function RewardsProgram() {
         <section className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-3 rounded-xl bg-primary/10">
-              <Gamepad2 className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="gamepad2" className="h-6 w-6 text-primary" />
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold">Slot Request Rewards</h2>
@@ -221,7 +222,7 @@ export default function RewardsProgram() {
                   "Følg status på dine requests herunder",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-muted-foreground">{item}</span>
                   </div>
                 ))}
@@ -242,7 +243,7 @@ export default function RewardsProgram() {
             <CardContent className="p-6 md:p-8">
               <div className="flex items-start gap-3">
                 <div className="p-2 rounded-lg bg-muted">
-                  <Info className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="info" className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div className="space-y-3">
                   <h3 className="font-semibold text-foreground">Godt at vide</h3>

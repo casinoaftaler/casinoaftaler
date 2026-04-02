@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual money-page CTA + sibling cross-links for casino-uden-konto spoke pages.
@@ -56,7 +57,7 @@ export function CasinoUdenKontoCrossLinks({ pageName, currentPath }: CasinoUdenK
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <Zap className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
         {pageName} – find det rette casino
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -84,7 +85,7 @@ export function CasinoUdenKontoCrossLinks({ pageName, currentPath }: CasinoUdenK
 
       <div className="mt-4 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <Zap className="h-3.5 w-3.5" />
+          <MenuIcon iconName="zap" className="h-3.5 w-3.5" />
           Udforsk casino uden konto
         </p>
         <div className="flex flex-wrap gap-2">

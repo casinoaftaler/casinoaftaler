@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, Smartphone } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Contextual money-page CTA + sibling cross-links for mobil-casino spoke pages.
@@ -57,7 +58,7 @@ export function MobilCasinoCrossLinks({ pageName, currentPath }: MobilCasinoCros
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <Smartphone className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="smartphone" className="h-6 w-6 text-primary" />
         {pageName} – find det rette casino
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -85,7 +86,7 @@ export function MobilCasinoCrossLinks({ pageName, currentPath }: MobilCasinoCros
 
       <div className="mt-4 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <Smartphone className="h-3.5 w-3.5" />
+          <MenuIcon iconName="smartphone" className="h-3.5 w-3.5" />
           Udforsk mobil casino guides
         </p>
         <div className="flex flex-wrap gap-2">

@@ -4,7 +4,8 @@ import { SCROLL_DEPTH_BONUS_CREDITS } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 
 /** Full-size card for the /community hub page */
@@ -34,7 +35,7 @@ export function DailyMissionsCard() {
           <div className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-30" />
             <span className="relative inline-flex h-4 w-4 rounded-full bg-amber-500 items-center justify-center">
-              <Sparkles className="h-2.5 w-2.5 text-white" />
+              <MenuIcon iconName="sparkles" className="h-2.5 w-2.5 text-white" />
             </span>
           </div>
         )}
@@ -42,7 +43,7 @@ export function DailyMissionsCard() {
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-              <Coins className={`h-5 w-5 ${hasNoneCompleted ? "text-amber-500 animate-bounce" : "text-amber-500"}`} />
+              <MenuIcon iconName="coins" className="h-5 w-5" />
               Daily Missions
             </h2>
             <p className={`text-sm mt-1 ${hasNoneCompleted ? "text-amber-700 dark:text-amber-200/80" : "text-muted-foreground"}`}>
@@ -110,11 +111,7 @@ export function DailyMissionsCard() {
                 {page.completed ? (
                   <Check className="h-4 w-4 text-emerald-500" />
                 ) : (
-                  <Clock className={`h-4 w-4 transition-colors ${
-                    hasNoneCompleted && index === 0
-                      ? "text-amber-500"
-                      : "text-muted-foreground group-hover:text-amber-500"
-                  }`} />
+                  <MenuIcon iconName="clock" className="h-5 w-5" />
                 )}
               </div>
               <div className="flex-1 min-w-0">

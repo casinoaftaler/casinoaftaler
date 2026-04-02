@@ -17,34 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import hjaelpelinjerHero from "@/assets/heroes/hjaelpelinjer-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Heart,
-  MessageCircle,
-  Mail,
-  Info,
-  HandHeart,
-  Headphones,
-  Calendar,
-  UserCheck,
-  MapPin,
-  Building,
-  Ban,
-} from "lucide-react";
+import { Gavel, ArrowRight, HandHeart, UserCheck, Building, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -169,7 +143,7 @@ const HjaelpelinjerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -210,25 +184,25 @@ const HjaelpelinjerGuide = () => {
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-6">
               <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                <Phone className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="phone" className="h-5 w-5 text-primary" />
                 Har du brug for hjælp nu?
               </h3>
               <div className="flex flex-wrap gap-3">
                 <Button asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     StopSpillet: 70 22 28 25
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="message-circle" className="mr-2 h-4 w-4" />
                     Chat med StopSpillet
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="tel:70201201">
-                    <Heart className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="heart" className="mr-2 h-4 w-4" />
                     Livslinjen: 70 20 12 01
                   </a>
                 </Button>
@@ -248,7 +222,7 @@ const HjaelpelinjerGuide = () => {
         {/* ── StopSpillet ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Headphones className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />
             StopSpillet – Akut Rådgivning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -260,21 +234,21 @@ const HjaelpelinjerGuide = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="phone" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Telefon:</strong> <a href="tel:70222825" className="text-primary hover:underline">70 22 28 25</a></span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MessageCircle className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="message-circle" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Chat:</strong> <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">stopspillet.dk</a></span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="mail" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>E-mail:</strong> info@stopspillet.dk</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="calendar" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Åbningstid:</strong></span>
                   </div>
                   <div className="text-sm text-muted-foreground pl-6 space-y-1">
@@ -290,12 +264,12 @@ const HjaelpelinjerGuide = () => {
           <div className="rounded-lg border border-border p-4 bg-muted/30 mb-4">
             <p className="text-sm font-medium mb-2">StopSpillet tilbyder:</p>
             <ul className="space-y-1 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Øjeblikkelig telefonisk rådgivning uden ventetid</li>
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Anonym chat via hjemmesiden</li>
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Korte rådgivningsforløb (3-5 sessioner)</li>
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Henvisning til behandling ved behov</li>
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Dedikeret rådgivning for pårørende</li>
-              <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Hjælp til ROFUS-tilmelding</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Øjeblikkelig telefonisk rådgivning uden ventetid</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Anonym chat via hjemmesiden</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Korte rådgivningsforløb (3-5 sessioner)</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Henvisning til behandling ved behov</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Dedikeret rådgivning for pårørende</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Hjælp til ROFUS-tilmelding</li>
             </ul>
           </div>
 
@@ -325,21 +299,21 @@ const HjaelpelinjerGuide = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="phone" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Telefon:</strong> <a href="tel:70111810" className="text-primary hover:underline">70 11 18 10</a></span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Globe className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="globe" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Website:</strong> <a href="https://ludomani.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ludomani.dk</a></span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="mail" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>E-mail:</strong> info@ludomani.dk</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="map-pin" className="h-4 w-4 text-primary" />
                     <span className="text-sm"><strong>Lokationer:</strong></span>
                   </div>
                   <div className="text-sm text-muted-foreground pl-6 space-y-1">
@@ -381,7 +355,7 @@ const HjaelpelinjerGuide = () => {
         {/* ── Anonyme Gamblere ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Anonyme Gamblere (GA) – Selvhjælpsgrupper
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -432,7 +406,7 @@ const HjaelpelinjerGuide = () => {
               { title: "Fortrolighed", desc: "Kommunale misbrugscentre har tavshedspligt. Oplysninger deles ikke med andre kommunale afdelinger (fx jobcenter) uden dit samtykke." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <p className="font-medium text-sm">{item.title}</p>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -518,7 +492,7 @@ const HjaelpelinjerGuide = () => {
         {/* ── Sammenligningstabel ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sammenligning: Hvem hjælper med hvad?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -548,11 +522,11 @@ const HjaelpelinjerGuide = () => {
                 ].map((row) => (
                   <tr key={row.name} className="border-b border-border/50 hover:bg-muted/30">
                     <td className="py-2 px-2 font-medium">{row.name}</td>
-                    <td className="text-center py-2 px-2">{row.telefon ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{row.chat ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{row.terapi ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{row.paarørende ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{row.gratis ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{row.telefon ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{row.chat ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{row.terapi ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{row.paarørende ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{row.gratis ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
                   </tr>
                 ))}
               </tbody>
@@ -565,7 +539,7 @@ const HjaelpelinjerGuide = () => {
         {/* ── Gældsrådgivning ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Gældsrådgivning og økonomisk støtte
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -602,19 +576,19 @@ const HjaelpelinjerGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     StopSpillet: 70 22 28 25
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://ludomani.dk/" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="external-link" className="mr-2 h-4 w-4" />
                     Center for Ludomani
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>

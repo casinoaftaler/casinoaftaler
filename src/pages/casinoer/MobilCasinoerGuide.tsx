@@ -17,7 +17,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Smartphone, Zap, CheckCircle2, Star, Gamepad2, CreditCard, Download, Globe, Battery, Monitor, AlertTriangle, Shield, Wifi, Settings, Layers, Eye, Lock } from "lucide-react";
+import { Download, Battery, Wifi, Settings } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -51,7 +52,7 @@ const MobilCasinoerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Smartphone className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="smartphone" className="mr-1.5 h-3.5 w-3.5" />
               Mobilanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -84,15 +85,15 @@ const MobilCasinoerGuide = () => {
 
         {/* Hvad kendetegner et godt mobil casino */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Smartphone className="h-7 w-7 text-primary" /> Hvad kendetegner et godt mobil casino?</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Hvad kendetegner et godt mobil casino?</h2>
           <p className="text-muted-foreground mb-4">Ikke alle mobiloplevelser er skabt lige. De bedste mobil casinoer adskiller sig fra mængden ved at fokusere på en række nøglefaktorer, der tilsammen skaber en sømløs og behagelig spilleoplevelse. Når vi evaluerer mobil casinoer, vurderer vi følgende kriterier med særlig opmærksomhed.</p>
           <p className="text-muted-foreground mb-6">Et godt mobil casino er ikke bare en nedskaleret version af desktop-sitet. Det er en gennemtænkt, optimeret oplevelse, der udnytter mobilenhedens unikke egenskaber – touch-interaktion, biometrisk sikkerhed, push-notifikationer og geobaserede funktioner – til at skabe en oplevelse, der i mange tilfælde overgår desktop.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {[
-              { icon: <Zap className="h-5 w-5 text-primary" />, title: "Hurtig indlæsning", desc: "Spil skal indlæses inden for 3 sekunder på en standard 4G-forbindelse. De bedste mobil casinoer bruger progressiv indlæsning, CDN-distribution og intelligent caching for at minimere ventetid. Lazy loading af spilgrafik sikrer, at lobbyen vises øjeblikkeligt, mens spil indlæses i baggrunden. Vi har testet indlæsningstider på alle anbefalede casinoer, og de bedste scorer under 2 sekunder." },
-              { icon: <Monitor className="h-5 w-5 text-primary" />, title: "Responsivt design", desc: "Interface skal tilpasse sig automatisk til alle skærmstørrelser – fra 5,4\" iPhone SE til 6,9\" Samsung Galaxy Ultra og alt derimellem. Det betyder dynamisk skalering af knapper, tekst og spiludvalg, samt intelligent omorganisering af menuer og navigation. Et godt responsivt design gør det let at navigere med én hånd og sikrer, at alle knapper er store nok til præcise taps." },
-              { icon: <Gamepad2 className="h-5 w-5 text-primary" />, title: "Fuldt spiludvalg", desc: "Minimum 95 % af desktop-spiludvalget skal være tilgængeligt på mobil. Det inkluderer live casino, spilleautomater, bordspil og specialspil. De bedste casinoer tilbyder avancerede filtreringsmuligheder, der gør det let at finde spil efter kategori, udbyder eller popularitet. Favoritfunktioner lader dig gemme dine yndlingsspil for hurtig adgang." },
-              { icon: <CreditCard className="h-5 w-5 text-primary" />, title: "Mobile betalinger", desc: "Understøttelse af MobilePay, Apple Pay, Google Pay og Trustly for sømløs, hurtig betalingsoplevelse direkte fra mobilen. Biometrisk godkendelse (Face ID, fingeraftryk) gør betalingsprocessen både hurtigere og sikrere end traditionel indtastning af kreditkortnumre. De bedste casinoer tilbyder one-tap-betaling for gentagne indbetalinger." },
+              { icon: <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />, title: "Hurtig indlæsning", desc: "Spil skal indlæses inden for 3 sekunder på en standard 4G-forbindelse. De bedste mobil casinoer bruger progressiv indlæsning, CDN-distribution og intelligent caching for at minimere ventetid. Lazy loading af spilgrafik sikrer, at lobbyen vises øjeblikkeligt, mens spil indlæses i baggrunden. Vi har testet indlæsningstider på alle anbefalede casinoer, og de bedste scorer under 2 sekunder." },
+              { icon: <MenuIcon iconName="monitor" className="h-5 w-5 text-primary" />, title: "Responsivt design", desc: "Interface skal tilpasse sig automatisk til alle skærmstørrelser – fra 5,4\" iPhone SE til 6,9\" Samsung Galaxy Ultra og alt derimellem. Det betyder dynamisk skalering af knapper, tekst og spiludvalg, samt intelligent omorganisering af menuer og navigation. Et godt responsivt design gør det let at navigere med én hånd og sikrer, at alle knapper er store nok til præcise taps." },
+              { icon: <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />, title: "Fuldt spiludvalg", desc: "Minimum 95 % af desktop-spiludvalget skal være tilgængeligt på mobil. Det inkluderer live casino, spilleautomater, bordspil og specialspil. De bedste casinoer tilbyder avancerede filtreringsmuligheder, der gør det let at finde spil efter kategori, udbyder eller popularitet. Favoritfunktioner lader dig gemme dine yndlingsspil for hurtig adgang." },
+              { icon: <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />, title: "Mobile betalinger", desc: "Understøttelse af MobilePay, Apple Pay, Google Pay og Trustly for sømløs, hurtig betalingsoplevelse direkte fra mobilen. Biometrisk godkendelse (Face ID, fingeraftryk) gør betalingsprocessen både hurtigere og sikrere end traditionel indtastning af kreditkortnumre. De bedste casinoer tilbyder one-tap-betaling for gentagne indbetalinger." },
             ].map((item, i) => (
               <Card key={i} className="border-border bg-card"><CardContent className="flex items-start gap-4 pt-6">{item.icon}<div><h3 className="font-bold mb-1">{item.title}</h3><p className="text-sm text-muted-foreground">{item.desc}</p></div></CardContent></Card>
             ))}
@@ -107,21 +108,21 @@ const MobilCasinoerGuide = () => {
           <p className="text-muted-foreground mb-4">Et af de mest stillede spørgsmål om mobil casino er, hvorvidt man skal downloade en dedikeret app eller bruge casinoets hjemmeside i browseren. Svaret har ændret sig markant over de seneste år i takt med, at browserteknologien er modnet.</p>
           <p className="text-muted-foreground mb-6">I de tidlige dage af mobil gambling var native apps klart overlegne i forhold til browseroplevelsen. Men med fremkomsten af HTML5, Progressive Web Apps (PWA) og WebGL har browserbaserede casinoer lukket dette gap næsten fuldstændigt. I dag er browserversionen det foretrukne valg for langt de fleste danske spillere, og her er hvorfor.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-green-500/30"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Globe className="h-5 w-5 text-primary" /> Browser (anbefalet)</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ingen download eller opdatering nødvendig – spar tid og lagerplads</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Optager ingen plads på enheden – kræver kun megabytes midlertidigt</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Altid den nyeste version automatisk – ingen ventetid på opdateringer</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Fungerer på alle enheder og operativsystemer uden kompatibilitetsproblemer</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Fuldt spiludvalg altid tilgængeligt – ingen begrænsninger fra app stores</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Kan tilføjes til startskærm for app-lignende oplevelse (PWA)</li>
+            <Card className="border-green-500/30"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="globe" className="h-5 w-5 text-primary" /> Browser (anbefalet)</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ingen download eller opdatering nødvendig – spar tid og lagerplads</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Optager ingen plads på enheden – kræver kun megabytes midlertidigt</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Altid den nyeste version automatisk – ingen ventetid på opdateringer</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Fungerer på alle enheder og operativsystemer uden kompatibilitetsproblemer</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Fuldt spiludvalg altid tilgængeligt – ingen begrænsninger fra app stores</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Kan tilføjes til startskærm for app-lignende oplevelse (PWA)</li>
             </ul></CardContent></Card>
             <Card className="border-blue-500/30"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Download className="h-5 w-5 text-primary" /> App</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Push-notifikationer om bonusser, tilbud og kampagner</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Hurtigere login via Face ID/Touch ID integration</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Potentielt bedre performance og grafikoptimering</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Offline-adgang til kontooplysninger og spillehistorik</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> Kræver download og regelmæssige opdateringer (100-500 MB)</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> Begrænset tilgængelighed i Apple App Store og Google Play</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Push-notifikationer om bonusser, tilbud og kampagner</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Hurtigere login via Face ID/Touch ID integration</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Potentielt bedre performance og grafikoptimering</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" /> Offline-adgang til kontooplysninger og spillehistorik</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> Kræver download og regelmæssige opdateringer (100-500 MB)</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" /> Begrænset tilgængelighed i Apple App Store og Google Play</li>
             </ul></CardContent></Card>
           </div>
           <p className="text-muted-foreground mb-4">Vores anbefaling: <strong>Brug browseren</strong>. Moderne HTML5-teknologi gør browserversionen lige så hurtig og funktionel som en native app – uden de ulemper, der følger med apps. Browserversioner opdateres øjeblikkeligt, kræver ingen download, og fungerer identisk på tværs af alle enheder.</p>
@@ -132,7 +133,7 @@ const MobilCasinoerGuide = () => {
 
         {/* Mobile betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" /> Betalingsmetoder optimeret til mobil</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" /> Betalingsmetoder optimeret til mobil</h2>
           <p className="text-muted-foreground mb-4">En af de største fordele ved mobil casino er adgang til betalingsmetoder, der er designet specifikt til mobile enheder. Disse metoder udnytter din telefons biometriske sensorer og NFC-teknologi for at gøre ind- og udbetalinger hurtigere og sikrere end nogensinde. Her er en detaljeret gennemgang af de bedste mobile betalingsløsninger.</p>
           <p className="text-muted-foreground mb-6">Valget af betalingsmetode er særligt vigtigt på mobil, da den rigtige metode kan reducere transaktionen til et enkelt tryk. De bedste mobile betalingsmetoder kræver ingen indtastning af lange kortnumre eller kodeord – blot en biometrisk bekræftelse.</p>
           
@@ -167,7 +168,7 @@ const MobilCasinoerGuide = () => {
 
         {/* Spiltyper på mobil */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Spiltyper på mobil casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" /> Spiltyper på mobil casino</h2>
           <p className="text-muted-foreground mb-4">Moderne mobil casinoer tilbyder det fulde spektrum af casinospil, og kvaliteten er i langt de fleste tilfælde identisk med desktop-versionen. Spiludviklere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og Evolution Gaming designer nu alle deres spil med mobile-first-tilgang, hvilket sikrer en optimeret oplevelse på alle skærmstørrelser.</p>
           <p className="text-muted-foreground mb-6">Her er en gennemgang af de mest populære spilkategorier og hvordan de fungerer på mobil. Hvert spiltype har sine egne styrker og overvejelser på mobile enheder.</p>
 
@@ -209,20 +210,20 @@ const MobilCasinoerGuide = () => {
 
         {/* Sikkerhed på mobil */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Sikkerhed på mobil casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Sikkerhed på mobil casino</h2>
           <p className="text-muted-foreground mb-4">Sikkerhed er en af de vigtigste overvejelser, når du spiller casino på mobil. Den gode nyhed er, at mobile enheder faktisk kan være mere sikre end desktop-computere, takket være biometrisk autentificering og hardwarebaseret kryptering. Dog er det vigtigt at følge grundlæggende sikkerhedspraksis for at beskytte din konto og dine penge.</p>
           <p className="text-muted-foreground mb-6">Alle <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link> bruger den samme 256-bit SSL/TLS-kryptering på mobil som på desktop. Dine data er krypteret under transport, og casinoerne overholder strenge sikkerhedsstandarder pålagt af Spillemyndigheden og PCI DSS (Payment Card Industry Data Security Standard).</p>
           
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Lock className="h-4 w-4 text-primary" /> Biometrisk sikkerhed</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="lock" className="h-4 w-4 text-primary" /> Biometrisk sikkerhed</h3>
                 <p className="text-sm text-muted-foreground">Face ID, Touch ID og fingeraftryk giver et ekstra sikkerhedslag, der er sværere at kompromittere end adgangskoder. De bedste casinoer understøtter biometrisk login, hvilket både er hurtigere og sikrere. Din biometriske data forlader aldrig din enhed – den bruges kun til lokal verifikation.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Eye className="h-4 w-4 text-primary" /> Privatlivsbeskyttelse</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="eye" className="h-4 w-4 text-primary" /> Privatlivsbeskyttelse</h3>
                 <p className="text-sm text-muted-foreground">Mobil casino tilbyder en grad af privatliv, som desktop ikke kan matche. Du kan spille diskret overalt uden at sidde foran en åben computerskærm. De fleste casinoer tilbyder desuden "hurtig skjul"-funktioner, der øjeblikkeligt minimerer spillet ved behov.</p>
               </CardContent>
             </Card>
@@ -316,7 +317,7 @@ const MobilCasinoerGuide = () => {
 
         {/* Fremtiden for mobil casino */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Layers className="h-7 w-7 text-primary" /> Fremtiden for mobil casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Fremtiden for mobil casino</h2>
           <p className="text-muted-foreground mb-4">Mobil casino-teknologien udvikler sig i et imponerende tempo, og de kommende år lover endnu mere innovative spilleoplevelser. Her er de mest spændende teknologiske trends, der vil forme mobil gambling i de kommende år.</p>
           <p className="text-muted-foreground mb-4"><strong>5G og ultra-lav latens:</strong> Udrulningen af 5G-netværk i Danmark åbner nye muligheder for mobil casino. Med latenstider under 10 millisekunder vil live casino-streaming blive endnu mere responsiv og realtids-interaktioner med dealers vil føles fuldstændigt naturlige. 5G muliggør også højere videoopløsninger (4K) på mobile enheder, hvilket dramatisk forbedrer live casino-oplevelsen.</p>
           <p className="text-muted-foreground mb-4"><strong>Augmented Reality (AR):</strong> AR-teknologi vil snart lade dig projicere et virtuelt casino-bord direkte i din stue via din telefons kamera. Forestil dig at placere dine roulette-chips på et virtuelt bord, der vises ovenpå dit sofabord – dette er ikke science fiction, men en realitet, der allerede testes af flere store spiludviklere. Apples Vision Pro og lignende enheder accelererer denne udvikling.</p>

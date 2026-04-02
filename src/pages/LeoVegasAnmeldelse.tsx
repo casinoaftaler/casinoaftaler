@@ -21,7 +21,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone, Globe, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
@@ -54,7 +55,7 @@ const LeoVegasAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.5 / 5 – King of Mobile</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />4.5 / 5 – King of Mobile</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">LeoVegas Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af LeoVegas – verdens mest prisvindende mobilcasino, nu ejet af MGM Resorts International. Dansk licens, 2.000+ spil og brancheførende mobiloplevelse.</p>
         </div></div>
@@ -68,7 +69,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – LeoVegas Casino</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – LeoVegas Casino</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr.</p></div>
@@ -90,7 +91,7 @@ const LeoVegasAnmeldelse = () => {
         {/* [A] MOBILE-FIRST – Den mobile revolution */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Mobilrevolutionen der ændrede alt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -148,7 +149,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Casino Game Selection */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Spiludvalget – 2.000+ titler under lup
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -180,7 +181,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Live Casino */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Live Casino – 200+ borde i verdensklasse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -259,7 +260,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Payment Methods */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Wallet className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="wallet" className="h-7 w-7 text-primary" />
             Betalingsmetoder og testresultater
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -305,7 +306,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Customer Support */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Headphones className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />
             Kundeservice – kompetent og hurtig
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -340,7 +341,7 @@ const LeoVegasAnmeldelse = () => {
         {/* Negative Segmentation */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvem bør undgå LeoVegas?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -364,7 +365,7 @@ const LeoVegasAnmeldelse = () => {
 
         {/* MGM Enterprise Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />MGM Resorts International – imperiet bag LeoVegas</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />MGM Resorts International – imperiet bag LeoVegas</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå LeoVegas' fremtidsperspektiv i 2026 er det nødvendigt at forstå moderselskabet MGM Resorts International. MGM er en af verdens største hotel-, casino- og underholdningskoncerner med en markedsværdi over 100 mia. kr. Selskabet driver 31 resorts og casinoer globalt – inklusive ikoniske Las Vegas-ejendomme som Bellagio, MGM Grand, Mandalay Bay, The Mirage, Aria og Vdara. Med over 83.000 ansatte og en årlig omsætning på $17+ mia. er MGM en operatør i en helt anden størrelsesorden end de fleste online casino-ejere.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">MGMs opkøb af LeoVegas i september 2022 for ca. 607 millioner dollars var et strategisk skridt ind i det europæiske online gambling-marked. Inden opkøbet havde MGM forsøgt at ekspandere digitalt via BetMGM (et joint venture med Entain) i USA, men manglede en stærk europæisk online-platform. LeoVegas' prisvindende mobilteknologi, regulatoriske ekspertise i 15+ europæiske jurisdiktioner og etablerede brand gjorde det til det ideelle opkøbsmål. For LeoVegas bragte opkøbet tre ting: kapital, global ekspertise og sikkerhed.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">MGMs børsnotering på New York Stock Exchange (NYSE: MGM) medfører strenge krav fra SEC (Securities and Exchange Commission) til finansiel rapportering, corporate governance og intern kontrol. Selskabet er underlagt SOX-compliance (Sarbanes-Oxley Act), kvartalsregnskaber revideres af uafhængige revisorer, og executive compensation offentliggøres fuldt ud. For den danske casino-spiller er den praktiske konsekvens, at dine spillermidler er beskyttet af et af verdens mest regulerede selskaber. Finansiel ustabilitet – den største risikofaktor ved mindre online casinoer – er en ikke-eksisterende bekymring med MGM.</p>
@@ -375,7 +376,7 @@ const LeoVegasAnmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Bonusøkonomi: Reel spillerværdi og matematisk gennemgang</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Bonusøkonomi: Reel spillerværdi og matematisk gennemgang</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere LeoVegas' reelle værdi for danske spillere har vi gennemført en matematisk analyse af bonus-EV, løbende kampagner og VIP-programmets estimerede afkast. Denne analyse anvender standardformlen: <strong>EV = Bonusbeløb − (Total Omsætning × House Edge)</strong>, hvor House Edge er den statistiske fordel casinoet har over spilleren.</p>
 
           <Card className="border-border bg-card mb-6">
@@ -424,7 +425,7 @@ const LeoVegasAnmeldelse = () => {
 
         {/* Technology Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" />Teknologiplatformen – LeoVegas' skjulte konkurrencefordel</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />Teknologiplatformen – LeoVegas' skjulte konkurrencefordel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Bag LeoVegas' polerede brugeroplevelse ligger en proprietær teknologiplatform, der er en af branchens mest avancerede. I modsætning til de fleste online casinoer, der anvender tredjepartsplatforme (som EveryMatrix, SoftSwiss eller White Hat Gaming), har LeoVegas bygget sin egen teknologiske infrastruktur fra bunden. Det giver dem fuld kontrol over performance, brugeroplevelse og data – og det er denne kontrol, der muliggør den mobiloplevelse, som ingen konkurrent har kunnet matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformens arkitektur er bygget på en microservices-model med CDN-distribution (Content Delivery Network) der sikrer sub-sekund indlæsningstider globalt. Spilleautomater indlæses via en proprietær spilmotor, der pre-cacher ressourcer baseret på brugerens spillehistorik – hvis du ofte spiller Book of Dead, vil spillet være pre-loaded næste gang du besøger platformen. Denne predictive caching-teknologi reducerer indlæsningstider med op til 60% sammenlignet med standard on-demand loading.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Anbefalingsmotoren anvender maskinlæring til at analysere spillermønstre og foreslå relevante spil. Algoritmen vægter faktorer som spiltype-præference, volatilitets-tolerance, gennemsnitlig sessionlængde og foretrukne spiludbydere. Resultatet er en personaliseret forside, der tilpasser sig over tid – en Netflix-lignende oplevelse der gør det markant lettere at opdage nye spil i et katalog med 2.000+ titler. Vores test viste, at anbefalingerne blev mærkbart bedre efter 10+ sessioner og konsistent foreslog spil, der matchede vores præferencer.</p>

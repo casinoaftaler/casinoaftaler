@@ -29,31 +29,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Sparkles,
-  ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  Star,
-  Trophy,
-  RefreshCw,
-  Zap,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Users,
-  BarChart3,
-  ListChecks,
-  Calculator,
-} from "lucide-react";
+import { ListChecks } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
@@ -176,7 +153,7 @@ const Velkomstbonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Bonusguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -332,7 +309,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   Omsætningskrav
                 </CardTitle>
               </CardHeader>
@@ -357,7 +334,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Indsatsstørrelser
                 </CardTitle>
               </CardHeader>
@@ -374,7 +351,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Tidsgrænser
                 </CardTitle>
               </CardHeader>
@@ -391,7 +368,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Profitgrænser
                 </CardTitle>
               </CardHeader>
@@ -408,7 +385,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilbidrag til omsætning
                 </CardTitle>
               </CardHeader>
@@ -532,7 +509,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   <Link to="/reload-bonus" className="text-primary underline hover:text-primary/80">Reload-bonus</Link>
                 </CardTitle>
               </CardHeader>
@@ -550,7 +527,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   No Deposit Bonus
                 </CardTitle>
               </CardHeader>
@@ -574,7 +551,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   <Link to="/cashback-bonus" className="text-primary underline hover:text-primary/80">Cashback-bonus</Link>
                 </CardTitle>
               </CardHeader>
@@ -592,7 +569,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Free Spins
                 </CardTitle>
               </CardHeader>
@@ -649,7 +626,7 @@ const Velkomstbonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   100% match op til 1.000 kr. + 50 free spins (no-sticky, 5x)
                 </CardTitle>
               </CardHeader>
@@ -669,7 +646,7 @@ const Velkomstbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   100% match op til 1.000 kr. (<Link to="/sticky-bonus" className={linkClass}>sticky</Link>, 10x d+b)
                 </CardTitle>
               </CardHeader>
@@ -755,7 +732,7 @@ const Velkomstbonus = () => {
           </p>
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Hjælp og ressourcer</h3>
                 <p className="text-sm text-muted-foreground">
@@ -784,7 +761,7 @@ const Velkomstbonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Enkeltstående: 100% match op til 1.000 kr. (10x d+b)
                 </CardTitle>
               </CardHeader>
@@ -894,7 +871,7 @@ const Velkomstbonus = () => {
           </p>
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Hjælp og ressourcer</h3>
                 <p className="text-sm text-muted-foreground">

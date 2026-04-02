@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Volume2, VolumeX } from "lucide-react";
+import { VolumeX } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import "@/styles/spin-the-reel.css";
 
 const SEGMENTS = [
@@ -101,7 +102,7 @@ export function SpinWheel({
         className="absolute -top-2 -right-2 z-30 p-2 rounded-lg bg-card/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-foreground transition-colors"
         aria-label={muted ? "Slå lyd til" : "Slå lyd fra"}
       >
-        {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        {muted ? <VolumeX className="h-4 w-4" /> : <MenuIcon iconName="volume2" className="h-4 w-4" />}
       </button>
 
       {/* Halo glow behind wheel */}

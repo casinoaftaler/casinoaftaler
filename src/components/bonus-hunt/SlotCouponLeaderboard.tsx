@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Users, Trophy, Check, X, Clock, Crown } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -117,7 +118,7 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults, markets }: Pr
   if (!participants.length) {
     return (
       <div className="flex flex-col items-center justify-center py-6 gap-2 text-muted-foreground">
-        <Users className="h-5 w-5 opacity-50" />
+        <MenuIcon iconName="users" className="h-5 w-5 opacity-50" />
         <p className="text-xs">Ingen har indsendt en kupon endnu</p>
       </div>
     );
@@ -147,7 +148,7 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults, markets }: Pr
     <>
       <div className="space-y-2">
         <div className="flex items-center gap-2 px-1">
-          <Trophy className="h-3.5 w-3.5 text-primary" />
+          <MenuIcon iconName="trophy" className="h-3.5 w-3.5 text-primary" />
           <span className="text-xs font-semibold text-foreground">
             Kupon Deltagere ({participants.length})
           </span>
@@ -181,7 +182,7 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults, markets }: Pr
                     idx === 0 && hasResults && p.correctCount > 0 ? "text-amber-400" : "text-muted-foreground"
                   )}>
                     {idx === 0 && hasResults && p.correctCount > 0 ? (
-                      <Crown className="h-3.5 w-3.5 text-amber-400" />
+                      <MenuIcon iconName="crown" className="h-3.5 w-3.5 text-amber-400" />
                     ) : (
                       idx + 1
                     )}
@@ -212,7 +213,7 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults, markets }: Pr
                       </span>
                       {p.pendingCount > 0 && (
                         <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-muted-foreground">
-                          <Clock className="h-3 w-3" />
+                          <MenuIcon iconName="clock" className="h-3 w-3" />
                           {p.pendingCount}
                         </span>
                       )}

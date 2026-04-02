@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star } from "lucide-react";
+import { Star } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -158,7 +159,7 @@ export function RelatedCasinos({ content, category }: RelatedCasinosProps) {
             <div className="min-w-0 flex-1">
               <span className="font-semibold text-sm block truncate">{casino.name}</span>
               <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                <Star className="h-3 w-3 fill-primary text-primary" />
+                <MenuIcon iconName="star" className="h-3 w-3 fill-primary text-primary" />
                 {casino.rating.toFixed(1)}
               </span>
             </div>

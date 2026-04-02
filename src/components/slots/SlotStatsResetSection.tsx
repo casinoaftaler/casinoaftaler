@@ -11,7 +11,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { RefreshCw, Trophy, Timer, AlertTriangle, Loader2, Calendar } from "lucide-react";
+import { Timer, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -114,11 +115,11 @@ export function SlotStatsResetSection() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <RefreshCw className="h-5 w-5 text-destructive" />
+            <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-destructive" />
             Nulstil Statistik
           </CardTitle>
           <CardDescription className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
+            <MenuIcon iconName="calendar" className="h-4 w-4" />
             Automatisk nulstilling: Den 1. i hver måned kl. 00:00
           </CardDescription>
         </CardHeader>
@@ -133,7 +134,7 @@ export function SlotStatsResetSection() {
               {isResetting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <Trophy className="h-4 w-4" />
+                <MenuIcon iconName="trophy" className="h-4 w-4" />
               )}
               Nulstil Leaderboard
             </Button>
@@ -161,14 +162,14 @@ export function SlotStatsResetSection() {
               {isResetting ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <RefreshCw className="h-4 w-4" />
+                <MenuIcon iconName="refresh-cw" className="h-4 w-4" />
               )}
               Nulstil Alt
             </Button>
           </div>
 
           <div className="flex items-start gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
-            <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
+            <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
             <p className="text-sm text-muted-foreground">
               <strong className="text-destructive">Advarsel:</strong> Disse handlinger kan ikke fortrydes! Alle slettede data er permanent tabt.
             </p>
@@ -184,7 +185,7 @@ export function SlotStatsResetSection() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-destructive" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
               {resetDialog.title}
             </AlertDialogTitle>
             <AlertDialogDescription>{resetDialog.description}</AlertDialogDescription>

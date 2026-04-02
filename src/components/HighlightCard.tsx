@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import type { Highlight } from "@/hooks/useHighlights";
 
@@ -114,7 +115,7 @@ export function HighlightCard({ highlight, isPlaying, onPlay }: HighlightCardPro
             )}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
               <div className="rounded-full bg-primary p-4 group-hover:scale-110 transition-transform">
-                <Play className="h-8 w-8 text-primary-foreground fill-current" />
+                <MenuIcon iconName="play" className="h-8 w-8 text-primary-foreground fill-current" />
               </div>
             </div>
           </button>

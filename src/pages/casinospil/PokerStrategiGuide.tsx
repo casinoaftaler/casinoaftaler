@@ -16,12 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, BarChart3, Eye, Brain, BookOpen, AlertTriangle,
-  TrendingUp, Scale, Shield, Calculator, Coins, Users,
-  ShieldCheck, Layers, Timer, Award, Shuffle, Gamepad2,
-  CheckCircle, XCircle,
-} from "lucide-react";
+import { Timer, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/poker-strategi-hero.jpg";
 
@@ -100,7 +96,7 @@ export default function PokerStrategiGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Avanceret strategi
+              <MenuIcon iconName="brain" className="mr-1.5 h-3.5 w-3.5" /> Avanceret strategi
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Poker Strategi – EV-modeller, Positionsspil & Bankroll Management
@@ -124,7 +120,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 1: Strategiens fundament ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Strategiens fundament – hvorfor matematik slår intuition
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -145,7 +141,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 2: Positionsspil ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Positionsspil – den mest undervurderede strategiske fordel
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -160,7 +156,7 @@ export default function PokerStrategiGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Winrate efter position (bb/100 hænder, typisk vinnende spiller)
               </CardTitle>
             </CardHeader>
@@ -211,7 +207,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 3: EV-modeller ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Expected Value (EV) – matematikken bag profitable beslutninger
           </h2>
 
@@ -250,7 +246,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 4: Bankroll management ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Coins className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />
             Bankroll management – beskyt din poker-investering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -265,7 +261,7 @@ export default function PokerStrategiGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 Bankroll-krav efter format og risikoniveau
               </CardTitle>
             </CardHeader>
@@ -310,7 +306,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 5: Bluffing-matematik ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Bluffing-matematik og optimal bluff-frekvens
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -320,7 +316,7 @@ export default function PokerStrategiGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Optimal bluff-frekvens efter bet-sizing
               </CardTitle>
             </CardHeader>
@@ -364,7 +360,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 6: GTO vs. Exploitative ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
             GTO vs. Exploitative strategi – hvornår bruger du hvad?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -378,7 +374,7 @@ export default function PokerStrategiGuide() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Brug GTO når:
                 </CardTitle>
               </CardHeader>
@@ -395,7 +391,7 @@ export default function PokerStrategiGuide() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-4 w-4 text-primary" />
                   Brug exploitative når:
                 </CardTitle>
               </CardHeader>
@@ -419,7 +415,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 7: C-bet og post-flop ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Post-flop strategi – c-bets, check-raises og bet-sizing
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -449,7 +445,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 8: Range-analyse ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Range-analyse – læs dine modstanderes hænder
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -469,7 +465,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 9: Tilt management ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Tilt management – den mentale edge
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -489,68 +485,68 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 10: Almindelige fejl ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             De 10 mest kostbare strategiske fejl i poker
           </h2>
 
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 1: Overplay af marginale hænder</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 1: Overplay af marginale hænder</p>
                 <p className="text-sm text-muted-foreground">Top pair med svag kicker (f.eks. A2 på A-8-5 board) er ikke en premium-hånd. Mange spillere stacker off med TPWK og taber store pots mod to par, sets og bedre kickers. Potkontrol er nøglen med marginale hænder.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 2: Manglende aggression (passivt spil)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 2: Manglende aggression (passivt spil)</p>
                 <p className="text-sm text-muted-foreground">Passive linjer (check-call) er sjældent optimale. I de fleste spots er bet/raise eller check/fold bedre end check/call, fordi aggression giver fold equity – en ekstra profit-kilde der ikke eksisterer i passivt spil.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 3: Ignorering af stack-dybde</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 3: Ignorering af stack-dybde</p>
                 <p className="text-sm text-muted-foreground">87s er ekstremt profitable med 100BB+ stacks (implied odds), men marginalt tabsgivende med 30BB. Din strategi bør adjustere drastisk baseret på effektive stacks: short-stacked poker er fundamentalt anderledes end deep-stacked.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 4: Manglende tilpasning til modstandertyper</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 4: Manglende tilpasning til modstandertyper</p>
                 <p className="text-sm text-muted-foreground">At spille den samme strategi mod alle modstandere er suboptimalt. Mod tight-passive spillere: bluf mere og value-bet tyndere. Mod loose-aggressive: tight op og trap mere. Mod calling stations: bluf aldrig, value-bet maximalt bredt.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 5: For mange tables (multitabling overflow)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 5: For mange tables (multitabling overflow)</p>
                 <p className="text-sm text-muted-foreground">Multitabling øger volume men reducerer beslutningskvalitet. For de fleste spillere er 4-6 borde optimalt. Over 8 borde falder de fleste spilleres winrate pga. suboptimale beslutninger under tidspres.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 6: Limping preflop</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 6: Limping preflop</p>
                 <p className="text-sm text-muted-foreground">Limping (bare calling preflop) er næsten aldrig korrekt. Det afslører svaghed, giver modstanderne gode pot odds til at se flop, og opgiver initiativet. Enten raise eller fold – limping er den dyreste vanefejl i poker.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 7: Forkert bet-sizing</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 7: Forkert bet-sizing</p>
                 <p className="text-sm text-muted-foreground">At bette for lille med value-hænder (giver modstanderen for gode odds) eller for stort med bluffs (risikerer mere end nødvendigt). Konsistent sizing baseret på pot-størrelse og board texture er kritisk.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 8: Ikke at studere off-table</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 8: Ikke at studere off-table</p>
                 <p className="text-sm text-muted-foreground">De fleste vindende spillere bruger 30-50 % af deres "poker-tid" på studie: range-analyse, solver-arbejde, hånddiskussion og leak-finding. Spiller du kun og aldrig studerer, stagnerer din udvikling.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 9: Hero-calls uden matematisk grundlag</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 9: Hero-calls uden matematisk grundlag</p>
                 <p className="text-sm text-muted-foreground">At "hero-calle" (calle en stor bet med en marginal hånd fordi du "føler" modstanderen bluffer) uden at have analyseret modstanderens range og bluff-frekvens er ren gambling. Hver call bør baseres på range-analyse, ikke mavefornemmelse.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 10: At spille for at undgå tab (loss aversion)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 10: At spille for at undgå tab (loss aversion)</p>
                 <p className="text-sm text-muted-foreground">Loss aversion – at spille for konservativt for at beskytte din stack – koster EV. At folde profitable calls, at ikke value-bette tyndt nok, og at check-folde boards hvor du bør c-bette er alle symptomer på loss aversion.</p>
               </CardContent>
             </Card>
@@ -560,7 +556,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 11: Turnerings-strategi ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Award className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
             Turneringsstrategi – ICM, bubbleplay og final table
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -580,7 +576,7 @@ export default function PokerStrategiGuide() {
         {/* ═══════════ SEKTION 12: Online vs. Live ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Online poker vs. live poker – strategiske forskelle
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

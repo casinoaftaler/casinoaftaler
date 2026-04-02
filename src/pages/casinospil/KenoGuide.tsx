@@ -11,36 +11,8 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Target,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Sparkles,
-  TrendingUp,
-  Lock,
-  Zap,
-  BookOpen,
-  Star,
-  Users,
-  Monitor,
-  Smartphone,
-  DollarSign,
-  BarChart3,
-  Percent,
-  Calculator,
-  Heart,
-  Trophy,
-  ArrowRight,
-  Info,
-  Flame,
-  Hash,
-  CircleDot,
-  Dice1,
-  Grid3X3,
-} from "lucide-react";
+import { DollarSign, ArrowRight, Dice1, Grid3X3 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -205,7 +177,7 @@ const KenoGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Target className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="target" className="mr-1.5 h-3.5 w-3.5" />
               Dybdegående keno-guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">

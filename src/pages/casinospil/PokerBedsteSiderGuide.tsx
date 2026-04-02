@@ -16,14 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, BarChart3, Brain, BookOpen, AlertTriangle,
-  TrendingUp, Scale, Shield, Calculator, Coins, Users,
-  ShieldCheck, Layers, Timer, Award, Shuffle, Gamepad2,
-  CheckCircle, XCircle, Star, Trophy, Zap, Eye,
-  Sparkles, Monitor, Smartphone, Globe, Lock, Lightbulb,
-  ArrowRight, Heart, Clock, MessageSquare, Dices,
-} from "lucide-react";
+import { Timer, Shuffle, Lightbulb, ArrowRight, MessageSquare, Dices } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/poker-bedste-sider-hero.jpg";
 
@@ -110,7 +104,7 @@ export default function PokerBedsteSiderGuide() {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" /> Rakeback, trafik & turneringer</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" /> Rakeback, trafik & turneringer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bedste Pokersider 2026</h1>
             <p className="text-lg text-white/80">Komplet guide til de bedste pokersider med dansk licens – sammenlign bonus, rakeback, spillerpulje og turneringer.</p>
           </div>
@@ -129,7 +123,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 1: Introduktion ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Online Poker i Danmark – Markedsoverblik 2026
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -154,7 +148,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 2: Top pokersider ── */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Top Pokersider med Dansk Licens – Dybdegående Analyse
           </h2>
 
@@ -163,7 +157,7 @@ export default function PokerBedsteSiderGuide() {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   1. PokerStars – Markedsleder med Størst Spillerpulje
                 </CardTitle>
               </CardHeader>
@@ -194,15 +188,15 @@ export default function PokerBedsteSiderGuide() {
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Største spillerpulje i Danmark</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Bedste turneringsprogram</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <XCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="x-circle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Toughest field (flest regulære)</span>
                   </div>
                 </div>
@@ -213,7 +207,7 @@ export default function PokerBedsteSiderGuide() {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   2. Unibet Poker – Bedst for Recreational Spillere
                 </CardTitle>
               </CardHeader>
@@ -244,15 +238,15 @@ export default function PokerBedsteSiderGuide() {
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Anonyme borde beskytter nye spillere</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Blødest field i Danmark</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <XCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="x-circle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Mindre spillerpulje end PokerStars</span>
                   </div>
                 </div>
@@ -263,7 +257,7 @@ export default function PokerBedsteSiderGuide() {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   3. bet365 Poker – Stærk Bonus og Sportsintegration
                 </CardTitle>
               </CardHeader>
@@ -299,7 +293,7 @@ export default function PokerBedsteSiderGuide() {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                   4. Campobet – Bedste Casino-Poker Kombination
                 </CardTitle>
               </CardHeader>
@@ -330,19 +324,19 @@ export default function PokerBedsteSiderGuide() {
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Bredeste video poker-udbud</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Lave omsætningskrav (10x)</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Hurtige udbetalinger via Trustly</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <XCircle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="x-circle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">Ingen PvP-poker</span>
                   </div>
                 </div>
@@ -356,7 +350,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 3: Sammenligningsmatrice ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Sammenligning af Pokersider – Feature Matrix
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -403,7 +397,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 4: Bonusanalyse ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Pokerbonusser i Danmark – Sådan Maksimerer Du Din Værdi
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -425,7 +419,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 5: Bankroll management ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Bankroll Management for Online Poker
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -433,15 +427,15 @@ export default function PokerBedsteSiderGuide() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Cash Games</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />Cash Games</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Minimum 20-30 buy-ins for dit niveau. NL25 (2.500 kr. buy-in) kræver en bankroll på 50.000-75.000 kr. Konservative spillere bør sigte mod 40-50 buy-ins.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Turneringer</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Turneringer</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Minimum 50-100 buy-ins pga. høj varians. En turneringsspiller med 200 kr. gennemsnitlig buy-in bør have 10.000-20.000 kr. til rådighed.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Sit & Go</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Sit & Go</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">30-50 buy-ins anbefales. SNG har lavere varians end MTT men højere end cash games. 100 kr. SNG = 3.000-5.000 kr. bankroll.</p></CardContent>
             </Card>
           </div>
@@ -455,7 +449,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 6: Pokerformater i dybden ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Pokerformater i Dybden – Vælg Det Rigtige Format
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -464,7 +458,7 @@ export default function PokerBedsteSiderGuide() {
 
           <div className="space-y-6">
             <Card className="border-border bg-card">
-              <CardHeader><CardTitle className="flex items-center gap-2"><Coins className="h-5 w-5 text-primary" />Cash Games (Ring Games)</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="coins" className="h-5 w-5 text-primary" />Cash Games (Ring Games)</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground">
                 <p>Cash games er det mest direkte pokerformat: du køber ind for rigtige penge, chips repræsenterer reel værdi, og du kan stå op fra bordet når som helst. Din profit måles i big blinds per 100 hænder (bb/100), og en solid win rate på micro-stakes ligger typisk på 5-15 bb/100.</p>
                 <p>Fordelen ved cash games er kontrollen: du vælger hvornår du spiller, hvor længe, og du kan altid genopfylde din stack. Variansen er relativt lav sammenlignet med turneringer, da der ingen ICM-overvejelser er. For spillere der vil lære fundamentals som <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link>-strategi, er cash games det bedste udgangspunkt.</p>
@@ -473,7 +467,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
 
             <Card className="border-border bg-card">
-              <CardHeader><CardTitle className="flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Multi-Table Turneringer (MTT)</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Multi-Table Turneringer (MTT)</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground">
                 <p>MTT'er er pokersportsverdenens svar på lotteriet – med den afgørende forskel, at skill spiller en massiv rolle. Turneringer har en fast buy-in, og præmiepuljen fordeles blandt de bedst placerede spillere (typisk top 15 %). Den gennemsnitlige turneringsspiller oplever lange perioder uden cash, afbrudt af lejlighedsvise store scorer.</p>
                 <p>PokerStars har det klart bedste turneringsprogram på det danske marked med daglige guaranteed turneringer i alle buy-in niveauer. Sunday Special er flagskibseventen med den største garanterede præmiepulje. For alvor turneringsspillere er PokerStars det eneste realistiske valg i Danmark.</p>
@@ -490,7 +484,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
 
             <Card className="border-border bg-card">
-              <CardHeader><CardTitle className="flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Fast-Fold Poker (Zoom / Speed)</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Fast-Fold Poker (Zoom / Speed)</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground">
                 <p>Fast-fold poker (Zoom Poker på PokerStars, Speed Poker på bet365) revolutionerede online poker ved at eliminere ventetid. Når du folder, flyttes du øjeblikkeligt til et nyt bord med nye modstandere. Du spiller 200-300+ hænder pr. time mod de typiske 60-80 i standard cash games.</p>
                 <p>Fordelen er klar: maksimal volumen på minimum tid, hvilket accelererer din bonus-frigivelse og rakeback-optjening. Ulempen er, at du sjældent møder den samme modstander to gange, hvilket gør reads og exploits sværere. Spillet tenderer mod et mere GTO-orienteret (Game Theory Optimal) approach.</p>
@@ -513,7 +507,7 @@ export default function PokerBedsteSiderGuide() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader><CardTitle className="flex items-center gap-2"><Users className="h-5 w-5 text-primary" />PvP Poker (Online Poker)</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="users" className="h-5 w-5 text-primary" />PvP Poker (Online Poker)</CardTitle></CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>✅ Dine beslutninger påvirker resultatet direkte</p>
                 <p>✅ Muligt at være konsekvent vindende spiller</p>
@@ -524,7 +518,7 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader><CardTitle className="flex items-center gap-2"><Gamepad2 className="h-5 w-5 text-primary" />Casino Poker</CardTitle></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Casino Poker</CardTitle></CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>✅ Hurtigere spil – ingen ventetid på andre spillere</p>
                 <p>✅ Simpel strategi – ingen psykologisk spil</p>
@@ -545,7 +539,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 8: Poker Software & Værktøjer ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Monitor className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />
             Poker Software, HUDs og Analyseværktøjer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -554,14 +548,14 @@ export default function PokerBedsteSiderGuide() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Eye className="h-5 w-5 text-primary" />HUD (Heads-Up Display)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="eye" className="h-5 w-5 text-primary" />HUD (Heads-Up Display)</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>En HUD overlayer statistikker direkte på pokerbordet, så du kan se modstandernes tendenser i realtid. Vigtigste stats inkluderer VPIP (Voluntarily Put money In Pot), PFR (Pre-Flop Raise), 3-bet %, fold to c-bet og AF (Aggression Factor).</p>
                 <p>HUDs er tilladt på PokerStars og bet365, men forbudt på Unibet (pga. anonyme borde). For begyndere er en HUD ikke nødvendig – fokuser i stedet på at udvikle dine reads og fundamentals. For regulære er det dog et uundværligt værktøj.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Calculator className="h-5 w-5 text-primary" />Equity Calculators & Solvers</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Equity Calculators & Solvers</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Equity calculators (f.eks. Equilab, PokerStove) beregner din hands sandsynlighed for at vinde mod specifikke ranges. Solvers (f.eks. GTO+, PioSolver) beregner den matematisk optimale strategi for en given situation.</p>
                 <p>Disse værktøjer bruges udelukkende til analyse efter sessionen – brug under spil er forbudt og kan resultere i permanent ban. De er mest relevante for spillere på NL50+ der vil optimere deres strategi mod regulære modstandere.</p>
@@ -579,7 +573,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 9: Live Casino Poker ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Live Casino Poker – Den Hybride Oplevelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -620,7 +614,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 10: Mobil poker ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Mobil Poker – Spil Overalt med Dansk Licens
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -629,7 +623,7 @@ export default function PokerBedsteSiderGuide() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Star className="h-5 w-5 text-primary" />PokerStars Mobil</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="star" className="h-5 w-5 text-primary" />PokerStars Mobil</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Platform:</strong> iOS & Android native app</p>
                 <p><strong>Multi-tabling:</strong> Op til 4 borde (vs. 24 på desktop)</p>
@@ -639,7 +633,7 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Heart className="h-5 w-5 text-primary" />Unibet Mobil</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="heart" className="h-5 w-5 text-primary" />Unibet Mobil</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Platform:</strong> iOS & Android native app</p>
                 <p><strong>Multi-tabling:</strong> Op til 2 borde</p>
@@ -660,7 +654,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 11: Poker Psykologi & Mental Game ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Poker Psykologi – Mental Game og Tilt Management
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -669,7 +663,7 @@ export default function PokerBedsteSiderGuide() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><AlertTriangle className="h-5 w-5 text-destructive" />Tilt-Typer</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />Tilt-Typer</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <p className="mb-1"><strong>Injustice tilt:</strong> "Jeg fortjener at vinde denne hånd"</p>
                 <p className="mb-1"><strong>Revenge tilt:</strong> Desperat jagt på tabte penge</p>
@@ -678,7 +672,7 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Shield className="h-5 w-5 text-primary" />Forebyggelse</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Forebyggelse</CardTitle></CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <p className="mb-1">Sæt stop-loss grænser inden sessionen</p>
                 <p className="mb-1">Tag 15-minutters pauser efter 3 buy-in tab</p>
@@ -707,7 +701,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 12: Betalingsmetoder til Poker ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Betalingsmetoder for Pokerspillere i Danmark
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -746,7 +740,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 13: Sikkerhed og regulering ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Sikkerhed og Regulering på Danske Pokersites
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -768,7 +762,7 @@ export default function PokerBedsteSiderGuide() {
         {/* ── SEKTION 14: Konklusion og anbefalinger ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Award className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
             Konklusion – Vores Anbefalinger per Spillertype
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">

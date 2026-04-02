@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Wand2, ChevronDown, Play, Save, Volume2 } from "lucide-react";
+import { Loader2, Wand2, ChevronDown, Save } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { getSoundSettingKeys } from "@/hooks/useSlotSoundFiles";
@@ -295,13 +296,13 @@ export function SlotSoundGeneratorSection({ gameId = "book-of-fedesvin" }: SlotS
             {generatedAudio && (
               <div className="space-y-4 pt-4 border-t">
                 <h4 className="font-medium flex items-center gap-2">
-                  <Volume2 className="h-4 w-4 text-green-500" />
+                  <MenuIcon iconName="volume2" className="h-4 w-4 text-green-500" />
                   Genereret Lyd
                 </h4>
 
                 <div className="flex gap-2">
                   <Button variant="outline" onClick={handlePlay} className="flex-1">
-                    <Play className="h-4 w-4 mr-2" />
+                    <MenuIcon iconName="play" className="h-4 w-4 mr-2" />
                     Afspil
                   </Button>
                 </div>

@@ -14,12 +14,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, AlertTriangle,
-  TrendingUp, Scale, Eye, Layers, CheckCircle,
-  XCircle, Brain, BookOpen, Calculator,
-  Activity, LineChart, Sparkles, Coins,
-} from "lucide-react";
+import { Activity, LineChart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/james-bond-roulette-hero.jpg";
 
@@ -90,7 +86,7 @@ export default function JamesBondRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Indsatsfordeling
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Indsatsfordeling
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               James Bond Roulette System 2026 – 007's Strategi Under Mikroskop
@@ -114,7 +110,7 @@ export default function JamesBondRouletteGuide() {
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             James Bond-strategien: Filmens glamour møder casinoets matematik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -135,7 +131,7 @@ export default function JamesBondRouletteGuide() {
         {/* Sådan fungerer det */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Sådan fungerer James Bond-systemet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -219,7 +215,7 @@ export default function JamesBondRouletteGuide() {
         {/* Matematikken */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Sandsynlighedsmatematik: Forventet værdi per spin
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -290,7 +286,7 @@ export default function JamesBondRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Kortsigtet (100 spins)</p>
                 </div>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -328,7 +324,7 @@ export default function JamesBondRouletteGuide() {
         {/* Ian Fleming og den historiske oprindelse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Ian Fleming, Casino Royale og Strategiens Historiske Oprindelse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -402,7 +398,7 @@ export default function JamesBondRouletteGuide() {
         {/* Psykologisk analyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
             Psykologien bag James Bond-systemet: Hvorfor Det Føles Som om Det Virker
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -452,7 +448,7 @@ export default function JamesBondRouletteGuide() {
         {/* EV-analyse ved dansk bonus wagering */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             James Bond + Dansk Bonus Wagering: EV-Analyse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -534,7 +530,7 @@ export default function JamesBondRouletteGuide() {
         {/* Varianter */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             James Bond-varianter og modifikationer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -588,7 +584,7 @@ export default function JamesBondRouletteGuide() {
         {/* Hvornår bruge det */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Hvornår passer James Bond-systemet?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -624,7 +620,7 @@ export default function JamesBondRouletteGuide() {
         {/* Konklusion */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Konklusion: 007 er underholdning – ikke investering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

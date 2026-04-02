@@ -29,21 +29,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Mail,
-  Building2,
-  Handshake,
-  Newspaper,
-  Send,
-  CheckCircle2,
-  Users,
-  Megaphone,
-  BadgeCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-} from "lucide-react";
+import { Handshake, Megaphone, BadgeCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useToast } from "@/hooks/use-toast";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -182,7 +169,7 @@ export default function Contact() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Building2 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="building2" className="mr-1.5 h-3.5 w-3.5" />
               Erhverv & Presse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -255,7 +242,7 @@ export default function Contact() {
                   {submitted ? (
                     <div className="flex flex-col items-center gap-4 py-12 text-center">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                        <CheckCircle2 className="h-8 w-8 text-primary" />
+                        <MenuIcon iconName="check-circle2" className="h-8 w-8 text-primary" />
                       </div>
                       <h3 className="text-2xl font-semibold">
                         Tak for din henvendelse
@@ -346,7 +333,7 @@ export default function Contact() {
                         className="w-full gap-2"
                         disabled={sending || !inquiryType}
                       >
-                        <Send className="h-4 w-4" />
+                        <MenuIcon iconName="send" className="h-4 w-4" />
                         {sending ? "Sender..." : "Send Henvendelse"}
                       </Button>
                     </form>
@@ -364,7 +351,7 @@ export default function Contact() {
                     href="mailto:info@casinoaftaler.dk"
                     className="flex items-center gap-3 text-primary hover:underline"
                   >
-                    <Mail className="h-5 w-5" />
+                    <MenuIcon iconName="mail" className="h-5 w-5" />
                     info@casinoaftaler.dk
                   </a>
                    <a
@@ -373,7 +360,7 @@ export default function Contact() {
                     rel="noopener"
                     className="flex items-center gap-3 text-primary hover:underline"
                   >
-                    <User className="h-5 w-5" />
+                    <MenuIcon iconName="user" className="h-5 w-5" />
                     about.me/casinoaftaler
                   </a>
                   <a
@@ -382,7 +369,7 @@ export default function Contact() {
                     rel="noopener"
                     className="flex items-center gap-3 text-primary hover:underline"
                   >
-                    <BookOpen className="h-5 w-5" />
+                    <MenuIcon iconName="book-open" className="h-5 w-5" />
                     Følg os på Medium
                   </a>
                   <a
@@ -391,7 +378,7 @@ export default function Contact() {
                     rel="noopener"
                     className="flex items-center gap-3 text-primary hover:underline"
                   >
-                    <Newspaper className="h-5 w-5" />
+                    <MenuIcon iconName="newspaper" className="h-5 w-5" />
                     Vores guide på Medium
                   </a>
                   <a

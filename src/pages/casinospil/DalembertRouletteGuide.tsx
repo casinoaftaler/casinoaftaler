@@ -17,11 +17,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, AlertTriangle, TrendingUp, Scale, Eye,
-  Layers, Clock, Users, CheckCircle, XCircle, Coins, Brain, Gamepad2,
-  BookOpen, Timer, Shield, Calculator, Activity, LineChart,
-} from "lucide-react";
+import { Timer, Activity, LineChart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/dalembert-roulette-hero.jpg";
 
@@ -87,7 +84,7 @@ export default function DalembertRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Lineær progression
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" /> Lineær progression
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert Roulette-Systemet – Den Konservative Progressions Ærlige Matematik
@@ -111,7 +108,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 1 – Hvad er D'Alembert? */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Hvad er D'Alembert-Systemet? Equilibrium-Teorien Forklaret
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -159,7 +156,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 2 – Matematisk Analyse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Matematisk Analyse: Hvorfor D'Alembert Virker i Teori men Fejler i Praksis
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -222,7 +219,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 3 – Simulering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             10.000-Spins Monte Carlo Simulering: D'Alembert på Europæisk Roulette
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -291,7 +288,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 4 – Praktisk Session-Protokol */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Praktisk Session-Protokol: D'Alembert med Disciplin
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -300,10 +297,10 @@ export default function DalembertRouletteGuide() {
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
-              { title: "Basisenhed: Max 1 % af Bankroll", icon: <ShieldCheck className="h-5 w-5 text-primary" />, desc: "Med 10.000 kr. er max basisenhed 100 kr. Dette giver dig margin til at absorbere 10+ tab i træk uden at ramme kritiske niveauer." },
-              { title: "Indsats-Loft: 5× Basisenhed", icon: <AlertTriangle className="h-5 w-5 text-destructive" />, desc: "Sæt en hård grænse: nulstil til basisenheden efter 5 tab i træk (indsats 600 kr.). Dette kapper de værste tabsserier." },
+              { title: "Basisenhed: Max 1 % af Bankroll", icon: <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />, desc: "Med 10.000 kr. er max basisenhed 100 kr. Dette giver dig margin til at absorbere 10+ tab i træk uden at ramme kritiske niveauer." },
+              { title: "Indsats-Loft: 5× Basisenhed", icon: <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />, desc: "Sæt en hård grænse: nulstil til basisenheden efter 5 tab i træk (indsats 600 kr.). Dette kapper de værste tabsserier." },
               { title: "Session-Limit: 100 Spins", icon: <Timer className="h-5 w-5 text-primary" />, desc: "D'Alembert fungerer bedst i korte sessions, hvor varians-drevet profit er mest sandsynlig. Stop efter 100 spins uanset resultat." },
-              { title: "Vælg det Rigtige Bord", icon: <CheckCircle className="h-5 w-5 text-primary" />, desc: "Spil på fransk roulette med La Partage (1,35 % HE) fremfor europæisk (2,70 %). Undgå amerikansk roulette (5,26 %) for alt i verden." },
+              { title: "Vælg det Rigtige Bord", icon: <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />, desc: "Spil på fransk roulette med La Partage (1,35 % HE) fremfor europæisk (2,70 %). Undgå amerikansk roulette (5,26 %) for alt i verden." },
             ].map((rule) => (
               <Card key={rule.title}>
                 <CardContent className="pt-6">
@@ -351,7 +348,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 5 – Variant-optimering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             D'Alembert på Forskellige Roulette-Varianter: Hvad Dataen Viser
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -392,7 +389,7 @@ export default function DalembertRouletteGuide() {
         {/* Historisk kontekst */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Jean-Baptiste le Rond d'Alembert: Matematikeren Bag Systemet
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -415,7 +412,7 @@ export default function DalembertRouletteGuide() {
         {/* Risk of Ruin */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Risk of Ruin (RoR): D'Alembert over Alle Tidshorisonter
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -462,7 +459,7 @@ export default function DalembertRouletteGuide() {
         {/* Psykologisk analyse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Psykologien bag D'Alembert: Equilibrium-Illusionen
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -515,7 +512,7 @@ export default function DalembertRouletteGuide() {
         {/* Live vs RNG */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             D'Alembert i Live Roulette vs. RNG: Tempo og Tabshastighed
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -560,7 +557,7 @@ export default function DalembertRouletteGuide() {
         {/* Bonus-EV analyse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             D'Alembert og Casinobonusser: EV-Beregning for Danske Vilkår
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -599,7 +596,7 @@ export default function DalembertRouletteGuide() {
         {/* Reverse D'Alembert */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Reverse D'Alembert og Andre Variationer
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -641,7 +638,7 @@ export default function DalembertRouletteGuide() {
         {/* SECTION 6 – Konklusion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Konklusion: D'Alembert er Det Mindst Dårlige Progressionssystem
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

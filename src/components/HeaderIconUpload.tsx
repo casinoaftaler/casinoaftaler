@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Upload, X, Gamepad2 } from "lucide-react";
+import { Upload, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -103,7 +104,7 @@ export function HeaderIconUpload({ currentIconUrl, onIconChange }: HeaderIconUpl
               className="h-full w-full object-cover"
             />
           ) : (
-            <Gamepad2 className="h-8 w-8 text-primary-foreground" />
+            <MenuIcon iconName="gamepad2" className="h-8 w-8 text-primary-foreground" />
           )}
         </div>
         <div className="flex flex-col gap-2">

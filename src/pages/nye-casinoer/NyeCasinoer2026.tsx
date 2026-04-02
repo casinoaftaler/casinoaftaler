@@ -15,7 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, ShieldCheck, Clock, TrendingUp, Smartphone, Trophy, CheckCircle2, XCircle, AlertTriangle, Zap, Calendar, BarChart3 } from "lucide-react";
+import { Sparkles, ShieldCheck, Clock, TrendingUp, Smartphone, Trophy, CheckCircle2, XCircle, AlertTriangle, Zap, Calendar, BarChart3 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -107,7 +108,7 @@ const NyeCasinoer2026 = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Lanceringer & markedsanalyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Lanceringer & markedsanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer 2026</h1>
             <p className="text-lg text-white/80">Komplet oversigt over alle nye online casinoer lanceret i Danmark i 2026. Vi tester og anmelder hvert nyt spillested, så du trygt kan vælge.</p>
           </div>
@@ -159,7 +160,7 @@ const NyeCasinoer2026 = () => {
               { period: "Q4 2026 (okt–dec)", status: "Forventet", desc: "Afslutningen af året bringer typisk de sidste lanceringer, da operatører ønsker at være klar til julesæsonen – den mest profitable periode for online casinoer. 1–2 yderligere lanceringer forventes." },
             ].map((item) => (
               <div key={item.period} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Calendar className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="calendar" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="font-semibold">{item.period}</h3>
@@ -281,7 +282,7 @@ const NyeCasinoer2026 = () => {
               { title: "Free spins-pakker (supplement)", desc: "50–200 free spins på udvalgte spilleautomater, ofte fordelt over flere dage (f.eks. 20 spins dagligt i 10 dage). Typisk på populære titler som Book of Dead, Starburst eller Gates of Olympus. Gevinster underlagt omsætningskrav (max 10x i Danmark). Reel EV pr. spin: 0,5–2 kr. afhængigt af spinværdi og vilkår." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -308,7 +309,7 @@ const NyeCasinoer2026 = () => {
               { provider: "Evolution Gaming", desc: "Dominerer live casino med Lightning Roulette, Crazy Time og Infinite Blackjack. Standard hos alle nye lanceringer. Danske-talende borde tilgængelige." },
             ].map((item) => (
               <div key={item.provider} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Trophy className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="trophy" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{item.provider}</h3>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>
@@ -338,7 +339,7 @@ const NyeCasinoer2026 = () => {
               "Forstærket tilsyn i første 18 måneder for nye operatører med hyppigere uanmeldte audits",
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground">{item}</p>
               </div>
             ))}
@@ -358,7 +359,7 @@ const NyeCasinoer2026 = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Instant-metoder</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Instant-metoder</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-1">
                 <p>• Trustly: Under 5 min. ind/ud, Pay N Play tilgængeligt</p>
@@ -368,7 +369,7 @@ const NyeCasinoer2026 = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg flex items-center gap-2"><Clock className="h-5 w-5 text-muted-foreground" />Standard-metoder</CardTitle>
+                <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="clock" className="h-5 w-5 text-muted-foreground" />Standard-metoder</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-1">
                 <p>• Visa/Mastercard: 1–3 bankdage udbetaling</p>
@@ -389,7 +390,7 @@ const NyeCasinoer2026 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><CheckCircle2 className="h-5 w-5 text-primary" />Fordele</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />Fordele</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• Generøse velkomstbonusser med lave omsætningskrav (5–10x)</p>
@@ -403,7 +404,7 @@ const NyeCasinoer2026 = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><XCircle className="h-5 w-5 text-destructive" />Ulemper</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />Ulemper</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• Ingen dokumenteret track record endnu</p>
@@ -433,7 +434,7 @@ const NyeCasinoer2026 = () => {
               { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Lave omsætningskrav" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

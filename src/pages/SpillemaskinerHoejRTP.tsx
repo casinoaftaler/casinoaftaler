@@ -14,23 +14,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { type ReactNode } from "react";
-import {
-  BarChart3,
-  Zap,
-  Target,
-  TrendingUp,
-  ShieldCheck,
-  AlertTriangle,
-  Calculator,
-  Percent,
-  Activity,
-  Layers,
-  LineChart,
-  Gauge,
-  Dices,
-  Brain,
-  Users,
-} from "lucide-react";
+import { Activity, LineChart, Gauge, Dices } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -117,7 +102,7 @@ export default function SpillemaskinerHoejRTP() {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spillemaskiner med Høj RTP – Matematisk Analyse</h1>
             <p className="text-lg text-white/80">RTP, volatilitet, varians og house edge forklaret med formler, tabeller og simuleringsdata.</p>
           </div>
@@ -134,7 +119,7 @@ export default function SpillemaskinerHoejRTP() {
 {/* ── H2 1: Hvad betyder RTP egentlig – matematisk forklaring ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Calculator className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="calculator" className="mr-2 inline h-6 w-6 text-primary" />
             Hvad betyder RTP egentlig – matematisk forklaring
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -173,7 +158,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 2: RTP vs House Edge ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Percent className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="percent" className="mr-2 inline h-6 w-6 text-primary" />
             RTP vs House Edge – samme tal, forskellig vinkel
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -186,7 +171,7 @@ export default function SpillemaskinerHoejRTP() {
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 RTP og forventet tab – sammenligningstabel
               </CardTitle>
             </CardHeader>
@@ -321,7 +306,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 5: 96 % vs 98 % ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <TrendingUp className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="trending-up" className="mr-2 inline h-6 w-6 text-primary" />
             96 % vs 98 % RTP – hvor stor er forskellen i praksis?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -331,7 +316,7 @@ export default function SpillemaskinerHoejRTP() {
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Kumulativ effekt af RTP-forskel
               </CardTitle>
             </CardHeader>
@@ -377,7 +362,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 6: Langsigtet vs kortsigtet ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Target className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="target" className="mr-2 inline h-6 w-6 text-primary" />
             Langsigtet vs kortsigtet sandsynlighed
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -423,7 +408,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 8: Bonusfunktioner ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Layers className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="layers" className="mr-2 inline h-6 w-6 text-primary" />
             Bonusfunktioner og deres påvirkning på RTP
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -446,7 +431,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 9: Progressive jackpots ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <AlertTriangle className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="mr-2 inline h-6 w-6 text-primary" />
             Progressiv jackpot og hvorfor RTP ofte falder
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -469,7 +454,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 10: High RTP = lav volatilitet? ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Zap className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="zap" className="mr-2 inline h-6 w-6 text-primary" />
             High RTP slots – hvorfor de ofte har lav volatilitet
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -492,7 +477,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 11: Simuleringseksempel ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <BarChart3 className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="mr-2 inline h-6 w-6 text-primary" />
             Simuleringseksempel: 10.000 spins analyse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -502,7 +487,7 @@ export default function SpillemaskinerHoejRTP() {
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Simuleringsparametre
               </CardTitle>
             </CardHeader>
@@ -547,7 +532,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 12: Return on Investment vs gambling expectation ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <TrendingUp className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="trending-up" className="mr-2 inline h-6 w-6 text-primary" />
             Return on Investment vs gambling expectation
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -567,7 +552,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 13: Kan man "udnytte" høj RTP? ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Brain className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="brain" className="mr-2 inline h-6 w-6 text-primary" />
             Kan man "udnytte" høj RTP?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -587,7 +572,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 14: Myter om "varme" og "kolde" maskiner ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <ShieldCheck className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="shield-check" className="mr-2 inline h-6 w-6 text-primary" />
             Myter om "varme" og "kolde" maskiner
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -610,7 +595,7 @@ export default function SpillemaskinerHoejRTP() {
         {/* ── H2 15: Hvem bør spille høj RTP? ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
-            <Users className="mr-2 inline h-6 w-6 text-primary" />
+            <MenuIcon iconName="users" className="mr-2 inline h-6 w-6 text-primary" />
             Hvem bør spille høj RTP – og hvem bør lade være?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

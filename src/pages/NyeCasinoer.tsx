@@ -28,30 +28,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState, useMemo, type ReactNode } from "react";
-import {
-  Sparkles,
-  ShieldCheck,
-  Smartphone,
-  Trophy,
-  Star,
-  Clock,
-  CreditCard,
-  Gamepad2,
-  Users,
-  TrendingUp,
-  CheckCircle2,
-  Loader2,
-  XCircle,
-  AlertTriangle,
-  BarChart3,
-  Scale,
-  Target,
-  Zap,
-  Brain,
-  UserCheck,
-  UserX,
-  ArrowRight,
-} from "lucide-react";
+import { Loader2, UserCheck, UserX, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
@@ -215,7 +193,7 @@ const NyeCasinoer = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Nye casinoer guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -287,7 +265,7 @@ const NyeCasinoer = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-3 flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" /> Fordele</h3>
+              <h3 className="font-bold mb-3 flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" /> Fordele</h3>
               <ul className="space-y-2">
                 {[
                   "35-50% højere reel bonusværdi med lavere omsætningskrav",
@@ -299,14 +277,14 @@ const NyeCasinoer = () => {
                   "Frisk kundeservice-team med høj motivation og fleksibilitet",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-3 flex items-center gap-2"><XCircle className="h-5 w-5 text-destructive" /> Ulemper</h3>
+              <h3 className="font-bold mb-3 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" /> Ulemper</h3>
               <ul className="space-y-2">
                 {[
                   "Ingen dokumenteret track record for udbetalingspålidelighed",
@@ -318,7 +296,7 @@ const NyeCasinoer = () => {
                   "Færre anmeldelser og spillererfaringer at basere beslutning på",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="x-circle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -374,12 +352,12 @@ const NyeCasinoer = () => {
 
           <div className="space-y-3 my-6">
             {[
-              { title: "Sikkerhed & licens – 30%", desc: "Dansk licens-verifikation via Spillemyndigheden, ROFUS-tilslutning, SSL-implementering, RNG-certificering, privatlivspolitik og databehandlingspraksis. Ufravigelig baseline – ingen kompromiser.", icon: <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
-              { title: "Spiludvalg & kvalitet – 20%", desc: "Antal udbydere (minimum 15), titler pr. kategori, RTP-gennemsnit, aktualitet af nye releases, live casino-dækning fra Evolution Gaming som minimum. Vi evaluerer bredde, dybde og kvalitet.", icon: <Gamepad2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
-              { title: "Bonus & vilkår – 20%", desc: "Reel bonusværdi (ikke nominel), omsætningskrav, tidsfrist, spilbidrag, max indsats, udbetalingsgrænse, no-sticky vs. sticky. Vi beregner forventet værdi med matematisk model.", icon: <Trophy className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
-              { title: "Betalinger & hastighed – 15%", desc: "Faktiske udbetalingstider (ikke annoncerede), antal metoder, minimum/maksimum-grænser, gebyrer, KYC-effektivitet. Testet med minimum 3 reelle udbetalinger.", icon: <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
-              { title: "Kundeservice – 10%", desc: "Svartid, kompetence, sprogkvalitet, tilgængelighed, evne til at håndtere komplekse forespørgsler. Testet med 5 standardspørgsmål via alle kanaler.", icon: <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
-              { title: "Mobiloplevelse – 5%", desc: "Test på iPhone, Android og tablet: loading-hastighed, navigation, spilkvalitet, funktionalitet. Mobile-first casinoer med under 2 sekunders loading scorer højest.", icon: <Smartphone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Sikkerhed & licens – 30%", desc: "Dansk licens-verifikation via Spillemyndigheden, ROFUS-tilslutning, SSL-implementering, RNG-certificering, privatlivspolitik og databehandlingspraksis. Ufravigelig baseline – ingen kompromiser.", icon: <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Spiludvalg & kvalitet – 20%", desc: "Antal udbydere (minimum 15), titler pr. kategori, RTP-gennemsnit, aktualitet af nye releases, live casino-dækning fra Evolution Gaming som minimum. Vi evaluerer bredde, dybde og kvalitet.", icon: <MenuIcon iconName="gamepad2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Bonus & vilkår – 20%", desc: "Reel bonusværdi (ikke nominel), omsætningskrav, tidsfrist, spilbidrag, max indsats, udbetalingsgrænse, no-sticky vs. sticky. Vi beregner forventet værdi med matematisk model.", icon: <MenuIcon iconName="trophy" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Betalinger & hastighed – 15%", desc: "Faktiske udbetalingstider (ikke annoncerede), antal metoder, minimum/maksimum-grænser, gebyrer, KYC-effektivitet. Testet med minimum 3 reelle udbetalinger.", icon: <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Kundeservice – 10%", desc: "Svartid, kompetence, sprogkvalitet, tilgængelighed, evne til at håndtere komplekse forespørgsler. Testet med 5 standardspørgsmål via alle kanaler.", icon: <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
+              { title: "Mobiloplevelse – 5%", desc: "Test på iPhone, Android og tablet: loading-hastighed, navigation, spilkvalitet, funktionalitet. Mobile-first casinoer med under 2 sekunders loading scorer højest.", icon: <MenuIcon iconName="smartphone" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /> },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 {item.icon}
@@ -677,7 +655,7 @@ const NyeCasinoer = () => {
               "KYC-processer der kræver manuel dokumentation trods MitID-verifikation",
             ].map((warning, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <p className="text-sm text-muted-foreground">{warning}</p>
               </div>
             ))}
@@ -767,35 +745,35 @@ const NyeCasinoer = () => {
 
           <div className="space-y-4">
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-2 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" /> AI-drevet support og personalisering</h3>
+              <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="brain" className="h-5 w-5 text-primary" /> AI-drevet support og personalisering</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Kunstig intelligens transformerer to kritiske områder hos nye casinoer. AI-chatbots håndterer nu 60-70% af alle support-henvendelser med stigende kompetence – inklusive danske sprogmodeller der forstår kontekst og nuancer. Samtidig bruges machine learning til at personalisere spilanbefalinger, bonustilbud og kommunikation baseret på den individuelle spillers adfærdsmønstre. De mest avancerede nye casinoer i 2026 tilbyder AI-drevne "ansvarligt spil"-værktøjer der proaktivt identificerer risikabel spilleadfærd og sender skræddersyede advarsler – et område hvor teknologien har potentiale til at gøre reel forskel for spillerbeskyttelse.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-2 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" /> Ultra-hurtig onboarding og Pay N Play</h3>
+              <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" /> Ultra-hurtig onboarding og Pay N Play</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Friktionsreduktion er det overordnede tema. Nye casinoer konkurrerer om at have den hurtigste vej fra intention til spin. Pay N Play via Trustly og MitID reducerer onboarding til under 60 sekunder – ingen formularer, ingen manuell verifikation, ingen ventetid. Vi forventer, at denne model bliver standard hos 50%+ af nye danske casinoer inden udgangen af 2026, drevet af spillernes forkærlighed for øjeblikkelig tilfredsstillelse og operatørernes behov for høje konverteringsrater.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-2 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" /> Avanceret gamification og social gaming</h3>
+              <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" /> Avanceret gamification og social gaming</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Gamification har udviklet sig fra simpel loyalitetspoint-akkumulering til komplekse engagement-systemer. Nye casinoer i 2026 implementerer: daglige og ugentlige missioner med varierende sværhedsgrad, sæsonbaserede turneringer med progressive præmiepuljer, achievement-systemer med kosmetiske belønninger og statusniveauer, samt sociale features som multiplayer-turneringer og delte leaderboards. Et eksempel på denne tendens er vores egen <Link to="/slot-database" className="text-primary underline hover:text-primary/80">Slot Database</Link> med community-drevet performance-data, og vores <Link to="/community/turneringer" className="text-primary underline hover:text-primary/80">månedlige turneringer</Link> med kontante præmier. Denne udvikling transformerer casinooplevelsen fra isoleret spil til en social platform – med potentielle implikationer for ansvarligt spil-overvejelser.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-2 flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Niche-positionering og specialisering</h3>
+              <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" /> Niche-positionering og specialisering</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 I stedet for at være "endnu et generelt casino" ser vi flere nye brands der specialiserer sig: live casino-fokuserede platforme, slots-only casinoer med 5.000+ titler, eller brands der positionerer sig specifikt til casual-segmentet med lave minimumsindsatser og forenklede interfaces. Denne specialisering giver nye casinoer mulighed for at differentiere sig i et ellers homogent marked og tiltrække specifikke spillersegmenter med mere målrettede tilbud.
               </p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold mb-2 flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-primary" /> Forstærket fokus på ansvarligt spil</h3>
+              <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> Forstærket fokus på ansvarligt spil</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Regulatorisk pres og spillerefterspørgsel driver nye casinoer mod mere avancerede ansvarligt spil-værktøjer. Ud over de lovpligtige minimumskrav (ROFUS-tilslutning, indbetalingsgrænser, reality checks) ser vi nye casinoer implementere: AI-baseret risikoscoring af spilleradfærd, automatiserede pauser ved uregelmæssige mønstre, transparente session-statistikker i realtid, og dedikerede ansvarligt spil-teams med dansk sprogkompetence. Denne trend er ikke bare etisk korrekt – den er også kommercielt fornuftig, da ansvarlige operatører opnår bedre regulatoriske relationer og højere spillertillid.
               </p>
@@ -818,7 +796,7 @@ const NyeCasinoer = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Bonus-optimisten
                 </CardTitle>
               </CardHeader>
@@ -833,7 +811,7 @@ const NyeCasinoer = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   High roller
                 </CardTitle>
               </CardHeader>
@@ -848,7 +826,7 @@ const NyeCasinoer = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Casual-spilleren
                 </CardTitle>
               </CardHeader>
@@ -863,7 +841,7 @@ const NyeCasinoer = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Live casino-entusiasten
                 </CardTitle>
               </CardHeader>
@@ -1000,7 +978,7 @@ const NyeCasinoer = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
                 Spil ansvarligt
               </CardTitle>
             </CardHeader>

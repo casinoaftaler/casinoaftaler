@@ -3,7 +3,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 
 interface ActivateBonusSpinsDialogProps {
@@ -74,7 +75,7 @@ export function ActivateBonusSpinsDialog({
           </div>
 
           <div className="rounded-lg border border-border bg-muted/30 p-3 flex items-start gap-2">
-            <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
+            <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
             <p className="text-xs text-muted-foreground">
               Aktiverede credits tilføjes til dagens saldo. Ubrugte aktiverede credits nulstilles ved dagsskiftet — aktiver kun hvad du kan bruge i dag.
             </p>

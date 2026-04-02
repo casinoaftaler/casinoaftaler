@@ -35,7 +35,8 @@ import {
   Trophy,
   Sparkles,
   ShoppingCart,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -144,7 +145,7 @@ const BonusBuySlots = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShoppingCart className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shopping-cart" className="mr-1.5 h-3.5 w-3.5" />
               Slot Kategorier
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -168,7 +169,7 @@ const BonusBuySlots = () => {
         {/* ── 1. HVAD ER BONUS BUY? ── */}
         <section className="mb-12" id="hvad-er-bonus-buy">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShoppingCart className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shopping-cart" className="h-7 w-7 text-primary" />
             Hvad er bonus buy-spilleautomater?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -208,7 +209,7 @@ const BonusBuySlots = () => {
         {/* ── 2. MATEMATIK BAG PRISSÆTNING ── */}
         <section className="mb-12" id="matematik">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Matematikken bag bonus buy-prissætning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -243,7 +244,7 @@ const BonusBuySlots = () => {
         {/* ── 3. BEDSTE BONUS BUY SLOTS ── */}
         <section className="mb-12" id="bedste-bonus-buy">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Bedste bonus buy-slots i 2026
           </h2>
 
@@ -349,14 +350,14 @@ const BonusBuySlots = () => {
         {/* ── 4. BONUS BUY VS. ANTE BET ── */}
         <section className="mb-12" id="vs-ante-bet">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Bonus buy vs. ante bet – sammenligning
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <ShoppingCart className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shopping-cart" className="h-4 w-4 text-primary" />
                   Bonus Buy
                 </CardTitle>
               </CardHeader>
@@ -372,7 +373,7 @@ const BonusBuySlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="zap" className="h-4 w-4 text-primary" />
                   Ante Bet
                 </CardTitle>
               </CardHeader>
@@ -402,7 +403,7 @@ const BonusBuySlots = () => {
         {/* ── 5. STRATEGI ── */}
         <section className="mb-12" id="strategi">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Strategi for bonus buy-slots
           </h2>
           <div className="space-y-4 mb-6">
@@ -441,7 +442,7 @@ const BonusBuySlots = () => {
         {/* ── 6. ANSVARLIGT SPIL ── */}
         <section className="mb-12" id="ansvarligt-spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Ansvarligt spil og bonus buy
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -450,19 +451,19 @@ const BonusBuySlots = () => {
           </p>
           <ul className="space-y-2 text-sm text-muted-foreground mb-6">
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
               <span>Sæt indbetalingsgrænser, før du begynder at spille</span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
               <span>Brug aldrig penge, du ikke har råd til at tabe</span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
               <span>Tag pauser – bonus buy kan være intenst</span>
             </li>
             <li className="flex items-start gap-2">
-              <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+              <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
               <span>
                 Brug <Link to="/ansvarligt-spil/rofus" className={linkClass}>ROFUS</Link> eller
                 casinoets selvudelukkelses-værktøjer, hvis du mister kontrollen
@@ -482,7 +483,7 @@ const BonusBuySlots = () => {
         {/* ── 7. RELATEREDE KATEGORIER ── */}
         <section className="mb-12" id="relaterede">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Udforsk andre slot-kategorier
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

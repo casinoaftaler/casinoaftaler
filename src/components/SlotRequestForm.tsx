@@ -7,7 +7,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useMySlotRequests, useCreateSlotRequest, usePendingQueuePositions } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
-import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus, Search, Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: typeof Clock }> = {
@@ -127,7 +128,7 @@ export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number 
     return (
       <div className="space-y-6">
         <div className="text-center py-4 bg-muted/50 rounded-lg border border-border/50 p-4">
-          <XCircle className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
+          <MenuIcon iconName="x-circle" className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
           <p className="text-sm font-medium text-foreground mb-1">Requests er lukket</p>
           <p className="text-xs text-muted-foreground">
             Den første bonus er åbnet – requests lukkes automatisk når bonusåbningen begynder.
@@ -290,7 +291,7 @@ export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number 
             {createRequest.isPending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <Send className="h-4 w-4" />
+              <MenuIcon iconName="send" className="h-4 w-4" />
             )}
             Send Request
           </Button>

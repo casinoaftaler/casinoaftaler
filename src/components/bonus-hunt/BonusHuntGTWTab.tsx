@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Trophy } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 
 interface Props {
@@ -131,7 +132,7 @@ export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBe
         <Card>
           <CardContent className="p-4">
             <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-amber-500" />
+              <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-500" />
               Prize Pool
             </h4>
             <div className="space-y-1">
@@ -158,7 +159,7 @@ export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBe
         <Card className="border-amber-500/30">
           <CardContent className="p-4">
             <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-amber-500" />
+              <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-500" />
               Top 10 Resultater
             </h4>
             <div className="space-y-2">

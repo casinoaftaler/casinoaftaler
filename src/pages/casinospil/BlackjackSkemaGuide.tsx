@@ -17,27 +17,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode, useState, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Zap,
-  Layers,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Calculator,
-  Brain,
-  BookOpen,
-  Shuffle,
-  Sparkles,
-  ArrowRight,
-  CheckCircle2,
-  XCircle,
-  HelpCircle,
-  TableIcon,
-} from "lucide-react";
+import { Shuffle, ArrowRight, TableIcon } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 
@@ -213,7 +194,7 @@ function StrategyQuiz() {
     <Card className="border-primary/30 bg-primary/5" id="quiz">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Brain className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
           Test din blackjack-strategi
         </CardTitle>
       </CardHeader>
@@ -250,7 +231,7 @@ function StrategyQuiz() {
         {hasAnswered && (
           <div className={`rounded-lg p-4 mb-4 ${isCorrect ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-red-500/10 border border-red-500/30"}`}>
             <p className="flex items-center gap-2 font-semibold mb-1">
-              {isCorrect ? <CheckCircle2 className="h-4 w-4 text-emerald-500" /> : <XCircle className="h-4 w-4 text-red-500" />}
+              {isCorrect ? <MenuIcon iconName="check-circle2" className="h-4 w-4 text-emerald-500" /> : <MenuIcon iconName="x-circle" className="h-4 w-4 text-red-500" />}
               {isCorrect ? "Korrekt!" : `Forkert – det rigtige svar er ${actionLabels[scenario.correctAction]}`}
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">{scenario.explanation}</p>
@@ -391,7 +372,7 @@ const BlackjackSkemaGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Calculator className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" />
               Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -441,7 +422,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Section 2-4: Strategy Tables ── */}
           <section className="mb-10">
             <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-              <BarChart3 className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="bar-chart3" className="h-6 w-6 text-primary" />
               Det komplette blackjack skema
             </h2>
             <p className="mb-6 leading-relaxed text-muted-foreground">
@@ -456,7 +437,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Farvekoder ── */}
           <section id="farvekoder" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <Eye className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="eye" className="h-6 w-6 text-primary" />
               Farvekoder og handlinger forklaret
             </h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-4">
@@ -515,7 +496,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Matematik ── */}
           <section id="matematik" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <Calculator className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="calculator" className="h-6 w-6 text-primary" />
               Matematikken bag blackjack skemaet
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">
@@ -616,7 +597,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-border">
                 <CardContent className="p-5">
                   <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-primary" />
                     Dealer Hits Soft 17 (H17)
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -627,7 +608,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-border">
                 <CardContent className="p-5">
                   <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                    <Layers className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="layers" className="h-4 w-4 text-primary" />
                     <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>Europæisk Blackjack (ENHC)</Link>
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -638,7 +619,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-border">
                 <CardContent className="p-5">
                   <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                    <Eye className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="eye" className="h-4 w-4 text-primary" />
                     <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -649,7 +630,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-border">
                 <CardContent className="p-5">
                   <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName="sparkles" className="h-4 w-4 text-primary" />
                     <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link>
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -666,7 +647,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Fejl ── */}
           <section id="fejl" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <AlertTriangle className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-primary" />
               De 10 mest udbredte fejl ved blackjack-bordet
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">
@@ -703,7 +684,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Quiz ── */}
           <section className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <Brain className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="brain" className="h-6 w-6 text-primary" />
               Test din blackjack-strategi
             </h2>
             <p className="mb-6 leading-relaxed text-muted-foreground">
@@ -715,7 +696,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── EV analyse ── */}
           <section id="ev-tabel" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <TrendingUp className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />
               EV-analyse: De mest profitable og dyreste hænder
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">
@@ -725,7 +706,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-emerald-500/30 bg-emerald-500/5">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
-                    <CheckCircle2 className="h-5 w-5" />
+                    <MenuIcon iconName="check-circle2" className="h-5 w-5" />
                     Top 5 mest profitable
                   </CardTitle>
                 </CardHeader>
@@ -742,7 +723,7 @@ const BlackjackSkemaGuide = () => {
               <Card className="border-red-500/30 bg-red-500/5">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg flex items-center gap-2 text-red-700 dark:text-red-400">
-                    <XCircle className="h-5 w-5" />
+                    <MenuIcon iconName="x-circle" className="h-5 w-5" />
                     Top 5 dyreste hænder
                   </CardTitle>
                 </CardHeader>
@@ -765,7 +746,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Online vs Live ── */}
           <section id="online-vs-live" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
               Online blackjack vs. live blackjack: Hvornår virker skemaet bedst?
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">
@@ -808,7 +789,7 @@ const BlackjackSkemaGuide = () => {
           {/* ── Korttælling ── */}
           <section id="korttaelling" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-              <Zap className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
               Fra skema til korttælling: Det næste niveau
             </h2>
             <p className="mb-4 leading-relaxed text-muted-foreground">

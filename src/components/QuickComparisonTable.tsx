@@ -15,7 +15,8 @@ import {
   CheckCircle2,
   Flame,
   ThumbsUp,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
@@ -174,13 +175,13 @@ export function QuickComparisonTable({
                       </Link>
                       {casino.is_recommended && (
                         <span className="inline-flex items-center gap-0.5 rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                          <ThumbsUp className="h-2.5 w-2.5" />
+                          <MenuIcon iconName="thumbs-up" className="h-2.5 w-2.5" />
                           Anbefalet
                         </span>
                       )}
                       {casino.is_hot && (
                         <span className="inline-flex items-center gap-0.5 rounded-full bg-destructive/10 text-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                          <Flame className="h-2.5 w-2.5" />
+                          <MenuIcon iconName="flame" className="h-2.5 w-2.5" />
                           Hot
                         </span>
                       )}
@@ -198,7 +199,7 @@ export function QuickComparisonTable({
                             key={feat}
                             className="inline-flex items-center gap-1 text-[11px] text-muted-foreground"
                           >
-                            <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
+                            <MenuIcon iconName="check-circle2" className="h-3 w-3 text-emerald-500 shrink-0" />
                             {feat}
                           </span>
                         ))}
@@ -262,7 +263,7 @@ export function QuickComparisonTable({
                     }
                   >
                     {ctaText}
-                    <ExternalLink className="h-3.5 w-3.5" />
+                    <MenuIcon iconName="external-link" className="h-3.5 w-3.5" />
                   </Button>
                 </div>
 

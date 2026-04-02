@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Users, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import "@/styles/community-micro.css";
 
 interface CommunityJoinCTAProps {
@@ -33,7 +34,7 @@ export function CommunityJoinCTA({ description = "Spil gratis slots, deltag i tu
           className="flex items-center justify-center h-10 w-10 rounded-xl shrink-0"
           style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}
         >
-          <Users className="h-5 w-5 text-white" />
+          <MenuIcon iconName="users" className="h-5 w-5 text-white" />
         </div>
         <div className="flex-1 text-center sm:text-left">
           <h2 className="text-base font-bold text-foreground">

@@ -17,7 +17,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Layers } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Layers } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -48,7 +49,7 @@ const WildWestGoldGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Sticky Wilds</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Sticky Wilds</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Wild West Gold</h1>
             <p className="text-lg text-white/80">Pragmatic Play's western-eventyr med sticky wild-multiplikatorer: en matematisk analyse af 12.500× max win og den akkumulerende bonus-mekanik, der bygger mod eksplosive finaler.</p>
           </div>
@@ -62,7 +63,7 @@ const WildWestGoldGuide = () => {
         </div>
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> RTP & Volatilitet: Den Matematiske Profil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> RTP & Volatilitet: Den Matematiske Profil</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Pragmatic Play</strong></div>
@@ -81,7 +82,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Sticky Wild-Multiplikatorer: Spillets Hjerte</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Sticky Wild-Multiplikatorer: Spillets Hjerte</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold's sticky wild-system er en evolution af den mekanik, Pragmatic Play først introducerede i <Link to="/casinospil/spillemaskiner/the-dog-house" className={linkClass}>The Dog House</Link>. Under free spins (udløst af 3+ scatter-symboler for 8 free spins) forbliver alle wild-symboler, der lander, på deres position for resten af bonusrunden. Hver wild har en tilfældig multiplikator: 2× (50 % sandsynlighed) eller 3× (40 % sandsynlighed), med 5× (10 % sandsynlighed) i nogle versioner.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den akkumulerende natur af sticky wilds skaber en eksponentiel gevinstkurve: de første 2-3 free spins producerer sjældent store gevinster (fordi der endnu ikke er mange wilds på griddet), men de sidste 3-4 spins – med potentielt 4-8 sticky wilds akkumuleret – kan levere massive udbetalinger. Denne "slow build to climax"-dynamik er et bevidst designvalg fra Pragmatic Play.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Retrigger er muligt: 3+ scatters under free spins giver yderligere 5 spins. Med retrigger og akkumulerede sticky wilds kan den forlængede bonusrunde blive ekstremt profitabel – det er dette scenarie, der driver max win-potentialet til 12.500×. Sandsynligheden for retrigger estimeres til ca. 5-8 % pr. bonusrunde.</p>
@@ -91,7 +92,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Free Spins: Fra Trigger til Udbetaling</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="flame" className="h-7 w-7 text-primary" /> Free Spins: Fra Trigger til Udbetaling</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Free spins udløses ved 3+ scatter-symboler (sheriff-stjernen) på hjul 1, 3 og 5 – en klassisk Pragmatic Play-konfiguration. 3 scatters giver 8 free spins, med mulighed for retrigger. Trigger-frekvens estimeres til ca. 1 pr. 180-220 spins – moderat for en high-volatility slot.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den gennemsnitlige bonusrunde (8 spins, ingen retrigger) leverer estimeret 25-50× indsatsen. Dog er dette gennemsnit stærkt påvirket af sjældne, store udfald – medianen er tættere på 15-25× indsatsen. Mange bonusrunder leverer kun 5-15× (0-1 sticky wilds), mens de bedste runder (4+ sticky wilds med 3× eller 5× multiplikatorer) kan ramme 500-5.000× indsatsen.</p>
           <p className="text-muted-foreground leading-relaxed">For et EV-perspektiv: med en trigger-frekvens på 1/200 og en gennemsnitlig bonusvalue på 35× bidrager free spins med ca. 0,175× pr. spin til den samlede RTP – eller ca. 17,5 % af den totale RTP. De resterende 79 % kommer fra base game-gevinster. Denne fordeling er typisk for high-volatility slots med sticky-mekanik.</p>
@@ -104,7 +105,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> EV-Scenarie og Sessionsøkonomi</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> EV-Scenarie og Sessionsøkonomi</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -121,7 +122,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Wild West Gold vs. The Dog House-Familien</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Wild West Gold vs. The Dog House-Familien</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -142,7 +143,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Bankroll-Krav og Ansvarligt Spil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Bankroll-Krav og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold's høje volatilitet kræver en bankroll på minimum 250-350 spins (1.000-1.400 kr. ved 4 kr. indsats). For en komfortabel session med buffer til 2-3 bonustriggers anbefaler vi 400+ spins (1.600+ kr.). Tabsstop anbefales ved 55 % af startkapitalen.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Wild West Gold's "slow build"-mekanik under free spins kan skabe en illusion af, at den næste bonusrunde vil være "den store" – en kognitiv bias, der bør modstås med disciplin. Hvert spin er uafhængigt, og tidligere resultater påvirker ikke fremtidige udfald. Besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>
@@ -150,7 +151,7 @@ const WildWestGoldGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Guld i Det Vilde Vesten</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" /> Guld i Det Vilde Vesten</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold er Pragmatic Play's mest polerede sticky-wild slot – en forfinet version af The Dog House-formlen med bedre grafik, flere paylines og den samme tilfredsstillende akkumulerende bonus-mekanik. For danske spillere, der elsker den gradvise opbygning mod et potentielt eksplosivt klimaks, er Wild West Gold en fremragende tilføjelse til slot-repertoiret.</p>
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre high-value titler fra <Link to="/casinospil" className={linkClass}>Pragmatic Play</Link> og andre topudviklere.</p>
         </section>

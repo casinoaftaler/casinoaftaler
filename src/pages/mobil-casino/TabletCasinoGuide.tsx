@@ -16,12 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
-  TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
-  Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
-  HelpCircle, Globe, Tv, Layers, Users, Scale, ExternalLink,
-} from "lucide-react";
+import { ArrowRight, Settings, Download, Wifi, Battery } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -108,7 +104,7 @@ const TabletCasinoGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Monitor className="mr-1.5 h-3.5 w-3.5" />Mobil Casino</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="monitor" className="mr-1.5 h-3.5 w-3.5" />Mobil Casino</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Casino på Tablet – iPad & Android Guide</h1>
             <p className="text-lg text-white/80">iPad vs. Android tablets, landscape vs. portrait, live casino-optimering, multi-tabling og performance-benchmarks.</p>
           </div>
@@ -125,14 +121,14 @@ const TabletCasinoGuide = () => {
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Monitor className="h-7 w-7 text-primary" />Hvorfor tablet er den bedste mobile casino-platform</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />Hvorfor tablet er den bedste mobile casino-platform</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablets befinder sig i et sweet spot mellem smartphones og desktops. Med skærmstørrelser fra 10" til 13" tilbyder de en casino-oplevelse, der er markant overlegen i forhold til smartphones – særligt for live casino, bordspil og multi-tabling. Den større skærmflade giver bedre overblik, mere komfortable touch-targets og en grafisk oplevelse, der nærmer sig desktop-kvalitet.</p>
           <p className="text-muted-foreground leading-relaxed mb-4">I denne guide sammenligner vi iPad og Android-tablets på tværs af casino-relevant performance, analyserer landskabs- vs. portrættilstand for forskellige spiltyper, og giver dig konkrete anbefalinger baseret på din budget og foretrukne spilkategorier. Vi har testet 6 populære tablets for at give dig præcise data.</p>
           <p className="text-muted-foreground leading-relaxed mb-4">Alle tests er udført hos <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">danske licenserede casinoer</Link> med gyldig Spillemyndigheden-licens. For smartphone-specifikke guides, se vores <Link to="/mobil-casino/iphone" className="text-primary underline hover:text-primary/80">iPhone-guide</Link> og <Link to="/mobil-casino/android" className="text-primary underline hover:text-primary/80">Android-guide</Link>.</p>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablet-markedet i Danmark domineres af to økosystemer: Apples iPad-serie med iPadOS og Samsung Galaxy Tab-serien med Android. Begge platforme er fremragende til casino, men med distinkte styrker og svagheder. iPad'en udmærker sig ved konsistent performance og lang software-support (5-6 år), mens Android-tablets tilbyder mere hardware-variation og generelt lavere priser. Denne guide hjælper dig med at vælge den rigtige tablet baseret på dine casino-præferencer.</p>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><CheckCircle className="h-5 w-5 text-primary" />Tablet casino i overblik</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />Tablet casino i overblik</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { label: "Bedste spiltype", value: "Live casino (større dealer-video)" },
@@ -163,7 +159,7 @@ const TabletCasinoGuide = () => {
 
         {/* 2. TABLET-MARKEDSANALYSE */}
         <section className="mb-12" id="tablet-markedsanalyse">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Tablet-markedsanalyse: Casino-brug i Danmark 2026</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Tablet-markedsanalyse: Casino-brug i Danmark 2026</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Selvom smartphones dominerer det mobile casino-marked, udgør tablets et voksende nichesegment med unikke brugsegenskaber. Data fra Spillemyndighedens årsrapport og brancherapporter viser en klar trend: tablet-spillere har længere gennemsnitlige sessioner, højere gennemsnitlig indsats og foretager flere live casino-spil end smartphone-brugere.</p>
           <p className="text-muted-foreground leading-relaxed mb-6">Denne forskel skyldes primært den komfortable skærmstørrelse og den hjemmebaserede brug – hvor smartphones bruges on-the-go, bruges tablets typisk derhjemme i sofaen, i sengen eller ved spisebordet. Det skaber en unik casino-kontekst, der ligner desktop-brug men med touch-baseret betjening.</p>
 
@@ -188,7 +184,7 @@ const TabletCasinoGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Det er dog vigtigt at bemærke, at tablets generelt er hjemmeenheder. Hvor smartphones bruges overalt – i offentlig transport, i køer, på arbejdspladsen – bruges tablets primært i hjemmet. Denne adfærd har implikationer for netværksstabilitet (WiFi vs. mobildata), sessionsvarighed og ansvarligt spil-overvejelser, som vi dækker i denne guide.</p>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Info className="h-5 w-5 text-primary" />Demografiske indsigter</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="info" className="h-5 w-5 text-primary" />Demografiske indsigter</h3>
             <p className="text-muted-foreground leading-relaxed mb-3">Tablet-casino-spillere i Danmark skiller sig demografisk ud fra smartphone-spillere: Aldersgruppen 35-54 år er overrepræsenteret (udgør 48 % af tablet-casino-brugere vs. 31 % af smartphone-casino-brugere). Denne gruppe værdsætter komfort og overblik frem for portabilitet.</p>
             <p className="text-muted-foreground leading-relaxed">Geografisk er tablet-casino-brugen jævnt fordelt over hele Danmark, med en svag overvægt i forstæder og provinsen, hvor pendlertid i offentlig transport (smartphone-domæne) er mindre relevant. Dette korrelerer med den hjemmebaserede brugsadfærd.</p>
           </div>
@@ -198,7 +194,7 @@ const TabletCasinoGuide = () => {
 
         {/* 3. PERFORMANCE BENCHMARKS */}
         <section className="mb-12" id="performance-benchmarks">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Performance-benchmarks: Tablets sammenlignet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Performance-benchmarks: Tablets sammenlignet</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Vi har testet casino-performance på 6 populære tablets – 3 iPads og 3 Android-modeller. Tests er udført under standardiserede forhold: WiFi 6-forbindelse, 3 identiske casino-sider (login, lobby, spilleautomat), målt med WebPageTest og browser dev tools. Alle tests er udført med den seneste tilgængelige OS-version for hver model.</p>
 
           <div className="overflow-x-auto mb-6">
@@ -236,7 +232,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Info className="h-5 w-5 text-primary" />Analyse</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="info" className="h-5 w-5 text-primary" />Analyse</h3>
             <p className="text-muted-foreground leading-relaxed mb-3">iPad Pro M4 er den hurtigste tablet vi har testet – med en loadtid under 1 sekund og konstante 60 FPS selv under intensive live casino-sessioner. iPad Air M2 er dog det bedste valg for de fleste, da den tilbyder 95 % af Pro'ens performance til ~60 % af prisen.</p>
             <p className="text-muted-foreground leading-relaxed mb-3">Blandt Android-tablets imponerer Samsung Tab S10+ med sin store 12,4" AMOLED-skærm og flagship-performance. Tab S9 FE er det bedste budget-valg med acceptabel casino-performance og en skærm, der er stor nok til komfortable live casino-sessioner.</p>
             <p className="text-muted-foreground leading-relaxed">Alle testede tablets overgår smartphones i batterilevetid for casino-spil, primært pga. større batterier (7.000-10.000 mAh). iPad Pro holder til ca. 25 timers slot-spil på en opladning, mens budget-tablets holder 12-14 timer.</p>
@@ -299,7 +295,7 @@ const TabletCasinoGuide = () => {
 
         {/* 5. LANDSCAPE VS. PORTRAIT */}
         <section className="mb-12" id="landscape-portrait">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Layers className="h-7 w-7 text-primary" />Landscape vs. portrait: Optimal tilstand pr. spiltype</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" />Landscape vs. portrait: Optimal tilstand pr. spiltype</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablet-casino giver dig mulighed for at vælge mellem landscape (vandret) og portrait (lodret) tilstand. I modsætning til smartphones, hvor de fleste spillere holder enheden vertikalt, tilbyder tablets en genuin valgfrihed – og det rigtige valg kan markant forbedre din spiloplevelse.</p>
           <p className="text-muted-foreground leading-relaxed mb-6">Vi har testet alle spiltyper i begge orienteringer på iPad Pro 13" og Samsung Tab S10+ for at give konkrete anbefalinger:</p>
 
@@ -333,7 +329,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Info className="h-5 w-5 text-primary" />Landscape deep-dive: Tastatur og stativ</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="info" className="h-5 w-5 text-primary" />Landscape deep-dive: Tastatur og stativ</h3>
             <p className="text-muted-foreground leading-relaxed mb-3">iPads med Magic Keyboard-tastaturet låser automatisk i landscape-mode og giver en desktop-lignende oplevelse med trackpad-support. Samsung Galaxy Tabs med Book Cover Keyboard tilbyder tilsvarende funktionalitet. Denne opsætning er ideel til længere <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-sessioner.</p>
             <p className="text-muted-foreground leading-relaxed mb-3">For spillere, der primært bruger tabletten til casino, anbefaler vi et justerbart stativ (ikke keyboard-cover) for maximum fleksibilitet. Et godt tablet-stativ giver dig mulighed for hurtigt at skifte mellem portrait og landscape, justere vinklen for komfortable viewing angles, og holde tabletten fri af hænderne for touch-betjening.</p>
             <p className="text-muted-foreground leading-relaxed">Vær opmærksom på rotationslåsen: Sørg for at den er deaktiveret under casino-spil, så appen kan rotere frit. På iPad: Kontrolcenter → rotationslås. På Samsung Tab: Hurtige indstillinger → Skærmrotation.</p>
@@ -344,7 +340,7 @@ const TabletCasinoGuide = () => {
 
         {/* 6. LIVE CASINO PÅ TABLET */}
         <section className="mb-12" id="live-casino-tablet">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Eye className="h-7 w-7 text-primary" />Live casino på tablet: Den ultimative mobiloplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="eye" className="h-7 w-7 text-primary" />Live casino på tablet: Den ultimative mobiloplevelse</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablets er den mobile platform, der giver den bedste live casino-oplevelse – tæt på desktop-kvalitet. Den større skærmflade løser mange af de begrænsninger, smartphones har med live casino: dealer-videoen fylder mere, betting-interfacet har plads til alle funktioner, og chat-vinduet kan vises permanent uden at blokere spilfladen.</p>
           <p className="text-muted-foreground leading-relaxed mb-6">Vi har testet live casino-oplevelsen på alle 6 tablets i vores benchmark-program hos <Link to="/live-casino" className="text-primary underline hover:text-primary/80">Evolution Gaming</Link>-drevne danske casinoer. Her er vores detaljerede vurdering:</p>
 
@@ -383,7 +379,7 @@ const TabletCasinoGuide = () => {
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><Star className="h-4 w-4 text-primary" />Bedste live casino-spil på tablet</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="star" className="h-4 w-4 text-primary" />Bedste live casino-spil på tablet</CardTitle></CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>• <strong>Lightning Roulette:</strong> Elektrificerende nummer-animation udnytter tabletskærmen optimalt</p>
                 <p>• <strong>Blackjack VIP:</strong> Fuld-størrelse kortvisning og betting-interface i landscape</p>
@@ -393,7 +389,7 @@ const TabletCasinoGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-destructive" />Netværkskrav til live casino</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive" />Netværkskrav til live casino</CardTitle></CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>• <strong>Minimum:</strong> 10 Mbps stabil forbindelse (WiFi eller 5G)</p>
                 <p>• <strong>Anbefalet:</strong> 25 Mbps for HD-streaming uden buffering</p>
@@ -411,7 +407,7 @@ const TabletCasinoGuide = () => {
 
         {/* 7. MULTI-TABLING */}
         <section className="mb-12" id="multi-tabling">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Tv className="h-7 w-7 text-primary" />Multi-tabling og Split View på tablet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="tv" className="h-7 w-7 text-primary" />Multi-tabling og Split View på tablet</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">En af tablets største fordele er muligheden for multi-tabling – at spille på flere borde eller casinoer samtidig. Både iPadOS og Samsung One UI understøtter side-by-side multitasking:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -438,7 +434,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Info className="h-5 w-5 text-primary" />Multi-tabling: Performance-krav</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="info" className="h-5 w-5 text-primary" />Multi-tabling: Performance-krav</h3>
             <p className="text-muted-foreground leading-relaxed mb-3">Multi-tabling stiller højere krav til hardware end enkelt-session casino. Vi har testet to samtidige casino-sessioner (split-screen) og målt performance-impact:</p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
@@ -474,7 +470,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-destructive" />Vigtige forbehold ved multi-tabling</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />Vigtige forbehold ved multi-tabling</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>• Multi-tabling kræver betydeligt mere RAM – vi anbefaler minimum 8 GB for to samtidige sessioner</p>
               <p>• Batteriforbrug stiger med ca. 40-60 % ved to aktive casino-sessioner</p>
@@ -489,7 +485,7 @@ const TabletCasinoGuide = () => {
 
         {/* 8. IPAD VS. ANDROID TABLETS */}
         <section className="mb-12" id="ipad-vs-android">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Star className="h-7 w-7 text-primary" />iPad vs. Android tablets: Komplet sammenligning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="star" className="h-7 w-7 text-primary" />iPad vs. Android tablets: Komplet sammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Valget mellem iPad og Android-tablet er den mest fundamentale beslutning for casino-spillere, der overvejer en tablet. Begge platforme har distinkte styrker, og det rigtige valg afhænger af dine prioriteter:</p>
 
           <div className="overflow-x-auto mb-6">
@@ -527,7 +523,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3"><Star className="h-5 w-5 text-primary inline mr-2" />Vores anbefalinger</h3>
+            <h3 className="text-lg font-semibold mb-3"><MenuIcon iconName="star" className="h-5 w-5 text-primary inline mr-2" />Vores anbefalinger</h3>
             <p className="text-muted-foreground leading-relaxed mb-3"><strong>Bedste overall:</strong> iPad Air M2 (11") – overlegen performance, lang software-support og den bedste casino-oplevelse i sin prisklasse.</p>
             <p className="text-muted-foreground leading-relaxed mb-3"><strong>Bedste premium:</strong> iPad Pro M4 (13") – ultimativ skærmkvalitet, ProMotion 120 Hz, Stage Manager til avanceret multi-tabling.</p>
             <p className="text-muted-foreground leading-relaxed mb-3"><strong>Bedste budget:</strong> Samsung Galaxy Tab S9 FE – god casino-performance til en lavere pris end iPad. AMOLED-skærm med 90 Hz.</p>
@@ -539,7 +535,7 @@ const TabletCasinoGuide = () => {
 
         {/* 9. TABLET SOM PRIMÆR CASINO-ENHED */}
         <section className="mb-12" id="primaer-enhed">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" />Tablet som primær casino-enhed: Fordele og setup</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />Tablet som primær casino-enhed: Fordele og setup</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Mange casino-spillere overvejer at skifte fra desktop til tablet som deres primære spilleplatform. Det er en reel mulighed i 2026, men kræver det rigtige setup. Her er en komplet analyse af fordele, ulemper og anbefalede tilbehør:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -578,7 +574,7 @@ const TabletCasinoGuide = () => {
               { item: "Screen protector (mat finish)", why: "En mat screen protector reducerer reflektioner og fingeraftryk – begge relevante problemer under casino-sessioner med hyppige touch-interaktioner." },
             ].map((tip) => (
               <div key={tip.item} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <div>
                   <h4 className="font-medium text-sm text-foreground">{tip.item}</h4>
                   <p className="text-xs text-muted-foreground">{tip.why}</p>
@@ -592,7 +588,7 @@ const TabletCasinoGuide = () => {
 
         {/* 10. BETALINGSMETODER PÅ TABLET */}
         <section className="mb-12" id="betalingsmetoder-tablet">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Betalingsmetoder på tablet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />Betalingsmetoder på tablet</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Alle betalingsmetoder, der fungerer på smartphones, fungerer identisk på tablets. Dog er der nogle nuancer, der er specifikke for tablet-brug:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -619,7 +615,7 @@ const TabletCasinoGuide = () => {
 
         {/* 11. SIKKERHED PÅ TABLET */}
         <section className="mb-12" id="sikkerhed-tablet">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Sikkerhedsarkitektur: iPad vs. Android tablets</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Sikkerhedsarkitektur: iPad vs. Android tablets</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Sikkerhed på tablets er fundamentalt identisk med smartphones inden for det samme operativsystem. Dog er der nogle tablet-specifikke sikkerhedsovervejelser, der er værd at kende:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -646,7 +642,7 @@ const TabletCasinoGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Lock className="h-5 w-5 text-primary" />Tablet-specifikke sikkerhedsovervejelser</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="lock" className="h-5 w-5 text-primary" />Tablet-specifikke sikkerhedsovervejelser</h3>
             <div className="space-y-3 text-sm text-muted-foreground">
               <p><strong>Delte tablets:</strong> Hvis din tablet deles med familie (særligt børn), brug iPad Familiedeling eller Samsung Multi-User for at forhindre utilsigtet casino-adgang. Opret separate brugerprofiler med adgangskodebeskyttelse.</p>
               <p><strong>WiFi-sikkerhed:</strong> Da tablets primært bruger WiFi, er netværkssikkerhed ekstra vigtig. Brug kun kendte, krypterede WiFi-netværk til casino. Undgå offentlige hotspots til gambling. WPA3-krypteret hjemmenetværk anbefales.</p>
@@ -660,7 +656,7 @@ const TabletCasinoGuide = () => {
 
         {/* 12. BØRNESIKRING OG FAMILIEDELING */}
         <section className="mb-12" id="boernesikring">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" />Børnesikring og familiedeling på tablet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" />Børnesikring og familiedeling på tablet</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablets er populære familieenheder, der ofte deles mellem voksne og børn. Hvis du spiller casino på en delt tablet, er det kritisk at implementere effektive adgangsrestriktioner for at forhindre mindreårige i at tilgå casino-apps eller -websteder.</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -686,7 +682,7 @@ const TabletCasinoGuide = () => {
 
           <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 mb-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
               <div>
                 <p className="font-semibold text-sm text-foreground mb-1">Vigtigt om delte tablets og ansvarligt spil</p>
                 <p className="text-sm text-muted-foreground">Det er ulovligt for mindreårige at spille casino i Danmark. Som forælder er du ansvarlig for at forhindre utilsigtet adgang til gambling-sider. Implementér altid separate brugerprofiler og indholdsfiltre, hvis din casino-tablet også bruges af børn. Kontakt <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link> for rådgivning om gambling og familiesituationer.</p>
@@ -758,7 +754,7 @@ const TabletCasinoGuide = () => {
 
         {/* 14. FEJLFINDING */}
         <section className="mb-12" id="fejlfinding">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><HelpCircle className="h-7 w-7 text-primary" />Fejlfinding: Tablet-specifikke problemer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />Fejlfinding: Tablet-specifikke problemer</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Her er de mest almindelige tablet-specifikke casino-problemer og deres løsninger:</p>
 
           <div className="space-y-4 mb-6">
@@ -773,7 +769,7 @@ const TabletCasinoGuide = () => {
               { problem: "MobilePay QR-kode er for lille til at scanne", solution: "Zoom ind på QR-koden med to-finger pinch i browseren. Alternativt: Kopiér betalingslinket og åbn det på din smartphone manuelt. Kontakt casinoet, da dette er et UX-problem på deres side." },
             ].map((item) => (
               <div key={item.problem} className="rounded-lg border border-border bg-card p-4">
-                <h3 className="font-semibold text-sm text-foreground mb-2 flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-destructive shrink-0" />{item.problem}</h3>
+                <h3 className="font-semibold text-sm text-foreground mb-2 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive shrink-0" />{item.problem}</h3>
                 <p className="text-xs text-muted-foreground pl-6">{item.solution}</p>
               </div>
             ))}
@@ -784,7 +780,7 @@ const TabletCasinoGuide = () => {
 
         {/* 15. TABLET-SPECIFIKKE TIPS */}
         <section className="mb-12" id="tips">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" />Tablet-specifikke casino-tips</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" />Tablet-specifikke casino-tips</h2>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
               { title: "Brug Night Shift/Blue Light Filter", desc: "Reducer blåt lys under aftensessioner. iPad: Indstillinger → Skærm → Night Shift. Samsung: Indstillinger → Skærm → Eye Comfort Shield.", icon: Eye },
@@ -806,7 +802,7 @@ const TabletCasinoGuide = () => {
 
         {/* 16. ANSVARLIGT SPIL */}
         <section className="mb-12" id="ansvarligt-spil">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" />Ansvarligt spil på tablet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" />Ansvarligt spil på tablet</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tablets store skærm og komfortable betjening kan gøre det fristende at spille længere sessioner. Vores data viser, at tablet-sessioner er gennemsnitligt 2,3x længere end smartphone-sessioner – hvilket gør ansvarligt spil-overvejelser endnu vigtigere på denne platform.</p>
           <p className="text-muted-foreground leading-relaxed mb-4">Den hjemmebaserede brug af tablets skaber en "komfortzoneeffekt", hvor den afslappede setting (sofa, seng) kan mindske opmærksomheden på tid og forbrug. Vi anbefaler stærkt at bruge følgende værktøjer:</p>
           <div className="space-y-3 mb-6">
@@ -820,7 +816,7 @@ const TabletCasinoGuide = () => {
               "Brug 'Fokus'-tilstande (iPadOS) til at begrænse casino-adgang på bestemte tidspunkter",
               "Overvej at oprette et separat tablet-brugerprofil (Android) uden casino-adgang for hverdagsbrug",
             ].map((tip) => (
-              <div key={tip} className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{tip}</span></div>
+              <div key={tip} className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{tip}</span></div>
             ))}
           </div>
           <p className="text-muted-foreground leading-relaxed">Kontakt <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link> (70 22 28 25) for gratis rådgivning. Se alle <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">hjælpelinjer</Link>. Tilmeld dig <Link to="/ansvarligt-spil/rofus" className="text-primary underline hover:text-primary/80">ROFUS</Link> for selvudelukkelse fra alle danske licenserede casinoer.</p>
@@ -830,7 +826,7 @@ const TabletCasinoGuide = () => {
 
         {/* 17. HJÆLP */}
         <section className="mb-12" id="hjaelp">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><HelpCircle className="h-7 w-7 text-primary" />Hjælp og ressourcer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />Hjælp og ressourcer</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { to: "/mobil-casino", title: "Mobil Casino Hub", desc: "Komplet oversigt" },

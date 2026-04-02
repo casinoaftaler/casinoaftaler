@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -95,7 +96,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             </p>
           </div>
           <Badge variant="secondary" className="hidden shrink-0 text-xs sm:inline-flex">
-            <Sparkles className="mr-1 h-3 w-3" />
+            <MenuIcon iconName="sparkles" className="mr-1 h-3 w-3" />
             Live resultater
           </Badge>
         </div>

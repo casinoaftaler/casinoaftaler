@@ -8,7 +8,8 @@ import {
   getEmbedUrl,
   useToggleLike,
 } from "@/hooks/useCommunityClips";
-import { Heart, MessageCircle, Play, User, ExternalLink } from "lucide-react";
+import { Heart, MessageCircle, Play, User, ExternalLink } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -78,18 +79,18 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
           <>
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5 pointer-events-none">
               {isEmbeddable ? (
-                <Play className="h-12 w-12 text-muted-foreground" />
+                <MenuIcon iconName="play" className="h-12 w-12 text-muted-foreground" />
               ) : (
-                <ExternalLink className="h-12 w-12 text-muted-foreground" />
+                <MenuIcon iconName="external-link" className="h-12 w-12 text-muted-foreground" />
               )}
             </div>
             {/* Hover overlay with icon */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
               <div className="rounded-full bg-primary p-4">
                 {isEmbeddable ? (
-                  <Play className="h-8 w-8 text-primary-foreground" fill="currentColor" />
+                  <MenuIcon iconName="play" className="h-8 w-8 text-primary-foreground" />
                 ) : (
-                  <ExternalLink className="h-8 w-8 text-primary-foreground" />
+                  <MenuIcon iconName="external-link" className="h-8 w-8 text-primary-foreground" />
                 )}
               </div>
             </div>
@@ -135,7 +136,7 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
           <Avatar className="h-6 w-6">
             <AvatarImage src={clip.submitter_avatar || undefined} />
             <AvatarFallback>
-              <User className="h-3 w-3" />
+              <MenuIcon iconName="user" className="h-3 w-3" />
             </AvatarFallback>
           </Avatar>
           <span className="text-sm text-muted-foreground">
@@ -156,9 +157,7 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
             onClick={handleLike}
             disabled={!user || toggleLike.isPending}
           >
-            <Heart
-              className={cn("h-4 w-4", clip.user_has_liked && "fill-current")}
-            />
+            <MenuIcon iconName="heart" className="h-5 w-5" />
             <span>{clip.likes_count}</span>
           </Button>
 
@@ -171,7 +170,7 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
               onOpenDetail(clip);
             }}
           >
-            <MessageCircle className="h-4 w-4" />
+            <MenuIcon iconName="message-circle" className="h-4 w-4" />
             <span>{clip.comments_count}</span>
           </Button>
         </div>

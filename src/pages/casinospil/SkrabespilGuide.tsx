@@ -11,30 +11,8 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Ticket,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Sparkles,
-  TrendingUp,
-  Lock,
-  Zap,
-  Star,
-  Users,
-  Monitor,
-  DollarSign,
-  BarChart3,
-  Percent,
-  Calculator,
-  Heart,
-  Trophy,
-  Layers,
-  Gem,
-  Dice1,
-} from "lucide-react";
+import { DollarSign, Dice1 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -199,7 +177,7 @@ const SkrabespilGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Ticket className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="ticket" className="mr-1.5 h-3.5 w-3.5" />
               Dybdegående skrabespil-guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">

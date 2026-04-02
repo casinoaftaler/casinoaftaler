@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { History, Search, Loader2, Clock, User, Coins } from "lucide-react";
+import { History, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface CreditLogEntry {
   id: string;
@@ -151,7 +152,7 @@ export function CreditAllocationHistory() {
                       />
                     ) : (
                       <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                        <User className="h-4 w-4 text-muted-foreground" />
+                        <MenuIcon iconName="user" className="h-4 w-4 text-muted-foreground" />
                       </div>
                     )}
                     <div className="min-w-0">
@@ -159,7 +160,7 @@ export function CreditAllocationHistory() {
                         {profile?.display_name || profile?.twitch_username || log.user_id.slice(0, 8)}
                       </p>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <Clock className="h-3 w-3" />
+                        <MenuIcon iconName="clock" className="h-3 w-3" />
                         {formatDate(log.created_at)}
                       </div>
                     </div>

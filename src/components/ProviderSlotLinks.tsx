@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gamepad2 } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { PROVIDER_TO_SLOTS, PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 
 /**
@@ -19,7 +20,7 @@ export function ProviderSlotLinks({ providerSlug }: ProviderSlotLinksProps) {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-7 w-7 text-primary" />
+        <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
         Spilguides fra {providerName}
       </h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -33,7 +34,7 @@ export function ProviderSlotLinks({ providerSlug }: ProviderSlotLinksProps) {
               to={`/casinospil/spillemaskiner/${slot.slug}`}
               className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-all hover:border-primary/50 hover:shadow-sm"
             >
-              <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+              <MenuIcon iconName="gamepad2" className="h-4 w-4 text-primary flex-shrink-0" />
               <span className="flex-1">{slot.name} – komplet guide</span>
               <ArrowRight className="h-4 w-4 text-muted-foreground" />
             </Link>

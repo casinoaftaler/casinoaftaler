@@ -11,27 +11,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import {
-  Banknote,
-  ShieldCheck,
-  CheckCircle2,
-  BookOpen,
-  ArrowRight,
-  Scale,
-  Users,
-  Search,
-  FileText,
-  XCircle,
-  HandCoins,
-  Eye,
-  BarChart3,
-  Star,
-  Trophy,
-  Gamepad2,
-  CreditCard,
-  Sparkles,
-  Award,
-} from "lucide-react";
+import { ArrowRight, HandCoins } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -79,7 +60,7 @@ const Forretningsmodel = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Banknote className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="banknote" className="mr-1.5 h-3.5 w-3.5" />
               Transparens
             </Badge>
             <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
@@ -109,7 +90,7 @@ const Forretningsmodel = () => {
         {/* Hvad er affiliate-marketing */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Banknote className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="banknote" className="h-7 w-7 text-primary" />
             Hvad er affiliate-marketing?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -195,7 +176,7 @@ const Forretningsmodel = () => {
         {/* Påvirker det vores anmeldelser */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Påvirker det vores anmeldelser?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -221,7 +202,7 @@ const Forretningsmodel = () => {
         {/* Interessekonflikt-politik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Vores interessekonflikt-politik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -240,7 +221,7 @@ const Forretningsmodel = () => {
               "Negative anmeldelser fjernes aldrig, uanset kommercielle konsekvenser",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="font-medium">{item}</span>
               </div>
             ))}
@@ -257,7 +238,7 @@ const Forretningsmodel = () => {
         {/* Hvad vi IKKE gør */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <XCircle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="x-circle" className="h-7 w-7 text-destructive" />
             Hvad vi ikke gør
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -290,7 +271,7 @@ const Forretningsmodel = () => {
         {/* Hvordan vi vurderer casinoer */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Search className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="search" className="h-7 w-7 text-primary" />
             Hvad bygger vores vurderinger på?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -307,7 +288,7 @@ const Forretningsmodel = () => {
               "Gennemgang af licensforhold og sikkerhed",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3 py-2">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="font-medium">{item}</span>
               </div>
             ))}
@@ -315,13 +296,13 @@ const Forretningsmodel = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Læs om vores testmetode
               </Button>
             </Link>
             <Link to="/redaktionel-politik">
               <Button variant="outline" size="sm">
-                <FileText className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="file-text" className="mr-1.5 h-4 w-4" />
                 Redaktionel politik
               </Button>
             </Link>
@@ -339,7 +320,7 @@ const Forretningsmodel = () => {
         {/* Hvordan rangering fungerer */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Hvordan vores rangering fungerer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -367,7 +348,7 @@ const Forretningsmodel = () => {
         {/* Brancheanerkendelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Brancheanerkendelse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -389,7 +370,7 @@ const Forretningsmodel = () => {
                 <div className="flex flex-col justify-center p-6">
                   <div className="mb-1 flex items-center gap-2">
                     <Badge variant="secondary" className="text-xs">
-                      <Award className="mr-1 h-3 w-3" />
+                      <MenuIcon iconName="award" className="mr-1 h-3 w-3" />
                       Officiel Partner
                     </Badge>
                   </div>
@@ -417,7 +398,7 @@ const Forretningsmodel = () => {
         {/* Vores løfte */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Vores løfte til dig
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

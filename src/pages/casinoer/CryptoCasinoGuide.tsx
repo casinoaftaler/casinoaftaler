@@ -18,7 +18,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Bitcoin, ShieldCheck, Zap, AlertTriangle, CheckCircle2, Globe, Lock, Star, Wallet, Scale, Eye, ArrowRight, Layers, Shield } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -46,7 +47,7 @@ const CryptoCasinoGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Bitcoin className="mr-1.5 h-3.5 w-3.5" />Kryptoanalyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="bitcoin" className="mr-1.5 h-3.5 w-3.5" />Kryptoanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Crypto Casino i Danmark 2026</h1>
             <p className="text-lg text-white/80">Alt du skal vide om kryptovaluta og online casino: Bitcoin, Ethereum, provably fair, skatteforhold og sikkerhed.</p>
           </div>
@@ -65,26 +66,26 @@ const CryptoCasinoGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovalutaer har revolutioneret mange brancher, og online gambling er ingen undtagelse. Crypto casinoer tilbyder hurtigere transaktioner, lavere gebyrer og et niveau af gennemsigtighed, som traditionelle casinoer ikke kan matche – takket være blockchain-teknologi og provably fair-systemer. Men denne nye verden kommer også med unikke risici, som danske spillere bør forstå grundigt, før de dykker ind.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I denne guide gennemgår vi alt om crypto casinoer: Hvordan de fungerer, hvilke kryptovalutaer du kan bruge, fordelene og ulemperne sammenlignet med <Link to="/top-10-casino-online" className={linkClass}>traditionelle danske casinoer</Link>, samt de vigtige skatte- og licensmæssige aspekter. Vi giver dig de værktøjer, du behøver for at træffe en informeret beslutning om, hvorvidt crypto gambling er det rigtige for dig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at forstå konteksten: I Danmark har vi et veludviklet og spillervenligt reguleret marked, hvor casinogevinster er skattefri, og spillere har stærk forbrugerbeskyttelse. Crypto casinoer opererer typisk uden for denne regulering, hvilket både tilbyder frihed og medfører risici. Denne guide hjælper dig med at navigere disse kompleksiteter.</p>
-          <Card className="bg-destructive/10 border-destructive/30 my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Gevinster kan være skattepligtige, og der er ingen garanteret adskillelse af spillermidler. Vi anbefaler altid at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed.</p></div></div></CardContent></Card>
+          <Card className="bg-destructive/10 border-destructive/30 my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Gevinster kan være skattepligtige, og der er ingen garanteret adskillelse af spillermidler. Vi anbefaler altid at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed.</p></div></div></CardContent></Card>
         </section>
 
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Bitcoin className="h-7 w-7 text-primary" /> Hvad er et crypto casino?</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bitcoin" className="h-7 w-7 text-primary" /> Hvad er et crypto casino?</h2>
           <p className="text-muted-foreground mb-4">Et crypto casino er en online gambling-platform, der accepterer kryptovalutaer som Bitcoin, Ethereum og Litecoin som betalingsmetode. Nogle crypto casinoer opererer udelukkende med kryptovaluta, mens andre tilbyder det som et supplement til traditionelle betalingsmetoder. Teknologien bag crypto casinoer adskiller sig fundamentalt fra traditionelle online casinoer på flere vigtige punkter.</p>
           <p className="text-muted-foreground mb-6">Den mest markante forskel er brugen af blockchain-teknologi til at registrere alle transaktioner. Hvor traditionelle casinoer bruger centraliserede databaser, der kontrolleres af operatøren, gemmer blockchain-baserede systemer alle transaktioner på en decentraliseret, offentlig hovedbog, der er praktisk talt umulig at manipulere. Dette skaber et niveau af gennemsigtighed, der er unikt for crypto-verdenen.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Lock className="h-5 w-5 text-primary" /> Blockchain-baseret sikkerhed</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground mb-2">Alle transaktioner registreres på en decentraliseret, offentlig blockchain, der er praktisk talt umulig at manipulere. Hver transaktion får et unikt hash, der kan verificeres af enhver. Dette skaber et transparensniveau, der overgår traditionelle banksystemer.</p><p className="text-sm text-muted-foreground">Blockchain-teknologien eliminerer behovet for en betroet tredjepart til at verificere transaktioner. I stedet verificeres hver transaktion af et netværk af computere (nodes), hvilket gør systemet ekstremt robust mod manipulation og fejl. For spillere betyder det, at ind- og udbetalinger kan verificeres uafhængigt af casinoets påstande.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Zap className="h-5 w-5 text-primary" /> Øjeblikkelige transaktioner</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground mb-2">Crypto-transaktioner behandles typisk inden for minutter (Bitcoin: 10–60 min, Ethereum: 15 sek–5 min, Litecoin: 2–3 min), sammenlignet med 1–5 bankdage for traditionelle metoder. Gebyrer er typisk 0,1–2 % sammenlignet med 2–5 % for kreditkort.</p><p className="text-sm text-muted-foreground">Disse hastighedsforskelle er særligt mærkbare ved udbetalinger. Hvor traditionelle casinoer ofte har interne behandlingstider på 24-72 timer (ud over bankens overførselstid), kan crypto casinoer udbetale gevinster næsten øjeblikkeligt, da der ikke er nogen bank eller kortudsteder, der skal behandle transaktionen.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="lock" className="h-5 w-5 text-primary" /> Blockchain-baseret sikkerhed</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground mb-2">Alle transaktioner registreres på en decentraliseret, offentlig blockchain, der er praktisk talt umulig at manipulere. Hver transaktion får et unikt hash, der kan verificeres af enhver. Dette skaber et transparensniveau, der overgår traditionelle banksystemer.</p><p className="text-sm text-muted-foreground">Blockchain-teknologien eliminerer behovet for en betroet tredjepart til at verificere transaktioner. I stedet verificeres hver transaktion af et netværk af computere (nodes), hvilket gør systemet ekstremt robust mod manipulation og fejl. For spillere betyder det, at ind- og udbetalinger kan verificeres uafhængigt af casinoets påstande.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" /> Øjeblikkelige transaktioner</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground mb-2">Crypto-transaktioner behandles typisk inden for minutter (Bitcoin: 10–60 min, Ethereum: 15 sek–5 min, Litecoin: 2–3 min), sammenlignet med 1–5 bankdage for traditionelle metoder. Gebyrer er typisk 0,1–2 % sammenlignet med 2–5 % for kreditkort.</p><p className="text-sm text-muted-foreground">Disse hastighedsforskelle er særligt mærkbare ved udbetalinger. Hvor traditionelle casinoer ofte har interne behandlingstider på 24-72 timer (ud over bankens overførselstid), kan crypto casinoer udbetale gevinster næsten øjeblikkeligt, da der ikke er nogen bank eller kortudsteder, der skal behandle transaktionen.</p></CardContent></Card>
           </div>
         </section>
 
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Eye className="h-7 w-7 text-primary" /> Provably fair – Verificerbar retfærdighed</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="eye" className="h-7 w-7 text-primary" /> Provably fair – Verificerbar retfærdighed</h2>
           <p className="text-muted-foreground mb-4">En af de mest innovative aspekter ved crypto casinoer er "provably fair"-teknologien, der giver spillere mulighed for uafhængigt at verificere, at hvert eneste spilresultat er retfærdigt og ikke manipuleret. Denne teknologi er unik for blockchain-baserede casinoer og tilbyder et niveau af gennemsigtighed, som traditionelle casinoer simpelthen ikke kan matche.</p>
           <p className="text-muted-foreground mb-6">Provably fair fungerer ved hjælp af kryptografiske hash-funktioner. Før et spin eller en runde begynder, genererer casinoet et "server seed" (en hemmelig kode) og deler en krypteret version (hash) af dette seed med spilleren. Spilleren kan derefter tilføje sit eget "client seed" for ekstra tilfældighed. Efter runden afsløres server seed'et, og spilleren kan verificere, at resultatet stemmer overens med den oprindelige hash. Ethvert forsøg på manipulation fra casinoets side ville ændre hash'en og blive opdaget øjeblikkeligt.</p>
           <div className="space-y-3 mb-6">
@@ -102,7 +103,7 @@ const CryptoCasinoGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><CheckCircle2 className="h-7 w-7 text-primary" /> Fordele og ulemper ved crypto casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-7 w-7 text-primary" /> Fordele og ulemper ved crypto casinoer</h2>
           <p className="text-muted-foreground mb-6">For at hjælpe dig med at træffe en informeret beslutning har vi samlet de vigtigste fordele og ulemper ved crypto casinoer sammenlignet med traditionelle danske licenserede casinoer. Det er vigtigt at veje begge sider, da crypto gambling ikke er for alle.</p>
         <ReviewScreenshot
           src={stakeForside}
@@ -110,23 +111,23 @@ const CryptoCasinoGuide = () => {
           caption="Stake.dk har dansk licens og opererer med DKK – ikke kryptovaluta. Den udenlandske version Stake.com accepterer crypto, men er ulovlig for danske spillere"
         />
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-green-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-green-500" /> Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Lynhurtige ind- og udbetalinger (minutter vs. dage)</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Lavere eller ingen transaktionsgebyrer</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Provably fair-teknologi for verificerbar retfærdighed</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Højere anonymitet og privatliv</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ingen valutaomregning for internationale spil</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ofte højere bonusser og lavere omsætningskrav</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Decentraliseret – ingen enkelt fejlpunkt</li>
+            <Card className="border-green-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-green-500" /> Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Lynhurtige ind- og udbetalinger (minutter vs. dage)</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Lavere eller ingen transaktionsgebyrer</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Provably fair-teknologi for verificerbar retfærdighed</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Højere anonymitet og privatliv</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ingen valutaomregning for internationale spil</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Ofte højere bonusser og lavere omsætningskrav</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Decentraliseret – ingen enkelt fejlpunkt</li>
             </ul></CardContent></Card>
-            <Card className="border-red-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-red-500" /> Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Manglende dansk licens og forbrugerbeskyttelse</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Volatilitet i kryptopriser kan ændre gevinstens værdi</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Skattekompleksitet – gevinster kan være skattepligtige</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Ingen ROFUS-selvudelukkelse som beskyttelse</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Irreversible transaktioner – fejl kan ikke rettes</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Risiko for svindel og uregulerede operatører</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Teknisk kompleksitet for nye brugere</li>
+            <Card className="border-red-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-red-500" /> Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Manglende dansk licens og forbrugerbeskyttelse</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Volatilitet i kryptopriser kan ændre gevinstens værdi</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Skattekompleksitet – gevinster kan være skattepligtige</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Ingen ROFUS-selvudelukkelse som beskyttelse</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Irreversible transaktioner – fejl kan ikke rettes</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Risiko for svindel og uregulerede operatører</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" /> Teknisk kompleksitet for nye brugere</li>
             </ul></CardContent></Card>
           </div>
         </section>
@@ -134,7 +135,7 @@ const CryptoCasinoGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" /> Populære kryptovalutaer på online casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="wallet" className="h-7 w-7 text-primary" /> Populære kryptovalutaer på online casinoer</h2>
           <p className="text-muted-foreground mb-4">Hver kryptovaluta har unikke egenskaber, der påvirker din spiloplevelse. Valget af kryptovaluta er vigtigt og bør baseres på dine prioriteter – hastighed, omkostninger, stabilitet eller anonymitet. Her er en detaljeret gennemgang af de mest populære muligheder for online gambling.</p>
           <p className="text-muted-foreground mb-6">For danske spillere, der overvejer at prøve crypto gambling, anbefaler vi at starte med Tether (USDT) eller en anden stablecoin for at eliminere volatilitetsrisikoen. Når du er fortrolig med processen, kan du eventuelt eksperimentere med Bitcoin eller Ethereum for potentielt at udnytte prisudviklinger.</p>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -154,7 +155,7 @@ const CryptoCasinoGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Sikkerhed ved crypto gambling</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Sikkerhed ved crypto gambling</h2>
           <p className="text-muted-foreground mb-4">Sikkerhed er den vigtigste overvejelse, når du spiller med kryptovaluta. Mens blockchain-teknologien i sig selv er ekstremt sikker, introducerer crypto gambling unikke risici, som du skal være opmærksom på. Den største risiko er ikke teknisk, men handler om at vælge den rigtige platform og beskytte dine private nøgler.</p>
           <p className="text-muted-foreground mb-6">I modsætning til traditionelle casinoer, hvor din bank eller kortudsteder kan hjælpe ved problemer, er kryptotransaktioner irreversible. Hvis du sender Bitcoin til en svindelplatform eller mister dine private nøgler, er pengene tabt for altid. Derfor er grundig research og korrekt sikkerhedspraksis afgørende.</p>
           <Card className="border-border bg-card mb-6"><CardContent className="pt-6">
@@ -174,7 +175,7 @@ const CryptoCasinoGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Skatteforhold ved crypto gambling</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Skatteforhold ved crypto gambling</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Skatteforholdene ved crypto gambling er komplekse og involverer to separate skattemæssige overvejelser: beskatning af selve casinogevinsten og beskatning af eventuelle kursgevinster på din kryptovaluta. Det er vigtigt at forstå begge dele for at undgå ubehagelige overraskelser fra SKAT.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den primære skattemæssige udfordring ved crypto gambling er, at de fleste crypto casinoer ikke har dansk licens. Det betyder, at gevinster potentielt er skattepligtige som personlig indkomst, i modsætning til gevinster fra <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link>, der altid er skattefri. Derudover kan kursgevinster på din kryptovaluta udløse skattepligt uafhængigt af casino-gevinsten.</p>
           <Card className="border-border bg-card mb-6"><CardContent className="pt-6">
@@ -192,7 +193,7 @@ const CryptoCasinoGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Layers className="h-7 w-7 text-primary" /> Fremtiden for crypto gambling</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Fremtiden for crypto gambling</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Crypto gambling-industrien udvikler sig i et imponerende tempo, og flere trends tegner billedet af fremtidens gambling-landskab. Decentraliserede casinoer (DeFi gambling), der kører direkte på blockchain uden en central operatør, vinder hurtigt indpas og tilbyder fuldstændig gennemsigtighed og automatiserede udbetalinger via smart contracts.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">NFT-baserede loyalitetsprogrammer er en anden innovation, der kombinerer gamification med kryptovaluta. I stedet for traditionelle VIP-point modtager spillere unikke NFT'er, der giver adgang til eksklusive bonusser, turneringer og sociale events. Disse NFT'er kan handles frit mellem spillere, hvilket skaber et helt nyt økonomisk lag oven på den traditionelle casinooplevelse.</p>
           <p className="text-muted-foreground leading-relaxed">På reguleringsområdet forventes flere europæiske lande at udvikle specifikke lovgivningsrammer for crypto gambling i de kommende år. Portugal og Estland har allerede taget de første skridt, og det er sandsynligt, at Spillemyndigheden i Danmark vil tage stilling til kryptovaluta-baseret gambling inden for de næste 2-3 år. Indtil da anbefaler vi danske spillere at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> med traditionelle betalingsmetoder for maksimal sikkerhed.</p>

@@ -16,25 +16,8 @@ import { AuthorNewsSection } from "@/components/AuthorNewsSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  User,
-  CalendarDays,
-  BookOpen,
-  
-  Zap,
-  ShieldCheck,
-  Scale,
-  BadgeCheck,
-  Clock,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-  Newspaper,
-  Pen,
-  Gavel,
-  Users,
-  Gamepad2,
-} from "lucide-react";
+import { BadgeCheck, ChevronLeft, ChevronRight, Pen, Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import ajseImage from "@/assets/ajse-avatar.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -204,7 +187,7 @@ export default function ForfatterAjse() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary">
-                <User className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="user" className="mr-1.5 h-3.5 w-3.5" />
                 Forfatter
               </Badge>
               <Badge variant="secondary">
@@ -212,7 +195,7 @@ export default function ForfatterAjse() {
                 Juridisk redaktør
               </Badge>
               <Badge variant="secondary">
-                <Scale className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />
                 Casinoanalytiker
               </Badge>
             </div>
@@ -246,7 +229,7 @@ export default function ForfatterAjse() {
               <h2 className="text-3xl font-bold mb-4">Om Ajse</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <User className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="user" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
                     <p className="text-sm font-medium">Juridisk redaktør</p>
@@ -260,28 +243,28 @@ export default function ForfatterAjse() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Fokusområde</p>
                     <p className="text-sm font-medium">Spillelov & compliance</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <CalendarDays className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="calendar-days" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Aktiv siden</p>
                     <p className="text-sm font-medium">2024</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <FileText className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="file-text" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Artikler</p>
                     <p className="text-sm font-medium">20+ analyser</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Scale className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="scale" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Indhold</p>
                     <p className="text-sm font-medium">Ansvarligt spil</p>
@@ -312,7 +295,7 @@ export default function ForfatterAjse() {
         {/* Om Ajse – hovedafsnit */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Om Ajse
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
@@ -367,7 +350,7 @@ export default function ForfatterAjse() {
         {/* Dokumenteret erfaring */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Dokumenteret Erfaring
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
@@ -392,7 +375,7 @@ export default function ForfatterAjse() {
         {/* Baggrund og Motivation */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Baggrund & Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -488,7 +471,7 @@ export default function ForfatterAjse() {
         <section className="mb-12">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-3xl font-bold flex items-center gap-2">
-              <FileText className="h-7 w-7 text-primary" />
+              <MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />
               Artikler af Ajse
             </h2>
             {totalStaticPages > 1 && (
@@ -526,7 +509,7 @@ export default function ForfatterAjse() {
         {/* Transparens & metode */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Transparens & metode
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -539,7 +522,7 @@ export default function ForfatterAjse() {
               to="/saadan-tester-vi-casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Sådan tester vi casinoer</h3>
                 <p className="text-xs text-muted-foreground">Vores testmetode og vurderingskriterier</p>
@@ -549,7 +532,7 @@ export default function ForfatterAjse() {
               to="/forretningsmodel"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Forretningsmodel</h3>
                 <p className="text-xs text-muted-foreground">Sådan finansieres Casinoaftaler.dk</p>
@@ -559,7 +542,7 @@ export default function ForfatterAjse() {
               to="/redaktionel-politik"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="book-open" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Redaktionel politik</h3>
                 <p className="text-xs text-muted-foreground">Vores redaktionelle retningslinjer</p>
@@ -569,7 +552,7 @@ export default function ForfatterAjse() {
               to="/casino-bonus"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="book-open" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Casino Bonus Guide</h3>
                 <p className="text-xs text-muted-foreground">Komplet guide til alle bonustyper</p>
@@ -579,7 +562,7 @@ export default function ForfatterAjse() {
               to="/casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Alle Casinoer</h3>
                 <p className="text-xs text-muted-foreground">Kategoriguides og dybdegående analyser</p>
@@ -589,7 +572,7 @@ export default function ForfatterAjse() {
               to="/casino-licenser"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Casino Licenser</h3>
                 <p className="text-xs text-muted-foreground">Licensregulering i Danmark</p>
@@ -599,7 +582,7 @@ export default function ForfatterAjse() {
               to="/nye-casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Nye Casinoer</h3>
                 <p className="text-xs text-muted-foreground">De nyeste casinoer med dansk licens</p>
@@ -609,7 +592,7 @@ export default function ForfatterAjse() {
               to="/ordbog"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="book-open" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Casino Ordbog</h3>
                 <p className="text-xs text-muted-foreground">30+ casino-begreber forklaret</p>
@@ -619,7 +602,7 @@ export default function ForfatterAjse() {
               to="/ansvarligt-spil"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Ansvarligt Spil</h3>
                 <p className="text-xs text-muted-foreground">Information om ansvarligt spil</p>

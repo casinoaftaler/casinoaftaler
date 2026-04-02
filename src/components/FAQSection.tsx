@@ -1,6 +1,7 @@
 import React, { ReactNode, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Accordion,
   AccordionContent,
@@ -111,7 +112,7 @@ export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(functio
       <section ref={ref} className="mb-12">
         <div className="rounded-xl border border-border bg-card p-6 md:p-8">
           <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
-            <HelpCircle className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-8 w-8 text-primary" />
             {variedTitle}
           </h2>
           <Accordion type="single" collapsible className="space-y-3">

@@ -32,14 +32,8 @@ import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemask
 import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
-import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
-  Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
-  Globe, Target, AlertTriangle, BarChart3, Layers, Timer, Users,
-  Shield, Flame, ArrowRight, Percent, Eye, Search,
-  ThumbsUp, Mail, Building2, Cpu, Puzzle,
-} from "lucide-react";
+import { RotateCcw, Check, X, Timer, ArrowRight, Cpu, Puzzle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -168,7 +162,7 @@ const PlayKasinoAnmeldelse = () => {
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4 flex-wrap">
               <Badge variant="secondary">
-                <Star className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />
                 4.5 / 5 – SkillOnNet-casino med +EV bonus
               </Badge>
               <Badge variant="outline" className="border-white/40 text-white">
@@ -189,7 +183,7 @@ const PlayKasinoAnmeldelse = () => {
               size="lg"
               className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"
             >
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent Bonus hos PlayKasino
             </Button>
           </div>
@@ -208,7 +202,7 @@ const PlayKasinoAnmeldelse = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Zap className="h-6 w-6 text-primary" />
+                  <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                   Hurtige Fakta – PlayKasino
                 </CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
@@ -325,7 +319,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-amber-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-amber-500" />
                   Platformens begrænsninger
                 </CardTitle>
               </CardHeader>
@@ -373,7 +367,7 @@ const PlayKasinoAnmeldelse = () => {
                   { day: "Dag 12–14", title: "Bonusomsætning og kundeservice", desc: "Gennemspillede bonussen: 1.000 kr. × 10 = 10.000 kr. omsætning nået på dag 13 med primært Sweet Bonanza og Gates of Olympus. Resterende bonussaldo: 185 kr. – hævet. E-mail til support om bonusvilkår: svar efter 3 timer 20 min (hverdage). Professionelt og korrekt svar. Mobilapp testet på iPhone 15 Pro og Samsung Galaxy S24 – stabil og responsiv." },
                 ].map((item) => (
                   <div key={item.day} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                    <CalendarDays className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="calendar-days" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold text-foreground">{item.day}</h4>
@@ -407,7 +401,7 @@ const PlayKasinoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Gift className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                 Aktivering – trin for trin
               </CardTitle>
             </CardHeader>
@@ -437,7 +431,7 @@ const PlayKasinoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6 border-l-4 border-l-accent">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
-                <BarChart3 className="h-6 w-6 text-accent" />
+                <MenuIcon iconName="bar-chart3" className="h-6 w-6 text-accent" />
                 <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">EV-analyse – Hvad er bonussen reelt værd?</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
@@ -517,7 +511,7 @@ const PlayKasinoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Target className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                 Strategi 1: Lav-volatilitet grinding (anbefalet for nybegyndere)
               </CardTitle>
             </CardHeader>
@@ -537,7 +531,7 @@ const PlayKasinoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Flame className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
                 Strategi 2: Medium-volatilitet balancering (for erfarne spillere)
               </CardTitle>
             </CardHeader>
@@ -555,7 +549,7 @@ const PlayKasinoAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Strategi 3: Bordspil-supplement (for matematisk fokuserede spillere)
               </CardTitle>
             </CardHeader>
@@ -617,7 +611,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilleautomater
                 </CardTitle>
               </CardHeader>
@@ -631,7 +625,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   Bordspil
                 </CardTitle>
               </CardHeader>
@@ -645,7 +639,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Live Casino
                 </CardTitle>
               </CardHeader>
@@ -981,14 +975,14 @@ const PlayKasinoAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Mail className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="mail" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">E-mail Support</h3>
                 <p className="text-sm text-muted-foreground">support@playkasino.com – svar inden for 3–6 timer (hverdage). Dansk support. Professionelle og korrekte svar.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <BookOpen className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="book-open" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">FAQ & Hjælpecenter</h3>
                 <p className="text-sm text-muted-foreground">Grundlæggende selvbetjening med svar på de mest almindelige spørgsmål. Dækker bonus, betalinger og kontoindstillinger.</p>
               </CardContent>
@@ -1020,21 +1014,21 @@ const PlayKasinoAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <ShieldCheck className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="shield-check" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">Spillemyndigheden</h3>
                 <p className="text-sm text-muted-foreground">Dansk licens – fuldt reguleret med løbende overvågning og tilsyn</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Globe className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="globe" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">MGA + UKGC</h3>
                 <p className="text-sm text-muted-foreground">Dobbelt international licensering med ekstra kapitalreserver og revision</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6 text-center">
-                <Award className="h-8 w-8 text-primary mx-auto mb-3" />
+                <MenuIcon iconName="award" className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-bold text-foreground mb-1">ROFUS & StopSpillet</h3>
                 <p className="text-sm text-muted-foreground">Tilsluttet selvudelukkelses- og rådgivningstjenester for ansvarligt spil</p>
               </CardContent>
@@ -1054,7 +1048,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                  <Wallet className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="wallet" className="h-5 w-5 text-primary" />
                   Indbetalingsgrænser
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -1076,7 +1070,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                   Selvudelukkelse (midlertidig)
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -1087,7 +1081,7 @@ const PlayKasinoAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Hjælperessourcer
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -1263,7 +1257,7 @@ const PlayKasinoAnmeldelse = () => {
               { title: "Sportsbook-integration", desc: "SkillOnNet har ikke et sportsbetting-produkt i sin nuværende portefølje. Det er usandsynligt, at PlayKasino vil tilføje sportsbetting på kort sigt. For spillere, der ønsker begge dele, anbefaler vi Betinia eller Campobet.", likelihood: "Usandsynligt" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Search className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="search" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-semibold text-foreground">{item.title}</h3>
@@ -1329,7 +1323,7 @@ const PlayKasinoAnmeldelse = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
                 <div>
                   <h3 className="font-semibold text-foreground">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{typeof item.desc === "string" ? item.desc : item.desc}</p>
@@ -1400,12 +1394,12 @@ const PlayKasinoAnmeldelse = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button onClick={handleBonusClick} size="lg" className="flex-1 font-bold">
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent Bonus hos PlayKasino
             </Button>
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
-                <Trophy className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>

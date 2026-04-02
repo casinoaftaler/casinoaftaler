@@ -17,26 +17,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Gamepad2,
-  Shield,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  HelpCircle,
-  Zap,
-  Globe,
-  Layers,
-  TrendingUp,
-  Target,
-  Star,
-  Trophy,
-  Sparkles,
-  DollarSign,
-} from "lucide-react";
+import { DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -132,7 +114,7 @@ const JackpotSlots = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Trophy className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" />
               Slot Kategorier
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -156,7 +138,7 @@ const JackpotSlots = () => {
         {/* ── 1. HVAD ER JACKPOT SLOTS? ── */}
         <section className="mb-12" id="hvad-er-jackpot-slots">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Hvad er jackpot-spilleautomater?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -194,14 +176,14 @@ const JackpotSlots = () => {
         {/* ── 2. TYPER AF JACKPOTS ── */}
         <section className="mb-12" id="typer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Typer af jackpot-spilleautomater
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary" />
                   Progressive Jackpots
                 </CardTitle>
               </CardHeader>
@@ -225,7 +207,7 @@ const JackpotSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Globe className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="globe" className="h-4 w-4 text-primary" />
                   Netværks-jackpots
                 </CardTitle>
               </CardHeader>
@@ -237,7 +219,7 @@ const JackpotSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Star className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="star" className="h-4 w-4 text-primary" />
                   Multi-level Jackpots
                 </CardTitle>
               </CardHeader>
@@ -261,7 +243,7 @@ const JackpotSlots = () => {
         {/* ── 3. BEDSTE JACKPOT SLOTS ── */}
         <section className="mb-12" id="bedste-jackpot-slots">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Bedste jackpot-slots i 2026
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -360,7 +342,7 @@ const JackpotSlots = () => {
         {/* ── 4. MATEMATIK ── */}
         <section className="mb-12" id="matematik">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Matematikken bag jackpot-slots
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -402,7 +384,7 @@ const JackpotSlots = () => {
         {/* ── 5. STRATEGI ── */}
         <section className="mb-12" id="strategi">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Strategi for jackpot-slots
           </h2>
           <div className="space-y-4 mb-6">
@@ -441,7 +423,7 @@ const JackpotSlots = () => {
         {/* ── 6. RELATEREDE KATEGORIER ── */}
         <section className="mb-12" id="relaterede">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Udforsk andre slot-kategorier
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

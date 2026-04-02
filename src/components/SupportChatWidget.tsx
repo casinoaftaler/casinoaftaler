@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Trash2, User } from "lucide-react";
+import { X, Loader2, Trash2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSupportChat } from "@/hooks/useSupportChat";
@@ -205,7 +206,7 @@ export function SupportChatWidget() {
                       <Avatar className="h-7 w-7 mt-1 shrink-0">
                         <AvatarImage src={userProfile?.avatar_url || undefined} />
                         <AvatarFallback className="bg-primary/20 text-primary text-[10px]">
-                          <User className="h-3.5 w-3.5" />
+                          <MenuIcon iconName="user" className="h-3.5 w-3.5" />
                         </AvatarFallback>
                       </Avatar>
                     )}
@@ -237,7 +238,7 @@ export function SupportChatWidget() {
                 {sending ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  <Send className="h-4 w-4" />
+                  <MenuIcon iconName="send" className="h-4 w-4" />
                 )}
               </Button>
             </div>
@@ -316,7 +317,7 @@ export function SupportChatWidget() {
           <X className="h-6 w-6" />
         ) : (
           <>
-            <MessageCircle className="h-6 w-6" />
+            <MenuIcon iconName="message-circle" className="h-6 w-6" />
             {(unreadCount > 0 || broadcast) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
                 {unreadCount > 0 ? unreadCount : "!"}

@@ -41,7 +41,8 @@ import {
   Star,
   Coins,
   Scale,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -177,7 +178,7 @@ const CashbackBonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="bar-chart3" className="mr-1.5 h-3.5 w-3.5" />
               Bonusanalyse & tilbagebetaling
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -272,7 +273,7 @@ const CashbackBonus = () => {
             <Card className="border-primary/30 bg-accent/30">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   Nettotab (mest fordelagtigt)
                 </CardTitle>
               </CardHeader>
@@ -287,7 +288,7 @@ const CashbackBonus = () => {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Bruttotab (mindre fordelagtigt)
                 </CardTitle>
               </CardHeader>
@@ -314,7 +315,7 @@ const CashbackBonus = () => {
           <Card className="mb-6 border-primary/30 bg-accent/30">
             <CardContent className="p-5">
               <h3 className="mb-3 text-lg font-semibold flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Cashback EV-formel
               </h3>
               <div className="space-y-2 text-sm text-muted-foreground font-mono">
@@ -527,35 +528,35 @@ const CashbackBonus = () => {
             <Card className="border-primary/30">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   Cashback er ideel for dig, der...
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Spiller regelmæssigt (ugentligt eller oftere)</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Har et månedligt spillebudget på 2.000+ kr.</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Foretrækker forudsigelige fordele over engangstilbud</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Spiller primært slots eller live casino</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Ønsker en{" "}<Link to="/no-sticky-bonus" className={linkClass}>fleksibel bonusstruktur</Link> uden bindinger</li>
-                  <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Værdsætter gennemsigtighed og enkle vilkår</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Spiller regelmæssigt (ugentligt eller oftere)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Har et månedligt spillebudget på 2.000+ kr.</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Foretrækker forudsigelige fordele over engangstilbud</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Spiller primært slots eller live casino</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Ønsker en{" "}<Link to="/no-sticky-bonus" className={linkClass}>fleksibel bonusstruktur</Link> uden bindinger</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Værdsætter gennemsigtighed og enkle vilkår</li>
                 </ul>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Cashback er mindre ideel, hvis du...
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Er ny spiller med lavt budget (vælg{" "}<Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> i stedet)</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Spiller sjældent (cashback kræver volumen for at give værdi)</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Foretrækker umiddelbar bonuskapital til at spille med</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Primært spiller bordspil (cashback dækker sjældent 100%)</li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Har tendens til at øge indsatser for at "udnytte" cashback</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Er ny spiller med lavt budget (vælg{" "}<Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> i stedet)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Spiller sjældent (cashback kræver volumen for at give værdi)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Foretrækker umiddelbar bonuskapital til at spille med</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Primært spiller bordspil (cashback dækker sjældent 100%)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Har tendens til at øge indsatser for at "udnytte" cashback</li>
                 </ul>
               </CardContent>
             </Card>

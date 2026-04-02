@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Newspaper, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 
@@ -24,7 +25,7 @@ export function LatestNewsSidebar({ count = 2 }: { count?: number }) {
   return (
     <div className="flex flex-col gap-1">
       <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1 px-2 flex items-center gap-1.5">
-        <Newspaper className="h-3.5 w-3.5" />
+        <MenuIcon iconName="newspaper" className="h-3.5 w-3.5" />
         Seneste nyt
       </span>
       {articles.map((article) => (
@@ -44,7 +45,7 @@ export function LatestNewsSidebar({ count = 2 }: { count?: number }) {
             />
           ) : (
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-muted">
-              <Newspaper className="h-5 w-5 text-muted-foreground" />
+              <MenuIcon iconName="newspaper" className="h-5 w-5 text-muted-foreground" />
             </div>
           )}
           <div className="flex flex-col gap-0.5 min-w-0">

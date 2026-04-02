@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -79,7 +80,7 @@ export default function BonusHuntArkiv() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <Badge variant="secondary" className="mb-4">
-                <Trophy className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" />
                 Dokumenterede Resultater
               </Badge>
               <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
@@ -150,7 +151,7 @@ export default function BonusHuntArkiv() {
 
         {/* Archive heading */}
         <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-          <BarChart3 className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="bar-chart3" className="h-6 w-6 text-primary" />
           Alle Dokumenterede Hunts
         </h2>
 

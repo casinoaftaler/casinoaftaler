@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Target } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Props {
@@ -27,7 +28,7 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
       >
         <SelectTrigger className="w-auto min-w-[160px] h-8 text-xs font-semibold px-2.5 rounded-lg border-border/40">
           <span className="flex items-center gap-1.5">
-            <Target className="h-3 w-3 text-primary shrink-0" />
+            <MenuIcon iconName="target" className="h-3 w-3 text-primary shrink-0" />
             <SelectValue />
           </span>
         </SelectTrigger>
@@ -35,7 +36,7 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
           {availableHuntNumbers.map(num => (
             <SelectItem key={num} value={String(num)} className="text-xs">
               <span className="flex items-center gap-1.5">
-                <Target className="h-3 w-3 text-primary" />
+                <MenuIcon iconName="target" className="h-3 w-3 text-primary" />
                 BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
               </span>
             </SelectItem>

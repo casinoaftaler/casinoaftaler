@@ -34,37 +34,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Trophy,
-  ShieldCheck,
-  Smartphone,
-  Star,
-  Clock,
-  CreditCard,
-  Gamepad2,
-  Users,
-  TrendingUp,
-  CheckCircle2,
-  Loader2,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  Sparkles,
-  Target,
-  Gift,
-  Zap,
-  Scale,
-  Award,
-  BarChart3,
-  Globe,
-  Search,
-  Layers,
-  Lock,
-  ThumbsUp,
-  ArrowRight,
-  RefreshCw,
-} from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 
@@ -228,7 +199,7 @@ const TopCasinoOnline = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Trophy className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" />
               Verificeret Top 10
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -284,7 +255,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   Licens & sikkerhed
                 </CardTitle>
               </CardHeader>
@@ -298,7 +269,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Bonus & vilkår
                 </CardTitle>
               </CardHeader>
@@ -315,7 +286,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spiludvalg
                 </CardTitle>
               </CardHeader>
@@ -331,7 +302,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Betalingsmetoder
                 </CardTitle>
               </CardHeader>
@@ -346,7 +317,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Udbetalingstider
                 </CardTitle>
               </CardHeader>
@@ -360,7 +331,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Smartphone className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
                   Mobiloplevelse
                 </CardTitle>
               </CardHeader>
@@ -502,7 +473,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilleautomater (Slots)
                 </CardTitle>
               </CardHeader>
@@ -519,7 +490,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Casino
                 </CardTitle>
               </CardHeader>
@@ -534,7 +505,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Layers className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
                   Bordspil
                 </CardTitle>
               </CardHeader>
@@ -548,7 +519,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   Jackpotspil
                 </CardTitle>
               </CardHeader>
@@ -582,7 +553,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   Velkomstbonus
                 </CardTitle>
               </CardHeader>
@@ -597,7 +568,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Free Spins
                 </CardTitle>
               </CardHeader>
@@ -612,7 +583,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                   No-Sticky Bonus
                 </CardTitle>
               </CardHeader>
@@ -628,7 +599,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Bonus uden indbetaling
                 </CardTitle>
               </CardHeader>
@@ -643,7 +614,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Indskudsbonus
                 </CardTitle>
               </CardHeader>
@@ -659,7 +630,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   Bonus uden omsætningskrav
                 </CardTitle>
               </CardHeader>
@@ -674,7 +645,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   Cashback Bonus
                 </CardTitle>
               </CardHeader>
@@ -689,7 +660,7 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   Reload Bonus
                 </CardTitle>
               </CardHeader>
@@ -769,7 +740,7 @@ const TopCasinoOnline = () => {
                 key={method.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{method.title}</h3>
                   <p className="text-sm text-muted-foreground">{method.desc}</p>
@@ -813,7 +784,7 @@ const TopCasinoOnline = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Spillemyndigheden</h3>
                 <p className="text-sm text-muted-foreground">
@@ -822,7 +793,7 @@ const TopCasinoOnline = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Lock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="lock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">ROFUS</h3>
                 <p className="text-sm text-muted-foreground">
@@ -831,7 +802,7 @@ const TopCasinoOnline = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Skattefri gevinster</h3>
                 <p className="text-sm text-muted-foreground">
@@ -932,7 +903,7 @@ const TopCasinoOnline = () => {
           <div className="space-y-3">
             {[
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Lavere omsætningskrav",
                 desc: (
                   <>Flere casinoer sænker deres{" "}
@@ -942,12 +913,12 @@ const TopCasinoOnline = () => {
                 ),
               },
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Øjeblikkelige udbetalinger",
                 desc: "MobilePay og Trustly gør det muligt at modtage dine gevinster inden for minutter. De bedste casinoer tilbyder nu udtrækning på under én time – en markant forbedring fra tidligere dages ventetider.",
               },
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Personaliserede bonusser",
                 desc: (
                   <>Casinoer bruger data til at skræddersy bonustilbud til den enkelte spiller. Det betyder mere relevante tilbud baseret på dine foretrukne spil og spillemønster. Læs vores{" "}
@@ -955,7 +926,7 @@ const TopCasinoOnline = () => {
                 ),
               },
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Udvidet live casino",
                 desc: (
                   <>
@@ -963,12 +934,12 @@ const TopCasinoOnline = () => {
                 ),
               },
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Gamification og loyalitetsprogrammer",
                 desc: "Missioner, achievements, niveauer og personlige belønninger gør spiloplevelsen mere engagerende. Flere casinoer integrerer gamification-elementer for at øge spillerens oplevelse.",
               },
               {
-                icon: <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
+                icon: <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />,
                 title: "Mobil-first design",
                 desc: "Nye platforme designes med mobilen i centrum. Hurtigere loading, intuitive touch-kontroller og optimeret brugeroplevelse på alle skærmstørrelser er nu standarden.",
               },
@@ -991,7 +962,7 @@ const TopCasinoOnline = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
                 Spil ansvarligt
               </CardTitle>
             </CardHeader>
@@ -1043,26 +1014,26 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Nye casinoer
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Generøse velkomstbonusser for at tiltrække spillere
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Moderne design og nyeste teknologi
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Innovative funktioner og gamification
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Ofte lavere omsætningskrav
                   </li>
                 </ul>
@@ -1072,26 +1043,26 @@ const TopCasinoOnline = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Award className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                   Etablerede casinoer
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Lang track record og dokumenteret pålidelighed
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Store spiludvalg opbygget over mange år
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Veludviklet VIP- og loyalitetsprogram
                   </li>
                   <li className="flex items-start gap-2">
-                    <ThumbsUp className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="thumbs-up" className="h-4 w-4 mt-0.5 flex-shrink-0 text-primary" />
                     Erfaren og tilgængelig kundeservice
                   </li>
                 </ul>

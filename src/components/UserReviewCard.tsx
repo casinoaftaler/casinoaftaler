@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
-import { Star, ThumbsUp, ShieldCheck, Zap, Gamepad2, Headphones, Gift, Clock } from "lucide-react";
+import { Star, ThumbsUp, ShieldCheck, Zap, Gamepad2, Headphones, Gift, Clock } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -13,11 +14,11 @@ interface UserReviewCardProps {
 
 // Quick-summary tag detection
 const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] = [
-  { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <Zap className="h-3 w-3" /> },
-  { keywords: ["spiludvalg", "spil", "slots", "spillemaskiner", "provider"], label: "Stort spiludvalg", icon: <Gamepad2 className="h-3 w-3" /> },
-  { keywords: ["support", "kundeservice", "chat", "hjælp"], label: "God support", icon: <Headphones className="h-3 w-3" /> },
-  { keywords: ["bonus", "velkomstbonus", "free spins", "gratis"], label: "Gode bonusser", icon: <Gift className="h-3 w-3" /> },
-  { keywords: ["mobil", "app", "mobilvenlig"], label: "Mobilvenlig", icon: <Clock className="h-3 w-3" /> },
+  { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <MenuIcon iconName="zap" className="h-3 w-3" /> },
+  { keywords: ["spiludvalg", "spil", "slots", "spillemaskiner", "provider"], label: "Stort spiludvalg", icon: <MenuIcon iconName="gamepad2" className="h-3 w-3" /> },
+  { keywords: ["support", "kundeservice", "chat", "hjælp"], label: "God support", icon: <MenuIcon iconName="headphones" className="h-3 w-3" /> },
+  { keywords: ["bonus", "velkomstbonus", "free spins", "gratis"], label: "Gode bonusser", icon: <MenuIcon iconName="gift" className="h-3 w-3" /> },
+  { keywords: ["mobil", "app", "mobilvenlig"], label: "Mobilvenlig", icon: <MenuIcon iconName="clock" className="h-3 w-3" /> },
 ];
 
 function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
@@ -63,7 +64,7 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
               <span className="font-semibold text-sm text-foreground">{displayName}</span>
               {review.is_verified_player && (
                 <Badge className="text-[10px] px-1.5 py-0.5 gap-1 bg-emerald-500/15 text-emerald-400 border-emerald-500/30 font-medium">
-                  <ShieldCheck className="h-3 w-3" /> Verificeret spiller
+                  <MenuIcon iconName="shield-check" className="h-3 w-3" /> Verificeret spiller
                 </Badge>
               )}
             </div>
@@ -132,7 +133,7 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
           disabled={!isLoggedIn}
           title={isLoggedIn ? "Marker som nyttig" : "Log ind for at stemme"}
         >
-          <ThumbsUp className="h-3.5 w-3.5" />
+          <MenuIcon iconName="thumbs-up" className="h-3.5 w-3.5" />
           Var denne anmeldelse nyttig?
           {review.helpful_count > 0 && (
             <span className="ml-1 text-foreground/70 font-semibold">({review.helpful_count})</span>

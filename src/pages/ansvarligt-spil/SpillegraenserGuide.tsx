@@ -17,32 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spillegraenserHero from "@/assets/heroes/spillegraenser-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Timer,
-  Ban,
-  ShieldCheck,
-  Info,
-  Calculator,
-  TrendingDown,
-  Target,
-  Wallet,
-  Activity,
-} from "lucide-react";
+import { Gavel, ArrowRight, Timer, Ban, TrendingDown, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -200,7 +176,7 @@ const SpillegraenserGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -254,7 +230,7 @@ const SpillegraenserGuide = () => {
         {/* ── Typer af grænser ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Alle typer spillegrænser forklaret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -265,7 +241,7 @@ const SpillegraenserGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Wallet className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="wallet" className="h-5 w-5 text-primary" />
                 1. Indbetalingsgrænse (Lovpligtig)
               </CardTitle>
             </CardHeader>
@@ -276,10 +252,10 @@ const SpillegraenserGuide = () => {
               <div className="rounded-lg border border-border p-4 bg-muted/30">
                 <p className="text-sm font-medium mb-2">Sådan fungerer det:</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Du vælger en daglig, ugentlig eller månedlig grænse</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Nedsættelse træder i kraft <strong>øjeblikkeligt</strong></li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Forhøjelse kræver <strong>minimum 24 timers afkøling</strong></li>
-                  <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Grænsen gælder kun pr. casino – ikke tværgående</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Du vælger en daglig, ugentlig eller månedlig grænse</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Nedsættelse træder i kraft <strong>øjeblikkeligt</strong></li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" /> Forhøjelse kræver <strong>minimum 24 timers afkøling</strong></li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive flex-shrink-0" /> Grænsen gælder kun pr. casino – ikke tværgående</li>
                 </ul>
               </div>
               <p className="text-sm text-muted-foreground italic">
@@ -292,7 +268,7 @@ const SpillegraenserGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Clock className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                 2. Tidsgrænse / Sessionsgrænse
               </CardTitle>
             </CardHeader>
@@ -345,7 +321,7 @@ const SpillegraenserGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Target className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                 4. Indsatsgrænse (Bet Limit)
               </CardTitle>
             </CardHeader>
@@ -401,7 +377,7 @@ const SpillegraenserGuide = () => {
               { title: "Proaktiv identifikation", desc: "Casinoer er forpligtet til proaktivt at identificere og kontakte spillere med risikoadfærd (f.eks. lange sessioner, store tab)." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <p className="font-medium text-sm">{item.title}</p>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -421,7 +397,7 @@ const SpillegraenserGuide = () => {
         {/* ── PGSI Selvtest ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             PGSI Selvtest – Vurdér din spilleadfærd
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -488,7 +464,7 @@ const SpillegraenserGuide = () => {
         {/* ── Casino-sammenligning ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sammenligning af grænseværktøjer hos danske casinoer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -521,11 +497,11 @@ const SpillegraenserGuide = () => {
                     <td className="py-2 px-2">
                       <Link to={`/casino-anmeldelser/${c.slug}`} className="text-primary hover:underline font-medium">{c.name}</Link>
                     </td>
-                    <td className="text-center py-2 px-2">{c.indbet ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{c.tab ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{c.tid ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{c.reality ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
-                    <td className="text-center py-2 px-2">{c.rapport ? <CheckCircle className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{c.indbet ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{c.tab ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{c.tid ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{c.reality ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
+                    <td className="text-center py-2 px-2">{c.rapport ? <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mx-auto" /> : <Ban className="h-4 w-4 text-muted-foreground/40 mx-auto" />}</td>
                   </tr>
                 ))}
               </tbody>
@@ -549,7 +525,7 @@ const SpillegraenserGuide = () => {
         {/* ── EV-model ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Matematik bag spillegrænser – Expected Value (EV)
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -559,7 +535,7 @@ const SpillegraenserGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 EV-beregning ved forskellige grænseniveauer
               </CardTitle>
             </CardHeader>
@@ -613,7 +589,7 @@ const SpillegraenserGuide = () => {
         {/* ── Praktiske tips ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Praktiske tips til at sætte effektive grænser
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -673,7 +649,7 @@ const SpillegraenserGuide = () => {
         {/* ── Grænser for pårørende ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Information til pårørende
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -689,7 +665,7 @@ const SpillegraenserGuide = () => {
               "Vær opmærksom på tegn som hemmeligholdelse, lån, og ændringer i humør eller økonomi",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="info" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -716,13 +692,13 @@ const SpillegraenserGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     Ring StopSpillet: 70 22 28 25
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>

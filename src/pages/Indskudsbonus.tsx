@@ -21,31 +21,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Sparkles,
-  ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  DollarSign,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Scale,
-  Calculator,
-  Ban,
-  BarChart3,
-  Percent,
-  Coins,
-  Users,
-} from "lucide-react";
+import { DollarSign, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -140,7 +117,7 @@ const Indskudsbonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Matchbonus guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -245,7 +222,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Percent className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="percent" className="h-5 w-5 text-primary" />
                   100% Matchbonus
                 </CardTitle>
               </CardHeader>
@@ -262,7 +239,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Eksempel på beregning
                 </CardTitle>
               </CardHeader>
@@ -371,7 +348,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   Omsætningskrav
                 </CardTitle>
               </CardHeader>
@@ -391,7 +368,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Indsatsgrænser
                 </CardTitle>
               </CardHeader>
@@ -408,7 +385,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Tidsbegrænsning
                 </CardTitle>
               </CardHeader>
@@ -424,7 +401,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Profitgrænse
                 </CardTitle>
               </CardHeader>
@@ -440,7 +417,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilbidrag
                 </CardTitle>
               </CardHeader>
@@ -572,7 +549,7 @@ const Indskudsbonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   100% match, 1.000 kr. max, no-sticky, 3x (b)
                 </CardTitle>
               </CardHeader>
@@ -586,7 +563,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   100% match, 1.000 kr. max, sticky, 10x (d+b)
                 </CardTitle>
               </CardHeader>
@@ -600,7 +577,7 @@ const Indskudsbonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   50% match, 500 kr. max, no-sticky, 1x (b)
                 </CardTitle>
               </CardHeader>

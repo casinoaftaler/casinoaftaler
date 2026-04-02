@@ -8,7 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, Crown, Calendar, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { TurneringsArkivSeoContent } from "@/components/seo-content/TurneringsArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -98,7 +99,7 @@ export default function TurneringsArkiv() {
         <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />
               Historik & Vindere
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl text-foreground">
@@ -128,7 +129,7 @@ export default function TurneringsArkiv() {
         ) : months.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center text-muted-foreground">
-              <Trophy className="h-12 w-12 mx-auto mb-4 opacity-50" />
+              <MenuIcon iconName="trophy" className="h-12 w-12 mx-auto mb-4 opacity-50" />
               <p>Ingen arkiverede turneringer endnu. Den første turnering arkiveres ved månedsafslutning.</p>
             </CardContent>
           </Card>
@@ -144,7 +145,7 @@ export default function TurneringsArkiv() {
                   <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                 </div>
                 <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="h-5 w-5 text-primary md:hidden" />
+                  <MenuIcon iconName="calendar" className="h-5 w-5 text-primary md:hidden" />
                   <h2 className="text-xl font-bold text-foreground">{formatMonth(month)}</h2>
                 </div>
                 <div className="grid gap-4 md:grid-cols-3">
@@ -162,7 +163,7 @@ export default function TurneringsArkiv() {
                         </CardHeader>
                         <CardContent className="pt-4">
                           <div className="flex items-center gap-3 mb-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
-                            <Crown className="h-5 w-5 text-primary shrink-0" />
+                            <MenuIcon iconName="crown" className="h-5 w-5 text-primary shrink-0" />
                             <Avatar className="h-8 w-8">
                               <AvatarImage src={entry.winner_avatar_url || undefined} />
                               <AvatarFallback className="text-xs">

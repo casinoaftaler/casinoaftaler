@@ -17,7 +17,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Search, Coins, Pencil, Trash2, Loader2, User, History } from "lucide-react";
+import { Pencil, Trash2, Loader2, History } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { toast } from "sonner";
 
 interface UserWithPoints {
@@ -191,7 +192,7 @@ export function SlotPointsManagement() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Coins className="h-5 w-5 text-amber-500" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-amber-500" />
             Points Administration
           </CardTitle>
           <CardDescription>
@@ -230,7 +231,7 @@ export function SlotPointsManagement() {
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={user.avatar_url || undefined} />
                     <AvatarFallback>
-                      <User className="h-4 w-4" />
+                      <MenuIcon iconName="user" className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
@@ -260,7 +261,7 @@ export function SlotPointsManagement() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <User className="h-5 w-5" />
+              <MenuIcon iconName="user" className="h-5 w-5" />
               Valgt bruger
             </CardTitle>
           </CardHeader>
@@ -269,7 +270,7 @@ export function SlotPointsManagement() {
               <Avatar className="h-14 w-14">
                 <AvatarImage src={selectedUser.avatar_url || undefined} />
                 <AvatarFallback>
-                  <User className="h-6 w-6" />
+                  <MenuIcon iconName="user" className="h-6 w-6" />
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1">

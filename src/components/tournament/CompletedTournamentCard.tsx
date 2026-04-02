@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Trophy, Crown, Sparkles, Gamepad2, Gift, Users, Medal, Award } from "lucide-react";
+import { Trophy, Crown, Sparkles, Gamepad2, Gift, Users, Medal, Award } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserProfileLink } from "@/components/UserProfileLink";
@@ -460,7 +461,7 @@ function WinnerHero({ winner, parallax, isDark }: { winner: TournamentEntry; par
               ? "0 0 30px hsl(45 85% 55% / 0.1)"
               : "0 4px 20px hsl(42 70% 50% / 0.12), 0 2px 6px hsl(0 0% 0% / 0.04)",
           }}>
-            <Trophy className="h-8 w-8" style={{ color: isDark ? "hsl(45 85% 60%)" : "hsl(38 70% 40%)" }} />
+            <MenuIcon iconName="trophy" className="h-8 w-8" />
           </div>
         </div>
 
@@ -571,7 +572,7 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3 min-w-0">
             <div className="p-2 rounded-xl bg-primary/10">
-              <Trophy className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
@@ -589,11 +590,11 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         <div className="flex flex-wrap items-center gap-3 mt-2">
           {tournament.prize_text && (
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
-              <Gift className="h-3.5 w-3.5" /> Præmie: {tournament.prize_text}
+              <MenuIcon iconName="gift" className="h-3.5 w-3.5" /> Præmie: {tournament.prize_text}
             </span>
           )}
           <span className="text-xs text-muted-foreground inline-flex items-center gap-1">
-            <Gamepad2 className="h-3 w-3" />
+            <MenuIcon iconName="gamepad2" className="h-3 w-3" />
             {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
           </span>
         </div>
@@ -661,7 +662,7 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         {participants && participants.length > 0 && (
           <div className={cn(top10.length > 0 ? "mt-6 pt-4 border-t border-border/20" : "")}>
             <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
-              <Users className="h-3.5 w-3.5" /> {participants.length} deltagere
+              <MenuIcon iconName="users" className="h-3.5 w-3.5" /> {participants.length} deltagere
             </p>
             <div className="flex flex-wrap gap-2">
               {participants.map((p) => (

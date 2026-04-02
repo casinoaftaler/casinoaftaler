@@ -18,28 +18,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Crown,
-  Shield,
-  TrendingUp,
-  Star,
-  Users,
-  Gift,
-  Calculator,
-  Scale,
-  BarChart3,
-  AlertTriangle,
-  CheckCircle,
-  Trophy,
-  Gem,
-  Lock,
-  ArrowRight,
-  Zap,
-  CreditCard,
-  Info,
-  Heart,
-  Target,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data
@@ -174,7 +154,7 @@ const VipProgram = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />
               Casino Guides
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -203,7 +183,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-vip-program">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Crown className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="crown" className="h-7 w-7 text-primary" />
             Hvad er et VIP-program hos danske casinoer?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -248,26 +228,26 @@ const VipProgram = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Info className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="info" className="h-5 w-5 text-primary" />
                 Regulatorisk ramme for VIP-bonusser i Danmark
               </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Maksimal bonus: 1.000 kr. pr. bonustilbud (gælder også VIP-bonusser)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Omsætningskrav: Maksimalt 10x (indbetaling + bonus) jf. BEK nr. 1494</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Cashback: Anses typisk som bonuspenge og kan have omsætningskrav</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>
                     <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">
                       Spillemyndigheden
@@ -293,7 +273,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="tier-system">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Tier-systemer: Fra Bronze til Diamond
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -374,7 +354,7 @@ const VipProgram = () => {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Gem className="h-4 w-4 text-blue-400" />
+                  <MenuIcon iconName="gem" className="h-4 w-4 text-blue-400" />
                   Diamond / Black
                 </CardTitle>
               </CardHeader>
@@ -423,7 +403,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="comp-points">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Comp points og konverteringsrater
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -545,7 +525,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="cashback-vs-reload">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Cashback vs. reload bonus – hvad giver bedst EV?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -558,7 +538,7 @@ const VipProgram = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-red-500" />
+                  <MenuIcon iconName="heart" className="h-5 w-5 text-red-500" />
                   Cashback
                 </CardTitle>
               </CardHeader>
@@ -578,15 +558,15 @@ const VipProgram = () => {
                 </p>
                 <ul className="space-y-1">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Forudsigelig – du ved præcis hvad du får</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Lavere eller ingen omsætningskrav</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Beskytter mod store tab</span>
                   </li>
                 </ul>
@@ -596,7 +576,7 @@ const VipProgram = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Gift className="h-5 w-5 text-blue-500" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-blue-500" />
                   Reload Bonus
                 </CardTitle>
               </CardHeader>
@@ -623,15 +603,15 @@ const VipProgram = () => {
                 </p>
                 <ul className="space-y-1">
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
                     <span>Højere potentiel værdi, men risiko for tab</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
                     <span>Kræver omsætning – kan have negativ EV</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Kan være profitabel med lavt omsætningskrav</span>
                   </li>
                 </ul>
@@ -667,7 +647,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="omsaetningskrav-vip">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Omsætningskrav på VIP-bonusser
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -694,7 +674,7 @@ const VipProgram = () => {
           <Card className="mb-6 border-yellow-500/30 bg-yellow-500/5">
             <CardContent className="pt-6">
               <p className="text-sm text-muted-foreground flex items-start gap-2">
-                <AlertTriangle className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
                 <span>
                   <strong>Vigtigt:</strong> Vær skeptisk over for VIP-bonusser med "skjulte vilkår" som
                   max gevinstloft, spilbegrænsninger under omsætning, eller tidsfrister der er urealistisk
@@ -755,7 +735,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="vip-fordele">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Dedikeret kontaktperson og eksklusive VIP-borde
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -788,21 +768,21 @@ const VipProgram = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card>
               <CardContent className="pt-6 text-center">
-                <Zap className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="zap" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Hurtigere udbetalinger</h4>
                 <p className="text-sm text-muted-foreground">1-4 timer mod 12-24 timer standard</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6 text-center">
-                <Gift className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="gift" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Personlige bonusser</h4>
                 <p className="text-sm text-muted-foreground">Skræddersyede tilbud tilpasset din spillestil</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6 text-center">
-                <Trophy className="h-8 w-8 text-primary mx-auto mb-2" />
+                <MenuIcon iconName="trophy" className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">Eksklusive events</h4>
                 <p className="text-sm text-muted-foreground">Online turneringer og offline VIP-events</p>
               </CardContent>
@@ -817,7 +797,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="bedste-vip-programmer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sammenligning: Bedste VIP-programmer i Danmark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -914,7 +894,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvem-boer-prioritere">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvem bør prioritere VIP-programmer? – Bankroll-strategi
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -927,7 +907,7 @@ const VipProgram = () => {
             <Card className="border-green-500/30">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-green-500" />
                   VIP giver mening for dig, hvis...
                 </CardTitle>
               </CardHeader>
@@ -947,7 +927,7 @@ const VipProgram = () => {
             <Card className="border-red-500/30">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-red-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-red-500" />
                   VIP er IKKE relevant, hvis...
                 </CardTitle>
               </CardHeader>
@@ -986,7 +966,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="live-casino-vip">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             VIP-fordele i live casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1044,7 +1024,7 @@ const VipProgram = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil-vip">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Ansvarligt spil og VIP-programmer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

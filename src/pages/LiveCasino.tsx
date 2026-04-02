@@ -19,26 +19,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles,
-  ShieldCheck,
-  Tv,
-  Monitor,
-  Smartphone,
-  TrendingUp,
-  Target,
-  Gamepad2,
-  DollarSign,
-  Users,
-  AlertTriangle,
-  BarChart3,
-  Zap,
-  Brain,
-  Eye,
-  Wifi,
-  Timer,
-  Shield,
-} from "lucide-react";
+import { DollarSign, Wifi, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -138,7 +120,7 @@ const LiveCasino = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Live dealer strategi & analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -207,7 +189,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Tv className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="tv" className="h-5 w-5 text-primary" />
                   Streaming-protokoller
                 </CardTitle>
               </CardHeader>
@@ -221,7 +203,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Eye className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
                   OCR-teknologi
                 </CardTitle>
               </CardHeader>
@@ -235,7 +217,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Monitor className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="monitor" className="h-5 w-5 text-primary" />
                   Studie-infrastruktur
                 </CardTitle>
               </CardHeader>
@@ -498,7 +480,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Live Blackjack
                 </CardTitle>
               </CardHeader>
@@ -512,7 +494,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Live Roulette
                 </CardTitle>
               </CardHeader>
@@ -540,7 +522,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Game Shows
                 </CardTitle>
               </CardHeader>
@@ -754,7 +736,7 @@ const LiveCasino = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Realistisk bankroll-eksempel: Live Blackjack
               </CardTitle>
             </CardHeader>
@@ -803,7 +785,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card border-t-4 border-t-primary">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <Users className="h-5 w-5" />
+                  <MenuIcon iconName="users" className="h-5 w-5" />
                   Live casino er ideelt for dig, der...
                 </CardTitle>
               </CardHeader>
@@ -823,7 +805,7 @@ const LiveCasino = () => {
             <Card className="border-border bg-card border-t-4 border-t-destructive">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                  <AlertTriangle className="h-5 w-5" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5" />
                   Live casino er IKKE ideelt for dig, der...
                 </CardTitle>
               </CardHeader>
@@ -878,7 +860,7 @@ const LiveCasino = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="shield" className="h-6 w-6 text-primary" />
                 Ansvarligt spil i live casino – særlige risikofaktorer
               </CardTitle>
             </CardHeader>

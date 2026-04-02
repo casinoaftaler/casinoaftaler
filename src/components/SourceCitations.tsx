@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
-import { ShieldCheck, ExternalLink } from "lucide-react";
+import { ShieldCheck, ExternalLink } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Displays regulatory source citations for E-E-A-T trust signals.
@@ -13,14 +14,14 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
       aria-label="Kilder og regulering"
     >
       <div className="flex items-center gap-2 mb-3">
-        <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
+        <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary shrink-0" />
         <h3 className="text-sm font-semibold text-foreground">
           Kilder &amp; Regulering
         </h3>
       </div>
       <ul className="space-y-2 text-xs text-muted-foreground leading-relaxed">
         <li className="flex items-start gap-2">
-          <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+          <MenuIcon iconName="external-link" className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
             Licensoplysninger verificeret via{" "}
             <a
@@ -34,13 +35,13 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
           </span>
         </li>
         <li className="flex items-start gap-2">
-          <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+          <MenuIcon iconName="external-link" className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
             Bonusregler reguleres i henhold til gældende bekendtgørelse om onlinekasino (BEK nr. 1494) under dansk spillelovgivning.
           </span>
         </li>
         <li className="flex items-start gap-2">
-          <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+          <MenuIcon iconName="external-link" className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
             Selvudelukkelse administreres via{" "}
             <a
@@ -54,7 +55,7 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
           </span>
         </li>
         <li className="flex items-start gap-2">
-          <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
+          <MenuIcon iconName="external-link" className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
             Ansvarligt spil og national rådgivning via{" "}
             <a

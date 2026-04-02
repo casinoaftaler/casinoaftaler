@@ -17,31 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import ludomaniHero from "@/assets/heroes/ludomani-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Brain,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Heart,
-  Activity,
-  TrendingDown,
-  MessageCircle,
-  Info,
-  UserX,
-  HandHeart,
-} from "lucide-react";
+import { Gavel, ArrowRight, Activity, TrendingDown, UserX, HandHeart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -174,7 +151,7 @@ const LudomaniGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Heart className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="heart" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -211,7 +188,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-ludomani">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Hvad er ludomani?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -245,7 +222,7 @@ const LudomaniGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Ludomani i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -291,7 +268,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="statistik">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Ludomani i tal – Dansk statistik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -331,7 +308,7 @@ const LudomaniGuide = () => {
 
           <div className="rounded-xl border border-border bg-muted/30 p-5">
             <h3 className="text-base font-semibold mb-2 flex items-center gap-2">
-              <Info className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="info" className="h-4 w-4 text-primary" />
               Kilde
             </h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -350,7 +327,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="symptomer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />
             Symptomer og advarselstegn
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -363,7 +340,7 @@ const LudomaniGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
                   Adfærdsmæssige symptomer
                 </CardTitle>
               </CardHeader>
@@ -378,7 +355,7 @@ const LudomaniGuide = () => {
                     "Lyver over for familie eller andre for at skjule omfanget af spil",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <AlertTriangle className="h-3.5 w-3.5 mt-1 text-destructive shrink-0" />
+                      <MenuIcon iconName="alert-triangle" className="h-3.5 w-3.5 mt-1 text-destructive shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -415,7 +392,7 @@ const LudomaniGuide = () => {
 
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-5 flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-sm text-foreground mb-1">Vigtigt at vide</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -507,7 +484,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="neurobiologi">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Neurobiologien bag ludomani
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -518,7 +495,7 @@ const LudomaniGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 space-y-4 mb-6">
             <h3 className="font-semibold text-foreground flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
               Nøglemekanismer i hjernen
             </h3>
             <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
@@ -585,7 +562,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="selvtest">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Selvtest – er du i risikozonen?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -694,7 +671,7 @@ const LudomaniGuide = () => {
                   {item.url !== "#" && (
                     <Button variant="outline" size="sm" asChild>
                       <a href={item.url} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-3.5 w-3.5" />
+                        <MenuIcon iconName="external-link" className="mr-2 h-3.5 w-3.5" />
                         Besøg
                       </a>
                     </Button>
@@ -723,7 +700,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="kognitiv-terapi">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Kognitiv adfærdsterapi (KAT) for ludomani
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -783,7 +760,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="paaroerende">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Hjælp til pårørende
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -802,7 +779,7 @@ const LudomaniGuide = () => {
               "Børns utryghed og adfærdsmæssige reaktioner på familiekonflikter",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <Heart className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="heart" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm leading-relaxed">{item}</span>
               </li>
             ))}
@@ -856,7 +833,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="forebyggelse">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Forebyggelse og selvhjælpsværktøjer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -940,7 +917,7 @@ const LudomaniGuide = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <span className="font-medium text-sm text-foreground">{item.title}:</span>{" "}
                   <span className="text-sm text-muted-foreground">{item.desc}</span>
@@ -969,7 +946,7 @@ const LudomaniGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Phone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="phone" className="h-7 w-7 text-primary" />
             Få hjælp nu
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -1014,7 +991,7 @@ const LudomaniGuide = () => {
                   </p>
                   <Button variant="outline" asChild className="w-full">
                     <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-3.5 w-3.5" />
+                      <MenuIcon iconName="external-link" className="mr-2 h-3.5 w-3.5" />
                       {resource.label}
                     </a>
                   </Button>
@@ -1034,13 +1011,13 @@ const LudomaniGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     Ring til StopSpillet: 70 22 28 25
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>

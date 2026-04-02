@@ -28,14 +28,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import {
-  ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, BookOpen, Smartphone, Headphones,
-  Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
-  Clock, Target, TrendingUp, Users, Lock, Layers, Flame,
-  BarChart3, Activity, ShoppingBag, BadgeCheck, CalendarDays,
-  Calculator, AlertTriangle, Timer, MessageSquare, Mail,
-} from "lucide-react";
+import { RotateCcw, Check, X, Activity, BadgeCheck, Timer, MessageSquare } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -103,7 +97,7 @@ const SpilleautomatenAnmeldelse = () => {
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4">
               <Badge variant="secondary">
-                <Star className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />
                 4.9 / 5 – Anbefalet Casino
               </Badge>
               <Badge variant="outline" className="border-white/40 text-white">
@@ -124,7 +118,7 @@ const SpilleautomatenAnmeldelse = () => {
               size="lg"
               className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"
             >
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent Bonus hos Spilleautomaten
             </Button>
           </div>
@@ -143,7 +137,7 @@ const SpilleautomatenAnmeldelse = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-xl">
-                  <Zap className="h-6 w-6 text-primary" />
+                  <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                   Hurtige Fakta – Spilleautomaten
                 </CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
@@ -249,7 +243,7 @@ const SpilleautomatenAnmeldelse = () => {
                   { day: "Dag 13–14", title: "Kundeservice og omsætningsafslutning", desc: "Kontaktede kundeservice 4 gange via live chat. Gns. svartid: 1 min. 50 sek. Dansk support, kompetente svar. Gennemspillede bonusomsætning (20.000 kr. nået dag 13). Resterende bonussaldo: 210 kr. – hævet direkte. Samlede loyalitetspoints efter 14 dage: 1.247." },
                 ].map((item) => (
                   <div key={item.day} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                    <CalendarDays className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="calendar-days" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-semibold text-foreground">{item.day}</h4>
@@ -345,7 +339,7 @@ const SpilleautomatenAnmeldelse = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Gift className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                 Sådan fungerer 5-dages bonusmodellen
               </CardTitle>
             </CardHeader>
@@ -375,7 +369,7 @@ const SpilleautomatenAnmeldelse = () => {
           <Card className="border-border bg-card mb-6 border-l-4 border-l-accent">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
-                <BarChart3 className="h-6 w-6 text-accent" />
+                <MenuIcon iconName="bar-chart3" className="h-6 w-6 text-accent" />
                 <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Strategisk analyse: Hvorfor 5 dage slår 1 dag</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
@@ -441,7 +435,7 @@ const SpilleautomatenAnmeldelse = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
             <Card className="border-border bg-card col-span-1 lg:col-span-2">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Calculator className="h-5 w-5 text-primary" />EV-Beregning (5-dages samlet)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />EV-Beregning (5-dages samlet)</CardTitle></CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="p-3 bg-muted/30 rounded border border-border">
@@ -473,7 +467,7 @@ const SpilleautomatenAnmeldelse = () => {
             </Card>
             
             <Card className="border-border bg-card border-l-4 border-l-amber-500">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><AlertTriangle className="h-5 w-5 text-amber-500" />Volatilitets-faktor</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-amber-500" />Volatilitets-faktor</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Selvom EV er positiv (+200 kr.), vil din faktiske oplevelse variere baseret på spillets volatilitet.
@@ -555,7 +549,7 @@ const SpilleautomatenAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilleautomater
                 </CardTitle>
               </CardHeader>
@@ -572,7 +566,7 @@ const SpilleautomatenAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   Live Casino
                 </CardTitle>
               </CardHeader>
@@ -586,7 +580,7 @@ const SpilleautomatenAnmeldelse = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Game Shows
                 </CardTitle>
               </CardHeader>
@@ -667,7 +661,7 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Mail className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="mail" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">E-mail Support</h3>
                 <p className="text-sm text-muted-foreground">Svar inden for 24 timer. Imødekommende og professionel tone. Bedst til komplekse henvendelser.</p>
@@ -740,7 +734,7 @@ const SpilleautomatenAnmeldelse = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" />
                 <div>
                   <h3 className="font-semibold text-foreground">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
@@ -806,12 +800,12 @@ const SpilleautomatenAnmeldelse = () => {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Button onClick={handleBonusClick} size="lg" className="flex-1 font-bold">
-              <Gift className="mr-2 h-5 w-5" />
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />
               Hent 5-Dages Bonus hos Spilleautomaten
             </Button>
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
-                <Trophy className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>

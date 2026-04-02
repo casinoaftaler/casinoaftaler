@@ -12,35 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Gamepad2,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Sparkles,
-  TrendingUp,
-  Lock,
-  Eye,
-  Zap,
-  BookOpen,
-  Star,
-  Users,
-  Monitor,
-  Smartphone,
-  DollarSign,
-  BarChart3,
-  Percent,
-  Calculator,
-  Heart,
-  Dice1,
-  Trophy,
-  ArrowRight,
-  Info,
-  Flame,
-} from "lucide-react";
+import { DollarSign, Dice1, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -202,7 +175,7 @@ const GratisCasinoSpil = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="gamepad2" className="mr-1.5 h-3.5 w-3.5" />
               Komplet guide til gratis casinospil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -477,7 +450,7 @@ const GratisCasinoSpil = () => {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-2">
-                  <Monitor className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="monitor" className="h-5 w-5 text-primary" />
                   <CardTitle className="text-lg">Demospil (virtuelle penge)</CardTitle>
                 </div>
               </CardHeader>
@@ -495,7 +468,7 @@ const GratisCasinoSpil = () => {
             <Card className="border-border">
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-2">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   <CardTitle className="text-lg">Free spins (rigtige penge)</CardTitle>
                 </div>
               </CardHeader>
@@ -584,7 +557,7 @@ const GratisCasinoSpil = () => {
 
           <div className="rounded-lg border-2 border-yellow-500/50 bg-yellow-500/5 p-5 mb-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-500" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-500" />
               <div>
                 <p className="font-semibold mb-2">Faresignaler at være opmærksom på</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">
@@ -600,7 +573,7 @@ const GratisCasinoSpil = () => {
 
           <div className="rounded-lg border border-border bg-muted/30 p-5">
             <div className="flex items-start gap-3">
-              <Heart className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="heart" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <p className="font-semibold mb-2">Ressourcer for hjælp</p>
                 <ul className="space-y-1 text-sm text-muted-foreground">

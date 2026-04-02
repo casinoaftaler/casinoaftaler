@@ -1,17 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import {
-  Activity,
-  ArrowRight,
-  CheckCircle2,
-  ExternalLink,
-  FileCheck,
-  Landmark,
-  Loader2,
-  ShieldCheck,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { Activity, ArrowRight, FileCheck, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -162,7 +152,7 @@ export default function MarketIntelligence() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4 gap-2 border border-primary-foreground/15 bg-background/15 text-primary-foreground backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="h-3.5 w-3.5" />
               Verificeret markedsindsigt · 2026
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
@@ -173,15 +163,15 @@ export default function MarketIntelligence() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-primary-foreground/85">
               <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <ShieldCheck className="h-4 w-4 text-primary-foreground" />
+                <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary-foreground" />
                 Verificerede markedssignaler
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <TrendingUp className="h-4 w-4 text-primary-foreground" />
+                <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary-foreground" />
                 Live snapshot af markedet
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <Landmark className="h-4 w-4 text-primary-foreground" />
+                <MenuIcon iconName="landmark" className="h-4 w-4 text-primary-foreground" />
                 Kilder fra licens- og bonussider
               </div>
             </div>
@@ -206,7 +196,7 @@ export default function MarketIntelligence() {
               <Card className="overflow-hidden border-border bg-card/80">
                 <div className="border-b border-border bg-muted/30 px-6 py-4">
                   <div className="flex items-center gap-2 text-base font-semibold text-foreground">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                     Hvorfor denne side findes
                   </div>
                 </div>
@@ -350,7 +340,7 @@ export default function MarketIntelligence() {
                 <Card className="border-border bg-card/80">
                   <CardContent className="flex items-start gap-4 p-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-background/60 text-primary">
-                      <ShieldCheck className="h-5 w-5" />
+                      <MenuIcon iconName="shield-check" className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-muted-foreground">Gyldige licenser</p>
@@ -363,7 +353,7 @@ export default function MarketIntelligence() {
                 <Card className="border-border bg-card/80">
                   <CardContent className="flex items-start gap-4 p-6">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-background/60 text-primary">
-                      <Sparkles className="h-5 w-5" />
+                      <MenuIcon iconName="sparkles" className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-muted-foreground">Bonusvilkår verificeret</p>
@@ -416,7 +406,7 @@ export default function MarketIntelligence() {
                                     loading="lazy"
                                   />
                                 ) : (
-                                  <Landmark className="h-7 w-7 text-primary" />
+                                  <MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />
                                 )}
                               </div>
 
@@ -460,7 +450,7 @@ export default function MarketIntelligence() {
                                       className="inline-flex items-center gap-2 text-primary underline underline-offset-4 hover:text-primary/80"
                                     >
                                       {event.source_label ?? "Kilde"}
-                                      <ExternalLink className="h-4 w-4" />
+                                      <MenuIcon iconName="external-link" className="h-4 w-4" />
                                     </a>
                                   ) : null}
                                 </div>
@@ -484,7 +474,7 @@ export default function MarketIntelligence() {
                 <Card className="border-border bg-card/80">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                       Hvad der bliver verificeret
                     </CardTitle>
                   </CardHeader>
@@ -515,7 +505,7 @@ export default function MarketIntelligence() {
 
             <section className="mb-12">
               <div className="mb-4 flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 <h2 className="text-2xl font-bold">Seneste verificerede markedshændelser</h2>
               </div>
               <div className="space-y-4">
@@ -541,7 +531,7 @@ export default function MarketIntelligence() {
                                   loading="lazy"
                                 />
                               ) : (
-                                <Landmark className="h-6 w-6 text-primary" />
+                                <MenuIcon iconName="landmark" className="h-6 w-6 text-primary" />
                               )}
                             </div>
 
@@ -616,7 +606,7 @@ export default function MarketIntelligence() {
                                     loading="lazy"
                                   />
                                 ) : (
-                                  <Landmark className="h-4 w-4 text-primary" />
+                                  <MenuIcon iconName="landmark" className="h-4 w-4 text-primary" />
                                 )}
                               </div>
                               <div>

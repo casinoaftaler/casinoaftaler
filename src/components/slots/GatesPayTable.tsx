@@ -6,7 +6,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Sparkles } from "lucide-react";
+import { BookOpen, Sparkles } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
@@ -86,7 +87,7 @@ export function GatesPayTable({ gameId, bet = 1 }: GatesPayTableProps) {
             "transition-all duration-200"
           )}
         >
-          <BookOpen className={cn("h-4 w-4", theme.dropShadowGlow)} />
+          <MenuIcon iconName="book-open" className="h-5 w-5" />
           Gevinsttabel
         </Button>
       </DialogTrigger>
@@ -136,7 +137,7 @@ export function GatesPayTable({ gameId, bet = 1 }: GatesPayTableProps) {
                 </div>
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="h-3.5 w-3.5 text-purple-400" />
+                    <MenuIcon iconName="sparkles" className="h-3.5 w-3.5 text-purple-400" />
                     <span className="text-sm font-semibold text-purple-300">Scatter</span>
                   </div>
                   <div className="space-y-0.5 text-xs">

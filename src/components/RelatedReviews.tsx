@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Star, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -269,7 +270,7 @@ export function RelatedReviews({ currentSlug }: RelatedReviewsProps) {
                 </Link>
                 {score && (
                   <span className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
-                    <Star className="h-3 w-3 fill-primary text-primary" />
+                    <MenuIcon iconName="star" className="h-3 w-3 fill-primary text-primary" />
                     {score.toFixed(1)} / 5.0
                   </span>
                 )}

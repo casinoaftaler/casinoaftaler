@@ -6,7 +6,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, ExternalLink } from "lucide-react";
+import { User, ExternalLink } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface UserProfileLinkProps {
   userId: string;
@@ -31,7 +32,7 @@ export function UserProfileLink({
     <Avatar className={`${avatarClassName} cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all`}>
       <AvatarImage src={avatarUrl || undefined} alt={displayName || "Bruger"} />
       <AvatarFallback>
-        <User className="h-4 w-4" />
+        <MenuIcon iconName="user" className="h-4 w-4" />
       </AvatarFallback>
     </Avatar>
   );
@@ -56,7 +57,7 @@ export function UserProfileLink({
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
           <Link to={profileUrl} className="flex items-center gap-2">
-            <ExternalLink className="h-4 w-4" />
+            <MenuIcon iconName="external-link" className="h-4 w-4" />
             Se profil
           </Link>
         </DropdownMenuItem>

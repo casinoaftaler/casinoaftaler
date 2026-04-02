@@ -16,7 +16,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper, TrendingUp } from "lucide-react";
+import { ChevronDown, LogOut, Menu, X, Dices, Video, UserCircle, MoreHorizontal, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 // Note: Many icons above are used in the desktop dropdown menus
 import { CreditCoin } from "@/components/CreditCoin";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
@@ -133,7 +134,7 @@ export const Header = memo(function Header() {
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
                       <AvatarFallback>
-                        <User className="h-4 w-4" />
+                        <MenuIcon iconName="user" className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
                     <span className="hidden text-sm font-medium sm:inline">
@@ -151,7 +152,7 @@ export const Header = memo(function Header() {
                       <Avatar className="h-8 w-8">
                         <AvatarImage src={profile?.avatar_url || undefined} alt={profile?.display_name || "Bruger"} />
                         <AvatarFallback>
-                          <User className="h-4 w-4" />
+                          <MenuIcon iconName="user" className="h-4 w-4" />
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
@@ -177,18 +178,18 @@ export const Header = memo(function Header() {
                     Profil
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setRedeemDialogOpen(true)} className="cursor-pointer">
-                    <Ticket className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="ticket" className="mr-2 h-4 w-4" />
                     Indløs Kode
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
                     {isDark ? (
                       <>
-                        <Sun className="mr-2 h-4 w-4" />
+                        <MenuIcon iconName="sun" className="mr-2 h-4 w-4" />
                         Lys tilstand
                       </>
                     ) : (
                       <>
-                        <Moon className="mr-2 h-4 w-4" />
+                        <MenuIcon iconName="moon" className="mr-2 h-4 w-4" />
                         Mørk tilstand
                       </>
                     )}

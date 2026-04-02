@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Play, Clock } from "lucide-react";
+import { Play, Clock } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useRef, useState } from "react";
 import { AgeVerificationDialog } from "./AgeVerificationDialog";
 import { useAgeVerification } from "@/hooks/useAgeVerification";
@@ -137,7 +138,7 @@ export function FeaturedSlotPanel({
                 </div>
                 {disabled ? (
                   <Button disabled size="default" variant="secondary" className="gap-2 shrink-0 text-sm px-6">
-                    <Clock className="h-4 w-4" />
+                    <MenuIcon iconName="clock" className="h-4 w-4" />
                     Kommer snart
                   </Button>
                 ) : (
@@ -147,7 +148,7 @@ export function FeaturedSlotPanel({
                     className="bg-amber-500 hover:bg-amber-600 text-black font-semibold gap-2 shrink-0 shadow-[0_2px_12px_rgba(251,191,36,0.25)] group-hover:shadow-[0_4px_24px_rgba(251,191,36,0.5)] transition-all duration-300 text-sm px-6"
                   >
                     <Link to={href} onClick={handlePlayClick}>
-                      <Play className="h-4 w-4" />
+                      <MenuIcon iconName="play" className="h-4 w-4" />
                       <span>Spil nu</span>
                       <span className="btn-arrow-shift inline-block">→</span>
                     </Link>

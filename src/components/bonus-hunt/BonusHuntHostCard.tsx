@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Video, ExternalLink, Play } from "lucide-react";
+import { Video } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { KEVIN_SAME_AS, JONAS_SAME_AS } from "@/lib/seo";
 
 const SITE_URL = "https://casinoaftaler.dk";
@@ -96,7 +97,7 @@ function SocialIcon({ platform }: { platform: string }) {
         </svg>
       );
     default:
-      return <ExternalLink className={size} />;
+      return <MenuIcon iconName="external-link" className="h-5 w-5" />;
   }
 }
 
@@ -180,7 +181,7 @@ export function BonusHuntHostCard({ huntNumber, host = "kevin" }: { huntNumber?:
               to={hostInfo.profilePath}
               className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              <Play className="h-3 w-3" />
+              <MenuIcon iconName="play" className="h-3 w-3" />
               Se {hostInfo.name}s profil
             </Link>
           </div>

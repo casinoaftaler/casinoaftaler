@@ -22,7 +22,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Sparkles, Target, BarChart3, AlertTriangle, DollarSign, TrendingUp, Shield, Clock, Layers } from "lucide-react";
+import { DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -100,7 +101,7 @@ const LiveBaccaratGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Banker edge & live analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -162,7 +163,7 @@ const LiveBaccaratGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Komplet EV-analyse: Alle tre standardbets
               </CardTitle>
             </CardHeader>
@@ -265,7 +266,7 @@ const LiveBaccaratGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                 Sidebets – House Edge oversigt
               </CardTitle>
             </CardHeader>
@@ -346,26 +347,26 @@ const LiveBaccaratGuide = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-primary" />Standard Baccarat</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Standard Baccarat</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">48-50 sek./runde, 40-50 hænder/time. Klassisk oplevelse med ceremoniel kort-afsløring. Minimumsindsats: typisk 25-50 kr. Det bedste format for nye spillere og dem, der vil have tid til at overveje. Forventet tab: 42-53 kr./time ved 100 kr. banker-bet.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Baccarat Squeeze</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Baccarat Squeeze</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Dealeren "squeezer" kortene langsomt – en traditionel asiatisk ritual med dramatisk kamera-zoom. Tempoet er langsommere (30-35 hænder/time), men spændingen er intensiveret. Matematikken er identisk med standard. Det laveste forventede tab pr. time af alle varianter: 32-37 kr. ved 100 kr. banker.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Clock className="h-5 w-5 text-destructive" />Speed Baccarat</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="clock" className="h-5 w-5 text-destructive" />Speed Baccarat</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">27 sek./runde, 70-80 hænder/time. Kort afsløres øjeblikkeligt uden ceremoni. Fordobler næsten dit forventede tab pr. time vs. standard: 74-85 kr./time ved 100 kr. banker. Kun for spillere, der bevidst søger højere volumen og er komfortable med den accelererede bankroll-erosion.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />Lightning Baccarat</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Lightning Baccarat</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">RNG-multiplikatorer (2x-8x) på 1-5 kort pr. runde. 20 % Lightning Fee betales ved hver indsats. Max gevinst op til 262.144x. House edge stiger til ca. 1,24 % (effektivt inkl. fee). For spillere der søger ekstrem volatilitet med accept af markant højere forventet tab.</p></CardContent>
             </Card>
           </div>
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Variant-sammenligning: Forventet tab pr. time (100 kr. indsats)
               </CardTitle>
             </CardHeader>
@@ -585,7 +586,7 @@ const LiveBaccaratGuide = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card border-l-4 border-l-primary">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Baccarat er optimalt for dig, hvis du:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Baccarat er optimalt for dig, hvis du:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc pl-4">
                   <li>Søger et spil med lav house edge (1,06 %) uden at lære kompleks strategi</li>
@@ -597,7 +598,7 @@ const LiveBaccaratGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-destructive">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-destructive" />Undgå baccarat, hvis du:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />Undgå baccarat, hvis du:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc pl-4">
                   <li>Har tendens til at jagte tab (baccarats høje tempo accelererer tab-spiral-adfærd dramatisk)</li>

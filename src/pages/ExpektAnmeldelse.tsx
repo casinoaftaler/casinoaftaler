@@ -28,7 +28,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award, Headphones, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -54,7 +55,7 @@ const ExpektAnmeldelse = () => {
       <SEO title="Expekt Anmeldelse 2026 – Sportsbetting & Casino | Casinoaftaler" description="Expekt testet: Betsson Group-ejet sportsbook og casino. Dansk licens, live betting og 1.000+ casinospil. Se vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/expekt", "TzSmePJgd84", { title: "Expekt Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Expekt ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Sports & Casino</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="globe" className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Sports & Casino</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Expekt Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af Expekt – en kombination af sportsbetting og casino fra Betsson Group med dansk licens og komplet spiludbud.</p>
         </div></div>
@@ -75,7 +76,7 @@ const ExpektAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Expekt</CardTitle></CardHeader><CardContent>
+        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Expekt</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">50 freespins</p></div>
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Ingen (på spins)</p></div>
@@ -126,9 +127,9 @@ const ExpektAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Casino-sektionen under lup</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts casino-sektion har gennemgået markant udvikling. Hvor den for få år siden primært var et tillæg til sportsbook'en, er den nu en selvstændig casinooplevelse med hundredvis af titler. Dog: det er numerisk mindre end dedikerede casino-platforme. Forvent 600-800 spilleautomater versus 1.500+ hos <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">600+ slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>. Populære titler er til stede, men nyere niche-udbydere mangler.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground"><Link to="/live-casino" className={linkClass}>Live borde</Link> med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>: roulette, blackjack, baccarat og game shows. Kvaliteten matcher markedets bedste.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Sportsbook</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">30+ sportsgrene, live-betting med realtids-statistikker, virtuelle sportsbegivenheder og e-sport. Expekts kerne og klart stærkeste produktområde.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">600+ slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>. Populære titler er til stede, men nyere niche-udbydere mangler.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground"><Link to="/live-casino" className={linkClass}>Live borde</Link> med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>: roulette, blackjack, baccarat og game shows. Kvaliteten matcher markedets bedste.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Sportsbook</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">30+ sportsgrene, live-betting med realtids-statistikker, virtuelle sportsbegivenheder og e-sport. Expekts kerne og klart stærkeste produktområde.</p></CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportsbook'en er Expekts ubestridte styrke. Med dækning af 30+ sportsgrene – fra fodbold, tennis og ishockey til mere niche sportsgrene som dart, snooker og MMA – er det en af de mest komplette sportsbooks på det danske marked. Live-betting er responsiv med hurtige odds-opdateringer og cash-out funktionalitet på de fleste markeder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi analyserede RTP-niveauerne på de mest populære slots under vores test. Starburst (96,08%), Book of Dead (96,21%), Sweet Bonanza (96,48%) og Gates of Olympus (96,50%) var alle til stede i deres standardversioner. Expekt anvender ikke reducerede RTP-versioner – et positivt tegn, der bekræfter, at Betsson Group opretholder fair spilleforhold på tværs af sine brands. Bordspil som blackjack tilbyder standard RTP på 99,5% med optimal strategi.</p>
@@ -215,7 +216,7 @@ const ExpektAnmeldelse = () => {
 
         {/* EV-analyse – Archetype D */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Expected Value – kvantificering af Expekts samlede bonusværdi</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Expected Value – kvantificering af Expekts samlede bonusværdi</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For den matematisk orienterede spiller er det afgørende at kvantificere den reelle værdi af Expekts tilbud. Vi gennemregner her den samlede Expected Value (EV) for en typisk ny spiller, der udnytter casino-velkomstbonussen fuldt ud – og sammenligner med markedets alternativer.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
             <CardContent className="pt-6">
@@ -267,8 +268,8 @@ const ExpektAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Ratingen på 3.8/5 afspejler, at Expekt evalueres som casino – og her ligger det under rene casino-platforme som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4.7) og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (4.3). Men tilføj sportsbook-dimensionen, og den samlede værdi stiger markant. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["expekt"].scores} total={CASINO_SCORES["expekt"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
         <UserReviewSection casinoSlug="expekt" casinoName="Expekt" />

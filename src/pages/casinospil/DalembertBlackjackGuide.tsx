@@ -16,37 +16,8 @@ import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Calculator,
-  Activity,
-  LineChart,
-  ArrowUp,
-  ArrowDown,
-  Minus,
-  GraduationCap,
-  Heart,
-  Lightbulb,
-} from "lucide-react";
+import { Timer, Activity, LineChart, ArrowUp, ArrowDown, GraduationCap, Lightbulb } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/dalembert-blackjack-hero.jpg";
 
@@ -148,7 +119,7 @@ const DalembertBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Balanceret analyse
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" /> Balanceret analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert-Systemet i Blackjack – Oplysningstidens Balance Møder Casino-Matematikken
@@ -206,7 +177,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Systemmekanik: Lineær Progression Forklaret Step-by-Step
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -222,13 +193,13 @@ const DalembertBlackjackGuide = () => {
               <p className="text-muted-foreground"><strong>Gevinst:</strong> Sænk indsatsen med én basisenhed (f.eks. 200 → 150 → 100 → 50...)</p>
             </div>
             <div className="flex items-center gap-3">
-              <Minus className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+              <MenuIcon iconName="minus" className="h-5 w-5 text-muted-foreground flex-shrink-0" />
               <p className="text-muted-foreground"><strong>Gulv:</strong> Indsatsen kan aldrig gå under basisenheden.</p>
             </div>
           </div>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             En Komplet Session: 15 Hænder med D'Alembert
           </h3>
           <div className="overflow-x-auto mb-6">
@@ -261,7 +232,7 @@ const DalembertBlackjackGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Eskalering: D'Alembert vs. Martingale vs. Fibonacci efter 10 tab
           </h3>
           <div className="overflow-x-auto mb-6">
@@ -368,7 +339,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Det Matematiske Bevis: Hvorfor D'Alembert Virker ved 50/50 – Men Fejler i Blackjack
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -406,7 +377,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Heart className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="heart" className="h-7 w-7 text-primary" />
             D'Alemberts Psykologiske Fordele: Hvorfor Det Føles Bedre
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -416,7 +387,7 @@ const DalembertBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                   1. Forudsigelig risiko
                 </h3>
                 <p className="text-muted-foreground">
@@ -427,7 +398,7 @@ const DalembertBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <Scale className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
                   2. Naturlig balance-mekanisme
                 </h3>
                 <p className="text-muted-foreground">
@@ -438,7 +409,7 @@ const DalembertBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   3. Længere spilletid
                 </h3>
                 <p className="text-muted-foreground">
@@ -449,7 +420,7 @@ const DalembertBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   4. Let at huske og udføre
                 </h3>
                 <p className="text-muted-foreground">
@@ -467,7 +438,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             D'Alembert-Varianter: Contra, Double og Accelerated
           </h2>
 
@@ -494,7 +465,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Optimalt Bordvalg for D'Alembert-Spillere
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -550,7 +521,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />
             Risk of Ruin: D'Alembert vs. Andre Systemer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -586,7 +557,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             6 Regler for Optimal D'Alembert-Brug i Blackjack
           </h2>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -616,7 +587,7 @@ const DalembertBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Konklusion: D'Alembert er Det Mindst Dårlige Valg – Men Flat Betting Er Stadig Bedre
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

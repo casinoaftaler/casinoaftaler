@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { Coins } from "lucide-react";
+import { Coins } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 
 interface WinDisplayProps {
@@ -27,7 +28,7 @@ export function WinDisplay({ amount, isAnimating, gameId }: WinDisplayProps) {
         isAnimating && amount > 0 && "animate-pulse scale-110"
       )}
     >
-      <Coins className={cn("h-5 w-5", amount > 0 ? accentColor : "text-muted-foreground")} />
+      <MenuIcon iconName="coins" className={cn("h-5 w-5", amount > 0 ? accentColor : "text-muted-foreground")} />
       <span
         className={cn(
           "font-bold text-lg",

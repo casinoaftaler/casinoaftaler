@@ -1,4 +1,5 @@
-import { Star, MessageSquare, ShieldCheck, Eye, EyeOff } from "lucide-react";
+import { MessageSquare, EyeOff } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserReviewForm } from "@/components/UserReviewForm";
@@ -30,7 +31,7 @@ function PlaceholderReviewCard() {
           </div>
           <div className="ml-auto flex gap-0.5">
             {[1, 2, 3, 4, 5].map((s) => (
-              <Star key={s} className="h-3 w-3 text-muted" />
+              <MenuIcon iconName="star" className="h-3 w-3 text-muted" />
             ))}
           </div>
         </div>
@@ -79,10 +80,10 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
       {/* Trust badges */}
       <div className="flex flex-wrap gap-3 mb-6 text-xs text-muted-foreground">
         <span className="flex items-center gap-1">
-          <ShieldCheck className="h-3.5 w-3.5 text-green-500" /> 100% ægte anmeldelser
+          <MenuIcon iconName="shield-check" className="h-3.5 w-3.5 text-green-500" /> 100% ægte anmeldelser
         </span>
         <span className="flex items-center gap-1">
-          <Eye className="h-3.5 w-3.5 text-primary" /> Modereres for spam
+          <MenuIcon iconName="eye" className="h-3.5 w-3.5 text-primary" /> Modereres for spam
         </span>
         <span className="flex items-center gap-1">
           <EyeOff className="h-3.5 w-3.5 text-muted-foreground" /> Email vises ikke offentligt

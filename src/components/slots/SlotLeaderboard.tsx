@@ -5,7 +5,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Trophy, Medal, Award, Users, Search, Zap, Star, TrendingUp, Clock, History } from "lucide-react";
+import { History } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
@@ -30,10 +31,10 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
 function getCategoryIcon(category: LeaderboardCategory) {
   switch (category) {
-    case "highest_x": return <Zap className="h-4 w-4" />;
-    case "highest_win": return <Star className="h-4 w-4" />;
+    case "highest_x": return <MenuIcon iconName="zap" className="h-4 w-4" />;
+    case "highest_win": return <MenuIcon iconName="star" className="h-4 w-4" />;
     case "total_points":
-    default: return <TrendingUp className="h-4 w-4" />;
+    default: return <MenuIcon iconName="trending-up" className="h-4 w-4" />;
   }
 }
 
@@ -57,9 +58,9 @@ function LeaderboardRow({
   category?: LeaderboardCategory;
 }) {
   const getRankIcon = () => {
-    if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
-    if (rank === 2) return <Medal className="h-5 w-5 text-gray-400" />;
-    if (rank === 3) return <Award className="h-5 w-5 text-amber-700" />;
+    if (rank === 1) return <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-500" />;
+    if (rank === 2) return <MenuIcon iconName="medal" className="h-5 w-5 text-gray-400" />;
+    if (rank === 3) return <MenuIcon iconName="award" className="h-5 w-5 text-amber-700" />;
     return <span className="w-5 text-center text-muted-foreground font-bold">{rank}</span>;
   };
 
@@ -147,7 +148,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
         <CardHeader className={cn("pb-2 border-b", theme.leaderboardHeaderBorder)}>
          <CardTitle className={cn("flex items-center gap-2 text-base", theme.leaderboardTitleText)}>
             <div className={cn("p-1 rounded-md", theme.leaderboardIconBg)}>
-              <Trophy className={cn("h-4 w-4", theme.leaderboardIconColor)} />
+              <MenuIcon iconName="trophy" className="h-5 w-5" />
             </div>
             <span>Månedsturnering</span>
             <Badge variant="outline" className={cn("ml-auto text-[10px] capitalize whitespace-nowrap", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText)}>
@@ -159,7 +160,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
         {/* Countdown timer */}
         <div className={cn("flex items-center justify-between px-6 py-2 border-b text-xs", theme.leaderboardHeaderBorder)}>
           <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Clock className="h-3.5 w-3.5" />
+            <MenuIcon iconName="clock" className="h-3.5 w-3.5" />
             <span>Nulstilles om</span>
           </div>
           <span className="font-mono font-semibold text-foreground">{countdown.label}</span>
@@ -189,15 +190,15 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
               <Tabs value={category} onValueChange={(v) => setCategory(v as LeaderboardCategory)} className="mb-3">
                 <TabsList className={cn("w-full grid grid-cols-3", theme.leaderboardTabsBg)}>
                   <TabsTrigger value="total_points" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                    <TrendingUp className="h-3 w-3 mr-1" />
+                    <MenuIcon iconName="trending-up" className="h-3 w-3 mr-1" />
                     Point
                   </TabsTrigger>
                   <TabsTrigger value="highest_x" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                    <Zap className="h-3 w-3 mr-1" />
+                    <MenuIcon iconName="zap" className="h-3 w-3 mr-1" />
                     Højeste X
                   </TabsTrigger>
                   <TabsTrigger value="highest_win" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                    <Star className="h-3 w-3 mr-1" />
+                    <MenuIcon iconName="star" className="h-3 w-3 mr-1" />
                     Største Gevinst
                   </TabsTrigger>
                 </TabsList>
@@ -223,14 +224,14 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                       variant="ghost"
                       className={cn("w-full mt-3 border", theme.leaderboardShowAllText, theme.leaderboardShowAllHoverText, theme.leaderboardShowAllHoverBg, theme.leaderboardShowAllBorder)}
                     >
-                      <Users className="h-4 w-4 mr-2" />
+                      <MenuIcon iconName="users" className="h-4 w-4 mr-2" />
                       Vis alle ({entries.length})
                     </Button>
                   </DialogTrigger>
                   <DialogContent className={cn("max-w-md", theme.leaderboardDialogBorder, theme.leaderboardDialogBg)}>
                     <DialogHeader>
                       <DialogTitle className={cn("flex items-center gap-2", theme.leaderboardDialogTitleText)}>
-                        <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
+                        <MenuIcon iconName="trophy" className="h-5 w-5" />
                         Månedsturnering — {getCategoryLabel(category)}
                       </DialogTitle>
                     </DialogHeader>
@@ -298,7 +299,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                         </>
                       ) : (
                         <div className="text-center py-8">
-                          <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
+                          <MenuIcon iconName="trophy" className="h-5 w-5" />
                           <p className={theme.leaderboardEmptyText}>
                             {searchQuery ? "Ingen spillere matcher søgningen" : "Ingen gevinster i denne kategori"}
                           </p>
@@ -311,7 +312,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
             </>
           ) : (
             <div className="text-center py-8">
-              <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
+              <MenuIcon iconName="trophy" className="h-5 w-5" />
               <p className={theme.leaderboardEmptyText}>Ingen gevinster endnu</p>
               <p className={cn("text-sm", theme.leaderboardEmptySubtext)}>Vær den første på ranglisten!</p>
             </div>

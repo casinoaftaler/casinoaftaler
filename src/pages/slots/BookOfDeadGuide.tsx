@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy, BookOpen
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -107,7 +108,7 @@ const BookOfDeadGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Shield className="mr-1.5 h-3.5 w-3.5" /> Risikoprofil-Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" /> Risikoprofil-Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Book of Dead</h1>
             <p className="text-lg text-white/80">En ærlig risikoprofil-analyse af Play'n GO's mest ikoniske slot – fra expanding symbol-matematik til wagering-optimering.</p>
           </div>
@@ -152,7 +153,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk DNA: Arkitekturen Bag Book of Dead</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk DNA: Arkitekturen Bag Book of Dead</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6"><p className="text-sm text-muted-foreground">Udvikler</p><p className="text-xl font-bold"><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link></p></CardContent></Card>
             <Card><CardContent className="pt-6"><p className="text-sm text-muted-foreground">RTP (Standard)</p><p className="text-xl font-bold">96,21 %</p></CardContent></Card>
@@ -178,7 +179,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: EXPANDING SYMBOLS MATEMATIK ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Expanding Symbols: Den Matematiske Motor Bag Bonusrunden</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Expanding Symbols: Den Matematiske Motor Bag Bonusrunden</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Free spins-runden er der, hvor Book of Dead transformeres fra en standard gevinstlinje-slot til noget helt specielt. Ved trigger (3+ scatter-bøger) tildeles 10 free spins, og ét tilfældigt symbol udpeges som expanding symbol. Det valgte symbol udvider sig til at fylde hele hjulet, når det lander – og gevinster beregnes efter ekspansionen.
           </p>
@@ -218,7 +219,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: RTP DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Anatomi: Hvor Kommer de 96,21 % Fra?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP-Anatomi: Hvor Kommer de 96,21 % Fra?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Book of Deads samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,21 % fordeles mellem basisspillet og bonusrunden. Baseret på matematisk analyse bidrager basisspillet med ca. 60–65 % af den samlede RTP (ca. 57,7–62,5 procentpoint), mens free spins bidrager med ca. 35–40 % (ca. 33,7–38,5 procentpoint). Gamble-featuren er RTP-neutral (50/50 double-or-nothing).
           </p>
@@ -234,7 +235,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: EV-SCENARIE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Expected Value: Book of Dead som Wagering-Maskine</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Expected Value: Book of Dead som Wagering-Maskine</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Book of Dead er en af de mest brugte slots til <Link to="/casino-bonus" className={linkClass}>bonusomsætning</Link> i Danmark. Lad os beregne præcis hvorfor med konkrete EV-eksempler:
           </p>
@@ -280,7 +281,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: VOLATILITET I PRAKSIS ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Volatilitet Dekonstrueret: Session-Dynamikken</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Volatilitet Dekonstrueret: Session-Dynamikken</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Play'n GO klassificerer Book of Dead som "høj volatilitet", men i praksis opleves den som medium-høj sammenlignet med moderne ultra-volatile slots som San Quentin eller Wanted Dead or a Wild. Forskellen ligger i basisspillets bidrag: Book of Deads basisspil er mere generøst end de fleste høj-volatilitets slots, hvilket giver en blødere spilloplevelse.
           </p>
@@ -310,7 +311,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: BONUS COMPATIBILITY ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Bonus-Compatibility: Det Foretrukne Wagering-Våben</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Bonus-Compatibility: Det Foretrukne Wagering-Våben</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Book of Dead er de facto standard for <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link> i Danmark af gode grunde. Spillet er næsten aldrig ekskluderet fra bonustilbud, det har en rimelig RTP, og den moderate volatilitet gør det lettere at gennemføre omsætningskrav uden at bust. Mange casinoer tilbyder specifikt <Link to="/free-spins" className={linkClass}>free spins</Link> på Book of Dead som del af deres velkomstpakke.
           </p>
@@ -326,7 +327,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: HVEM PASSER DET TIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Spillerprofiler: Hvem Vinder og Taber på Book of Dead?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Spillerprofiler: Hvem Vinder og Taber på Book of Dead?</h2>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card>
               <CardContent className="pt-6">
@@ -357,7 +358,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Head-to-Head: Book of Dead vs. Legacy of Dead vs. Book of Ra</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Head-to-Head: Book of Dead vs. Legacy of Dead vs. Book of Ra</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             "Book of"-genren er overfyldt med varianter. Her sammenligner vi originalen med dens vigtigste konkurrenter:
           </p>
@@ -395,7 +396,7 @@ const BookOfDeadGuide = () => {
 
         {/* ── SEKTION: RISIKOANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Bankroll Management Specifikt til Book of Dead</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Bankroll Management Specifikt til Book of Dead</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Book of Deads moderate volatilitet tillader et lavere bankroll-ratio end ultra-volatile slots. Her er de anbefalede parametre:
           </p>

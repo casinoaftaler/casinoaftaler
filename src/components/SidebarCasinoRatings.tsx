@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Star, Monitor, Trophy } from "lucide-react";
+import { ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Progress } from "@/components/ui/progress";
@@ -33,7 +34,7 @@ export function SidebarCasinoRatings() {
     <div className="overflow-hidden rounded-lg border border-border/60 shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-gradient-to-r from-primary/20 to-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md bg-primary/15 flex-shrink-0">
-          <Trophy className="h-4.5 w-4.5 text-primary" />
+          <MenuIcon iconName="trophy" className="h-4.5 w-4.5 text-primary" />
         </span>
         <span>Online casinoer</span>
       </div>
@@ -84,7 +85,7 @@ export function SidebarCasinoRatings() {
 
                 <span className="inline-flex items-center gap-0.5 text-xs font-bold text-foreground min-w-[38px] justify-end flex-shrink-0">
                   {casino.rating?.toFixed(1)}
-                  <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                  <MenuIcon iconName="star" className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                 </span>
               </Link>
             </li>

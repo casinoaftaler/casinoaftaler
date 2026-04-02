@@ -16,28 +16,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Gamepad2,
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  ExternalLink,
-  HelpCircle,
-  Zap,
-  Globe,
-  Gavel,
-  Layers,
-  TrendingUp,
-  Target,
-  Star,
-  Trophy,
-  Sparkles,
-} from "lucide-react";
+import { Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -192,7 +172,7 @@ const MegawaysSlots = () => {
         {/* ── 1. HVAD ER MEGAWAYS? ── */}
         <section className="mb-12" id="hvad-er-megaways">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Hvad er Megaways-spilleautomater?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -223,7 +203,7 @@ const MegawaysSlots = () => {
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Megaways vs. Klassiske Slots – Teknisk sammenligning
               </CardTitle>
             </CardHeader>
@@ -259,7 +239,7 @@ const MegawaysSlots = () => {
         {/* ── 2. KERNEMEKANIKKER ── */}
         <section className="mb-12" id="mekanikker">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Kernemekanikker i Megaways
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -272,7 +252,7 @@ const MegawaysSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary" />
                   Dynamiske Hjul (Random Reel Modifier)
                 </CardTitle>
               </CardHeader>
@@ -289,7 +269,7 @@ const MegawaysSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-4 w-4 text-primary" />
                   Cascading Wins (Avalanche/Tumble)
                 </CardTitle>
               </CardHeader>
@@ -306,7 +286,7 @@ const MegawaysSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-4 w-4 text-primary" />
                   Stigende Multiplikatorer
                 </CardTitle>
               </CardHeader>
@@ -323,7 +303,7 @@ const MegawaysSlots = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Star className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="star" className="h-4 w-4 text-primary" />
                   Scatter & Free Spins Trigger
                 </CardTitle>
               </CardHeader>
@@ -361,7 +341,7 @@ const MegawaysSlots = () => {
         {/* ── 3. BEDSTE MEGAWAYS SLOTS ── */}
         <section className="mb-12" id="bedste-megaways">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Bedste Megaways-slots i 2026
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -463,7 +443,7 @@ const MegawaysSlots = () => {
         {/* ── 4. RTP & VOLATILITET ── */}
         <section className="mb-12" id="rtp-volatilitet">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             RTP og volatilitet i Megaways-slots
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -516,7 +496,7 @@ const MegawaysSlots = () => {
         {/* ── 5. STRATEGI ── */}
         <section className="mb-12" id="strategi">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Strategi for Megaways-slots
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -565,7 +545,7 @@ const MegawaysSlots = () => {
         {/* ── 6. UDVIKLERE BAG MEGAWAYS ── */}
         <section className="mb-12" id="udviklere">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Spiludviklere bag Megaways
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -602,7 +582,7 @@ const MegawaysSlots = () => {
         {/* ── 7. COMMUNITY DATA ── */}
         <section className="mb-12" id="community-data">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Megaways i Community-data
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -642,7 +622,7 @@ const MegawaysSlots = () => {
         {/* ── 8. SIKKERHED ── */}
         <section className="mb-12" id="sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Sikkerhed og lovlighed
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -669,7 +649,7 @@ const MegawaysSlots = () => {
         {/* ── 9. RELATEREDE KATEGORIER ── */}
         <section className="mb-12" id="relaterede">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Udforsk andre slot-kategorier
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">

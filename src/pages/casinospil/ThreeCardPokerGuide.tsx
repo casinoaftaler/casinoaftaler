@@ -16,35 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Award,
-  Shuffle,
-  Calculator,
-  Percent,
-  Trophy,
-  Landmark,
-  Flame,
-} from "lucide-react";
+import { Timer, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/three-card-poker-hero.jpg";
 
@@ -148,7 +121,7 @@ const ThreeCardPokerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Strategi, odds & house edge
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Strategi, odds & house edge
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Three Card Poker – Hurtig Action, Simpel Strategi
@@ -174,7 +147,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Hvem Spiller Three Card Poker – Og Hvorfor?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -208,7 +181,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Three Card Poker Regler – Komplet Gennemgang
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -216,7 +189,7 @@ const ThreeCardPokerGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Ante/Play – Spilleflow
           </h3>
           <ol className="mb-6 space-y-3 text-muted-foreground leading-relaxed list-decimal pl-6">
@@ -231,7 +204,7 @@ const ThreeCardPokerGuide = () => {
           </ol>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Coins className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />
             Pair Plus – Uafhængig Sideindsats
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -241,7 +214,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Pair Plus Udbetalingstabeller – Sammenligning
               </CardTitle>
             </CardHeader>
@@ -279,7 +252,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Award className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
             Håndrankering i Three Card Poker – Anderledes end Standard Poker
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -325,7 +298,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Optimal Strategi – Q-6-4 Reglen
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -339,7 +312,7 @@ const ThreeCardPokerGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Raise (Q-6-4+)
                 </CardTitle>
               </CardHeader>
@@ -356,7 +329,7 @@ const ThreeCardPokerGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <XCircle className="h-4 w-4 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" />
                   Fold (under Q-6-4)
                 </CardTitle>
               </CardHeader>
@@ -385,7 +358,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Dealer-Qualifying Matematik – Hvad Betyder Q-High?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -398,7 +371,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Percent className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="percent" className="h-5 w-5 text-primary" />
                 Dealer Qualifying Sandsynligheder
               </CardTitle>
             </CardHeader>
@@ -439,7 +412,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             House Edge – Three Card Poker vs. Andre Bordspil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -486,7 +459,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Flame className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="flame" className="h-7 w-7 text-primary" />
             6 Card Bonus – Sideindsats Under Luppen
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -496,7 +469,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Trophy className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                 6 Card Bonus Udbetalingstabel
               </CardTitle>
             </CardHeader>
@@ -539,7 +512,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Progressiv Jackpot – Matematisk Break-Even Analyse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -561,7 +534,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Three Card Poker i Live Casino
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -574,7 +547,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Eye className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
                 Live vs. RNG Three Card Poker
               </CardTitle>
             </CardHeader>
@@ -615,7 +588,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Bankroll Management for Three Card Poker
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -628,7 +601,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Session-Planlægning: 4 Scenarier
               </CardTitle>
             </CardHeader>
@@ -668,7 +641,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             EV-Model: Hvad Koster Three Card Poker Pr. Time?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -678,7 +651,7 @@ const ThreeCardPokerGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Forventet Tab Pr. Time – Scenarieanalyse
               </CardTitle>
             </CardHeader>
@@ -717,7 +690,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Strategi-Variationer: Hvad Hvis Q-6-4 Føles For Simpelt?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -761,50 +734,50 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             7 Fatale Fejl – Og Hvordan du Undgår Dem
           </h2>
 
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 1: Spille Pair Plus med dårlig udbetalingstabel</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 1: Spille Pair Plus med dårlig udbetalingstabel</p>
                 <p className="text-sm text-muted-foreground">Mange spillere ignorerer udbetalingstabellen og spiller bare "Pair Plus". Tjek ALTID tabellen – forskellen kan være 5 procentpoint i house edge. Tabel C (7,28 %) koster dig over 3x mere end Tabel A (2,32 %).</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 2: Folde Q-high hænder, der kvalificerer</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 2: Folde Q-high hænder, der kvalificerer</p>
                 <p className="text-sm text-muted-foreground">Hænder som Q-7-2 skal raises, men mange spillere folder dem "fordi det kun er Queen-high". Det koster dig direkte EV – du mister de 33,6 % af hænderne, hvor dealeren ikke kvalificerer.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 3: Raise med Jack-high</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 3: Raise med Jack-high</p>
                 <p className="text-sm text-muted-foreground">J-T-9 ser "stærk" ud, men det er et fold i Three Card Poker. Husk: Q-6-4 er grænsen, uanset hvor connected dine kort er. Connectivity er irrelevant i Three Card Poker.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 4: Chase tab med stigende indsatser</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 4: Chase tab med stigende indsatser</p>
                 <p className="text-sm text-muted-foreground">Three Card Poker har en fast house edge. At fordoble indsatser efter tab (Martingale) ændrer ikke din forventede gevinst – det øger kun din risiko for ruin og kan tømme din bankroll på rekordtid.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 5: Ignorere 6 Card Bonus house edge</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 5: Ignorere 6 Card Bonus house edge</p>
                 <p className="text-sm text-muted-foreground">6 Card Bonus har typisk 10-18 % house edge – den er designet til at uddræne din bankroll langsomt. Spil den kun med minimumsindsat, hvis du eksplicit jagter en progressiv jackpot over break-even.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 6: Spille RNG i stedet for live uden at overveje tempoforskellen</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 6: Spille RNG i stedet for live uden at overveje tempoforskellen</p>
                 <p className="text-sm text-muted-foreground">RNG spiller 2-3x flere hænder pr. time end live. Med identisk house edge taber du 2-3x mere per time. Vælg live for at beskytte din bankroll og nyde oplevelsen.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 7: Forveksle Three Card Poker-håndrankering med standard poker</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 7: Forveksle Three Card Poker-håndrankering med standard poker</p>
                 <p className="text-sm text-muted-foreground">I Three Card Poker slår Three of a Kind en Straight, og Straight slår Flush. Mange spillere fra Hold'em antager standard rankering og missvurderer deres hånds styrke.</p>
               </CardContent>
             </Card>
@@ -816,7 +789,7 @@ const ThreeCardPokerGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Landmark className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />
             Three Card Poker i Danmark – Regulering & Tilgængelighed
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

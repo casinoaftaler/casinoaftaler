@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -108,7 +109,7 @@ const DeadOrAlive2Guide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><AlertTriangle className="mr-1.5 h-3.5 w-3.5" /> Risiko-Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="alert-triangle" className="mr-1.5 h-3.5 w-3.5" /> Risiko-Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Dead or Alive 2</h1>
             <p className="text-lg text-white/80">111.111x max win. Tre bonusmodes. Ekstrem volatilitet. Den mest risikable slot, du kan spille – analyseret til benet.</p>
           </div>
@@ -147,7 +148,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Spillets Fundament: 5×3, 9 Linjer, 3 Verdener</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Spillets Fundament: 5×3, 9 Linjer, 3 Verdener</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -197,7 +198,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: TRE MODES DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Tre Verdener: Train Heist, Old Saloon & High Noon</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Tre Verdener: Train Heist, Old Saloon & High Noon</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Når du trigger free spins (3+ scatters, ca. 1:250 spins), vælger du mellem tre fundamentalt forskellige oplevelser. Alle tre har 12 free spins som standard med mulighed for retrigger, og alle tre deler den samlede RTP ligeligt. Men gevinstfordelingen er radikalt forskellig:
           </p>
@@ -216,7 +217,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: RTP ANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> 96,82 % RTP: Hvad Det Betyder i Kontekst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> 96,82 % RTP: Hvad Det Betyder i Kontekst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dead or Alive 2's RTP på 96,82 % er en af de bedste i branchen – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er kun 3,18 %. Over 1.000 spins á 10 kr. er det forventede tab 318 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
           </p>
@@ -232,7 +233,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Ekstrem Volatilitet: Hvad 5/5 Virkelig Føles Som</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="flame" className="h-7 w-7 text-primary" /> Ekstrem Volatilitet: Hvad 5/5 Virkelig Føles Som</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dead or Alive 2 i High Noon Saloon mode er en af de mest volatile mainstream-slots. Med en estimeret standardafvigelse på ca. 20x+ indsatsen pr. spin er bankroll-svingningerne dramatiske. Over 100 spins á 10 kr. kan din saldo realistisk variere fra 0 kr. til 5.000+ kr. – total uforudsigelighed.
           </p>
@@ -248,7 +249,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Dead or Alive 2 vs. Razor Shark vs. Book of Dead</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Dead or Alive 2 vs. Razor Shark vs. Book of Dead</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De tre mest populære high-volatility slots har fundamentalt forskellige tilgange til risiko og belønning:
           </p>
@@ -285,7 +286,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: HVEM PASSER DET TIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Spillertyper: Den Hårde Sandhed om Hvem der Bør Spille</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Spillertyper: Den Hårde Sandhed om Hvem der Bør Spille</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dead or Alive 2 er IKKE for nybegyndere. Spillets ekstreme volatilitet, lave hit-rate, og evne til at eliminere et helt bankroll på 100 spins gør det til et produkt for erfarne spillere med specifik risikotolerance og tilstrækkeligt budget. Den ideelle Dead or Alive 2-spiller har: budget over 3.000 kr. pr. session, erfaring med høj-volatile slots, og mental robusthed til at håndtere lange tørrperioder.
           </p>
@@ -301,7 +302,7 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Ansvarligt Spil: Særlige Forholdsregler for Ekstremer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Ansvarligt Spil: Særlige Forholdsregler for Ekstremer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dead or Alive 2 kræver ekstra opmærksomhed på <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> på grund af dens ekstremer. Spillets evne til at levere massive gevinster kan skabe en falsk følelse af, at "den store gevinst er lige om hjørnet" – en kognitiv bias kaldet "gambler's fallacy". I virkeligheden er hvert spin uafhængigt, og sandsynligheden for en stor gevinst er identisk, uanset dine foregående resultater.
           </p>

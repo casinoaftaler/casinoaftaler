@@ -16,12 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  BarChart3, Eye, Brain, BookOpen, AlertTriangle,
-  TrendingUp, Target, Gamepad2, Shield, Calculator,
-  Coins, Scale, Layers, Users, CheckCircle, XCircle,
-  ShieldCheck, Shuffle, Award, Timer,
-} from "lucide-react";
+import { Shuffle, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/video-poker-hero.jpg";
 
@@ -96,7 +92,7 @@ export default function VideoPokerGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> RTP-analyse
+              <MenuIcon iconName="trending-up" className="mr-1.5 h-3.5 w-3.5" /> RTP-analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Video Poker – Komplet RTP-analyse, Strategi & De Bedste Varianter
@@ -122,7 +118,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Hvad er video poker – og hvorfor er det casinoets bedst bevarede hemmelighed?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -145,7 +141,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             RTP-analyse: Hvorfor video poker slår næsten alle casinospil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -202,7 +198,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Gamepad2 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
             De vigtigste video poker-varianter – dybdegående analyse
           </h2>
 
@@ -252,7 +248,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Optimal hold/discard-strategi – den komplette rangering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -267,7 +263,7 @@ export default function VideoPokerGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 Komplet strategisk rangering – 9/6 Jacks or Better
               </CardTitle>
             </CardHeader>
@@ -320,7 +316,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Award className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
             Royal Flush – den skjulte motor bag video pokers RTP
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -342,7 +338,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             De 10 dyreste fejl i video poker – og deres præcise omkostning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -352,61 +348,61 @@ export default function VideoPokerGuide() {
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 1: Spille reducerede udbetalingstabeller (2-4 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 1: Spille reducerede udbetalingstabeller (2-4 % tab)</p>
                 <p className="text-sm text-muted-foreground">Forskellen mellem 9/6 og 8/5 Jacks or Better er 2,24 procentpoint – svarende til 224 kr. ekstra tab pr. 10.000 kr. i indsatser. Over en sæson (100.000 hænder × 5 kr.) er det 11.200 kr. i unødvendigt tab. Tjek ALTID udbetalingstabellen før du spiller.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 2: Ikke at spille max bet (1,4 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 2: Ikke at spille max bet (1,4 % tab)</p>
                 <p className="text-sm text-muted-foreground">Royal Flush betaler 250× ved 1-4 coins men 800× ved max bet (5 coins). Ved ikke at spille max bet mister du 1,4 % i RTP – svarende til 140 kr. pr. 10.000 kr. Gå ned i denominering frem for at spille færre coins.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 3: Holde kicker ved par (0,3-0,5 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 3: Holde kicker ved par (0,3-0,5 % tab)</p>
                 <p className="text-sm text-muted-foreground">Med J-J-A-7-3 holder mange spillere J-J-A. Esset har ingen strategisk værdi – video poker belønner håndrankering, ikke kortkomposition. Hold kun parret og kasser alt andet for at maksimere chancen for trips, full house og quads.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 4: Bryde to par for at jage flush/straight (0,3 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 4: Bryde to par for at jage flush/straight (0,3 % tab)</p>
                 <p className="text-sm text-muted-foreground">To par har EV 2,60, som overstiger 4-til-flush (1,22) og 4-til-straight (0,68) markant. Bryd aldrig to par for et draw – det er en af de dyreste intuitive fejl.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 5: Holde tre til en straight (ikke flush) (0,1-0,2 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 5: Holde tre til en straight (ikke flush) (0,1-0,2 % tab)</p>
                 <p className="text-sm text-muted-foreground">Med 5-6-7-K-2 holder mange 5-6-7 (EV 0,35). Det er bedre at holde K alene (EV 0,47). Tre til en straight (ikke straight flush) er næsten aldrig korrekt at holde.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 6: Spille for hurtigt uden verifikation (variabel)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 6: Spille for hurtigt uden verifikation (variabel)</p>
                 <p className="text-sm text-muted-foreground">Online video poker kan spilles med 500-800 hænder/time. Ved den hastighed stiger fejlraten eksponentielt. Sæt farten ned til 200-300 hænder/time og verificer hver beslutning mod strategitabellen, indtil reglerne er automatiserede.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 7: Aldrig kassere alle 5 kort (0,05-0,1 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 7: Aldrig kassere alle 5 kort (0,05-0,1 % tab)</p>
                 <p className="text-sm text-muted-foreground">Med 3♠-5♦-7♣-9♥-2♠ (ingen draws, ingen høje kort) er det korrekte play at kassere alle fem kort (EV 0,36). Mange spillere holder instinktivt det "bedste" kort, men i dette tilfælde er intet kort værd at holde.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 8: Ikke forstå suited vs. unsuited forskellen (0,1 % tab)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 8: Ikke forstå suited vs. unsuited forskellen (0,1 % tab)</p>
                 <p className="text-sm text-muted-foreground">K♥-Q♥ (suited) har EV 0,56 vs. K♥-Q♣ (unsuited) med EV 0,50. Forskellen er 0,06 EV pr. hånd, hvilket akkumulerer over tusindvis af beslutninger. Prioriter altid suited kombinationer.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 9: Bryde flush for 4-til-RF (korrekt spil, men misforstået)</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 9: Bryde flush for 4-til-RF (korrekt spil, men misforstået)</p>
                 <p className="text-sm text-muted-foreground">Med en færdig flush der indeholder 4-til-Royal-Flush bør du faktisk bryde flushen! EV for 4-til-RF (18,66) overstiger en made flush (6,00) massivt. Mange spillere beholder flushen "for sikkerheds skyld" – det er en dyr fejl.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
-                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 10: Ignorere multi-hand volatilitetseffekten</p>
+                <p className="font-semibold mb-1 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Fejl 10: Ignorere multi-hand volatilitetseffekten</p>
                 <p className="text-sm text-muted-foreground">Multi-hand video poker (5, 10, 50 hænder) har samme RTP per hånd, men den totale indsats pr. runde er multipliceret. 10-hand á 5 kr. = 50 kr. pr. runde vs. single-hand á 5 kr. Dit bankroll-forbrug stiger 10× uden at din edge forbedres. Multi-hand kræver proportionelt større bankroll.</p>
               </CardContent>
             </Card>
@@ -418,7 +414,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Sådan vælger du den rigtige video poker-maskine online
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -440,7 +436,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Bankroll management for video poker – overlev variansen
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -449,7 +445,7 @@ export default function VideoPokerGuide() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Bankroll-krav efter variant og risikoniveau
               </CardTitle>
             </CardHeader>
@@ -491,7 +487,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Coins className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />
             EV-model: Hvad koster video poker pr. time?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -546,7 +542,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Multi-hand video poker – fordele, ulemper og matematik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -565,7 +561,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Video poker vs. spilleautomater – den definitive sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -605,7 +601,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Online video poker vs. fysisk casino – forskelle og fordele
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -627,7 +623,7 @@ export default function VideoPokerGuide() {
         ═══════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Progressive video poker – hvornår bliver jackpotten +EV?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

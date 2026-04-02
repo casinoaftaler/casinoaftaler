@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Gamepad2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import spillehalPromo from "@/assets/spillehal-promo-small.webp";
 import risePromo from "@/assets/rise-of-fedesvin-promo-small.webp";
 import bonanzaPromo from "@/assets/slots/fedesvin-bonanza-preview.webp";
@@ -18,7 +19,7 @@ function PromoBanner({ to, image, alt, label, title }: { to: string; image: stri
           <p className="text-[10px] font-bold uppercase tracking-wider text-primary">🎰 Vind Præmier</p>
           <p className="text-xs font-semibold text-foreground leading-tight">{title}</p>
           <Button size="sm" className="w-full gap-2 text-xs mt-1">
-            <Gamepad2 className="h-3.5 w-3.5" />
+            <MenuIcon iconName="gamepad2" className="h-3.5 w-3.5" />
             {label} <ArrowRight className="h-3.5 w-3.5" />
           </Button>
         </div>
