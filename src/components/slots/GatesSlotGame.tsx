@@ -971,24 +971,21 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         )}
 
         <div className="flex flex-col items-center">
-          {/* Title art positioned above grid — bottom half overlaps the grid */}
-          <div className="flex justify-center relative z-10" style={{
-            width: gridWidth,
-            marginBottom: isMobile ? -28 : -45,
-          }}>
-            <img
-              src={gatesTitleArt}
-              alt="Gates of Fedesvin"
-              className="pointer-events-none block"
-              style={{
-                width: isMobile ? gridWidth * 0.45 : gridWidth * 0.50,
-              }}
-              draggable={false}
-            />
-          </div>
-
           {/* Main game grid */}
           <div className="relative" style={{ width: gridWidth }}>
+            {/* Title art — absolutely positioned so bottom half overlaps grid */}
+            <div className="absolute left-1/2 -translate-x-1/2 z-20 pointer-events-none" style={{
+              bottom: '100%',
+              marginBottom: isMobile ? -30 : -50,
+              width: isMobile ? gridWidth * 0.45 : gridWidth * 0.50,
+            }}>
+              <img
+                src={gatesTitleArt}
+                alt="Gates of Fedesvin"
+                className="w-full pointer-events-none block"
+                draggable={false}
+              />
+            </div>
             {/* Bonus bar overlay at top of grid */}
             {isBonusActive && (
               <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 animate-fade-in">
