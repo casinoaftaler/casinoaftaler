@@ -96,11 +96,38 @@ export function SlotRequestsAdminSection() {
       </Card>
 
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
           <CardTitle className="flex items-center gap-2">
             <Gamepad2 className="h-5 w-5" />
             Ventende Requests ({pendingRequests.length})
           </CardTitle>
+          {pendingRequests.length > 0 && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button size="sm" variant="destructive" className="gap-1">
+                  <Trash2 className="h-3.5 w-3.5" />
+                  Afvis Alle
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Afvis alle ventende requests?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Dette vil afvise alle {pendingRequests.length} ventende requests. Handlingen kan ikke fortrydes.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuller</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => rejectAll.mutate()}
+                    disabled={rejectAll.isPending}
+                  >
+                    {rejectAll.isPending ? "Afviser..." : "Ja, afvis alle"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
         </CardHeader>
         <CardContent>
           {isLoading ? (
