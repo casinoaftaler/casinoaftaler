@@ -636,7 +636,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                 <div style={{
                   width: `${s.size}px`, height: `${s.size}px`,
                   background: s.color, borderRadius: "50%",
-                  boxShadow: `0 0 ${s.size * 2}px ${s.color}, 0 0 ${s.size * 4}px ${s.color}60`,
+                  boxShadow: isMobileRef.current ? 'none' : `0 0 ${s.size * 2}px ${s.color}, 0 0 ${s.size * 4}px ${s.color}60`,
                 }} />
               )}
               {s.type === "streak" && (
