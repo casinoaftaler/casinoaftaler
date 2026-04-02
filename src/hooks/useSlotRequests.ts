@@ -303,6 +303,29 @@ export function usePendingQueuePositions() {
   });
 }
 
+export function useRejectAllPendingRequests() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async () => {
+      const { error } = await supabase
+        .from("slot_requests" as any)
+        .update({ status: "rejected" } as any)
+        .eq("status", "pending");
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Alle ventende requests er blevet afvist");
+      queryClient.invalidateQueries({ queryKey: ["all-slot-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["my-slot-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["pending-queue-positions"] });
+    },
+    onError: (error: Error) => {
+      toast.error(`Fejl: ${error.message}`);
+    },
+  });
+}
+
 export function useUpdateSlotRequestStatus() {
   const queryClient = useQueryClient();
 

@@ -5,12 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useAllSlotRequests, useUpdateSlotRequestStatus } from "@/hooks/useSlotRequests";
+import { useAllSlotRequests, useUpdateSlotRequestStatus, useRejectAllPendingRequests } from "@/hooks/useSlotRequests";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useBonusHuntSession } from "@/hooks/useBonusHuntSession";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
-import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings } from "lucide-react";
+import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
@@ -23,6 +24,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
 export function SlotRequestsAdminSection() {
   const { data: requests, isLoading } = useAllSlotRequests();
   const updateStatus = useUpdateSlotRequestStatus();
+  const rejectAll = useRejectAllPendingRequests();
   const { data: siteSettings } = useSiteSettings();
   const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
@@ -94,11 +96,38 @@ export function SlotRequestsAdminSection() {
       </Card>
 
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
           <CardTitle className="flex items-center gap-2">
             <Gamepad2 className="h-5 w-5" />
             Ventende Requests ({pendingRequests.length})
           </CardTitle>
+          {pendingRequests.length > 0 && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button size="sm" variant="destructive" className="gap-1">
+                  <Trash2 className="h-3.5 w-3.5" />
+                  Afvis Alle
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Afvis alle ventende requests?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Dette vil afvise alle {pendingRequests.length} ventende requests. Handlingen kan ikke fortrydes.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuller</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={() => rejectAll.mutate()}
+                    disabled={rejectAll.isPending}
+                  >
+                    {rejectAll.isPending ? "Afviser..." : "Ja, afvis alle"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
         </CardHeader>
         <CardContent>
           {isLoading ? (

@@ -272,6 +272,21 @@ serve(async (req) => {
       .update({ gtw_betting_open: false, avgx_betting_open: false, status: 'completed' })
       .eq('id', sessionId);
 
+    // Auto-reject all pending slot requests
+    try {
+      const { error: rejectError } = await adminClient
+        .from('slot_requests')
+        .update({ status: 'rejected' })
+        .eq('status', 'pending');
+      if (rejectError) {
+        console.error('Failed to auto-reject pending slot requests:', rejectError);
+      } else {
+        console.log('Auto-rejected all pending slot requests');
+      }
+    } catch (e) {
+      console.error('Error auto-rejecting slot requests:', e);
+    }
+
     return new Response(JSON.stringify({ success: true, results, totalWinningsUsed: endBalance }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
