@@ -146,7 +146,7 @@ const faqs = [
     question: "Hvem er Jonas, og hvad er hans erfaring?",
     answer: (
       <>
-        Jonas er grundlæggeren af Casinoaftaler.dk og har over 4 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer. Læs mere på hans{" "}
+        Jonas er grundlæggeren af Casinoaftaler.dk og har over 5 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer. Læs mere på hans{" "}
         <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">
           forfatterprofil
         </Link>.
