@@ -119,3 +119,4 @@ verify_jwt = false
 
 [functions.bonus-hunt-bulk-id-import]
 verify_jwt = false
+
