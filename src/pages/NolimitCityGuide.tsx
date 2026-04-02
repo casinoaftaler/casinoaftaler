@@ -4,6 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import nolimitLogo from "@/assets/screenshots/nolimit-logo.webp";
+import nolimitKatalog from "@/assets/screenshots/nolimit-katalog.webp";
+import nolimitGameplay from "@/assets/screenshots/nolimit-gameplay.webp";
+import nolimitBonuskob from "@/assets/screenshots/nolimit-bonuskob.webp";
 
 const NolimitCityGuide = () => (
   <ProviderPage
