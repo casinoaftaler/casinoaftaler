@@ -489,24 +489,22 @@ serve(async (req) => {
 
       // Auto-reject all pending slot requests once the first bonus has been opened
       if (openedSlots >= 1) {
-        (async () => {
-          try {
-            const { data: pendingToReject } = await supabase
-              .from('slot_requests')
-              .select('id')
-              .eq('status', 'pending');
+        try {
+          const { data: pendingToReject } = await supabase
+            .from('slot_requests')
+            .select('id')
+            .eq('status', 'pending');
 
-            if (pendingToReject && pendingToReject.length > 0) {
-              await supabase.from('slot_requests').update({
-                status: 'rejected',
-                admin_note: 'Auto-afvist: Første bonus er åbnet, requests er lukket.',
-              }).eq('status', 'pending');
-              console.log(`Auto-rejected ${pendingToReject.length} pending slot requests (first bonus opened in hunt #${huntNumber})`);
-            }
-          } catch (e) {
-            console.error('Auto-reject pending requests error:', e);
+          if (pendingToReject && pendingToReject.length > 0) {
+            await supabase.from('slot_requests').update({
+              status: 'rejected',
+              admin_note: 'Auto-afvist: Første bonus er åbnet, requests er lukket.',
+            }).eq('status', 'pending');
+            console.log(`Auto-rejected ${pendingToReject.length} pending slot requests (first bonus opened in hunt #${huntNumber})`);
           }
-        })();
+        } catch (e) {
+          console.error('Auto-reject pending requests error:', e);
+        }
       }
 
       if (openedSlots >= 3) {
@@ -581,89 +579,87 @@ serve(async (req) => {
         };
 
         if (huntSlotNames.length > 0) {
-          (async () => {
-            try {
-              // Get already-awarded slots for this hunt to enforce 1 credit per slot
-              const { data: alreadyAwarded } = await supabase
-                .from('slot_requests')
-                .select('slot_name')
-                .eq('hunt_number', huntNumber)
-                .eq('status', 'bonus_hit');
-              const awardedSlotNames = new Set((alreadyAwarded || []).map((r: any) => r.slot_name.toLowerCase()));
+          try {
+            // Get already-awarded slots for this hunt to enforce 1 credit per slot
+            const { data: alreadyAwarded } = await supabase
+              .from('slot_requests')
+              .select('slot_name')
+              .eq('hunt_number', huntNumber)
+              .eq('status', 'bonus_hit');
+            const awardedSlotNames = new Set((alreadyAwarded || []).map((r: any) => r.slot_name.toLowerCase()));
 
-              const { data: pendingReqs } = await supabase
-                .from('slot_requests')
-                .select('id, user_id, slot_name')
-                .eq('status', 'pending')
-                .order('created_at', { ascending: true }); // First come, first served
+            const { data: pendingReqs } = await supabase
+              .from('slot_requests')
+              .select('id, user_id, slot_name')
+              .eq('status', 'pending')
+              .order('created_at', { ascending: true }); // First come, first served
 
-              // Track slots we award in this batch to prevent duplicates within same run
-              const awardedThisBatch = new Set<string>();
+            // Track slots we award in this batch to prevent duplicates within same run
+            const awardedThisBatch = new Set<string>();
 
-              for (const req of (pendingReqs || [])) {
-                const slotKey = req.slot_name.toLowerCase();
-                const matchedHuntSlot = fuzzyMatchHuntSlot(slotKey, huntSlotNames);
-                if (matchedHuntSlot) {
-                  // Skip if already awarded to another user in this hunt (fuzzy check)
-                  if (fuzzyMatchSet(slotKey, awardedSlotNames) || fuzzyMatchSet(slotKey, awardedThisBatch)) {
-                    // Mark as no_bonus instead — slot was already claimed
-                    await supabase.from('slot_requests').update({
-                      status: 'no_bonus',
-                      hunt_number: huntNumber,
-                    }).eq('id', req.id);
-                    console.log(`Slot "${req.slot_name}" fuzzy-matched "${matchedHuntSlot}" but already awarded in hunt #${huntNumber}, marking as no_bonus for user ${req.user_id}`);
-                    continue;
-                  }
-
-                  awardedThisBatch.add(slotKey);
-                  awardedThisBatch.add(matchedHuntSlot); // Also track the matched name to prevent reverse matches
-
-                  // Auto bonus-hit — first request only
+            for (const req of (pendingReqs || [])) {
+              const slotKey = req.slot_name.toLowerCase();
+              const matchedHuntSlot = fuzzyMatchHuntSlot(slotKey, huntSlotNames);
+              if (matchedHuntSlot) {
+                // Skip if already awarded to another user in this hunt (fuzzy check)
+                if (fuzzyMatchSet(slotKey, awardedSlotNames) || fuzzyMatchSet(slotKey, awardedThisBatch)) {
+                  // Mark as no_bonus instead — slot was already claimed
                   await supabase.from('slot_requests').update({
-                    status: 'bonus_hit',
+                    status: 'no_bonus',
                     hunt_number: huntNumber,
-                    credits_awarded: 200,
                   }).eq('id', req.id);
-
-                  // Award 200 credits — use proper ISO date with zero-padding
-                  const now = new Date();
-                  const today = `${now.toLocaleDateString('sv-SE', { timeZone: 'Europe/Copenhagen' })}`;
-
-                  const { data: existing } = await supabase
-                    .from('slot_spins')
-                    .select('id, spins_remaining')
-                    .eq('user_id', req.user_id)
-                    .eq('date', today)
-                    .eq('game_id', 'shared')
-                    .maybeSingle();
-
-                  if (existing) {
-                    await supabase.from('slot_spins').update({
-                      spins_remaining: existing.spins_remaining + 200,
-                    }).eq('id', existing.id);
-                  } else {
-                    await supabase.from('slot_spins').insert({
-                      user_id: req.user_id,
-                      date: today,
-                      spins_remaining: 200,
-                      game_id: 'shared',
-                    });
-                  }
-
-                  await supabase.from('credit_allocation_log').insert({
-                    user_id: req.user_id,
-                    amount: 200,
-                    source: 'slot_request_bonus',
-                    note: `Auto bonus hit på slot request (hunt #${huntNumber})`,
-                  });
-
-                  console.log(`Auto-matched slot request "${req.slot_name}" for user ${req.user_id} in hunt #${huntNumber}`);
+                  console.log(`Slot "${req.slot_name}" fuzzy-matched "${matchedHuntSlot}" but already awarded in hunt #${huntNumber}, marking as no_bonus for user ${req.user_id}`);
+                  continue;
                 }
+
+                awardedThisBatch.add(slotKey);
+                awardedThisBatch.add(matchedHuntSlot); // Also track the matched name to prevent reverse matches
+
+                // Auto bonus-hit — first request only
+                await supabase.from('slot_requests').update({
+                  status: 'bonus_hit',
+                  hunt_number: huntNumber,
+                  credits_awarded: 200,
+                }).eq('id', req.id);
+
+                // Award 200 credits — use proper ISO date with zero-padding
+                const now = new Date();
+                const today = `${now.toLocaleDateString('sv-SE', { timeZone: 'Europe/Copenhagen' })}`;
+
+                const { data: existing } = await supabase
+                  .from('slot_spins')
+                  .select('id, spins_remaining')
+                  .eq('user_id', req.user_id)
+                  .eq('date', today)
+                  .eq('game_id', 'shared')
+                  .maybeSingle();
+
+                if (existing) {
+                  await supabase.from('slot_spins').update({
+                    spins_remaining: existing.spins_remaining + 200,
+                  }).eq('id', existing.id);
+                } else {
+                  await supabase.from('slot_spins').insert({
+                    user_id: req.user_id,
+                    date: today,
+                    spins_remaining: 200,
+                    game_id: 'shared',
+                  });
+                }
+
+                await supabase.from('credit_allocation_log').insert({
+                  user_id: req.user_id,
+                  amount: 200,
+                  source: 'slot_request_bonus',
+                  note: `Auto bonus hit på slot request (hunt #${huntNumber})`,
+                });
+
+                console.log(`Auto-matched slot request "${req.slot_name}" for user ${req.user_id} in hunt #${huntNumber}`);
               }
-            } catch (e) {
-              console.error('Auto-match slot requests error:', e);
             }
-          })();
+          } catch (e) {
+            console.error('Auto-match slot requests error:', e);
+          }
         }
       }
 
