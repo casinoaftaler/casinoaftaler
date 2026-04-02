@@ -506,8 +506,8 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               animation: "win-radial-pulse 1.5s ease-in-out infinite",
             }}
           />
-          {/* Rotating light rays */}
-          {isMegaPlus && (
+          {/* Rotating light rays - skip on mobile (expensive compositing) */}
+          {isMegaPlus && !isMobileRef.current && (
             <div
               className="absolute"
               style={{
