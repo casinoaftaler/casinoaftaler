@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import wazLogo from "@/assets/screenshots/waz-logo.webp";
+import wazStats from "@/assets/screenshots/waz-stats.webp";
+import wazLicenses from "@/assets/screenshots/waz-licenses.webp";
+import wazKatalog from "@/assets/screenshots/waz-katalog.webp";
 
 const WazdanGuide = () => (
   <ProviderPage
