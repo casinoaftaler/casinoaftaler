@@ -29,6 +29,13 @@ const PushGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche der belønner volumenproduktion og franchise-genbrug, har Push Gaming valgt en radikalt anderledes vej: at gøre hvert eneste spil til et statement. Grundlagt i London i 2010 af James Marshall og Winston Lee – begge veteraner fra den britiske gambling-sektor – startede Push Gaming med en simpel men ambitiøs tese: at et lille, fokuseret team med ubegrænset kreativ frihed kan producere bedre spil end store studier med hundredvis af ansatte. Fjorten år senere har de bevist den tese så overbevisende, at selv deres argeste kritikere må indrømme det.
         </p>
+        <ReviewScreenshot
+          src={pushLogo}
+          alt="Push Gaming officielt logo – britisk indie-spiludvikler"
+          caption="Push Gamings minimalistiske logo – det londoner indie-studio bag Fat Santa og Jammin' Jars."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gamings portefølje er lille – omkring 40 titler – men den indeholder en uforholdsmæssig stor andel af branchens mest indflydelsesrige spil. Fat Santa revolutionerede jule-slots med sin Fat Santa-mekanik (udvidende symboler der overtager hele hjul). Razor Returns redefinerede hvad en sequel kunne være med sin Razor Reveal-feature. Jammin' Jars, selvom det teknisk er et <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>-parallelt cluster pays-spil, var Push Gamings bevis på at de kunne mestre den mest trendende mekanik i branchen og gøre den til deres egen. Og Wild Swarm var en af de første slots der brugte insektsværme som gameplay-element – en idé så original at den stadig ikke er blevet kopieret overbevisende.
         </p>
