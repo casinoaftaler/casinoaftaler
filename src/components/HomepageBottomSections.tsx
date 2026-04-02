@@ -263,7 +263,7 @@ export function HomepageSlotShowcase() {
           {" "}– Pragmatic Plays cluster-pays hit med 96,48 % RTP og 21.175× max win.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/gates-of-olympus" className="text-primary hover:underline font-medium">Gates of Olympus</Link>
           {" "}– Zeus' multiplikator-slot med op til 500× per spin og 96,50 % RTP.
         </li>
