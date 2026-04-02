@@ -459,11 +459,11 @@ serve(async (req) => {
 
         if (!existingSession) {
           const defaultPrizes = [
-            { place: 1, points: 300, credits: 0 },
-            { place: 2, points: 200, credits: 0 },
-            { place: 3, points: 100, credits: 0 },
-            { place: 4, points: 75, credits: 0 },
-            { place: 5, points: 50, credits: 0 },
+            { place: 1, points: 500, credits: 5000 },
+            { place: 2, points: 400, credits: 4000 },
+            { place: 3, points: 300, credits: 3000 },
+            { place: 4, points: 200, credits: 2000 },
+            { place: 5, points: 100, credits: 1000 },
           ];
           await supabase.from("bonus_hunt_sessions").insert({
             streamsystem_hunt_id: huntData.id || `hunt-${huntNumber}`,
