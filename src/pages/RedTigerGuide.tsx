@@ -114,9 +114,21 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gamings spilkatalog er opdelt i tre kategorier: Megaways-varianter (licenseret fra <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">BTG</Link>), Daily Jackpot-spil med garanterede daglige udbetalinger, og standard slots med gamification-features. De mest kommercielt succesfulde er Megaways-varianterne der genopfinder klassiske NetEnt-brands i en høj-volatilitet-kontekst.
         </p>
+        <ReviewScreenshot
+          src={rtKatalog}
+          alt="Red Tiger Gaming – Most Popular, Hot as Hell og Cold as Ice slots med Cash Volt, 777 Strike og Diamond Blitz"
+          caption="Red Tigers mest populære og hotteste slots – Cash Volt, 777 Strike og Diamond Blitz dominerer med Daily Jackpots-integration."
+          size="full"
+        />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Tournaments tilføjer en unik dimension: spillere der spiller Daily Jackpot-spil under en aktiv turnering optjener point baseret på gevinstmultiplikatorer. En 50x gevinst giver flere point end en 5x gevinst, uanset absolut beløb. Præmier inkluderer kontant, free spins og eksklusive bonusser. Det er et system der appellerer til spillere der søger mere end bare individuel gevinstjagt.
         </p>
+        <ReviewScreenshot
+          src={rtGonzos}
+          alt="Gonzo's Quest Megaways gameplay – Red Tiger x NetEnt samarbejde med Avalanche-mekanik"
+          caption="Gonzo's Quest Megaways i aktion – Red Tigers definerende NetEnt-samarbejde med 117.649 vinderkombinationer og cascading wins."
+          size="full"
+        />
       </>
     }
     games={[
