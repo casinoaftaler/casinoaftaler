@@ -153,9 +153,20 @@ const ISoftBetGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           iSoftBets portefølje er bemærkelsesværdig i sin bredde – fra lavvolatile underholdningstitler til højvolatile Megaways-slots og Hold & Win-varianter. Denne diversitet er ikke tilfældig: den afspejler GAP-platformens dataindsigt om hvilke spiltyper der performer bedst på tværs af markeder. De nedenstående seks titler repræsenterer højdepunkterne i iSoftBets egne produktioner.
         </p>
+        <ReviewScreenshot
+          src={isoftbetKatalog}
+          alt="iSoftBet spilkatalog med 396 spil – Euphoria Megaways, Gold Digger, Jawbreaker og flere populære titler"
+          caption="iSoftBets fulde spilkatalog med 396 titler – fra Megaways-varianter til Hold & Win-klassikere"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Bemærk at iSoftBets RTP-konfiguration varierer med operatør – tjek altid den specifikke RTP hos dit valgte casino via spillets hjælpemenu. For <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> er Hold & Win-titlerne generelt de mest forudsigelige valg i porteføljen.
         </p>
+        <ReviewScreenshot
+          src={isoftbetGameplay}
+          alt="Euphoria Megaways gameplay fra iSoftBet – Megaways-slot med 5040 ways og farverige juvelsymboler"
+          caption="Euphoria Megaways i aktion – iSoftBets Megaways-implementation med op til 117.649 gevinstmuligheder"
+          size="medium"
+        />
       </>
     }
     games={[
