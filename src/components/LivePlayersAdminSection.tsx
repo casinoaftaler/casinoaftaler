@@ -78,7 +78,8 @@ function useActiveSessions() {
         profile: profileMap[s.user_id] || { display_name: null, avatar_url: null },
       })) as ActiveSession[];
     },
-    refetchInterval: 5000, // Refresh every 5 seconds for real-time feel
+    refetchInterval: 5000,
+    refetchIntervalInBackground: false,
   });
 }
 
