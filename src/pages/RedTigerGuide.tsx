@@ -30,6 +30,13 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Red Tiger Gaming er en spiludvikler grundlagt i 2014 i St. Julians, Malta, af en gruppe erfarne branchefolk med baggrund i spiludvikling i både Europa og Asien. Det asiatiske DNA er synligt i Red Tigers designæstetik: farvemætte visuals, lykke-temaer og en æstetisk sensibilitet der skiller sig ud fra de typisk skandinavisk-minimalistiske konkurrenter. Med over 220 spilleautomater og en unik specialisering i gamification-features har Red Tiger skabt en niche der kombinerer slots med konkurrence- og engagement-elementer som ingen anden udvikler har mestret.
         </p>
+        <ReviewScreenshot
+          src={rtLogo}
+          alt="Red Tiger Gaming officielt logo – rød tiger-maskot og studionavn"
+          caption="Red Tiger Gamings ikoniske logo med den røde tiger – det maltesisk-grundlagte studio bag Daily Jackpots og Tournaments."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De to innovationer der definerer Red Tiger er Daily Jackpots og Tournaments. Daily Jackpots er et must-drop-before-system: jackpotten SKAL udbetales inden midnat (23:59 UTC) hver dag. Jo tættere på deadline, desto højere sandsynlighed for at den falder – matematisk styret via en dynamisk algoritme der gradvist øger triggerchancen. Beløbene er moderate (typisk €500-€5.000), men den garanterede daglige udbetaling skaber en forudsigelig spænding der er fundamentalt anderledes end traditionelle progressive jackpots hvor man kan vente uger eller måneder.
         </p>
