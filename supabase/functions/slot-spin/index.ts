@@ -93,64 +93,56 @@ interface BonusSpinResult extends SpinResult {
 }
 
 // ============================================================
-// Gates of Fedesvin types and logic
+// Gates of Fedesvin types and logic (Bonanza-style engine)
 // ============================================================
 const GATES_COLS = 6;
 const GATES_ROWS = 5;
 
-// These are defaults; actual values come from site_settings via getGatesSettings()
+// Defaults; overridden by site_settings via loadGatesSettings()
 let GATES_MIN_MATCH = 8;
 let GATES_SCATTER_TRIGGER = 4;
 let GATES_SCATTER_RETRIGGER = 3;
 let GATES_FREE_SPINS_INITIAL = 15;
 let GATES_FREE_SPINS_RETRIGGER = 5;
 let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
-let GATES_MULTIPLIER_CHANCE_BONUS = 0.05; // ~5% per cell in bonus
+let GATES_MULTIPLIER_CHANCE_BONUS = 0.10; // same as Bonanza
 let GATES_MAX_BET = 10;
-const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10; // +10% premium symbol weight in bonus
+let GATES_REEL_DUP_2_CHANCE = 0.35;
+let GATES_REEL_DUP_3_CHANCE = 0.10;
+const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10;
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 
-// Chance that a base game spin is a "multiplier spin" (no scatters, multipliers land instead)
-const GATES_MULTIPLIER_SPIN_CHANCE = 0.10;
-
-// Spin type: scatter = scatters can land, no multipliers; multiplier = multipliers can land, no scatters; both = bonus (unchanged)
-type GatesSpinType = 'scatter' | 'multiplier' | 'both';
-
-// Cache for gates settings from DB
 const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const GATES_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
 
 async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>) {
   const now = Date.now();
-  if (gatesSettingsCache.data && (now - gatesSettingsCache.fetchedAt) < GATES_SETTINGS_CACHE_TTL) {
-    return;
-  }
+  if (gatesSettingsCache.data && (now - gatesSettingsCache.fetchedAt) < GATES_SETTINGS_CACHE_TTL) return;
   const { data, error } = await serviceClient
-    .from("site_settings")
-    .select("key, value")
+    .from("site_settings").select("key, value")
     .in("key", [
       "gates_multiplier_chance_base", "gates_multiplier_chance_bonus",
       "gates_min_match", "gates_scatter_trigger", "gates_scatter_retrigger",
       "gates_free_spins_initial", "gates_free_spins_retrigger",
-      "gates_max_bet",
+      "gates_max_bet", "gates_reel_dup_2_chance", "gates_reel_dup_3_chance",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
     data.forEach((s: { key: string; value: string | null }) => { map[s.key] = s.value || ""; });
     gatesSettingsCache.data = map;
     gatesSettingsCache.fetchedAt = now;
-    
-    // Apply values with fallbacks
     GATES_MIN_MATCH = parseInt(map.gates_min_match || "8", 10);
     GATES_SCATTER_TRIGGER = parseInt(map.gates_scatter_trigger || "4", 10);
     GATES_SCATTER_RETRIGGER = parseInt(map.gates_scatter_retrigger || "3", 10);
     GATES_FREE_SPINS_INITIAL = parseInt(map.gates_free_spins_initial || "15", 10);
     GATES_FREE_SPINS_RETRIGGER = parseInt(map.gates_free_spins_retrigger || "5", 10);
     GATES_MULTIPLIER_CHANCE_BASE = parseFloat(map.gates_multiplier_chance_base || "0.04");
-    GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.05");
+    GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.10");
     GATES_MAX_BET = parseInt(map.gates_max_bet || "10", 10);
+    GATES_REEL_DUP_2_CHANCE = parseFloat(map.gates_reel_dup_2_chance || "0.35");
+    GATES_REEL_DUP_3_CHANCE = parseFloat(map.gates_reel_dup_3_chance || "0.10");
   }
 }
 
@@ -162,17 +154,19 @@ interface GatesWin {
   positions: number[];
 }
 
-interface GatesMultiplierOrb {
+interface GatesMultiplierBomb {
   position: number;
   value: number;
+  activated: boolean;
 }
 
 interface GatesTumbleStep {
   grid: string[][];
   wins: GatesWin[];
   winningPositions: number[];
-  multiplierOrbs: GatesMultiplierOrb[];
+  multiplierBombs: GatesMultiplierBomb[];
   stepWin: number;
+  bombMultiplier: number;
 }
 
 interface GatesSpinResult {
@@ -184,18 +178,13 @@ interface GatesSpinResult {
   initialGrid: string[][];
 }
 
-// Helper to check if a grid cell ID is a multiplier symbol
-function isMultSymbol(id: string): boolean {
-  return id.startsWith("mult_");
+function isGatesBombSymbol(id: string): boolean { return id.startsWith("bomb_"); }
+function getGatesBombValue(id: string): number {
+  const m = id.match(/^bomb_(\d+)x$/);
+  return m ? parseInt(m[1], 10) : 0;
 }
 
-// Helper to extract multiplier value from "mult_5x" -> 5
-function getMultValue(id: string): number {
-  const match = id.match(/^mult_(\d+)x$/);
-  return match ? parseInt(match[1], 10) : 0;
-}
-
-async function pickGatesMultiplierValue(prng: SeededPRNG): Promise<number> {
+async function pickGatesBombValue(prng: SeededPRNG): Promise<number> {
   const totalWeight = GATES_MULTIPLIER_WEIGHTS.reduce((a, b) => a + b, 0);
   let r = (await prng.next()) * totalWeight;
   for (let i = 0; i < GATES_MULTIPLIER_VALUES.length; i++) {
@@ -205,13 +194,11 @@ async function pickGatesMultiplierValue(prng: SeededPRNG): Promise<number> {
   return GATES_MULTIPLIER_VALUES[0];
 }
 
-async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<SlotSymbol> {
+async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<SlotSymbol> {
   const getWeight = (s: SlotSymbol) => {
     const base = isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
-    if (isBonusSpin && s.rarity === 'premium') {
-      return base * GATES_BONUS_PREMIUM_WEIGHT_BOOST;
-    }
-    return base;
+    if (isBonusSpin && s.rarity === 'premium') return base * GATES_BONUS_PREMIUM_WEIGHT_BOOST;
+    return s.is_scatter && scatterWeightMultiplier > 1 ? base * scatterWeightMultiplier : base;
   };
   const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
   let random = (await prng.next()) * totalWeight;
@@ -222,139 +209,78 @@ async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean,
   return symbols[symbols.length - 1];
 }
 
-async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[][]> {
-  const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
+  await prng.pregenerate(100);
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
   const grid: string[][] = [];
+
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
-    let hasScatter = false; // Cap: max 1 scatter per reel
-    let hasMultiplier = false; // Cap: max 1 multiplier per reel
+    let hasScatter = false;
+    let hasBomb = false;
+
     for (let row = 0; row < GATES_ROWS; row++) {
-      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
-
-      // Cap scatters to 1 per column: if scatter already placed, re-roll without scatter
+      // In bonus: chance to place a multiplier bomb (max 1 per reel)
+      if (isBonusSpin && !hasBomb && (await prng.next()) < GATES_MULTIPLIER_CHANCE_BONUS) {
+        const bombVal = await pickGatesBombValue(prng);
+        column.push(`bomb_${bombVal}x`);
+        hasBomb = true;
+        continue;
+      }
+      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng, scatterWeightMultiplier);
       if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
-        sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+        sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
       }
-
-      // Multiplier spin: replace scatters with multipliers (but cap 1 per reel)
-      if (spinType === 'multiplier' && scatterSymbol && sym.id === scatterSymbol.id) {
-        if (!hasMultiplier) {
-          const multVal = await pickGatesMultiplierValue(prng);
-          column.push(`mult_${multVal}x`);
-          hasMultiplier = true;
-        } else {
-          // Already have a multiplier in this column, place a regular symbol
-          sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
-          column.push(sym.id);
-        }
-        continue;
-      }
-
-      // Track scatter placement
-      if (scatterSymbol && sym.id === scatterSymbol.id) {
-        hasScatter = true;
-      }
-
-      // Scatter spin: never place multipliers
-      if (spinType === 'scatter') {
-        column.push(sym.id);
-        continue;
-      }
-
-      // 'both' (bonus) or 'multiplier' spin: normal multiplier chance on non-scatter cells (cap 1 per reel)
-      if (!scatterSymbol || sym.id !== scatterSymbol.id) {
-        if (!hasMultiplier && (await prng.next()) < chance) {
-          const multVal = await pickGatesMultiplierValue(prng);
-          column.push(`mult_${multVal}x`);
-          hasMultiplier = true;
-          continue;
-        }
-      }
+      if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
       column.push(sym.id);
     }
+
+    // Reel-based duplication
+    const dupRoll = await prng.next();
+    const tripleThreshold = GATES_REEL_DUP_3_CHANCE;
+    const doubleThreshold = tripleThreshold + GATES_REEL_DUP_2_CHANCE;
+    if (dupRoll < doubleThreshold) {
+      const dupCount = dupRoll < tripleThreshold ? 3 : 2;
+      const regularIndices: number[] = [];
+      for (let i = 0; i < column.length; i++) {
+        const id = column[i];
+        if (!isGatesBombSymbol(id) && (!scatterSymbol || id !== scatterSymbol.id)) {
+          regularIndices.push(i);
+        }
+      }
+      if (regularIndices.length >= dupCount) {
+        const sourceIdx = regularIndices[Math.floor((await prng.next()) * regularIndices.length)];
+        const sourceId = column[sourceIdx];
+        const otherIndices = regularIndices.filter(i => i !== sourceIdx);
+        for (let i = otherIndices.length - 1; i > 0; i--) {
+          const j = Math.floor((await prng.next()) * (i + 1));
+          [otherIndices[i], otherIndices[j]] = [otherIndices[j], otherIndices[i]];
+        }
+        const replaceCount = Math.min(dupCount - 1, otherIndices.length);
+        for (let i = 0; i < replaceCount; i++) {
+          column[otherIndices[i]] = sourceId;
+        }
+      }
+    }
+
+    // Shuffle the reel
+    for (let i = column.length - 1; i > 0; i--) {
+      const j = Math.floor((await prng.next()) * (i + 1));
+      [column[i], column[j]] = [column[j], column[i]];
+    }
+
     grid.push(column);
   }
   return grid;
 }
 
-// Place multipliers on new symbols filling after a tumble
-// existingColSymbols: the surviving symbols already in this column (used to prevent duplicate scatters)
-async function fillWithMultipliers(symbols: SlotSymbol[], count: number, isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both', existingColSymbols: string[] = []): Promise<string[]> {
-  const chance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
-  const scatterSymbol = symbols.find(s => s.is_scatter);
-  
-  // Check if this column already has a scatter among survivors
-  const colAlreadyHasScatter = scatterSymbol ? existingColSymbols.some(id => id === scatterSymbol.id) : false;
-  // Check if this column already has a multiplier among survivors
-  const colAlreadyHasMultiplier = existingColSymbols.some(id => id.startsWith('mult_'));
-  
-  const result: string[] = [];
-  let resultHasMultiplier = false;
-  for (let i = 0; i < count; i++) {
-    // Scatter spin: never place multipliers in fill
-    if (spinType === 'scatter') {
-      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
-      // Prevent duplicate scatter in this column
-      const resultHasScatter = scatterSymbol ? result.some(id => id === scatterSymbol.id) : false;
-      if (scatterSymbol && sym.id === scatterSymbol.id && (colAlreadyHasScatter || resultHasScatter)) {
-        // Re-roll without scatter
-        const nonScatter = symbols.filter(s => !s.is_scatter);
-        if (nonScatter.length > 0) {
-          const idx = Math.floor((await prng.next()) * nonScatter.length);
-          sym = nonScatter[idx];
-        }
-      }
-      result.push(sym.id);
-      continue;
-    }
-
-    // Multiplier spin: replace any scatter with a multiplier (cap 1 per reel)
-    if (spinType === 'multiplier') {
-      const canPlaceMult = !colAlreadyHasMultiplier && !resultHasMultiplier;
-      if (canPlaceMult && (await prng.next()) < chance) {
-        const multVal = await pickGatesMultiplierValue(prng);
-        result.push(`mult_${multVal}x`);
-        resultHasMultiplier = true;
-      } else {
-        const sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
-        if (scatterSymbol && sym.id === scatterSymbol.id && canPlaceMult) {
-          const multVal = await pickGatesMultiplierValue(prng);
-          result.push(`mult_${multVal}x`);
-          resultHasMultiplier = true;
-        } else if (scatterSymbol && sym.id === scatterSymbol.id) {
-          // Can't place multiplier, place regular symbol
-          const nonScatter = symbols.filter(s => !s.is_scatter);
-          const idx = Math.floor((await prng.next()) * nonScatter.length);
-          result.push(nonScatter[idx].id);
-        } else {
-          result.push(sym.id);
-        }
-      }
-      continue;
-    }
-
-    // 'both' (bonus): existing behavior but prevent duplicate scatters & cap 1 multiplier per reel
-    if (!colAlreadyHasMultiplier && !resultHasMultiplier && (await prng.next()) < chance) {
-      const multVal = await pickGatesMultiplierValue(prng);
-      result.push(`mult_${multVal}x`);
-      resultHasMultiplier = true;
-    } else {
-      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
-      const resultHasScatter = scatterSymbol ? result.some(id => id === scatterSymbol.id) : false;
-      if (scatterSymbol && sym.id === scatterSymbol.id && (colAlreadyHasScatter || resultHasScatter)) {
-        const nonScatter = symbols.filter(s => !s.is_scatter);
-        if (nonScatter.length > 0) {
-          const idx = Math.floor((await prng.next()) * nonScatter.length);
-          sym = nonScatter[idx];
-        }
-      }
-      result.push(sym.id);
-    }
-  }
-  return result;
+function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
+  const scatter = symbols.find(s => s.is_scatter);
+  if (!scatter) return 0;
+  let count = 0;
+  for (const col of grid) for (const id of col) if (id === scatter.id) count++;
+  return count;
 }
 
 function countGatesSymbolMatches(grid: string[][]): Map<string, { count: number; positions: number[] }> {
@@ -362,8 +288,7 @@ function countGatesSymbolMatches(grid: string[][]): Map<string, { count: number;
   for (let col = 0; col < GATES_COLS; col++) {
     for (let row = 0; row < GATES_ROWS; row++) {
       const id = grid[col][row];
-      // Skip multiplier symbols - they don't count toward matches
-      if (isMultSymbol(id)) continue;
+      if (isGatesBombSymbol(id)) continue;
       const flat = col * GATES_ROWS + row;
       if (!matches.has(id)) matches.set(id, { count: 0, positions: [] });
       const e = matches.get(id)!;
@@ -378,17 +303,14 @@ function calculateGatesWins(grid: string[][], symbols: SlotSymbol[], betAmount: 
   const matches = countGatesSymbolMatches(grid);
   const symbolsById = new Map(symbols.map(s => [s.id, s]));
   const wins: GatesWin[] = [];
-  
   for (const [symbolId, { count, positions }] of matches) {
     const sym = symbolsById.get(symbolId);
     if (!sym || sym.is_scatter) continue;
     if (count < GATES_MIN_MATCH) continue;
-    
     let multiplier = 0;
     if (count >= 12) multiplier = sym.multiplier_5;
     else if (count >= 10) multiplier = sym.multiplier_4;
     else if (count >= 8) multiplier = sym.multiplier_3;
-    
     if (multiplier > 0) {
       wins.push({ symbolId, symbolName: sym.name, count, payout: multiplier * betAmount, positions });
     }
@@ -396,25 +318,23 @@ function calculateGatesWins(grid: string[][], symbols: SlotSymbol[], betAmount: 
   return wins;
 }
 
-function countGatesScatters(grid: string[][], symbols: SlotSymbol[]): number {
-  const scatter = symbols.find(s => s.is_scatter);
-  if (!scatter) return 0;
-  let count = 0;
-  for (const col of grid) {
-    for (const id of col) {
-      if (id === scatter.id) count++;
+function scanGatesBombs(grid: string[][]): GatesMultiplierBomb[] {
+  const bombs: GatesMultiplierBomb[] = [];
+  for (let col = 0; col < GATES_COLS; col++) {
+    for (let row = 0; row < GATES_ROWS; row++) {
+      const id = grid[col][row];
+      if (isGatesBombSymbol(id)) {
+        bombs.push({ position: col * GATES_ROWS + row, value: getGatesBombValue(id), activated: false });
+      }
     }
   }
-  return count;
+  return bombs;
 }
 
-async function applyGatesTumble(grid: string[][], winningPositions: number[], multiplierPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, spinType: GatesSpinType = 'both'): Promise<string[][]> {
+async function applyGatesTumble(grid: string[][], winningPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+  await prng.pregenerate(20);
   const newGrid = grid.map(col => [...col]);
-  
-  // Combine winning + collected multiplier positions for removal
-  const allRemoved = new Set([...winningPositions, ...multiplierPositions]);
-  
-  // Group removed positions by column
+  const allRemoved = new Set(winningPositions); // Only winning symbols removed, bombs persist
   const removedByCol = new Map<number, Set<number>>();
   for (const pos of allRemoved) {
     const col = Math.floor(pos / GATES_ROWS);
@@ -422,132 +342,122 @@ async function applyGatesTumble(grid: string[][], winningPositions: number[], mu
     if (!removedByCol.has(col)) removedByCol.set(col, new Set());
     removedByCol.get(col)!.add(row);
   }
-  
-  // For each column, remove symbols and drop remaining down
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
   for (const [col, removedRows] of removedByCol) {
     const remaining: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
-      if (!removedRows.has(row)) {
-        remaining.push(newGrid[col][row]);
-      }
+      if (!removedRows.has(row)) remaining.push(newGrid[col][row]);
     }
-    
-    // Fill from top with new random symbols (respecting spinType)
-    // Pass surviving symbols so fillWithMultipliers can prevent duplicate scatters
     const needed = GATES_ROWS - remaining.length;
-    const newSymbols = await fillWithMultipliers(symbols, needed, isBonusSpin, prng, spinType, remaining);
-    
-    // New symbols on top, remaining on bottom
+    const newSymbols: string[] = [];
+    const colHasScatter = scatterSymbol ? remaining.some(id => id === scatterSymbol.id) : false;
+    const colHasBomb = remaining.some(id => isGatesBombSymbol(id));
+    let fillHasScatter = false;
+    let fillHasBomb = false;
+    for (let i = 0; i < needed; i++) {
+      if (isBonusSpin && !colHasBomb && !fillHasBomb && (await prng.next()) < GATES_MULTIPLIER_CHANCE_BONUS) {
+        const bombVal = await pickGatesBombValue(prng);
+        newSymbols.push(`bomb_${bombVal}x`);
+        fillHasBomb = true;
+        continue;
+      }
+      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      if (scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
+        sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+      }
+      if (scatterSymbol && sym.id === scatterSymbol.id) fillHasScatter = true;
+      newSymbols.push(sym.id);
+    }
     newGrid[col] = [...newSymbols, ...remaining];
   }
-  
   return newGrid;
-}
-
-function scanGridMultipliers(grid: string[][]): GatesMultiplierOrb[] {
-  const orbs: GatesMultiplierOrb[] = [];
-  for (let col = 0; col < GATES_COLS; col++) {
-    for (let row = 0; row < GATES_ROWS; row++) {
-      const id = grid[col][row];
-      if (isMultSymbol(id)) {
-        orbs.push({ position: col * GATES_ROWS + row, value: getMultValue(id) });
-      }
-    }
-  }
-  return orbs;
 }
 
 async function calculateGatesFullSpin(
   symbols: SlotSymbol[],
   betAmount: number,
   isBonusSpin: boolean,
-  runningMultiplier: number = 0,
-  prng: SeededPRNG
+  runningMultiplier: number,
+  prng: SeededPRNG,
+  forceScatters: boolean = false,
+  scatterWeightMultiplier: number = 1
 ): Promise<GatesSpinResult> {
-  // Determine spin type: base game splits into scatter/multiplier spins; bonus allows both
-  let spinType: GatesSpinType = 'both';
-  if (!isBonusSpin) {
-    const spinTypeRoll = await prng.next();
-    spinType = spinTypeRoll < GATES_MULTIPLIER_SPIN_CHANCE ? 'multiplier' : 'scatter';
+  let grid = await generateGatesGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
+
+  // Debug/buyBonus: force exactly 4 scatters
+  if (forceScatters && !isBonusSpin) {
+    const scatterSymbol = symbols.find(s => s.is_scatter);
+    if (scatterSymbol) {
+      const cols = [0, 1, 2, 3, 4, 5];
+      for (let i = cols.length - 1; i > 0; i--) {
+        const j = Math.floor(await prng.next() * (i + 1));
+        [cols[i], cols[j]] = [cols[j], cols[i]];
+      }
+      const chosen = cols.slice(0, 4);
+      for (const col of chosen) {
+        const row = Math.floor(await prng.next() * GATES_ROWS);
+        grid[col][row] = scatterSymbol.id;
+      }
+    }
   }
 
-  let grid = await generateGatesGrid(symbols, isBonusSpin, prng, spinType);
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: GatesTumbleStep[] = [];
   let totalRawWin = 0;
-  let totalMultiplier = runningMultiplier;
-  let maxTumbles = 50; // safety cap
-  
-  // Track max scatter count across all grids (initial + after each tumble)
-  // Scatters that drop in during tumbles count toward bonus trigger
+  let totalMultiplier = 0; // Per-spin: always start at 0
   let scatterCount = countGatesScatters(grid, symbols);
-  
+  let maxTumbles = 50;
+
   while (maxTumbles-- > 0) {
     const wins = calculateGatesWins(grid, symbols, betAmount);
-    
-    // Collect all winning positions
     const winningPositions = new Set<number>();
-    for (const w of wins) {
-      for (const p of w.positions) winningPositions.add(p);
-    }
-    
+    for (const w of wins) for (const p of w.positions) winningPositions.add(p);
     const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
-    
-    // Scan grid for multiplier symbols present in this step
-    const orbs = scanGridMultipliers(grid);
-    
-    // Record orbs for visual display but do NOT collect/remove them yet
-    // Multipliers persist on the grid until the tumble sequence ends
-    
+
+    // Scan bombs — report but don't activate yet
+    const bombs = scanGatesBombs(grid);
+
     tumbleSteps.push({
       grid: grid.map(col => [...col]),
       wins,
       winningPositions: Array.from(winningPositions),
-      multiplierOrbs: orbs,
+      multiplierBombs: bombs.map(b => ({ ...b, activated: false })),
       stepWin,
+      bombMultiplier: 0,
     });
-    
+
     totalRawWin += stepWin;
-    
-    // If no wins, tumble sequence ends
     if (wins.length === 0) break;
-    
-    // Apply tumble - remove ONLY winning symbols, NOT multipliers (they persist)
-    grid = await applyGatesTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng, spinType);
-    
-    // Re-check scatters after tumble (new scatters may have dropped in)
+
+    // Remove ONLY winning symbols; bombs persist
+    grid = await applyGatesTumble(grid, Array.from(winningPositions), symbols, isBonusSpin, prng);
+
     const newScatterCount = countGatesScatters(grid, symbols);
     if (newScatterCount > scatterCount) scatterCount = newScatterCount;
   }
-  
-  // After all tumbles: collect ALL multipliers that are still on the grid
-  // They explode simultaneously after the last win
+
+  // After all tumbles: if there were any wins, collect ALL remaining bombs
   if (totalRawWin > 0) {
-    // Find the last winning step to attach collected orbs for the client animation
-    const lastWinIdx = tumbleSteps.length - 1; // last step is always the no-win step
-    const finalOrbs = scanGridMultipliers(grid);
-    if (finalOrbs.length > 0) {
-      const orbSum = finalOrbs.reduce((sum, o) => sum + o.value, 0);
-      totalMultiplier += orbSum;
+    const finalBombs = scanGatesBombs(grid);
+    if (finalBombs.length > 0) {
+      const bombSum = finalBombs.reduce((sum, b) => sum + b.value, 0);
+      totalMultiplier += bombSum;
+      if (tumbleSteps.length > 0) {
+        const lastStep = tumbleSteps[tumbleSteps.length - 1];
+        lastStep.multiplierBombs = finalBombs.map(b => ({ ...b, activated: true }));
+        lastStep.bombMultiplier = bombSum;
+      }
     }
   }
 
-  // Determine bonus trigger after all tumbles (scatters accumulated across all grids)
-  const bonusTriggered = isBonusSpin 
-    ? scatterCount >= GATES_SCATTER_RETRIGGER 
+  const bonusTriggered = isBonusSpin
+    ? scatterCount >= GATES_SCATTER_RETRIGGER
     : scatterCount >= GATES_SCATTER_TRIGGER;
 
-  // Apply total multiplier to raw win
   const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
-  
-  return {
-    tumbleSteps,
-    totalWin,
-    bonusTriggered,
-    scatterCount,
-    totalMultiplier,
-    initialGrid,
-  };
+
+  return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };
 }
 
 // ============================================================
@@ -1684,10 +1594,7 @@ Deno.serve(async (req) => {
     // GATES OF FEDESVIN - completely different game engine
     // ============================================================
     if (isGatesOfFedesvin) {
-      // Load Gates settings from DB (cached 5 min)
       await loadGatesSettings(serviceClient);
-      
-      // Create provably fair PRNG from serverSecret + userId + clientSeed + nonce
       const serverSecret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "default-server-secret";
       const prng = await SeededPRNG.create(serverSecret, userId, clientSeed, nonce);
       
@@ -1712,31 +1619,44 @@ Deno.serve(async (req) => {
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
           // DEMO MODE: Skip leaderboard recording for Gates
-          // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bonus bg err:", e); } })();
         }
         return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: gatesResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
       }
-      // Gates normal spin
+
+      // Gates normal spin — supports doubleChance and buyBonus
+      const isDoubleChance = !!doubleChance && !isBonusSpin;
+      const isBuyBonus = !!buyBonus && !isBonusSpin;
+      const effectiveBetCost = isBuyBonus ? bet * 100 : isDoubleChance ? bet * 2 : bet;
+
       const nowG = new Date();
       const todayG = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(nowG);
       const bonusSpinsPerm = profileRes.data?.bonus_spins_permanent || 0;
       const isSub = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
       const subBon = isSub ? SUBSCRIBER_BONUS : 0;
       const maxSp = dailySpinsValue + subBon + bonusSpinsPerm;
-      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp, p_game_id: "shared" });
+      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: effectiveBetCost, p_max_spins: maxSp, p_game_id: "shared" });
       if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng);
+
+      let forceScatters = isBuyBonus;
+      if (debugScatters && !isBuyBonus) {
+        const { data: isAdminData } = await serviceClient.rpc("has_role", { _user_id: userId, _role: "admin" });
+        if (isAdminData === true) forceScatters = true;
+      }
+      const scatterWeightMult = isDoubleChance ? 2 : 1;
+
+      const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng, forceScatters, scatterWeightMult);
+      console.log(`[gates] userId=${userId}, scatterCount=${gatesResult.scatterCount}, bonusTriggered=${gatesResult.bonusTriggered}, totalWin=${gatesResult.totalWin}, tumbleSteps=${gatesResult.tumbleSteps.length}`);
       let gatesBonusState = null;
       if (gatesResult.bonusTriggered) {
-        const awardedSpins = gatesResult.scatterCount >= 6 ? 15 : gatesResult.scatterCount >= 5 ? 12 : 10;
+        const sc = gatesResult.scatterCount;
+        const awardedSpins = sc >= 6 ? 15 : sc >= 5 ? 12 : 10;
         await serviceClient.from("slot_bonus_state").delete().eq("user_id", userId).eq("game_id", gameId);
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: gatesResult.totalWin, game_id: gameId, bet_amount: bet });
         gatesBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: gatesResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
       // DEMO MODE: Skip leaderboard recording for Gates
-      // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: gatesResult.totalWin, is_bonus_triggered: gatesResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Gates bg err:", e); } })();
       return new Response(JSON.stringify({ success: true, result: gatesResult, spinsRemaining: newRem, maxSpins: maxSp, bonusState: gatesBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }

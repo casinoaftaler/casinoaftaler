@@ -32,6 +32,35 @@ export const MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 // Re-export multiplier helpers for convenience
 export { isMultiplierSymbol, getMultiplierValue } from './gatesMultiplierSymbols';
 
+// Bomb symbol helpers (Bonanza-style multipliers used in Gates engine)
+export function isBombSymbol(id: string): boolean {
+  return id.startsWith("bomb_");
+}
+
+export function getBombValue(id: string): number {
+  const match = id.match(/^bomb_(\d+)x$/);
+  return match ? parseInt(match[1], 10) : 0;
+}
+
+export interface GatesBomb {
+  position: number;
+  value: number;
+  activated: boolean;
+}
+
+export function scanGridBombs(grid: string[][]): GatesBomb[] {
+  const bombs: GatesBomb[] = [];
+  for (let col = 0; col < GATES_COLS; col++) {
+    for (let row = 0; row < GATES_ROWS; row++) {
+      const id = grid[col][row];
+      if (isBombSymbol(id)) {
+        bombs.push({ position: col * GATES_ROWS + row, value: getBombValue(id), activated: false });
+      }
+    }
+  }
+  return bombs;
+}
+
 // Chance of multiplier orbs appearing on a spin (percentage of cells)
 export const MULTIPLIER_CHANCE_BASE = 0.08; // 8% per cell in base game
 export const MULTIPLIER_CHANCE_BONUS = 0.12; // 12% per cell in bonus
