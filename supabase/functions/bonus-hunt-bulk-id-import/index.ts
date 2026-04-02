@@ -32,24 +32,6 @@ function buildArchiveRow(huntNumber: number, huntDetail: any, apiId: string) {
   const totalWins = openedSlots.reduce((sum: number, s: any) => sum + (s.win || 0), 0);
   const endBalance = (huntDetail.end && huntDetail.end > 0) ? huntDetail.end : (totalWins > 0 ? totalWins : null);
 
-  const apiData = {
-    id: apiId,
-    name: huntDetail.name,
-    casino: huntDetail.casino,
-    createdAt: huntDetail.createdAt,
-    start: startBalance,
-    end: endBalance,
-    played: huntDetail.played,
-    started: huntDetail.started,
-    currency: huntDetail.currency,
-    slots: slots.map((s: any) => ({
-      slot: { name: s.slot?.name || 'Unknown', provider: s.slot?.provider || 'Custom Slot', id: s.slot?.id || s.id },
-      bet: s.bet || 0, win: s.win || 0, played: s.played ?? false,
-      note: s.note || '', balance: s.balance || 0,
-    })),
-    statistics: huntDetail.statistics || null,
-  };
-
   return {
     hunt_number: huntNumber,
     hunt_name: `Bonus Hunt #${huntNumber}`,
@@ -59,7 +41,23 @@ function buildArchiveRow(huntNumber: number, huntDetail: any, apiId: string) {
     average_x: avgX ? Math.round(avgX * 100) / 100 : null,
     total_slots: slots.length,
     opened_slots: openedSlots.length,
-    api_data: apiData,
+    api_data: {
+      id: apiId,
+      name: huntDetail.name,
+      casino: huntDetail.casino,
+      createdAt: huntDetail.createdAt,
+      start: startBalance,
+      end: endBalance,
+      played: huntDetail.played,
+      started: huntDetail.started,
+      currency: huntDetail.currency,
+      slots: slots.map((s: any) => ({
+        slot: { name: s.slot?.name || 'Unknown', provider: s.slot?.provider || 'Custom Slot', id: s.slot?.id || s.id },
+        bet: s.bet || 0, win: s.win || 0, played: s.played ?? false,
+        note: s.note || '', balance: s.balance || 0,
+      })),
+      statistics: huntDetail.statistics || null,
+    },
     casino_name: huntDetail.casino || null,
   };
 }
@@ -83,27 +81,30 @@ serve(async (req) => {
       });
     }
 
+    // 1. Deduplicate input
     const uniqueIds = [...new Set(rawIds)];
     const inputDuplicates = rawIds.length - uniqueIds.length;
-    console.log(`Input: ${rawIds.length} IDs, ${inputDuplicates} duplicates removed, ${uniqueIds.length} unique`);
+    console.log(`Input: ${rawIds.length} IDs, ${inputDuplicates} duplicates, ${uniqueIds.length} unique`);
 
+    // 2. Load all existing archives
     const { data: allArchives } = await supabase
       .from('bonus_hunt_archives')
-      .select('id, hunt_number, api_data, created_at')
+      .select('id, hunt_number, api_data')
       .order('hunt_number', { ascending: true });
 
     const existingApiIds = new Set<string>();
     const existingArchives = (allArchives || []).map((a: any) => {
-      const apiId = a.api_data?.id || a.api_data?.data?.id || '';
+      const apiId = a.api_data?.id || '';
       if (apiId) existingApiIds.add(apiId);
-      const createdAt = a.api_data?.createdAt || a.api_data?.data?.createdAt || null;
-      return { dbId: a.id, huntNumber: a.hunt_number, apiId, createdAt, isExisting: true };
+      const createdAt = a.api_data?.createdAt || null;
+      return { dbId: a.id, huntNumber: a.hunt_number, apiId, createdAt, isExisting: true as const };
     });
 
     const newIds = uniqueIds.filter(id => !existingApiIds.has(id));
     const alreadyImported = uniqueIds.length - newIds.length;
     console.log(`${alreadyImported} already in DB, ${newIds.length} new to import`);
 
+    // 3. Fetch new hunts from API in batches of 5
     const fetchedHunts: Array<{ apiId: string; detail: any; createdAt: number }> = [];
     const fetchErrors: string[] = [];
 
@@ -111,118 +112,124 @@ serve(async (req) => {
       const batch = newIds.slice(i, i + 5);
       const results = await Promise.allSettled(
         batch.map(async (id) => {
-          const res = await fetch(`${STREAMSYSTEM_BASE}/${id}`, {
-            headers: { Accept: 'application/json' },
-          });
+          const res = await fetch(`${STREAMSYSTEM_BASE}/${id}`, { headers: { Accept: 'application/json' } });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
           const detail = data.data || data;
-          const slots = detail.slots || [];
-          if (slots.length === 0) throw new Error('no_slots');
+          if ((detail.slots || []).length === 0) throw new Error('no_slots');
           return { apiId: id, detail, createdAt: detail.createdAt || 0 };
         })
       );
-
       for (let j = 0; j < results.length; j++) {
         const r = results[j];
-        if (r.status === 'fulfilled') {
-          fetchedHunts.push(r.value);
-        } else {
-          fetchErrors.push(`${batch[j]}: ${r.reason?.message || 'unknown'}`);
-        }
+        if (r.status === 'fulfilled') fetchedHunts.push(r.value);
+        else fetchErrors.push(`${batch[j]}: ${r.reason?.message || 'unknown'}`);
       }
-
-      if (i + 5 < newIds.length) {
-        await new Promise(r => setTimeout(r, 300));
-      }
+      if (i + 5 < newIds.length) await new Promise(r => setTimeout(r, 300));
     }
 
     console.log(`Fetched ${fetchedHunts.length} new hunts, ${fetchErrors.length} errors`);
 
-    const allHunts: Array<{
-      dbId?: string;
-      apiId: string;
-      createdAt: number | null;
-      isExisting: boolean;
-      huntNumber?: number;
-      detail?: any;
-    }> = existingArchives.map((a: any) => ({
-      dbId: a.dbId,
-      apiId: a.apiId,
-      createdAt: a.createdAt,
-      isExisting: true,
-      huntNumber: a.huntNumber,
-    }));
-
-    for (const h of fetchedHunts) {
-      allHunts.push({
-        apiId: h.apiId,
-        createdAt: h.createdAt,
-        isExisting: false,
-        detail: h.detail,
-      });
-    }
+    // 4. Merge and sort chronologically
+    type HuntEntry = { dbId?: string; apiId: string; createdAt: number | null; isExisting: boolean; huntNumber?: number; detail?: any };
+    const allHunts: HuntEntry[] = [
+      ...existingArchives,
+      ...fetchedHunts.map(h => ({ apiId: h.apiId, createdAt: h.createdAt, isExisting: false as const, detail: h.detail })),
+    ];
 
     const withDate = allHunts.filter(h => h.createdAt && h.createdAt > 0);
     const withoutDate = allHunts.filter(h => !h.createdAt || h.createdAt <= 0);
-
     withDate.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
     withoutDate.sort((a, b) => (a.huntNumber || 9999) - (b.huntNumber || 9999));
-
     const sorted = [...withDate, ...withoutDate];
 
-    let renumbered = 0;
+    // 5. Phase 1: Move ALL existing hunts to negative temp numbers to free up the number space
+    console.log('Phase 1: Moving existing to temp numbers...');
+    const updatePromises: Promise<any>[] = [];
+    for (const hunt of existingArchives) {
+      updatePromises.push(
+        supabase.from('bonus_hunt_archives')
+          .update({ hunt_number: -(hunt.huntNumber + 10000) })
+          .eq('id', hunt.dbId)
+      );
+      // Process in batches of 20 to avoid overwhelming
+      if (updatePromises.length >= 20) {
+        await Promise.all(updatePromises);
+        updatePromises.length = 0;
+      }
+    }
+    if (updatePromises.length > 0) await Promise.all(updatePromises);
+
+    // 6. Phase 2: Insert new hunts with temp negative numbers
+    console.log('Phase 2: Inserting new hunts...');
     let imported = 0;
+    for (let i = 0; i < sorted.length; i++) {
+      const hunt = sorted[i];
+      if (!hunt.isExisting && hunt.detail) {
+        const row = buildArchiveRow(-(i + 20000), hunt.detail, hunt.apiId);
+        const { error } = await supabase.from('bonus_hunt_archives').insert(row);
+        if (error) {
+          console.error(`Insert error ${hunt.apiId}:`, error.message);
+          fetchErrors.push(`${hunt.apiId}: insert_error`);
+          sorted.splice(i, 1); i--; // remove from sorted
+          continue;
+        }
+        imported++;
+      }
+    }
+
+    // 7. Phase 3: Set final numbers for ALL hunts
+    console.log('Phase 3: Assigning final numbers...');
+    let renumbered = 0;
+    const finalPromises: Promise<any>[] = [];
 
     for (let i = 0; i < sorted.length; i++) {
       const newNumber = i + 1;
       const hunt = sorted[i];
 
       if (hunt.isExisting) {
-        if (hunt.huntNumber !== newNumber) {
-          await supabase
-            .from('bonus_hunt_archives')
-            .update({ hunt_number: -(newNumber + 10000) })
-            .eq('id', hunt.dbId);
-          hunt.huntNumber = newNumber;
-          renumbered++;
-        }
+        const tempNum = -(hunt.huntNumber! + 10000);
+        finalPromises.push(
+          supabase.from('bonus_hunt_archives')
+            .update({ hunt_number: newNumber, hunt_name: `Bonus Hunt #${newNumber}` })
+            .eq('hunt_number', tempNum)
+        );
+        if (hunt.huntNumber !== newNumber) renumbered++;
       } else {
-        const row = buildArchiveRow(-(newNumber + 10000), hunt.detail, hunt.apiId);
-        const { error } = await supabase.from('bonus_hunt_archives').insert(row);
-        if (error) {
-          console.error(`Insert error for ${hunt.apiId}:`, error);
-          fetchErrors.push(`${hunt.apiId}: insert_error`);
-          continue;
-        }
-        hunt.huntNumber = newNumber;
-        imported++;
+        const tempNum = -(i + 20000);
+        finalPromises.push(
+          supabase.from('bonus_hunt_archives')
+            .update({ hunt_number: newNumber, hunt_name: `Bonus Hunt #${newNumber}` })
+            .eq('hunt_number', tempNum)
+        );
+      }
 
-        for (const slot of (hunt.detail.slots || [])) {
-          const slotName = slot.slot?.name || 'Unknown';
-          if (slotName === 'Unknown') continue;
-          const provider = slot.slot?.provider || 'Custom Slot';
-          const bet = slot.bet || 0;
-          const win = slot.win || 0;
-          const multiplier = bet > 0 && slot.played ? win / bet : 0;
-          await supabase.rpc('upsert_slot_catalog', {
-            p_slot_name: smartTitleCase(slotName),
-            p_provider: provider === 'Custom Slot' ? 'Unknown' : provider,
-            p_rtp: null,
-            p_win: win,
-            p_multiplier: multiplier,
-          });
-        }
+      if (finalPromises.length >= 20) {
+        await Promise.all(finalPromises);
+        finalPromises.length = 0;
       }
     }
+    if (finalPromises.length > 0) await Promise.all(finalPromises);
 
-    console.log('Second pass: fixing hunt numbers...');
-    for (let i = 0; i < sorted.length; i++) {
-      const newNumber = i + 1;
-      await supabase
-        .from('bonus_hunt_archives')
-        .update({ hunt_number: newNumber, hunt_name: `Bonus Hunt #${newNumber}` })
-        .eq('hunt_number', -(newNumber + 10000));
+    // 8. Upsert slot catalog for new hunts (fire-and-forget style, batched)
+    console.log('Phase 4: Upserting slot catalog...');
+    for (const hunt of fetchedHunts) {
+      const slots = hunt.detail.slots || [];
+      for (const slot of slots) {
+        const slotName = slot.slot?.name || 'Unknown';
+        if (slotName === 'Unknown') continue;
+        const provider = slot.slot?.provider || 'Custom Slot';
+        const bet = slot.bet || 0;
+        const win = slot.win || 0;
+        const multiplier = bet > 0 && slot.played ? win / bet : 0;
+        await supabase.rpc('upsert_slot_catalog', {
+          p_slot_name: smartTitleCase(slotName),
+          p_provider: provider === 'Custom Slot' ? 'Unknown' : provider,
+          p_rtp: null,
+          p_win: win,
+          p_multiplier: multiplier,
+        });
+      }
     }
 
     console.log(`Done. Imported: ${imported}, Renumbered: ${renumbered}`);
