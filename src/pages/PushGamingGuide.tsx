@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pushLogo from "@/assets/screenshots/push-logo.webp";
+import pushKatalog from "@/assets/screenshots/push-katalog.webp";
+import pushGameplay from "@/assets/screenshots/push-gameplay.webp";
+import pushAbout from "@/assets/screenshots/push-about.webp";
 
 const PushGamingGuide = () => (
   <ProviderPage
