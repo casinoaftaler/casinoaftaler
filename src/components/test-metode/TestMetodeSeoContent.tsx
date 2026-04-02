@@ -371,7 +371,7 @@ export function TestMetodeSeoContent() {
       {/* ── Matematisk Grundlag ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <TrendingUp className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="trending-up" className="h-6 w-6" />
           Matematisk Grundlag for Bonusvurdering
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
