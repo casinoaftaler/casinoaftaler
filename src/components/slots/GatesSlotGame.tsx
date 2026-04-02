@@ -902,7 +902,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       <div className="gates-lightning-ambient" />
       <div className="gates-ambient-glow" />
 
-      <GatesZeusCharacter intensityState={intensityState} chainLevel={tumbleChainLength} isBonusActive={isBonusActive} />
+      
 
       {/* Win celebration */}
       {isWinAnimating && currentSpinWin > 0 && (
