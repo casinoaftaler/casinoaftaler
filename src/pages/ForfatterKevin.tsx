@@ -360,7 +360,7 @@ export default function ForfatterKevin() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
+            Kevin er 26 år og har streamet slots i over 4 år. Han mødte{" "}
             <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch,
             hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede
             communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
