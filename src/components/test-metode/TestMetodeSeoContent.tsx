@@ -512,7 +512,7 @@ export function TestMetodeSeoContent() {
       {/* ── Interessekonflikt-politik ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Eye className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="eye" className="h-6 w-6" />
           Interessekonflikt & Objektivitetspolitik
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
