@@ -76,6 +76,12 @@ const QuickspinGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den afgørende differentiering er dog Achievement Engine. NetEnt har intet tilsvarende, og ingen af de andre store studios har replikeret Quickspins gamification-system med samme dybde. I en branche der i stigende grad konkurrerer om spillernes opmærksomhed (mod sociale medier, streaming, mobile spil), er evnen til at fastholde spillere via progression og mål en strategisk superpower. Quickspin har ikke bare lånt fra mobilspilindustrien – de har integreret dens bedste principper i casino-konteksten mere effektivt end nogen konkurrent.
         </p>
+        <ReviewScreenshot
+          src={qsGames}
+          alt="Quickspin Games og Quickspin Live – officiel hjemmeside med Big Bad Wolf Live og Sakura Fortune"
+          caption="Quickspins officielle spilsektion med nye titler og Quickspin Live – studiets udvidelse til live casino."
+          size="full"
+        />
 
         <h3 className="text-xl font-bold mb-3 mt-6">Playtech-Alliancen: Kreativ Frihed Under Koncernparaply</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
