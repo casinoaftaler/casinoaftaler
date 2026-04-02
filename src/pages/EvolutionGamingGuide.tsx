@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import evolutionLogo from "@/assets/screenshots/evolution-logo.webp";
+import evolutionLobby from "@/assets/screenshots/evolution-lobby.webp";
+import evolutionBaccarat from "@/assets/screenshots/evolution-baccarat.webp";
+import evolutionRoulette from "@/assets/screenshots/evolution-roulette.webp";
 
 const EvolutionGamingGuide = () => (
   <ProviderPage
@@ -20,6 +25,13 @@ const EvolutionGamingGuide = () => (
     introTitle="Evolution Gaming: Fra Riga-Startup til Global Casino-Koncern"
     introContent={
       <>
+        <ReviewScreenshot
+          src={evolutionLogo}
+          alt="Evolution Gaming officielt logo – det sorte Evolution-brand med det ikoniske dobbelt-blad ikon"
+          caption="Evolutions officielle logo – koncernen bag 70%+ af det globale live casino-marked"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er to typer virksomheder i casinobranchen: dem der producerer spil, og dem der definerer hele kategorier. Evolution Gaming er den anden type. Grundlagt i 2006 i Riga, Letland, af en gruppe teknologientreprenører med en vision om at bringe den fysiske casinooplevelse online, har de ikke bare opfyldt den vision – de har transcenderet den. Live casino, som de fandt det, var statiske webcam-feeds af bordspil med lav opløsning og dårlig lyd. Live casino, som Evolution skabte det, er en multimilliard-dollar-industri med professionelle dealere, cinematisk belysning, real-time RNG-integration og game show-formater der tiltrækker spillere som aldrig ville røre en traditionel spilleautomat.
         </p>
@@ -50,6 +62,12 @@ const EvolutionGamingGuide = () => (
           Den finansielle logik bag opkøbene er overbevisende. NetEnt-opkøbet til 19,6 milliarder SEK virkede dyrt ved annoncering, men NetEnts slot-portefølje genererer stadig milliarder i årlig omsætning, og Red Tiger (inkluderet i købet) har vist sig at være en underværdsat perle med sin Daily Jackpot-teknologi. BTG-opkøbet sikrede Megaways-patentet – en mekanik der genererer licensindtægter fra adskillige konkurrenter (Pragmatic Play, <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> og andre betaler alle licensafgift for at bruge Megaways). Nolimit City-opkøbet til €340 millioner sikrede det hurtigst voksende segment i slots: ultra-high-volatility med streamer-appeal.
         </p>
 
+        <ReviewScreenshot
+          src={evolutionLobby}
+          alt="Evolution Gaming live casino lobby på Betinia – oversigt over live blackjack, baccarat, roulette og game show-titler med professionelle dealere"
+          caption="Evolutions live casino-lobby på et dansk casino – et udsnit af det massive udbud med 100+ live borde"
+          size="full"
+        />
         <h3 className="text-xl font-bold mb-4">Live Casino: Hvorfor 70% Markedsandel Er Næsten Umulig at Udfordre</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Evolutions live casino-dominans er selvforstærkende via tre mekanismer. Først stordriftsfordele: med studiefaciliteter på fire kontinenter kan de tilbyde 24/7 dækning i alle tidszoner med lokale dealere der taler det lokale sprog. Nærmeste konkurrent – Pragmatic Plays Live Casino-division – har estimeret 10-12% markedsandel og langt færre studiefaciliteter. For det andet netværkseffekter: jo flere operatører der bruger Evolution, jo mere data har de til at optimere spil og dealertræning. De processer over 100 millioner live hænder dagligt – en datamængde der giver et uovertruffen grundlag for at forstå spilleradfærd i real-time.
@@ -69,6 +87,12 @@ const EvolutionGamingGuide = () => (
           Den grundlæggende forskel er ambitionsniveau og investeringsvillighed: Evolution behandler live casino som televisionproduktion og investerer derefter (estimeret €300M+ årligt i studieinfrastruktur), mens Pragmatic behandler det som en produktudvidelse med mere beskedne investeringer. For spillere betyder det: vælg Evolution for den bedste live casino-oplevelse, vælg Pragmatic Play for budgetvenlige alternativer der er funktionelt solide men visuelt mere afdæmpede.
         </p>
 
+        <ReviewScreenshot
+          src={evolutionBaccarat}
+          alt="XXXtreme Lightning Baccarat fra Evolution – live gameplay med 3x multiplikator på Player, professionel dealer og dansk interface"
+          caption="XXXtreme Lightning Baccarat i aktion – Evolutions innovative kombination af live baccarat og RNG-multiplikatorer"
+          size="full"
+        />
         <h3 className="text-xl font-bold mb-4">Risikoprofil og Matematisk DNA i Live Casino</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Live casino-spil har en fundamentalt anderledes risikoprofil end slots. Blackjack har en house edge på ~0,5% med optimal strategi – det laveste af alle casinospil og en brøkdel af slots' gennemsnitlige 4-6%. Europæisk roulette har 2,70% og baccarat 1,06% på banker. Disse er de laveste house edges i hele casinoet. Men volatiliteten er også lavere: du vinder eller taber sjældent dramatisk i traditionelle bordspil. En blackjack-session svinger typisk ±20% af bankrollet over 100 hænder, mens en slot-session kan svinge ±80% over 100 spins.
@@ -91,6 +115,12 @@ const EvolutionGamingGuide = () => (
     }
     technicalProfile={
       <div className="space-y-6">
+        <ReviewScreenshot
+          src={evolutionRoulette}
+          alt="First Person Roulette fra Evolution – 3D-renderet europæisk roulettebord med chip-valg og DREJ-knap på dansk"
+          caption="First Person Roulette – Evolutions RNG-baserede roulette med fotorealistisk 3D-grafik og dansk interface"
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Evolutions tekniske infrastruktur er den mest avancerede i live casino-branchen. Studierne anvender HD 1080p-streaming med latency under 1 sekund, OCR-verifikation af alle spilresultater, og dedikerede kameraopsætninger med 200+ kameraer per studie. Backend-arkitekturen håndterer over 100 millioner live-transaktioner dagligt med 99,99% uptime – en pålidelighed der overstiger de fleste finansielle systemer.
         </p>
