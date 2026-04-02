@@ -101,6 +101,12 @@ const ISoftBetGuide = () => (
     }
     technicalProfile={
       <div className="space-y-6">
+        <ReviewScreenshot
+          src={isoftbetFacts}
+          alt="iSoftBet Quick Facts – 400+ casino spil, grundlagt 2010, licenseret i adskillige lande"
+          caption="iSoftBets nøgletal: 400+ spil, grundlagt 2010 i London, tilgængelig på regulerede markeder globalt"
+          size="medium"
+        />
         <p className="text-muted-foreground leading-relaxed">
           iSoftBets tekniske arkitektur er unik i branchen fordi den skal betjene to fundamentalt forskellige behov: slot-udvikling og platform-aggregering. Slot-motoren er en moderne HTML5-implementation med avanceret rendering, spatial audio og adaptiv kvalitetsskalering der automatisk tilpasser grafikindstillinger til enhedens kapacitet. GAP-platformen er bygget på en microservices-arkitektur med API-first design der kan håndtere 50.000+ samtidige sessioner med under 50ms latenstid. Begge systemer er designet til compliance-first operation med automatisk jurisdiktionsfiltrering og regulatorisk rapportering.
         </p>

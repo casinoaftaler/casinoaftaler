@@ -118,11 +118,6 @@ const MicrogamingGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Jackpot-slots har lavere basis-RTP (88-92%) fordi en del af indsatsen kanaliseres til den progressive pulje. For spillere der vælger Mega Moolah bør dette være en bevidst beslutning: du bytter daglig spilleroplevelse (lavere afkast) for potentielt livsændrende gevinst. Standard-slots i porteføljen har konkurrencedygtige RTP-værdier (95-96,86%) men mangler den kreative innovation man finder hos <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> eller <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>.
         </p>
-        <ReviewScreenshot
-          src={mgUpcoming}
-          alt="Microgaming kommende spilutgivelser – Coming Soon oversigt med nye slots planlagt til april 2026"
-          caption="Microgamings kommende udgivelser – nye titler planlagt via deres globale studie-netværk."
-        />
       </>
     }
     games={[
