@@ -56,11 +56,20 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
 
     bCtx.putImageData(frame, 0, 0);
 
-    // Draw processed buffer to display canvas
-    canvas.width = width;
-    canvas.height = height;
-    ctx.clearRect(0, 0, width, height);
-    ctx.drawImage(buf, 0, 0, width, height);
+    // Draw to display canvas maintaining aspect ratio
+    const vw = buf.width;
+    const vh = buf.height;
+    const aspectRatio = vw / vh;
+    let dw = width;
+    let dh = dw / aspectRatio;
+    if (dh > height) {
+      dh = height;
+      dw = dh * aspectRatio;
+    }
+    canvas.width = Math.round(dw);
+    canvas.height = Math.round(dh);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(buf, 0, 0, canvas.width, canvas.height);
 
     rafRef.current = requestAnimationFrame(processFrame);
   }, [width, height]);
