@@ -356,7 +356,7 @@ export function TestMetodeSeoContent() {
             <Card key={item.title} className="border-border bg-card">
               <CardContent className="p-5">
                 <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
-                  <item.icon className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="h-5 w-5" />
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.content}</p>
