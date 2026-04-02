@@ -5,6 +5,10 @@ import { Award } from "lucide-react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
 import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
+import ppLogo from "@/assets/screenshots/pp-logo.webp";
+import ppGatesIntro from "@/assets/screenshots/pp-gates-intro.webp";
+import ppGatesGameplay from "@/assets/screenshots/pp-gates-gameplay.webp";
+import ppSpilleregler from "@/assets/screenshots/pp-spilleregler.webp";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
@@ -25,7 +29,14 @@ const PragmaticPlayGuide = () => (
     introContent={
       <>
         <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-5">
-          <div className="flex items-start gap-3">
+        <ReviewScreenshot
+          src={ppLogo}
+          alt="Pragmatic Play officielt logo – orange krone-ikon med sort tekst, grundlagt 2015 på Malta"
+          caption="Pragmatic Plays ikoniske logo – verdens mest produktive spiludvikler med 250+ slots og 100+ live casino-borde."
+          size="medium"
+          eager
+        />
+        <div className="flex items-start gap-3">
             <Award className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
             <div>
               <p className="mb-1 font-semibold">Officiel partner af Pragmatic Play</p>
@@ -62,6 +73,12 @@ const PragmaticPlayGuide = () => (
     strategicAnalysis={
       <>
         <h3 className="text-xl font-bold mb-3 mt-2">Volumen-Strategien: Hvorfor 6-8 Spil Per Måned Fungerer</h3>
+        <ReviewScreenshot
+          src={ppGatesIntro}
+          alt="Gates of Olympus startskærm – Zeus-karakter, Scatter-symbol og 5.000x maks gevinst på spilleautomaten.dk"
+          caption="Gates of Olympus introscreen – Pragmatic Plays mest streamede titel med Zeus, Scatter-symboler og op til 5.000x gevinst."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Pragmatic Plays release-kadence på 6-8 nye spilleautomater per måned er ikke blot imponerende – den er strategisk definerende. I casinobranchen er "shelf space" (lobbyplaceringer) en knap ressource: casinoer har begrænset plads i deres "nye spil"-sektioner, og udviklere der udgiver hyppigere, får mere eksponering. Ved at oversvømme markedet med spil sikrer Pragmatic sig konstant synlighed – et princip der minder om, hvad FMCG-giganter (Fast-Moving Consumer Goods) som Procter & Gamble gør med supermarkedshylder. Konsekvensen er at Pragmatic Play typisk optager 15-25% af "nye spil"-sektionen hos danske casinoer, sammenlignet med 3-5% for boutique-studier som <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link>.
         </p>
@@ -116,6 +133,12 @@ const PragmaticPlayGuide = () => (
     }
     technicalProfile={
       <div className="space-y-6">
+        <ReviewScreenshot
+          src={ppGatesGameplay}
+          alt="Gates of Olympus gameplay – 6x5 grid med ædelstenssymboler, Køb Gratis Spins og Dobbelt Chance funktion"
+          caption="Gates of Olympus gameplay med Tumble-mekanik, multiplikator-bomber og Bonus Buy til kr500 – Pragmatic Plays flagskib."
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Pragmatic Plays tekniske infrastruktur er bygget til skala. Deres HTML5-motor håndterer milliarder af spins dagligt på tværs af 250+ titler og 20+ regulerede markeder. Load-tider er typisk under 3 sekunder, og alle spil er mobile-first designet med responsivt layout. Pragmatics tekniske differentiator er ikke innovation men pålidelighed: deres spil crasher sjældnere og loader hurtigere end gennemsnittet. Backend-arkitekturen er designet til at håndtere peak-belastninger under store kampagner – Black Friday, nyårsaften og store sportsevents – uden degradering af spilleroplevelsen.
         </p>
@@ -170,6 +193,12 @@ const PragmaticPlayGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig advarsel: tjek altid RTP-niveauet i spillets informationsmenu. Gates of Olympus ved 96,50% og Gates of Olympus ved 94,00% er teknisk set to forskellige spil fra et matematisk perspektiv, selvom de ser identiske ud. Forskellen over tid er substantiel og kan betyde forskellen mellem en acceptabel session og en unødvendigt dyr oplevelse. De RTP-værdier der angives nedenfor er standard-niveauerne – dit casino kan have konfigureret lavere.
         </p>
+        <ReviewScreenshot
+          src={ppSpilleregler}
+          alt="Gates of Olympus spilleregler – RTP 95,50%, høj volatilitet 5/5, mindste indsats kr1 og højeste indsats kr50"
+          caption="Gates of Olympus spilleregler viser RTP på 95,50% og høj volatilitet – bemærk at RTP kan variere mellem casinoer pga. operatør-konfiguration."
+          size="medium"
+        />
         <ReviewScreenshot
           src={pragmaticSlotKatalog}
           alt="Pragmatic Play spillemaskiner sorteret i casinolobby – Sweet Bonanza, Gates of Olympus, Big Bass og 539 titler"
