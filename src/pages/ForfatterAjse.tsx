@@ -229,7 +229,7 @@ export default function ForfatterAjse() {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="redaktionen" factCheckBy="kevin" readTime="144 Min." showVerified />
+        <AuthorMetaBar author="redaktionen" factCheckBy="kevin" readTime="7 Min." showVerified />
 
         {/* Profile card */}
         <section className="mb-12">

@@ -172,8 +172,8 @@ export default function ForfatterKevin() {
   return (
     <>
       <SEO
-        title="Kevin – Streamer & Casinoanalytiker | Casinoaftaler"
-        description="Mød Kevin – casino-streamer, forfatter og IT-medansvarlig hos Casinoaftaler.dk. Læs om hans streamingstil, ekspertise og anbefalede casinoer."
+        title="Kevin – Streamer & Spiludvikler | Casinoaftaler"
+        description="Mød Kevin – casino-streamer og spiludvikler hos Casinoaftaler.dk. Læs om hans streamingstil, ekspertise og anbefalede casinoer."
         jsonLd={[faqJsonLd, personSchema]}
       />
 
@@ -215,7 +215,7 @@ export default function ForfatterKevin() {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="redaktionen" factCheckBy="jonas" readTime="146 Min." showVerified />
+        <AuthorMetaBar author="redaktionen" factCheckBy="jonas" readTime="8 Min." showVerified />
 
         {/* Profile card */}
         <section className="mb-12">
@@ -297,7 +297,7 @@ export default function ForfatterKevin() {
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Kevin er 26 år og har streamet slots i mere end fire år. Han blev kontaktet af{" "}
+              Kevin er 26 år og har streamet slots i over 4 år. Han blev kontaktet af{" "}
               <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> med hensyn på at bidrage som streamer og spiludvikler. Kevin var allerede aktiv på Twitch, og med en fælles passion for online casino og community blev samarbejdet hurtigt en realitet.
             </p>
             <p className="text-muted-foreground leading-relaxed">
@@ -345,8 +345,8 @@ export default function ForfatterKevin() {
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6">
             <p className="text-muted-foreground leading-relaxed">
               Kevin har deltaget i test og gennemgang af en lang række danske online casinoer og bidrager med first-hand erfaring fra live-streams og gameplay.
-              Han har stremet slots i over tre år og er kendt for sin analytiske tilgang til bonusvilkår, RTP-vurdering og spillemønstre.
-              Kevin arbejder desuden som IT-medansvarlig for Casinoaftaler.dk og bidrager til platformens tekniske udvikling og kvalitetssikring.
+              Han har streamet slots i over 4 år og er kendt for sin analytiske tilgang til bonusvilkår, RTP-vurdering og spillemønstre.
+              Kevin arbejder desuden som spiludvikler for Casinoaftaler.dk og bidrager til platformens community-spil og tekniske udvikling.
             </p>
           </div>
         </section>
@@ -360,7 +360,7 @@ export default function ForfatterKevin() {
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
+            Kevin er 26 år og har streamet slots i over 4 år. Han mødte{" "}
             <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch,
             hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede
             communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
@@ -376,8 +376,8 @@ export default function ForfatterKevin() {
             siden har været kendt som <strong>"Mr. Verify"</strong> – et kælenavn, der stadig nævnes med et smil.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som både streamer og medansvarlig for
-            hjemmeside og udvikling. Han bidrager med teknisk forståelse, analytisk tilgang og et skarpt øje for
+            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som både streamer og spiludvikler.
+            Han bidrager med teknisk forståelse, analytisk tilgang og et skarpt øje for
             detaljer i både indhold og platformens videre udvikling.
           </p>
         </section>
