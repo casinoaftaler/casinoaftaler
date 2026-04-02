@@ -4,6 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import nolimitLogo from "@/assets/screenshots/nolimit-logo.webp";
+import nolimitKatalog from "@/assets/screenshots/nolimit-katalog.webp";
+import nolimitGameplay from "@/assets/screenshots/nolimit-gameplay.webp";
+import nolimitBonuskob from "@/assets/screenshots/nolimit-bonuskob.webp";
 
 const NolimitCityGuide = () => (
   <ProviderPage
@@ -25,6 +30,13 @@ const NolimitCityGuide = () => (
     technicalTitle="Patenterede Mekanikker: xWays, xNudge, xBomb og xSplit i Detaljer"
     introContent={
       <>
+        <ReviewScreenshot
+          src={nolimitLogo}
+          alt="Nolimit City officielt logo – svensk spiludvikler specialiseret i ultra-high-volatility slots"
+          caption="Nolimit Citys logo – studiets gule signaturfarve afspejler den aggressive brandidentitet."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Nolimit City er en svensk spiludvikler grundlagt i Stockholm i 2013, med udviklingskontorer i Gurugram (Indien) og Cluj-Napoca (Rumænien) og hovedkontor i Sliema, Malta. Med en kompakt men intenst fokuseret portefølje på over 60 spilleautomater har de skabt en helt unik niche: ultra-high-volatility slots med kontroversielle temaer og patenterede mekanikker der ikke findes hos nogen konkurrent. I en branche domineret af tropical paradise-temaer og generiske ægyptiske slots, valgte Nolimit City bevidst at provokere – og det viste sig at være en genistreg.
         </p>
@@ -74,6 +86,11 @@ const NolimitCityGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Målgruppen er tydelig og snæver: thrill-seekers og streamere med den højeste risikovillighed i markedet. Nolimit City laver ikke spil for alle – de laver spil for de 5-10% af markedet der vil have den mest intense oplevelse mulig. Og Evolutions villighed til at betale €340 millioner bekræfter at dette snævre segment er ekstremt lukrativt. For danske spillere der søger <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-oplevelser med maksimalt upside og minimalt downside-risiko (du mister kun bonusbeløbet), er Nolimit City det ultimative valg – forudsat at man forstår og accepterer volatilitetens konsekvenser.
         </p>
+        <ReviewScreenshot
+          src={nolimitGameplay}
+          alt="xWays Hoarder xSplit gameplay – Nolimit City slot med Fallout Scatter symboler og Bunker Raid bonusfunktion"
+          caption="xWays Hoarder xSplit – Nolimit Citys patenterede xWays og xSplit mekanikker i aktion med Bunker Raid bonus."
+        />
       </>
     }
     technicalProfile={
@@ -105,12 +122,23 @@ const NolimitCityGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={nolimitKatalog}
+          alt="Nolimit City spilkatalog hos CampoBet casino – oversigt over slots som Catfish Hunters, Munchies, The Crypt og San Quentin"
+          caption="Nolimit Citys fulde katalog hos et dansk casino – fra Catfish Hunters til True Grit Redemption."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Nolimit City specialiserer sig i ultra-high-volatility slots der kombinerer patenterede mekanikker med kontroversielle temaer. Hvert spil er designet til at skabe en oplevelse der er umulig at glemme – uanset om det er via den emotionelle intensitet af temaet eller den matematiske ekstremitet af gevinstpotentialet. Porteføljen er bevidst kompakt: 60+ titler vs. konkurrenters hundredvis. Men per-titel omsætningen er branchens højeste.
         </p>
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Bonus Buy-systemet med tre niveauer (Standard, Super, Lucky Draw) giver spillere kontrol over risikoprofilen inden for hvert spil. Standard-bonus koster 67-80x og giver basis free spins; Super koster 150-400x og giver forbedrede free spins med ekstra modifikatorer; Lucky Draw er et tilfældighedselement der kan give Standard eller Super til nedsat pris. Denne multi-tier-tilgang er unik i branchen og afspejler Nolimit Citys filosofi: giv spilleren valg, men gør konsekvenserne tydelige.
         </p>
+        <ReviewScreenshot
+          src={nolimitBonuskob}
+          alt="Nolimit Bonus-købsystem – tre niveauer af Raid Spins med priser fra 95x til 777x grundindsatsen"
+          caption="Nolimit Citys bonus-købsystem – tre tiers med stigende pris og risiko, fra 95x til 777x indsatsen."
+          size="medium"
+        />
       </>
     }
     games={[
