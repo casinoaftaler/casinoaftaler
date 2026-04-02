@@ -15,11 +15,13 @@ interface SlotSymbolProps {
   isDarkened?: boolean;
   gameId?: string;
   shimmerClass?: string;
+  size?: number;
 }
 
-// Fixed base size: 150×150 container, 136×136 image
-export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass }: SlotSymbolProps) {
+// Base size: 150×150 container, 136×136 image (overridable via size prop)
+export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass, size = 150 }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
+  const imgSize = Math.floor(size * 136 / 150);
   
   return (
     <div
