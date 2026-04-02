@@ -1,15 +1,22 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon, Megaphone } from "lucide-react";
+import { Send, Loader2, CheckCircle, User, Clock, X as CloseIcon, Megaphone, Mail, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { useSupportAdmin } from "@/hooks/useSupportChat";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+
+interface ProfileResult {
+  user_id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+}
 
 export function SupportAdminSection() {
   const {
@@ -24,6 +31,7 @@ export function SupportAdminSection() {
     closeConversation,
     assignToMe,
     deleteConversation,
+    loadConversations,
   } = useSupportAdmin();
 
   const { user } = useAuth();
@@ -32,6 +40,16 @@ export function SupportAdminSection() {
   const [broadcastText, setBroadcastText] = useState("");
   const [broadcastSending, setBroadcastSending] = useState(false);
   const [broadcastOpen, setBroadcastOpen] = useState(false);
+
+  // Private message state
+  const [dmOpen, setDmOpen] = useState(false);
+  const [dmSearch, setDmSearch] = useState("");
+  const [dmResults, setDmResults] = useState<ProfileResult[]>([]);
+  const [dmSearching, setDmSearching] = useState(false);
+  const [dmSelectedUser, setDmSelectedUser] = useState<ProfileResult | null>(null);
+  const [dmMessage, setDmMessage] = useState("");
+  const [dmSending, setDmSending] = useState(false);
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll
