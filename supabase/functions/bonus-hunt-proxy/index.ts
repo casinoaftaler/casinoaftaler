@@ -483,9 +483,31 @@ serve(async (req) => {
         }
       }
 
-      // Auto-close bets after 3 bonuses opened
+      // Auto-close bets after 3 bonuses opened AND auto-close/clear slot requests after first bonus
       const openedSlots = stats.openedSlots || 0;
       const totalSlots = stats.numberOfSlots || 0;
+
+      // Auto-reject all pending slot requests once the first bonus has been opened
+      if (openedSlots >= 1) {
+        (async () => {
+          try {
+            const { data: pendingToReject } = await supabase
+              .from('slot_requests')
+              .select('id')
+              .eq('status', 'pending');
+
+            if (pendingToReject && pendingToReject.length > 0) {
+              await supabase.from('slot_requests').update({
+                status: 'rejected',
+                admin_note: 'Auto-afvist: Første bonus er åbnet, requests er lukket.',
+              }).eq('status', 'pending');
+              console.log(`Auto-rejected ${pendingToReject.length} pending slot requests (first bonus opened in hunt #${huntNumber})`);
+            }
+          } catch (e) {
+            console.error('Auto-reject pending requests error:', e);
+          }
+        })();
+      }
 
       if (openedSlots >= 3) {
         const { data: openSession } = await supabase
