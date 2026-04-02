@@ -32,7 +32,7 @@ import { BonusEntrySequence } from "./BonusEntrySequence";
 import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
-import { GatesZeusCharacter } from "./GatesZeusCharacter";
+
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
