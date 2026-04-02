@@ -112,7 +112,7 @@ export function HomepageLiveCommunity() {
               itemScope
               itemType="https://schema.org/InteractionCounter"
             >
-              <stat.icon className={`h-5 w-5 ${stat.color}`} aria-hidden="true" />
+              <MenuIcon iconName={stat.iconName} className="h-6 w-6" aria-hidden="true" />
               <dd className="text-xl md:text-2xl font-bold text-foreground" itemProp="userInteractionCount">{stat.value}</dd>
               <dt className="text-[11px] text-muted-foreground">{stat.label}</dt>
             </div>
