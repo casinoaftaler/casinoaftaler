@@ -5,8 +5,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Clock, ExternalLink, Flame, Gift, Landmark, RotateCw, Star, ThumbsUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Star } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
@@ -223,11 +223,11 @@ export function QuickComparisonTable({
                 {/* ── Stats row ── */}
                 <div className="mt-3.5 grid grid-cols-4 gap-1.5 sm:gap-2">
                   {[
-                    { icon: Gift, label: "Bonus type", value: casino.bonus_type || "Standard" },
-                    { icon: RotateCw, label: "Omsætning", value: casino.wagering_requirements },
-                    { icon: Clock, label: "Udbetaling", value: casino.payout_time },
-                    { icon: Landmark, label: "Min. indbet.", value: casino.min_deposit },
-                  ].map(({ icon: Icon, label, value }) => (
+                    { iconName: "gift", label: "Bonus type", value: casino.bonus_type || "Standard" },
+                    { iconName: "rotate-cw", label: "Omsætning", value: casino.wagering_requirements },
+                    { iconName: "clock", label: "Udbetaling", value: casino.payout_time },
+                    { iconName: "landmark", label: "Min. indbet.", value: casino.min_deposit },
+                  ].map(({ iconName, label, value }) => (
                     <div
                       key={label}
                       className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1"

@@ -15,8 +15,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight, Gamepad2, ShieldCheck, Smile, Tv, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import frederikImage from "@/assets/frederik-forfatter.webp";
 
 const FEATURED_SLUGS = ["spildansknu", "betinia", "campobet"];
@@ -50,32 +50,32 @@ const frederikArticles = getAuthorArticles("frederik");
 
 const expertiseItems = [
   {
-    icon: Tv,
+    iconName: "tv",
     label: "Aktiv Twitch & YouTube-streamer",
     desc: "Streamer jævnligt casino-indhold med fokus på bonustest, slots og underholdende gameplay for community'et.",
   },
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     label: "Test af casino bonusser",
     desc: "Systematisk gennemgang og test af bonusvilkår, omsætningskrav og reel bonusværdi hos danske casinoer.",
   },
   {
-    icon: Smile,
+    iconName: "smile",
     label: "Community engagement",
     desc: "Kendt for sin energiske og smilende streamingstil med høj interaktion og dialog med chatten.",
   },
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     label: "Fokus på gennemsigtighed",
     desc: "Ærlig og åben kommunikation om casino-oplevelser, gevinster og tab – med ansvarligt spil i fokus.",
   },
   {
-    icon: Users,
+    iconName: "users",
     label: "Fra solo-kanal til Casinoaftaler",
     desc: "Startede med Dendynamiskedue, gik solo og blev derefter fast streamer på Casinoaftaler.dk.",
   },
   {
-    icon: Zap,
+    iconName: "zap",
     label: "Energisk og underholdende",
     desc: "Frederiks streams er præget af høj energi, godt humør og en unik evne til at holde seerne engageret.",
   },

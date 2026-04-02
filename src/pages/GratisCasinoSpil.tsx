@@ -12,8 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, BookOpen, Calculator, Clock, Database, Dice1, DollarSign, Eye, Gamepad2, Gift, Monitor, Play, ShieldCheck, Smartphone, Sparkles, Target, TrendingUp, Trophy, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Database, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -104,37 +104,37 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const spilleTyper = [
   {
-    icon: Monitor,
+    iconName: "monitor",
     title: "Demo-spilleautomater",
     description: "Spil 1.000+ spillemaskiner gratis direkte i browseren. Identisk gameplay, bonusfunktioner og RTP som rigtige penge-versioner. Virtuelle kreditter genopfyldes automatisk, så du kan spille ubegrænset. Den mest populære form for gratis casino spil i Danmark – perfekt til at evaluere nye titler før du investerer.",
     tag: "Mest populært",
   },
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     title: "Gratis bordspil (blackjack, roulette m.fl.)",
     description: "Alle klassiske bordspil tilbydes i demoversioner: blackjack, roulette, baccarat, craps og poker. Ideelt til at øve grundlæggende strategi, teste indsatssystemer og lære regler uden økonomisk risiko. For blackjack-spillere er demo uundværlig til at mestre basic strategy-skemaet.",
     tag: "Strategitræning",
   },
   {
-    icon: Gift,
+    iconName: "gift",
     title: "Free spins bonusser (reel gevinst)",
     description: "Modtag gratis spins med reel gevinstmulighed via velkomstbonusser, reload-bonusser eller daglige kampagner. I modsætning til demospil kan du vinde rigtige penge med free spins – dog typisk med omsætningskrav (max 10x i Danmark). De bedste tilbud finder du via vores daglige opdatering.",
     tag: "Reel gevinst",
   },
   {
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Bonus uden indbetaling",
     description: "Modtag gratis spillekapital (typisk 50-200 kr.) ved kontooprettelse – helt uden at indbetale. Du kan spille med casinoets penge og beholde eventuelle gevinster efter opfyldelse af omsætningskrav. En sjælden men værdifuld bonustype, der giver dig reel gevinstmulighed uden risiko.",
     tag: "Gratis bonus",
   },
   {
-    icon: Users,
+    iconName: "users",
     title: "Social casino gaming",
     description: "Spil med venner i sociale casino-platforme med virtuelle kreditter. Fokus på underholdning, konkurrence og fællesskab uden økonomisk risiko. Populært som afslappet tidsfordriv med leaderboards og achievements. Vores community tilbyder også sociale spilmuligheder via Slot Database.",
     tag: "Underholdning",
   },
   {
-    icon: Trophy,
+    iconName: "trophy",
     title: "Gratis turneringer",
     description: "Deltag i casinoturneringer med gratis adgang (freerolls), hvor du konkurrerer mod andre spillere om præmiepuljer. Ingen indsats nødvendig – du spiller med virtuelle kreditter eller tildelte turneringschips. Et godt kompromis mellem demospil og rigtige penge.",
     tag: "Konkurrence",
@@ -293,13 +293,13 @@ const GratisCasinoSpil = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: ShieldCheck, title: "Nul økonomisk risiko", desc: "Spil ubegrænset uden at risikere en krone. Virtuelle kreditter genopfyldes automatisk ved nul-saldo, så du aldrig løber tør. Perfekt til lange testsessions hvor du vil evaluere et spils langsigtede adfærd over 500+ spins." },
-              { icon: Eye, title: "Evaluer nye spil før du indbetaler", desc: "Test RTP, volatilitet, bonusfrekvens og max win-potentiale for ethvert spil, før du risikerer dit budget. En 30-minutters demosession afslører typisk om et spils matematiske profil matcher din spillestil – og sparer dig potentielt for hundredvis af kroner i fejlinvesteringer." },
-              { icon: BookOpen, title: "Mestre bordspilstrategier risikofrit", desc: "Øv blackjack basic strategy, roulette-systemer som Martingale og Fibonacci, eller pokerhænder uden konsekvenser. Demotilstanden eliminerer den psykologiske stress ved rigtige penge og lader dig fokusere 100% på strategi og beslutningstagning." },
-              { icon: TrendingUp, title: "Sammenlign spiludviklere og temaer", desc: "Spil 10 forskellige slots fra 5 forskellige udbydere på én aften – helt gratis. Evaluer om du foretrækker Pragmatic Plays høj-volatilitet-profil eller NetEnts mere jævne gevinstfordeling, før du binder dig til et spil med rigtige penge." },
-              { icon: Calculator, title: "Test indsatsstrategier", desc: "Eksperimentér med forskellige indsatsniveauer, coin values og bet-strukturer. Find det optimale balance mellem underholdningsværdi og gevinstpotentiale for dit budget – uden at det koster en krone i processen." },
-              { icon: Clock, title: "Ren underholdning uden økonomisk pres", desc: "Nyd casino-oplevelsen som afslappet tidsfordriv. Ingen indbetalingsgrænser, ingen omsætningskrav, ingen stress over saldo. Perfekt til transport, ventetid eller afslapning – gaming i sin reneste form." },
-              { icon: Target, title: "Identificer dine foretrukne spiltyper", desc: "Er du en Megaways-spiller? Foretrækker du cluster pays eller traditionelle paylines? Liker du bonus buy eller organiske bonusrunder? Demotilstanden hjælper dig med at kortlægge din spillerprofil, før du bruger penge." },
+              { iconName: "shield-check", title: "Nul økonomisk risiko", desc: "Spil ubegrænset uden at risikere en krone. Virtuelle kreditter genopfyldes automatisk ved nul-saldo, så du aldrig løber tør. Perfekt til lange testsessions hvor du vil evaluere et spils langsigtede adfærd over 500+ spins." },
+              { iconName: "eye", title: "Evaluer nye spil før du indbetaler", desc: "Test RTP, volatilitet, bonusfrekvens og max win-potentiale for ethvert spil, før du risikerer dit budget. En 30-minutters demosession afslører typisk om et spils matematiske profil matcher din spillestil – og sparer dig potentielt for hundredvis af kroner i fejlinvesteringer." },
+              { iconName: "book-open", title: "Mestre bordspilstrategier risikofrit", desc: "Øv blackjack basic strategy, roulette-systemer som Martingale og Fibonacci, eller pokerhænder uden konsekvenser. Demotilstanden eliminerer den psykologiske stress ved rigtige penge og lader dig fokusere 100% på strategi og beslutningstagning." },
+              { iconName: "trending-up", title: "Sammenlign spiludviklere og temaer", desc: "Spil 10 forskellige slots fra 5 forskellige udbydere på én aften – helt gratis. Evaluer om du foretrækker Pragmatic Plays høj-volatilitet-profil eller NetEnts mere jævne gevinstfordeling, før du binder dig til et spil med rigtige penge." },
+              { iconName: "calculator", title: "Test indsatsstrategier", desc: "Eksperimentér med forskellige indsatsniveauer, coin values og bet-strukturer. Find det optimale balance mellem underholdningsværdi og gevinstpotentiale for dit budget – uden at det koster en krone i processen." },
+              { iconName: "clock", title: "Ren underholdning uden økonomisk pres", desc: "Nyd casino-oplevelsen som afslappet tidsfordriv. Ingen indbetalingsgrænser, ingen omsætningskrav, ingen stress over saldo. Perfekt til transport, ventetid eller afslapning – gaming i sin reneste form." },
+              { iconName: "target", title: "Identificer dine foretrukne spiltyper", desc: "Er du en Megaways-spiller? Foretrækker du cluster pays eller traditionelle paylines? Liker du bonus buy eller organiske bonusrunder? Demotilstanden hjælper dig med at kortlægge din spillerprofil, før du bruger penge." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -530,9 +530,9 @@ const GratisCasinoSpil = () => {
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              { icon: Smartphone, title: "iPhone", desc: "Safari eller Chrome. Fuld demofunktionalitet. Touch-optimeret med swipe-gestures.", path: "/mobil-casino/iphone" },
-              { icon: Smartphone, title: "Android", desc: "Chrome eller Samsung Internet. Identisk oplevelse som desktop. Responsivt design.", path: "/mobil-casino/android" },
-              { icon: Monitor, title: "Tablet / iPad", desc: "Optimal skærmstørrelse for demospil. Større visuel oplevelse med tablet-tilpasset layout.", path: "/mobil-casino/tablet" },
+              { iconName: "smartphone", title: "iPhone", desc: "Safari eller Chrome. Fuld demofunktionalitet. Touch-optimeret med swipe-gestures.", path: "/mobil-casino/iphone" },
+              { iconName: "smartphone", title: "Android", desc: "Chrome eller Samsung Internet. Identisk oplevelse som desktop. Responsivt design.", path: "/mobil-casino/android" },
+              { iconName: "monitor", title: "Tablet / iPad", desc: "Optimal skærmstørrelse for demospil. Større visuel oplevelse med tablet-tilpasset layout.", path: "/mobil-casino/tablet" },
             ].map((device) => (
               <Link key={device.title} to={device.path} className="rounded-lg border border-border p-4 text-center transition-colors hover:border-primary/50">
                 <device.icon className="mx-auto h-8 w-8 text-primary mb-2" />
@@ -595,11 +595,11 @@ const GratisCasinoSpil = () => {
           <h2 className="mb-4 text-3xl font-bold">5 fejl at undgå med gratis casino spil</h2>
           <div className="space-y-3">
             {[
-              { icon: AlertTriangle, title: "Fejl 1: At antage demoresultater forudsiger rigtige penge", desc: "Hver spin er uafhængig via RNG. En bonusrunde i demo betyder IKKE at bonusrunden er 'klar' til at trigge med rigtige penge. Der er ingen sammenhæng – det er en kognitiv bias kaldet 'gamblers fallacy'." },
-              { icon: AlertTriangle, title: "Fejl 2: At springe demo over og gå direkte til rigtige penge", desc: "Mindst 50 demo-spins giver dig et grundlæggende billede af et spils profil. At springe dette trin over er som at købe en bil uden prøvekørsel – du ved ikke om spillet passer til din spillestil og budget." },
-              { icon: AlertTriangle, title: "Fejl 3: At ignorere volatilitet i demo", desc: "Et spil der føles sjovt med virtuelle kreditter kan være frustrerende med rigtige penge. Høj-volatilitet-slots som Nolimit City-titler kræver et større budget og mere tålmodighed – test dette i demo for at vurdere om du kan håndtere lange tabsperioder." },
-              { icon: AlertTriangle, title: "Fejl 4: At spille demo i stedet for at sætte et budget", desc: "Demospil bør føre til en informeret beslutning – ikke uendelig udsættelse. Når du har fundet dit spil, sæt et klart budget, vælg et casino med en god bonus, og spil med plan. Brug demo som research-værktøj, ikke som prokrastinering." },
-              { icon: AlertTriangle, title: "Fejl 5: At vælge casino baseret på demooplevelsen alene", desc: "Et casino med gode demospil er ikke nødvendigvis det bedste valg. Tjek også udbetalingshastighed, bonusvilkår, kundeservice og licensstatus. Se vores casino-anmeldelser for en helhedsvurdering." },
+              { iconName: "alert-triangle", title: "Fejl 1: At antage demoresultater forudsiger rigtige penge", desc: "Hver spin er uafhængig via RNG. En bonusrunde i demo betyder IKKE at bonusrunden er 'klar' til at trigge med rigtige penge. Der er ingen sammenhæng – det er en kognitiv bias kaldet 'gamblers fallacy'." },
+              { iconName: "alert-triangle", title: "Fejl 2: At springe demo over og gå direkte til rigtige penge", desc: "Mindst 50 demo-spins giver dig et grundlæggende billede af et spils profil. At springe dette trin over er som at købe en bil uden prøvekørsel – du ved ikke om spillet passer til din spillestil og budget." },
+              { iconName: "alert-triangle", title: "Fejl 3: At ignorere volatilitet i demo", desc: "Et spil der føles sjovt med virtuelle kreditter kan være frustrerende med rigtige penge. Høj-volatilitet-slots som Nolimit City-titler kræver et større budget og mere tålmodighed – test dette i demo for at vurdere om du kan håndtere lange tabsperioder." },
+              { iconName: "alert-triangle", title: "Fejl 4: At spille demo i stedet for at sætte et budget", desc: "Demospil bør føre til en informeret beslutning – ikke uendelig udsættelse. Når du har fundet dit spil, sæt et klart budget, vælg et casino med en god bonus, og spil med plan. Brug demo som research-værktøj, ikke som prokrastinering." },
+              { iconName: "alert-triangle", title: "Fejl 5: At vælge casino baseret på demooplevelsen alene", desc: "Et casino med gode demospil er ikke nødvendigvis det bedste valg. Tjek også udbetalingshastighed, bonusvilkår, kundeservice og licensstatus. Se vores casino-anmeldelser for en helhedsvurdering." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />

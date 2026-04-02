@@ -26,8 +26,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AlertTriangle, Ban, BarChart3, Calculator, CheckCircle2, Gamepad2, Scale, ShieldCheck, Sparkles, Target, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
@@ -367,27 +367,27 @@ const Omsaetningskrav = () => {
               {
                 title: "Vælg spil med høj RTP",
                 desc: "Spilleautomater med høj tilbagebetalingsprocent (RTP) giver dig bedre chancer for at holde din saldo i live, mens du arbejder dig igennem omsætningskravet. Kig efter spil med RTP over 96%.",
-                icon: BarChart3,
+                iconName: "bar-chart3",
               },
               {
                 title: "Satser mindre beløb",
                 desc: "Mindre indsatser forlænger din spilletid og reducerer risikoen for at tømme saldoen for hurtigt. Du når stadig omsætningskravet – det tager bare lidt længere tid.",
-                icon: TrendingUp,
+                iconName: "trending-up",
               },
               {
                 title: "Hold øje med din fremgang",
                 desc: "De fleste danske casinoer har et værktøj, der viser, hvor langt du er fra at opfylde omsætningskravet. Brug det aktivt til at holde styr på dine fremskridt.",
-                icon: Target,
+                iconName: "target",
               },
               {
                 title: "Spil kun godkendte spil",
                 desc: "Tjek altid, hvilke spil der bidrager til omsætningskravet, og undgå spil, der er udelukket eller kun tæller delvist. Spilleautomater bidrager typisk 100%.",
-                icon: CheckCircle2,
+                iconName: "check-circle2",
               },
               {
                 title: "Sæt et budget – og hold dig til det",
                 desc: "Jagt aldrig dine tab. Sæt et klart budget for, hvor meget du er villig til at spille for, og stop når grænsen er nået. Ansvarligt spil er altid den bedste strategi.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
             ].map((item) => (
               <div
@@ -587,10 +587,10 @@ const Omsaetningskrav = () => {
           </p>
           <div className="space-y-3">
             {[
-              { title: "1x omsætning, 1.000 kr. bonus", desc: "Omsætning: 1.000 kr. Tab: 1.000 × 0,04 = 40 kr. EV = 1.000 – 40 = 960 kr. (96% af nominel værdi). Næsten hele bonussen er reel – dette er det bedste scenarie.", icon: CheckCircle2 },
-              { title: "5x (b) omsætning, 1.000 kr. bonus", desc: "Omsætning: 5.000 kr. Tab: 5.000 × 0,04 = 200 kr. EV = 1.000 – 200 = 800 kr. (80% af nominel værdi). Stadig en god bonus med høj reel værdi.", icon: CheckCircle2 },
-              { title: "10x (d+b) omsætning, 1.000 kr. bonus + 1.000 kr. indbetaling", desc: "Omsætning: 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. EV = 1.000 – 800 = 200 kr. (20% af nominel værdi). Kun en femtedel af bonussen er reel. Overraskende lavt.", icon: AlertTriangle },
-              { title: "Breakeven-punkt", desc: "Bonussen har positiv EV så længe: Bonusbeløb > Total omsætning × House Edge. For 10x (d+b) med 2.000 kr. saldo kræves en RTP over 95% for positiv EV. Under 95% RTP er bonussen statistisk værdiløs.", icon: Target },
+              { title: "1x omsætning, 1.000 kr. bonus", desc: "Omsætning: 1.000 kr. Tab: 1.000 × 0,04 = 40 kr. EV = 1.000 – 40 = 960 kr. (96% af nominel værdi). Næsten hele bonussen er reel – dette er det bedste scenarie.", iconName: "check-circle2" },
+              { title: "5x (b) omsætning, 1.000 kr. bonus", desc: "Omsætning: 5.000 kr. Tab: 5.000 × 0,04 = 200 kr. EV = 1.000 – 200 = 800 kr. (80% af nominel værdi). Stadig en god bonus med høj reel værdi.", iconName: "check-circle2" },
+              { title: "10x (d+b) omsætning, 1.000 kr. bonus + 1.000 kr. indbetaling", desc: "Omsætning: 20.000 kr. Tab: 20.000 × 0,04 = 800 kr. EV = 1.000 – 800 = 200 kr. (20% af nominel værdi). Kun en femtedel af bonussen er reel. Overraskende lavt.", iconName: "alert-triangle" },
+              { title: "Breakeven-punkt", desc: "Bonussen har positiv EV så længe: Bonusbeløb > Total omsætning × House Edge. For 10x (d+b) med 2.000 kr. saldo kræves en RTP over 95% for positiv EV. Under 95% RTP er bonussen statistisk værdiløs.", iconName: "target" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -718,12 +718,12 @@ const Omsaetningskrav = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { title: "✅ Slot-spilleren (5-25 kr./spin)", desc: "Mest kompatibel med omsætningskrav. Slots bidrager 100% og med 96-98% RTP taber du kun 2-4% per omsættet krone. Med 10x omsætning på 1.000 kr. (10.000 kr. total) og 5 kr./spin tager det ~33 min. ved 10 sek./spin. Anbefalet strategi: Blood Suckers (98% RTP), Starburst (96,1%), 1429 Uncharted Seas (98,6%).", icon: Sparkles },
-              { title: "⚠️ Casual spilleren (mixede spil)", desc: "Moderat kompatibel. Casual spillere skifter mellem slots, bordspil og live casino – men kun slots tæller 100%. En mixed strategi forlænger gennemspilningstiden dramatisk. Anbefaling: Afslut omsætningen med slots først, spil derefter bordspil/live med egne penge.", icon: Gamepad2 },
+              { title: "✅ Slot-spilleren (5-25 kr./spin)", desc: "Mest kompatibel med omsætningskrav. Slots bidrager 100% og med 96-98% RTP taber du kun 2-4% per omsættet krone. Med 10x omsætning på 1.000 kr. (10.000 kr. total) og 5 kr./spin tager det ~33 min. ved 10 sek./spin. Anbefalet strategi: Blood Suckers (98% RTP), Starburst (96,1%), 1429 Uncharted Seas (98,6%).", iconName: "sparkles" },
+              { title: "⚠️ Casual spilleren (mixede spil)", desc: "Moderat kompatibel. Casual spillere skifter mellem slots, bordspil og live casino – men kun slots tæller 100%. En mixed strategi forlænger gennemspilningstiden dramatisk. Anbefaling: Afslut omsætningen med slots først, spil derefter bordspil/live med egne penge.", iconName: "gamepad2" },
               { title: "❌ Bordspil-entusiasten", desc: "Dårlig kompatibilitet. Med 10% bidrag fra blackjack kræver en 10x bonus reelt 100x i bordspilsindsatser. 1.000 kr. bonus × 10 ÷ 0,10 = 100.000 kr. i blackjack-omsætning. Selv med 99,5% RTP er det en massiv indsats. Anbefaling: Undgå bonusser eller vælg bonus uden omsætningskrav.", icon: Ban },
-              { title: "❌ Live casino-spilleren", desc: "Værste kompatibilitet. Live casino bidrager typisk 0-10% til omsætningen og er ofte helt udelukket. En bonus er reelt ubrugelig for den rene live-spiller. Anbefaling: Afslå bonussen og spil med egne penge. En cashback-bonus er det eneste relevante alternativ.", icon: AlertTriangle },
-              { title: "✅ Bonusjægeren", desc: "Optimal kompatibilitet – men kræver disciplin. Bonusjægere vælger systematisk slots med 97%+ RTP, holder indsatsen på 1-2% af saldo, og beregner EV på forhånd. Med rigtig spilvalg og tålmodighed er 10x omsætning profitable i ca. 65% af tilfældene.", icon: Target },
-              { title: "⚠️ High rolleren (50+ kr./spin)", desc: "Betinget kompatibilitet. Høje indsatser gennemfører omsætningen hurtigt, men maks-indsatsreglen (typisk 50 kr.) kan begrænse high rollere under bonusspil. Derudover giver højere indsatser større varians – risikoen for bust stiger. Anbefaling: VIP-bonusser med højere maks-indsatsgrænse.", icon: TrendingUp },
+              { title: "❌ Live casino-spilleren", desc: "Værste kompatibilitet. Live casino bidrager typisk 0-10% til omsætningen og er ofte helt udelukket. En bonus er reelt ubrugelig for den rene live-spiller. Anbefaling: Afslå bonussen og spil med egne penge. En cashback-bonus er det eneste relevante alternativ.", iconName: "alert-triangle" },
+              { title: "✅ Bonusjægeren", desc: "Optimal kompatibilitet – men kræver disciplin. Bonusjægere vælger systematisk slots med 97%+ RTP, holder indsatsen på 1-2% af saldo, og beregner EV på forhånd. Med rigtig spilvalg og tålmodighed er 10x omsætning profitable i ca. 65% af tilfældene.", iconName: "target" },
+              { title: "⚠️ High rolleren (50+ kr./spin)", desc: "Betinget kompatibilitet. Høje indsatser gennemfører omsætningen hurtigt, men maks-indsatsreglen (typisk 50 kr.) kan begrænse high rollere under bonusspil. Derudover giver højere indsatser større varians – risikoen for bust stiger. Anbefaling: VIP-bonusser med højere maks-indsatsgrænse.", iconName: "trending-up" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -825,22 +825,22 @@ const Omsaetningskrav = () => {
           <div className="space-y-3">
             {[
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "Beregn altid EV før accept",
                 desc: "Brug formlen: EV = Bonusbeløb – (Total omsætning × House Edge). Hvis EV er negativ, afslå bonussen – uanset hvor flot markedsføringen er.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Danmarks 10x loft er din beskyttelse",
                 desc: "Spillemyndighedens regulering sikrer at alle danske bonusser har reel positiv værdi ved RTP over 95%. Spil kun på licenserede danske casinoer.",
               },
               {
-                icon: Target,
+                iconName: "target",
                 title: "Vælg (b) over (d+b) når muligt",
                 desc: "10x kun på bonus (b) kræver halvt så meget omsætning som 10x (d+b). Forskellen i EV er 400+ kr. på en standard 1.000 kr. bonus.",
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "Spil ansvarligt – altid",
                 desc: "Omsætningskrav kan friste til længere sessioner end planlagt. Sæt tids- og pengebudgetter. Brug ROFUS og StopSpillet.dk ved behov. 18+.",
               },

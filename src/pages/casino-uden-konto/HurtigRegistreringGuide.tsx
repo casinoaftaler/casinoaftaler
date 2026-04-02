@@ -15,8 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { Apple, ArrowRight, Ban, Globe, Mail, Play, Shield, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Mail, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const hurtigRegFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -455,7 +455,7 @@ const HurtigRegistreringGuide = () => {
                   "Du spiller primært på mobil",
                   "Du foretrækker minimal datadeling",
                 ],
-                icon: Zap,
+                iconName: "zap",
               },
               {
                 title: "Vælg MitID-registrering hvis:",
@@ -469,7 +469,7 @@ const HurtigRegistreringGuide = () => {
                   "Du ønsker balancen mellem hastighed og fleksibilitet",
                   "Du spiller ofte live casino",
                 ],
-                icon: Shield,
+                iconName: "shield",
               },
               {
                 title: "Vælg standard email hvis:",
@@ -483,7 +483,7 @@ const HurtigRegistreringGuide = () => {
                   "Du foretrækker at adskille banklogin fra casino",
                   "Du vil have komplet spillehistorik",
                 ],
-                icon: Globe,
+                iconName: "globe",
               },
             ].map((scenario) => (
               <Card key={scenario.title} className="border-border bg-card">

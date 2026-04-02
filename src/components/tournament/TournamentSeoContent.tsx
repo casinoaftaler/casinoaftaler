@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { BarChart3, Gamepad2, Gift, Trophy } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 
 const steps = [
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     step: 1,
     heading: "Opret en konto & spil",
     description: (
@@ -24,7 +24,7 @@ const steps = [
     ),
   },
   {
-    icon: BarChart3,
+    iconName: "bar-chart3",
     step: 2,
     heading: "Tre kategorier — tre vindere",
     description: (
@@ -37,7 +37,7 @@ const steps = [
     ),
   },
   {
-    icon: Trophy,
+    iconName: "trophy",
     step: 3,
     heading: "Klatr op på leaderboardet",
     description: (
@@ -52,7 +52,7 @@ const steps = [
     ),
   },
   {
-    icon: Gift,
+    iconName: "gift",
     step: 4,
     heading: "Vind præmier hver måned",
     description: (

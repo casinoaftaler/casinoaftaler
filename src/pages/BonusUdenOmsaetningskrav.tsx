@@ -14,8 +14,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, Ban, BookOpen, Calculator, Clock, CreditCard, Dog, DollarSign, Flame, Gamepad2, Gift, Heart, Lock, Percent, Scale, ShieldCheck, Sparkles, Target, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, Dog, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -427,7 +427,7 @@ const BonusUdenOmsaetningskrav = () => {
             {[
               {
                 title: "Vs. traditionel indskudsbonus (med omsætning)",
-                icon: CreditCard,
+                iconName: "credit-card",
                 desc: (
                   <>
                     En <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> med 100% match og 10x omsætning giver op til 1.000 kr. i bonus (dansk lovmæssigt maksimum), men omsætningskostnaden reducerer EV med 30-40%. Omsætningsfri giver lavere beløb men 100% konvertering. <strong>Tommelfingerregel:</strong> En omsætningsfri bonus på X kr. ≈ en traditionel bonus på 1,6 × X kr. med 10x omsætning.
@@ -436,7 +436,7 @@ const BonusUdenOmsaetningskrav = () => {
               },
               {
                 title: "Vs. no-sticky bonus",
-                icon: Scale,
+                iconName: "scale",
                 desc: (
                   <>
                     En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller saldi og giver dig sikkerhedsnet (du kan altid hæve din egen indbetaling). Men bonusdelen har omsætningskrav. Omsætningsfri eliminerer omsætningen helt men har typisk lavere bonusbeløb. For risikoaverse spillere er omsætningsfri bedre; for optimerere er no-sticky ofte mere værdifuld i absolutte kroner.
@@ -445,7 +445,7 @@ const BonusUdenOmsaetningskrav = () => {
               },
               {
                 title: "Vs. bonus uden indbetaling (no deposit)",
-                icon: Gift,
+                iconName: "gift",
                 desc: (
                   <>
                     En <Link to="/bonus-uden-indbetaling" className={linkClass}>no deposit bonus</Link> kræver ingen indbetaling men har typisk 10x omsætning. Omsætningsfri bonus kræver indbetaling men har 0x omsætning. <strong>EV-sammenligning:</strong> 50 kr. no deposit med 10x ≈ 15-30 kr. EV. 200 kr. omsætningsfri med 500 kr. indbetaling ≈ 192 kr. EV. Omsætningsfri giver markant højere absolut EV, men kræver din egen kapital.
@@ -454,7 +454,7 @@ const BonusUdenOmsaetningskrav = () => {
               },
               {
                 title: "Vs. sticky bonus",
-                icon: Lock,
+                iconName: "lock",
                 desc: (
                   <>
                     En <Link to="/sticky-bonus" className={linkClass}>sticky bonus</Link> kombinerer din indbetaling og bonus til én saldo med omsætningskrav på hele beløbet (d+b). Det er den mindst spillervenlige model. Omsætningsfri er det diametralt modsatte: ingen omsætning, direkte gevinst. <strong>Matematisk:</strong> En sticky 1.000 kr. bonus med 10x (d+b) koster dig ~800 kr. i omsætningstab – værre end at slet ikke have bonus.
@@ -463,7 +463,7 @@ const BonusUdenOmsaetningskrav = () => {
               },
               {
                 title: "Vs. free spins (med omsætning)",
-                icon: Sparkles,
+                iconName: "sparkles",
                 desc: (
                   <>
                     Standard <Link to="/free-spins" className={linkClass}>free spins</Link> med omsætningskrav giver gevinster der skal gennemspilles før udbetaling. Omsætningsfrie free spins giver gevinster der kan hæves direkte. <strong>Eksempel:</strong> 50 free spins med 10x omsætning: EV ≈ 55-60 kr. 50 omsætningsfrie free spins: EV ≈ 90-96 kr. Forskellen er ca. 50-60% i spillerens favør.
@@ -497,32 +497,32 @@ const BonusUdenOmsaetningskrav = () => {
             {[
               {
                 title: "Casual spillere ✅ Idéel",
-                icon: Gamepad2,
+                iconName: "gamepad2",
                 desc: "For spillere der prioriterer enkelhed og underholdning er omsætningsfrie bonusser perfekte. Ingen forvirring om vilkår, ingen stress om gennemspilning. Du spiller, vinder måske, og hæver – slut.",
               },
               {
                 title: "Nybegyndere ✅ Anbefalet",
-                icon: Users,
+                iconName: "users",
                 desc: "Omsætningsfrie bonusser fjerner den mest komplicerede del af casinobonusser (omsætningskravet). Det giver nybegyndere en intuitiv og positiv første oplevelse uden skjulte overraskelser.",
               },
               {
                 title: "Tidsbegrænsede spillere ✅ Anbefalet",
-                icon: Clock,
+                iconName: "clock",
                 desc: "Hvis du har begrænset tid, er omsætningsfrie bonusser overlegne. Du slipper for timevis af gennemspilning og kan bruge din tid på selve underholdningen. EV per tidsenhed er markant højere.",
               },
               {
                 title: "Bonus-jægere ⚠️ Betinget",
-                icon: Target,
+                iconName: "target",
                 desc: "Systematisk indsamling af omsætningsfrie bonusser kan generere solid EV, men gevinstlofterne begrænser potentialet. Kombiner med traditionelle bonusser med lav omsætning for optimal samlet EV.",
               },
               {
                 title: "High rollers ⚠️ Betinget",
-                icon: Flame,
+                iconName: "flame",
                 desc: "Standard omsætningsfrie bonusser (100-500 kr.) er for små til high rollers. Dog kan VIP-omsætningsfrie tilbud (1.000-5.000 kr.) med højere gevinstlofter være attraktive. Fokuser på VIP-programmer.",
               },
               {
                 title: "Strategispillere ⚠️ Betinget",
-                icon: Calculator,
+                iconName: "calculator",
                 desc: "Matematisk korrekte spillere kan beregne at traditionelle bonusser med 1-3x omsætning giver højere absolut EV end omsætningsfrie bonusser med lave gevinstlofter. Det afhænger af den specifikke beregning.",
               },
             ].map((item) => (
@@ -557,7 +557,7 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "1. Gevinstloftet er for lavt",
                 desc: "Et gevinstloft på 200-500 kr. gør selv den bedste omsætningsfrie bonus til en lille gevinst. Tjek altid loftet: under 500 kr. er lavt, 1.000-2.000 kr. er gennemsnit, og 5.000+ kr. er premium. Loftet er den vigtigste faktor for bonussens reelle værdi.",
-                icon: Lock,
+                iconName: "lock",
               },
               {
                 title: "2. Spilrestriktioner du overser",
@@ -567,22 +567,22 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "3. Kort tidsfrist",
                 desc: "Mange omsætningsfrie bonusser udløber efter 24-72 timer. Glemmer du at bruge dine free spins, er de tabt. Sæt alarm det øjeblik du aktiverer bonussen.",
-                icon: Clock,
+                iconName: "clock",
               },
               {
                 title: "4. Krav om indbetaling du ikke forventede",
                 desc: "De fleste omsætningsfrie bonusser kræver en indbetaling (100-200 kr.) for at aktivere. Det er ikke en bonus uden indbetaling – det er en bonus uden omsætning. Forveksler du de to, kan du blive skuffet.",
-                icon: CreditCard,
+                iconName: "credit-card",
               },
               {
                 title: "5. Gevinster over loftet 'forsvinder'",
                 desc: "Hvad sker der med gevinster over gevinstloftet? Hos de fleste casinoer fjernes overskuddet automatisk. Hos andre konverteres det til bonuspenge med omsætningskrav. Tjek vilkårene for dit specifikke casino.",
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
               },
               {
                 title: "6. Lavere bonusbeløb end traditionelle tilbud",
                 desc: "Omsætningsfrie bonusser er typisk 50-70% mindre i nominelt beløb end traditionelle bonusser. Et casino der tilbyder 2.000 kr. med 10x omsætning vil typisk tilbyde 300-500 kr. omsætningsfrit. Du betaler for enkelheden med lavere nominel værdi.",
-                icon: Percent,
+                iconName: "percent",
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
@@ -661,17 +661,17 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "Markedsføring af 'omsætningsfri'",
                 desc: "Spillemyndigheden kræver at casinoer der markedsfører bonusser som 'omsætningsfri' eller 'wager-free' klart angiver alle øvrige vilkår: gevinstloft, tidsfrist, spilrestriktioner og eventuelle krav om indbetaling. Vildledende brug af disse termer kan sanktioneres med advarsler og bøder.",
-                icon: BookOpen,
+                iconName: "book-open",
               },
               {
                 title: "Gevinstloftet som regulatorisk gråzone",
                 desc: "Gevinstlofter på omsætningsfrie bonusser er ikke specifikt reguleret af Spillemyndigheden – der er ingen øvre eller nedre grænse for loftet. Det giver casinoer frihed til at sætte ekstremt lave lofter (f.eks. 100 kr.), hvilket kan gøre en tilsyneladende generøs bonus nærmest værdiløs. Brancheorganisationer arbejder dog på frivillige standarder.",
-                icon: Scale,
+                iconName: "scale",
               },
               {
                 title: "Dansk lovgivning vs. international praksis",
                 desc: "Danmarks 10x omsætningsloft gør allerede traditionelle bonusser mere spillervenlige end i andre markeder. Det reducerer 'gabet' mellem traditionelle og omsætningsfrie bonusser – i Danmark er forskellen ca. 40-60%, mens den i Malta (40-60x omsætning) kan være 80-90%. Det gør omsætningsfrie bonusser relativt set mindre unikke i Danmark.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
@@ -698,22 +698,22 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "Kvalitet over kvantitet",
                 desc: "100 kr. omsætningsfrit er ofte mere værd end 500 kr. med tunge omsætningskrav. Lær at se igennem de store tal og vurdere den reelle, udbetalbare værdi.",
-                icon: Sparkles,
+                iconName: "sparkles",
               },
               {
                 title: "Den stressfrie oplevelse",
                 desc: "Værdien af at slippe for omsætningsstress kan ikke overvurderes. Du vinder, du hæver. Ingen lommeregner, ingen bekymring om udløbsdatoer. Det er ren spilleglæde.",
-                icon: Heart,
+                iconName: "heart",
               },
               {
                 title: "Perfekt supplement",
                 desc: "Kombiner omsætningsfrie tilbud med traditionelle bonusser. Brug de omsætningsfrie til hurtige gevinster og de traditionelle til længere spillesessioner.",
-                icon: Gift,
+                iconName: "gift",
               },
               {
                 title: "Ansvarligt valg",
                 desc: "Uden omsætningskrav fjerner du incitamentet til at 'jage' gennemspilning. Det understøtter en sundere og mere kontrolleret spillestil. 18+.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
             ].map((item) => (
               <div

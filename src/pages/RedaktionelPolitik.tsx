@@ -9,8 +9,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import { BookMarked, Bot, Eye, Pen, Play, RefreshCw, Search } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BookMarked, Bot, Pen, Play, Search } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -33,8 +33,8 @@ const RedaktionelPolitik = () => {
   const editorialSteps = [
     { icon: Search, title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
     { icon: Pen, title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
-    { icon: Eye, title: "Analyse & dokumentation", desc: "Alle observationer dokumenteres systematisk efter faste kriterier. Vi vurderer brugeroplevelse, spiludvalg, bonusvilkår og sikkerhed." },
-    { icon: RefreshCw, title: "Løbende opdatering", desc: "Anmeldelser og guides opdateres løbende, når vilkår ændres, nye funktioner lanceres, eller casinoer forbedrer deres tilbud." },
+    { iconName: "eye", title: "Analyse & dokumentation", desc: "Alle observationer dokumenteres systematisk efter faste kriterier. Vi vurderer brugeroplevelse, spiludvalg, bonusvilkår og sikkerhed." },
+    { iconName: "refresh-cw", title: "Løbende opdatering", desc: "Anmeldelser og guides opdateres løbende, når vilkår ændres, nye funktioner lanceres, eller casinoer forbedrer deres tilbud." },
   ];
 
   const guidelines = [

@@ -13,8 +13,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, BarChart3, Gamepad2, Gift, Scroll, ShoppingBag, Target, Trophy, Users, Video } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Scroll, Users, Video } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useAuth } from "@/hooks/useAuth";
 import { useMemo } from "react";
 
@@ -33,7 +33,7 @@ const SECTIONS = [
     title: "Spillehal",
     description: "Spil vores egne gratis spilleautomater – Book of Fedesvin, Rise of Fedesvin og flere. Optjen point og konkurrer med andre spillere.",
     href: "/community/slots",
-    icon: Gamepad2,
+    iconName: "gamepad2",
     badge: "Populær",
     badgeColor: "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30",
     image: spillehalImg,
@@ -42,7 +42,7 @@ const SECTIONS = [
     title: "Bonus Hunt",
     description: "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
     href: "/bonus-hunt",
-    icon: Target,
+    iconName: "target",
     badge: "Live Betting",
     badgeColor: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
     image: bonusHuntImg,
@@ -51,7 +51,7 @@ const SECTIONS = [
     title: "Turneringer",
     description: "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
     href: "/community/turneringer",
-    icon: Trophy,
+    iconName: "trophy",
     badge: "Ugentlige præmier",
     badgeColor: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
     image: turneringerImg,
@@ -69,7 +69,7 @@ const SECTIONS = [
     title: "Rewards Program",
     description: "Optjen ekstra spins ved at bidrage til fællesskabet. Upload clips, udfyld din profil og request slots.",
     href: "/community/rewards",
-    icon: Gift,
+    iconName: "gift",
     badge: "Bonus Spins",
     badgeColor: "bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30",
     image: rewardsImg,
@@ -78,7 +78,7 @@ const SECTIONS = [
     title: "Hall of Fame",
     description: "Se community-legender, all-time leaderboards, bedste clips og turneringsvindere. Ægte data fra vores spillere.",
     href: "/community/hall-of-fame",
-    icon: Trophy,
+    iconName: "trophy",
     badge: "Legender",
     badgeColor: "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
     image: hallOfFameImg,
@@ -87,7 +87,7 @@ const SECTIONS = [
     title: "Statistik",
     description: "Aggregeret data fra alle bonus hunts. Provider-rankings, historiske grafer og top 10 slots baseret på reelle tests.",
     href: "/statistik",
-    icon: BarChart3,
+    iconName: "bar-chart3",
     badge: "Data & Analyse",
     badgeColor: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
     image: bonusHuntImg,
@@ -96,7 +96,7 @@ const SECTIONS = [
     title: "Butik",
     description: "Shop eksklusive varer med dine Twitch-point. Gaming headsets, gavekort, konsoller og mere.",
     href: "/butik",
-    icon: ShoppingBag,
+    iconName: "shopping-bag",
     badge: "Twitch Point",
     badgeColor: "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
     image: butikImg,
@@ -113,7 +113,7 @@ function RevealSection({ children, className }: { children: React.ReactNode; cla
 }
 
 function CommunityCard({ section }: { section: typeof SECTIONS[number] }) {
-  const Icon = section.icon;
+  // icon resolved via iconName on section
   return (
     <Link to={section.href} className="group community-card block">
       <Card className="h-full overflow-hidden border-border/50">
@@ -136,7 +136,7 @@ function CommunityCard({ section }: { section: typeof SECTIONS[number] }) {
         </div>
         <CardContent className="p-5">
           <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
-            <Icon className="h-5 w-5 text-muted-foreground" />
+            <MenuIcon iconName={iconName} className="h-5 w-5 text-muted-foreground" />
             {section.title}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3 card-description">

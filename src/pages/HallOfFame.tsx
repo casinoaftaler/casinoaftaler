@@ -9,7 +9,7 @@ import { CommunityContentShell } from "@/components/community/CommunityContentSh
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { ArrowRight, Film, Play, Star, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
@@ -148,7 +148,7 @@ const MEDAL_COLORS = ["text-yellow-400", "text-gray-400", "text-amber-600"];
 
 function LeaderboardSection({
   title,
-  icon: Icon,
+  iconName,
   entries,
   valueKey,
   valueLabel,
@@ -165,7 +165,7 @@ function LeaderboardSection({
     <Card className="overflow-hidden">
       <CardHeader className="pb-3 bg-muted/30">
         <CardTitle className="text-lg flex items-center gap-2">
-          <Icon className="h-5 w-5 text-primary" />
+          <MenuIcon iconName={iconName} className="h-5 w-5 text-primary" />
           {title}
         </CardTitle>
       </CardHeader>

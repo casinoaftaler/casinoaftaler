@@ -12,8 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, Banknote, BarChart3, CheckCircle2, Clock, CreditCard, Dog, Eye, Fingerprint, Gem, Lock, Play, Smartphone, Timer, Wallet, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dog, Fingerprint, Gem, Play, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -103,31 +103,31 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const betalingsMetoder = [
   {
-    icon: Zap,
+    iconName: "zap",
     title: "Trustly (5-15 min.)",
     description: "Direkte bank-til-bank-overførsel via MitID. Den hurtigste metode på det danske marked – de bedste casinoer behandler Trustly-udbetalinger inden for 5 minutter. Ingen gebyrer, ingen mellemled, direkte til din NemKonto. Trustly er den foretrukne metode hos nye casinoer med Pay N Play-teknologi.",
     tag: "Hurtigst",
   },
   {
-    icon: Wallet,
+    iconName: "wallet",
     title: "E-wallets – Skrill, PayPal, Zimpler (1-4 timer)",
     description: "Pengene lander i din e-wallet inden for 1-4 timer. Derfra kan du overføre til din bank (1-2 hverdage ekstra) eller bruge dem direkte. Skrill er mest udbredt på danske casinoer, mens PayPal er begrænset til få operatører. Fordel: Du behøver ikke dele bankoplysninger med casinoet.",
     tag: "Populær",
   },
   {
-    icon: Smartphone,
+    iconName: "smartphone",
     title: "MobilePay (1-24 timer)",
     description: "Stigende popularitet på det danske marked. MobilePay-udbetalinger lander direkte i din MobilePay-app, hvorfra pengene automatisk overføres til din tilknyttede bankkonto. Behandlingstiden varierer mere end Trustly, men oplevelsen er meget brugervenlig.",
     tag: "Dansk favorit",
   },
   {
-    icon: CreditCard,
+    iconName: "credit-card",
     title: "Visa / Mastercard (1-3 bankdage)",
     description: "Tilbagebetaling direkte til dit betalingskort. Processen er enkel, men langsommere pga. bankernes interne behandlingstider. Bemærk at nogle danske banker (bl.a. Danske Bank) kan blokere eller forsinke casino-transaktioner yderligere. Visa Direct kan reducere tiden til 0-2 timer.",
     tag: "Velkendt",
   },
   {
-    icon: Banknote,
+    iconName: "banknote",
     title: "Bankoverførsel (1-5 hverdage)",
     description: "Traditionel bankoverførsel direkte til din NemKonto. Langsomst af alle metoder, men ingen beløbsbegrænsning og understøttes altid. Bruges primært til store udbetalinger over 50.000 kr. hvor casinoet kræver bankoverførsel af sikkerhedshensyn. Ingen weekend-behandling.",
     tag: "Store beløb",
@@ -320,12 +320,12 @@ const HurtigUdbetaling = () => {
           <div className="space-y-3">
             {[
               { icon: Fingerprint, title: "1. Verificer din konto proaktivt ved registrering", desc: "Upload ID-dokumenter og adressebevis lige efter kontooprettelse – ikke først når du vil hæve. Det eliminerer den største forsinkelseskilde og sparer dig potentielt 24+ timer ved din første udbetaling. MitID-verifikation gør dette nærmest automatisk." },
-              { icon: Zap, title: "2. Indbetal via Trustly fra start", desc: "De fleste casinoer kræver at du udbetaler via den metode du indbetalte med. Vælg Trustly fra starten for at sikre den hurtigste udbetalingskanal (5-15 min.) – i stedet for at sidde fast med kort-udbetaling (1-3 dage)." },
-              { icon: CheckCircle2, title: "3. Opfyld omsætningskrav INDEN udbetalingsanmodning", desc: "Anmod aldrig om udbetaling med aktive bonuskrav. Det forsinker behandlingen, kan resultere i annullering af bonus og gevinster, og kræver ofte manuel gennemgang af casinoets bonusafdeling. Tjek din bonusstatus under 'Konto' før du anmoder." },
+              { iconName: "zap", title: "2. Indbetal via Trustly fra start", desc: "De fleste casinoer kræver at du udbetaler via den metode du indbetalte med. Vælg Trustly fra starten for at sikre den hurtigste udbetalingskanal (5-15 min.) – i stedet for at sidde fast med kort-udbetaling (1-3 dage)." },
+              { iconName: "check-circle2", title: "3. Opfyld omsætningskrav INDEN udbetalingsanmodning", desc: "Anmod aldrig om udbetaling med aktive bonuskrav. Det forsinker behandlingen, kan resultere i annullering af bonus og gevinster, og kræver ofte manuel gennemgang af casinoets bonusafdeling. Tjek din bonusstatus under 'Konto' før du anmoder." },
               { icon: Timer, title: "4. Udbetal på hverdage formiddag", desc: "Bankoverførsler og kortudbetalinger behandles kun på hverdage. For hurtigst mulig bankoverførsel: udbetal tirsdag-torsdag formiddag. Fredag eftermiddag og weekendudbetalinger forsinkes typisk til mandag. Trustly og e-wallets er dog tilgængelige 24/7." },
-              { icon: BarChart3, title: "5. Hold dig under den interne auto-godkendelsesgrænse", desc: "Udbetalinger under casinoets interne grænse (typisk 10.000-25.000 kr.) behandles automatisk og hurtigere. Store beløb kræver ofte manuel godkendelse, hvilket tilføjer 24-72 timer. VIP-spillere har højere auto-grænser." },
-              { icon: Lock, title: "6. Undgå at ændre betalingsmetode", desc: "Skift af betalingsmetode mellem indbetaling og udbetaling kræver ofte ekstra KYC-verifikation og kan forsinke processen med 24-48 timer. Vælg din foretrukne metode fra starten og hold dig til den." },
-              { icon: Eye, title: "7. Vælg casinoer med 0 timers pending time", desc: "Pending time er den tid casinoet 'holder' din udbetaling, før de begynder at behandle den. Casinoer med 0 timers pending time behandler din anmodning øjeblikkeligt – ingen ventetid, ingen fristelse til reverse withdrawal." },
+              { iconName: "bar-chart3", title: "5. Hold dig under den interne auto-godkendelsesgrænse", desc: "Udbetalinger under casinoets interne grænse (typisk 10.000-25.000 kr.) behandles automatisk og hurtigere. Store beløb kræver ofte manuel godkendelse, hvilket tilføjer 24-72 timer. VIP-spillere har højere auto-grænser." },
+              { iconName: "lock", title: "6. Undgå at ændre betalingsmetode", desc: "Skift af betalingsmetode mellem indbetaling og udbetaling kræver ofte ekstra KYC-verifikation og kan forsinke processen med 24-48 timer. Vælg din foretrukne metode fra starten og hold dig til den." },
+              { iconName: "eye", title: "7. Vælg casinoer med 0 timers pending time", desc: "Pending time er den tid casinoet 'holder' din udbetaling, før de begynder at behandle den. Casinoer med 0 timers pending time behandler din anmodning øjeblikkeligt – ingen ventetid, ingen fristelse til reverse withdrawal." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -391,9 +391,9 @@ const HurtigUdbetaling = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Zap, title: "Hurtigt udbetalende casino (< 1 time)", desc: "Kendetegn: Automatiseret behandling, Trustly-integration, proaktiv KYC, 0 timers pending time, moderne teknologiplatform. Disse casinoer investerer i infrastruktur og spilerkvalitet.", color: "text-primary" },
-              { icon: Clock, title: "Gennemsnitligt udbetalende casino (1-24 timer)", desc: "Kendetegn: Delvist automatiseret, standard KYC-processer, kort pending time (1-4 timer). Acceptable men ikke fremragende. De fleste danske casinoer falder i denne kategori.", color: "text-yellow-500" },
-              { icon: AlertTriangle, title: "Langsomt udbetalende casino (24+ timer)", desc: "Kendetegn: Manuel behandling, lang pending time (24-72 timer), reverse withdrawal aktiveret, langsom KYC. Undgå disse casinoer – langsomme udbetalinger korrelerer stærkt med andre kvalitetsproblemer.", color: "text-destructive" },
+              { iconName: "zap", title: "Hurtigt udbetalende casino (< 1 time)", desc: "Kendetegn: Automatiseret behandling, Trustly-integration, proaktiv KYC, 0 timers pending time, moderne teknologiplatform. Disse casinoer investerer i infrastruktur og spilerkvalitet.", color: "text-primary" },
+              { iconName: "clock", title: "Gennemsnitligt udbetalende casino (1-24 timer)", desc: "Kendetegn: Delvist automatiseret, standard KYC-processer, kort pending time (1-4 timer). Acceptable men ikke fremragende. De fleste danske casinoer falder i denne kategori.", color: "text-yellow-500" },
+              { iconName: "alert-triangle", title: "Langsomt udbetalende casino (24+ timer)", desc: "Kendetegn: Manuel behandling, lang pending time (24-72 timer), reverse withdrawal aktiveret, langsom KYC. Undgå disse casinoer – langsomme udbetalinger korrelerer stærkt med andre kvalitetsproblemer.", color: "text-destructive" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className={`mt-0.5 h-5 w-5 flex-shrink-0 ${item.color}`} />
@@ -441,11 +441,11 @@ const HurtigUdbetaling = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: AlertTriangle, title: "Fejl 1: At vente med KYC til første udbetaling", desc: "Den hyppigste forsinkelsesårsag. KYC-verifikation kan tage 1-24 timer. Løsning: Upload dokumenter inden for 24 timer efter kontooprettelse – de fleste casinoer verificerer proaktive uploads inden for 2-4 timer." },
-              { icon: AlertTriangle, title: "Fejl 2: At anmode om udbetaling med aktiv bonus", desc: "Uopfyldte omsætningskrav blokerer udbetalingen og kræver manuel gennemgang. Værste tilfælde: bonus OG gevinster annulleres. Løsning: Tjek altid din bonusstatus under 'Min konto' før du anmoder om udbetaling." },
-              { icon: AlertTriangle, title: "Fejl 3: At indbetale via én metode og forvente udbetaling via en anden", desc: "Anti-hvidvask-regler kræver at udbetalingen sendes til samme kilde som indbetalingen. Skift af metode kræver ekstra verifikation (24-48 timer). Løsning: Vælg din foretrukne metode fra starten – helst Trustly." },
-              { icon: AlertTriangle, title: "Fejl 4: At udbetale store beløb uden VIP-status", desc: "Beløb over casinoets auto-godkendelsesgrænse kræver manuel behandling. Løsning: For store gevinster, kontakt casinoets VIP-afdeling proaktivt. Opdel alternativt udbetalingen i mindre beløb under grænsen." },
-              { icon: AlertTriangle, title: "Fejl 5: At udbetale fredag eftermiddag", desc: "Bankoverførsler og kortudbetalinger behandles ikke i weekender. En fredagsanmodning kan reelt forsinke udbetalingen til tirsdag. Løsning: Brug Trustly (24/7) eller udbetal tirsdag-torsdag formiddag for bankmetoder." },
+              { iconName: "alert-triangle", title: "Fejl 1: At vente med KYC til første udbetaling", desc: "Den hyppigste forsinkelsesårsag. KYC-verifikation kan tage 1-24 timer. Løsning: Upload dokumenter inden for 24 timer efter kontooprettelse – de fleste casinoer verificerer proaktive uploads inden for 2-4 timer." },
+              { iconName: "alert-triangle", title: "Fejl 2: At anmode om udbetaling med aktiv bonus", desc: "Uopfyldte omsætningskrav blokerer udbetalingen og kræver manuel gennemgang. Værste tilfælde: bonus OG gevinster annulleres. Løsning: Tjek altid din bonusstatus under 'Min konto' før du anmoder om udbetaling." },
+              { iconName: "alert-triangle", title: "Fejl 3: At indbetale via én metode og forvente udbetaling via en anden", desc: "Anti-hvidvask-regler kræver at udbetalingen sendes til samme kilde som indbetalingen. Skift af metode kræver ekstra verifikation (24-48 timer). Løsning: Vælg din foretrukne metode fra starten – helst Trustly." },
+              { iconName: "alert-triangle", title: "Fejl 4: At udbetale store beløb uden VIP-status", desc: "Beløb over casinoets auto-godkendelsesgrænse kræver manuel behandling. Løsning: For store gevinster, kontakt casinoets VIP-afdeling proaktivt. Opdel alternativt udbetalingen i mindre beløb under grænsen." },
+              { iconName: "alert-triangle", title: "Fejl 5: At udbetale fredag eftermiddag", desc: "Bankoverførsler og kortudbetalinger behandles ikke i weekender. En fredagsanmodning kan reelt forsinke udbetalingen til tirsdag. Løsning: Brug Trustly (24/7) eller udbetal tirsdag-torsdag formiddag for bankmetoder." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />

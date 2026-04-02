@@ -30,8 +30,8 @@ import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
 import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
 import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
 import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
-import { AlertTriangle, ArrowRight, Ban, BarChart3, ChevronLeft, ChevronRight, Clock, Dog, DollarSign, Flame, Play } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Ban, ChevronLeft, ChevronRight, Dog, DollarSign, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 const SLOT_DATA = [
   { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
@@ -662,11 +662,11 @@ const BonusBuysGuide = () => {
           </p>
           <div className="space-y-3 mb-6">
             {[
-              { icon: AlertTriangle, title: "Utilstrækkeligt bankroll", desc: "Hvis dit resterende bankroll ikke kan rumme mindst 20+ buy-priser, er risikoen for ruin for høj. En 100x buy med et bankroll på 500 kr. (ved 5 kr. indsats) giver dig kun én chance – det er gambling i sin mest ekstreme form." },
-              { icon: Flame, title: "Under tilt", desc: "Hvis du lige har tabt en eller flere bonus buys og føler trang til at 'vinde det tilbage', er det det værst tænkelige tidspunkt at købe igen. Emotionelle beslutninger og bonus buy er en destruktiv kombination." },
+              { iconName: "alert-triangle", title: "Utilstrækkeligt bankroll", desc: "Hvis dit resterende bankroll ikke kan rumme mindst 20+ buy-priser, er risikoen for ruin for høj. En 100x buy med et bankroll på 500 kr. (ved 5 kr. indsats) giver dig kun én chance – det er gambling i sin mest ekstreme form." },
+              { iconName: "flame", title: "Under tilt", desc: "Hvis du lige har tabt en eller flere bonus buys og føler trang til at 'vinde det tilbage', er det det værst tænkelige tidspunkt at købe igen. Emotionelle beslutninger og bonus buy er en destruktiv kombination." },
               { icon: DollarSign, title: "Under bonusomsætning", desc: "Mange casinobonusser har indsatsbegrænsninger (f.eks. max 50 kr. pr. spin) eller specifikt forbyder buy features. Et brud på disse vilkår kan medføre konfiskering af bonus og gevinster." },
-              { icon: BarChart3, title: "Lav-RTP konfiguration", desc: "Hvis slotten kører i en reduceret RTP-variant (91–94 % i stedet for 96 %), er buy-featuren endnu mere ufordelagtig. Tjek altid RTP'en i spillets info-menu, før du køber." },
-              { icon: Clock, title: "Regelmæssigt og ukontrolleret", desc: "Hvis bonus buy er blevet din standardtilgang til alle sessions, og du har svært ved at spille normalt, kan det være et tegn på problematisk spiladfærd. Overvej at sætte grænser eller kontakte hjælpetjenester." },
+              { iconName: "bar-chart3", title: "Lav-RTP konfiguration", desc: "Hvis slotten kører i en reduceret RTP-variant (91–94 % i stedet for 96 %), er buy-featuren endnu mere ufordelagtig. Tjek altid RTP'en i spillets info-menu, før du køber." },
+              { iconName: "clock", title: "Regelmæssigt og ukontrolleret", desc: "Hvis bonus buy er blevet din standardtilgang til alle sessions, og du har svært ved at spille normalt, kan det være et tegn på problematisk spiladfærd. Overvej at sætte grænser eller kontakte hjælpetjenester." },
             ].map((item) => (
               <Card key={item.title}>
                 <CardContent className="pt-4 pb-4">

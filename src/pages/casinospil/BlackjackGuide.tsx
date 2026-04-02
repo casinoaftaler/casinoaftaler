@@ -16,8 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Eye, Layers, Play, Scale, Shuffle, Sparkles, Target, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Play, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import blackjackHero from "@/assets/heroes/blackjack-hero.jpg";
 
@@ -30,37 +30,37 @@ const blackjackCluster = [
     to: "/casinospil/blackjack/skema",
     title: "Blackjack Skema",
     desc: "Det komplette farvekodede basic strategy skema med interaktiv quiz og EV-analyse for alle håndtyper.",
-    icon: Target,
+    iconName: "target",
   },
   {
     to: "/casinospil/blackjack/amerikansk-blackjack",
     title: "Amerikansk Blackjack",
     desc: "Hole card-reglen, peek-mekanikken og hvorfor amerikanske regler favoriserer spilleren ved doubles og splits.",
-    icon: Target,
+    iconName: "target",
   },
   {
     to: "/casinospil/blackjack/europaeisk-blackjack",
     title: "Europæisk Blackjack",
     desc: "No hole card, double kun 9–11, 2-deck varianten og tilpasset basic strategy for europæiske regler.",
-    icon: Layers,
+    iconName: "layers",
   },
   {
     to: "/casinospil/blackjack/double-exposure-blackjack",
     title: "Double Exposure Blackjack",
     desc: "Begge dealer-kort synlige – dramatisk ændret strategi, 6:5-udbetaling og modificeret house edge.",
-    icon: Eye,
+    iconName: "eye",
   },
   {
     to: "/casinospil/blackjack/spanish-21",
     title: "Spanish 21",
     desc: "Ingen 10'ere i bunken, bonusudbetalinger, spiller-21-vinder-altid og unik basic strategy.",
-    icon: Sparkles,
+    iconName: "sparkles",
   },
   {
     to: "/casinospil/blackjack/martingale",
     title: "Martingale System",
     desc: "Fordoblings-systemet analyseret: matematisk bevis, Risk of Ruin og hvorfor det fejler langsigtet.",
-    icon: TrendingUp,
+    iconName: "trending-up",
   },
   {
     to: "/casinospil/blackjack/fibonacci",
@@ -72,7 +72,7 @@ const blackjackCluster = [
     to: "/casinospil/blackjack/dalembert",
     title: "D'Alembert System",
     desc: "Den konservative progressions-strategi: +1/-1 justering, variansanalyse og sammenligning med Martingale.",
-    icon: Scale,
+    iconName: "scale",
   },
 ];
 

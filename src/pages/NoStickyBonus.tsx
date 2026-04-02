@@ -21,8 +21,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, Calculator, Check, Clock, CreditCard, Dog, DollarSign, Eye, Gamepad2, Lock, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dog, DollarSign, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -536,37 +536,37 @@ const NoStickyBonus = () => {
               {
                 title: "1. Overskridelse af maksimal indsats",
                 desc: "De fleste No-Sticky Bonusser har en maks. indsats per spin (typisk 25-50 kr.) der gælder, når bonusdelen er aktiv. Overskridelse kan medføre total annullering af bonus og alle gevinster – uanset om du havde gennemspillet 90% af kravet. Tjek ALTID grænsen, og vær opmærksom på at visse spilfeatures (fx Bonus Buy) kan overskride den automatisk.",
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
               },
               {
                 title: "2. Tidsbegrænsning overset",
                 desc: "No-Sticky Bonusser har typisk 14-30 dages gyldighed. Tidsfristen gælder fra aktiveringens tidspunkt – ikke fra din sidste spillesession. Mange spillere mister bonusmidler, fordi de glemmer tidsfristen. Sæt en påmindelse i din kalender.",
-                icon: Clock,
+                iconName: "clock",
               },
               {
                 title: "3. Forkert spilvalg under bonusomsætning",
                 desc: "At spille bordspil eller live casino med bonusmidler er en matematisk katastrofe. Med 10% spilbidrag og 10x omsætning skal du satse 50.000 kr. – ti gange mere end nødvendigt. Brug ALTID slots med 100% bidrag til omsætning.",
-                icon: Gamepad2,
+                iconName: "gamepad2",
               },
               {
                 title: "4. Hæver for tidligt med Cash Balance",
                 desc: "Paradoksalt kan det være en fejl at hæve for tidligt. Hvis din Cash Balance er 520 kr. (kun 20 kr. gevinst), kan det være matematisk bedre at fortsætte med at spille i stedet for at hæve 20 kr. profit og miste 500 kr. i bonusmidler. Beregn break-even.",
-                icon: Calculator,
+                iconName: "calculator",
               },
               {
                 title: "5. Ekskluderede betalingsmetoder",
                 desc: "Visse betalingsmetoder – typisk Skrill og Neteller – kvalificerer ikke til bonusaktivering. Hvis du indbetaler via en ekskluderet metode, modtager du ingen bonus, men indbetalingen gennemføres stadig. Tjek bonusvilkårene FØR du vælger betalingsmetode.",
-                icon: CreditCard,
+                iconName: "credit-card",
               },
               {
                 title: "6. Gevinstloft på bonusdelen",
                 desc: "Mange No-Sticky Bonusser har et maksimalt gevinstloft på bonusdelen – typisk 5.000-50.000 kr. Selvom du vinder 100.000 kr. med bonusmidlerne, kan du kun hæve op til loftet. Tjek altid dette parameter, og vælg casinoer med højt eller intet loft.",
-                icon: Lock,
+                iconName: "lock",
               },
               {
                 title: "7. Tror at bonusdelen er 'gratis penge'",
                 desc: "Bonusmidlerne er ikke gratis – de har omsætningskrav og vilkår. Mange spillere ændrer adfærd, når de spiller med bonusmidler (højere indsatser, mere risikovillige valg), fordi de opfatter dem som 'gratispenge'. Spil altid med samme disciplin uanset pengenes oprindelse.",
-                icon: Eye,
+                iconName: "eye",
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">

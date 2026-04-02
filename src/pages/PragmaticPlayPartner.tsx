@@ -8,8 +8,8 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart3, BookOpen, Clock, Cpu, Database, Dog, Eye, FileCheck, Flame, Gamepad2, Globe, HeartHandshake, Layers, Lightbulb, Monitor, Play, Scale, Search, ShieldCheck, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Cpu, Database, Dog, FileCheck, Lightbulb, Play, Search } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -207,10 +207,10 @@ const PragmaticPlayPartner = () => {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Gamepad2, label: "250+ spillemaskiner", desc: "En af branchens største kataloger" },
-              { icon: Globe, label: "200+ markeder", desc: "Global tilstedeværelse inkl. Danmark" },
-              { icon: Zap, label: "6-8 nye spil/måned", desc: "Konstant innovation og nye udgivelser" },
-              { icon: Trophy, label: "Talrige branchempriser", desc: "Anerkendt for kvalitet og innovation" },
+              { iconName: "gamepad2", label: "250+ spillemaskiner", desc: "En af branchens største kataloger" },
+              { iconName: "globe", label: "200+ markeder", desc: "Global tilstedeværelse inkl. Danmark" },
+              { iconName: "zap", label: "6-8 nye spil/måned", desc: "Konstant innovation og nye udgivelser" },
+              { iconName: "trophy", label: "Talrige branchempriser", desc: "Anerkendt for kvalitet og innovation" },
             ].map((item) => (
               <Card key={item.label} className="border-border">
                 <CardContent className="flex flex-col items-center p-6 text-center">
@@ -262,9 +262,9 @@ const PragmaticPlayPartner = () => {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { year: "2015", event: "Pragmatic Play grundlægges", icon: Lightbulb },
-              { year: "2018", event: "Live casino lanceres", icon: Monitor },
-              { year: "2020", event: "Sweet Bonanza & eksplosiv vækst", icon: Flame },
-              { year: "2026", event: "Partnerskab med Casinoaftaler", icon: HeartHandshake },
+              { year: "2018", event: "Live casino lanceres", iconName: "monitor" },
+              { year: "2020", event: "Sweet Bonanza & eksplosiv vækst", iconName: "flame" },
+              { year: "2026", event: "Partnerskab med Casinoaftaler", iconName: "heart-handshake" },
             ].map((item) => (
               <Card key={item.year} className="border-border">
                 <CardContent className="flex flex-col items-center p-5 text-center">
@@ -291,17 +291,17 @@ const PragmaticPlayPartner = () => {
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
               {
-                icon: Eye,
+                iconName: "eye",
                 title: "Tidlig adgang til nye spil",
                 desc: "Vi modtager information om nye Pragmatic Play udgivelser før den generelle offentliggørelse. Det betyder, at vi kan have anmeldelser og guides klar, når et nyt spil lanceres – ikke uger efter.",
               },
               {
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 title: "Dybere testdata",
                 desc: "Adgang til officiel teknisk dokumentation giver os mulighed for at validere vores egne RTP- og volatilitetstest mod Pragmatic Plays egne specifikationer. Det sikrer, at vores data er så præcise som muligt.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Direkte kontakt til udviklerteam",
                 desc: "Ved spørgsmål om specifikke spilmekanikker, bonus-features eller tekniske detaljer kan vi henvende os direkte til Pragmatic Plays team for at få verificeret information.",
               },
@@ -344,17 +344,17 @@ const PragmaticPlayPartner = () => {
           <div className="mt-6 space-y-4">
             {[
               {
-                icon: Layers,
+                iconName: "layers",
                 title: "Tumble-mekanikken (Cascade Wins)",
                 desc: "Introduceret med Sweet Bonanza og nu brugt i titler som Gates of Olympus, Sugar Rush og Starlight Princess. Når du lander en gevinst, fjernes de vindende symboler, og nye falder ned i deres plads – hvilket potentielt udløser kædevindinger fra en enkelt spin. Mekanikken skaber en dynamisk spiloplevelse, hvor en enkel spin kan udvikle sig til massive gevinstsekvenser. Det er denne mekanik, der har gjort Sweet Bonanza til en af de mest ikoniske spillemaskiner i historien.",
               },
               {
-                icon: Sparkles,
+                iconName: "sparkles",
                 title: "Multiplier Collect-systemet",
                 desc: "Brugt i Gates of Olympus-serien, hvor tilfældige multipliers (2x-500x) lander på skærmen under spillet og adderes til den samlede multiplikator for rundens gevinster. Systemet skaber dramatiske momenter, hvor en enkelt bonus-runde kan gå fra beskeden til ekstraordinær på få sekunder. Pragmatic Play har raffineret dette system over flere udgivelser, og det er nu et af de mest kopierede mekanikker i branchen.",
               },
               {
-                icon: Target,
+                iconName: "target",
                 title: "Ante Bet / Feature Drop",
                 desc: "Pragmatic Plays Ante Bet-system giver spillere mulighed for at betale 25% ekstra pr. spin for at fordoble chancen for at triggere bonus-runden. Feature Drop (Bonus Buy) lader dig købe direkte adgang til free spins – typisk til 100x indsatsen. Disse funktioner appellerer til forskellige spillertyper: Ante Bet for dem, der vil optimere deres odds uden at betale fuld bonus buy-pris, og Feature Drop for dem, der vil direkte til aktionen.",
               },
@@ -412,17 +412,17 @@ const PragmaticPlayPartner = () => {
           <div className="mt-6 space-y-4">
             {[
               {
-                icon: Target,
+                iconName: "target",
                 title: "RTP-verifikation",
                 desc: "Vi sammenholder den officielle RTP (Return to Player) med vores egne sessionsdata. Baseret på data fra vores egne tests kan vi nu validere dette mod Pragmatic Plays officielle tekniske dokumentation, hvilket giver et ekstra lag af præcision. De fleste Pragmatic Play slots har en standard RTP mellem 96,48% og 96,53%, men mange tilbyder også en Ante Bet-funktion, der ændrer RTP-profilen.",
               },
               {
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 title: "Volatilitetsanalyse",
                 desc: "Pragmatic Play klassificerer selv deres spil på en volatilitetsskala fra 1-5. Vi tester dette i praksis ved at køre hundredvis af spins og dokumentere gevinstfrekvens, tørperioder og gevinstfordelingsmønstre. Spil som Gates of Olympus (volatilitet 5/5) opfører sig markant anderledes end The Dog House (volatilitet 4/5), og den forskel skal være tydeligt kommunikeret.",
               },
               {
-                icon: Sparkles,
+                iconName: "sparkles",
                 title: "Bonus Buy-evaluering",
                 desc: "Mange af Pragmatic Plays mest populære spillemaskiner tilbyder Bonus Buy (Feature Drop) – muligheden for at købe direkte adgang til bonus-runden. Vi evaluerer, om Bonus Buy-prisen (typisk 100x indsatsen) giver rimelig værdi sammenlignet med at triggere bonussen organisk. Dette er særligt relevant for Sweet Bonanza, Gates of Olympus og Big Bass serien.",
               },
@@ -432,7 +432,7 @@ const PragmaticPlayPartner = () => {
                 desc: "Hver spillemaskine testes med minimum 200-500 spins i reelle sessioner. Vi dokumenterer gevinstfrekvens, gennemsnitlig gevinst, bonus-trigger hyppighed og maksimale gevinster. Disse data danner grundlaget for vores anmeldelser og for de statistikker, du kan finde i vores slot-katalog.",
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "Langtidsobservation via bonus hunts",
                 desc: "Fordi Pragmatic Play-titler er fast inventar i vores daglige bonus hunts, akkumulerer vi langtidsdata på tværs af hundredvis af sessioner. Det giver os statistisk signifikante observationer om gevinstmønstre, bonus-frekvenser og gennemsnitlige afkast – data, der er langt mere pålidelige end kortvarige tests.",
               },
@@ -677,12 +677,12 @@ const PragmaticPlayPartner = () => {
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Multi-jurisdiktionel licensering",
                 desc: "Pragmatic Play er licenseret af Malta Gaming Authority (MGA), UK Gambling Commission (UKGC), Gibraltar Gambling Commissioner og adskillige andre jurisdiktioner. Deres spil er certificerede til brug hos operatører med dansk licens fra Spillemyndigheden.",
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "Uafhængig fairness-certificering",
                 desc: "Alle Pragmatic Play spil certificeres af uafhængige testlaboratorier (herunder BMM Testlabs og GLI), der verificerer, at RNG (Random Number Generator) fungerer korrekt, og at de publicerede RTP-værdier er nøjagtige.",
               },
@@ -865,14 +865,14 @@ const PragmaticPlayPartner = () => {
             <h2 className="mb-4 text-xl font-bold">Udforsk mere om Pragmatic Play</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                { label: "Pragmatic Play spiludvikler-guide", path: "/spiludviklere/pragmatic-play", icon: BookOpen },
-                { label: "Pragmatic Play spillemaskiner", path: "/spillemaskiner/pragmatic-play", icon: Gamepad2 },
-                { label: "Bedste online casinoer", path: "/top-10-casino-online", icon: Star },
-                { label: "Casino bonusser", path: "/casino-bonus", icon: TrendingUp },
+                { label: "Pragmatic Play spiludvikler-guide", path: "/spiludviklere/pragmatic-play", iconName: "book-open" },
+                { label: "Pragmatic Play spillemaskiner", path: "/spillemaskiner/pragmatic-play", iconName: "gamepad2" },
+                { label: "Bedste online casinoer", path: "/top-10-casino-online", iconName: "star" },
+                { label: "Casino bonusser", path: "/casino-bonus", iconName: "trending-up" },
                 { label: "Sådan tester vi casinoer", path: "/saadan-tester-vi-casinoer", icon: Search },
-                { label: "Vores forretningsmodel", path: "/forretningsmodel", icon: Scale },
-                { label: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", icon: Trophy },
-                { label: "Slot Database", path: "/slot-database", icon: BarChart3 },
+                { label: "Vores forretningsmodel", path: "/forretningsmodel", iconName: "scale" },
+                { label: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", iconName: "trophy" },
+                { label: "Slot Database", path: "/slot-database", iconName: "bar-chart3" },
               ].map((item) => (
                 <Link
                   key={item.path}

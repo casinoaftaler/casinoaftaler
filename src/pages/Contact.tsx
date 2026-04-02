@@ -29,8 +29,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BadgeCheck, Handshake, Megaphone, Newspaper, Send, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, Handshake, Megaphone, Send } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useToast } from "@/hooks/use-toast";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -44,9 +44,9 @@ const INQUIRY_TYPES = [
 
 const COOPERATION_AREAS = [
   { icon: Handshake, label: "Casino partnerskaber" },
-  { icon: Users, label: "Affiliate aftaler" },
+  { iconName: "users", label: "Affiliate aftaler" },
   { icon: Megaphone, label: "Kampagner og promotions" },
-  { icon: Newspaper, label: "Presse- og mediehenvendelser" },
+  { iconName: "newspaper", label: "Presse- og mediehenvendelser" },
 ];
 
 export default function Contact() {
@@ -415,13 +415,13 @@ export default function Contact() {
                     <Link to="/nye-casinoer" className="text-primary underline hover:text-primary/80">nye casinoer</Link>.
                   </p>
                   <ul className="space-y-3">
-                    {COOPERATION_AREAS.map(({ icon: Icon, label }) => (
+                    {COOPERATION_AREAS.map(({ iconName, label }) => (
                       <li
                         key={label}
                         className="flex items-center gap-3 text-sm"
                       >
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10">
-                          <Icon className="h-4 w-4 text-primary" />
+                          <MenuIcon iconName={iconName} className="h-4 w-4 text-primary" />
                         </div>
                         {label}
                       </li>

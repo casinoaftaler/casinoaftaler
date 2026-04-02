@@ -12,8 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, Ban, CircleCheck, Cpu, Dog, Eye, FileWarning, Fingerprint, Heart, Key, Lock, Play, RefreshCw, Scan, Settings, Shield, Timer, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, Cpu, Dog, Fingerprint, Play, Scan, Settings, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -89,19 +89,19 @@ const mitidFordele = [
     tag: "Sikkerhed",
   },
   {
-    icon: Zap,
+    iconName: "zap",
     title: "Hurtig kontooprettelse (2-5 min)",
     description: "Ingen manuel indtastning af personoplysninger – MitID udfylder automatisk navn, adresse og fødselsdato. Du kan spille inden for minutter efter registrering, mod timer med traditionel verifikation.",
     tag: "Hastighed",
   },
   {
-    icon: Shield,
+    iconName: "shield",
     title: "Automatisk ROFUS-tjek",
     description: "MitID-verifikation kontrollerer automatisk din ROFUS-status ved hver kontooprettelse og hvert login. Er du selvudelukket, blokeres adgangen – en vigtig beskyttelse mod impulsspil.",
     tag: "Beskyttelse",
   },
   {
-    icon: Lock,
+    iconName: "lock",
     title: "GDPR-sikret datahåndtering",
     description: "Casinoet modtager kun nødvendige oplysninger via en krypteret kanal. Bankoplysninger og passwords deles aldrig. Alt følger dansk databeskyttelseslov og EU's GDPR-forordning.",
     tag: "Privatliv",
@@ -113,7 +113,7 @@ const mitidFordele = [
     tag: "Compliance",
   },
   {
-    icon: CircleCheck,
+    iconName: "circle-check",
     title: "Anti-hvidvask (AML)",
     description: "MitID opfylder KYC-kravene i hvidvasklovgivningen (4. og 5. AML-direktiv). Casinoet kan verificere din identitet uden at du skal uploade ID-dokumenter manuelt – hurtigere og sikrere for begge parter.",
     tag: "Regulering",
@@ -329,9 +329,9 @@ const CasinoMedMitID = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Eye, title: "Indsigtsret (GDPR art. 15)", desc: "Du har ret til at se alle de personoplysninger casinoet opbevarer om dig. Anmod via casinoets GDPR-kontaktperson eller kundeservice. De skal svare inden for 30 dage." },
+              { iconName: "eye", title: "Indsigtsret (GDPR art. 15)", desc: "Du har ret til at se alle de personoplysninger casinoet opbevarer om dig. Anmod via casinoets GDPR-kontaktperson eller kundeservice. De skal svare inden for 30 dage." },
               { icon: Ban, title: "Ret til sletning (GDPR art. 17)", desc: "Du kan bede om sletning af dine data efter kontoafslutning. Dog er casinoer forpligtede til at opbevare visse data i 5 år iht. hvidvasklovgivningen. Herefter slettes alt automatisk." },
-              { icon: RefreshCw, title: "Ret til dataportabilitet (GDPR art. 20)", desc: "Du kan anmode om at modtage dine data i et maskinlæsbart format. Det kan være relevant, hvis du ønsker at skifte casino og vil dokumentere din spilhistorik." },
+              { iconName: "refresh-cw", title: "Ret til dataportabilitet (GDPR art. 20)", desc: "Du kan anmode om at modtage dine data i et maskinlæsbart format. Det kan være relevant, hvis du ønsker at skifte casino og vil dokumentere din spilhistorik." },
               { icon: Settings, title: "Ret til begrænsning (GDPR art. 18)", desc: "Du kan bede casinoet om at begrænse behandlingen af dine data under specifikke omstændigheder, f.eks. hvis du bestrider nøjagtigheden af de opbevarede oplysninger." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
@@ -382,10 +382,10 @@ const CasinoMedMitID = () => {
 
           <div className="space-y-3">
             {[
-              { icon: AlertTriangle, title: "Ingen alderskontrol", desc: "Uden MitID er der ingen garanti for at mindreårige forhindres i at spille. Ulicenserede casinoer bruger typisk selvdeklaret alder ved registrering – et system der er trivielt at omgå og som ingen reel beskyttelse tilbyder. Det er et alvorligt problem for unge menneskers sikkerhed." },
-              { icon: AlertTriangle, title: "Ingen ROFUS-beskyttelse", desc: "Selvudelukkede spillere kan omgå ROFUS og oprette konti uhindret hos ulicenserede casinoer. Det underminerer formålet med ROFUS og udsætter sårbare spillere for risiko. Casinoer der aktivt markedsfører sig mod ROFUS-registrerede spillere handler uetisk." },
-              { icon: AlertTriangle, title: "Skattemæssige konsekvenser", desc: "Gevinster fra ulicenserede casinoer beskattes som personlig indkomst (op til 52%), modsat skattefrie gevinster hos danske casinoer. En gevinst på 10.000 kr. reduceres til ca. 4.800 kr. efter skat. Manglende selvangivelse kan medføre bøder og tillæg fra SKAT." },
-              { icon: AlertTriangle, title: "Identitetstyveri-risiko", desc: "Uden MitID's sikre verifikation er der øget risiko for at dine personoplysninger kompromitteres. Ulicenserede casinoer har ikke de samme krav til datasikkerhed og kryptering som danske operatører, og din data kan potentielt misbruges eller sælges til tredjepart." },
+              { iconName: "alert-triangle", title: "Ingen alderskontrol", desc: "Uden MitID er der ingen garanti for at mindreårige forhindres i at spille. Ulicenserede casinoer bruger typisk selvdeklaret alder ved registrering – et system der er trivielt at omgå og som ingen reel beskyttelse tilbyder. Det er et alvorligt problem for unge menneskers sikkerhed." },
+              { iconName: "alert-triangle", title: "Ingen ROFUS-beskyttelse", desc: "Selvudelukkede spillere kan omgå ROFUS og oprette konti uhindret hos ulicenserede casinoer. Det underminerer formålet med ROFUS og udsætter sårbare spillere for risiko. Casinoer der aktivt markedsfører sig mod ROFUS-registrerede spillere handler uetisk." },
+              { iconName: "alert-triangle", title: "Skattemæssige konsekvenser", desc: "Gevinster fra ulicenserede casinoer beskattes som personlig indkomst (op til 52%), modsat skattefrie gevinster hos danske casinoer. En gevinst på 10.000 kr. reduceres til ca. 4.800 kr. efter skat. Manglende selvangivelse kan medføre bøder og tillæg fra SKAT." },
+              { iconName: "alert-triangle", title: "Identitetstyveri-risiko", desc: "Uden MitID's sikre verifikation er der øget risiko for at dine personoplysninger kompromitteres. Ulicenserede casinoer har ikke de samme krav til datasikkerhed og kryptering som danske operatører, og din data kan potentielt misbruges eller sælges til tredjepart." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
@@ -508,11 +508,11 @@ const CasinoMedMitID = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Shield, title: "ROFUS-integration", desc: "MitID er koblet direkte til ROFUS-registret. Selvudelukkede spillere blokeres automatisk og øjeblikkeligt ved ethvert loginforsøg eller kontooprettelse hos alle danske licenserede casinoer. Det er teknisk umuligt at omgå inden for det danske system." },
+              { iconName: "shield", title: "ROFUS-integration", desc: "MitID er koblet direkte til ROFUS-registret. Selvudelukkede spillere blokeres automatisk og øjeblikkeligt ved ethvert loginforsøg eller kontooprettelse hos alle danske licenserede casinoer. Det er teknisk umuligt at omgå inden for det danske system." },
               { icon: Timer, title: "Realtids-kontrol ved login", desc: "I modsætning til mange internationale systemer der kun kontrollerer ved registrering, kontrollerer danske casinoer din ROFUS-status ved hvert eneste login. Det betyder at en ROFUS-registrering der oprettes midt i en session, træder i kraft ved næste login." },
-              { icon: Users, title: "Mindreårige forhindres", desc: "MitID's kobling til CPR-registret giver en vandtæt aldersverifikation. Det er teknisk umuligt for en person under 18 at oprette en konto hos et dansk licenseret casino – i modsætning til internationale casinoer der kun kræver selvdeklaret alder." },
-              { icon: Eye, title: "Sporing og analyse", desc: "MitID-verifikation sikrer at casinoet kan spore individuelle spillemønstre nøjagtigt. Det gør det muligt at identificere tidlige tegn på problematisk spilleadfærd og gribe ind proaktivt – f.eks. ved at foreslå spillegrænser eller midlertidig pause." },
-              { icon: Heart, title: "Spillegrænser bundet til identitet", desc: "Fordi MitID sikrer entydig identifikation, kan indbetalingsgrænser og tabsgrænser håndhæves effektivt. En spiller der har sat en grænse på ét casino, kan ikke omgå den ved at oprette en konto under et andet navn – CPR-nummeret sikrer konsistens." },
+              { iconName: "users", title: "Mindreårige forhindres", desc: "MitID's kobling til CPR-registret giver en vandtæt aldersverifikation. Det er teknisk umuligt for en person under 18 at oprette en konto hos et dansk licenseret casino – i modsætning til internationale casinoer der kun kræver selvdeklaret alder." },
+              { iconName: "eye", title: "Sporing og analyse", desc: "MitID-verifikation sikrer at casinoet kan spore individuelle spillemønstre nøjagtigt. Det gør det muligt at identificere tidlige tegn på problematisk spilleadfærd og gribe ind proaktivt – f.eks. ved at foreslå spillegrænser eller midlertidig pause." },
+              { iconName: "heart", title: "Spillegrænser bundet til identitet", desc: "Fordi MitID sikrer entydig identifikation, kan indbetalingsgrænser og tabsgrænser håndhæves effektivt. En spiller der har sat en grænse på ét casino, kan ikke omgå den ved at oprette en konto under et andet navn – CPR-nummeret sikrer konsistens." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

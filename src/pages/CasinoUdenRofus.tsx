@@ -12,8 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Ban, Banknote, BookOpen, Dog, DollarSign, Eye, FileWarning, Fingerprint, Gavel, Globe, Heart, Landmark, Phone, Scale, Shield, Timer, Users, XCircle } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, Dog, DollarSign, FileWarning, Fingerprint, Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -91,19 +91,19 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const risici = [
   {
-    icon: Banknote,
+    iconName: "banknote",
     title: "Skattepligtige gevinster",
     description: "Gevinster fra casinoer uden dansk licens beskattes som personlig indkomst (op til 52%). Hos licenserede casinoer er dine gevinster 100% skattefrie – en forskel der hurtigt løber op i tusindvis af kroner.",
     tag: "Økonomisk",
   },
   {
-    icon: Shield,
+    iconName: "shield",
     title: "Ingen spillerbeskyttelse",
     description: "Uden dansk licens er du ikke beskyttet af Spillemyndighedens regler om bankgaranti, bonusloft (max 10x omsætning), eller indbetalingsgrænser. Casinoet kan ændre vilkår uden varsel.",
     tag: "Juridisk",
   },
   {
-    icon: XCircle,
+    iconName: "x-circle",
     title: "Ingen klageinstans",
     description: "Hvis et ulicenseret casino nægter at udbetale dine gevinster, har du ingen klageinstans. Hos danske casinoer kan Spillemyndigheden gribe ind og beskytte dine interesser.",
     tag: "Retssikkerhed",
@@ -121,7 +121,7 @@ const risici = [
     tag: "Sikkerhed",
   },
   {
-    icon: Globe,
+    iconName: "globe",
     title: "Udenlandsk jurisdiktion",
     description: "Tvister afgøres efter udenlandsk lovgivning – typisk Curaçao eller Malta. Som dansk forbruger har du ingen rettigheder, og det er praktisk umuligt at føre en retssag mod en udenlandsk operatør.",
     tag: "Juridisk",
@@ -468,9 +468,9 @@ const CasinoUdenRofus = () => {
           <div className="space-y-3">
             {[
               { icon: Gavel, title: "Licenskrav", desc: "Operatører skal dokumentere økonomisk stabilitet, have en bankgaranti på minimum 5 mio. DKK, implementere ansvarligt spil-værktøjer og tilslutte sig ROFUS. Licensen koster en årlig afgift og kræver løbende rapportering til Spillemyndigheden." },
-              { icon: Scale, title: "Bonusregulering", desc: "Danske bonusser er begrænset til max 10x omsætningskrav (effektivt en af de laveste i verden). Bonusvilkår skal være klart kommunikeret, og casinoer må ikke tilbyde bonusser der tilskynder til overdrevent spil. Der må desuden ikke tilbydes velkomstbonusser til spillere under 21 år (skærpet krav fra 2025)." },
-              { icon: Eye, title: "Overvågning og håndhævelse", desc: "Spillemyndigheden overvåger aktivt markedet for ulicenserede operatører, gennemfører uanmeldte audits af licenserede casinoer, og kan udstede bøder, tilbagekalde licenser og blokere domæner. I 2025 blev der udstedt bøder for over 12 mio. DKK for overtrædelser." },
-              { icon: Landmark, title: "EU-ramme", desc: "Danmark opererer inden for EU's ramme for online gambling-regulering, men spillelovgivning er primært et nationalt anliggende. EU-domstolen har gentagne gange bekræftet medlemsstaternes ret til at regulere gambling-markedet af hensyn til folkesundhed og offentlig orden." },
+              { iconName: "scale", title: "Bonusregulering", desc: "Danske bonusser er begrænset til max 10x omsætningskrav (effektivt en af de laveste i verden). Bonusvilkår skal være klart kommunikeret, og casinoer må ikke tilbyde bonusser der tilskynder til overdrevent spil. Der må desuden ikke tilbydes velkomstbonusser til spillere under 21 år (skærpet krav fra 2025)." },
+              { iconName: "eye", title: "Overvågning og håndhævelse", desc: "Spillemyndigheden overvåger aktivt markedet for ulicenserede operatører, gennemfører uanmeldte audits af licenserede casinoer, og kan udstede bøder, tilbagekalde licenser og blokere domæner. I 2025 blev der udstedt bøder for over 12 mio. DKK for overtrædelser." },
+              { iconName: "landmark", title: "EU-ramme", desc: "Danmark opererer inden for EU's ramme for online gambling-regulering, men spillelovgivning er primært et nationalt anliggende. EU-domstolen har gentagne gange bekræftet medlemsstaternes ret til at regulere gambling-markedet af hensyn til folkesundhed og offentlig orden." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -548,11 +548,11 @@ const CasinoUdenRofus = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Phone, title: "StopSpillet – 70 22 28 25", desc: "Gratis og anonym rådgivningslinje drevet af Center for Ludomani. Tilgængelig alle hverdage 10-22, weekender 10-18. Professionelle rådgivere med erfaring i spilleproblemer hjælper dig med at finde vejen videre – uden fordømmelse." },
-              { icon: Heart, title: "ROFUS – Selvudelukkelse", desc: "Registrér dig eller tjek din status på rofus.nu. Hvis du endnu ikke er registreret men overvejer det, er det i sig selv et positivt tegn. ROFUS er et stærkt værktøj der fjerner fristelsen helt og giver dig rum til at genvinde kontrollen." },
-              { icon: Users, title: "Ludomanibehandling", desc: "Center for Ludomani tilbyder gratis behandlingsforløb i hele Danmark. Behandlingen er evidensbaseret (kognitiv adfærdsterapi) og tilgængelig både fysisk og online. Ventetiden er typisk 1-3 uger. Kontakt dem på 33 17 73 13 eller via ludomani.dk." },
-              { icon: BookOpen, title: "Spillegrænser på danske casinoer", desc: "Alle danske licenserede casinoer tilbyder indbetalingsgrænser, tabsgrænser, sessionsgrænser og mulighed for midlertidig selvudelukkelse direkte i din konto. Brug disse værktøjer proaktivt – det er et tegn på styrke, ikke svaghed." },
-              { icon: Shield, title: "Pårørenderådgivning", desc: "Er du pårørende til en person med spilleproblemer? StopSpillet tilbyder også rådgivning til familie og venner. Det kan være lige så belastende at være pårørende som at have problemet selv. Ring 70 22 28 25 – hjælpen gælder også dig." },
+              { iconName: "phone", title: "StopSpillet – 70 22 28 25", desc: "Gratis og anonym rådgivningslinje drevet af Center for Ludomani. Tilgængelig alle hverdage 10-22, weekender 10-18. Professionelle rådgivere med erfaring i spilleproblemer hjælper dig med at finde vejen videre – uden fordømmelse." },
+              { iconName: "heart", title: "ROFUS – Selvudelukkelse", desc: "Registrér dig eller tjek din status på rofus.nu. Hvis du endnu ikke er registreret men overvejer det, er det i sig selv et positivt tegn. ROFUS er et stærkt værktøj der fjerner fristelsen helt og giver dig rum til at genvinde kontrollen." },
+              { iconName: "users", title: "Ludomanibehandling", desc: "Center for Ludomani tilbyder gratis behandlingsforløb i hele Danmark. Behandlingen er evidensbaseret (kognitiv adfærdsterapi) og tilgængelig både fysisk og online. Ventetiden er typisk 1-3 uger. Kontakt dem på 33 17 73 13 eller via ludomani.dk." },
+              { iconName: "book-open", title: "Spillegrænser på danske casinoer", desc: "Alle danske licenserede casinoer tilbyder indbetalingsgrænser, tabsgrænser, sessionsgrænser og mulighed for midlertidig selvudelukkelse direkte i din konto. Brug disse værktøjer proaktivt – det er et tegn på styrke, ikke svaghed." },
+              { iconName: "shield", title: "Pårørenderådgivning", desc: "Er du pårørende til en person med spilleproblemer? StopSpillet tilbyder også rådgivning til familie og venner. Det kan være lige så belastende at være pårørende som at have problemet selv. Ring 70 22 28 25 – hjælpen gælder også dig." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

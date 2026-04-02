@@ -13,8 +13,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Apple, ArrowRight, Award, Banknote, CreditCard, Wallet } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ReactNode } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -436,12 +436,12 @@ export function PaymentMethodPage({
         {/* Money-page CTAs — rotated per page */}
         {(() => {
           const ctaVariants = [
-            { url: "/casino-anmeldelser", icon: Award, title: "Casino Anmeldelser", desc: `Se hvilke casinoer der accepterer ${name} med de bedste vilkår.` },
-            { url: "/casino-bonus", icon: Wallet, title: "Casino Bonus", desc: `Bonusser du kan aktivere med ${name}-indbetalinger.` },
-            { url: "/nye-casinoer", icon: Banknote, title: "Nye Casinoer 2026", desc: `De nyeste danske casinoer med ${name}-understøttelse.` },
-            { url: "/velkomstbonus", icon: CreditCard, title: "Velkomstbonus", desc: `Bedste velkomsttilbud kompatible med ${name}.` },
-            { url: "/top-10-casino-online", icon: Award, title: "Top 10 Casinoer", desc: `Danmarks bedst ratede casinoer med ${name}-support.` },
-            { url: "/hurtig-udbetaling", icon: Banknote, title: "Hurtig Udbetaling", desc: `Casinoer med lynhurtige udbetalinger via ${name}.` },
+            { url: "/casino-anmeldelser", iconName: "award", title: "Casino Anmeldelser", desc: `Se hvilke casinoer der accepterer ${name} med de bedste vilkår.` },
+            { url: "/casino-bonus", iconName: "wallet", title: "Casino Bonus", desc: `Bonusser du kan aktivere med ${name}-indbetalinger.` },
+            { url: "/nye-casinoer", iconName: "banknote", title: "Nye Casinoer 2026", desc: `De nyeste danske casinoer med ${name}-understøttelse.` },
+            { url: "/velkomstbonus", iconName: "credit-card", title: "Velkomstbonus", desc: `Bedste velkomsttilbud kompatible med ${name}.` },
+            { url: "/top-10-casino-online", iconName: "award", title: "Top 10 Casinoer", desc: `Danmarks bedst ratede casinoer med ${name}-support.` },
+            { url: "/hurtig-udbetaling", iconName: "banknote", title: "Hurtig Udbetaling", desc: `Casinoer med lynhurtige udbetalinger via ${name}.` },
           ];
           const offset = name.length % ctaVariants.length;
           const rotated = [...ctaVariants.slice(offset), ...ctaVariants.slice(0, offset)].slice(0, 4);
@@ -459,9 +459,9 @@ export function PaymentMethodPage({
                 {headingVariants[name.length % headingVariants.length]}
               </h2>
               <div className="grid gap-3 sm:grid-cols-2">
-                {rotated.map(({ url, icon: Icon, title, desc }) => (
+                {rotated.map(({ url, iconName, title, desc }) => (
                   <Link key={url} to={url} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                    <Icon className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName={iconName} className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold">{title}</p>
                       <p className="text-sm text-muted-foreground">{desc}</p>

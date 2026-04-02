@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
-import { Gamepad2, Hourglass, Package, Play, Square, Timer } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Hourglass, Package, Square, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import type { LucideIcon } from "lucide-react";
 
 interface Props {
@@ -27,10 +27,10 @@ function formatTime(ts: string | null): string {
 }
 
 export function BonusHuntFooter({ stats }: Props) {
-  const items: { label: string; value: string; icon: LucideIcon }[] = [
-    { label: 'Hunt Start', value: formatTime(stats.huntStart), icon: Play },
+  const items: { label: string; value: string; iconName: string }[] = [
+    { label: 'Hunt Start', value: formatTime(stats.huntStart), iconName: "play" },
     { label: 'Duration', value: formatDuration(stats.huntDuration), icon: Timer },
-    { label: 'Opening', value: formatTime(stats.openingStart), icon: Gamepad2 },
+    { label: 'Opening', value: formatTime(stats.openingStart), iconName: "gamepad2" },
     { label: 'Open Dur.', value: formatDuration(stats.openingDuration), icon: Hourglass },
     { label: 'Hunt End', value: formatTime(stats.bonusHuntEnd), icon: Square },
     { label: 'Total', value: formatDuration(stats.totalDuration), icon: Package },
@@ -45,10 +45,10 @@ export function BonusHuntFooter({ stats }: Props) {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {items.map(item => {
-            const Icon = item.icon;
+            // icon resolved via iconName on item
             return (
               <div key={item.label} className="group/tl text-center rounded-lg bg-muted/30 py-1.5 px-1 transition-all duration-[180ms] hover:-translate-y-0.5 hover:bg-muted/50">
-                <Icon className="h-3 w-3 text-primary mx-auto mb-0.5 transition-all duration-[180ms] group-hover/tl:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
+                <MenuIcon iconName={iconName} className="h-3 w-3 text-primary mx-auto mb-0.5 transition-all duration-[180ms] group-hover/tl:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
                 <p className="text-[9px] text-muted-foreground">{item.label}</p>
                 <p className="text-xs font-semibold transition-transform duration-[180ms] group-hover/tl:scale-[1.02]">{item.value}</p>
               </div>

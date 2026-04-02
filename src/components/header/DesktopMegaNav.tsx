@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BookOpen, ChevronDown, ChevronRight, Dices, Info, Landmark, MoreHorizontal, Play, Sparkles, Tv, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ChevronDown, ChevronRight, Dices, Info, MoreHorizontal, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { cn } from "@/lib/utils";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
@@ -259,13 +259,13 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll
 
 /* ─── Triggers ─── */
 const TRIGGERS = [
-  { key: "casinoer", label: "Casinoer", icon: Landmark },
-  { key: "nye-casinoer", label: "Nye Casinoer", icon: Sparkles },
+  { key: "casinoer", label: "Casinoer", iconName: "landmark" },
+  { key: "nye-casinoer", label: "Nye Casinoer", iconName: "sparkles" },
   { key: "casinospil", label: "Casinospil", icon: Dices },
-  { key: "live-casino", label: "Live Casino", icon: Tv },
-  { key: "casino-bonus", label: "Casino Bonus", icon: BookOpen },
+  { key: "live-casino", label: "Live Casino", iconName: "tv" },
+  { key: "casino-bonus", label: "Casino Bonus", iconName: "book-open" },
   { key: "mere", label: "Mere", icon: MoreHorizontal },
-  { key: "community", label: "Community", icon: Users },
+  { key: "community", label: "Community", iconName: "users" },
 ] as const;
 
 type MenuKey = (typeof TRIGGERS)[number]["key"];
@@ -505,7 +505,7 @@ export function DesktopMegaNav() {
         className="hidden lg:flex items-center flex-1 justify-evenly gap-1 whitespace-nowrap"
         style={{ contain: "layout style" }}
       >
-        {TRIGGERS.map(({ key, label, icon: Icon }) => (
+        {TRIGGERS.map(({ key, label, iconName }) => (
           <button
             key={key}
             onMouseEnter={() => handleEnter(key)}
@@ -528,7 +528,7 @@ export function DesktopMegaNav() {
               activeMenu === key && "text-primary"
             )}
           >
-            <Icon className="h-4 w-4" />
+            <MenuIcon iconName={iconName} className="h-4 w-4" />
             {label}
           </button>
         ))}

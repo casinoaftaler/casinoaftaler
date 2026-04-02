@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { BarChart3, ShieldCheck, Target, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 
 const steps = [
   {
-    icon: Target,
+    iconName: "target",
     step: 1,
     heading: "Bonusser samles",
     description: (
@@ -21,7 +21,7 @@ const steps = [
     ),
   },
   {
-    icon: BarChart3,
+    iconName: "bar-chart3",
     step: 2,
     heading: "Åbning & analyse",
     description: (
@@ -41,7 +41,7 @@ const steps = [
     ),
   },
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     step: 3,
     heading: "Licens & transparens",
     description: (
@@ -61,7 +61,7 @@ const steps = [
     ),
   },
   {
-    icon: Users,
+    iconName: "users",
     step: 4,
     heading: "Community bets",
     description: (

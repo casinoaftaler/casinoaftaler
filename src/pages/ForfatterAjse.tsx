@@ -16,8 +16,8 @@ import { AuthorNewsSection } from "@/components/AuthorNewsSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight, Gamepad2, Gavel, Pen, Play, ShieldCheck, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, ChevronLeft, ChevronRight, Gavel, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -51,17 +51,17 @@ const expertiseItems = [
     desc: "2+ års daglig fordybelse i dansk spillelov, licenskrav og regulatoriske ændringer.",
   },
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     label: "Ansvarligt spil",
     desc: "Fokus på ROFUS, selvudelukkelse, bonusvilkår og spillerbeskyttelse.",
   },
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     label: "Slot-marked & innovation",
     desc: "Indsigt i udviklingen på den danske slot-scene, herunder mekanikker, volatilitet og bonusstrukturer.",
   },
   {
-    icon: Users,
+    iconName: "users",
     label: "Community & brancheindsigt",
     desc: "Aktiv i casino-community siden 2022 og følger markedet tæt via analyser, streams og branchekilder.",
   },

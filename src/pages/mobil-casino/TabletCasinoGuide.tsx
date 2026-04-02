@@ -16,8 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Apple, ArrowRight, Battery, CreditCard, Dog, Download, Eye, Filter, Globe, Lock, Monitor, Play, Settings, Shield, Smartphone, User, Wifi, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Battery, Dog, Download, Eye, Filter, Play, Settings, Shield, Smartphone, User, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -251,17 +251,17 @@ const TabletCasinoGuide = () => {
               {
                 title: "Processor (SoC) – Høj indflydelse",
                 desc: "Chippen bestemmer loading-hastighed, animationsflydende og live casino-performance. Apple M-chips og Qualcomm Snapdragon 8-serien er overkill for casino – selv 3 år gamle flagskibe håndterer det fint. Budget-processorer (Exynos 1380, Helio G99) fungerer til slots men kan hakke i live casino med HD-streaming.",
-                icon: Zap,
+                iconName: "zap",
               },
               {
                 title: "RAM – Moderat indflydelse",
                 desc: "RAM påvirker multi-tabling og tab-skift. Med 4 GB RAM risikerer du, at browseren genindlæser casino-lobbyen, når du skifter faner. 8 GB RAM er tilstrækkeligt for to samtidige casino-sessioner. 16 GB RAM (iPad Pro) giver headroom for Stage Manager med 4 vinduer.",
-                icon: Monitor,
+                iconName: "monitor",
               },
               {
                 title: "Skærmteknologi – Høj indflydelse",
                 desc: "OLED/AMOLED-skærme (iPad Pro, Samsung Tab S-serie) giver dybere sorte farver og bedre kontrast, der forbedrer casino-visuals markant. LCD/TFT-skærme (iPad Air, Tab S9 FE) er funktionelle men med lavere kontrastforhold. 120 Hz refresh rate giver glattere animationer i spilleautomater men er ikke nødvendig.",
-                icon: Eye,
+                iconName: "eye",
               },
               {
                 title: "Batteri – Moderat indflydelse",
@@ -593,10 +593,10 @@ const TabletCasinoGuide = () => {
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
-              { title: "Apple Pay (iPad)", desc: "Face ID på iPad Pro, Touch ID (via topknap) på iPad Air/mini. Samme tokeniserede sikkerhed som iPhone. Apple Pay fungerer i Safari-browseren og casino-apps.", link: "/betalingsmetoder/apple-pay", icon: CreditCard },
-              { title: "MobilePay (iPad/Android)", desc: "MobilePay kan bruges via QR-kode på tablet, da MobilePay-appen typisk er på din smartphone. Casinoet viser QR-kode → scan med telefonen → bekræft i MobilePay-app.", link: "/betalingsmetoder/mobilepay", icon: Smartphone },
-              { title: "Trustly (Alle tablets)", desc: "Open banking via browseren fungerer identisk med desktop. MitID-appen på din smartphone håndterer verifikation. Hurtigste udbetaling blandt alle metoder (1-24 timer).", link: "/betalingsmetoder/trustly", icon: Lock },
-              { title: "Visa/Mastercard (Alle tablets)", desc: "Safari AutoFill (iPad) og Chrome AutoFill (Android) udfylder kortdata automatisk. 3D Secure-verifikation via bankens app på smartphone eller SMS.", link: "/betalingsmetoder/visa-mastercard", icon: Shield },
+              { title: "Apple Pay (iPad)", desc: "Face ID på iPad Pro, Touch ID (via topknap) på iPad Air/mini. Samme tokeniserede sikkerhed som iPhone. Apple Pay fungerer i Safari-browseren og casino-apps.", link: "/betalingsmetoder/apple-pay", iconName: "credit-card" },
+              { title: "MobilePay (iPad/Android)", desc: "MobilePay kan bruges via QR-kode på tablet, da MobilePay-appen typisk er på din smartphone. Casinoet viser QR-kode → scan med telefonen → bekræft i MobilePay-app.", link: "/betalingsmetoder/mobilepay", iconName: "smartphone" },
+              { title: "Trustly (Alle tablets)", desc: "Open banking via browseren fungerer identisk med desktop. MitID-appen på din smartphone håndterer verifikation. Hurtigste udbetaling blandt alle metoder (1-24 timer).", link: "/betalingsmetoder/trustly", iconName: "lock" },
+              { title: "Visa/Mastercard (Alle tablets)", desc: "Safari AutoFill (iPad) og Chrome AutoFill (Android) udfylder kortdata automatisk. 3D Secure-verifikation via bankens app på smartphone eller SMS.", link: "/betalingsmetoder/visa-mastercard", iconName: "shield" },
             ].map((m) => (
               <Card key={m.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><m.icon className="h-4 w-4 text-primary" />{m.title}</CardTitle></CardHeader>
@@ -783,11 +783,11 @@ const TabletCasinoGuide = () => {
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" />Tablet-specifikke casino-tips</h2>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
-              { title: "Brug Night Shift/Blue Light Filter", desc: "Reducer blåt lys under aftensessioner. iPad: Indstillinger → Skærm → Night Shift. Samsung: Indstillinger → Skærm → Eye Comfort Shield.", icon: Eye },
-              { title: "Investér i et godt stativ", desc: "Et justerbart tablet-stativ giver den bedste ergonomi for længere casino-sessioner og forhindrer nakke-/rygsmerter.", icon: Monitor },
+              { title: "Brug Night Shift/Blue Light Filter", desc: "Reducer blåt lys under aftensessioner. iPad: Indstillinger → Skærm → Night Shift. Samsung: Indstillinger → Skærm → Eye Comfort Shield.", iconName: "eye" },
+              { title: "Investér i et godt stativ", desc: "Et justerbart tablet-stativ giver den bedste ergonomi for længere casino-sessioner og forhindrer nakke-/rygsmerter.", iconName: "monitor" },
               { title: "Tilslut Bluetooth-høretelefoner", desc: "AirPods Pro eller Galaxy Buds giver den bedste live casino-lydoplevelse med aktiv støjreduktion – perfekt til dealer-kommunikation.", icon: Wifi },
-              { title: "Aktiver 'Do Not Disturb' under spil", desc: "Forhindrer notifikationer i at afbryde din casino-session, særligt vigtigt under live casino-hænder.", icon: Shield },
-              { title: "Brug Reader Mode til casinoguides", desc: "Safari Reader Mode og Samsung Internet Reader giver en distraktionsfri læseoplevelse for casino-strategiguides og anmeldelser.", icon: Globe },
+              { title: "Aktiver 'Do Not Disturb' under spil", desc: "Forhindrer notifikationer i at afbryde din casino-session, særligt vigtigt under live casino-hænder.", iconName: "shield" },
+              { title: "Brug Reader Mode til casinoguides", desc: "Safari Reader Mode og Samsung Internet Reader giver en distraktionsfri læseoplevelse for casino-strategiguides og anmeldelser.", iconName: "globe" },
               { title: "Tilslut ekstern tastatur til chat", desc: "Et Bluetooth-tastatur gør det nemt at kommunikere i live casino-chat. Magic Keyboard (iPad) eller Samsung Keyboard Cover anbefales.", icon: Settings },
             ].map((t) => (
               <div key={t.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">

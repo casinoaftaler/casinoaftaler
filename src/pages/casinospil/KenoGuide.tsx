@@ -11,8 +11,8 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, BarChart3, Calculator, CheckCircle2, Clock, Dice1, Dog, DollarSign, Flame, Gift, Grid3X3, Heart, Lock, Monitor, Play, ShieldCheck, Sparkles, Star, Table, Target, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dog, DollarSign, Play, Table } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -106,37 +106,37 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const kenoVarianter = [
   {
-    icon: Target,
+    iconName: "target",
     title: "Standard keno",
     description: "Det klassiske format: vælg 1-15 numre fra 80 mulige, 20 numre trækkes. Gevinsten afhænger af hvor mange af dine numre der matches. Simpelt, overskueligt og tilgængeligt for alle spillertyper. RTP typisk 88-92%.",
     tag: "Klassisk",
   },
   {
-    icon: Zap,
+    iconName: "zap",
     title: "Power Keno",
     description: "Identisk med standard keno, men med en kraftig bonus: hvis det 20. (sidste) trukne nummer matcher et af dine valg, firedobles din gevinst. Tilføjer ekstra spænding til de afsluttende trækninger og kan give markant større udbetalinger.",
     tag: "Bonus-variant",
   },
   {
-    icon: Star,
+    iconName: "star",
     title: "Super Keno",
     description: "Modstykket til Power Keno – her firedobles gevinsten, hvis det 1. trukne nummer matcher. Spænding fra allerførste trækning. Matematisk tilbyder Super Keno og Power Keno næsten identisk forventet afkast, men oplevelsen er markant anderledes.",
     tag: "Bonus-variant",
   },
   {
-    icon: Flame,
+    iconName: "flame",
     title: "Multi-card keno",
     description: "Spil op til 20 keno-plader samtidig med forskellige nummervalg. Øger dækningsgraden dramatisk og giver mulighed for diversificerede strategier – fx konservative og aggressive valg på samme tid. Ideelt for erfarne spillere med større budgetter.",
     tag: "Avanceret",
   },
   {
-    icon: Clock,
+    iconName: "clock",
     title: "Speed keno / Instant keno",
     description: "Ultra-hurtig variant uden ventetid mellem trækningerne. Numre genereres øjeblikkeligt, og et nyt spil kan starte med det samme. Perfekt til spillere der foretrækker højt tempo, men kræver ekstra opmærksomhed på budgetstyring.",
     tag: "Hurtigt",
   },
   {
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Video keno med bonusfunktioner",
     description: "Moderne hybrid der kombinerer keno med spilleautomat-elementer: multiplikatorer, free games, progressive jackpots og tematiske bonusrunder. RTP op til 96%. Spilles individuelt mod RNG – ingen fælles præmiepulje.",
     tag: "Hybrid",
@@ -345,14 +345,14 @@ const KenoGuide = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Target, title: "1. Vælg 4-6 numre for optimal RTP", desc: "Den statistisk mest fordelagtige zone er 4-6 numre, hvor RTP typisk topper på 90-94%. Denne zone giver en meningsfuld balance mellem gevinstfrekvens og gevinststørrelse. Med 4 valgte numre matcher du alle ca. 1 ud af 326 spil – sjældent nok til at gevinsten føles betydelig, men hyppigt nok til at holde spændingen." },
-              { icon: Calculator, title: "2. Sammenlign gevinsttabeller mellem udbydere", desc: "Identiske keno-formater kan have markant forskellig RTP hos forskellige udbydere. Et keno-spil med 6 valgte numre kan betale 1.500x hos én udbyder og 1.800x hos en anden for 6/6 match. Denne forskel repræsenterer en reel RTP-fordel. Tjek altid gevinsttabellen før du spiller." },
+              { iconName: "target", title: "1. Vælg 4-6 numre for optimal RTP", desc: "Den statistisk mest fordelagtige zone er 4-6 numre, hvor RTP typisk topper på 90-94%. Denne zone giver en meningsfuld balance mellem gevinstfrekvens og gevinststørrelse. Med 4 valgte numre matcher du alle ca. 1 ud af 326 spil – sjældent nok til at gevinsten føles betydelig, men hyppigt nok til at holde spændingen." },
+              { iconName: "calculator", title: "2. Sammenlign gevinsttabeller mellem udbydere", desc: "Identiske keno-formater kan have markant forskellig RTP hos forskellige udbydere. Et keno-spil med 6 valgte numre kan betale 1.500x hos én udbyder og 1.800x hos en anden for 6/6 match. Denne forskel repræsenterer en reel RTP-fordel. Tjek altid gevinsttabellen før du spiller." },
               { icon: DollarSign, title: "3. Sæt et klart sessionsbudget", desc: "Bestem dit budget før du starter og hold dig strengt til det. En god regel: dit keno-budget bør være penge du er villig til at tabe for underholdningsværdien. Med 10 kr. per spil og 60 spil i timen koster en times keno ca. 60-120 kr. i forventet tab (afhængig af RTP)." },
-              { icon: AlertTriangle, title: "4. Undgå 'hot numbers' og mønstertro", desc: "Der er ingen 'varme' eller 'kolde' numre i certificeret online keno. Hvert nummer har præcis 25% sandsynlighed for at blive trukket (20/80) ved hver uafhængig trækning. Systemer baseret på tidligere resultater er matematisk meningsløse. Vælg numre du kan lide – det påvirker ikke dine odds, men det forbedrer din oplevelse." },
-              { icon: Zap, title: "5. Brug ikke Auto Play ubegrænset", desc: "Auto Play-funktionen kan accelerere dit spil dramatisk – op til 120 runder i timen i instant keno. Sæt altid en tabsgrænse og et maksimalt antal automatiske runder. Mange spillere underspiller risikoen ved højhastighedsspil, og et budget der normalt rækker en time kan forsvinde på 15 minutter med aggressiv Auto Play." },
-              { icon: Gift, title: "6. Udnyt keno-kompatible bonusser", desc: "Mange casino-bonusser har reduceret vægtning for keno (typisk 10-25% mod omsætningskrav vs. 100% for spillemaskiner). Tjek altid bonusvilkårene specifikt for keno, før du accepterer en bonus. Nogle casinoer tilbyder dedikerede keno-bonusser med fuld vægtning – disse giver markant bedre value." },
-              { icon: BarChart3, title: "7. Diversificér med multi-card keno", desc: "Multi-card keno lader dig spille flere plader med forskellige nummervalg samtidig. En effektiv tilgang er at kombinere et konservativt valg (3-4 numre) med et aggressivt (8-10 numre) for at balancere gevinstfrekvens med jackpot-potentiale. Din samlede indsats stiger, men din dækningsgrad af nummerfeltet øges dramatisk." },
-              { icon: Heart, title: "8. Spil for underholdning, ikke profit", desc: "Keno har en indbygget house edge på 4-12%. Over tid vil du statistisk set tabe penge. Betragt dit keno-budget som en underholdningsudgift – ligesom en biografbillet eller et restaurantbesøg. Hvis du oplever at keno bliver en kilde til stress eller finansiel bekymring, brug værktøjerne på vores side om ansvarligt spil." },
+              { iconName: "alert-triangle", title: "4. Undgå 'hot numbers' og mønstertro", desc: "Der er ingen 'varme' eller 'kolde' numre i certificeret online keno. Hvert nummer har præcis 25% sandsynlighed for at blive trukket (20/80) ved hver uafhængig trækning. Systemer baseret på tidligere resultater er matematisk meningsløse. Vælg numre du kan lide – det påvirker ikke dine odds, men det forbedrer din oplevelse." },
+              { iconName: "zap", title: "5. Brug ikke Auto Play ubegrænset", desc: "Auto Play-funktionen kan accelerere dit spil dramatisk – op til 120 runder i timen i instant keno. Sæt altid en tabsgrænse og et maksimalt antal automatiske runder. Mange spillere underspiller risikoen ved højhastighedsspil, og et budget der normalt rækker en time kan forsvinde på 15 minutter med aggressiv Auto Play." },
+              { iconName: "gift", title: "6. Udnyt keno-kompatible bonusser", desc: "Mange casino-bonusser har reduceret vægtning for keno (typisk 10-25% mod omsætningskrav vs. 100% for spillemaskiner). Tjek altid bonusvilkårene specifikt for keno, før du accepterer en bonus. Nogle casinoer tilbyder dedikerede keno-bonusser med fuld vægtning – disse giver markant bedre value." },
+              { iconName: "bar-chart3", title: "7. Diversificér med multi-card keno", desc: "Multi-card keno lader dig spille flere plader med forskellige nummervalg samtidig. En effektiv tilgang er at kombinere et konservativt valg (3-4 numre) med et aggressivt (8-10 numre) for at balancere gevinstfrekvens med jackpot-potentiale. Din samlede indsats stiger, men din dækningsgrad af nummerfeltet øges dramatisk." },
+              { iconName: "heart", title: "8. Spil for underholdning, ikke profit", desc: "Keno har en indbygget house edge på 4-12%. Over tid vil du statistisk set tabe penge. Betragt dit keno-budget som en underholdningsudgift – ligesom en biografbillet eller et restaurantbesøg. Hvis du oplever at keno bliver en kilde til stress eller finansiel bekymring, brug værktøjerne på vores side om ansvarligt spil." },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <tip.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -422,10 +422,10 @@ const KenoGuide = () => {
 
           <div className="space-y-3 mb-6">
             {[
-              { icon: ShieldCheck, title: "RNG-certificering", desc: "Alle keno-spil skal bruge certificerede Random Number Generators testet af uafhængige laboratorier som eCOGRA, iTech Labs eller GLI. Disse tests verificerer at nummertrækningerne er statistisk tilfældige og ikke kan manipuleres af operatøren eller spilleren. Certifikater fornyes regelmæssigt." },
-              { icon: Lock, title: "Resultatarkivering", desc: "Alle keno-resultater arkiveres i minimum 5 år og er tilgængelige for Spillemyndighedens revision. Dette sikrer fuld sporbarhed og mulighed for efterfølgende kontrol af fairness. Operatører der ikke overholder arkiveringskravene risikerer licensinddragelse." },
-              { icon: Users, title: "ROFUS og selvudelukkelse", desc: "Alle danske keno-udbydere er tilsluttet ROFUS – det nationale register for selvudelukkelse. Spillere kan udelukke sig selv midlertidigt (24 timer til 6 måneder) eller permanent. ROFUS-registreringen håndhæves automatisk ved login-forsøg på alle danske licenserede gambling-sider." },
-              { icon: CheckCircle2, title: "Ansvarligt spil-værktøjer", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Derudover kræves 'reality checks' – pop-up-beskeder der informerer spilleren om varighed og resultat af spillesessionen." },
+              { iconName: "shield-check", title: "RNG-certificering", desc: "Alle keno-spil skal bruge certificerede Random Number Generators testet af uafhængige laboratorier som eCOGRA, iTech Labs eller GLI. Disse tests verificerer at nummertrækningerne er statistisk tilfældige og ikke kan manipuleres af operatøren eller spilleren. Certifikater fornyes regelmæssigt." },
+              { iconName: "lock", title: "Resultatarkivering", desc: "Alle keno-resultater arkiveres i minimum 5 år og er tilgængelige for Spillemyndighedens revision. Dette sikrer fuld sporbarhed og mulighed for efterfølgende kontrol af fairness. Operatører der ikke overholder arkiveringskravene risikerer licensinddragelse." },
+              { iconName: "users", title: "ROFUS og selvudelukkelse", desc: "Alle danske keno-udbydere er tilsluttet ROFUS – det nationale register for selvudelukkelse. Spillere kan udelukke sig selv midlertidigt (24 timer til 6 måneder) eller permanent. ROFUS-registreringen håndhæves automatisk ved login-forsøg på alle danske licenserede gambling-sider." },
+              { iconName: "check-circle2", title: "Ansvarligt spil-værktøjer", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Derudover kræves 'reality checks' – pop-up-beskeder der informerer spilleren om varighed og resultat af spillesessionen." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -599,10 +599,10 @@ const KenoGuide = () => {
 
           <div className="space-y-3 mb-6">
             {[
-              { icon: Sparkles, title: "Gamification og progression", desc: "Moderne keno-spil integrerer progression-systemer med niveauer, achievements og daglige udfordringer. Spillere optjener point og bonusser for aktivitet, hvilket tilføjer en metagame-dimension til det ellers simple format. Denne trend fra video-spilverdenen forventes at accelerere markant i de kommende år." },
-              { icon: Monitor, title: "Live dealer keno", desc: "Flere udbydere eksperimenterer med live dealer keno, hvor en vært trækker numre i realtid via video-stream. Denne hybrid kombinerer online kenos tilgængelighed med den autentiske atmosfære fra fysiske keno-lounger. Evolution Gaming og andre live casino-udbydere har allerede lanceret prototyper." },
-              { icon: Trophy, title: "Social og turneringsbaseret keno", desc: "Keno-turneringer med leaderboards og fælles jackpots er en voksende trend. Spillere konkurrerer om at ramme flest matches inden for en tidsperiode, hvilket tilføjer et kompetitivt element. Community-features som chat og multiplayer-elementer transformerer keno fra solospil til social oplevelse." },
-              { icon: Lock, title: "Forstærket spillerbeskyttelse med AI", desc: "Danske og europæiske regulatorer investerer i AI-drevne systemer der identificerer problematisk spilleadfærd i realtid. Kenos hurtige spillefrekvens gør det særligt relevant for tidlig intervention. Fremtidige keno-platforme vil sandsynligvis have integrerede AI-assistenter der proaktivt foreslår pauser og budget-justeringer." },
+              { iconName: "sparkles", title: "Gamification og progression", desc: "Moderne keno-spil integrerer progression-systemer med niveauer, achievements og daglige udfordringer. Spillere optjener point og bonusser for aktivitet, hvilket tilføjer en metagame-dimension til det ellers simple format. Denne trend fra video-spilverdenen forventes at accelerere markant i de kommende år." },
+              { iconName: "monitor", title: "Live dealer keno", desc: "Flere udbydere eksperimenterer med live dealer keno, hvor en vært trækker numre i realtid via video-stream. Denne hybrid kombinerer online kenos tilgængelighed med den autentiske atmosfære fra fysiske keno-lounger. Evolution Gaming og andre live casino-udbydere har allerede lanceret prototyper." },
+              { iconName: "trophy", title: "Social og turneringsbaseret keno", desc: "Keno-turneringer med leaderboards og fælles jackpots er en voksende trend. Spillere konkurrerer om at ramme flest matches inden for en tidsperiode, hvilket tilføjer et kompetitivt element. Community-features som chat og multiplayer-elementer transformerer keno fra solospil til social oplevelse." },
+              { iconName: "lock", title: "Forstærket spillerbeskyttelse med AI", desc: "Danske og europæiske regulatorer investerer i AI-drevne systemer der identificerer problematisk spilleadfærd i realtid. Kenos hurtige spillefrekvens gør det særligt relevant for tidlig intervention. Fremtidige keno-platforme vil sandsynligvis have integrerede AI-assistenter der proaktivt foreslår pauser og budget-justeringer." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

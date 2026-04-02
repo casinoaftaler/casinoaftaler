@@ -21,8 +21,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AlertTriangle, Ban, Calculator, CheckCircle2, CreditCard, DollarSign, Gamepad2, Gift, Minus, Percent, Scale, ShieldCheck, Sparkles, Target, User } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, DollarSign, Minus } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -294,27 +294,27 @@ const Indskudsbonus = () => {
               {
                 title: "Trin 1: Vælg casino og bonus",
                 desc: "Sammenlign bonusser og læs anmeldelser for at finde det bedste tilbud. Husk at kigge på betingelserne – ikke kun bonusbeløbet.",
-                icon: Target,
+                iconName: "target",
               },
               {
                 title: "Trin 2: Opret en spillekonto",
                 desc: "Registrer dig hos det valgte casino med dine personlige oplysninger og kontaktinformationer.",
-                icon: User,
+                iconName: "user",
               },
               {
                 title: "Trin 3: Bekræft din identitet",
                 desc: "Verificer din identitet via MitID. Det sikrer, at din konto er beskyttet, og at udbetalinger sker til den rette person.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
               {
                 title: "Trin 4: Vælg kampagne og aktiver",
                 desc: "Gå til kampagnesektionen og vælg din bonus. Hvis en bonuskode kræves, skal den indtastes ved indbetaling.",
-                icon: Gift,
+                iconName: "gift",
               },
               {
                 title: "Trin 5: Indbetal og spil",
                 desc: "Foretag din indbetaling, og bonussen tilføjes automatisk. Vælg herefter spil, der tæller med i omsætningskravet.",
-                icon: Gamepad2,
+                iconName: "gamepad2",
               },
             ].map((item) => (
               <div
@@ -605,10 +605,10 @@ const Indskudsbonus = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { title: "Slot-spilleren", desc: "Vælg indskudsbonus med 100% bidrag fra slots og lav omsætning. Med 96%+ RTP slots og ≤5x omsætning er din EV typisk 70-90% af bonusbeløbet. Kombinér gerne med free spins-pakke for maksimal spilletid.", icon: Sparkles },
-              { title: "Bordspil-entusiasten", desc: "Vær varsom. Med kun 10% bidrag fra bordspil kræver en 10x (d+b) bonus reelt 100x i bordspilsindsatser. Overvej bonus uden omsætningskrav eller cashback-bonusser, der giver mere fleksibilitet i spilvalg.", icon: Gamepad2 },
-              { title: "Den forsigtige spiller", desc: "Prioritér no-sticky bonusser med lav match-% og lav omsætning. Din indbetaling forbliver uberørt, og du kan hæve gevinster frit. En 50% match med 1x (b) er ideel – lav risiko, høj EV-procent.", icon: ShieldCheck },
-              { title: "Bonus-optimisten", desc: "Pas på med at jagte den højeste bonus. En 1.000 kr. bonus lyder fantastisk, men med sticky-struktur og 10x (d+b) er den reelle værdi lavere end man tror. Lad matematik – ikke markedsføring – styre dit valg.", icon: AlertTriangle },
+              { title: "Slot-spilleren", desc: "Vælg indskudsbonus med 100% bidrag fra slots og lav omsætning. Med 96%+ RTP slots og ≤5x omsætning er din EV typisk 70-90% af bonusbeløbet. Kombinér gerne med free spins-pakke for maksimal spilletid.", iconName: "sparkles" },
+              { title: "Bordspil-entusiasten", desc: "Vær varsom. Med kun 10% bidrag fra bordspil kræver en 10x (d+b) bonus reelt 100x i bordspilsindsatser. Overvej bonus uden omsætningskrav eller cashback-bonusser, der giver mere fleksibilitet i spilvalg.", iconName: "gamepad2" },
+              { title: "Den forsigtige spiller", desc: "Prioritér no-sticky bonusser med lav match-% og lav omsætning. Din indbetaling forbliver uberørt, og du kan hæve gevinster frit. En 50% match med 1x (b) er ideel – lav risiko, høj EV-procent.", iconName: "shield-check" },
+              { title: "Bonus-optimisten", desc: "Pas på med at jagte den højeste bonus. En 1.000 kr. bonus lyder fantastisk, men med sticky-struktur og 10x (d+b) er den reelle værdi lavere end man tror. Lad matematik – ikke markedsføring – styre dit valg.", iconName: "alert-triangle" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -679,10 +679,10 @@ const Indskudsbonus = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { title: "MobilePay ✅ Fuld kompatibilitet", desc: "Danmarks foretrukne betalingsmetode kvalificerer næsten altid til bonusaktivering. Indbetalinger er øjeblikkelige og kræver ingen kortoplysninger hos casinoet. Visse casinoer tilbyder ekstra free spins ved MobilePay-indbetaling som differentiering.", icon: CheckCircle2 },
-              { title: "Visa/Mastercard ✅ Fuld kompatibilitet", desc: "Kort-indbetalinger kvalificerer universelt til alle indskudsbonusser. Udbetalinger via kort kan dog tage 1-3 bankdage. Sikkerhedstip: Brug altid 3D Secure-verifikation for ekstra beskyttelse ved online transaktioner.", icon: CreditCard },
-              { title: "Trustly ✅ Fuld kompatibilitet", desc: "Bank-til-bank overførsler via Trustly kvalificerer til bonusaktivering hos alle danske casinoer. Fordelen er hurtig udbetaling (ofte 1-2 timer) direkte til din bankkonto – ideel for spillere der vil hæve bonusgevinster hurtigt.", icon: CheckCircle2 },
-              { title: "Skrill/Neteller ⚠️ Ofte ekskluderet", desc: "E-wallets som Skrill og Neteller er hyppigt ekskluderet fra bonusaktivering. Grunden er historisk misbrug af bonusser via e-wallet-konti. Tjek ALTID vilkårene. Hvis din foretrukne metode er Skrill, overvej at bruge Trustly til bonusindbetalingen.", icon: AlertTriangle },
+              { title: "MobilePay ✅ Fuld kompatibilitet", desc: "Danmarks foretrukne betalingsmetode kvalificerer næsten altid til bonusaktivering. Indbetalinger er øjeblikkelige og kræver ingen kortoplysninger hos casinoet. Visse casinoer tilbyder ekstra free spins ved MobilePay-indbetaling som differentiering.", iconName: "check-circle2" },
+              { title: "Visa/Mastercard ✅ Fuld kompatibilitet", desc: "Kort-indbetalinger kvalificerer universelt til alle indskudsbonusser. Udbetalinger via kort kan dog tage 1-3 bankdage. Sikkerhedstip: Brug altid 3D Secure-verifikation for ekstra beskyttelse ved online transaktioner.", iconName: "credit-card" },
+              { title: "Trustly ✅ Fuld kompatibilitet", desc: "Bank-til-bank overførsler via Trustly kvalificerer til bonusaktivering hos alle danske casinoer. Fordelen er hurtig udbetaling (ofte 1-2 timer) direkte til din bankkonto – ideel for spillere der vil hæve bonusgevinster hurtigt.", iconName: "check-circle2" },
+              { title: "Skrill/Neteller ⚠️ Ofte ekskluderet", desc: "E-wallets som Skrill og Neteller er hyppigt ekskluderet fra bonusaktivering. Grunden er historisk misbrug af bonusser via e-wallet-konti. Tjek ALTID vilkårene. Hvis din foretrukne metode er Skrill, overvej at bruge Trustly til bonusindbetalingen.", iconName: "alert-triangle" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -749,17 +749,17 @@ const Indskudsbonus = () => {
           <div className="space-y-3">
             {[
               {
-                icon: Percent,
+                iconName: "percent",
                 title: "Nøgletal #1: Reel omsætningsfaktor",
                 desc: "Beregn den reelle omsætning i kroner: (Indbetaling + Bonus) × Omsætningskrav for (d+b), eller Bonus × Omsætningskrav for (b). Under 5.000 kr. total omsætning = god bonus. Over 15.000 kr. = overvej alternativer.",
               },
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "Nøgletal #2: EV-procent",
                 desc: "EV divideret med bonusbeløb giver din EV-procent. Over 70% = exceptionel bonus. 40-70% = acceptabel. Under 40% = dårlig bonus. De bedste danske indskudsbonusser scorer 75-90% EV-procent.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Nøgletal #3: Sticky/no-sticky-ratio",
                 desc: "No-sticky bonusser giver 2-3x højere EV end sticky bonusser med identiske vilkår. Hvis to bonusser har samme match-% og omsætning, vælg ALTID no-sticky. Denne ene faktor kan betyde forskellen på positiv og negativ EV.",
               },

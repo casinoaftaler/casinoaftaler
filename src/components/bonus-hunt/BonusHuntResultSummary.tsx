@@ -1,5 +1,5 @@
 import { Trophy, TrendingUp, BarChart3, Gift } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 
 interface Props {
   huntNumber: number;
@@ -17,7 +17,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
       ? [{
           label: "Avg X",
           value: `${avgX}x`,
-          icon: BarChart3,
+          iconName: "bar-chart3",
           colorClass: "text-primary",
           bgClass: "from-primary/10 to-primary/5",
         }]
@@ -25,7 +25,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
     {
       label: "Bonusser",
       value: String(bonusCount),
-      icon: Gift,
+      iconName: "gift",
       colorClass: "text-blue-400",
       bgClass: "from-blue-500/10 to-blue-500/5",
     },
@@ -33,7 +33,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
       ? [{
           label: "Top Win",
           value: `${highestWin} kr`,
-          icon: Trophy,
+          iconName: "trophy",
           colorClass: "text-green-500",
           bgClass: "from-green-500/10 to-green-500/5",
         }]
@@ -42,7 +42,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
       ? [{
           label: "Top X",
           value: `${highestMultiplier}x`,
-          icon: TrendingUp,
+          iconName: "trending-up",
           colorClass: "text-amber-400",
           bgClass: "from-amber-400/10 to-amber-400/5",
         }]
@@ -64,7 +64,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
 
       <div className="grid grid-cols-2 gap-2">
         {cards.map((card) => {
-          const Icon = card.icon;
+          // icon resolved via iconName on card
           return (
             <div
               key={card.label}

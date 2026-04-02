@@ -32,8 +32,8 @@ import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemask
 import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
-import { Apple, ArrowRight, Check, Club, Cpu, Gamepad2, Gift, Globe, Headphones, Layers, Play, Puzzle, RotateCcw, Smartphone, Timer, Trophy, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, Check, Club, Cpu, Play, RotateCcw, Timer, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -1176,31 +1176,31 @@ const PlayKasinoAnmeldelse = () => {
           <div className="space-y-4 mb-6">
             {[
               {
-                icon: Gift,
+                iconName: "gift",
                 title: "Bonusjægeren (Match: 9/10)",
                 desc: "PlayKasino er næsten perfekt for dig. 10x omsætningskrav er det laveste i Danmark, og den positive EV (+100 kr.) gør bonussen til en matematisk fordelagtig proposition. Det eneste minus er den relativt lave bonusmaksimum (500 kr.) – men den lave omsætning mere end kompenserer.",
                 color: "text-emerald-500",
               },
               {
-                icon: Gamepad2,
+                iconName: "gamepad2",
                 title: "Slot-entusiasten (Match: 8/10)",
                 desc: "1.200+ titler fra NetEnt, Microgaming, Play'n GO, Pragmatic Play og Playtech giver et solidt fundament. Playtech-eksklusive titler (Age of the Gods) er en unik bonus. Fradrag for manglende avancerede filtre (volatilitet, RTP) og lidt færre udbydere end de største aggregatorer.",
                 color: "text-primary",
               },
               {
-                icon: Trophy,
+                iconName: "trophy",
                 title: "Live Casino-spilleren (Match: 8/10)",
                 desc: "Playtech Live er et friskt alternativ til den Evolution-dominans, du finder overalt ellers. Adventures Beyond Wonderland, Quantum Roulette og Unlimited Blackjack tilbyder oplevelser, du ikke finder hos de fleste danske konkurrenter. Evolution-supplement sikrer, at du også har adgang til Crazy Time og Lightning Roulette.",
                 color: "text-primary",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "Mobilspilleren (Match: 9/10)",
                 desc: "Dedikeret app til iOS og Android, MobilePay og Apple Pay til hurtige indbetalinger, synkroniserede favoritter og stabil HD-streaming i live casino. PlayKasino er et af de bedste mobilcasino-valg i Danmark. Kun marginal fradrag for længere indlæsning af visse Playtech-titler på ældre enheder.",
                 color: "text-emerald-500",
               },
               {
-                icon: Headphones,
+                iconName: "headphones",
                 title: "Support-afhængige spilleren (Match: 4/10)",
                 desc: "Her fejler PlayKasino. Ingen live chat, kun e-mail med 3–6 timers svartid. Hvis du har brug for øjeblikkelig hjælp – særligt med bonusvilkår eller udbetalingsproblemer – er PlayKasino ikke det rette valg. Overvej Betinia eller SpilDanskNu i stedet.",
                 color: "text-destructive",
@@ -1285,7 +1285,7 @@ const PlayKasinoAnmeldelse = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Headphones,
+                iconName: "headphones",
                 title: "Spillere der har brug for øjeblikkelig support",
                 desc: (
                   <>
@@ -1296,7 +1296,7 @@ const PlayKasinoAnmeldelse = () => {
                 ),
               },
               {
-                icon: Trophy,
+                iconName: "trophy",
                 title: "Storspillere og bonus-hunters",
                 desc: (
                   <>
@@ -1307,12 +1307,12 @@ const PlayKasinoAnmeldelse = () => {
                 ),
               },
               {
-                icon: Globe,
+                iconName: "globe",
                 title: "Sportsbetting-entusiaster",
                 desc: "PlayKasino er et rendyrket casino uden nogen form for sportsbetting. Hvis du ønsker at kombinere casino med sportsvæddemål under samme konto, er Betinia eller Campobet med deres integrerede sportsektioner langt bedre valg.",
               },
               {
-                icon: Layers,
+                iconName: "layers",
                 title: "Spillere der vil have det bredeste spiludvalg",
                 desc: (
                   <>

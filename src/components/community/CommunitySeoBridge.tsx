@@ -1,22 +1,22 @@
 import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowRight, BookOpen, CheckCircle2, Flame, Gamepad2, Gift, PartyPopper, Scale, Star, Trophy, Tv, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Button } from "@/components/ui/button";
 import "@/styles/community-micro.css";
 
 const ALL_LINKS = [
-  { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star },
-  { href: "/velkomstbonus", label: "Velkomstbonus", icon: PartyPopper },
-  { href: "/free-spins", label: "Free Spins", icon: Zap },
-  { href: "/casino-bonus", label: "Casino Bonus", icon: Gift },
-  { href: "/live-casino", label: "Live Casino", icon: Tv },
-  { href: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
-  { href: "/top-10-casino-online", label: "Top 10 Casinoer", icon: Trophy },
-  { href: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen },
-  { href: "/omsaetningskrav", label: "Omsætningskrav", icon: Scale },
-  { href: "/statistik", label: "Bonus Hunt Statistik", icon: Flame },
+  { href: "/nye-casinoer", label: "Nye Casinoer", iconName: "star" },
+  { href: "/velkomstbonus", label: "Velkomstbonus", iconName: "party-popper" },
+  { href: "/free-spins", label: "Free Spins", iconName: "zap" },
+  { href: "/casino-bonus", label: "Casino Bonus", iconName: "gift" },
+  { href: "/live-casino", label: "Live Casino", iconName: "tv" },
+  { href: "/casinospil/spillemaskiner", label: "Spillemaskiner", iconName: "gamepad2" },
+  { href: "/top-10-casino-online", label: "Top 10 Casinoer", iconName: "trophy" },
+  { href: "/casino-anmeldelser", label: "Casino Anmeldelser", iconName: "book-open" },
+  { href: "/omsaetningskrav", label: "Omsætningskrav", iconName: "scale" },
+  { href: "/statistik", label: "Bonus Hunt Statistik", iconName: "flame" },
 ];
 
 const TRUST_POINTS = [
@@ -124,7 +124,7 @@ export function CommunitySeoBridge() {
 
       <ul className="relative space-y-0.5">
         {secondaryLinks.map((link) => {
-          const Icon = link.icon;
+          // icon resolved via iconName on link
           return (
             <li key={link.href}>
               <Link
@@ -132,7 +132,7 @@ export function CommunitySeoBridge() {
                 onClick={() => trackClick(link.label)}
                 className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50 group"
               >
-                <Icon className="h-4 w-4 shrink-0 text-primary/70" />
+                <MenuIcon iconName={iconName} className="h-4 w-4 shrink-0 text-primary/70" />
                 <span className="flex-1">{link.label}</span>
                 <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-60 group-hover:translate-x-0" />
               </Link>

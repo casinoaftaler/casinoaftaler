@@ -11,8 +11,8 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, BarChart3, Calculator, CheckCircle2, Dice1, DollarSign, Gem, Gift, Heart, Layers, Lock, Monitor, Play, ShieldCheck, Sparkles, Ticket, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { DollarSign, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -106,37 +106,37 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const skrabespilVarianter = [
   {
-    icon: Ticket,
+    iconName: "ticket",
     title: "Klassisk skrabelod",
     description: "Det traditionelle format digitaliseret: skrab felter for at afsløre symboler eller beløb. Match tre ens for at vinde. Simpelt, hurtigt og tilgængeligt for alle. Typisk 3-9 skrabefelter med forudbestemte gevinstmuligheder. RTP typisk 85-92%.",
     tag: "Klassisk",
   },
   {
-    icon: Layers,
+    iconName: "layers",
     title: "Multi-lag skrabespil",
     description: "Avanceret variant med flere lag af skrabefelter. Afdæk det første lag for at afsløre bonus-symboler, der låser op for ekstra lag med større gevinster. Tilføjer dybde og progression til det ellers simple format. Populært hos spillere der ønsker længere spillesessioner.",
     tag: "Avanceret",
   },
   {
-    icon: Gem,
+    iconName: "gem",
     title: "Tema-skrabespil",
     description: "Rigt illustrerede skrabespil med temaer fra populærkultur, sport, eventyr og rejser. Gameplay-mekanikken er identisk med klassiske skrabelodder, men den visuelle præsentation og lydeffekterne skaber en mere immersiv oplevelse. Temaer påvirker ikke odds eller RTP.",
     tag: "Tematisk",
   },
   {
-    icon: Trophy,
+    iconName: "trophy",
     title: "Jackpot-skrabespil",
     description: "Skrabespil med progressive eller faste jackpots der kan nå op i hundredtusinder af kroner. En lille del af hver indsats bidrager til jackpot-puljen. Basis-RTP er typisk lavere (80-88%) for at finansiere jackpotten, men den potentielle gevinst er markant større end standard-skrabespil.",
     tag: "Jackpot",
   },
   {
-    icon: Zap,
+    iconName: "zap",
     title: "Instant reveal",
     description: "Ultra-hurtig variant uden skrabe-animation – resultatet afsløres med ét klik. Ideel til spillere der foretrækker maksimal hastighed og volumen. Kan spille 10+ spil per minut. Kræver ekstra opmærksomhed på budgetstyring grundet det høje tempo.",
     tag: "Hurtigt",
   },
   {
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Hybrid-skrabespil",
     description: "Moderne fusioner der kombinerer skrabe-mekanikken med elementer fra spilleautomater: multiplikatorer, free games, cascading wins og bonusrunder. Producenter som Hacksaw Gaming og Pragmatic Play er førende inden for denne genre. RTP op til 96-97%.",
     tag: "Hybrid",
@@ -342,14 +342,14 @@ const SkrabespilGuide = () => {
 
           <div className="space-y-3">
             {[
-              { icon: BarChart3, title: "1. Prioritér høj RTP over temaer", desc: "Et flot tema ændrer ikke din forventede afkast. Et skrabespil med 96% RTP giver dig statistisk 6 kr. mere per 100 kr. end et med 90% RTP. Over en session på 50 lodder á 10 kr. er forskellen 30 kr. – nok til 3 ekstra lodder. Tjek altid RTP i spillets info-sektion." },
+              { iconName: "bar-chart3", title: "1. Prioritér høj RTP over temaer", desc: "Et flot tema ændrer ikke din forventede afkast. Et skrabespil med 96% RTP giver dig statistisk 6 kr. mere per 100 kr. end et med 90% RTP. Over en session på 50 lodder á 10 kr. er forskellen 30 kr. – nok til 3 ekstra lodder. Tjek altid RTP i spillets info-sektion." },
               { icon: DollarSign, title: "2. Sæt et ufravigeligt sessionsbudget", desc: "Bestem dit budget FØR du starter og hold dig 100% til det. En god regel: dit skrabespil-budget bør være penge du er villig til at miste for underholdningsværdien. Skrabespils hurtige tempo (op til 60 lodder per time) gør budgetoverskridelser særligt risikable." },
-              { icon: Calculator, title: "3. Beregn din forventede spilletid", desc: "Divider dit budget med indsats per lod for at kende dit maksimale antal lodder. 200 kr. budget ÷ 5 kr. per lod = 40 lodder. Med gevinster undervejs kan du typisk spille 50-70 lodder. Denne beregning forebygger overraskelser og giver realistiske forventninger." },
-              { icon: AlertTriangle, title: "4. Undgå 'Afslør alle' som standard", desc: "Den øjeblikkelige afsløring er bekvem, men fjerner den primære underholdningsværdi: spændingen ved at skrabe. Brug den taktile skrabe-oplevelse til at sænke tempoet og forlænge din session. Langsommere spil = bedre budgetkontrol = mere underholdning per krone." },
-              { icon: Gift, title: "5. Udnyt bonusser med omtanke", desc: "Tjek om din casino-bonus har fuld eller reduceret vægtning for skrabespil. De fleste bonusser vægter skrabespil kun 10-25% mod omsætningskrav. En 1.000 kr. bonus med 40x omsætningskrav og 10% skrabespil-vægtning kræver 400.000 kr. i indsatser – sjældent realistisk." },
-              { icon: Layers, title: "6. Diversificér mellem varianter", desc: "Spil ikke kun ét skrabespil hele sessionen. Skift mellem klassiske lodder, hybrid-varianter og jackpot-spil for variation og for at opleve forskellige gevinststrukturer. Diversificering ændrer ikke dine odds, men forbedrer underholdningsværdien markant." },
-              { icon: Lock, title: "7. Brug ansvarligt spil-værktøjer proaktivt", desc: "Indstil daglige og ugentlige indbetalingsgrænser FØR du har brug for dem. Aktiver reality checks der minder dig om varighed og resultat. Disse værktøjer er lovpåkrævede hos alle danske licenserede casinoer – brug dem som en fuldmagt til dig selv i et roligt øjeblik." },
-              { icon: Heart, title: "8. Betragt skrabespil som underholdning", desc: "Med 3-15% house edge er skrabespil designet til at generere profit for casinoet over tid. Du vil statistisk tabe penge på lang sigt. Den korrekte tilgang er at betragte dit skrabespil-budget som en underholdningsudgift – ligesom en koncertbillet eller et restaurantbesøg. Nyd spændingen, men jagé aldrig tab." },
+              { iconName: "calculator", title: "3. Beregn din forventede spilletid", desc: "Divider dit budget med indsats per lod for at kende dit maksimale antal lodder. 200 kr. budget ÷ 5 kr. per lod = 40 lodder. Med gevinster undervejs kan du typisk spille 50-70 lodder. Denne beregning forebygger overraskelser og giver realistiske forventninger." },
+              { iconName: "alert-triangle", title: "4. Undgå 'Afslør alle' som standard", desc: "Den øjeblikkelige afsløring er bekvem, men fjerner den primære underholdningsværdi: spændingen ved at skrabe. Brug den taktile skrabe-oplevelse til at sænke tempoet og forlænge din session. Langsommere spil = bedre budgetkontrol = mere underholdning per krone." },
+              { iconName: "gift", title: "5. Udnyt bonusser med omtanke", desc: "Tjek om din casino-bonus har fuld eller reduceret vægtning for skrabespil. De fleste bonusser vægter skrabespil kun 10-25% mod omsætningskrav. En 1.000 kr. bonus med 40x omsætningskrav og 10% skrabespil-vægtning kræver 400.000 kr. i indsatser – sjældent realistisk." },
+              { iconName: "layers", title: "6. Diversificér mellem varianter", desc: "Spil ikke kun ét skrabespil hele sessionen. Skift mellem klassiske lodder, hybrid-varianter og jackpot-spil for variation og for at opleve forskellige gevinststrukturer. Diversificering ændrer ikke dine odds, men forbedrer underholdningsværdien markant." },
+              { iconName: "lock", title: "7. Brug ansvarligt spil-værktøjer proaktivt", desc: "Indstil daglige og ugentlige indbetalingsgrænser FØR du har brug for dem. Aktiver reality checks der minder dig om varighed og resultat. Disse værktøjer er lovpåkrævede hos alle danske licenserede casinoer – brug dem som en fuldmagt til dig selv i et roligt øjeblik." },
+              { iconName: "heart", title: "8. Betragt skrabespil som underholdning", desc: "Med 3-15% house edge er skrabespil designet til at generere profit for casinoet over tid. Du vil statistisk tabe penge på lang sigt. Den korrekte tilgang er at betragte dit skrabespil-budget som en underholdningsudgift – ligesom en koncertbillet eller et restaurantbesøg. Nyd spændingen, men jagé aldrig tab." },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <tip.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -416,10 +416,10 @@ const SkrabespilGuide = () => {
 
           <div className="space-y-3 mb-6">
             {[
-              { icon: ShieldCheck, title: "RNG-certificering og gevinstverifikation", desc: "Alle online skrabespil bruger certificerede Random Number Generators testet af uafhængige laboratorier som eCOGRA, iTech Labs eller GLI. I modsætning til fysiske skrabelodder (hvor resultater er forudtrykt) genereres online-resultater i realtid af RNG'en i det øjeblik du køber loddet. Gevinstfordelingen verificeres matematisk til at matche den annoncerede RTP." },
-              { icon: Lock, title: "Resultatarkivering og sporbarhed", desc: "Alle skrabespil-resultater arkiveres i minimum 5 år og er tilgængelige for Spillemyndighedens revision. Hver eneste transaktion – køb, resultat, gevinst – logges med tidsstempel og kan efterprøves. Operatører der ikke overholder arkiveringskravene risikerer licensinddragelse og bøder." },
-              { icon: Users, title: "ROFUS og selvudelukkelse", desc: "Alle danske skrabespil-udbydere er tilsluttet ROFUS – det nationale register for selvudelukkelse. Spillere kan udelukke sig selv midlertidigt (24 timer til 6 måneder) eller permanent. ROFUS-registreringen håndhæves automatisk ved login-forsøg på alle danske licenserede gambling-sider." },
-              { icon: CheckCircle2, title: "Grænseværktøjer og reality checks", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Reality checks – pop-up-beskeder om varighed og resultat – er særligt vigtige for skrabespil grundet det hurtige spilletempo." },
+              { iconName: "shield-check", title: "RNG-certificering og gevinstverifikation", desc: "Alle online skrabespil bruger certificerede Random Number Generators testet af uafhængige laboratorier som eCOGRA, iTech Labs eller GLI. I modsætning til fysiske skrabelodder (hvor resultater er forudtrykt) genereres online-resultater i realtid af RNG'en i det øjeblik du køber loddet. Gevinstfordelingen verificeres matematisk til at matche den annoncerede RTP." },
+              { iconName: "lock", title: "Resultatarkivering og sporbarhed", desc: "Alle skrabespil-resultater arkiveres i minimum 5 år og er tilgængelige for Spillemyndighedens revision. Hver eneste transaktion – køb, resultat, gevinst – logges med tidsstempel og kan efterprøves. Operatører der ikke overholder arkiveringskravene risikerer licensinddragelse og bøder." },
+              { iconName: "users", title: "ROFUS og selvudelukkelse", desc: "Alle danske skrabespil-udbydere er tilsluttet ROFUS – det nationale register for selvudelukkelse. Spillere kan udelukke sig selv midlertidigt (24 timer til 6 måneder) eller permanent. ROFUS-registreringen håndhæves automatisk ved login-forsøg på alle danske licenserede gambling-sider." },
+              { iconName: "check-circle2", title: "Grænseværktøjer og reality checks", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Reality checks – pop-up-beskeder om varighed og resultat – er særligt vigtige for skrabespil grundet det hurtige spilletempo." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -584,10 +584,10 @@ const SkrabespilGuide = () => {
 
           <div className="space-y-3 mb-6">
             {[
-              { icon: Sparkles, title: "Gamification og narrative elementer", desc: "Fremtidens skrabespil vil integrere storylines, karakterer og progression-systemer. Spillere gennemfører 'missioner' ved at købe specifikke lodder, optjener niveauer og låser op for nye skrabespil-temaer. Denne gamification-trend fra videospilindustrien øger engagement og spilletid markant." },
-              { icon: Monitor, title: "Augmented Reality (AR) skrabespil", desc: "AR-teknologi muliggør skrabespil der interagerer med den virkelige verden. Forestil dig at skrabe et virtuelt lod ovenpå dit kaffebord via din telefons kamera. Denne teknologi er stadig i tidlig fase, men flere producenter eksperimenterer med prototyper." },
-              { icon: Trophy, title: "Social og turneringsbaseret skrabespil", desc: "Skrabespil-turneringer med leaderboards og fælles præmiepuljer er en voksende trend. Spillere konkurrerer om at opnå de største kumulative gevinster inden for en tidsperiode. Community-features som chat og multiplayer-elementer transformerer skrabespil fra solospil til social oplevelse." },
-              { icon: Lock, title: "AI-drevet spillerbeskyttelse", desc: "Danske og europæiske regulatorer investerer i AI-systemer der identificerer problematisk spilleadfærd i realtid. Skrabespils hurtige tempo gør dem særligt relevante for tidlig intervention. Fremtidige platforme vil have integrerede AI-assistenter der proaktivt foreslår pauser og budgetjusteringer." },
+              { iconName: "sparkles", title: "Gamification og narrative elementer", desc: "Fremtidens skrabespil vil integrere storylines, karakterer og progression-systemer. Spillere gennemfører 'missioner' ved at købe specifikke lodder, optjener niveauer og låser op for nye skrabespil-temaer. Denne gamification-trend fra videospilindustrien øger engagement og spilletid markant." },
+              { iconName: "monitor", title: "Augmented Reality (AR) skrabespil", desc: "AR-teknologi muliggør skrabespil der interagerer med den virkelige verden. Forestil dig at skrabe et virtuelt lod ovenpå dit kaffebord via din telefons kamera. Denne teknologi er stadig i tidlig fase, men flere producenter eksperimenterer med prototyper." },
+              { iconName: "trophy", title: "Social og turneringsbaseret skrabespil", desc: "Skrabespil-turneringer med leaderboards og fælles præmiepuljer er en voksende trend. Spillere konkurrerer om at opnå de største kumulative gevinster inden for en tidsperiode. Community-features som chat og multiplayer-elementer transformerer skrabespil fra solospil til social oplevelse." },
+              { iconName: "lock", title: "AI-drevet spillerbeskyttelse", desc: "Danske og europæiske regulatorer investerer i AI-systemer der identificerer problematisk spilleadfærd i realtid. Skrabespils hurtige tempo gør dem særligt relevante for tidlig intervention. Fremtidige platforme vil have integrerede AI-assistenter der proaktivt foreslår pauser og budgetjusteringer." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, CreditCard, Database, Gift, Sparkles, Star } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Database } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 
 /**
@@ -18,35 +18,35 @@ interface DeveloperMoneyLinksProps {
 const MONEY_LINKS = [
   {
     to: "/casino-anmeldelser",
-    icon: Star,
+    iconName: "star",
     title: "Casino Anmeldelser",
     getDesc: (name: string) =>
       `Se vores dybdegående anmeldelser af casinoer med ${name} i spiludvalget.`,
   },
   {
     to: "/casino-bonus",
-    icon: Gift,
+    iconName: "gift",
     title: "Bedste Casino Bonus",
     getDesc: (name: string) =>
       `Find de bedste bonusser og brug dem på ${name} spillemaskiner – vi har testet vilkårene.`,
   },
   {
     to: "/free-spins",
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Free Spins Tilbud",
     getDesc: (name: string) =>
       `Aktuelle free spins tilbud der kan bruges på populære ${name} slots.`,
   },
   {
     to: "/velkomstbonus",
-    icon: CreditCard,
+    iconName: "credit-card",
     title: "Velkomstbonus Guide",
     getDesc: (name: string) =>
       `Få det bedste velkomsttilbud til at udforske ${name} spilleautomater.`,
   },
   {
     to: "/slot-database",
-    icon: BarChart3,
+    iconName: "bar-chart3",
     title: "Slot Database",
     getDesc: (name: string) =>
       `Udforsk alle ${name} slots i vores database med RTP, volatilitet og bonus hunt-data.`,
@@ -86,13 +86,13 @@ export function DeveloperMoneyLinks({ providerName, providerSlug }: DeveloperMon
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        {MONEY_LINKS.map(({ to, icon: Icon, title, getDesc }) => (
+        {MONEY_LINKS.map(({ to, iconName, title, getDesc }) => (
           <Link
             key={to}
             to={to}
             className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
           >
-            <Icon className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+            <MenuIcon iconName={iconName} className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-semibold">{title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">

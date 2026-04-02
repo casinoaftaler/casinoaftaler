@@ -29,8 +29,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
-import { Check, Coins, Gamepad2, Gift, Globe, Play, RotateCcw, Sparkles, Target, TrendingUp, Trophy, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Check, Coins, Play, RotateCcw, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -400,9 +400,9 @@ const CampobetAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { icon: RotateCcw, title: "Ugentlig Reload (man-tor)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
-              { icon: Gift, title: "Weekend Reload (fre-søn)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
-              { icon: Target, title: "Odds-velkomstbonus", desc: "100% op til 1.000 kr., 5x omsætning, min. odds 2,0 single / 1,5 multi.", badge: "Sport" },
-              { icon: TrendingUp, title: "Akkumulator Boost + Foran med 2", desc: "Op til 100% ekstra på multibets. Automatisk udbetaling ved 2-0 føring.", badge: "Sport" },
+              { iconName: "gift", title: "Weekend Reload (fre-søn)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
+              { iconName: "target", title: "Odds-velkomstbonus", desc: "100% op til 1.000 kr., 5x omsætning, min. odds 2,0 single / 1,5 multi.", badge: "Sport" },
+              { iconName: "trending-up", title: "Akkumulator Boost + Foran med 2", desc: "Op til 100% ekstra på multibets. Automatisk udbetaling ved 2-0 føring.", badge: "Sport" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><item.icon className="h-5 w-5 text-primary" />{item.title}</CardTitle></CardHeader>
@@ -432,10 +432,10 @@ const CampobetAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Gamepad2, title: "Spilleautomater", desc: "2.000+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
-              { icon: Trophy, title: "Bordspil", desc: "~100 RNG-bordspil: roulette, blackjack, baccarat, video poker, Sic Bo, Casino Hold'em i multiple varianter." },
-              { icon: Sparkles, title: "Live Casino", desc: "~100 borde via Evolution Gaming: Speed/Lightning blackjack, roulette, baccarat, Crazy Time, Dream Catcher." },
-              { icon: Globe, title: "Sportsbetting", desc: "~40 sportsgrene: fodbold, håndbold, tennis, basketball, ishockey, e-sport. Pre-match, live og Bet Builder." },
+              { iconName: "gamepad2", title: "Spilleautomater", desc: "2.000+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
+              { iconName: "trophy", title: "Bordspil", desc: "~100 RNG-bordspil: roulette, blackjack, baccarat, video poker, Sic Bo, Casino Hold'em i multiple varianter." },
+              { iconName: "sparkles", title: "Live Casino", desc: "~100 borde via Evolution Gaming: Speed/Lightning blackjack, roulette, baccarat, Crazy Time, Dream Catcher." },
+              { iconName: "globe", title: "Sportsbetting", desc: "~40 sportsgrene: fodbold, håndbold, tennis, basketball, ishockey, e-sport. Pre-match, live og Bet Builder." },
             ].map((cat) => (
               <Card key={cat.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><cat.icon className="h-5 w-5 text-primary" />{cat.title}</CardTitle></CardHeader>

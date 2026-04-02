@@ -15,8 +15,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Apple, ArrowRight, Battery, Bell, CreditCard, Dog, Download, Eye, Gamepad2, Globe, Heart, Play, Search, Settings, Shield, Smartphone, Star, Target, Wifi, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, Bell, Dog, Download, Play, Search, Settings, Target, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -111,12 +111,12 @@ const BedsteAppsGuide = () => {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
             {[
-              { title: "Performance (25 %)", desc: "Loadtid, FPS i live casino, crash-rate og memory-forbrug. Testet på iPhone 15 og Samsung Galaxy S24.", icon: Zap },
-              { title: "Spiludvalg (20 %)", desc: "Andel af desktop-katalog tilgængelig på mobil, antal spiludbydere og live casino-dækning.", icon: Gamepad2 },
-              { title: "Brugervenlighed (20 %)", desc: "Navigation, søgefunktion, touch-targets, onboarding-flow og kontostyring.", icon: Eye },
-              { title: "Betalingsflow (15 %)", desc: "Antal betalingsmetoder, indbetalingstid, udbetalingstid og biometrisk bekræftelse.", icon: CreditCard },
-              { title: "Sikkerhed (10 %)", desc: "TLS-kryptering, biometrisk login, 2FA-support og ansvarligt spil-integration.", icon: Shield },
-              { title: "App Store-rating (10 %)", desc: "Gennemsnitlig bruger-rating i App Store/Google Play, antal anmeldelser og seneste opdateringsdato.", icon: Star },
+              { title: "Performance (25 %)", desc: "Loadtid, FPS i live casino, crash-rate og memory-forbrug. Testet på iPhone 15 og Samsung Galaxy S24.", iconName: "zap" },
+              { title: "Spiludvalg (20 %)", desc: "Andel af desktop-katalog tilgængelig på mobil, antal spiludbydere og live casino-dækning.", iconName: "gamepad2" },
+              { title: "Brugervenlighed (20 %)", desc: "Navigation, søgefunktion, touch-targets, onboarding-flow og kontostyring.", iconName: "eye" },
+              { title: "Betalingsflow (15 %)", desc: "Antal betalingsmetoder, indbetalingstid, udbetalingstid og biometrisk bekræftelse.", iconName: "credit-card" },
+              { title: "Sikkerhed (10 %)", desc: "TLS-kryptering, biometrisk login, 2FA-support og ansvarligt spil-integration.", iconName: "shield" },
+              { title: "App Store-rating (10 %)", desc: "Gennemsnitlig bruger-rating i App Store/Google Play, antal anmeldelser og seneste opdateringsdato.", iconName: "star" },
             ].map((c) => (
               <Card key={c.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><c.icon className="h-4 w-4 text-primary" />{c.title}</CardTitle></CardHeader>
@@ -712,11 +712,11 @@ const BedsteAppsGuide = () => {
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
               { title: "AI-personalisering", desc: "Machine learning-algoritmer vil tilpasse spillobby, bonustilbud og UI-layout baseret på individuel spilprofil. Nogle casinoer eksperimenterer allerede med AI-drevne 'For dig'-sektioner, der prioriterer spil baseret på din historik. Denne teknologi rejser dog privacy-spørgsmål, der kræver gennemsigtighed.", icon: Search },
-              { title: "AR/VR Casino", desc: "Augmented Reality kan bringe casino-elementer ind i din fysiske omverden – forestil dig et holografisk roulette-hjul på dit sofabord. Apple Vision Pro og Meta Quest 3 har allerede casino-apps i beta. For dansk marked forventer vi AR-features i mainstream casino-apps inden 2028.", icon: Globe },
-              { title: "Wearable Casino", desc: "Apple Watch og Samsung Galaxy Watch kan allerede vise kontobalancer og notifikationer. Næste trin er simple spil (scratch cards, jackpot-spin) direkte på smartwatch. Wear OS 5 og watchOS 11 giver tilstrækkelig processing power til simple WebGL-animationer.", icon: Smartphone },
-              { title: "Voice Betting", desc: "Med Siri, Google Assistant og Alexa kan stemmestyrede væddemål blive mulige – 'Hey Siri, sæt 50 kr. på sort i roulette'. Regulatoriske udfordringer (verifikation, ansvarligt spil) bremser dog implementeringen. Vi forventer voice-integration for kontoforespørgsler først, dernæst simple bets.", icon: Heart },
+              { title: "AR/VR Casino", desc: "Augmented Reality kan bringe casino-elementer ind i din fysiske omverden – forestil dig et holografisk roulette-hjul på dit sofabord. Apple Vision Pro og Meta Quest 3 har allerede casino-apps i beta. For dansk marked forventer vi AR-features i mainstream casino-apps inden 2028.", iconName: "globe" },
+              { title: "Wearable Casino", desc: "Apple Watch og Samsung Galaxy Watch kan allerede vise kontobalancer og notifikationer. Næste trin er simple spil (scratch cards, jackpot-spin) direkte på smartwatch. Wear OS 5 og watchOS 11 giver tilstrækkelig processing power til simple WebGL-animationer.", iconName: "smartphone" },
+              { title: "Voice Betting", desc: "Med Siri, Google Assistant og Alexa kan stemmestyrede væddemål blive mulige – 'Hey Siri, sæt 50 kr. på sort i roulette'. Regulatoriske udfordringer (verifikation, ansvarligt spil) bremser dog implementeringen. Vi forventer voice-integration for kontoforespørgsler først, dernæst simple bets.", iconName: "heart" },
               { title: "5G-eksklusive features", desc: "5G's lave latency (< 10 ms) muliggør real-time multiplayer casino-oplevelser, synkron slot-turneringer med tusindvis af spillere, og 4K live casino-streaming uden buffering. Se vores analyse i " , icon: Wifi },
-              { title: "Blockchain & Transparens", desc: "Provably fair-teknologi baseret på blockchain kan give spillere mulighed for at verificere RNG-resultater uafhængigt. Selvom regulatorisk accept i Danmark er begrænset, eksperimenterer flere internationale operatører med hybrid-modeller.", icon: Shield },
+              { title: "Blockchain & Transparens", desc: "Provably fair-teknologi baseret på blockchain kan give spillere mulighed for at verificere RNG-resultater uafhængigt. Selvom regulatorisk accept i Danmark er begrænset, eksperimenterer flere internationale operatører med hybrid-modeller.", iconName: "shield" },
             ].map((t) => (
               <Card key={t.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><t.icon className="h-4 w-4 text-primary" />{t.title}</CardTitle></CardHeader>

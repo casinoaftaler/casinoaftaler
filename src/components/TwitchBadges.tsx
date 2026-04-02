@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Award, Crown, Gem, Heart, Star, Sword } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { useTwitchBadges, getBadgeInfo, TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
 const ICON_MAP: Record<string, React.ElementType> = {

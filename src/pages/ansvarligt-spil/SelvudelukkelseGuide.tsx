@@ -17,8 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import selvudelukkelseHero from "@/assets/heroes/selvudelukkelse-guide-hero.jpg";
-import { ArrowRight, Ban, CheckCircle, Clock, Dog, Gavel, Globe, Info, Key, Timer, UserX, Wallet } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dog, Gavel, Info, Key } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -354,7 +354,7 @@ const SelvudelukkelseGuide = () => {
                 step: 1,
                 title: "Besøg ROFUS-portalen",
                 desc: "Gå til spillemyndigheden.dk/rofus i din browser. Sørg for, at du er på den officielle side (tjek URL'en nøje).",
-                icon: Globe,
+                iconName: "globe",
               },
               {
                 step: 2,
@@ -366,19 +366,19 @@ const SelvudelukkelseGuide = () => {
                 step: 3,
                 title: "Vælg udelukkelsesperiode",
                 desc: "Vælg mellem midlertidig udelukkelse (24 timer, 1 måned, 3 måneder, 6 måneder, 1 år) eller permanent udelukkelse. Overvej nøje, hvilken periode der passer din situation.",
-                icon: Clock,
+                iconName: "clock",
               },
               {
                 step: 4,
                 title: "Bekræft dit valg",
                 desc: "Gennemgå dit valg og bekræft. Du modtager en bekræftelse. Inden for 24 timer blokeres din adgang til alle danske licenserede casinoer, sportsbetting-sider og fysiske casinoer.",
-                icon: CheckCircle,
+                iconName: "check-circle",
               },
               {
                 step: 5,
                 title: "Kontakt casinoer om udbetaling",
                 desc: "Kontakt de casinoer, hvor du har en aktiv konto, for at få din resterende saldo udbetalt. De er forpligtet til at udbetale dine midler, selv efter udelukkelse.",
-                icon: Wallet,
+                iconName: "wallet",
               },
             ].map((item) => (
               <Card key={item.step} className="border-border bg-card">

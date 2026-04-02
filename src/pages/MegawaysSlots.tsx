@@ -16,8 +16,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { BarChart3, Database, Dog, Gavel, Play, Scale, TrendingUp, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Database, Dog, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -508,22 +508,22 @@ const MegawaysSlots = () => {
             {[
               {
                 title: "Bankroll Management",
-                icon: Scale,
+                iconName: "scale",
                 content: `Megaways-slots kræver typisk 300-500x din indsats som minimum bankroll for en session af 200+ spins. Ved en indsats på 5 kr. anbefaler vi minimum 1.500-2.500 kr. Denne anbefaling er baseret på en Risk of Ruin-model med 5 % sandsynlighed for at gå i nul inden bonus-trigger.`,
               },
               {
                 title: "Vælg den rette RTP-version",
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 content: `Mange Megaways-slots tilbydes i flere RTP-konfigurationer. Tjek altid spillets info-sektion, og vælg casinoer der kører den højeste RTP-version. Forskellen mellem 94 % og 96 % RTP svarer til at spare 2 kr. per 100 kr. satset – over 1.000 spins er det en betydelig forskel.`,
               },
               {
                 title: "Bonus Buy vs. Organisk Trigger",
-                icon: Zap,
+                iconName: "zap",
                 content: `Nogle Megaways-slots tilbyder buy bonus-funktionalitet. Prisen er typisk 80-100x din indsats. Matematisk er buy bonus designet til at give samme RTP som at vente på en organisk trigger, men det eliminerer variansen i trigger-timing. Se vores guide til bonus buy-slots for en dybdegående analyse.`,
               },
               {
                 title: "Ante Bet-overvejelser",
-                icon: TrendingUp,
+                iconName: "trending-up",
                 content: `Ante bet (typisk +25 % på indsatsen) fordobler sandsynligheden for scatter-trigger. Den effektive RTP forbliver den samme, men volatiliteten ændres: Du taber hurtigere i base game, men trigger free spins oftere. Velegnet til kortere sessioner med begrænset bankroll-tålmodighed.`,
               },
             ].map((item) => (

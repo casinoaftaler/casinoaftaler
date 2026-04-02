@@ -16,8 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, ArrowRight, BarChart3, Brain, Gamepad2, Layers, Play, Scale, Shuffle, Target, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import pokerHero from "@/assets/heroes/poker-hero.jpg";
 
@@ -30,37 +30,37 @@ const pokerCluster = [
     to: "/casinospil/poker/texas-holdem",
     title: "Texas Hold'em",
     desc: "Verdens mest spillede variant – preflop ranges, position, 3-bet strategi og GTO-fundamenter.",
-    icon: Target,
+    iconName: "target",
   },
   {
     to: "/casinospil/poker/omaha",
     title: "Omaha (PLO)",
     desc: "Fire hole cards, must-use-2-reglen, wraps, SPR-modeller og blocker-baseret bluffing.",
-    icon: Layers,
+    iconName: "layers",
   },
   {
     to: "/casinospil/poker/poker-strategi",
     title: "Poker Strategi",
     desc: "Avanceret EV-analyse, ICM-beregninger, solver-metodik og mental game mastery.",
-    icon: Brain,
+    iconName: "brain",
   },
   {
     to: "/casinospil/poker/video-poker",
     title: "Video Poker",
     desc: "Jacks or Better, Deuces Wild – op til 100,76 % RTP med perfekt strategi og pay table-analyse.",
-    icon: Gamepad2,
+    iconName: "gamepad2",
   },
   {
     to: "/casinospil/poker/three-card-poker",
     title: "Three Card Poker",
     desc: "Q-6-4-strategien, Pair Plus-odds, 6 Card Bonus og dealer-qualifying-matematik.",
-    icon: Zap,
+    iconName: "zap",
   },
   {
     to: "/casinospil/poker/caribbean-stud",
     title: "Caribbean Stud Poker",
     desc: "AK-Q-8-3-strategien, progressive jackpot break-even og optimal sideindsats-analyse.",
-    icon: Trophy,
+    iconName: "trophy",
   },
 ];
 
@@ -512,12 +512,12 @@ const PokerGuide = () => {
           <h2 className="mb-4 text-3xl font-bold">6 Typiske Fejl Begyndere Laver</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
             {[
-              { icon: AlertTriangle, title: "Spille for mange hænder", desc: "Begyndere spiller 40–60 %. Vindende spillere: 15–25 %. Fold er den mest profitable handling." },
-              { icon: Target, title: "Ignorere position", desc: "K-J suited er profitabel fra Button men tabende fra UTG. Position definerer din ranges profitabilitet." },
-              { icon: Users, title: "Passivt spil (calling station)", desc: "Call er den svageste handling. Aggressive raise/fold-spillere vinder potter to veje: bedste hånd + fold equity." },
-              { icon: Zap, title: "Tilt", desc: "Emotionelt spil efter bad beats. Tilt er den hurtigste bankroll-destroyer. Stop, tag en pause, analysér rationelt." },
-              { icon: Scale, title: "Forelske sig i sin hånd", desc: "Overpairs koster begyndere flest chips. Lær at lægge ét par ned, når boardet indikerer fare." },
-              { icon: BarChart3, title: "Tilfældig betsizing", desc: "En god indsats tjener et formål: beskytte, bygge puljen med value, eller repræsentere en håndstyrke med bluff." },
+              { iconName: "alert-triangle", title: "Spille for mange hænder", desc: "Begyndere spiller 40–60 %. Vindende spillere: 15–25 %. Fold er den mest profitable handling." },
+              { iconName: "target", title: "Ignorere position", desc: "K-J suited er profitabel fra Button men tabende fra UTG. Position definerer din ranges profitabilitet." },
+              { iconName: "users", title: "Passivt spil (calling station)", desc: "Call er den svageste handling. Aggressive raise/fold-spillere vinder potter to veje: bedste hånd + fold equity." },
+              { iconName: "zap", title: "Tilt", desc: "Emotionelt spil efter bad beats. Tilt er den hurtigste bankroll-destroyer. Stop, tag en pause, analysér rationelt." },
+              { iconName: "scale", title: "Forelske sig i sin hånd", desc: "Overpairs koster begyndere flest chips. Lær at lægge ét par ned, når boardet indikerer fare." },
+              { iconName: "bar-chart3", title: "Tilfældig betsizing", desc: "En god indsats tjener et formål: beskytte, bygge puljen med value, eller repræsentere en håndstyrke med bluff." },
             ].map((err) => (
               <Card key={err.title}>
                 <CardHeader className="pb-2">
