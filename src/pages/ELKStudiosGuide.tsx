@@ -62,12 +62,6 @@ const ELKStudiosGuide = () => (
           Den kommercielle konsekvens af denne strategi er paradoksal: ELK Studios er blandt de mest respekterede studier i branchen (målt på EGR Awards per udgivelse), men blandt de mindst synlige i casinolobbyer (målt på tilgængelige titler). Det kræver en aktiv indsats fra spilleren at finde ELK Studios-spil: brug casinoets filtreringsmenu, søg efter studio-navn, eller tjek dedikerede ELK-sektioner som flere danske casinoer tilbyder. Den passive browser – spilleren der klikker på det nærmeste nye spil i lobbyen – vil sjældnere støde på ELK Studios end Pragmatic Play. Det er en trade-off ELK Studios har accepteret: de sigter efter loyale fans, ikke tilfældige kliks.
         </p>
 
-        <ReviewScreenshot
-          src={elkTimeline}
-          alt="ELK Studios udviklings-timeline med milepæle og ikoniske spilkarakterer fra Bushido Gold, Bompers og andre titler"
-          caption="ELK Studios' timeline – fra grundlæggelse i 2012 til nutidens 80+ titler med fokus på kvalitet over kvantitet"
-          size="medium"
-        />
 
         <h3 className="text-xl font-bold mb-4">ELK Studios vs. Play'n GO: Kvalitets-First Rivalisering</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
