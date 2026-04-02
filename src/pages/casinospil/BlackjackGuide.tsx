@@ -4,6 +4,7 @@ import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackj
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -190,6 +191,8 @@ const BlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="158 Min." />
+
+        <SnippetAnswer answer="Blackjack er casinospillet med den laveste house edge – typisk 0,4–0,6 % med korrekt basic strategy. Spillet kombinerer held med strategiske beslutninger om hit, stand, double down og split. Reglerne varierer mellem borde, og valg af S17 vs. H17, antallet af decks og DAS-regler påvirker direkte din forventede tilbagebetaling." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

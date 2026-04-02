@@ -4,6 +4,7 @@ import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-rou
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -99,6 +100,8 @@ export default function FranskRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="69 Min." />
+
+        <SnippetAnswer answer="Fransk roulette med La Partage-reglen har den laveste house edge i roulette-familien: kun 1,35 % på lige-chancer-indsatser. Når kugler lander på nul, får du halvdelen af din lige-chancer-indsats tilbage. Det gør fransk roulette til den mest spillervenlige variant i enhver sammenligningen." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fransk roulette-bord med La Partage i elegant Monte Carlo-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

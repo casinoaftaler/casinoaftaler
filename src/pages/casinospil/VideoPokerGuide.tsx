@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -109,6 +110,8 @@ export default function VideoPokerGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="171 Min." />
+
+        <SnippetAnswer answer="Video poker tilbyder nogle af de højeste RTP-værdier i casinoet. Jacks or Better (9/6 pay table) har en RTP på 99,54 % med optimal strategi. Deuces Wild kan nå 100,76 % i den fulde version. Korrekt hold/discard-strategi er afgørende – fejl kan koste 2-5 % i RTP." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Video poker maskine der viser Jacks or Better med Royal Flush" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -4,6 +4,7 @@ import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackj
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -147,6 +148,8 @@ const EuropaeiskBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="135 Min." />
+
+        <SnippetAnswer answer="Europæisk blackjack bruger no hole card-reglen, hvor dealeren kun modtager ét kort i første omgang. Det betyder, at splits og doubles kan tabes mod en dealer-blackjack. House edge er ca. 0,4–0,7 % afhængigt af specifikke bordregler. Spilles typisk med 2 decks." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Elegant europæisk blackjack-bord med grønt filt og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

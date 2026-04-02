@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -104,6 +105,8 @@ export default function LabouchereRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="123 Min." />
+
+        <SnippetAnswer answer="Labouchère-systemet (cancellation) i roulette bruger en brugerdefineret talrække. Indsatsen er summen af første og sidste tal; ved gevinst fjernes begge, ved tab tilføjes det tabte beløb. Systemet giver stor fleksibilitet, men kan eskalere hurtigt ved lange tabsserier og ændrer ikke house edge." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Labouchère roulette system med cancellation-sekvens på et casino-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

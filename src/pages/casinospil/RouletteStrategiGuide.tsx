@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -132,6 +133,8 @@ const RouletteStrategiGuide = () => {
       {/* ── BODY ── */}
       <ContentPageLayout>
         <AuthorMetaBar author="frederik" readTime="129 Min." />
+
+        <SnippetAnswer answer="Roulette-strategier som Martingale, Fibonacci og D'Alembert ændrer indsatsmønstret men ikke house edge. Den eneste reelle strategiske beslutning er bordvalg: fransk roulette med La Partage (1,35 %) vs. europæisk (2,70 %) vs. amerikansk (5,26 %). Bankroll-styring og tabsloft er vigtigere end ethvert system." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

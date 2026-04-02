@@ -4,6 +4,7 @@ import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccara
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -118,6 +119,8 @@ const BaccaratGuide = () => {
       {/* ── BODY ── */}
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="80 Min." />
+
+        <SnippetAnswer answer="Baccarat er et af de mest spillervenlige casinospil med en house edge på kun 1,06 % på banker-indsatsen og 1,24 % på player. Tie-indsatsen bør undgås med sin 14,36 % house edge. Spillet kræver ingen strategiske beslutninger – alle træk følger faste regler." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

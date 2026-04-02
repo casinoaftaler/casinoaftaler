@@ -4,6 +4,7 @@ import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-rou
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -103,6 +104,8 @@ export default function EuropaeiskRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="121 Min." />
+
+        <SnippetAnswer answer="Europæisk roulette har ét nulfelt og en house edge på 2,70 % – halvdelen af amerikansk roulette. Det er den mest udbredte roulettevariant på danske online casinoer. Med 37 numre giver lige chancer-indsatser en sandsynlighed på 48,65 % for at vinde." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Europæisk roulette-hjul med single zero i elegant casino-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

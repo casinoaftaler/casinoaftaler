@@ -4,6 +4,7 @@ import danskespilUltimateTexasHoldem from "@/assets/screenshots/danskespil-ultim
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -143,6 +144,8 @@ const TexasHoldemGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="160 Min." />
+
+        <SnippetAnswer answer="Texas Hold'em er verdens mest populære pokervariant. Hver spiller får to hole cards og deler fem community cards. Spillet har fire betting-runder (pre-flop, flop, turn, river). Position er den vigtigste strategiske faktor – spillere i sen position har informationsfordel og vinder statistisk oftere." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Texas Hold'em pokerbord med community cards og chips i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

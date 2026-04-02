@@ -4,6 +4,7 @@ import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.we
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -146,6 +147,8 @@ const AmerikanskBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="67 Min." />
+
+        <SnippetAnswer answer="Amerikansk blackjack bruger hole card-reglen, hvor dealeren tjekker for blackjack med et es eller 10-kort. Det giver spilleren en fordel, da man ikke risikerer at fordoble eller splitte mod en dealer-blackjack. House edge ligger typisk på 0,4–0,6 % med basic strategy og standardregler (S17, DAS, 6-8 decks)." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Amerikansk blackjack-bord med kort og chips i atmosfærisk belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

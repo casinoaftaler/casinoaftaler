@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -161,6 +162,8 @@ const DalembertBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="68 Min." />
+
+        <SnippetAnswer answer="D'Alembert-systemet i blackjack bruger lineær progression: indsatsen øges med én enhed efter tab og reduceres med én efter gevinst. Det er markant mildere end Martingale, men ændrer ikke house edge. Systemet passer bedst til korte sessioner med lav volatilitet og et forudbestemt loft." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Balancerede chipstakke på blackjack-bord symboliserende D'Alembert-systemets lineære progression" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

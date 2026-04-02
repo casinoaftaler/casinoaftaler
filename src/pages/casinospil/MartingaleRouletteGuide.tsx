@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -115,6 +116,8 @@ export default function MartingaleRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="frederik" readTime="159 Min." />
+
+        <SnippetAnswer answer="Martingale i roulette fordobler indsatsen efter hvert tab på lige-chancer-indsatser. Sandsynligheden for en tabsserie på 7+ er ca. 1 ud af 100 sessioner. Systemet virker kortvarigt, men det matematiske forventede tab er identisk med flat betting: house edge ganger samlet indsats." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

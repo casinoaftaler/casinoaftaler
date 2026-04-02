@@ -4,6 +4,7 @@ import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -104,6 +105,8 @@ export default function CaribbeanStudGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="170 Min." />
+
+        <SnippetAnswer answer="Caribbean Stud Poker spilles mod huset med fem kort og en progressiv jackpot-sideindsats. House edge er ca. 5,22 % på ante-indsatsen. Optimal strategi er simpel: raise med ethvert par eller bedre, og fold med mindre end ace-king. Jackpot-sideindsatsen har typisk en house edge over 25 %." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Caribbean Stud Poker bord med dealer og progressive jackpot display" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

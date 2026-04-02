@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -103,6 +104,8 @@ export default function JamesBondRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="70 Min." />
+
+        <SnippetAnswer answer="James Bond-strategien fordeler en fast indsats på tre områder: 70 % på høje tal (19-36), 25 % på sixline (13-18) og 5 % på nul. Systemet dækker 25 af 37 numre (67,6 %) men har præcis samme house edge som enhver anden indsatskombination: 2,70 % på europæisk roulette." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="James Bond roulette system med elegante casino-chips på et roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

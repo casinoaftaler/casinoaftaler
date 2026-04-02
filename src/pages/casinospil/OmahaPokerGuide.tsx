@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -159,6 +160,8 @@ const OmahaPokerGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="172 Min." />
+
+        <SnippetAnswer answer="Omaha poker giver fire hole cards i stedet for to, men du skal bruge præcis to fra hånden og tre fra bordet. Pot-limit-strukturen (PLO) skaber større pots og mere action end Hold'em. Håndværdier løber tættere, og position samt nut-potentiale er afgørende strategiske faktorer." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Omaha poker med fire hole cards på grøn filt i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

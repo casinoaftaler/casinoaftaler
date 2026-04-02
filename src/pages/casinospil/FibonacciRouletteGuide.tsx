@@ -5,6 +5,7 @@ import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-rou
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -114,6 +115,8 @@ export default function FibonacciRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="frederik" readTime="136 Min." />
+
+        <SnippetAnswer answer="Fibonacci i roulette bruger den berømte talrække (1-1-2-3-5-8-13...) på lige-chancer-indsatser. Progressionen er langsommere end Martingale, men risikoen vokser stadig eksponentielt over længere tabsserier. House edge på 2,70 % (europæisk) eller 1,35 % (fransk med La Partage) forbliver konstant." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fibonacci roulette system med den gyldne spiral over et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

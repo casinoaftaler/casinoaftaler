@@ -4,6 +4,7 @@ import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -161,6 +162,8 @@ const ThreeCardPokerGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="161 Min." />
+
+        <SnippetAnswer answer="Three Card Poker har to primære indsatser: Ante/Play og Pair Plus. House edge er 3,37 % på Ante med optimal strategi (raise med Queen-6-4 eller bedre). Pair Plus har en house edge på ca. 7,28 %. Spillet er hurtigt og simpelt, men med relativt høj house edge sammenlignet med blackjack." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Three Card Poker-bord i elegant casino med dealer og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
