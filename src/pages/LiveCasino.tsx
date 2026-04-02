@@ -121,7 +121,7 @@ const LiveCasino = () => {
         description="Live casino guide 2026: bedste danske live casinoer, blackjack, roulette, baccarat, game shows, house edge og strategi samlet ét sted."
         jsonLd={[faqJsonLd, articleJsonLd]}
         type="article"
-        datePublished="2025-06-01"
+        datePublished="2025-12-08"
       />
 
       {/* Hero */}
