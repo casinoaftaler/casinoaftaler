@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Target, Trophy, Gamepad2, Users, TrendingUp, ArrowRight, Tv } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -80,21 +81,21 @@ export function HomepageLiveCommunity() {
   if (isLoading || !data) return null;
 
   const quickStats = [
-    { icon: Users, label: "Aktive medlemmer", value: data.activeMembers.toLocaleString("da-DK"), color: "text-violet-400" },
-    { icon: Gamepad2, label: "Spins spillet", value: data.totalSpins.toLocaleString("da-DK"), color: "text-amber-400" },
-    { icon: Trophy, label: "Turneringer", value: `${data.tournamentsThisMonth} denne måned`, color: "text-emerald-400" },
+    { iconName: "users", label: "Aktive medlemmer", value: data.activeMembers.toLocaleString("da-DK") },
+    { iconName: "gamepad-2", label: "Spins spillet", value: data.totalSpins.toLocaleString("da-DK") },
+    { iconName: "trophy", label: "Turneringer", value: `${data.tournamentsThisMonth} denne måned` },
   ];
 
   return (
     <section className="py-8 md:py-12" aria-label="Live fra communityet">
       <div>
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <h2 className="text-2xl md:text-3xl font-bold">
             <span aria-hidden="true">📡</span> Live fra Communityet
           </h2>
         </div>
-        <p className="text-muted-foreground mb-8 max-w-3xl leading-relaxed">
+        <p className="text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed text-center">
           Følg med i real-time data fra vores{" "}
           <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Twitch-community</a>
           . Alle resultater er dokumenterede og verificerbare – fra live bonus hunts til månedlige turneringer.
@@ -111,7 +112,7 @@ export function HomepageLiveCommunity() {
               itemScope
               itemType="https://schema.org/InteractionCounter"
             >
-              <stat.icon className={`h-5 w-5 ${stat.color}`} aria-hidden="true" />
+              <MenuIcon iconName={stat.iconName} className="h-6 w-6" aria-hidden="true" />
               <dd className="text-xl md:text-2xl font-bold text-foreground" itemProp="userInteractionCount">{stat.value}</dd>
               <dt className="text-[11px] text-muted-foreground">{stat.label}</dt>
             </div>
@@ -127,7 +128,7 @@ export function HomepageLiveCommunity() {
             <Card className="border-border bg-card">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5" />
                   <h3 className="font-bold text-sm">Seneste Bonus Hunts</h3>
                 </div>
                 <ul className="space-y-2.5">
@@ -169,7 +170,7 @@ export function HomepageLiveCommunity() {
             <Card className="border-border bg-card">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Trophy className="h-4 w-4 text-amber-400" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5" />
                   <h3 className="font-bold text-sm">Månedsturnering – Top 3</h3>
                 </div>
                 <ul className="space-y-2">
@@ -209,25 +210,25 @@ export function HomepageLiveCommunity() {
         <div className="flex flex-wrap gap-3 mt-6">
           <Button asChild variant="default" className="gap-2">
             <Link to="/bonus-hunt">
-              <Target className="h-4 w-4" />
+              <MenuIcon iconName="target" className="h-4 w-4" />
               Se live bonus hunt
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/community/slots">
-              <Gamepad2 className="h-4 w-4" />
+              <MenuIcon iconName="gamepad-2" className="h-4 w-4" />
               Prøv spillehallen
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/slot-database">
-              <TrendingUp className="h-4 w-4" />
+              <MenuIcon iconName="trending-up" className="h-4 w-4" />
               Slot Database
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/statistik">
-              <TrendingUp className="h-4 w-4" />
+              <MenuIcon iconName="chart-bar" className="h-4 w-4" />
               Statistik
             </Link>
           </Button>
