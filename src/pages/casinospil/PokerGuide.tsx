@@ -156,8 +156,8 @@ const PokerGuide = () => {
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
     datePublished: "2026-01-14",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
   return (
@@ -190,7 +190,7 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="137 Min." />
+        <AuthorMetaBar author="kevin" readTime="137 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
@@ -648,7 +648,7 @@ const PokerGuide = () => {
 
         <FAQSection faqs={pokerFaqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

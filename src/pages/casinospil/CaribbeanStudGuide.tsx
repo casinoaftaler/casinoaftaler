@@ -103,7 +103,7 @@ export default function CaribbeanStudGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="170 Min." />
+        <AuthorMetaBar author="kevin" readTime="170 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Caribbean Stud Poker bord med dealer og progressive jackpot display" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -639,7 +639,7 @@ export default function CaribbeanStudGuide() {
         <LatestNewsByCategory pagePath="/casinospil/poker/caribbean-stud" />
         <RelatedGuides currentPath="/casinospil/poker/caribbean-stud" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

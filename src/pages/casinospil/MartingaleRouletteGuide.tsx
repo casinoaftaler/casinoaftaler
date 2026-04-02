@@ -114,7 +114,7 @@ export default function MartingaleRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="159 Min." />
+        <AuthorMetaBar author="frederik" readTime="159 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -821,7 +821,7 @@ export default function MartingaleRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/martingale-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

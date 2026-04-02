@@ -113,7 +113,7 @@ export default function FibonacciRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="136 Min." />
+        <AuthorMetaBar author="frederik" readTime="136 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fibonacci roulette system med den gyldne spiral over et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -812,7 +812,7 @@ export default function FibonacciRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/fibonacci-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

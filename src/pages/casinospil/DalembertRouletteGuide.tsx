@@ -99,7 +99,7 @@ export default function DalembertRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="175 Min." />
+        <AuthorMetaBar author="frederik" readTime="175 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="D'Alembert progression illustreret med jævnt stigende chipstakke på roulette-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -656,7 +656,7 @@ export default function DalembertRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/dalembert-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

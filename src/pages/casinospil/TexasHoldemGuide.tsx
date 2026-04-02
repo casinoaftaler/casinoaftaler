@@ -110,8 +110,8 @@ const TexasHoldemGuide = () => {
     description: "Komplet dansk guide til Texas Hold'em poker: regler, strategi, pot odds, positionsspil og starthands-rangering for begyndere og øvede.",
     url: `${SITE_URL}/casinospil/poker/texas-holdem`,
     datePublished: "2026-05-01",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
   return (
@@ -142,7 +142,7 @@ const TexasHoldemGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="160 Min." />
+        <AuthorMetaBar author="kevin" readTime="160 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Texas Hold'em pokerbord med community cards og chips i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -691,7 +691,7 @@ const TexasHoldemGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio author="jonas" />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
