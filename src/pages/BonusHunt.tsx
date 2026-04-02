@@ -333,7 +333,7 @@ export default function BonusHunt() {
                       <TabsContent value="request" forceMount className="data-[state=inactive]:hidden">
                         <div className="rounded-xl border border-border bg-card p-4">
                           <h3 className="text-sm font-semibold mb-3">Request en slot til hunten</h3>
-                          <SlotRequestForm />
+                          <SlotRequestForm openedBonuses={huntData?.stats?.openedBonuses || 0} />
                         </div>
                       </TabsContent>
                     )}

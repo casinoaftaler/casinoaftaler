@@ -17,7 +17,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
   rejected: { label: "Afvist", variant: "destructive", icon: XCircle },
 };
 
-export function SlotRequestForm() {
+export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number }) {
   const { user } = useAuth();
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
   const { data: queuePositions } = usePendingQueuePositions();
