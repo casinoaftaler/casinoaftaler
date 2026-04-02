@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
