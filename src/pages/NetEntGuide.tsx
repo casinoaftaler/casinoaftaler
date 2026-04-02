@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import netentLogo from "@/assets/screenshots/netent-logo.webp";
+import netentKatalog from "@/assets/screenshots/netent-katalog.webp";
+import netentStarburst from "@/assets/screenshots/netent-starburst.webp";
+import netentGames from "@/assets/screenshots/netent-games.webp";
 
 const NetEntGuide = () => (
   <ProviderPage
