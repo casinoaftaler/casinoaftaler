@@ -233,7 +233,7 @@ export function TestMetodeSeoContent() {
       {/* ── Aggregerede Testresultater ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <BarChart3 className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="chart-bar" className="h-6 w-6" />
           Aggregerede Testresultater – Alle Anmeldte Casinoer
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
