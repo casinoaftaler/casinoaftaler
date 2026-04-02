@@ -68,6 +68,12 @@ const RedTigerGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Volatilitetsprofilen er medium til høj med RTP-intervallet 94,0-96,5%. Red Tigers Megaways-titler (Piggy Riches Megaways, Gonzo's Quest Megaways) har naturligt højere volatilitet pga. de dynamiske hjul, mens Daily Jackpot-spil typisk er medium-volatilitet med højere hitfrekvens. Denne bredde gør Red Tiger til et mere versatilt studio end niche-spillere som <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> eller <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>.
         </p>
+        <ReviewScreenshot
+          src={rtGameplay}
+          alt="Red Tiger spilkatalog hos Videoslots med Temple Tumble Megaways og Battle of Slots"
+          caption="Red Tigers slots i lobbyen hos Videoslots – her med Temple Tumble Megaways i fokus og det karakteristiske Battle of Slots-turneringssystem."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Sammenlignet med <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link>, der også har turnerings-funktionalitet, differentierer Red Tiger sig ved integrationsdybden. Pragmatic Plays turneringer fungerer som et separat lag over spillet; Red Tigers er bygget direkte ind i spilgrænsefladen med native UI-elementer der viser leaderboard-position, point-optjening og countdown-timere i real-time. Denne native integration skaber en sømløs oplevelse hvor turneringen føles som en del af spillet snarere end en påklistret tilføjelse.
         </p>
