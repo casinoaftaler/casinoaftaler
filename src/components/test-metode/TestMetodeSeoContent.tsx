@@ -175,7 +175,7 @@ export function TestMetodeSeoContent() {
                 "Alle slots tæller 100% mod omsætning. Bordspil tæller typisk 10-20%. Live casino kan have begrænsninger – tjek altid de specifikke vilkår.",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/70" />
+                  <MenuIcon iconName="circle-check" className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}
