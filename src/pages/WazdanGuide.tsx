@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import wazLogo from "@/assets/screenshots/waz-logo.webp";
+import wazStats from "@/assets/screenshots/waz-stats.webp";
+import wazLicenses from "@/assets/screenshots/waz-licenses.webp";
+import wazKatalog from "@/assets/screenshots/waz-katalog.webp";
 
 const WazdanGuide = () => (
   <ProviderPage
@@ -27,6 +32,13 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Denne innovation er ikke blot et marketinggimmick. Volatility Levels™ repræsenterer en fundamental nytænkning af forholdet mellem spiller og spilleautomat. I traditionelle slots fra <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> eller <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> er volatiliteten bagt ind i spillets DNA – en højvolatil slot som Gates of Olympus forbliver højvolatil uanset hvad. Wazdans tilgang demokratiserer denne parameter: den samme spilleautomat kan fungere som en rolig, lavvolatil underholdningsoplevelse for casual-spillere og som en adrenalinfyldt højrisiko-session for erfarne high-rollers. Matematisk opnås dette via tre separate paytables og hitfrekvens-konfigurationer der alle er certificeret af uafhængige testlaboratorier.
         </p>
+        <ReviewScreenshot
+          src={wazLogo}
+          alt="Wazdan officielt logo – sort W-ikon med tre trekanter og WAZDAN tekst"
+          caption="Wazdans logo med det karakteristiske tredobbelte trekant-design symboliserer studioets tre volatilitetsniveauer."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdans portefølje omfatter over 200 titler – en imponerende mængde for et studio der først begyndte at opnå international distribution omkring 2016-2017. Denne produktivitet er muliggjort af en proprietær udviklingsplatform der standardiserer tekniske processer uden at begrænse kreativ frihed. Hvert spil i Wazdans katalog understøtter desuden en række avancerede features: Energy Saving Mode (reducerer batteriforbrug på mobile enheder med op til 40%), Ultra Lite Mode (minimerer dataudveksling for spillere med langsom internetforbindelse), Ultra Fast Mode (fjerner animationer for spillere der foretrækker hurtig gameplay) og Unique Gamble Feature (et interaktivt risikospil der erstatter den traditionelle rød/sort-gamble med en kartografisk multiplikator-mekanik).
         </p>
@@ -51,6 +63,11 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdans Energy Saving Mode og Ultra Lite Mode er ikke blot convenience-features – de repræsenterer en strategisk forståelse af mobile spillermønstre. Over 70% af al iGaming-aktivitet foregår på mobile enheder, og i mange markeder (særligt Latinamerika og dele af Østeuropa) er internetforbindelserne langsomme og ustabile. Ved at optimere dataudveksling og batteriforbrug når Wazdan spillere som konkurrenter simpelthen ikke kan servicere effektivt. Denne tilgang har gjort dem særligt populære i markeder som Rumænien, Ungarn og de baltiske lande.
         </p>
+        <ReviewScreenshot
+          src={wazStats}
+          alt="Wazdan statistik – 400+ HTML5 spil, 40+ årlige udgivelser, Hot Slot 777 Crown og Magic Spins som top-performere, mobile-first design"
+          caption="Wazdans nøgletal: 400+ HTML5-spil, 40+ nye titler årligt og mobile-first design med support for 30+ sprog."
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Hold & Win-Arkitekturen og Jackpot-Integration</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdan har adopteret Hold & Win-mekanikken med en interessant twist: deres implementering kombinerer fast-respin-systemet med Volatility Levels™, hvilket betyder at spillere kan justere risikoprofilen i selve bonusrunden. Spil som 9 Lions, Power of Gods og Larry the Leprechaun demonstrerer denne hybrid-tilgang. Derudover har Wazdan integreret progressive jackpot-netværk i udvalgte titler, hvilket skaber et ekstra engagement-lag.
@@ -97,7 +114,13 @@ const WazdanGuide = () => (
       { year: "2022", event: "Nordamerikansk debut – licenser i New Jersey og Michigan" },
       { year: "2024", event: "200+ titler i porteføljen – 30+ regulerede markeder dækket globalt" },
     ]}
-    gamesIntro={<p className="mb-6 text-muted-foreground leading-relaxed">Disse seks spil demonstrerer bredden i Wazdans portefølje – fra klassiske Hold & Win-titler til innovative megaways-implementeringer, alle med Volatility Levels™.</p>}
+    gamesIntro={<><p className="mb-6 text-muted-foreground leading-relaxed">Disse seks spil demonstrerer bredden i Wazdans portefølje – fra klassiske Hold & Win-titler til innovative megaways-implementeringer, alle med Volatility Levels™.</p>
+        <ReviewScreenshot
+          src={wazKatalog}
+          alt="Wazdan spilkatalog på Campobet – Magic Eggs, Mighty Wild Gorilla, Cash Grotto, Hot Slot 777 og 200+ titler"
+          caption="Wazdans brede katalog hos Campobet med Hold the Jackpot-titler, sæsonbetonede spil og klassiske frugttemaer."
+        />
+      </>}
     games={[
       { name: "9 Lions", desc: "Wazdans mest populære Hold & Win-titel med asiatisk tema, 3x3 grid og respin-mekanik med stigende multiplikatorer. De tre volatilitetsniveauer skaber tre fundamentalt forskellige spiloplevelser i samme ramme. RTP: 96,32%. Spillervalgt volatilitet. Maks. gevinst: 2.430x. Hold & Win Respin-mekanikken kombineret med Volatility Levels™ og Sticky Wilds gør dette til det perfekte introduktionsspil til Wazdans teknologi.", highlight: "2.430x maks. – Volatility Levels™ + Hold & Win" },
       { name: "Power of Gods™: Hades", desc: "Mytologisk slot med 5x4 grid og 50 betalingslinjer. Hades' bonus inkluderer expanding wilds med op til 10x multiplikator – en mekanik der ændrer karakter dramatisk afhængig af det valgte volatilitetsniveau. RTP: 96,15%. Spillervalgt volatilitet. Maks. gevinst: 5.000x. Free spins med retrigger og den tematiske integration af græsk underverden-æstetik gør dette til et visuelt og mekanisk stærkt spil.", highlight: "5.000x maks. – Expanding Wilds + 10x Multiplikator" },
@@ -111,6 +134,11 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdan opererer under en omfattende licensstruktur der afspejler deres globale rækkevidde. Primære licenser inkluderer Malta Gaming Authority (MGA), UK Gambling Commission (UKGC), og den rumænske ONJN. I de seneste år har Wazdan tilføjet licenser til nordamerikanske markeder – New Jersey Division of Gaming Enforcement og Michigan Gaming Control Board – som del af deres transatlantiske ekspansionsstrategi.
         </p>
+        <ReviewScreenshot
+          src={wazLicenses}
+          alt="Wazdan compliance og licenser – 30+ regulerede markeder, MGA, UKGC, DGE, MGCB, EiGE Awards, 15+ års erfaring, 2500+ partnere"
+          caption="Wazdans globale compliance-profil: licenser i 30+ markeder, EiGE Award som Best Mobile Gaming Provider og 2500+ casino-partnere."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Wazdan-titler tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Alle spil er RNG-certificeret af BMM Testlabs og GLI – to af verdens mest respekterede uafhængige testlaboratorier. Volatility Levels™-teknologien er individuelt certificeret for hvert volatilitetsniveau, hvilket sikrer at alle tre matematiske modeller overholder de regulatoriske krav for fairness og tilfældighed.
         </p>
