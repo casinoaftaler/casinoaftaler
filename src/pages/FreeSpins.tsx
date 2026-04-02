@@ -149,7 +149,7 @@ const FreeSpins = () => {
     headline: "Free Spins – Komplet Guide til Gratis Spins 2026",
     description: "Free spins på danske casinoer 2026 – se aktuelle tilbud, omsætningskrav og betingelser. Lær hvordan du får mest værdi ud af gratis spins.",
     url: `${SITE_URL}/free-spins`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-11-19",
     videoId: "q4jeGo9TPEk",
   });
 

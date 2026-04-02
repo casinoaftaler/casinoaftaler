@@ -145,7 +145,7 @@ const CashbackBonus = () => {
     headline: "Cashback Bonus – Komplet Guide til Casino Cashback 2026",
     description: "Alt om cashback bonusser på danske casinoer. Lær hvordan cashback fungerer, hvilke typer der findes, og hvordan du maksimerer din tilbagebetaling.",
     url: `${SITE_URL}/cashback-bonus`,
-    datePublished: "2026-02-27",
+    datePublished: "2026-01-15",
   });
 
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/cashback-bonus`, "epl204siMF0", {

@@ -143,7 +143,7 @@ const Velkomstbonus = () => {
     headline: "Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026",
     description: "Velkomstbonus hos danske casinoer 2026 – sammenlign matchbonus, free spins og no-deposit tilbud. Se hvilke bonusser der har de bedste vilkår.",
     url: `${SITE_URL}/velkomstbonus`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-06-08",
     videoId: "oK5PvebkvGY",
   });
 

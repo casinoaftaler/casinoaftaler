@@ -125,7 +125,7 @@ const BonusUdenIndbetaling = () => {
     headline: "Bonus uden Indbetaling – No Deposit Bonus Guide 2026",
     description: "Komplet teknisk guide til bonus uden indbetaling hos danske casinoer. EV-analyse, regneeksempler, strategier og juridisk perspektiv.",
     url: `${SITE_URL}/bonus-uden-indbetaling`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-09-11",
     videoId: "XhbLda1HyOs",
   });
 
