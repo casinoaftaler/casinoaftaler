@@ -170,7 +170,7 @@ export function HomepageLiveCommunity() {
             <Card className="border-border bg-card">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Trophy className="h-4 w-4 text-amber-400" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5" />
                   <h3 className="font-bold text-sm">Månedsturnering – Top 3</h3>
                 </div>
                 <ul className="space-y-2">
