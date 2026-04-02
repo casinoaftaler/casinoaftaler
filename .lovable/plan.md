@@ -1,97 +1,69 @@
 
 
-# Plan: Migrate Gates of Fedesvin to Bonanza Engine
+# Plan: Erstat Lucide-ikoner med 3D WebP-ikoner på ALLE sider
 
-## Summary
-Replace the current Gates of Fedesvin game engine with the Fedesvin Bonanza engine logic (6x5 grid, Pay Anywhere, tumble/cascade, multiplier system). Keep the Gates visual symbols and theme. The key difference: multipliers (orbs) accumulate throughout the bonus and only multiply wins when they land alongside a winning tumble.
+## Problemet
+Forsiden bruger allerede de flotte 3D WebP-ikoner via `MenuIcon`-komponenten, men **222 sider** og **251 komponenter** bruger stadig generiske Lucide SVG-ikoner (Star, Trophy, Shield, Zap, etc.) i deres indhold. Det giver et inkonsistent, "fladt" udseende sammenlignet med forsiden.
 
-## Current State
-- **Gates**: Uses `mult_*` orbs, multipliers persist on grid during tumbles, collected after last winning step, applied as sum to raw win. No bombs. No double chance / buy bonus. No tumble win popups or collision bar.
-- **Bonanza**: Uses `bomb_*` multipliers, bombs persist during tumbles, blow up sequentially after all tumbles, with flying multiplier animations, tumble win bar with collision effect, floating win popups, double chance, buy bonus.
+## Strategi
 
-## What Changes
+Da omfanget er enormt (14.000+ Lucide-brug fordelt på 380+ filer), opdeler vi arbejdet i faser med en smart tilgang:
 
-### 1. Server-side: Rewrite `calculateGatesFullSpin` to use Bonanza engine
-**File: `supabase/functions/slot-spin/index.ts`**
+### Fase 1: Opret en drop-in replacement-komponent
+Lav en ny `ContentIcon`-komponent der automatisk vælger 3D WebP-ikon hvis det findes, og falder tilbage til Lucide som sidste udvej. Den mapper Lucide-komponentnavne (PascalCase) til `MENU_ICON_MAP`-nøgler (kebab-case).
 
-- Replace the Gates spin logic (lines ~460-551) with Bonanza-style logic:
-  - Use `bomb_*` multiplier symbols instead of `mult_*` orbs
-  - Bombs persist on grid during tumbles, only activate/fizzle after all tumbles complete
-  - Bombs activate if there were any wins, fizzle if no wins
-  - totalWin = rawWin * totalBombMultiplier (or rawWin if no activated bombs)
-  - In bonus: cumulative multiplier saved across spins (already works this way)
-- Replace `generateGatesGrid` to use Bonanza-style generation:
-  - Reel duplication (configurable 2/3 identical symbols per reel)
-  - Bomb placement in bonus (chance per cell, max 1 per reel)
-  - Remove scatter/multiplier spin type split (Bonanza doesn't have this)
-- Replace `applyGatesTumble` with Bonanza-style tumble (only remove winning symbols, bombs persist)
-- Replace `fillWithMultipliers` with Bonanza-style fill (bombs in bonus, not `mult_*`)
-- Add Gates-specific settings for bomb chance, reel duplication, etc. (reuse `gates_*` settings keys)
-- Update the Gates bonus spin and normal spin handler sections (~lines 1686-1742) to pass bomb-related data
+```text
+ContentIcon({ icon: "Zap", className: "h-6 w-6" })
+  → finder "zap" i MENU_ICON_MAP
+  → renderer <img src="lightning-fast.webp" />
+```
 
-### 2. Client-side: Rewrite `GatesSlotGame.tsx` to match Bonanza flow
-**File: `src/components/slots/GatesSlotGame.tsx`** (~956 lines, major rewrite)
+### Fase 2: Tilføj manglende 3D-ikoner
+Nogle Lucide-ikoner brugt i indhold har ikke et match i `MENU_ICON_MAP` endnu. Vi tilføjer mappings for:
+- `Check` → circle-check.webp
+- `X` → (nyt ikon eller rød variant)  
+- `AlertTriangle` → (nyt ikon behøves)
+- `Globe` → (nyt ikon behøves)
+- `Headphones` → (nyt ikon behøves)
 
-- Import and use Bonanza-style components:
-  - `BonanzaTumbleWinPopup` for floating win numbers
-  - `BonanzaTumbleWinBar` for tumble collision bar
-  - `BonanzaFlyingMultiplier` for bomb-to-bar flying animations
-- Rewrite `processTumbleSteps` to match Bonanza:
-  - Remove slow-motion logic
-  - Remove multiplier orb collection during tumbles
-  - After all tumbles: sequential bomb blow-up with activate/fizzle animations
-  - Flying multiplier from bomb position to multiplier bank
-  - Collision effect between tumble win bar and multiplier bar
-  - Win = rawWin * bombMultiplier calculated after bombs resolve
-- Add state: `tumbleWinPopups`, `collisionPhase`, `tumbleBarVisible`, `flyingMultipliers`, `gridContainerRef`, `currentSpinWin`, `doubleChance`, `isBuyingBonus`
-- Add `handleBuyBonus` callback (100x bet cost)
-- Add double chance toggle
-- Keep refs for auto-spin sync (`freeSpinsRemainingRef`, `isBonusActiveRef`, `isAutoSpinningRef`, etc.)
-- Update `handleSpin` to match Bonanza flow (drop-off with row stagger, drop-in, scatter celebration)
-- Update bonus state management to accumulate winAmount across bonus spins
-- Keep Gates visual theme (blue/gold gradients, Zeus character, lightning effects)
+For ikoner uden eksisterende WebP-asset skal vi enten generere nye eller finde passende eksisterende (f.eks. `Globe` → `info-circle.webp`).
 
-### 3. Client-side: Update `GatesColumn.tsx` to support bomb symbols
-**File: `src/components/slots/GatesColumn.tsx`**
+### Fase 3: Systematisk udskiftning - Reviews (højest prioritet)
+Opdater alle **casino-anmeldelser** (Unibet, Bet365, Betano, Betinia, etc.) da disse er "money pages":
+- Erstat `<Zap className="h-6 w-6 text-primary" />` med `<MenuIcon iconName="zap" className="h-6 w-6" />`
+- Erstat `<Trophy>`, `<Star>`, `<Shield>`, `<Sparkles>`, `<Globe>`, `<Target>`, `<TrendingUp>`, `<CreditCard>`, `<Smartphone>`, `<Headphones>` osv.
+- Behold `<Check>` og `<X>` i pro/con-lister som de er (de fungerer som funktionelle checkmarks/krydser, ikke dekorative ikoner)
 
-- Add bomb symbol rendering (similar to `BonanzaColumn.tsx`)
-- Add cell animation states: `bomb-fizzle`, `bomb-activate`, `bomb-exploded`
-- Add `BombFractureExplosion` component for bomb activation visuals
-- Add props: `bombSymbolsMap`, `symbolWidth`, `symbolHeight`, `isBonusActive`, `isMobile`
-- Import `useBombSymbols` hook (or accept bomb data as prop)
+### Fase 4: Slot-guides
+Opdater alle slot-guides (Sweet Bonanza, Book of Dead, Wolf Gold, etc.) med samme mønster.
 
-### 4. Client-side: Update `GatesControlBar.tsx`
-- Add double chance toggle
-- Add buy bonus button
-- Add tumble bar rendering for mobile (like Bonanza)
+### Fase 5: Hub-sider og øvrige sider
+- Betalingsmetoder, Casino Bonus, Live Casino, Casinospil-hubs
+- Provider-sider, comparison-sider
+- Community, ansvarligt spil, redaktionel politik
 
-### 5. Client-side game logic: Update `gatesGameLogic.ts`
-- Add bomb-related helpers (`isBombSymbol`, `getBombValue`, `scanGridBombs`)
-- Or simply import from `bonanzaGameLogic.ts` since the grid dimensions are identical (6x5)
+### Fase 6: Delte komponenter
+Opdater komponenter der bruges på tværs af mange sider (FAQSection, RelatedGuides, InlineCasinoCards, etc.)
 
-### 6. Hook: Add `useBombSymbols` for Gates
-- The existing `useBombSymbols` hook likely needs to support `gates-of-fedesvin` game ID
-- Check if bomb symbol images exist for Gates theme; if not, reuse Bonanza bomb images
+## Undtagelser (rør IKKE)
+- **Admin-panel** (`src/pages/Admin.tsx`) — internt værktøj
+- **UI-primitiver** (Button, Input, Checkbox) — funktionelle ikoner
+- **Pro/Con-lister** med `<Check>` og `<X>` — semantiske checkmarks
+- **Loader/spinner** ikoner (`Loader2`)
+- **Navigation-ikoner** i header/sidebar (allerede konverteret)
+- **ChevronRight/Left/Down** — strukturelle UI-elementer
 
-## Key Behavioral Difference (Multiplier Logic)
-- **Bonanza**: Bombs activate/fizzle after ALL tumbles. If any wins occurred, bombs activate. `totalWin = rawWin * sum(activated bombs)`. Per-spin multiplier (not cumulative across spins in base; cumulative in bonus).
-- **New Gates**: Same behavior. Multipliers (visually as orbs/bombs) only apply when they land AND there's a win. Cumulative across bonus spins.
+## Teknisk tilgang
+Hver fil opdateres ved at:
+1. Tilføje `import { MenuIcon } from "@/components/MenuIcon"` 
+2. Erstatte `<LucideIcon className="..." />` med `<MenuIcon iconName="kebab-name" className="..." />`
+3. Fjerne ubrugte Lucide-imports
 
-## Files Modified
-1. `supabase/functions/slot-spin/index.ts` — Gates engine rewrite to Bonanza logic
-2. `src/components/slots/GatesSlotGame.tsx` — Major rewrite of game component
-3. `src/components/slots/GatesColumn.tsx` — Add bomb rendering + new anim states
-4. `src/components/slots/GatesControlBar.tsx` — Add double chance + buy bonus
-5. `src/lib/gatesGameLogic.ts` — Add bomb helpers (or reuse from bonanza)
+## Estimat
+- ~60 review/guide-sider (højest prioritet)
+- ~40 hub/kategori-sider
+- ~30 komponenter
+- Total: ~130 filer skal opdateres
 
-## Files NOT Modified
-- Gates symbol images/DB entries (kept as-is)
-- Gates page (`GatesOfFedesvin.tsx`) — no changes needed
-- Bonanza files — untouched
-- Gates theme/animations CSS — may need minor additions for bomb animations
-
-## Risk Mitigation
-- The server-side Gates engine is currently in "DEMO MODE" (leaderboard recording commented out), so this is safe to rewrite
-- Both games share the same grid size (6x5), symbol structure, and bonus state DB schema
-- The Bonanza engine is battle-tested and stable
+Vil du godkende denne plan, så starter jeg med Fase 1-3?
 
