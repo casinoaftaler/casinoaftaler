@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
