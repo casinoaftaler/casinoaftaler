@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { MULTIPLIER_SYMBOLS } from "@/lib/gatesMultiplierSymbols";
 import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useBombSymbols } from "@/hooks/useBombSymbols";
@@ -76,9 +77,16 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
 
   const bombSymbolsMap = useMemo(() => {
     if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
-    return new Map(bombSymbols.map(b => [b.value, b]));
+    const map = new Map(bombSymbols.map(b => [b.value, b]));
+    // Override with local orb images
+    for (const ms of MULTIPLIER_SYMBOLS) {
+      const existing = map.get(ms.value);
+      if (existing) {
+        map.set(ms.value, { ...existing, image_url: ms.imageUrl });
+      }
+    }
+    return map;
   }, [bombSymbols]);
-
 
   const [bet, setBet] = useState(1);
   const [doubleChance, setDoubleChance] = useState(false);
