@@ -39,12 +39,6 @@ const ISoftBetGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           iSoftBets dobbeltrolle er unik i branchen. Deres Game Aggregation Platform (GAP) distribuerer spil fra over 70 tredjepartsstudios til casinoer i 20+ regulerede jurisdiktioner – inklusive Danmark. Samtidig producerer iSoftBet selv 200+ originale slots der distribueres via den samme platform. Det er en vertikalt integreret model der giver iSoftBet usædvanlig indsigt i markedsdata: de ved præcis hvilke spiltyper der performer bedst på hvilke markeder, og de bruger den viden til at informere deres egne spildesign-beslutninger.
         </p>
-        <ReviewScreenshot
-          src={isoftbetFacts}
-          alt="iSoftBet Quick Facts – 400+ casino spil, grundlagt 2010, licenseret i adskillige lande"
-          caption="iSoftBets nøgletal: 400+ spil, grundlagt 2010 i London, tilgængelig på regulerede markeder globalt"
-          size="medium"
-        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er iSoftBet vigtigere end de fleste er klar over. GAP-platformen driver spilintegrationen hos adskillige danske licenserede casinoer, og iSoftBets egne titler – fra Hold & Win-serien til Moriarty Megaways – er tilgængelige i de fleste danske lobbyer. Matematisk leverer iSoftBet en bred vifte: fra lavvolatile underholdningsslots med 96%+ RTP til højvolatile monster-titler med 10.000x+ maks. gevinster. Denne bredde afspejler deres datadrene tilgang: de designer spil baseret på reel markedsefterspørgsel snarere end kreativ intuition alene.
         </p>
