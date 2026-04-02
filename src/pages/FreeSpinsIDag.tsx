@@ -24,8 +24,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Link } from "react-router-dom";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { ArrowRight, Award, CalendarClock, ChevronDown, CreditCard, Filter, Gamepad2, Gift, RefreshCw, RotateCcw, Timer, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Award, CalendarClock, ChevronDown, CreditCard, Filter, Gamepad2, RotateCcw, Timer, Users } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
 
@@ -497,13 +497,13 @@ const FreeSpinsIDag = () => {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { icon: Gift, title: "Velkomst free spins", desc: "Del af en velkomstpakke til nye spillere." },
-                { icon: Zap, title: "Uden indbetaling", desc: <>Kræver ingen indbetaling – <Link to="/bonus-uden-indbetaling" className={linkClass}>spins ved registrering</Link>.</> },
-                { icon: RefreshCw, title: "Daglige/ugentlige", desc: "Løbende tilbud til eksisterende spillere." },
-                { icon: Award, title: "VIP free spins", desc: "Eksklusive tilbud til loyale spillere." },
-              ].map(({ icon: Icon, title, desc }) => (
+                { iconName: "gift", title: "Velkomst free spins", desc: "Del af en velkomstpakke til nye spillere." },
+                { iconName: "zap", title: "Uden indbetaling", desc: <>Kræver ingen indbetaling – <Link to="/bonus-uden-indbetaling" className={linkClass}>spins ved registrering</Link>.</> },
+                { iconName: "refresh-cw", title: "Daglige/ugentlige", desc: "Løbende tilbud til eksisterende spillere." },
+                { iconName: "award", title: "VIP free spins", desc: "Eksklusive tilbud til loyale spillere." },
+              ].map(({ iconName, title, desc }) => (
                 <div key={title} className="rounded-xl border border-border/40 bg-card/50 p-4 flex gap-3 items-start">
-                  <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><Icon className="h-4 w-4 text-primary" /></div>
+                  <div className="rounded-lg bg-primary/10 p-2 flex-shrink-0"><MenuIcon iconName={iconName} className="h-4 w-4 text-primary" /></div>
                   <div>
                     <p className="text-sm font-medium text-foreground mb-0.5">{title}</p>
                     <p className="text-xs leading-relaxed text-muted-foreground">{desc}</p>

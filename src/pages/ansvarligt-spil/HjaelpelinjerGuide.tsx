@@ -17,8 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import hjaelpelinjerHero from "@/assets/heroes/hjaelpelinjer-guide-hero.jpg";
-import { ArrowRight, Ban, Building, Clock, Gavel, Globe, HandHeart, Heart, MapPin, Phone, Shield, UserCheck, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Ban, Building, HandHeart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -365,12 +365,12 @@ const HjaelpelinjerGuide = () => {
           <div className="rounded-xl border border-border bg-card p-6 space-y-4 mb-6">
             <h3 className="font-bold text-base">Praktisk information om GA-møder:</h3>
             {[
-              { icon: Clock, text: "Møderne varer typisk 1-1,5 time og foregår i aftentimerne (kl. 19-21)" },
-              { icon: Users, text: "Ingen tilmelding nødvendig – du møder bare op" },
-              { icon: Shield, text: "Fuld anonymitet – du behøver kun oplyse dit fornavn" },
-              { icon: Heart, text: "Ingen professionelle terapeuter – deltagerne støtter hinanden" },
-              { icon: MapPin, text: "Grupper i København, Aarhus, Odense, Aalborg og flere byer" },
-              { icon: Globe, text: "Online-møder tilgængelige for hele Danmark" },
+              { iconName: "clock", text: "Møderne varer typisk 1-1,5 time og foregår i aftentimerne (kl. 19-21)" },
+              { iconName: "users", text: "Ingen tilmelding nødvendig – du møder bare op" },
+              { iconName: "shield", text: "Fuld anonymitet – du behøver kun oplyse dit fornavn" },
+              { iconName: "heart", text: "Ingen professionelle terapeuter – deltagerne støtter hinanden" },
+              { iconName: "map-pin", text: "Grupper i København, Aarhus, Odense, Aalborg og flere byer" },
+              { iconName: "globe", text: "Online-møder tilgængelige for hele Danmark" },
               { icon: HandHeart, text: "Gam-Anon: Parallelle grupper specifikt for pårørende" },
             ].map((item) => (
               <div key={item.text} className="flex items-start gap-3">
@@ -435,17 +435,17 @@ const HjaelpelinjerGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "StopSpillet for pårørende",
                 desc: "Dedikerede rådgivere med erfaring i at støtte familiemedlemmer og partnere. Ring 70 22 28 25.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Gam-Anon (GA for pårørende)",
                 desc: "Selvhjælpsgrupper specifikt for familiemedlemmer til spilleafhængige. Anonyme og gratis.",
               },
               {
-                icon: Heart,
+                iconName: "heart",
                 title: "Center for Ludomani – Parterapi",
                 desc: "Gratis parterapi med fokus på genopbygning af tillid og fælles økonomihåndtering.",
               },

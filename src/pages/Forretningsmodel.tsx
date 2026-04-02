@@ -11,8 +11,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import { ArrowRight, BookOpen, CreditCard, FileText, Gamepad2, HandCoins, Play, Scale, Search, ShieldCheck, Sparkles, Star, Trophy, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, HandCoins, Play, Search } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -32,10 +32,10 @@ const Forretningsmodel = () => {
   });
 
   const principles = [
-    { icon: Scale, title: "Redaktionel uafhængighed", desc: "Vores vurderinger bygger på faste kriterier og reel test. Kommercielle samarbejder påvirker aldrig vores scoring eller anbefalinger." },
-    { icon: ShieldCheck, title: "Gennemsigtighed", desc: "Vi oplyser tydeligt om alle bonusvilkår, betingelser og potentielle interessekonflikter." },
+    { iconName: "scale", title: "Redaktionel uafhængighed", desc: "Vores vurderinger bygger på faste kriterier og reel test. Kommercielle samarbejder påvirker aldrig vores scoring eller anbefalinger." },
+    { iconName: "shield-check", title: "Gennemsigtighed", desc: "Vi oplyser tydeligt om alle bonusvilkår, betingelser og potentielle interessekonflikter." },
     { icon: Search, title: "Systematisk testning", desc: "Hvert casino testes med reel registrering, indbetaling og gameplay – ikke skrivebordsvurdering." },
-    { icon: Users, title: "Community først", desc: "Vores community er vores fundament. Vi prioriterer altid brugernes interesser over kommercielle hensyn." },
+    { iconName: "users", title: "Community først", desc: "Vores community er vores fundament. Vi prioriterer altid brugernes interesser over kommercielle hensyn." },
   ];
 
   return (
@@ -432,18 +432,18 @@ const Forretningsmodel = () => {
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { to: "/casino-bonus", icon: BookOpen, title: "Casino Bonus Guide", desc: "Komplet guide til alle bonustyper i Danmark" },
-              { to: "/casinoer", icon: Star, title: "Alle Casinoer", desc: "Dybdegående kategoriguides og analyser" },
-              { to: "/nye-casinoer", icon: Trophy, title: "Nye Casinoer", desc: "De nyeste casinoer med dansk licens" },
-              { to: "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "30+ detaljerede casinoanmeldelser" },
-              { to: "/casinospil", icon: Gamepad2, title: "Casinospil", desc: "Guides til blackjack, roulette, poker og slots" },
-              { to: "/casinospil/spillemaskiner", icon: Star, title: "Spillemaskiner", desc: "30+ dybdegående spillemaskineguides" },
-              { to: "/live-casino", icon: Users, title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
-              { to: "/betalingsmetoder", icon: CreditCard, title: "Betalingsmetoder", desc: "Alle godkendte betalingsmetoder" },
+              { to: "/casino-bonus", iconName: "book-open", title: "Casino Bonus Guide", desc: "Komplet guide til alle bonustyper i Danmark" },
+              { to: "/casinoer", iconName: "star", title: "Alle Casinoer", desc: "Dybdegående kategoriguides og analyser" },
+              { to: "/nye-casinoer", iconName: "trophy", title: "Nye Casinoer", desc: "De nyeste casinoer med dansk licens" },
+              { to: "/casino-anmeldelser", iconName: "file-text", title: "Casino Anmeldelser", desc: "30+ detaljerede casinoanmeldelser" },
+              { to: "/casinospil", iconName: "gamepad2", title: "Casinospil", desc: "Guides til blackjack, roulette, poker og slots" },
+              { to: "/casinospil/spillemaskiner", iconName: "star", title: "Spillemaskiner", desc: "30+ dybdegående spillemaskineguides" },
+              { to: "/live-casino", iconName: "users", title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
+              { to: "/betalingsmetoder", iconName: "credit-card", title: "Betalingsmetoder", desc: "Alle godkendte betalingsmetoder" },
               { to: "/spiludviklere", icon: Search, title: "Spiludviklere", desc: "12 ledende studier analyseret" },
-              { to: "/ordbog", icon: BookOpen, title: "Casino Ordbog", desc: "70+ tekniske termer forklaret" },
-              { to: "/free-spins", icon: Sparkles, title: "Free Spins", desc: "Alt om gratis spins på danske casinoer" },
-              { to: "/omsaetningskrav", icon: Scale, title: "Omsætningskrav", desc: "Forstå bonusvilkår og omsætning" },
+              { to: "/ordbog", iconName: "book-open", title: "Casino Ordbog", desc: "70+ tekniske termer forklaret" },
+              { to: "/free-spins", iconName: "sparkles", title: "Free Spins", desc: "Alt om gratis spins på danske casinoer" },
+              { to: "/omsaetningskrav", iconName: "scale", title: "Omsætningskrav", desc: "Forstå bonusvilkår og omsætning" },
             ].map((item) => (
               <Link
                 key={item.to}

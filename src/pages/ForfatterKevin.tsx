@@ -16,8 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight, Code, FileText, Gamepad2, Tv, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, ChevronLeft, ChevronRight, Code } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 
 const FEATURED_SLUGS = ["betinia", "campobet", "spildansknu"];
@@ -51,22 +51,22 @@ const kevinArticles = getAuthorArticles("kevin");
 
 const expertiseItems = [
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     label: "Slots & RTP-forståelse",
     desc: "Dyb indsigt i spillemekanikker, volatilitet og RTP-analyse fra over 4 års daglig streaming.",
   },
   {
-    icon: Tv,
+    iconName: "tv",
     label: "Live gameplay analyse",
     desc: "Systematisk vurdering af casinoer gennem live-streams med fokus på bonusvilkår og spiloplevelse.",
   },
   {
-    icon: FileText,
+    iconName: "file-text",
     label: "Bonusvilkår & gennemsigtighed",
     desc: "Detaljeret gennemgang af omsætningskrav, tidsfrister og reel bonusværdi for danske spillere.",
   },
   {
-    icon: Users,
+    iconName: "users",
     label: "Community engagement",
     desc: "Aktiv community-builder med fokus på dialog, turneringer og et inkluderende spil-fællesskab.",
   },

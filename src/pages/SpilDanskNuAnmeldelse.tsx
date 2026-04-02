@@ -40,8 +40,8 @@ import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { UserReviewSection } from "@/components/UserReviewSection";
-import { Award, Check, Clock, Gamepad2, Play, RotateCcw, Sparkles, Store, TrendingUp, Trophy, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Check, Play, RotateCcw, Store, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -261,10 +261,10 @@ const SpilDanskNuAnmeldelse = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
             {[
-              { icon: Award, title: "Automatisk deltagelse", desc: "Aktiveres ved registrering + nyhedsbrev. Ingen ekstra aktivering påkrævet." },
-              { icon: TrendingUp, title: "1 point pr. 5 kr. omsat", desc: "Kun rigtige penge på spilleautomater. Bordspil/live casino giver færre." },
+              { iconName: "award", title: "Automatisk deltagelse", desc: "Aktiveres ved registrering + nyhedsbrev. Ingen ekstra aktivering påkrævet." },
+              { iconName: "trending-up", title: "1 point pr. 5 kr. omsat", desc: "Kun rigtige penge på spilleautomater. Bordspil/live casino giver færre." },
               { icon: Store, title: "Kontante præmier", desc: "Points indløses til rigtige penge i Præmieshoppen – ikke bonusmidler." },
-              { icon: Clock, title: "Ingen udløbsdato", desc: "Dine points forsvinder aldrig. Spar op og indløs i dit eget tempo." },
+              { iconName: "clock", title: "Ingen udløbsdato", desc: "Dine points forsvinder aldrig. Spar op og indløs i dit eget tempo." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -290,9 +290,9 @@ const SpilDanskNuAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             {[
-              { icon: Gamepad2, title: "Spilleautomater", desc: "2.500+ slots fra Play'n GO, Pragmatic Play, Hacksaw, Push Gaming, ELK, Quickspin, Wazdan. Gns. RTP: 96,3%." },
-              { icon: Trophy, title: "Live Casino", desc: "Evolution Gaming med roulette, blackjack, baccarat og game shows. HD-streaming og professionelle dealere." },
-              { icon: Sparkles, title: "Game Shows", desc: "Crazy Time, Dream Catcher, Monopoly Live. Interaktive og underholdende spil med live hosts." },
+              { iconName: "gamepad2", title: "Spilleautomater", desc: "2.500+ slots fra Play'n GO, Pragmatic Play, Hacksaw, Push Gaming, ELK, Quickspin, Wazdan. Gns. RTP: 96,3%." },
+              { iconName: "trophy", title: "Live Casino", desc: "Evolution Gaming med roulette, blackjack, baccarat og game shows. HD-streaming og professionelle dealere." },
+              { iconName: "sparkles", title: "Game Shows", desc: "Crazy Time, Dream Catcher, Monopoly Live. Interaktive og underholdende spil med live hosts." },
             ].map((cat) => (
               <Card key={cat.title} className="border-border bg-card">
                 <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><cat.icon className="h-5 w-5 text-primary" />{cat.title}</CardTitle></CardHeader>

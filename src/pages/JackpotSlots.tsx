@@ -17,8 +17,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { BarChart3, Database, Dog, DollarSign, Play, Scale, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Database, Dog, DollarSign, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -391,17 +391,17 @@ const JackpotSlots = () => {
             {[
               {
                 title: "Tjek jackpot-niveauet",
-                icon: TrendingUp,
+                iconName: "trending-up",
                 content: "Nogle spillere foretrækker at spille, når jackpotten er over gennemsnits-udbetalings-niveauet. Historisk data viser, at Mega Moolah typisk udbetales mellem 30-80 mio. kr. Når puljen nærmer sig den øvre ende, er den forventede værdi per spin marginalt højere.",
               },
               {
                 title: "Max bet-overvejelser",
-                icon: Scale,
+                iconName: "scale",
                 content: "Mange progressive slots kræver max bet for at kvalificere sig til den største jackpot. Tjek altid reglerne. I slots med proportional trigger (som Mega Moolah) stiger din chance lineært med indsatsen – men forbliver astronomisk lille uanset.",
               },
               {
                 title: "Bankroll tilpasning",
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 content: `Med lavere basis-RTP (88-94 %) taber du hurtigere i base game end på standard-slots. Planlæg din bankroll derefter – minimum 500x indsats for en meningsfuld session. Ved 5 kr./spin er det 2.500 kr.`,
               },
             ].map((item) => (

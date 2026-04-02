@@ -21,8 +21,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { type ReactNode } from "react";
-import { Activity, Apple, Bitcoin, Calculator, ChevronRight, Globe, Monitor, Play, ShieldCheck, Smartphone, Star, Trophy, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Activity, Apple, Bitcoin, ChevronRight, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -30,7 +30,7 @@ const SUBCATEGORIES = [
   {
     title: "Hurtig Udbetaling Casino",
     href: "/hurtig-udbetaling",
-    icon: Zap,
+    iconName: "zap",
     badge: "Populær",
     badgeVariant: "default" as const,
     description:
@@ -39,7 +39,7 @@ const SUBCATEGORIES = [
   {
     title: "Casino med Høj RTP",
     href: "/casinoer/hoej-rtp",
-    icon: Star,
+    iconName: "star",
     badge: "High EV",
     badgeVariant: "secondary" as const,
     description:
@@ -48,7 +48,7 @@ const SUBCATEGORIES = [
   {
     title: "Crypto Casino Danmark",
     href: "/casinoer/crypto-casino",
-    icon: Globe,
+    iconName: "globe",
     badge: "Niche",
     badgeVariant: "outline" as const,
     description:
@@ -57,7 +57,7 @@ const SUBCATEGORIES = [
   {
     title: "Licenserede Casinoer",
     href: "/casino-licenser",
-    icon: ShieldCheck,
+    iconName: "shield-check",
     badge: "Vigtig",
     badgeVariant: "default" as const,
     description:
@@ -66,7 +66,7 @@ const SUBCATEGORIES = [
   {
     title: "Casino med Dansk Licens",
     href: "/casino-med-dansk-licens",
-    icon: ShieldCheck,
+    iconName: "shield-check",
     badge: "Guide",
     badgeVariant: "default" as const,
     description:
@@ -75,7 +75,7 @@ const SUBCATEGORIES = [
   {
     title: "VR Casinoer",
     href: "/casinoer/vr-casinoer",
-    icon: Monitor,
+    iconName: "monitor",
     badge: "Fremtid",
     badgeVariant: "outline" as const,
     description:
@@ -84,7 +84,7 @@ const SUBCATEGORIES = [
   {
     title: "Mobil Casino",
     href: "/mobil-casino",
-    icon: Smartphone,
+    iconName: "smartphone",
     badge: "Mobil",
     badgeVariant: "secondary" as const,
     description:
@@ -93,7 +93,7 @@ const SUBCATEGORIES = [
   {
     title: "Spil Casino For Sjov",
     href: "/casinoer/spil-casino-for-sjov",
-    icon: Trophy,
+    iconName: "trophy",
     badge: "Gratis",
     badgeVariant: "outline" as const,
     description:
@@ -102,7 +102,7 @@ const SUBCATEGORIES = [
   {
     title: "Casino og Skat i Danmark",
     href: "/casinoer/casino-og-skat",
-    icon: Calculator,
+    iconName: "calculator",
     badge: "Juridisk",
     badgeVariant: "secondary" as const,
     description:
@@ -230,14 +230,14 @@ export default function CasinoerHub() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SUBCATEGORIES.map((cat) => {
-              const Icon = cat.icon;
+              // icon resolved via iconName on cat
               return (
                 <Link key={cat.href} to={cat.href}>
                   <Card className="h-full hover:shadow-md transition-shadow hover:border-primary/50">
                     <CardHeader className="pb-2">
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <Icon className="h-5 w-5 text-primary flex-shrink-0" />
+                          <MenuIcon iconName={iconName} className="h-5 w-5 text-primary flex-shrink-0" />
                           <CardTitle className="text-base leading-snug">{cat.title}</CardTitle>
                         </div>
                         <Badge variant={cat.badgeVariant} className="text-xs flex-shrink-0">{cat.badge}</Badge>

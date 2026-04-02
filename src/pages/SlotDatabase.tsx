@@ -15,8 +15,8 @@ import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
-import { BarChart3, ChevronLeft, ChevronRight, Database, Dog, Eye, Gamepad2, Play, Search, Table, TrendingUp, Trophy } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ChevronLeft, ChevronRight, Database, Dog, Eye, Play, Search, Table } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -350,14 +350,14 @@ export default function SlotDatabase() {
         {/* Stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { icon: Gamepad2, label: "Spillemaskiner", value: stats.total },
-            { icon: TrendingUp, label: "Unikke Udbydere", value: stats.providers },
-            { icon: BarChart3, label: "Gns. RTP", value: `${stats.avgRtp}%` },
-            { icon: Trophy, label: "Bonus Hunt Tests", value: stats.totalHunts },
-          ].map(({ icon: Icon, label, value }) => (
+            { iconName: "gamepad2", label: "Spillemaskiner", value: stats.total },
+            { iconName: "trending-up", label: "Unikke Udbydere", value: stats.providers },
+            { iconName: "bar-chart3", label: "Gns. RTP", value: `${stats.avgRtp}%` },
+            { iconName: "trophy", label: "Bonus Hunt Tests", value: stats.totalHunts },
+          ].map(({ iconName, label, value }) => (
             <Card key={label}>
               <CardContent className="flex items-center gap-3 p-4">
-                <Icon className="h-5 w-5 text-primary shrink-0" />
+                <MenuIcon iconName={iconName} className="h-5 w-5 text-primary shrink-0" />
                 <div>
                   <div className="text-2xl font-bold text-foreground">{value}</div>
                   <div className="text-xs text-muted-foreground">{label}</div>

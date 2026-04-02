@@ -18,7 +18,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode, useState, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Layers, Shuffle, Sparkles, TableIcon, Target } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -99,13 +99,13 @@ const pairTotals: { hand: string; actions: Action[] }[] = [
 
 /* ─────────────────── STRATEGY TABLE COMPONENT ─────────────────── */
 
-function StrategyTable({ title, icon: Icon, rows, id }: { title: string; icon: typeof Target; rows: { hand: string; actions: Action[] }[]; id: string }) {
+function StrategyTable({ title, iconName, rows, id }: { title: string; icon: typeof Target; rows: { hand: string; actions: Action[] }[]; id: string }) {
   const [hoveredAction, setHoveredAction] = useState<Action | null>(null);
 
   return (
     <div id={id} className="mb-8">
       <h3 className="mb-3 flex items-center gap-2 text-xl font-bold">
-        <Icon className="h-5 w-5 text-primary" />
+        <MenuIcon iconName={iconName} className="h-5 w-5 text-primary" />
         {title}
       </h3>
       <div className="overflow-x-auto rounded-lg border border-border">

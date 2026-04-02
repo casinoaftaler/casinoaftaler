@@ -16,8 +16,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { Apple, ArrowRight, Battery, Clock, Download, Gavel, Globe, Lock, Monitor, Play, Scale, Settings, Shield, Smartphone, TrendingUp, User, Wifi, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Battery, Download, Play, Settings, User, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -429,12 +429,12 @@ const MobilCasino = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Globe,
+                iconName: "globe",
                 title: "HTML5 & WebGL",
                 desc: "Erstatningen for Flash. HTML5 sikrer, at spil kører direkte i browseren uden plugins. WebGL muliggør 3D-grafik og avancerede animationer på mobilskærme med hardware-acceleration.",
               },
               {
-                icon: Monitor,
+                iconName: "monitor",
                 title: "Responsive Design",
                 desc: "CSS media queries og flexible grids tilpasser automatisk layoutet til din skærmstørrelse – fra iPhone SE til iPad Pro. Touch-targets er forstørrede for nem navigation.",
               },
@@ -444,12 +444,12 @@ const MobilCasino = () => {
                 desc: "Mange casinoer tilbyder PWA-funktionalitet: gem som app på startskærmen, offline-caching af UI-elementer, og push-notifikationer – uden App Store download.",
               },
               {
-                icon: Zap,
+                iconName: "zap",
                 title: "Lazy Loading & CDN",
                 desc: "Spilaktiver indlæses on-demand for at minimere initial loadtid. Content Delivery Networks (CDN) serverer assets fra den nærmeste server for minimal latency.",
               },
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "TLS 1.3 Kryptering",
                 desc: "Al kommunikation mellem din enhed og casinoet krypteres med den nyeste TLS 1.3 protokol – identisk sikkerhed som internetbankering og MitID.",
               },
@@ -721,22 +721,22 @@ const MobilCasino = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "Kryptering",
                 desc: "TLS 1.3 med 256-bit AES-kryptering beskytter al datatransmission. Certifikater kan verificeres via browseres låse-ikon.",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "Dansk licens",
                 desc: "Alle anbefalede casinoer har gyldig dansk licens. Licensen kan verificeres på Spillemyndighedens hjemmeside.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "Biometrisk login",
                 desc: "Face ID, Touch ID og fingeraftryk giver et ekstra sikkerhedslag, der faktisk gør mobil mere sikkert end desktop-passwords.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "ROFUS-integration",
                 desc: "Selvudelukkelse via ROFUS gælder fuldt på mobil. Registrering kan ske direkte fra mobilbrowser via MitID-appen.",
               },
@@ -1461,10 +1461,10 @@ const MobilCasino = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
-              { icon: Clock, title: "Sessionstidsadvarsler", desc: "Påmindelser efter 30, 60 eller 90 minutters spil. Konfigureres i kontoindstillinger." },
-              { icon: Shield, title: "Indbetalingsgrænser", desc: "Daglige, ugentlige og månedlige lofter. Nedsættelse træder i kraft øjeblikkeligt." },
-              { icon: TrendingUp, title: "Tabsgrænser", desc: "Sæt et loft over dine tab per dag, uge eller måned." },
-              { icon: Lock, title: "Selvudelukkelse", desc: "Midlertidig eller permanent via ROFUS eller direkte hos casinoet." },
+              { iconName: "clock", title: "Sessionstidsadvarsler", desc: "Påmindelser efter 30, 60 eller 90 minutters spil. Konfigureres i kontoindstillinger." },
+              { iconName: "shield", title: "Indbetalingsgrænser", desc: "Daglige, ugentlige og månedlige lofter. Nedsættelse træder i kraft øjeblikkeligt." },
+              { iconName: "trending-up", title: "Tabsgrænser", desc: "Sæt et loft over dine tab per dag, uge eller måned." },
+              { iconName: "lock", title: "Selvudelukkelse", desc: "Midlertidig eller permanent via ROFUS eller direkte hos casinoet." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">

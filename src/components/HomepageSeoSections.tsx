@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Apple, ArrowRight, CreditCard, Gamepad2, Play, Scale, ShieldCheck, TrendingUp, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 export function HomepageSeoSections() {
   return (
@@ -38,12 +38,12 @@ export function HomepageSeoSections() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { icon: ShieldCheck, title: "Dansk Licens og Sikkerhed", desc: "Alle online casinoer, vi anbefaler, har gyldig licens fra Spillemyndigheden, SSL-kryptering og er tilsluttet ROFUS. Det er det absolutte minimum for et seriøst spillested." },
-            { icon: Gamepad2, title: "Bredt Spiludvalg", desc: "Et godt online casino tilbyder hundredvis af slots, bordspil og live casino fra anerkendte udbydere som NetEnt, Pragmatic Play og Evolution Gaming." },
-            { icon: TrendingUp, title: "Hurtige Udbetalinger", desc: "De bedste online casinoer behandler udbetalinger inden for 24 timer. Vi måler de faktiske behandlingstider og sammenligner dem på tværs af platforme." },
-            { icon: CreditCard, title: "Fleksible Betalingsmetoder", desc: "MobilePay, Trustly, Visa og Apple Pay – et topmoderne online casino understøtter de metoder, danske spillere foretrækker." },
-            { icon: Users, title: "Tilgængelig Kundeservice", desc: "Live chat, e-mail og helst dansk support. Vi tester responstider og kvaliteten af den hjælp, man faktisk modtager." },
-            { icon: Scale, title: "Fair og Gennemsigtige Vilkår", desc: "Omsætningskrav, udbetalingsgrænser og bonusvilkår skal være klart kommunikeret. Vi afslører de spillesteder, der gemmer vilkår i det fine print." },
+            { iconName: "shield-check", title: "Dansk Licens og Sikkerhed", desc: "Alle online casinoer, vi anbefaler, har gyldig licens fra Spillemyndigheden, SSL-kryptering og er tilsluttet ROFUS. Det er det absolutte minimum for et seriøst spillested." },
+            { iconName: "gamepad2", title: "Bredt Spiludvalg", desc: "Et godt online casino tilbyder hundredvis af slots, bordspil og live casino fra anerkendte udbydere som NetEnt, Pragmatic Play og Evolution Gaming." },
+            { iconName: "trending-up", title: "Hurtige Udbetalinger", desc: "De bedste online casinoer behandler udbetalinger inden for 24 timer. Vi måler de faktiske behandlingstider og sammenligner dem på tværs af platforme." },
+            { iconName: "credit-card", title: "Fleksible Betalingsmetoder", desc: "MobilePay, Trustly, Visa og Apple Pay – et topmoderne online casino understøtter de metoder, danske spillere foretrækker." },
+            { iconName: "users", title: "Tilgængelig Kundeservice", desc: "Live chat, e-mail og helst dansk support. Vi tester responstider og kvaliteten af den hjælp, man faktisk modtager." },
+            { iconName: "scale", title: "Fair og Gennemsigtige Vilkår", desc: "Omsætningskrav, udbetalingsgrænser og bonusvilkår skal være klart kommunikeret. Vi afslører de spillesteder, der gemmer vilkår i det fine print." },
           ].map((item) => (
             <div
               key={item.title}

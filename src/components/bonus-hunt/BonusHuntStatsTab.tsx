@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, BarChart3, Check, Dice3, Gift, Info, Rocket, Scale, Target, TrendingDown, TrendingUp, Trophy, Unlock, Wallet } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
@@ -17,11 +17,11 @@ interface Props {
   casinoSlug?: string;
 }
 
-function StatRow({ label, value, highlight, icon: Icon }: { label: string; value: string | number; highlight?: boolean; icon: LucideIcon }) {
+function StatRow({ label, value, highlight, iconName }: { label: string; value: string | number; highlight?: boolean; iconName: string }) {
   return (
     <div className="flex items-center justify-between py-1.5 border-b border-border/20 last:border-0 group/row transition-all duration-[180ms] hover:bg-muted/20 rounded-md px-1">
       <span className="text-xs text-muted-foreground flex items-center gap-1.5">
-        <Icon className="h-[14px] w-[14px] text-primary transition-all duration-[180ms] group-hover/row:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
+        <MenuIcon iconName={iconName} className="h-[14px] w-[14px] text-primary transition-all duration-[180ms] group-hover/row:drop-shadow-[0_0_4px_hsl(var(--primary)/0.5)]" />
         {label}
       </span>
       <span className={`text-xs font-semibold transition-transform duration-[180ms] group-hover/row:scale-[1.02] ${highlight ? 'text-primary' : ''}`}>{value}</span>

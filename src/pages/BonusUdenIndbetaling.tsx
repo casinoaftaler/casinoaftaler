@@ -14,8 +14,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
-import { AlertTriangle, ArrowRight, Ban, BookOpen, Calculator, Clock, CreditCard, DollarSign, Eye, Flame, Gamepad2, Info, Lock, Scale, ShieldCheck, Sparkles, Target, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -434,7 +434,7 @@ const BonusUdenIndbetaling = () => {
             {[
               {
                 title: "No deposit bonus vs. indskudsbonus",
-                icon: CreditCard,
+                iconName: "credit-card",
                 desc: (
                   <>
                     <Link to="/indskudsbonus" className={linkClass}>Indskudsbonussen</Link> kræver din egen indbetaling (typisk 100-1.000 kr.) og giver en matchbonus på 100% (dansk standard). EV er markant højere i absolutte tal – en 1.000 kr. 100% match med 10x omsætning giver EV ≈ 200 kr. vs. no deposit's 15-30 kr. Men indskudsbonussen har reel risiko: du kan tabe din indbetaling. No deposit bonussen er 100% risikofri. <strong>Konklusion:</strong> Indskudsbonus for erfarne spillere, no deposit for nybegyndere og test.
@@ -443,7 +443,7 @@ const BonusUdenIndbetaling = () => {
               },
               {
                 title: "No deposit bonus vs. no-sticky bonus",
-                icon: Scale,
+                iconName: "scale",
                 desc: (
                   <>
                     En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> adskiller din indbetaling fra bonussen, så du altid kan hæve egne penge. EV er typisk 40-60% af bonusbeløbet. No deposit bonussen har lavere EV i kroner, men nul risiko. <strong>Vigtig forskel:</strong> Ved no-sticky kan du stoppe og hæve din egen indbetaling når som helst. Ved no deposit er der intet at hæve, hvis bonussen buster – men du har heller ikke mistet noget.
@@ -452,7 +452,7 @@ const BonusUdenIndbetaling = () => {
               },
               {
                 title: "No deposit bonus vs. bonus uden omsætningskrav",
-                icon: Zap,
+                iconName: "zap",
                 desc: (
                   <>
                     En <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> giver dig gevinster direkte – ingen gennemspilning. Det giver 100% konvertering af gevinsten (op til gevinstloftet). No deposit bonussen har omsætningskrav, som reducerer EV med 15-40%. <strong>Men:</strong> Bonusser uden omsætningskrav kræver næsten altid en indbetaling. No deposit bonussen er unik i sin nul-risiko-profil.
@@ -461,7 +461,7 @@ const BonusUdenIndbetaling = () => {
               },
               {
                 title: "No deposit bonus vs. free spins med indbetaling",
-                icon: Sparkles,
+                iconName: "sparkles",
                 desc: (
                   <>
                     <Link to="/free-spins" className={linkClass}>Free spins</Link> med indbetaling giver typisk 50-200 spins med højere spinværdi (5-10 kr.) vs. no deposit's 10-50 spins á 1-2 kr. Den samlede nominelle værdi er 5-10x højere med indbetaling. <strong>Konklusion:</strong> No deposit free spins er en smagsprøve – indbetalings-free spins er hovedretten.
@@ -502,32 +502,32 @@ const BonusUdenIndbetaling = () => {
             {[
               {
                 title: "Nybegyndere ✅ Anbefalet",
-                icon: Users,
+                iconName: "users",
                 desc: "Perfekt til første casinooplevelse. Du lærer mekanikken, tester spil og forstår vilkår – alt uden risiko. Brug bonussen som en uddannelsesøvelse, ikke en profitmulighed.",
               },
               {
                 title: "Casino-shoppere ✅ Anbefalet",
-                icon: Eye,
+                iconName: "eye",
                 desc: "Hvis du vil sammenligne 3-5 casinoer, er no deposit bonusser idéelle. Test spiludvalg, brugervenlighed, udbetalingshastighed og kundeservice på casinoets regning.",
               },
               {
                 title: "Bonus-jægere ⚠️ Betinget",
-                icon: Target,
+                iconName: "target",
                 desc: "Systematisk indsamling af no deposit bonusser kan generere 500-2.000 kr. totalt, men det kræver 10-20 kontooprettelser og betydelig tid. EV per time er lav (ca. 50-100 kr./time). Kun relevant som supplement til indskudsbonusser.",
               },
               {
                 title: "High rollers ❌ Ikke anbefalet",
-                icon: Flame,
+                iconName: "flame",
                 desc: "Med typiske bonusbeløb på 50-100 kr. og gevinstlofter på 500-1.000 kr. er no deposit bonusser irrelevante for high rollers. Indskudsbonusser eller VIP-programmer tilbyder markant højere værdi.",
               },
               {
                 title: "Strategispillere ⚠️ Betinget",
-                icon: Calculator,
+                iconName: "calculator",
                 desc: "Erfarne spillere kan optimere EV ved at vælge højRTP-spil og minimumindsats, men den absolutte gevinst er begrænset af gevinstloftet. Bedre at fokusere energien på indskudsbonusser med lavt omsætningskrav.",
               },
               {
                 title: "Casual spillere ✅ Anbefalet",
-                icon: Gamepad2,
+                iconName: "gamepad2",
                 desc: "For spillere der bare vil have sjov uden risiko er no deposit bonusser perfekte. Du spiller, vinder måske lidt, og har en god oplevelse – alt uden at åbne pungen.",
               },
             ].map((item) => (
@@ -567,32 +567,32 @@ const BonusUdenIndbetaling = () => {
               {
                 title: "2. Udløbet tidsfrist",
                 desc: "No deposit bonusser udløber typisk efter 24 timer til 7 dage. Mange spillere glemmer tidsfristen og mister bonus + gevinster. Sæt en alarm i din telefon det øjeblik du aktiverer bonussen.",
-                icon: Clock,
+                iconName: "clock",
               },
               {
                 title: "3. Spil der ikke tæller med",
                 desc: "Bordspil, live casino og visse automater tæller ofte 0% mod omsætningskravet. Hvis du spiller blackjack med din no deposit bonus, spilder du den uden at komme tættere på udbetaling.",
-                icon: Gamepad2,
+                iconName: "gamepad2",
               },
               {
                 title: "4. Krav om indbetaling før udbetaling",
                 desc: "Nogle casinoer kræver en minimumsindbetaling (typisk 50-100 kr.) før du kan hæve gevinster fra en no deposit bonus. Det transformerer effektivt bonussen fra 'gratis' til 'prøv billigt'. Tjek dette i vilkårene.",
-                icon: CreditCard,
+                iconName: "credit-card",
               },
               {
                 title: "5. Ignorering af gevinstloftet",
                 desc: "Gevinstloftet er den hyppigst oversete betingelse. En bonus med 500 kr. gevinstloft er fundamentalt anderledes end en med 2.000 kr. loft – beregn altid din realistiske opside baseret på loftet.",
-                icon: Lock,
+                iconName: "lock",
               },
               {
                 title: "6. Flere konti hos samme casino",
                 desc: "Forsøg på at oprette flere konti for at modtage bonussen flere gange er et klart brud på vilkårene. MitID-verifikation gør det næsten umuligt, og konsekvensen er kontolukning og tab af alle midler.",
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
               },
               {
                 title: "7. Bonuskode glemt eller forkert",
                 desc: "Hvis bonussen kræver en kode og du glemmer at indtaste den – eller taster forkert – kan du miste retten til bonussen permanent. Dobbelttjek altid koden, og kontakt support hvis du er i tvivl.",
-                icon: Info,
+                iconName: "info",
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
@@ -671,22 +671,22 @@ const BonusUdenIndbetaling = () => {
               {
                 title: "Maksimalt 10x omsætningskrav",
                 desc: "Ifølge dansk lovgivning må intet dansk casino kræve mere end 10x omsætning på nogen bonustype – herunder no deposit bonusser. Til sammenligning har Malta (MGA) og Storbritannien (UKGC) ingen lovmæssigt fastsat øvre grænse, hvor 30-60x er almindeligt. Det danske loft giver no deposit bonusser markant højere reel værdi.",
-                icon: Scale,
+                iconName: "scale",
               },
               {
                 title: "Klar markedsføringspligt",
                 desc: "Casinoer skal tydeligt kommunikere alle vilkår i deres bonusmarkedsføring: omsætningskrav, gevinstloft, tidsfrist, spilrestriktioner og eventuelle krav om indbetaling. Vildledende brug af 'gratis' uden at nævne begrænsninger kan resultere i bøder fra Spillemyndigheden.",
-                icon: BookOpen,
+                iconName: "book-open",
               },
               {
                 title: "MitID-verifikation er lovkrav",
                 desc: "Alle danske casinoer er juridisk forpligtet til at verificere spillerens identitet via MitID før kontooprettelse. Det forhindrer mindreårige og selvudelukkede spillere i at modtage bonusser. Det gør også det umuligt at oprette flere konti for at modtage bonussen gentagne gange.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
               {
                 title: "ROFUS-tjek er automatisk",
                 desc: "Casinoet kontrollerer automatisk om du er registreret i ROFUS (Register Over Frivilligt Udelukkede Spillere) under MitID-verifikationen. Er du registreret, kan du ikke oprette en konto eller modtage bonusser. Det er en vigtig spillerbeskyttelsesmekanisme.",
-                icon: Lock,
+                iconName: "lock",
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
@@ -713,7 +713,7 @@ const BonusUdenIndbetaling = () => {
               {
                 title: "Det ultimative testværktøj",
                 desc: "Brug no deposit bonusser til at teste nye casinoers platform, mobiloplevelse og support – ikke til at blive rig. Hvis du kan lide oplevelsen, overvej en indskudsbonus.",
-                icon: Eye,
+                iconName: "eye",
               },
               {
                 title: "Matematisk overlegen",
@@ -726,7 +726,7 @@ const BonusUdenIndbetaling = () => {
               {
                 title: "Pas på gateway-effekten",
                 desc: "Vær bevidst om at bonussen er designet til at konvertere dig til betalende kunde. Sæt dine grænser før du begynder. Spil ansvarligt.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
             ].map((item) => (
               <div

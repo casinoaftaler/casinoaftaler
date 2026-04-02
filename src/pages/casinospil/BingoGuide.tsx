@@ -15,8 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle, ArrowRight, BarChart3, Calculator, Clock, Dice1, Dog, DollarSign, Eye, Gift, Grid3X3, Hash, Lock, Monitor, Percent, Play, Smartphone, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dice1, Dog, Grid3X3, Hash, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -118,7 +118,7 @@ const bingoVarianter = [
     tag: "Varieret gameplay",
   },
   {
-    icon: Zap,
+    iconName: "zap",
     title: "Speed bingo / Turbo bingo",
     description: "Hurtig variant med numre trukket hvert 1-3 sekund. Spil varer 2-5 minutter. Kræver auto-daub. Ideel til spillere der foretrækker højt tempo og flere spil pr. session. Mindre præmiepuljer, men flere vindermuligheder pr. time.",
     tag: "Hurtigt tempo",
@@ -130,13 +130,13 @@ const bingoVarianter = [
     tag: "Ultra-hurtigt",
   },
   {
-    icon: Monitor,
+    iconName: "monitor",
     title: "Video bingo",
     description: "Hybrid mellem bingo og spillemaskiner. Spilles individuelt mod en RNG – ingen fælles præmiepulje. Inkluderer bonusfunktioner, multiplikatorer og progressive jackpots. Højere RTP (85-95%) end traditionel bingo. Tilgængelig i demotilstand for gratis afprøvning.",
     tag: "Solo-spil",
   },
   {
-    icon: Trophy,
+    iconName: "trophy",
     title: "Bingo-turneringer",
     description: "Konkurrencebaseret bingo med leaderboards og præmier til topplaceringer. Spillere optjener point baseret på antal gevinster, hastighed og konsistens. Typisk med buy-in eller gratis adgang for VIP-medlemmer. Tilføjer et ekstra lag af strategi: valg af rum og antal plader pr. spil.",
     tag: "Konkurrence",
@@ -400,11 +400,11 @@ const BingoGuide = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Gift, title: "Dedikerede bingo-bonusser", desc: "Nogle casinoer tilbyder specifikke bingo-velkomstbonusser – typisk som gratis bingo-billetter (fx 50 gratis plader) eller matchbonus til bingo-kontoen. Disse har egne omsætningskrav der kan afviges fra standard casinovilkårene. Tjek altid om bonussen er begrænset til bestemte bingo-rum eller varianter." },
-              { icon: Percent, title: "Omsætningskrav og bingo-bidrag", desc: "Standard casinobonusser bidrager typisk kun 10-25% fra bingo-spil til gennemspilskravet. Det betyder at en bonus med 10x omsætning reelt kræver 40-100x i bingo-indsatser. Dedikerede bingo-bonusser har ofte 100% bidrag fra bingo, men kan have andre restriktioner som mindste pladepris eller tidsbegrænsning." },
-              { icon: Users, title: "Gratis bingo-rum (freerolls)", desc: "Mange platforme tilbyder gratis bingo-rum med reelle præmier – typisk som velkomst til nye spillere eller som daglig/ugentlig kampagne for eksisterende kunder. Præmiepuljerne er mindre (5-50 kr.), men det er en risikofri måde at prøve platformen og potentielt vinde reelle penge." },
-              { icon: Trophy, title: "Turneringer og loyalitetsprogrammer", desc: "Bingo-turneringer med leaderboards og sæsonpræmier er populære hos aktive spillere. VIP-programmer tilbyder ofte eksklusiv adgang til premium bingo-rum med højere præmiepuljer, personlig chat-moderator og lavere pladepriser. Tjek casinoets VIP-program for bingo-specifikke fordele." },
-              { icon: Star, title: "Chat-præmier og mini-spil", desc: "Chat-moderatorer uddeler regelmæssigt bonuspræmier via mini-spil i chatfunktionen. Disse præmier (typisk 5-25 kr. i bonuspenge eller gratis plader) har ingen omsætningskrav og er en ren ekstra-gevinst. Aktive chatdeltagere har markant flere gevinstmuligheder end passive spillere." },
+              { iconName: "gift", title: "Dedikerede bingo-bonusser", desc: "Nogle casinoer tilbyder specifikke bingo-velkomstbonusser – typisk som gratis bingo-billetter (fx 50 gratis plader) eller matchbonus til bingo-kontoen. Disse har egne omsætningskrav der kan afviges fra standard casinovilkårene. Tjek altid om bonussen er begrænset til bestemte bingo-rum eller varianter." },
+              { iconName: "percent", title: "Omsætningskrav og bingo-bidrag", desc: "Standard casinobonusser bidrager typisk kun 10-25% fra bingo-spil til gennemspilskravet. Det betyder at en bonus med 10x omsætning reelt kræver 40-100x i bingo-indsatser. Dedikerede bingo-bonusser har ofte 100% bidrag fra bingo, men kan have andre restriktioner som mindste pladepris eller tidsbegrænsning." },
+              { iconName: "users", title: "Gratis bingo-rum (freerolls)", desc: "Mange platforme tilbyder gratis bingo-rum med reelle præmier – typisk som velkomst til nye spillere eller som daglig/ugentlig kampagne for eksisterende kunder. Præmiepuljerne er mindre (5-50 kr.), men det er en risikofri måde at prøve platformen og potentielt vinde reelle penge." },
+              { iconName: "trophy", title: "Turneringer og loyalitetsprogrammer", desc: "Bingo-turneringer med leaderboards og sæsonpræmier er populære hos aktive spillere. VIP-programmer tilbyder ofte eksklusiv adgang til premium bingo-rum med højere præmiepuljer, personlig chat-moderator og lavere pladepriser. Tjek casinoets VIP-program for bingo-specifikke fordele." },
+              { iconName: "star", title: "Chat-præmier og mini-spil", desc: "Chat-moderatorer uddeler regelmæssigt bonuspræmier via mini-spil i chatfunktionen. Disse præmier (typisk 5-25 kr. i bonuspenge eller gratis plader) har ingen omsætningskrav og er en ren ekstra-gevinst. Aktive chatdeltagere har markant flere gevinstmuligheder end passive spillere." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -481,9 +481,9 @@ const BingoGuide = () => {
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
-              { icon: Smartphone, title: "iPhone & Android", desc: "Fuld bingo-funktionalitet direkte i browseren. Auto-daub, chatfunktion og push-notifikationer for kommende spil. Ingen app nødvendig." },
-              { icon: Monitor, title: "Tablet / iPad", desc: "Optimal skærmstørrelse for bingo. Bedre overblik over plader og chat kan vises side-by-side. Anbefalet til 12+ plader pr. spil." },
-              { icon: Clock, title: "On-the-go", desc: "Speed bingo og 30-kugle varianter er ideelle til korte pauser. 2-5 minutters spil med fuld funktionalitet – perfekt til transport og ventetid." },
+              { iconName: "smartphone", title: "iPhone & Android", desc: "Fuld bingo-funktionalitet direkte i browseren. Auto-daub, chatfunktion og push-notifikationer for kommende spil. Ingen app nødvendig." },
+              { iconName: "monitor", title: "Tablet / iPad", desc: "Optimal skærmstørrelse for bingo. Bedre overblik over plader og chat kan vises side-by-side. Anbefalet til 12+ plader pr. spil." },
+              { iconName: "clock", title: "On-the-go", desc: "Speed bingo og 30-kugle varianter er ideelle til korte pauser. 2-5 minutters spil med fuld funktionalitet – perfekt til transport og ventetid." },
             ].map((device) => (
               <div key={device.title} className="rounded-lg border border-border p-4 text-center">
                 <device.icon className="mx-auto h-8 w-8 text-primary mb-2" />
@@ -561,11 +561,11 @@ const BingoGuide = () => {
           <h2 className="mb-4 text-3xl font-bold">5 fejl bingo-spillere bør undgå</h2>
           <div className="space-y-3">
             {[
-              { icon: AlertTriangle, title: "Fejl 1: At købe for mange plader pr. spil", desc: "Flere plader øger din dækning, men forholdet mellem ekstra plader og gevinstforbedring er ikke lineært. At gå fra 4 til 8 plader fordobler dit forbrug, men øger kun din vinderchance marginalt i et rum med 200+ aktive plader. Vælg et antal der passer dit budget – ikke din optimisme." },
-              { icon: AlertTriangle, title: "Fejl 2: At vælge rum udelukkende baseret på præmiepulje", desc: "Store præmiepuljer tiltrækker flere spillere, hvilket reducerer din individuelle vinderchance. Et rum med 500 kr. i præmie og 20 spillere giver ofte bedre forventet værdi end et rum med 5.000 kr. og 200 spillere. Balancer præmiestørrelse mod antallet af konkurrenter." },
-              { icon: AlertTriangle, title: "Fejl 3: At ignorere bingo-specifikke bonusvilkår", desc: "Standard casinobonusser har typisk kun 10-25% bidrag fra bingo. At forsøge at omsætte en casinobonus via bingo er ekstremt ineffektivt. Søg i stedet dedikerede bingo-bonusser med 100% bidrag, eller brug freeroll-rum til at spille risikofrit." },
-              { icon: AlertTriangle, title: "Fejl 4: At spille bingo som investeringsstrategi", desc: "Med en RTP på 70-85% taber du statistisk set 15-30% af din indsats over tid. Bingo er underholdning – ikke en indkomstkilde. Sæt et underholdningsbudget og accepter at tab er prisen for social gaming-oplevelsen." },
-              { icon: AlertTriangle, title: "Fejl 5: At spille på ulicenserede bingo-sider", desc: "Ulicenserede bingo-sider tilbyder ingen spillerbeskyttelse, ingen garanti for fair RNG, og gevinster er skattepligtige. Spil kun på sider med dansk licens fra Spillemyndigheden for at sikre dine rettigheder som spiller. Tjek altid licens-status i bunden af websiden." },
+              { iconName: "alert-triangle", title: "Fejl 1: At købe for mange plader pr. spil", desc: "Flere plader øger din dækning, men forholdet mellem ekstra plader og gevinstforbedring er ikke lineært. At gå fra 4 til 8 plader fordobler dit forbrug, men øger kun din vinderchance marginalt i et rum med 200+ aktive plader. Vælg et antal der passer dit budget – ikke din optimisme." },
+              { iconName: "alert-triangle", title: "Fejl 2: At vælge rum udelukkende baseret på præmiepulje", desc: "Store præmiepuljer tiltrækker flere spillere, hvilket reducerer din individuelle vinderchance. Et rum med 500 kr. i præmie og 20 spillere giver ofte bedre forventet værdi end et rum med 5.000 kr. og 200 spillere. Balancer præmiestørrelse mod antallet af konkurrenter." },
+              { iconName: "alert-triangle", title: "Fejl 3: At ignorere bingo-specifikke bonusvilkår", desc: "Standard casinobonusser har typisk kun 10-25% bidrag fra bingo. At forsøge at omsætte en casinobonus via bingo er ekstremt ineffektivt. Søg i stedet dedikerede bingo-bonusser med 100% bidrag, eller brug freeroll-rum til at spille risikofrit." },
+              { iconName: "alert-triangle", title: "Fejl 4: At spille bingo som investeringsstrategi", desc: "Med en RTP på 70-85% taber du statistisk set 15-30% af din indsats over tid. Bingo er underholdning – ikke en indkomstkilde. Sæt et underholdningsbudget og accepter at tab er prisen for social gaming-oplevelsen." },
+              { iconName: "alert-triangle", title: "Fejl 5: At spille på ulicenserede bingo-sider", desc: "Ulicenserede bingo-sider tilbyder ingen spillerbeskyttelse, ingen garanti for fair RNG, og gevinster er skattepligtige. Spil kun på sider med dansk licens fra Spillemyndigheden for at sikre dine rettigheder som spiller. Tjek altid licens-status i bunden af websiden." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
@@ -689,14 +689,14 @@ const BingoGuide = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: Clock, title: "1. Spil på lavtrafikerede tidspunkter", desc: "Færre spillere = højere individuel vinderchance. De mest travle tidspunkter er typisk hverdagsaftener 19-22 og weekender. Prøv at spille formiddage, sene aftener eller tidlige eftermiddage for rum med færre konkurrenter. Præmiepuljerne er mindre, men din relative andel er proportionelt større." },
-              { icon: Calculator, title: "2. Beregn forventet værdi pr. plade", desc: "Divider præmiepuljen med antal aktive plader i rummet for at estimere den gennemsnitlige gevinst pr. plade. Hvis præmiepuljen er 1.000 kr. og der er 500 plader aktive, er den gennemsnitlige gevinstværdi 2 kr. pr. plade. Sammenlign dette med pladeprisen for at vurdere om spillet giver værdi for pengene." },
-              { icon: Target, title: "3. Diversificer mellem bingo-varianter", desc: "Spil ikke kun 90-kugle bingo. Bland med speed bingo (hurtigere spil, flere chancer), 75-kugle bingo (mønster-variation) og video bingo (højere RTP). Forskellige varianter passer til forskellige tidspunkter og humør – og diversificering forhindrer monotoni." },
-              { icon: Users, title: "4. Udnyt chat-præmier aktivt", desc: "Chat-moderatorens mini-spil tilbyder risikofri ekstra-gevinster. Vær aktiv i chatten, deltag i quizzer og anagrammer, og vær opmærksom på 'first to type'-konkurrencer. Over tid kan chat-præmier udgøre en betydelig ekstra-værdi oven i dine bingo-gevinster." },
-              { icon: Gift, title: "5. Prioriter freeroll-rum som nybegynder", desc: "De fleste platforme tilbyder gratis bingo-rum med reelle (om end beskedne) præmier. Brug disse rum til at lære platformen, forstå chatfunktionen og opbygge erfaring uden økonomisk risiko. Mange VIP-programmer tilbyder også eksklusiv adgang til freerolls med højere præmier." },
-              { icon: BarChart3, title: "6. Sæt klare tids- og beløbsgrænser", desc: "Bingoens sociale karakter kan gøre det svært at stoppe. Brug casinoets indbyggede spillegrænser til at sætte faste grænser for session-tid og dagligt forbrug. Det er nemmere at overholde en automatiseret grænse end en mental beslutning taget midt i en intens bingo-runde." },
-              { icon: TrendingUp, title: "7. Køb plader i 'strips' for bedre dækning", desc: "I 90-kugle bingo kan du ofte købe plader i 'strips' af 6, som tilsammen dækker alle numre 1-90. Et komplet strip sikrer at du har mindst ét nummer i hvert eneste træk, hvilket giver en mere jævn og spændende oplevelse. Dog koster et helt strip naturligvis 6x pladeprisen." },
-              { icon: Eye, title: "8. Studer rummets spillerantal før du køber plader", desc: "De fleste bingo-lobbyer viser antal aktive spillere og pladeantal i hvert rum. Brug denne information strategisk: et rum med 15 spillere giver markant bedre odds end et rum med 150 spillere, selv om præmiepuljen er proportionelt mindre. Fokuser på forventet værdi, ikke absolut præmiestørrelse." },
+              { iconName: "clock", title: "1. Spil på lavtrafikerede tidspunkter", desc: "Færre spillere = højere individuel vinderchance. De mest travle tidspunkter er typisk hverdagsaftener 19-22 og weekender. Prøv at spille formiddage, sene aftener eller tidlige eftermiddage for rum med færre konkurrenter. Præmiepuljerne er mindre, men din relative andel er proportionelt større." },
+              { iconName: "calculator", title: "2. Beregn forventet værdi pr. plade", desc: "Divider præmiepuljen med antal aktive plader i rummet for at estimere den gennemsnitlige gevinst pr. plade. Hvis præmiepuljen er 1.000 kr. og der er 500 plader aktive, er den gennemsnitlige gevinstværdi 2 kr. pr. plade. Sammenlign dette med pladeprisen for at vurdere om spillet giver værdi for pengene." },
+              { iconName: "target", title: "3. Diversificer mellem bingo-varianter", desc: "Spil ikke kun 90-kugle bingo. Bland med speed bingo (hurtigere spil, flere chancer), 75-kugle bingo (mønster-variation) og video bingo (højere RTP). Forskellige varianter passer til forskellige tidspunkter og humør – og diversificering forhindrer monotoni." },
+              { iconName: "users", title: "4. Udnyt chat-præmier aktivt", desc: "Chat-moderatorens mini-spil tilbyder risikofri ekstra-gevinster. Vær aktiv i chatten, deltag i quizzer og anagrammer, og vær opmærksom på 'first to type'-konkurrencer. Over tid kan chat-præmier udgøre en betydelig ekstra-værdi oven i dine bingo-gevinster." },
+              { iconName: "gift", title: "5. Prioriter freeroll-rum som nybegynder", desc: "De fleste platforme tilbyder gratis bingo-rum med reelle (om end beskedne) præmier. Brug disse rum til at lære platformen, forstå chatfunktionen og opbygge erfaring uden økonomisk risiko. Mange VIP-programmer tilbyder også eksklusiv adgang til freerolls med højere præmier." },
+              { iconName: "bar-chart3", title: "6. Sæt klare tids- og beløbsgrænser", desc: "Bingoens sociale karakter kan gøre det svært at stoppe. Brug casinoets indbyggede spillegrænser til at sætte faste grænser for session-tid og dagligt forbrug. Det er nemmere at overholde en automatiseret grænse end en mental beslutning taget midt i en intens bingo-runde." },
+              { iconName: "trending-up", title: "7. Køb plader i 'strips' for bedre dækning", desc: "I 90-kugle bingo kan du ofte købe plader i 'strips' af 6, som tilsammen dækker alle numre 1-90. Et komplet strip sikrer at du har mindst ét nummer i hvert eneste træk, hvilket giver en mere jævn og spændende oplevelse. Dog koster et helt strip naturligvis 6x pladeprisen." },
+              { iconName: "eye", title: "8. Studer rummets spillerantal før du køber plader", desc: "De fleste bingo-lobbyer viser antal aktive spillere og pladeantal i hvert rum. Brug denne information strategisk: et rum med 15 spillere giver markant bedre odds end et rum med 150 spillere, selv om præmiepuljen er proportionelt mindre. Fokuser på forventet værdi, ikke absolut præmiestørrelse." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -795,10 +795,10 @@ const BingoGuide = () => {
 
           <div className="space-y-3 mb-6">
             {[
-              { icon: Sparkles, title: "Gamification og achievements", desc: "Flere bingo-platforme integrerer gamification-elementer som levelling, daglige missions, sæson-passes og achievement-systemer. Disse belønner regelmæssig spilleaktivitet med bonusser, gratis plader og eksklusive adgang til premium-rum. Trenden styrker fastholdelse og tilføjer en progression-dimension til det ellers tilfældighedsbaserede spil." },
-              { icon: Smartphone, title: "Mobile-first design", desc: "Fremtidens bingo-platforme designes primært til mobil. Voice-activated daub, one-handed interface og push-notifikationer for kommende spil er allerede implementeret hos førende udbydere. Mobil bingo forventes at udgøre over 85% af al bingo-trafik inden 2028." },
-              { icon: Users, title: "Tværgående community-features", desc: "Bingo-rum udvikler sig mod sociale platforme med vennelister, private rum, team-bingo og fælles jackpots. Denne udvikling trækker på social gaming-trenden og positionerer bingo som en social oplevelse med gambling-element – snarere end omvendt." },
-              { icon: Lock, title: "Skærpet spillerbeskyttelse", desc: "Danske og europæiske regulatorer arbejder mod strengere regler for ansvarligt spil, herunder AI-drevne adfærdsmønstre der identificerer problematisk spilleadfærd tidligt. Bingo-operatører skal investere i proaktive værktøjer der beskytter sårbare spillere – ikke kun reaktive tiltag som ROFUS." },
+              { iconName: "sparkles", title: "Gamification og achievements", desc: "Flere bingo-platforme integrerer gamification-elementer som levelling, daglige missions, sæson-passes og achievement-systemer. Disse belønner regelmæssig spilleaktivitet med bonusser, gratis plader og eksklusive adgang til premium-rum. Trenden styrker fastholdelse og tilføjer en progression-dimension til det ellers tilfældighedsbaserede spil." },
+              { iconName: "smartphone", title: "Mobile-first design", desc: "Fremtidens bingo-platforme designes primært til mobil. Voice-activated daub, one-handed interface og push-notifikationer for kommende spil er allerede implementeret hos førende udbydere. Mobil bingo forventes at udgøre over 85% af al bingo-trafik inden 2028." },
+              { iconName: "users", title: "Tværgående community-features", desc: "Bingo-rum udvikler sig mod sociale platforme med vennelister, private rum, team-bingo og fælles jackpots. Denne udvikling trækker på social gaming-trenden og positionerer bingo som en social oplevelse med gambling-element – snarere end omvendt." },
+              { iconName: "lock", title: "Skærpet spillerbeskyttelse", desc: "Danske og europæiske regulatorer arbejder mod strengere regler for ansvarligt spil, herunder AI-drevne adfærdsmønstre der identificerer problematisk spilleadfærd tidligt. Bingo-operatører skal investere i proaktive værktøjer der beskytter sårbare spillere – ikke kun reaktive tiltag som ROFUS." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

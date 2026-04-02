@@ -3,13 +3,13 @@ import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
 import { useScrollDepthBonus } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak } from "@/hooks/useMissionStreak";
-import { ArrowDown, ArrowRight, Check, Flame, Play, Scroll, Trophy, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowDown, ArrowRight, Check, Play, Scroll } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 const MILESTONES = [
-  { at: 90, text: "Godt i gang! 💪", icon: Flame },
-  { at: 60, text: "Halvvejs! 🔥", icon: Zap },
-  { at: 30, text: "Næsten i mål! 🏆", icon: Trophy },
+  { at: 90, text: "Godt i gang! 💪", iconName: "flame" },
+  { at: 60, text: "Halvvejs! 🔥", iconName: "zap" },
+  { at: 30, text: "Næsten i mål! 🏆", iconName: "trophy" },
 ];
 
 export function DwellRewardBadge() {
@@ -318,7 +318,7 @@ export function DwellRewardBadge() {
                   </span>
                 ) : currentMilestone ? (
                   <span className="flex items-center gap-1.5 animate-fade-in font-medium" style={{ color: "hsl(25, 90%, 48%)" }}>
-                    {(() => { const Icon = currentMilestone.icon; return <Icon className="h-3.5 w-3.5" />; })()}
+                    <MenuIcon iconName={currentMilestone.iconName} className="h-3.5 w-3.5" />
                     {currentMilestone.text.replace(/\s*[\p{Emoji_Presentation}\p{Extended_Pictographic}]+$/u, "")} – {timeDisplay}
                   </span>
                 ) : isActive ? (

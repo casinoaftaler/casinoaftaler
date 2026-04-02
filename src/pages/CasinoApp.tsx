@@ -16,8 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import { Apple, ArrowRight, Bell, Download, Gavel, Globe, Lock, MonitorSmartphone, Play, Search, Settings, Shield, Smartphone } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Download, MonitorSmartphone, Play, Search, Settings } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data
@@ -273,7 +273,7 @@ const CasinoApp = () => {
               },
               {
                 title: "Progressive Web App (PWA)",
-                icon: Globe,
+                iconName: "globe",
                 items: [
                   "Installeres via browser ('Føj til startskærm')",
                   "Ingen app store download nødvendig",
@@ -285,7 +285,7 @@ const CasinoApp = () => {
               },
               {
                 title: "Responsive Webapp",
-                icon: Smartphone,
+                iconName: "smartphone",
                 items: [
                   "Tilgås direkte via mobilbrowser",
                   "Ingen installation nødvendig",
@@ -482,17 +482,17 @@ const CasinoApp = () => {
                 desc: "Alle casino apps gennemgår Apples/Googles review-proces, der screener for malware, uautoriseret dataindsamling og sikkerhedshuller. Apps skal dokumentere gyldig licens.",
               },
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "End-to-end kryptering",
                 desc: "TLS 1.3 / 256-bit AES-kryptering beskytter al kommunikation. Certificate pinning forhindrer man-in-the-middle angreb på app-niveau.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "Biometrisk autentificering",
                 desc: "Face ID, Touch ID og fingeraftryksscanning erstatter passwords for hurtigere og mere sikker login. Biometriske data forlader aldrig din enhed.",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "Dansk licens-krav",
                 desc: "Alle casino apps rettet mod danske spillere SKAL have gyldig dansk licens fra Spillemyndigheden. Licensen kan verificeres online.",
               },

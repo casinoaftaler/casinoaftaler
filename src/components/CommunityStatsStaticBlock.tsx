@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Users, Gamepad2, Trophy } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 
 /**
  * Static SEO block for community stats.
@@ -36,19 +36,19 @@ export function CommunityStatsStaticBlock({ className = "" }: CommunityStatsStat
 
   const stats = [
     {
-      icon: Users,
+      iconName: "users",
       label: "Aktive medlemmer",
       value: data?.activeMembers ?? 100,
       color: "text-violet-400",
     },
     {
-      icon: Gamepad2,
+      iconName: "gamepad2",
       label: "Spins spillet i alt",
       value: data?.totalSpins ?? 50000,
       color: "text-amber-400",
     },
     {
-      icon: Trophy,
+      iconName: "trophy",
       label: "Turneringer denne måned",
       value: data?.tournamentsThisMonth ?? 3,
       color: "text-emerald-400",

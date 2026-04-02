@@ -16,8 +16,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { AlertTriangle, BarChart3, CheckCircle, Database, Dog, Gamepad2, Globe, HelpCircle, Layers, Lock, Play, Scale, Shield, ShoppingCart, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Database, Dog, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
@@ -391,17 +391,17 @@ const BonusBuySlots = () => {
             {[
               {
                 title: "Bankroll per bonus buy",
-                icon: Scale,
+                iconName: "scale",
                 content: "Planlæg minimum 3-5 bonus buys per session. Ved 100x buy price og 5 kr. indsats er det 1.500-2.500 kr. minimum. Én enkelt bonus buy har høj varians – du behøver volumen for at nærme dig den forventede RTP.",
               },
               {
                 title: "Vælg det rette spil",
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 content: "Sammenlign buy price, max win og RTP. En slot med 80x buy og 96 % RTP er generelt bedre end en med 200x buy og 95 % RTP. Vores Slot Database viser historiske gennemsnit per titel.",
               },
               {
                 title: "Undgå tilt-buying",
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 content: "Den største fare ved bonus buy er impulsivt at købe bonus efter bonus efter dårlige resultater. Sæt et fast budget for bonus buys per session, og hold dig til det. Husk at sætte indbetalingsgrænser – alle danske casinoer tilbyder dette.",
               },
             ].map((item) => (

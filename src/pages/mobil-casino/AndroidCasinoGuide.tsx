@@ -16,8 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { ArrowRight, Battery, Clock, Dog, Download, Eye, Monitor, Play, RefreshCw, Settings, Wifi, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Battery, Dog, Download, Play, Settings, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -557,11 +557,11 @@ const AndroidCasinoGuide = () => {
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
               { title: "Deaktiver batterioptimering for casino-apps", desc: "Indstillinger → Batteri → Batterioptimering → vælg casino-app/Chrome → 'Ikke optimeret'. Dette forhindrer Android i at lukke casino-sessioner i baggrunden.", icon: Battery },
-              { title: "Brug Digital Wellbeing tidsgrænser", desc: "Indstillinger → Digital Wellbeing → Dashboard → sæt timer for Chrome eller casino-app. Et godt supplement til casinoernes egne spillegrænser.", icon: Clock },
-              { title: "Aktiver 'Force Dark Mode' i Chrome", desc: "chrome://flags → søg 'dark mode' → aktiver. Tvinger Dark Mode på alle casino-sider, der ikke nativt understøtter det.", icon: Eye },
-              { title: "Ryd Chrome-cache regelmæssigt", desc: "Chrome → ⋮ → Historik → Ryd browserdata → Vælg 'Cachelagrede billeder og filer'. Gør dette hver 2-4 uge for optimal performance.", icon: RefreshCw },
-              { title: "Brug Samsung DeX til casino på stor skærm", desc: "Samsung Galaxy-brugere kan tilslutte telefonen til en monitor via USB-C og spille casino i desktop-tilstand. Fantastisk til live casino.", icon: Monitor },
-              { title: "Undgå 'Battery Saver' under spil", desc: "Battery Saver reducerer CPU/GPU-hastigheden markant. Deaktiver den under spilsessioner for at undgå hakken, især i live casino.", icon: Zap },
+              { title: "Brug Digital Wellbeing tidsgrænser", desc: "Indstillinger → Digital Wellbeing → Dashboard → sæt timer for Chrome eller casino-app. Et godt supplement til casinoernes egne spillegrænser.", iconName: "clock" },
+              { title: "Aktiver 'Force Dark Mode' i Chrome", desc: "chrome://flags → søg 'dark mode' → aktiver. Tvinger Dark Mode på alle casino-sider, der ikke nativt understøtter det.", iconName: "eye" },
+              { title: "Ryd Chrome-cache regelmæssigt", desc: "Chrome → ⋮ → Historik → Ryd browserdata → Vælg 'Cachelagrede billeder og filer'. Gør dette hver 2-4 uge for optimal performance.", iconName: "refresh-cw" },
+              { title: "Brug Samsung DeX til casino på stor skærm", desc: "Samsung Galaxy-brugere kan tilslutte telefonen til en monitor via USB-C og spille casino i desktop-tilstand. Fantastisk til live casino.", iconName: "monitor" },
+              { title: "Undgå 'Battery Saver' under spil", desc: "Battery Saver reducerer CPU/GPU-hastigheden markant. Deaktiver den under spilsessioner for at undgå hakken, især i live casino.", iconName: "zap" },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <tip.icon className="h-5 w-5 mt-0.5 text-primary shrink-0" />

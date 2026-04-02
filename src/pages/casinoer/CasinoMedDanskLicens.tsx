@@ -15,8 +15,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle, Apple, Award, BarChart3, CheckCircle2, Clock, CreditCard, FileText, Globe, Landmark, Lock, Play, Scale, ShieldCheck, Smartphone, Target, TrendingUp, Users, XCircle, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -205,12 +205,12 @@ const CasinoMedDanskLicens = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "1. Skattefri gevinster",
                 desc: "Alle gevinster fra casinoer med dansk licens er skattefri for dig som spiller. Casinoet betaler 28 % afgift af bruttospilindtægten til SKAT på dine vegne. Du skal aldrig selvangive casinogevinster fra danske licenserede operatører. På udenlandske casinoer er gevinster skattepligtige efter personskattelovens § 4, med skattesatser op til 45 %. Over et år med regelmæssigt spil kan forskellen udgøre tusindvis af kroner.",
               },
               {
-                icon: Target,
+                iconName: "target",
                 title: "2. Max 10x omsætningskrav",
                 desc: (
                   <>
@@ -223,7 +223,7 @@ const CasinoMedDanskLicens = () => {
                 ),
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "3. ROFUS-selvudelukkelse",
                 desc: (
                   <>
@@ -240,17 +240,17 @@ const CasinoMedDanskLicens = () => {
                 ),
               },
               {
-                icon: Landmark,
+                iconName: "landmark",
                 title: "4. Dansk klageadgang",
                 desc: "Ved tvister med et dansk licenseret casino kan du klage direkte til Spillemyndigheden, som har beføjelse til at træffe bindende afgørelser. Du har desuden adgang til det danske retssystem. Hos udenlandske casinoer er du typisk henvist til den udstedende myndigheds klageprocedure – som kan ligge i Malta, Curaçao eller Gibraltar.",
               },
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "5. Bankgaranti og spillerbeskyttelse",
                 desc: "Danske licenserede casinoer skal stille en bankgaranti på minimum 750.000 kr. administreret af et uafhængigt pengeinstitut. Garantien sikrer, at dine indeståender er beskyttet selv ved operatørens konkurs. Det er en af de stærkeste financielle spillerbeskyttelser i Europa.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "6. MitID-verifikation",
                 desc: (
                   <>
@@ -263,7 +263,7 @@ const CasinoMedDanskLicens = () => {
                 ),
               },
               {
-                icon: CreditCard,
+                iconName: "credit-card",
                 title: "7. Sikre betalingsmetoder i DKK",
                 desc: (
                   <>

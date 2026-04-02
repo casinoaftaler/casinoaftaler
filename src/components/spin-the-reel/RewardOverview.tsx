@@ -1,15 +1,15 @@
 import { Coins, Zap, XCircle } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 
 const REWARDS = [
-  { label: "100 Points", icon: Coins, type: "points" },
-  { label: "200 Points", icon: Coins, type: "points" },
-  { label: "300 Points", icon: Coins, type: "points" },
-  { label: "400 Points", icon: Coins, type: "points" },
-  { label: "500 Points", icon: Coins, type: "points" },
-  { label: "50 Spins", icon: Zap, type: "spins" },
-  { label: "100 Spins", icon: Zap, type: "spins" },
-  { label: "Ingenting", icon: XCircle, type: "none" },
+  { label: "100 Points", iconName: "coins", type: "points" },
+  { label: "200 Points", iconName: "coins", type: "points" },
+  { label: "300 Points", iconName: "coins", type: "points" },
+  { label: "400 Points", iconName: "coins", type: "points" },
+  { label: "500 Points", iconName: "coins", type: "points" },
+  { label: "50 Spins", iconName: "zap", type: "spins" },
+  { label: "100 Spins", iconName: "zap", type: "spins" },
+  { label: "Ingenting", iconName: "x-circle", type: "none" },
 ];
 
 export function RewardOverview() {
@@ -18,7 +18,7 @@ export function RewardOverview() {
       <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">🎁 Mulige Gevinster</h2>
       <div className="grid grid-cols-2 gap-2">
         {REWARDS.map((r, i) => {
-          const Icon = r.icon;
+          // icon resolved via iconName on r
           const colorClass = r.type === "points" ? "text-primary" : r.type === "spins" ? "text-accent" : "text-muted-foreground";
           return (
             <div

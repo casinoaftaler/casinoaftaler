@@ -16,8 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, Banknote, ChevronLeft, ChevronRight, Pen, PiggyBank, Play, Shield, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, ChevronLeft, ChevronRight, Pen, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import niklasImage from "@/assets/niklas-forfatter.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -46,22 +46,22 @@ const faqs = [
 
 const expertiseItems = [
   {
-    icon: TrendingUp,
+    iconName: "trending-up",
     label: "Finansiel analyse & EV",
     desc: "Dybdegående analyse af expected value, bonusøkonomi og rentabilitet i casinospil.",
   },
   {
-    icon: Shield,
+    iconName: "shield",
     label: "Forsikring & risikostyring",
     desc: "Professionel baggrund i forsikring og risikovurdering, overført til bankroll management og casinoøkonomi.",
   },
   {
-    icon: PiggyBank,
+    iconName: "piggy-bank",
     label: "Bonusøkonomi & omsætningskrav",
     desc: "Detaljeret gennemgang af bonusstrukturer, wagering-krav og reel værdi for spillere.",
   },
   {
-    icon: Banknote,
+    iconName: "banknote",
     label: "Casino & skat",
     desc: "Ekspertviden om beskatning af casinogevinster i Danmark og skatteregler for spillere.",
   },

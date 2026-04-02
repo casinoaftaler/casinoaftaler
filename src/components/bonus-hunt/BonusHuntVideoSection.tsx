@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { SafeHelmet } from "@/lib/reactCompat";
-import { Calendar, MessageCircle, Monitor, Video } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MessageCircle, Video } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.webp";
 import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.webp";
@@ -176,12 +176,12 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
 
           <div className="flex flex-wrap gap-2">
             {[
-              { icon: Monitor, label: "Streamet live", color: "text-green-500" },
+              { iconName: "monitor", label: "Streamet live", color: "text-green-500" },
               { icon: Video, label: "Fuld VOD", color: "text-primary" },
               { icon: MessageCircle, label: "Chat aktiv", color: "text-primary" },
-              { icon: Calendar, label: video.date, color: "text-primary" },
+              { iconName: "calendar", label: video.date, color: "text-primary" },
             ].map((badge) => {
-              const Icon = badge.icon;
+              // icon resolved via iconName on badge
               return (
                 <span
                   key={badge.label}

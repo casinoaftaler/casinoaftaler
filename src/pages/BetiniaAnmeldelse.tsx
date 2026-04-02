@@ -27,8 +27,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
-import { ArrowRight, Check, DollarSign, MessageSquare, Play, RotateCcw, Search, Smartphone, Timer, Trophy, Wallet, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Check, MessageSquare, Play, RotateCcw, Search, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -849,17 +849,17 @@ const BetiniaAnmeldelse = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Trophy,
+                iconName: "trophy",
                 title: "VIP-spillere med højt volumen",
                 desc: "Betinia mangler et formelt loyalitetsprogram eller VIP-system. Hvis du omsætter for 50.000+ kr. om måneden og forventer personlige bonusser, dedikeret kontaktperson og cashback-programmer, vil du finde bedre værdi hos etablerede casinoer som " + "bet365 eller LeoVegas, der har strukturerede VIP-programmer med tiered belønninger.",
               },
               {
-                icon: Wallet,
+                iconName: "wallet",
                 title: "Skrill/Neteller-brugere",
                 desc: "Hvis du primært bruger Skrill eller Neteller til indbetalinger, kvalificerer du ikke til velkomstbonussen hos Betinia. Det er en markant begrænsning, da begge e-wallets er populære blandt danske casinospillere. Overvej i stedet casinoer som Spilleautomaten eller SpilDanskNu, der ikke har denne restriktion.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "App-entusiaster",
                 desc: "Betinia har ingen dedikeret mobilapp – kun en mobiloptimeret hjemmeside. For spillere der foretrækker native apps med push-notifikationer, genveje på homescreen og offline-funktionalitet, er LeoVegas eller Unibet med deres prisbelønnede apps bedre alternativer.",
               },

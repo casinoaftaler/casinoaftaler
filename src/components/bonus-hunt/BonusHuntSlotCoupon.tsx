@@ -2,8 +2,8 @@ import { useState, useMemo, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Check, Flame, Receipt, Shield, X, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Check, Receipt, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
@@ -84,9 +84,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
     ).length;
     const answered = Object.values(answers).filter((v) => v !== null).length;
     if (answered < 3) return null;
-    if (yesAggressive >= 6) return { label: "High Roller", icon: Flame, type: "aggressive" as const };
-    if (yesAggressive <= 2) return { label: "Sikker", icon: Shield, type: "defensive" as const };
-    return { label: "Balanceret", icon: Zap, type: "balanced" as const };
+    if (yesAggressive >= 6) return { label: "High Roller", iconName: "flame", type: "aggressive" as const };
+    if (yesAggressive <= 2) return { label: "Sikker", iconName: "shield", type: "defensive" as const };
+    return { label: "Balanceret", iconName: "zap", type: "balanced" as const };
   }, [answers]);
 
   const isCouponLocked = couponOpen === false || isArchived;

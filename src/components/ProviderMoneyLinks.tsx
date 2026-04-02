@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CreditCard, Gift, Sparkles, Star } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 /**
  * Contextual money-page links for provider hub pages (/spillemaskiner/*).
@@ -17,28 +17,28 @@ interface ProviderMoneyLinksProps {
 const MONEY_LINKS = [
   {
     to: "/casino-anmeldelser",
-    icon: Star,
+    iconName: "star",
     title: "Casino Anmeldelser",
     getDesc: (name: string) =>
       `Find de bedst ratede casinoer med ${name} spillemaskiner – vores anmeldelser dækker bonus, udbetaling og spiludvalg.`,
   },
   {
     to: "/casino-bonus",
-    icon: Gift,
+    iconName: "gift",
     title: "Bedste Casino Bonus",
     getDesc: (name: string) =>
       `Sammenlign de bedste bonustilbud og brug dem på ${name} slots – vi har testet omsætningskrav og vilkår.`,
   },
   {
     to: "/free-spins",
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Free Spins Tilbud",
     getDesc: (name: string) =>
       `Se aktuelle free spins tilbud, som kan bruges på populære ${name} spillemaskiner.`,
   },
   {
     to: "/velkomstbonus",
-    icon: CreditCard,
+    iconName: "credit-card",
     title: "Velkomstbonus Guide",
     getDesc: (name: string) =>
       `Forstå velkomstbonusser og find det bedste tilbud til at komme i gang med ${name} slots.`,
@@ -77,13 +77,13 @@ export function ProviderMoneyLinks({ providerName, providerSlug, slotCount }: Pr
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        {MONEY_LINKS.map(({ to, icon: Icon, title, getDesc }) => (
+        {MONEY_LINKS.map(({ to, iconName, title, getDesc }) => (
           <Link
             key={to}
             to={to}
             className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
           >
-            <Icon className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+            <MenuIcon iconName={iconName} className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-semibold">{title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">

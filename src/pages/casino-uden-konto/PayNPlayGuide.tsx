@@ -16,8 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { Apple, ArrowRight, Ban, Eye, FileText, Lock, Play, Server, Shield } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Ban, Play, Server } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const payNPlayFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -354,10 +354,10 @@ const PayNPlayGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-6">Pay N Play's sikkerhedsmodel er opbygget i multiple lag for at beskytte spillerens data og midler. Hver komponent i kæden – fra spillerens browser til casinoets backend – er sikret uafhængigt:</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
-              { icon: Lock, title: "Lag 1: TLS 1.3 Transport Layer", desc: "Al kommunikation mellem spiller, bank, Trustly og casino er krypteret med den nyeste TLS 1.3-protokol med Forward Secrecy (ECDHE). Ingen mellemliggende part kan aflytte eller manipulere data in transit. Certificate pinning forhindrer MITM-angreb." },
-              { icon: Shield, title: "Lag 2: SOC 2 Type II + PCI DSS", desc: "Trustly er SOC 2 Type II-certificeret, hvilket bekræfter at virksomhedens sikkerhedskontroller er designet korrekt og fungerer effektivt over tid. PCI DSS Level 1 certificering dækker behandling af betalingsdata. Auditeringen dækker sikkerhed, tilgængelighed, procesintegritet og fortrolighed." },
-              { icon: Eye, title: "Lag 3: Zero-Knowledge Authentication", desc: "Trustly modtager aldrig spillerens bankloginoplysninger direkte. Al autentificering sker via bankens egen sikre loginside (redirect-model), og Trustly modtager kun det resulterende OAuth2-token med begrænset scope og levetid." },
-              { icon: FileText, title: "Lag 4: GDPR & Databeskyttelse", desc: "Alle persondata behandles i overensstemmelse med GDPR og den danske databeskyttelseslov. Data opbevares inden for EU/EØS, og spilleren kan til enhver tid anmode om sletning af sine data hos Trustly. Data retention policy: KYC-data slettes efter 5 år (jf. hvidvaskloven)." },
+              { iconName: "lock", title: "Lag 1: TLS 1.3 Transport Layer", desc: "Al kommunikation mellem spiller, bank, Trustly og casino er krypteret med den nyeste TLS 1.3-protokol med Forward Secrecy (ECDHE). Ingen mellemliggende part kan aflytte eller manipulere data in transit. Certificate pinning forhindrer MITM-angreb." },
+              { iconName: "shield", title: "Lag 2: SOC 2 Type II + PCI DSS", desc: "Trustly er SOC 2 Type II-certificeret, hvilket bekræfter at virksomhedens sikkerhedskontroller er designet korrekt og fungerer effektivt over tid. PCI DSS Level 1 certificering dækker behandling af betalingsdata. Auditeringen dækker sikkerhed, tilgængelighed, procesintegritet og fortrolighed." },
+              { iconName: "eye", title: "Lag 3: Zero-Knowledge Authentication", desc: "Trustly modtager aldrig spillerens bankloginoplysninger direkte. Al autentificering sker via bankens egen sikre loginside (redirect-model), og Trustly modtager kun det resulterende OAuth2-token med begrænset scope og levetid." },
+              { iconName: "file-text", title: "Lag 4: GDPR & Databeskyttelse", desc: "Alle persondata behandles i overensstemmelse med GDPR og den danske databeskyttelseslov. Data opbevares inden for EU/EØS, og spilleren kan til enhver tid anmode om sletning af sine data hos Trustly. Data retention policy: KYC-data slettes efter 5 år (jf. hvidvaskloven)." },
               { icon: Ban, title: "Lag 5: Fraud Detection & Monitoring", desc: "Trustly's fraud detection-system analyserer transaktionsmønstre i realtid med machine learning-modeller. Usædvanlige mønstre (store beløb, hyppige transaktioner, nye enheder) trigger automatisk review. False positive rate: under 0,5% ifølge Trustly's offentlige data." },
               { icon: Server, title: "Lag 6: Infrastructure Security", desc: "Trustly's serverinfrastruktur kører i ISO 27001-certificerede datacentre i EU med redundant strøm, køling og netværk. Disaster recovery med RPO < 1 time og RTO < 4 timer. DDoS-beskyttelse via enterprise-grade WAF og CDN." },
             ].map((item) => (

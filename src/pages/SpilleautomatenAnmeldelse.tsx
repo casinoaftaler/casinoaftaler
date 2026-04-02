@@ -28,8 +28,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import { Activity, BadgeCheck, Check, Gamepad2, MessageSquare, Play, RotateCcw, ShoppingBag, Timer, TrendingUp, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Check, MessageSquare, Play, RotateCcw, Timer, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -504,10 +504,10 @@ const SpilleautomatenAnmeldelse = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: ShoppingBag, title: "Kontante præmier", desc: "Points konverteres til rigtige bonusmidler – ikke kun gratis spins eller kuponer." },
+              { iconName: "shopping-bag", title: "Kontante præmier", desc: "Points konverteres til rigtige bonusmidler – ikke kun gratis spins eller kuponer." },
               { icon: Timer, title: "Ingen udløbsdato", desc: "Optjente points forsvinder aldrig. Spil i dit eget tempo uden tidspres." },
-              { icon: TrendingUp, title: "Bedre rate ved volumen", desc: "Jo flere points du indløser på én gang, desto højere kontantværdi pr. point." },
-              { icon: Gamepad2, title: "Kun slots tæller", desc: "1 point pr. 5 kr. omsat på spilleautomater. Bordspil og live casino tæller ikke." },
+              { iconName: "trending-up", title: "Bedre rate ved volumen", desc: "Jo flere points du indløser på én gang, desto højere kontantværdi pr. point." },
+              { iconName: "gamepad2", title: "Kun slots tæller", desc: "1 point pr. 5 kr. omsat på spilleautomater. Bordspil og live casino tæller ikke." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

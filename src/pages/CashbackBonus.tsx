@@ -22,7 +22,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { AlertTriangle, BarChart3, BookOpen, Calculator, CheckCircle2, Clock, Coins, Gift, Percent, RefreshCw, Scale, ShieldCheck, Sparkles, Star, Target, TrendingUp, Users, Wallet, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -92,25 +92,25 @@ const cashbackFaqs: { question: string; answer: string | React.ReactNode }[] = [
 
 const cashbackTypes = [
   {
-    icon: Wallet,
+    iconName: "wallet",
     title: "Kontant cashback (omsætningsfri)",
     description: "Den mest værdifulde type. Dine tab returneres som rigtige penge uden omsætningskrav. Du kan hæve beløbet med det samme eller spille videre. Reel værdi: 100% af det returnerede beløb. Typisk 5-10% hos de bedste danske casinoer.",
     tag: "Bedst",
   },
   {
-    icon: RefreshCw,
+    iconName: "refresh-cw",
     title: "Bonus cashback (med omsætning)",
     description: "Tab returneres som bonuspenge med omsætningskrav – typisk 1-5x. Lavere reel værdi end kontant cashback, men stadig fordelagtigt med lave krav. Reel værdi: 70-95% afhængigt af omsætningskravet. Den mest udbredte type på det danske marked.",
     tag: "Almindelig",
   },
   {
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "VIP/Loyalty cashback",
     description: "Højere procentdel (10-20%) forbeholdt casinoets mest aktive spillere. Ofte kombineret med personlig kontaktperson, hurtigere udbetalinger og eksklusive kampagner. Typisk omsætningsfri. Kræver generelt 50.000+ kr. i månedlig omsætning for at kvalificere.",
     tag: "Premium",
   },
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     title: "Insurance/forsikringsbonus",
     description: "Engangscashback på din første indbetaling eller session. Taber du det hele, returneres 50-100% af tabet. Sjældent tilbagevendende, men god risikoreduktion for nye spillere. Ofte brugt som supplement til velkomstbonussen hos danske casinoer.",
     tag: "Engangs",
@@ -384,22 +384,22 @@ const CashbackBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Target,
+                iconName: "target",
                 title: "Vælg høj-RTP slots under cashback-perioder",
                 desc: "Kombinationen af høj RTP (96%+) og cashback reducerer din effektive house edge til under 3%. Slots som Starburst (96,08%), Blood Suckers (98,00%) og Mega Joker (99,00%) er ideelle valg. Jo lavere house edge, jo sjældnere trigges din cashback – men den reelle besparelse pr. omsætningskrone er større.",
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "Timing er alt: Spil med cashback, ikke mod den",
                 desc: "Koncentrer dit spil i perioder, hvor cashback er aktiv. Mange casinoer beregner cashback fra mandag til søndag med udbetaling mandag. Hvis du normalt spreder dit spil over måneden, kan det betale sig at koncentrere det inden for cashback-perioderne for at maksimere returbeløbet. Tjek din casinokalender ugentligt.",
               },
               {
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 title: "Cashback + volatilitetsstrategi",
                 desc: "Cashback reducerer risikoen ved højvolatile slots. Normalt frarådes high-volatility spil under bonusomsætning – men med cashback er risikoprofilen anderledes. Tab fra en Nolimit City-session returneres delvist, mens store gevinster beholdes fuldt ud. Det giver en asymmetrisk risk/reward-profil til din fordel.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Kombiner med no-sticky velkomstbonus",
                 desc: (
                   <>
@@ -409,12 +409,12 @@ const CashbackBonus = () => {
                 ),
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Undgå 'tab-jagt' – cashback er ikke en vinderstrategi",
                 desc: "Den største fælde med cashback er at bruge den som undskyldning for at øge indsatserne. 10% cashback betyder stadig 90% tab. Hold dit budget uændret og betragt cashback som en positiv overraskelse, ikke en forventning. Sæt altid dit tabslimit FØR du overvejer cashback-effekten.",
               },
               {
-                icon: Coins,
+                iconName: "coins",
                 title: "Geninvestér cashback eller hæv den?",
                 desc: "Kontant cashback kan enten hæves eller spilles videre. Matematisk set er det optimalt at hæve – du har allerede 'betalt' for cashbacken via dine tab. Men hvis dit bankroll management tillader det, kan geninvestering af cashback i spilsessioner med positiv EV-bonus være strategisk. Nøglen er disciplin: sæt en fast regel og følg den.",
               },
@@ -566,13 +566,13 @@ const CashbackBonus = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: Percent, title: "Trin 1: Tjek cashback-procenten", desc: "5% er standard, 10% er godt, 15%+ er exceptionelt. Vær opmærksom på om procenten gælder nettotab (tab minus gevinster) eller bruttotab (alle tabende indsatser). Nettotab med høj procent er markant mere fordelagtigt." },
-              { icon: Calculator, title: "Trin 2: Omsætningskrav eller kontanter?", desc: "Kontant cashback (0x omsætning) er markant mere værdifuldt. Bonus-cashback med 5x omsætning reducerer den reelle værdi med 15-20%. Spørg specifikt: 'Udbetales cashback som rigtige penge?' – det ene ord ændrer alt." },
-              { icon: Clock, title: "Trin 3: Beregningsperiode og udbetalingstid", desc: "Ugentlig cashback er bedst for cash flow. Tjek hvornår perioden starter/slutter og hvornår pengene krediteres. Nogle casinoer har 24-48 timers forsinkelse – det reducerer ikke værdien men påvirker din likviditet." },
-              { icon: BookOpen, title: "Trin 4: Hvilke spil tæller med?", desc: "De fleste cashback-programmer dækker slots 100%, men bordspil og live casino varierer (10-50% bidrag). Tjek om dine foretrukne spil bidrager fuldt ud. Nogle casinoer udelukker helt specifikke high-RTP titler som Blood Suckers." },
-              { icon: Target, title: "Trin 5: Minimum tab-krav og loft", desc: "Nogle cashback-tilbud kræver et minimumstab (fx 500 kr.) før cashback aktiveres. Andre har et loft (fx maks 1.000 kr. cashback pr. uge). Beregn om dit typiske spillevolumen kvalificerer dig, og om loftet begrænser din potentielle tilbagebetaling." },
-              { icon: Users, title: "Trin 6: VIP-progression og opgradering", desc: "Mange casinoer tilbyder bedre cashback-vilkår jo højere dit VIP-niveau. Standard kan være 5%, men VIP-spillere får 10-15%. Tjek om casinoet har et klart VIP-program med definerede niveauer, og hvad der kræves for at rykke op." },
-              { icon: ShieldCheck, title: "Trin 7: Verifikation og udbetalingshastighed", desc: "Det nytter ikke at have generøs cashback, hvis udbetalingerne tager 5+ dage. Tjek casinoets gennemsnitlige udbetalingstid og om cashback-beløb kan hæves med det samme. De bedste casinoer krediterer cashback automatisk og tillader øjeblikkelig udbetaling." },
+              { iconName: "percent", title: "Trin 1: Tjek cashback-procenten", desc: "5% er standard, 10% er godt, 15%+ er exceptionelt. Vær opmærksom på om procenten gælder nettotab (tab minus gevinster) eller bruttotab (alle tabende indsatser). Nettotab med høj procent er markant mere fordelagtigt." },
+              { iconName: "calculator", title: "Trin 2: Omsætningskrav eller kontanter?", desc: "Kontant cashback (0x omsætning) er markant mere værdifuldt. Bonus-cashback med 5x omsætning reducerer den reelle værdi med 15-20%. Spørg specifikt: 'Udbetales cashback som rigtige penge?' – det ene ord ændrer alt." },
+              { iconName: "clock", title: "Trin 3: Beregningsperiode og udbetalingstid", desc: "Ugentlig cashback er bedst for cash flow. Tjek hvornår perioden starter/slutter og hvornår pengene krediteres. Nogle casinoer har 24-48 timers forsinkelse – det reducerer ikke værdien men påvirker din likviditet." },
+              { iconName: "book-open", title: "Trin 4: Hvilke spil tæller med?", desc: "De fleste cashback-programmer dækker slots 100%, men bordspil og live casino varierer (10-50% bidrag). Tjek om dine foretrukne spil bidrager fuldt ud. Nogle casinoer udelukker helt specifikke high-RTP titler som Blood Suckers." },
+              { iconName: "target", title: "Trin 5: Minimum tab-krav og loft", desc: "Nogle cashback-tilbud kræver et minimumstab (fx 500 kr.) før cashback aktiveres. Andre har et loft (fx maks 1.000 kr. cashback pr. uge). Beregn om dit typiske spillevolumen kvalificerer dig, og om loftet begrænser din potentielle tilbagebetaling." },
+              { iconName: "users", title: "Trin 6: VIP-progression og opgradering", desc: "Mange casinoer tilbyder bedre cashback-vilkår jo højere dit VIP-niveau. Standard kan være 5%, men VIP-spillere får 10-15%. Tjek om casinoet har et klart VIP-program med definerede niveauer, og hvad der kræves for at rykke op." },
+              { iconName: "shield-check", title: "Trin 7: Verifikation og udbetalingshastighed", desc: "Det nytter ikke at have generøs cashback, hvis udbetalingerne tager 5+ dage. Tjek casinoets gennemsnitlige udbetalingstid og om cashback-beløb kan hæves med det samme. De bedste casinoer krediterer cashback automatisk og tillader øjeblikkelig udbetaling." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -594,27 +594,27 @@ const CashbackBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 1: At øge indsatser for at 'udløse' mere cashback",
                 desc: "10% cashback på et tab på 10.000 kr. giver dig 1.000 kr. – men du har stadig tabt 9.000 kr. netto. Cashback er ikke en investeringsstrategi. Hold dit budget uændret og lad cashback være en bonus, ikke et mål.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 2: At ignorere beregningsmetoden (netto vs. brutto)",
                 desc: "En 3% bruttotab-cashback kan se lavere ud end 10% nettotab – men kan faktisk give højere beløb i kroner. Beregn altid det forventede cashback-beløb baseret på dit typiske spilmønster, ikke bare procenten.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 3: At spille med bonus OG forvente cashback",
                 desc: "De fleste casinoer tæller kun tab fra rigtige penge mod cashback. Hvis du spiller med en aktiv bonus, akkumulerer du ingen cashback. Planlæg dine bonusperioder og cashback-perioder separat for at maksimere begge.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 4: At overse spilbegrænsninger",
                 desc: "Hvis du primært spiller Blackjack, men cashback kun dækker slots, er tilbuddet reelt værdiløst for dig. Tjek altid spilbidrag FØR du vælger casino baseret på cashback-procenten.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 5: At vælge casino KUN baseret på cashback",
                 desc: "Cashback er vigtigt, men det bør ikke trumfe faktorer som spiludvalg, udbetalingshastighed, kundeservice og generel casinokvalitet. Et casino med 15% cashback men dårlig kundeservice og langsom udbetaling er sjældent den bedste løsning.",
               },

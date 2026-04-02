@@ -16,8 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, BadgeCheck, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, FileText, Info, Play, Search, ShieldCheck, Tv } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { BadgeCheck, ChevronLeft, ChevronRight, Info, Play, Search } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 
 const FEATURED_SLUGS = ["spildansknu", "spilleautomaten", "campobet"];
@@ -68,27 +68,27 @@ const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
 const expertiseItems = [
   {
-    icon: CalendarDays,
+    iconName: "calendar-days",
     label: "5+ års erfaring med online casino",
     desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2020.",
   },
   {
-    icon: CheckCircle2,
+    iconName: "check-circle2",
     label: "Testet 50+ danske casinoer",
     desc: "Systematisk gennemgang med registrering, indbetaling, gameplay og udbetaling på hvert casino.",
   },
   {
-    icon: FileText,
+    iconName: "file-text",
     label: "Speciale i bonusvilkår & omsætningskrav",
     desc: "Dybdegående analyse af bonusstrukturer, omsætningskrav og reel værdi for danske spillere.",
   },
   {
-    icon: Tv,
+    iconName: "tv",
     label: "Aktiv Twitch-streamer siden 2020",
     desc: "Daglig live-streaming med bonus hunts, slots og community-interaktion for tusindvis af seere.",
   },
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     label: "Fokus på ansvarligt spil",
     desc: "Gennemsigtig kommunikation om risici, ROFUS-tilslutning og spillerbeskyttelse i alt indhold.",
   },

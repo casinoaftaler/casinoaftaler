@@ -12,15 +12,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import { CheckCircle2, ClipboardList, CreditCard, Gamepad2, Gift, Headphones, Play, Scale, Smartphone } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { CheckCircle2, ClipboardList, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const testKriterier = [
   {
-    icon: Gamepad2,
+    iconName: "gamepad2",
     title: "Spiludvalg",
     items: [
       "Antal tilgængelige spil og variation i udbuddet",
@@ -30,7 +30,7 @@ const testKriterier = [
     ],
   },
   {
-    icon: Gift,
+    iconName: "gift",
     title: "Bonus & vilkår",
     items: [
       "Omsætningskrav – vi vurderer om kravene er realistiske og fair",
@@ -40,7 +40,7 @@ const testKriterier = [
     ],
   },
   {
-    icon: Scale,
+    iconName: "scale",
     title: "Licens & sikkerhed",
     items: [
       "Gyldig dansk licens fra Spillemyndigheden er et absolut krav",
@@ -50,7 +50,7 @@ const testKriterier = [
     ],
   },
   {
-    icon: CreditCard,
+    iconName: "credit-card",
     title: "Ind- og udbetaling",
     items: [
       "Behandlingstid for udbetalinger – vi tester den reelle ventetid",
@@ -60,7 +60,7 @@ const testKriterier = [
     ],
   },
   {
-    icon: Headphones,
+    iconName: "headphones",
     title: "Kundeservice",
     items: [
       "Vi tester live chat med reelle spørgsmål om bonusvilkår",
@@ -69,7 +69,7 @@ const testKriterier = [
     ],
   },
   {
-    icon: Smartphone,
+    iconName: "smartphone",
     title: "Mobiloplevelse",
     items: [
       "Om casinoet tilbyder en dedikeret app eller optimeret mobil-browser",

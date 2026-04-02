@@ -7,15 +7,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { useMySlotRequests, useCreateSlotRequest, usePendingQueuePositions } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
-import { CheckCircle2, Clock, Filter, Loader2, Minus, Plus, Search, Send, User, XCircle } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Clock, Filter, Loader2, Minus, Plus, Search, Send, User } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Link } from "react-router-dom";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: typeof Clock }> = {
-  pending: { label: "Afventer", variant: "secondary", icon: Clock },
-  bonus_hit: { label: "Bonus Hit! 🎉", variant: "default", icon: CheckCircle2 },
+  pending: { label: "Afventer", variant: "secondary", iconName: "clock" },
+  bonus_hit: { label: "Bonus Hit! 🎉", variant: "default", iconName: "check-circle2" },
   no_bonus: { label: "Ingen Bonus", variant: "outline", icon: Minus },
-  rejected: { label: "Afvist", variant: "destructive", icon: XCircle },
+  rejected: { label: "Afvist", variant: "destructive", iconName: "x-circle" },
 };
 
 export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number }) {
@@ -142,11 +142,11 @@ export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number 
             <div className="space-y-2">
               {(showAllRequests ? myRequests : myRequests.slice(0, 5)).map((req) => {
                 const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
-                const Icon = config.icon;
+                // icon resolved via iconName on config
                 return (
                   <div key={req.id} className="flex items-center justify-between rounded-lg border border-border p-3 text-sm">
                     <div className="flex items-center gap-2">
-                      <Icon className="h-4 w-4 text-muted-foreground" />
+                      <MenuIcon iconName={iconName} className="h-4 w-4 text-muted-foreground" />
                       <span className="font-medium">{req.slot_name}</span>
                       <span className="text-muted-foreground">({req.provider})</span>
                     </div>
@@ -309,14 +309,14 @@ export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number 
           <div className="space-y-2">
             {(showAllRequests ? myRequests : myRequests.slice(0, 5)).map((req) => {
               const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
-              const Icon = config.icon;
+              // icon resolved via iconName on config
               return (
                 <div
                   key={req.id}
                   className="flex items-center justify-between rounded-lg border border-border p-3 text-sm"
                 >
                   <div className="flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-muted-foreground" />
+                    <MenuIcon iconName={iconName} className="h-4 w-4 text-muted-foreground" />
                     <span className="font-medium">{req.slot_name}</span>
                     <span className="text-muted-foreground">({req.provider})</span>
                   </div>

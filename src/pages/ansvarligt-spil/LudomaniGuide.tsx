@@ -17,8 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import ludomaniHero from "@/assets/heroes/ludomani-guide-hero.jpg";
-import { Activity, ArrowRight, BarChart3, Brain, Clock, Dog, Gavel, Globe, HandHeart, Heart, Lock, MessageCircle, Phone, Scale, Shield, TrendingDown, UserX, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Activity, ArrowRight, Dog, Gavel, HandHeart, MessageCircle, TrendingDown, UserX } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -428,7 +428,7 @@ const LudomaniGuide = () => {
           <div className="space-y-4 mb-6">
             {[
               {
-                icon: Brain,
+                iconName: "brain",
                 title: "Biologiske faktorer",
                 content:
                   "Genetisk disposition (50–60 % arvelighed), dysregulering af dopamin- og serotonin-systemet, neurologiske forskelle i prefrontal cortex (impulskontroltcentret), og forhøjet respons i hjernens belønningssystem ved gambling-stimuli. Mænd har biologisk højere risiko pga. testosteronens indflydelse på risikoadfærd.",
@@ -440,13 +440,13 @@ const LudomaniGuide = () => {
                   "Kognitive forvrængninger (gambler's fallacy, illusion of control), impulsivitet, sensationssøgen, komorbide tilstande (depression, angst, ADHD), lavt selvværd, og brug af gambling som mestringsmekanisme mod stress eller negative følelser. Tidlig eksponering for gambling i barndommen øger risikoen markant.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Sociale faktorer",
                 content:
                   "Familiær historie med gambling, peer-pres og social normalisering af spil, let tilgængelighed af online gambling (24/7 adgang via smartphone), aggressiv reklame, økonomisk udsathed, og isolation. Kulturelle faktorer spiller også en rolle – i kulturer hvor gambling er stærkt normaliseret, er prævalensen højere.",
               },
               {
-                icon: Globe,
+                iconName: "globe",
                 title: "Strukturelle faktorer",
                 content:
                   "Spilleprodukternes design (høj frekvens af belønninger, near-misses, variable reinforcement schedules), den digitale tilgængelighed af online casino og sportsbetting, bonustilbud der opfordrer til fortsat spil, og mangel på effektive regulatoriske barrierer. Spillemaskiners og online slots' design er specifikt optimeret til at udnytte neurologiske svagheder.",
@@ -634,19 +634,19 @@ const LudomaniGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Heart,
+                iconName: "heart",
                 title: "Center for Ludomani",
                 desc: "Danmarks specialiserede behandlingstilbud for gambling disorder. Tilbyder gratis individuel kognitiv adfærdsterapi (KAT), gruppeterapi og online-rådgivning. Har afdelinger i hele Danmark. Ingen ventetid i de fleste tilfælde. Kræver ingen lægehenvisning.",
                 url: "https://ludomani.dk/",
               },
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "StopSpillet (70 22 28 25)",
                 desc: "Gratis, fortrolig rådgivningstjeneste for spillere og pårørende. Tilbyder telefonisk rådgivning (hverdage 10-16), chat-rådgivning og e-mail-support. Kan hjælpe med at finde det rigtige behandlingstilbud og fungerer som første kontaktpunkt for mange.",
                 url: "https://www.stopspillet.dk/",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Kommunale misbrugstilbud",
                 desc: "Under Servicelovens § 101 har kommunerne pligt til at tilbyde behandling for gambling-relaterede problemer. Kontakt din kommunes misbrugscenter for information. Tilbuddet varierer, men inkluderer typisk individuel rådgivning og gruppeterapi. Gratis.",
                 url: "#",
@@ -843,12 +843,12 @@ const LudomaniGuide = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
-              { icon: Lock, title: "ROFUS-tilmelding", desc: "Tilmeld dig ROFUS som forebyggende foranstaltning – midlertidig udelukkelse (f.eks. 1 måned) er ideel til 'digital detox'." },
-              { icon: Scale, title: "Indbetalingsgrænser", desc: "Sæt daglige, ugentlige og månedlige indbetalingsgrænser på alle dine casino-konti. Dansk lov kræver, at alle operatører tilbyder dette." },
-              { icon: Clock, title: "Tidsgrænser", desc: "Brug sessionstids-advarsler og sæt daglige spilgrænser. Mange casinoer tilbyder automatisk log-out efter en bestemt periode." },
-              { icon: BarChart3, title: "Budget og regnskab", desc: "Før et nøje regnskab over dine spil – indsatser, gevinster og tab. Objektivt overblik forhindrer selektiv hukommelse." },
-              { icon: Globe, title: "Blokeringssoftware", desc: "Installer BetBlocker (gratis) eller Gamban for at blokere adgang til gambling-sider på alle enheder." },
-              { icon: Phone, title: "Bankblokering", desc: "Kontakt din bank om at blokere transaktioner til gambling-udbydere via netbank eller mobilbank." },
+              { iconName: "lock", title: "ROFUS-tilmelding", desc: "Tilmeld dig ROFUS som forebyggende foranstaltning – midlertidig udelukkelse (f.eks. 1 måned) er ideel til 'digital detox'." },
+              { iconName: "scale", title: "Indbetalingsgrænser", desc: "Sæt daglige, ugentlige og månedlige indbetalingsgrænser på alle dine casino-konti. Dansk lov kræver, at alle operatører tilbyder dette." },
+              { iconName: "clock", title: "Tidsgrænser", desc: "Brug sessionstids-advarsler og sæt daglige spilgrænser. Mange casinoer tilbyder automatisk log-out efter en bestemt periode." },
+              { iconName: "bar-chart3", title: "Budget og regnskab", desc: "Før et nøje regnskab over dine spil – indsatser, gevinster og tab. Objektivt overblik forhindrer selektiv hukommelse." },
+              { iconName: "globe", title: "Blokeringssoftware", desc: "Installer BetBlocker (gratis) eller Gamban for at blokere adgang til gambling-sider på alle enheder." },
+              { iconName: "phone", title: "Bankblokering", desc: "Kontakt din bank om at blokere transaktioner til gambling-udbydere via netbank eller mobilbank." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
@@ -956,21 +956,21 @@ const LudomaniGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {[
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "StopSpillet",
                 desc: "Gratis, fortrolig rådgivning for spillere og pårørende. Telefonisk rådgivning: 70 22 28 25 (hverdage 10-16). Chat og e-mail tilgængelig.",
                 url: "https://www.stopspillet.dk/",
                 label: "Besøg StopSpillet",
               },
               {
-                icon: Heart,
+                iconName: "heart",
                 title: "Center for Ludomani",
                 desc: "Gratis, professionel behandling (KAT). Individuel terapi, gruppeterapi og online-rådgivning. Ingen ventetid. Afdelinger i hele Danmark.",
                 url: "https://ludomani.dk/",
                 label: "Besøg Center for Ludomani",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "ROFUS – Selvudelukkelse",
                 desc: "Tilmeld dig ROFUS for at blokere adgang til alle danske licenserede spiludbydere. Gratis og aktiveres inden for 24 timer.",
                 url: "https://www.spillemyndigheden.dk/rofus",

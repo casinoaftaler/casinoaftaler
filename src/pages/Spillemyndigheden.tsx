@@ -3,8 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
-import { Ban, Eye, FileCheck, Gavel, Lock, Phone, Shield } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, FileCheck, Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -55,22 +55,22 @@ const licensTypes = [
 
 const playerProtections = [
   {
-    icon: Shield,
+    iconName: "shield",
     title: "ROFUS – Selvudelukkelse",
     description: "Register Over Frivilligt Udelukkede Spillere giver danske spillere mulighed for at udelukke sig selv fra alle licenserede spillesider i Danmark. Registreringen sker via MitID, og du kan vælge udelukkelse fra 24 timer op til permanent.",
   },
   {
-    icon: Phone,
+    iconName: "phone",
     title: "StopSpillet – Hjælpelinjen",
     description: "En gratis og anonym rådgivningstjeneste for spillere og pårørende, som er berørt af problematisk spilleadfærd. StopSpillet drives med støtte fra Spillemyndigheden og er tilgængelig via telefon, chat og e-mail.",
   },
   {
-    icon: Lock,
+    iconName: "lock",
     title: "Indbetalingsgrænser",
     description: "Alle licenserede casinoer er forpligtet til at tilbyde spillere mulighed for at sætte daglige, ugentlige og månedlige indbetalingsgrænser. Grænser kan sænkes øjeblikkeligt, men forhøjelser træder først i kraft efter en karensperiode.",
   },
   {
-    icon: Eye,
+    iconName: "eye",
     title: "Overvågning af Spilleadfærd",
     description: "Operatører skal overvåge spilleadfærd og kontakte spillere, der udviser tegn på problematisk spil. Dette inkluderer lange spilsessioner, hyppige indbetalinger og jagten på tab.",
   },

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Award, Crown, Gamepad2, Gift, Medal, Sparkles, Trophy, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Award, Crown, Medal, Sparkles, Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserProfileLink } from "@/components/UserProfileLink";
@@ -245,7 +245,7 @@ function PremiumRankBadge({ rank, isDark }: { rank: number; isDark: boolean }) {
         background: badgeStyle.bg,
         color: badgeStyle.color,
       }}>
-        <Icon className="h-4 w-4" />
+        <MenuIcon iconName={iconName} className="h-4 w-4" />
       </div>
     </div>
   );

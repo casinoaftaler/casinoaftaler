@@ -16,8 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Apple, ArrowRight, Battery, Clock, CreditCard, Dog, Download, Eye, Lock, Monitor, Play, RefreshCw, Scroll, Settings, Shield, Smartphone, Wallet, Wifi } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Battery, Dog, Download, Play, Scroll, Settings, Wallet, Wifi } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -607,7 +607,7 @@ const IPhoneCasinoGuide = () => {
             {[
               {
                 title: "Apple Pay",
-                icon: CreditCard,
+                iconName: "credit-card",
                 time: "< 10 sek",
                 fee: "Ingen",
                 desc: "Biometrisk bekræftelse via Face ID/Touch ID. Kortnummer deles aldrig med casinoet – Apple Pay bruger en engangstoken. Tilgængelig hos et stigende antal danske casinoer.",
@@ -615,7 +615,7 @@ const IPhoneCasinoGuide = () => {
               },
               {
                 title: "MobilePay",
-                icon: Smartphone,
+                iconName: "smartphone",
                 time: "< 15 sek",
                 fee: "Ingen",
                 desc: "Danmarks mest populære mobilbetalingsapp. Fungerer smidigt på iPhone med automatisk app-skift. Tilgængelig hos de fleste danske licenserede casinoer.",
@@ -623,7 +623,7 @@ const IPhoneCasinoGuide = () => {
               },
               {
                 title: "Trustly (Open Banking)",
-                icon: Lock,
+                iconName: "lock",
                 time: "30-60 sek",
                 fee: "Ingen",
                 desc: "Direkte bankoverførsel via iOS-browser. Kræver MitID-bekræftelse. Hurtig indbetaling, udbetaling inden for 1-24 timer.",
@@ -631,7 +631,7 @@ const IPhoneCasinoGuide = () => {
               },
               {
                 title: "Visa / Mastercard (Safari AutoFill)",
-                icon: CreditCard,
+                iconName: "credit-card",
                 time: "< 20 sek",
                 fee: "Ingen",
                 desc: "Safaris AutoFill udfylder automatisk kortoplysninger fra Apple Wallet. 3D Secure-verifikation via Face ID/Touch ID.",
@@ -755,27 +755,27 @@ const IPhoneCasinoGuide = () => {
               {
                 title: "Brug 'Fokus' til casino-sessioner",
                 desc: "Opret et tilpasset Focus-profil, der blokerer notifikationer under spil. Gå til Indstillinger → Fokus → '+' → tilpas notifikationer og tillad kun casino-appen.",
-                icon: Eye,
+                iconName: "eye",
               },
               {
                 title: "Ryd Safari-cache regelmæssigt",
                 desc: "En fuld Safari-cache kan reducere performance. Ryd cache under Indstillinger → Safari → Ryd historik og websitedata. Gør det hver 2-4 uge.",
-                icon: RefreshCw,
+                iconName: "refresh-cw",
               },
               {
                 title: "Aktiver 'Forebyg sporing på tværs af websteder'",
                 desc: "Denne Safari-indstilling (Indstillinger → Safari → Anonymitet & sikkerhed) forhindrer tredjepartscookies i at spore dig – uden at påvirke casino-funktionaliteten.",
-                icon: Shield,
+                iconName: "shield",
               },
               {
                 title: "Brug Skærmtid til at sætte tidsgrænser",
                 desc: "iOS Skærmtid kan begrænse tid brugt i Safari eller casino-apps. Gå til Indstillinger → Skærmtid → App-grænser → tilføj en daglig grænse. Et godt supplement til casinoernes egne grænser.",
-                icon: Clock,
+                iconName: "clock",
               },
               {
                 title: "Landscape-mode til live casino",
                 desc: "Drej din iPhone vandret for en markant bedre live casino-oplevelse. Dealer-videoen bliver større, og betting-interface har mere plads. Sørg for at rotationslås er deaktiveret.",
-                icon: Monitor,
+                iconName: "monitor",
               },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">

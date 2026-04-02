@@ -16,8 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
-import { ArrowRight, BarChart3, BookOpen, Calendar, Gavel, Globe, HandHeart, Headphones, Heart, HelpCircle, Mail, MessageCircle, Phone, Send, Shield, UserCheck, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Gavel, HandHeart, HelpCircle, MessageCircle, Send, UserCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -267,7 +267,7 @@ const StopSpilletGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {[
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "Telefon",
                 desc: "Ring 70 22 28 25. Åbningstid: Hverdage (mandag-fredag) kl. 10-16. Opkaldet koster alm. takst (typisk inkluderet i dit mobilabonnement). Du bliver mødt af en rådgiver direkte – ingen ventemusik eller IVR-menuer.",
                 cta: "Ring nu",
@@ -281,7 +281,7 @@ const StopSpilletGuide = () => {
                 href: "https://www.stopspillet.dk/",
               },
               {
-                icon: Mail,
+                iconName: "mail",
                 title: "E-mail",
                 desc: "Send en besked via kontaktformularen på stopspillet.dk. Svar inden for 1-2 hverdage. Ideel til ikke-akutte henvendelser eller hvis du har brug for tid til at formulere dine tanker. Din e-mail behandles fortroligt.",
                 cta: "Skriv besked",
@@ -342,14 +342,14 @@ const StopSpilletGuide = () => {
             {[
               {
                 step: 1,
-                icon: Phone,
+                iconName: "phone",
                 title: "Velkomst og tryghed",
                 content:
                   "Rådgiveren præsenterer sig med fornavn og skaber en tryg ramme. Du bliver aldrig bedt om at identificere dig – samtalen er anonym fra start. Rådgiveren forklarer tavshedspligten og spørger, hvad du gerne vil tale om. Der er ingen forkerte svar.",
               },
               {
                 step: 2,
-                icon: Headphones,
+                iconName: "headphones",
                 title: "Lytning og forståelse",
                 content:
                   "Rådgiveren lytter aktivt til din historie og stiller opklarende spørgsmål. Der er ingen dømning eller moralprædiken – formålet er at forstå din situation. Mange oplever allerede lettelse ved blot at sætte ord på deres oplevelser. Samtalen foregår i dit tempo.",
@@ -415,11 +415,11 @@ const StopSpilletGuide = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
               { icon: UserCheck, title: "Bekymrede spillere", desc: "Spillere, der oplever de første tegn på problematisk adfærd og ønsker en samtale, før det eskalerer." },
-              { icon: Users, title: "Pårørende", desc: "Partnere, forældre, børn og venner, der er bekymrede for en andens spilleadfærd. Ca. 30 % af alle henvendelser." },
-              { icon: Heart, title: "Diagnosticerede ludomaner", desc: "Spillere med klinisk ludomani, der søger vejledning om behandlingsmuligheder og ROFUS-tilmelding." },
-              { icon: Shield, title: "Forebyggende henvendelser", desc: "Rekreative spillere, der ønsker information om ansvarligt spil og værktøjer til at holde kontrol." },
-              { icon: Globe, title: "Fagfolk", desc: "Socialrådgivere, sundhedspersonale og undervisere, der søger viden om spilleproblematikker." },
-              { icon: Calendar, title: "Tidligere spillere", desc: "Mennesker i recovery, der har brug for støtte til at forebygge tilbagefald eller håndtere triggere." },
+              { iconName: "users", title: "Pårørende", desc: "Partnere, forældre, børn og venner, der er bekymrede for en andens spilleadfærd. Ca. 30 % af alle henvendelser." },
+              { iconName: "heart", title: "Diagnosticerede ludomaner", desc: "Spillere med klinisk ludomani, der søger vejledning om behandlingsmuligheder og ROFUS-tilmelding." },
+              { iconName: "shield", title: "Forebyggende henvendelser", desc: "Rekreative spillere, der ønsker information om ansvarligt spil og værktøjer til at holde kontrol." },
+              { iconName: "globe", title: "Fagfolk", desc: "Socialrådgivere, sundhedspersonale og undervisere, der søger viden om spilleproblematikker." },
+              { iconName: "calendar", title: "Tidligere spillere", desc: "Mennesker i recovery, der har brug for støtte til at forebygge tilbagefald eller håndtere triggere." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
@@ -575,17 +575,17 @@ const StopSpilletGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Heart,
+                iconName: "heart",
                 title: "Center for Ludomani",
                 desc: "Danmarks specialiserede behandlingscenter for gambling disorder. Tilbyder gratis kognitiv adfærdsterapi (KAT), gruppeterapi og online-behandling. Ingen ventetid i de fleste tilfælde. Ingen lægehenvisning nødvendig.",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "ROFUS (Selvudelukkelse)",
                 desc: "Spillemyndighedens officielle selvudelukkelsesregister. StopSpillet kan vejlede dig i processen og hjælpe dig med at vælge den rigtige udelukkelsestype. Gratis tilmelding via MitID.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Kommunale misbrugstilbud",
                 desc: "Under Servicelovens § 101 har kommunerne behandlingsgaranti for afhængighed, herunder ludomani. StopSpillet kan hjælpe dig med at finde dit lokale tilbud.",
               },
@@ -722,10 +722,10 @@ const StopSpilletGuide = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             {[
-              { icon: BookOpen, title: "Selvtest (PGSI)", desc: "Problem Gambling Severity Index – valideret screeningsværktøj til at vurdere din spilleadfærd. Tilgængelig på stopspillet.dk." },
-              { icon: Shield, title: "ROFUS-tilmelding", desc: "Selvudelukkelse fra alle danske licenserede spiludbydere. Gratis via Spillemyndighedens hjemmeside med MitID." },
-              { icon: Globe, title: "BetBlocker", desc: "Gratis blokeringssoftware, der blokerer adgang til gambling-hjemmesider på alle enheder. Anbefalet af europæiske tilsynsmyndigheder." },
-              { icon: BarChart3, title: "Spillebudget-skabelon", desc: "Værktøjer til at opstille og overholde et realistisk spillebudget. Tilgængelig via StopSpillets hjemmeside." },
+              { iconName: "book-open", title: "Selvtest (PGSI)", desc: "Problem Gambling Severity Index – valideret screeningsværktøj til at vurdere din spilleadfærd. Tilgængelig på stopspillet.dk." },
+              { iconName: "shield", title: "ROFUS-tilmelding", desc: "Selvudelukkelse fra alle danske licenserede spiludbydere. Gratis via Spillemyndighedens hjemmeside med MitID." },
+              { iconName: "globe", title: "BetBlocker", desc: "Gratis blokeringssoftware, der blokerer adgang til gambling-hjemmesider på alle enheder. Anbefalet af europæiske tilsynsmyndigheder." },
+              { iconName: "bar-chart3", title: "Spillebudget-skabelon", desc: "Værktøjer til at opstille og overholde et realistisk spillebudget. Tilgængelig via StopSpillets hjemmeside." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
@@ -812,21 +812,21 @@ const StopSpilletGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {[
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "StopSpillet",
                 desc: "Gratis, fortrolig rådgivning. Ring 70 22 28 25 (hverdage 10-16) eller start en chat på stopspillet.dk.",
                 url: "https://www.stopspillet.dk/",
                 label: "Besøg StopSpillet",
               },
               {
-                icon: Heart,
+                iconName: "heart",
                 title: "Center for Ludomani",
                 desc: "Gratis, professionel behandling (KAT). Ingen ventetid. Individuel terapi, gruppeterapi og online-rådgivning.",
                 url: "https://ludomani.dk/",
                 label: "Besøg Center for Ludomani",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "ROFUS – Selvudelukkelse",
                 desc: "Blokér din adgang til alle danske licenserede spiludbydere. Gratis tilmelding via MitID.",
                 url: "https://www.spillemyndigheden.dk/rofus",

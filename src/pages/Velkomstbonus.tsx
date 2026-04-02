@@ -29,8 +29,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Calculator, Clock, CreditCard, Dog, Gamepad2, Gift, ListChecks, Lock, Minus, ShieldCheck, Sparkles, Target, TrendingUp, Trophy, User, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Dog, ListChecks, Minus } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
@@ -83,28 +83,28 @@ const bonusTypes = [
   {
     id: "matchbonus",
     name: "Matchbonus (100%)",
-    icon: TrendingUp,
+    iconName: "trending-up",
     description:
       "Den mest udbredte form for velkomstbonus. Casinoet matcher din første indbetaling med en bestemt procentdel – typisk 100%. Indbetaler du fx 500 kr., får du yderligere 500 kr. i bonuspenge at spille for.",
   },
   {
     id: "free-spins-combo",
     name: "Matchbonus + Free Spins",
-    icon: Sparkles,
+    iconName: "sparkles",
     description:
       "Mange casinoer kombinerer en matchbonus med et antal gratis spins på populære spilleautomater. Det giver dig både ekstra penge og gratis omgange, som tilsammen kan øge dine gevinstchancer markant.",
   },
   {
     id: "no-deposit",
     name: "Velkomstbonus uden indbetaling",
-    icon: Gift,
+    iconName: "gift",
     description:
       "Sjælden men attraktiv – her modtager du en bonus eller gratis spins uden at skulle indbetale penge først. Denne type har typisk højere omsætningskrav og lavere bonusbeløb, men er helt risikofri for spilleren.",
   },
   {
     id: "tiered",
     name: "Flertrinspakke",
-    icon: Trophy,
+    iconName: "trophy",
     description:
       "Nogle casinoer fordeler velkomstbonussen over de første 2-4 indbetalinger. Hver indbetaling udløser en ny bonus, hvilket giver dig bonusfordele over en længere periode og fordeler risikoen.",
   },
@@ -422,27 +422,27 @@ const Velkomstbonus = () => {
               {
                 title: "Trin 1: Vælg det rette casino",
                 desc: "Undersøg casinoernes bonusvilkår, spiludbud og anmeldelser. Find det casino med den velkomstbonus, der matcher dine behov – husk at den største bonus ikke nødvendigvis er den bedste.",
-                icon: Target,
+                iconName: "target",
               },
               {
                 title: "Trin 2: Opret din konto",
                 desc: "Tilmeld dig hos det valgte casino med dine korrekte personoplysninger. Det er vigtigt at indtaste nøjagtige data for at undgå problemer ved verifikation og senere udbetalinger.",
-                icon: Users,
+                iconName: "users",
               },
               {
                 title: "Trin 3: Bekræft din identitet",
                 desc: "De fleste danske casinoer kræver identitetsverifikation via MitID eller e-mail-bekræftelse. Dette sikrer et trygt spilmiljø og er lovpligtigt i Danmark.",
-                icon: ShieldCheck,
+                iconName: "shield-check",
               },
               {
                 title: "Trin 4: Foretag din første indbetaling",
                 desc: "Vælg din foretrukne betalingsmetode og indbetal mindst minimumsbeløbet. Bonussen aktiveres typisk automatisk ved indbetalingen – tjek om der kræves en bonuskode.",
-                icon: CreditCard,
+                iconName: "credit-card",
               },
               {
                 title: "Trin 5: Begynd at spille",
                 desc: "Udforsk casinoets spiludbud og brug dine bonusmidler strategisk. Vælg spil med høj RTP og husk at tjekke, hvilke spil der bidrager fuldt til omsætningskravet.",
-                icon: Gamepad2,
+                iconName: "gamepad2",
               },
             ].map((item) => (
               <div
@@ -677,10 +677,10 @@ const Velkomstbonus = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { title: "Ny spiller", desc: "Start med en no-deposit bonus eller en lav-risiko velkomstbonus (100% match, no-sticky, ≤5x). Fokus bør være på at lære platformen, ikke på at jage omsætningskrav. En bonus uden indbetaling er det sikreste valg.", icon: User },
-              { title: "Slot-entusiast", desc: "Vælg velkomstbonusser med mange free spins på høj-RTP slots. En pakke med 100 omsætningsfrie spins á 2 kr. er mere værd end en standard matchbonus med høje krav. Spinværdi og omsætningskrav er dine nøgletal.", icon: Sparkles },
-              { title: "Strategisk spiller", desc: "Prioritér no-sticky bonus med lavest mulig omsætning. Beregn EV før accept. Den matematisk optimale strategi er at spille egne penge først (no-sticky), og kun bruge bonusmidler hvis du allerede er foran.", icon: Target },
-              { title: "High Roller", desc: "Kontakt casinoets VIP-afdeling. Standard velkomstbonusser (max 1.000 kr.) er ofte utilstrækkelige for high roller-budgetter. Nogle casinoer kan tilbyde skræddersyede vilkår inden for lovens rammer.", icon: TrendingUp },
+              { title: "Ny spiller", desc: "Start med en no-deposit bonus eller en lav-risiko velkomstbonus (100% match, no-sticky, ≤5x). Fokus bør være på at lære platformen, ikke på at jage omsætningskrav. En bonus uden indbetaling er det sikreste valg.", iconName: "user" },
+              { title: "Slot-entusiast", desc: "Vælg velkomstbonusser med mange free spins på høj-RTP slots. En pakke med 100 omsætningsfrie spins á 2 kr. er mere værd end en standard matchbonus med høje krav. Spinværdi og omsætningskrav er dine nøgletal.", iconName: "sparkles" },
+              { title: "Strategisk spiller", desc: "Prioritér no-sticky bonus med lavest mulig omsætning. Beregn EV før accept. Den matematisk optimale strategi er at spille egne penge først (no-sticky), og kun bruge bonusmidler hvis du allerede er foran.", iconName: "target" },
+              { title: "High Roller", desc: "Kontakt casinoets VIP-afdeling. Standard velkomstbonusser (max 1.000 kr.) er ofte utilstrækkelige for high roller-budgetter. Nogle casinoer kan tilbyde skræddersyede vilkår inden for lovens rammer.", iconName: "trending-up" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -897,27 +897,27 @@ const Velkomstbonus = () => {
           <div className="space-y-3">
             {[
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "Trin 1: Beregn den reelle EV",
                 desc: "Brug formlen: EV = Bonusbeløb – (Total omsætning × House Edge). Hvis EV er under 30% af bonusbeløbet, er bonussen sandsynligvis ikke værd at tage. Husk at skelne mellem (b) og (d+b) omsætning – forskellen kan være tusindvis af kroner.",
               },
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "Trin 2: Identificer bonusstruktur",
                 desc: "Er det sticky eller no-sticky? No-sticky giver dig frit spil med egne penge først og er 2-3x mere værdifuld. Finder du ikke ordet 'no-sticky' eller 'forfeitable' i vilkårene, er bonussen sticky som standard.",
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "Trin 3: Tjek tidsfristen",
                 desc: "Har du realistisk tid til at gennemspille omsætningen inden for fristen? 10x (d+b) på 1.000 kr. bonus kræver 20.000 kr. omsætning = ~5-6 timer spilletid. Med 14 dages frist er det overkommeligt; med 3 dage kan det blive stressende.",
               },
               {
-                icon: Gamepad2,
+                iconName: "gamepad2",
                 title: "Trin 4: Verificer spilkompatibilitet",
                 desc: "Spiller du primært slots? Perfekt – de bidrager 100%. Bordspil? Kun 10%. Live casino? Ofte 0%. Vælg kun en velkomstbonus, hvis dine foretrukne spil bidrager effektivt til omsætningen.",
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "Trin 5: Fastlæg dit budget FØRST",
                 desc: "Bestem hvor meget du ville have indbetalt UDEN bonussen. Indbetal præcis dette beløb. Bonussen er en ekstra fordel, ikke en grund til at ændre dit budget. Denne ene regel beskytter dig mod de fleste bonusfælder.",
               },

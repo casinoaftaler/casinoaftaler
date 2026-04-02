@@ -3,7 +3,7 @@ import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { Link, useLocation } from "react-router-dom";
 import { Cherry, ChevronRight, CreditCard, Crown, Dices, Gamepad2, Gift, LayoutGrid, Sparkles, Star, Tv } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { MENU_ICON_MAP } from "./header/menuIconMap";
@@ -68,7 +68,7 @@ function CategorySection({ category }: { category: SidebarCategory }) {
     <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md flex-shrink-0 bg-primary/10 text-primary">
-          <Icon className="h-4.5 w-4.5" />
+          <MenuIcon iconName={iconName} className="h-4.5 w-4.5" />
         </span>
         <span>{category.title}</span>
       </div>

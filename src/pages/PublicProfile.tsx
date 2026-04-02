@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { PointsBalanceCard } from "@/components/PointsBalanceCard";
 import { TwitchBadges } from "@/components/TwitchBadges";
 import { ArrowLeft, Building2, Gamepad2, Gauge, Play, Sparkles, TrendingUp, Trophy } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { Button } from "@/components/ui/button";
 
 const PLAY_STYLE_LABELS: Record<string, string> = {
@@ -52,7 +52,7 @@ function formatAmount(amount: number | null): string {
 }
 
 function StatCard({ 
-  icon: Icon, 
+  iconName, 
   label, 
   value, 
   subValue,
@@ -83,7 +83,7 @@ function StatCard({
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-start gap-3">
           <div className={`p-2 rounded-lg bg-background/50 ${iconColors[accentColor]}`}>
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+            <MenuIcon iconName={iconName} className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs sm:text-sm text-muted-foreground">{label}</p>

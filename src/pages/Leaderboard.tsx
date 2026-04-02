@@ -5,8 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart3, ChevronRight, LogIn, Play, Target, Timer, Trophy } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, ChevronRight, Play, Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
@@ -143,9 +143,9 @@ function TournamentStatStrip({ tournaments }: { tournaments: Tournament[] }) {
   const ended = tournaments.filter(t => t.status === "ended").length;
 
   const stats = [
-    { label: "Aktive turneringer", value: active, icon: Trophy },
-    { label: "Afsluttede turneringer", value: ended, icon: Target },
-    { label: "Turneringer i alt", value: tournaments.length, icon: BarChart3 },
+    { label: "Aktive turneringer", value: active, iconName: "trophy" },
+    { label: "Afsluttede turneringer", value: ended, iconName: "target" },
+    { label: "Turneringer i alt", value: tournaments.length, iconName: "bar-chart3" },
   ];
 
   return (

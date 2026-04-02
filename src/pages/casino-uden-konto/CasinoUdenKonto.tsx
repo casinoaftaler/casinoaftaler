@@ -18,8 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Apple, ArrowRight, Ban, CreditCard, Eye, Landmark, Lock, Play, Scale, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, ArrowRight, Ban, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -349,25 +349,25 @@ const CasinoUdenKonto = () => {
                 step: "1",
                 title: "Vælg casino & bank",
                 desc: "Gå til et Pay N Play-casino og klik 'Indbetal'. Vælg din bank fra listen af understøttede danske banker.",
-                icon: Landmark,
+                iconName: "landmark",
               },
               {
                 step: "2",
                 title: "Log ind med MitID",
                 desc: "Autentificér dig med MitID via din banks sikre loginside. Trustly modtager dine KYC-data automatisk.",
-                icon: Lock,
+                iconName: "lock",
               },
               {
                 step: "3",
                 title: "Angiv beløb & bekræft",
                 desc: "Vælg indbetalingsbeløb og bekræft transaktionen. Beløbet trækkes øjeblikkeligt fra din bankkonto.",
-                icon: CreditCard,
+                iconName: "credit-card",
               },
               {
                 step: "4",
                 title: "Spil med det samme",
                 desc: "Du er klar til at spille – ingen ventetid, ingen email-verifikation, ingen brugernavn/adgangskode.",
-                icon: Zap,
+                iconName: "zap",
               },
             ].map((item) => (
               <Card key={item.step} className="border-border bg-card">
@@ -507,12 +507,12 @@ const CasinoUdenKonto = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "Bankniveau-kryptering",
                 desc: "Al kommunikation mellem dig, banken og Trustly er krypteret med TLS 1.3 – samme sikkerhedsniveau som internetbankering. Casinoet modtager aldrig dine bankloginoplysninger.",
               },
               {
-                icon: Eye,
+                iconName: "eye",
                 title: "Automatisk KYC via CPR",
                 desc: "Din identitet verificeres automatisk via bankforbindelsen. Casinoet modtager dit CPR-nummer og verificerer det mod Spillemyndighedens ROFUS-register – alt sammen maskinelt.",
               },
@@ -522,7 +522,7 @@ const CasinoUdenKonto = () => {
                 desc: "Da der ikke oprettes brugernavn/adgangskode, er der ingen risiko for password-lækage, brute-force angreb eller credential stuffing. Du er beskyttet mod de mest almindelige cyberangreb.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Regulatorisk compliance",
                 desc: "Pay N Play overholder alle krav i hvidvaskloven (§ 11), spilleloven og BEK nr. 1494. Spillemyndigheden har godkendt modellen til brug på det danske marked.",
               },

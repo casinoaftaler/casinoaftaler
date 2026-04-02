@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CreditCard, Gift, Sparkles, Star } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 /**
  * Contextual money-page CTA + sibling cross-links for casinospil spoke pages.
@@ -17,28 +17,28 @@ interface CasinospilMoneyLinksProps {
 const MONEY_LINKS = [
   {
     to: "/casino-anmeldelser",
-    icon: Star,
+    iconName: "star",
     title: "Casino Anmeldelser",
     getDesc: (name: string) =>
       `Find det bedste casino til ${name} – vi har testet udvalget hos 29 danske casinoer.`,
   },
   {
     to: "/casino-bonus",
-    icon: Gift,
+    iconName: "gift",
     title: "Casino Bonus Guide",
     getDesc: (name: string) =>
       `Sammenlign bonusser og omsætningskrav – se hvilke tilbud der passer bedst til ${name}.`,
   },
   {
     to: "/nye-casinoer",
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Nye Casinoer 2026",
     getDesc: (name: string) =>
       `De nyeste danske casinoer med ${name} og et stort udvalg af bordspil.`,
   },
   {
     to: "/velkomstbonus",
-    icon: CreditCard,
+    iconName: "credit-card",
     title: "Velkomstbonus",
     getDesc: (_name: string) =>
       `Få det bedste velkomsttilbud – tjek om bordspil bidrager til omsætningskrav.`,
@@ -148,13 +148,13 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
-        {MONEY_LINKS.map(({ to, icon: Icon, title, getDesc }) => (
+        {MONEY_LINKS.map(({ to, iconName, title, getDesc }) => (
           <Link
             key={to}
             to={to}
             className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
           >
-            <Icon className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+            <MenuIcon iconName={iconName} className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-semibold">{title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">

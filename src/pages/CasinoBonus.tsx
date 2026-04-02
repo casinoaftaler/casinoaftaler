@@ -25,8 +25,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { AlertTriangle, ArrowRight, Ban, BarChart3, BookOpen, Calculator, CheckCircle2, Clock, CreditCard, Crown, DollarSign, Eye, Flame, Gamepad2, Gift, Lock, Percent, Play, RefreshCw, Sparkles, Star, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Ban, DollarSign, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -577,32 +577,32 @@ const CasinoBonus = () => {
                 desc: "Den hyppigste årsag til konfiskeret bonus. Du spiller med 50 kr. pr. spin, men vilkårene tillader kun 25 kr. Casinoets system registrerer overtrædelsen – ofte først, når du anmoder om udbetaling. Resultat: bonus og gevinster annulleret. Tjek altid max. indsats i vilkårene, og hold dig under grænsen med margin."
               },
               {
-                icon: Gamepad2,
+                iconName: "gamepad2",
                 title: "2. Udelukkede spil",
                 desc: "Mange bonusser ekskluderer specifikke spil fra bidrag til omsætningskrav – typisk progressive jackpots, visse bordspil og live casino-spil. Hvis du spiller et udelukket spil, bidrager det 0% til din omsætning, og i værste fald kan det annullere bonussen. Tjek altid listen over kvalificerede spil."
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "3. Tidsbegrænsning undervurderet",
                 desc: "En bonus med 7 dages gyldighed kræver intensivt spil for at opfylde omsætningskravene. Med 20.000 kr. i krav og 25 kr. pr. spin skal du spille ca. 115 spins dagligt. Realistisk? Ja, men kun hvis du spiller hver dag. Vælg bonusser med mindst 30 dages gyldighed for komfortabel omsætning."
               },
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "4. (d+b) vs. (b) misforståelse",
                 desc: "Mange spillere antager, at 10x omsætningskrav betyder 10x bonusbeløbet. Men de fleste danske casinoer bruger (d+b)-modellen, hvor kravet gælder indbetaling + bonus. En 1.000 kr. bonus med 10x (d+b) kræver 20.000 kr. i omsætning – dobbelt af, hvad de fleste forventer. Læs altid, om kravet er (b) eller (d+b)."
               },
               {
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 title: "5. Spilbidrag-illusionen",
                 desc: "Du har en casinobonus og spiller roulette – men roulette bidrager kun 10% til omsætningen. Med 20.000 kr. i omsætningskrav skal du reelt omsætte 200.000 kr. på roulette for at opfylde kravet. Det er 10x mere end du troede. Spil altid 100%-bidragsslots under bonusomsætning."
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "6. Sports minimum odds-krav",
                 desc: "Sportsbonusser har ofte et minimum odds-krav på 1,80-2,00 for enkeltvæddemål og endnu højere for kombinationer. Placerer du væddemål under minimum odds, tæller det ikke mod omsætningen. Mange spillere opdager dette først, når de har omsat tusindvis af kroner på lavt-odds favoritter, der ikke bidrager."
               },
               {
-                icon: Eye,
+                iconName: "eye",
                 title: "7. Gevinstloft (max. udbetaling)",
                 desc: "Nogle bonusser – særligt no-deposit og free spins – har et loft for, hvor meget du kan udbetale fra bonusgevinster. Et gevinstloft på 500 kr. betyder, at selv om du vinder 5.000 kr., kan du kun hæve 500 kr. Tjek altid gevinstloftet, især ved gratis bonusser – det ændrer den reelle EV fundamentalt."
               },
@@ -832,25 +832,25 @@ const CasinoBonus = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
-              { to: "/no-sticky-bonus", label: "No-Sticky Bonus Guide", icon: Sparkles },
-              { to: "/sticky-bonus", label: "Sticky Bonus Guide", icon: Lock },
-              { to: "/free-spins", label: "Free Spins Guide", icon: RefreshCw },
-              { to: "/velkomstbonus", label: "Velkomstbonus Guide", icon: Gift },
-              { to: "/indskudsbonus", label: "Indskudsbonus Guide", icon: CreditCard },
-              { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Zap },
-              { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: CheckCircle2 },
+              { to: "/no-sticky-bonus", label: "No-Sticky Bonus Guide", iconName: "sparkles" },
+              { to: "/sticky-bonus", label: "Sticky Bonus Guide", iconName: "lock" },
+              { to: "/free-spins", label: "Free Spins Guide", iconName: "refresh-cw" },
+              { to: "/velkomstbonus", label: "Velkomstbonus Guide", iconName: "gift" },
+              { to: "/indskudsbonus", label: "Indskudsbonus Guide", iconName: "credit-card" },
+              { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", iconName: "zap" },
+              { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", iconName: "check-circle2" },
               { to: "/cashback-bonus", label: "Cashback Bonus Guide", icon: DollarSign },
-              { to: "/reload-bonus", label: "Reload Bonus Guide", icon: RefreshCw },
-              { to: "/omsaetningskrav", label: "Omsætningskrav Guide", icon: Percent },
-              { to: "/vip-program", label: "VIP Program Guide", icon: Crown },
-              { to: "/free-spins-i-dag", label: "Free Spins i Dag", icon: Flame },
-              { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
-              { to: "/casinoer", label: "Alle Danske Casinoer", icon: Users },
-              { to: "/top-10-casino-online", label: "Top 10 Casino Online", icon: Trophy },
-              { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star },
-              { to: "/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
-              { to: "/betalingsmetoder", label: "Betalingsmetoder", icon: CreditCard },
-              { to: "/ordbog", label: "Casino Ordbog", icon: BookOpen },
+              { to: "/reload-bonus", label: "Reload Bonus Guide", iconName: "refresh-cw" },
+              { to: "/omsaetningskrav", label: "Omsætningskrav Guide", iconName: "percent" },
+              { to: "/vip-program", label: "VIP Program Guide", iconName: "crown" },
+              { to: "/free-spins-i-dag", label: "Free Spins i Dag", iconName: "flame" },
+              { to: "/nye-casinoer", label: "Nye Casinoer 2026", iconName: "sparkles" },
+              { to: "/casinoer", label: "Alle Danske Casinoer", iconName: "users" },
+              { to: "/top-10-casino-online", label: "Top 10 Casino Online", iconName: "trophy" },
+              { to: "/casino-anmeldelser", label: "Casino Anmeldelser", iconName: "star" },
+              { to: "/spillemaskiner", label: "Spillemaskiner", iconName: "gamepad2" },
+              { to: "/betalingsmetoder", label: "Betalingsmetoder", iconName: "credit-card" },
+              { to: "/ordbog", label: "Casino Ordbog", iconName: "book-open" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium hover:border-primary/50 transition-colors">
                 <link.icon className="h-4 w-4 text-primary flex-shrink-0" />

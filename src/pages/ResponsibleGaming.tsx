@@ -1,8 +1,8 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
-import { Clock, Gavel, Globe, HelpCircle, Phone, Shield, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Gavel, HelpCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -35,17 +35,17 @@ const warningSignItems = [
 
 const tipCards = [
   {
-    icon: Clock,
+    iconName: "clock",
     title: "Sæt Tidsgrænser",
     description: "Beslut, hvor længe du vil spille, før du starter. Brug casinoets påmindelser om sessionstid og hold dig til din grænse.",
   },
   {
-    icon: Shield,
+    iconName: "shield",
     title: "Sæt Budgetgrænser",
     description: "Spil kun med penge, du har råd til at tabe. Sæt indbetalingsgrænser og forsøg aldrig at vinde tab tilbage.",
   },
   {
-    icon: Users,
+    iconName: "users",
     title: "Tal med Nogen",
     description: "Hvis du er bekymret over dit spil, så tal med venner, familie eller professionelle støttetjenester.",
   },
@@ -53,13 +53,13 @@ const tipCards = [
 
 const helpResources = [
   {
-    icon: Globe,
+    iconName: "globe",
     title: "StopSpillet",
     description: "Gratis, fortrolig hjælp og støtte til alle, der er bekymrede over deres eget eller andres spil. Telefonisk rådgivning: 70 22 28 25.",
     url: "https://www.stopspillet.dk/",
   },
   {
-    icon: Phone,
+    iconName: "phone",
     title: "ROFUS",
     description: "Register Over Frivilligt Udelukkede Spillere. Udeluk dig selv fra alle danske online casinoer via MitID.",
     url: "https://www.spillemyndigheden.dk/rofus",

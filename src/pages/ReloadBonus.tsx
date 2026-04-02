@@ -22,7 +22,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { AlertTriangle, BarChart3, BookOpen, Calculator, Calendar, CheckCircle2, Clock, Coins, Gift, Percent, RefreshCw, Scale, ShieldCheck, Sparkles, Star, Target, TrendingUp, Wallet, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -97,25 +97,25 @@ const reloadFaqs: { question: string; answer: string | React.ReactNode }[] = [
 
 const reloadScheduleTypes = [
   {
-    icon: Calendar,
+    iconName: "calendar",
     title: "Ugentlig reload (standard)",
     description: "Tilbydes typisk fredag til søndag for at booste weekendspil. Match-procent: 25-50%. Mest udbredt og mest forudsigeligt for budgetplanlægning. Aktiveres ved indbetaling i kampagneperioden. De fleste danske casinoer med kampagneprogrammer tilbyder denne type.",
     tag: "Mest udbredt",
   },
   {
-    icon: Sparkles,
+    iconName: "sparkles",
     title: "Daglig reload",
     description: "Sjælden men værdifuld – et nyt tilbud hver dag med varierende match-procent og free spins. Kræver daglig login og indbetaling. Bedst for spillere med fleksibelt spillemønster og daglig aktivitet. Matchprocenten er typisk lavere (10-25%) for at kompensere for den høje frekvens.",
     tag: "Sjælden",
   },
   {
-    icon: Gift,
+    iconName: "gift",
     title: "Begivenhedsbaseret reload",
     description: "Ekstra generøse tilbud ved helligdage (jul, nytår, påske), nye spiludgivelser, eller casinoets jubilæum. Ofte 75-100% match – næsten velkomstbonus-niveau. Uforudsigelige men meget værdifulde. Hold øje med casinoets kampagneside og nyhedsbrev for at fange disse tilbud.",
     tag: "Sæsonbestemt",
   },
   {
-    icon: Star,
+    iconName: "star",
     title: "VIP/personlig reload",
     description: "Skræddersyede tilbud baseret på din spillehistorik og indbetalningsmønster. Højeste match-procent (50-100%), laveste omsætningskrav, og ofte med tilknyttede free spins. Kun tilgængeligt for casinoets mest loyale spillere. Typisk leveret via e-mail eller personlig kontaktperson.",
     tag: "Eksklusivt",
@@ -433,22 +433,22 @@ const ReloadBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Calendar,
+                iconName: "calendar",
                 title: "Synkroniser indbetalinger med kampagnekalenderen",
                 desc: "De fleste casinoer kører reload-kampagner fredag-søndag. I stedet for at indbetale tilfældigt, saml dine indbetalinger til kampagneperioderne. En enkelt 500 kr. indbetaling med 50% reload er langt mere værdifuld end tre tilfældige indbetalinger á 200 kr. uden bonus. Opret en påmindelse i din kalender for at tjekke kampagnesiden ugentligt.",
               },
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "Beregn break-even point for hvert tilbud",
                 desc: "Accepter kun reload-bonusser med positiv forventet værdi. Tommelfingerregel: Hvis EV > 50% af bonusbeløbet, er tilbuddet værd at tage. Under dette niveau bruger du tid og bankroll-risiko på minimal gevinst. Brug vores EV-formel: EV = Bonus − (Omsætning × 0,04).",
               },
               {
-                icon: TrendingUp,
+                iconName: "trending-up",
                 title: "Kombinér med VIP-progression",
                 desc: "Mange casinoer giver bedre reload-vilkår jo højere dit VIP-niveau er. Omsætning fra reload-bonus tæller typisk mod VIP-progression. Strategien er at starte med standard-reloads og gradvist opbygge VIP-status for at låse op for bedre tilbud. Over 6-12 måneder kan VIP-reload-bonusser nå 75-100% match med 3x omsætning.",
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "Brug no-sticky logik til reload",
                 desc: (
                   <>
@@ -459,12 +459,12 @@ const ReloadBonus = () => {
                 ),
               },
               {
-                icon: Wallet,
+                iconName: "wallet",
                 title: "Bankroll management med reload-bonusser",
                 desc: "Allokér et separat 'reload-budget' i dit månedlige spillebudget. Hvis du har 2.000 kr. månedligt, sæt 500 kr. til side specifikt til reload-indbetalinger. På den måde udnytter du bonusserne uden at overskride dit samlede budget. Reload-bonusser bør aldrig være en grund til at øge din samlede spileksponering.",
               },
               {
-                icon: BarChart3,
+                iconName: "bar-chart3",
                 title: "Multi-casino reload-strategi",
                 desc: "De mest optimerede spillere har konti hos 3-4 casinoer og vælger det bedste reload-tilbud hver uge. Casino A tilbyder måske 50% fredag, Casino B 40% lørdag med bedre omsætning. Ved at diversificere fanger du de bedste tilbud konsekvent. Husk: alle casinoer skal have dansk licens fra Spillemyndigheden.",
               },
@@ -488,13 +488,13 @@ const ReloadBonus = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: Percent, title: "Trin 1: Match-procent og maksbeløb", desc: "25% er lavt, 50% er standard, 75%+ er exceptionelt (typisk sæsonbestemt). Tjek det maksimale bonusbeløb – en 50% match op til 500 kr. kræver 1.000 kr. indbetaling for fuld udnyttelse. Indbetal altid det beløb der udløser den fulde bonus." },
-              { icon: Calculator, title: "Trin 2: Omsætningskrav – (b) eller (d+b)?", desc: "Dette er den vigtigste variabel. 5x (b) på 250 kr. bonus = 1.250 kr. omsætning. 10x (d+b) på 500 kr. indbetaling + 250 kr. bonus = 7.500 kr. omsætning. Forskellen er 6x i krævende omsætning. Vælg altid (b) over (d+b) når muligt." },
-              { icon: Clock, title: "Trin 3: Tidsramme for omsætning", desc: "De fleste reload-bonusser har 7-14 dages gyldighed – kortere end velkomstbonusser. Med 1.250 kr. omsætning og 10 kr. bet-størrelse er det 125 spins – overkommeligt. Med 7.500 kr. er det 750 spins og kræver dagligt spil. Beregn om du realistisk kan nå det." },
-              { icon: Target, title: "Trin 4: Aktiver KUN med positiv EV", desc: "Beregn: EV = Bonusbeløb – (Omsætning × House Edge). Hvis resultatet er under 50% af bonusbeløbet, spring tilbuddet over. Din tid er mere værd end en bonus med minimal EV." },
-              { icon: ShieldCheck, title: "Trin 5: Tjek bonusstruktur (sticky/no-sticky)", desc: "No-sticky reload er sjælden men markant mere værdifuld. Med no-sticky spiller du med egne penge først og kan hæve gevinster frit. Sticky reload kræver gennemspilning af hele omsætningskravet før udbetaling." },
-              { icon: BookOpen, title: "Trin 6: Spilbidrag og begrænsninger", desc: "Slots bidrager typisk 100%, men live casino kun 10-20%. Hvis du planlægger at spille bordspil med din reload, ganges det effektive omsætningskrav med 5-10x. Tjek også om specifikke spil er udelukket – nogle casinoer forbyder high-RTP slots under bonusomsætning." },
-              { icon: Scale, title: "Trin 7: Sammenlign med cashback-alternativet", desc: (
+              { iconName: "percent", title: "Trin 1: Match-procent og maksbeløb", desc: "25% er lavt, 50% er standard, 75%+ er exceptionelt (typisk sæsonbestemt). Tjek det maksimale bonusbeløb – en 50% match op til 500 kr. kræver 1.000 kr. indbetaling for fuld udnyttelse. Indbetal altid det beløb der udløser den fulde bonus." },
+              { iconName: "calculator", title: "Trin 2: Omsætningskrav – (b) eller (d+b)?", desc: "Dette er den vigtigste variabel. 5x (b) på 250 kr. bonus = 1.250 kr. omsætning. 10x (d+b) på 500 kr. indbetaling + 250 kr. bonus = 7.500 kr. omsætning. Forskellen er 6x i krævende omsætning. Vælg altid (b) over (d+b) når muligt." },
+              { iconName: "clock", title: "Trin 3: Tidsramme for omsætning", desc: "De fleste reload-bonusser har 7-14 dages gyldighed – kortere end velkomstbonusser. Med 1.250 kr. omsætning og 10 kr. bet-størrelse er det 125 spins – overkommeligt. Med 7.500 kr. er det 750 spins og kræver dagligt spil. Beregn om du realistisk kan nå det." },
+              { iconName: "target", title: "Trin 4: Aktiver KUN med positiv EV", desc: "Beregn: EV = Bonusbeløb – (Omsætning × House Edge). Hvis resultatet er under 50% af bonusbeløbet, spring tilbuddet over. Din tid er mere værd end en bonus med minimal EV." },
+              { iconName: "shield-check", title: "Trin 5: Tjek bonusstruktur (sticky/no-sticky)", desc: "No-sticky reload er sjælden men markant mere værdifuld. Med no-sticky spiller du med egne penge først og kan hæve gevinster frit. Sticky reload kræver gennemspilning af hele omsætningskravet før udbetaling." },
+              { iconName: "book-open", title: "Trin 6: Spilbidrag og begrænsninger", desc: "Slots bidrager typisk 100%, men live casino kun 10-20%. Hvis du planlægger at spille bordspil med din reload, ganges det effektive omsætningskrav med 5-10x. Tjek også om specifikke spil er udelukket – nogle casinoer forbyder high-RTP slots under bonusomsætning." },
+              { iconName: "scale", title: "Trin 7: Sammenlign med cashback-alternativet", desc: (
                 <>
                   Inden du accepterer en reload, tjek om casinoets{" "}
                   <Link to="/cashback-bonus" className={linkClass}>cashback-program</Link> giver bedre EV for dit spillevolumen. For spillere der primært spiller bordspil eller har lavt budget, er cashback ofte det bedre valg. For slot-spillere med medium budget er reload typisk overlegen.
@@ -521,27 +521,27 @@ const ReloadBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 1: At tage ALLE reload-tilbud uden at beregne EV",
                 desc: "Ikke alle reloads er positive. En 25% match med 10x (d+b) har ofte negativ EV – du taber mere under omsætningen end bonussen er værd. Beregn altid EV først. Kun fordi det er gratis at tilmelde sig, er det ikke gratis at spille igennem.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 2: At indbetale mere end planlagt for at 'udnytte' bonussen fuldt",
                 desc: "Hvis du normalt indbetaler 300 kr. men reload-bonussen matcher op til 1.000 kr., bør du IKKE øge din indbetaling til 1.000 kr. Hold dig til dit budget. En delvis reload på 300 kr. med 150 kr. bonus er bedre end at strække dit budget for 500 kr. ekstra bonus.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 3: At ignorere tidsfristen",
                 desc: "Reload-bonusser har typisk 7-14 dages gyldighed. Hvis du ikke realistisk kan nå omsætningskravet inden deadline, mister du bonussen OG eventuelle gevinster. Bedre at springe over end at miste alt. Planlæg din spiltid inden du accepterer.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 4: At spille bordspil med slot-reload",
                 desc: "En reload med 5x (b) omsætning virker attraktiv – men med 10% spilbidrag på Blackjack bliver det reelt 50x. Det ændrer bonussen fra excellent til katastrofal. Brug altid slots til reload-omsætning, medmindre tilbuddet specifikt er designet til bordspil.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "Fejl 5: At glemme at sammenligne med cashback",
                 desc: (
                   <>

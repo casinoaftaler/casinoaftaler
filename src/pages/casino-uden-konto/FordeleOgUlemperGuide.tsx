@@ -16,8 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { AlertTriangle, Apple, ArrowRight, Ban, Clock, CreditCard, Dog, Eye, FileText, Gavel, Globe, Lock, Play, RefreshCw, Scale, Shield, Smartphone, TrendingUp, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Apple, Ban, Dog, Gavel, Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const fordeleUlemperFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -175,37 +175,37 @@ const FordeleOgUlemperGuide = () => {
           <div className="space-y-6">
             {[
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "1. Elimineret credential-risiko (Sikkerhed: Kritisk)",
                 content: "Den mest undervurderede fordel ved casino uden konto er eliminering af brugernavn/adgangskode-modellen. Ifølge Verizon's Data Breach Investigations Report 2025 involverer 61% af alle databrud kompromitterede credentials. Ved at fjerne adgangskode-behovet eliminerer Pay N Play denne angrebsvektor fuldstændigt. Der er ingen password at phishe, brute-force eller lække i et databrud. For sikkerhedsbevidste spillere er dette den mest signifikante fordel – en risiko, der er reduceret til nul, kræver ingen løbende vedligeholdelse (password-skift, 2FA-administration osv.).",
               },
               {
-                icon: TrendingUp,
+                iconName: "trending-up",
                 title: "2. Dramatisk hurtigere udbetalinger (Praktisk: Kritisk)",
                 content: "Vores test viser en gennemsnitlig udbetalingstid på 11,75 minutter for Pay N Play vs. 7,5 timer for MitID-casinoer og 2,3 hverdage for standard email-casinoer. Det er en forbedring på 37x vs. MitID og 280x vs. standard. Denne hastighed skyldes, at KYC allerede er verificeret ved indbetaling, så der er ingen forsinkelse for dokumentkontrol ved udbetaling. For spillere, der værdsætter hurtig adgang til gevinster, er dette den mest praktisk betydningsfulde fordel. Over et år med ugentlige udbetalinger kan besparelsen være hundredvis af timer ventetid.",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "3. Bankniveau-sikkerhed som standard (Sikkerhed: Høj)",
                 content: "Pay N Play arver automatisk bankens sikkerhedsinfrastruktur: MitID (multi-faktor autentificering), TLS 1.3 kryptering, og bankens egne fraud detection-systemer. Dette er et sikkerhedsniveau, som de fleste traditionelle casinoer ikke kan matche med deres egne autentificeringsløsninger. Trustly er desuden SOC 2 Type II og PCI DSS Level 1 certificeret – standarder, der kræver kontinuerlig uafhængig auditering af sikkerhedskontroller.",
               },
               {
-                icon: Eye,
+                iconName: "eye",
                 title: "4. Minimal datadeling (Privatliv: Høj)",
                 content: "Ved Pay N Play deler du kun 4 datapunkter med casinoet: CPR, navn, adresse og kontonummer – alle nødvendige for KYC-compliance. Ved traditionel registrering deler du 8-10 datapunkter: email, telefonnummer, brugernavn, adgangskode, IP-adresse, device fingerprint, ud over de 4 KYC-data. Mindre datadeling = mindre eksponering ved databrud. Der er ingen email-liste at sælge, ingen password-database at hacke, og ingen markedsføringssamtykke at administrere.",
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "5. Lynhurtig registrering (Brugeroplevelse: Høj)",
                 content: "Med en gennemsnitlig registreringstid på 27 sekunder er Pay N Play 6,1x hurtigere end MitID-registrering og 9,3x hurtigere end standard email. For spillere, der registrerer sig på flere casinoer, akkumuleres tidsbesparelsen hurtigt. Vores EV-model viser en akkumuleret registreringsbesparelse på 75 minutter over 5 år med 20 casino-registreringer.",
               },
               {
-                icon: RefreshCw,
+                iconName: "refresh-cw",
                 title: "6. Ingen adgangskode at huske (Brugeroplevelse: Moderat)",
                 content: "Det gennemsnitlige menneske har 100+ online konti (LastPass Password Report 2024). Én mindre konto at administrere er en reel lettelse. Med Pay N Play er der ingen risiko for at glemme loginoplysninger, ingen password-reset-flow, ingen to-faktor-opsætning. Genbesøg tager kun 14 sekunder via en ny Trustly MitID-autentificering.",
               },
               {
-                icon: Zap,
+                iconName: "zap",
                 title: "7. Automatisk KYC uden dokumentupload (Compliance: Moderat)",
                 content: "Traditionelle casinoer kræver ofte upload af ID-dokument og adressebevis ved første udbetaling. Denne proces kan tage fra minutter til dage, afhængigt af casinoets verifikationshastighed. Pay N Play eliminerer dette fuldstændigt – bankforbindelsen leverer alle nødvendige KYC-data automatisk og øjeblikkeligt.",
               },
@@ -247,32 +247,32 @@ const FordeleOgUlemperGuide = () => {
                 content: "Den mest konkrete ulempe er, at Pay N Play er låst til Trustly som betalingsmetode. Du kan ikke bruge MobilePay, Apple Pay, Skrill, PayPal eller kreditkort. For spillere, der foretrækker disse metoder – eller ønsker at sprede deres transaktioner – er dette en betydelig begrænsning. Dog tilbyder nogle casinoer hybridmodellen, hvor du registrerer via Pay N Play men efterfølgende kan tilføje andre betalingsmetoder. I vores test tilbød 1 af 4 casinoer denne hybridmulighed.",
               },
               {
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
                 title: "2. Risiko for øget impulsivt spil (Ansvarligt spil: Kritisk)",
                 content: "Den reducerede friktion er et tveægget sværd. Forskning fra Gambling Commission (UK, 2024) viser, at lavere barrierer til gambling korrelerer med højere forekomst af impulsivt spil hos sårbare grupper. Ved traditionel registrering fungerer formularen som en 'afkølingsperiode' – 4-5 minutters pause mellem beslutning og spil. Ved Pay N Play reduceres dette til 27 sekunder. Det er kritisk, at spillere aktivt sætter indbetalingsgrænser FØR første indbetaling. Vi anbefaler, at Pay N Play-casinoer implementerer obligatorisk grænse-dialog inden første spin.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "3. Begrænset bonusudvalg (Økonomisk: Moderat-Høj)",
                 content: "Mange Pay N Play-casinoer tilbyder lavere eller ingen velkomstbonusser sammenlignet med traditionelle casinoer. I vores test: gennemsnitlig bonusværdi PnP ~150 kr. netto (efter omsætningskrav) vs. ~750 kr. netto for traditionelle casinoer. Logikken er, at Pay N Play tiltrækker spillere via hastighed snarere end bonusser. For bonus-orienterede spillere kan dette betyde en lavere total EV (Expected Value) på første indbetaling med ca. 600 kr.",
               },
               {
-                icon: Globe,
+                iconName: "globe",
                 title: "4. Begrænset casinoudvalg (Praktisk: Moderat)",
                 content: "I marts 2026 tilbyder ca. 8-12 danske licenserede casinoer Pay N Play – sammenlignet med 25+ med MitID-registrering og 38+ med standard email. Udvalget er stigende, men stadig begrænset. Spillere, der ønsker maksimal valgfrihed mellem casinoer, vil fortsat have flere muligheder med MitID-registrering. Vi forventer dog, at Pay N Play-udvalget vil vokse til 15-20 casinoer inden udgangen af 2027.",
               },
               {
-                icon: FileText,
+                iconName: "file-text",
                 title: "5. Begrænset spillehistorik-adgang (Brugeroplevelse: Moderat)",
                 content: "Da Pay N Play ikke opretter en traditionel konto med brugernavn/adgangskode, kan det være sværere at tilgå din spillehistorik retrospektivt. Nogle casinoer kræver en ny Trustly-autentificering for at vise historik, mens andre ikke tilbyder detaljeret historik overhovedet. For spillere, der værdisætter overblik over deres spil, kan dette være frustrerende. Dog kan transaktionshistorikken altid ses via din bank.",
               },
               {
-                icon: CreditCard,
+                iconName: "credit-card",
                 title: "6. Afhængighed af bankens tilgængelighed (Teknisk: Lav-Moderat)",
                 content: "Pay N Play kræver, at din bank understøtter Trustly og er online. Ved bankvedligeholdelse (typisk nattetimer) kan du ikke logge ind eller foretage transaktioner. I vores 14-dages test oplevede vi dette 0 gange under normale timer, men det er en teoretisk risiko. Traditionelle casinoer med email-login er ikke afhængige af bankens tilgængelighed for login – kun for betalinger.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "7. Marginalt langsommere på mobil (Brugeroplevelse: Lav)",
                 content: "Pay N Play er 7 sekunder langsommere på mobil (34 sek.) vs. desktop (27 sek.) pga. MitID app-skift. Denne forskel er marginal og skyldes det nødvendige kontekst-skifte mellem casinoets browser og MitID-appen. Alle andre registreringsmetoder er også langsommere på mobil, så dette er ikke en PnP-specifik ulempe, men det reducerer hastighedsfordelen relativt.",
               },
@@ -479,19 +479,19 @@ const FordeleOgUlemperGuide = () => {
             {[
               {
                 title: "Sikkerhedsbevidst spiller",
-                icon: Lock,
+                iconName: "lock",
                 rec: "Pay N Play",
                 why: "Elimineret credential-risiko, bankniveau-kryptering og minimal datadeling gør Pay N Play til det sikreste valg. Du ofrer betalingsfleksibilitet, men opnår den højeste sikkerhedsprofil tilgængelig.",
               },
               {
                 title: "Balanceret spiller",
-                icon: Scale,
+                iconName: "scale",
                 rec: "MitID-registrering",
                 why: "Bedste kompromis mellem hastighed, sikkerhed og fleksibilitet. Du får adgang til alle betalingsmetoder, alle bonusser og et bredt casinoudvalg – med en registreringstid, der stadig er under 3 minutter.",
               },
               {
                 title: "Bonus-orienteret spiller",
-                icon: CreditCard,
+                iconName: "credit-card",
                 rec: "MitID eller Standard",
                 why: "Maksimal bonusadgang og betalingsfleksibilitet. Velkomstbonusser på traditionelle casinoer har gennemsnitligt 5x højere netto-EV end Pay N Play-casinoer. Vælg MitID for bedre hastighed, standard for bredest casinoudvalg.",
               },

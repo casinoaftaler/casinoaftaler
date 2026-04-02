@@ -17,8 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spillegraenserHero from "@/assets/heroes/spillegraenser-guide-hero.jpg";
-import { Activity, ArrowRight, Ban, Calculator, Clock, Gavel, Shield, Timer, TrendingDown, Users, Wallet } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Activity, Ban, Gavel, Timer, TrendingDown } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -599,17 +599,17 @@ const SpillegraenserGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
-                icon: Wallet,
+                iconName: "wallet",
                 title: "Budgetregel: 5-10%",
                 desc: "Sæt din månedlige indbetalingsgrænse til maksimalt 5-10% af din disponible indkomst efter faste udgifter. Hvis du har 5.000 kr. til overs, bør din grænse være 250-500 kr.",
               },
               {
-                icon: Clock,
+                iconName: "clock",
                 title: "Sæt tidsgrænse FØR du spiller",
                 desc: "Beslut dig for en tidsramme, inden du logger ind. Når tiden er udløbet, stopper du – uanset om du vinder eller taber. Brug casinoets sessionsgrænse.",
               },
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "Spor dit forbrug",
                 desc: "Hold en simpel log over dine indbetalinger og udbetalinger. Mange casinoer tilbyder forbrugsrapporter – brug dem aktivt til at evaluere dine spillevaner.",
               },
@@ -619,12 +619,12 @@ const SpillegraenserGuide = () => {
                 desc: "Hvis du rammer din grænse, er det et signal om at stoppe. At forsøge at vinde tabet tilbage (chasing) er den mest almindelige årsag til spilleproblemer.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Involver en pårørende",
                 desc: "Fortæl en person du stoler på, om dine grænser. Ansvarlighed overfor andre er en stærk motivator for at holde sig inden for rammerne.",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "Brug flere grænsetyper",
                 desc: "Kombinér indbetalingsgrænse med tidsgrænse og reality checks for den mest effektive beskyttelse. Én grænse alene er sjældent nok.",
               },

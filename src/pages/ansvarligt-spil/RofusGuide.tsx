@@ -16,8 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
-import { ArrowRight, Ban, BarChart3, CheckCircle, Clock, FileText, Gavel, Globe, HelpCircle, Lock, Phone, Scale, Shield, Smartphone, Timer, UserX, Users } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ArrowRight, Ban, Gavel, HelpCircle, Timer, UserX } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -376,28 +376,28 @@ const RofusGuide = () => {
             {[
               {
                 step: 1,
-                icon: Globe,
+                iconName: "globe",
                 title: "Gå til Spillemyndighedens ROFUS-side",
                 content:
                   "Åbn din browser og naviger til spillemyndigheden.dk/rofus. Du finder ROFUS under menupunktet 'Selvudelukkelse'. Klik på 'Tilmeld dig ROFUS' knappen for at starte processen. Sørg for, at du bruger en opdateret browser og har din MitID-app eller kodeviser klar.",
               },
               {
                 step: 2,
-                icon: Lock,
+                iconName: "lock",
                 title: "Log ind med MitID",
                 content:
                   "Autentificer dig med dit MitID. Du kan bruge nøgleapp, kodeviser eller chip-løsningen. Dit CPR-nummer verificeres automatisk mod folkeregistret. Hvis du har problemer med MitID, kan du kontakte MitID-support (mitid.dk/support). ROFUS-tilmelding kræver dansk CPR-nummer – udenlandske statsborgere uden CPR kan kontakte Spillemyndigheden direkte.",
               },
               {
                 step: 3,
-                icon: Clock,
+                iconName: "clock",
                 title: "Vælg udelukkelsestype og varighed",
                 content:
                   "Du vælger mellem midlertidig udelukkelse (24 timer, 1 måned, 3 måneder, 6 måneder eller 1 år) eller permanent udelukkelse. Systemet forklarer konsekvenserne af hvert valg. Spillemyndigheden anbefaler permanent udelukkelse, hvis du oplever problematisk spilleadfærd. Midlertidig udelukkelse egner sig til forebyggende pauser.",
               },
               {
                 step: 4,
-                icon: CheckCircle,
+                iconName: "check-circle",
                 title: "Bekræft din registrering",
                 content:
                   "Gennemgå dit valg og bekræft med en afsluttende MitID-godkendelse. Du modtager en bekræftelse på din registrerede e-mailadresse. Udelukkelsen træder i kraft inden for 24 timer, hvorefter alle licenserede spiludbydere blokerer din adgang automatisk. Du behøver ikke kontakte de enkelte casinoer – ROFUS-databasen håndterer alt centralt.",
@@ -710,12 +710,12 @@ const RofusGuide = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
-              { icon: Globe, title: "Online Casinoer", desc: "Alle licenserede danske online casinoer inkl. slots, bordspil og live casino." },
-              { icon: BarChart3, title: "Sportsbetting", desc: "Alle licenserede danske sportsbooks og betting-platforme." },
-              { icon: Users, title: "Fysiske Spillehaller", desc: "Landbaserede casinoer, spillehaller og automatopstillinger." },
-              { icon: Smartphone, title: "Mobile Casino-apps", desc: "Casino-applikationer fra licenserede udbydere på iOS og Android." },
-              { icon: FileText, title: "Online Bingo", desc: "Licenserede online bingo-udbydere med dansk tilladelse." },
-              { icon: Scale, title: "Poker-turneringer", desc: "Licenserede online poker-sider og fysiske pokerturnerings-venues." },
+              { iconName: "globe", title: "Online Casinoer", desc: "Alle licenserede danske online casinoer inkl. slots, bordspil og live casino." },
+              { iconName: "bar-chart3", title: "Sportsbetting", desc: "Alle licenserede danske sportsbooks og betting-platforme." },
+              { iconName: "users", title: "Fysiske Spillehaller", desc: "Landbaserede casinoer, spillehaller og automatopstillinger." },
+              { iconName: "smartphone", title: "Mobile Casino-apps", desc: "Casino-applikationer fra licenserede udbydere på iOS og Android." },
+              { iconName: "file-text", title: "Online Bingo", desc: "Licenserede online bingo-udbydere med dansk tilladelse." },
+              { iconName: "scale", title: "Poker-turneringer", desc: "Licenserede online poker-sider og fysiske pokerturnerings-venues." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
@@ -817,22 +817,22 @@ const RofusGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "Casinoets egne selvudelukkelsesværktøjer",
                 desc: "De fleste licenserede casinoer tilbyder individuel selvudelukkelse, indbetalingsgrænser, tabsgrænser og sessionstidsadvarsler via kontoindstillinger. Disse kan bruges uafhængigt af ROFUS.",
               },
               {
-                icon: Smartphone,
+                iconName: "smartphone",
                 title: "Blokeringssoftware",
                 desc: "Software som Gamban, BetBlocker (gratis) og NetNanny kan blokere adgang til gambling-sider på tværs af alle enheder. BetBlocker er anbefalet af flere europæiske tilsynsmyndigheder.",
               },
               {
-                icon: Lock,
+                iconName: "lock",
                 title: "Bankens spilleblokering",
                 desc: "Flere danske banker (Danske Bank, Nordea, Jyske Bank m.fl.) tilbyder mulighed for at blokere transaktioner til gambling-udbydere via netbank eller mobilbank-app.",
               },
               {
-                icon: Users,
+                iconName: "users",
                 title: "Tredjeparts-overvågning",
                 desc: "Involverér en betroet person (partner, ven, rådgiver) som ansvarlighedspartner. Dél dine bankoplysninger eller indbetalingsgrænser med dem for ekstra accountability.",
               },
@@ -1007,7 +1007,7 @@ const RofusGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {[
               {
-                icon: Phone,
+                iconName: "phone",
                 title: "StopSpillet",
                 desc: "Gratis, fortrolig rådgivning for spillere og pårørende. Telefonisk rådgivning: 70 22 28 25 (hverdage 10-16). Chat og e-mail-rådgivning tilgængelig.",
                 url: "https://www.stopspillet.dk/",
@@ -1021,7 +1021,7 @@ const RofusGuide = () => {
                 label: "Besøg Center for Ludomani",
               },
               {
-                icon: Shield,
+                iconName: "shield",
                 title: "ROFUS – Spillemyndigheden",
                 desc: "Tilmeld dig ROFUS direkte via Spillemyndighedens hjemmeside. Kræver MitID. Gratis og aktiveres inden for 24 timer.",
                 url: "https://www.spillemyndigheden.dk/rofus",

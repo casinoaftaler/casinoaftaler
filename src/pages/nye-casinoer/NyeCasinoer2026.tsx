@@ -15,8 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangle, BarChart3, Calendar, CheckCircle2, Clock, Play, ShieldCheck, Smartphone, Sparkles, TrendingUp, Trophy, XCircle, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Play } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -220,11 +220,11 @@ const NyeCasinoer2026 = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: Smartphone, title: "1. AI-drevet personalisering i realtid", desc: "Nye casinoer bruger maskinlæring til at tilpasse spilforslag, bonustilbud og kampagnetiming til din individuelle spillestil. Teknologien analyserer dine præferencer i realtid og tilpasser forsiden dynamisk – uden at kompromittere dit privatliv. De bedste implementeringer øger spillertilfredshed med 30–40% ifølge operatør-data, da irrelevante tilbud elimineres." },
-              { icon: Clock, title: "2. Instant withdrawals som basisfunktionalitet", desc: "Open banking via Trustly og MobilePay muliggør udbetalinger på under 2 minutter. I 2026 er dette ikke længere et premium-feature, men basisfunktionalitet hos alle seriøse nye casinoer. Pre-KYC via MitID eliminerer forsinkelser ved første udbetaling. Se vores detaljerede testdata på nye casinoer med hurtig udbetaling." },
-              { icon: TrendingUp, title: "3. Gamification 2.0 med storyline-progression", desc: "Storyline-baserede loyalitetsprogrammer med quests, achievements, sæsonbaserede events og collectibles erstatter traditionelle VIP-point-systemer. Spillere oplever progression og belønning uanset spillevolumen. De mest avancerede systemer inkluderer multiplayer-elementer og community-konkurrencer med leaderboards." },
-              { icon: ShieldCheck, title: "4. AI-baseret ansvarligt spil (regulatorisk krav)", desc: "Spillemyndighedens 2026-krav om automatiseret adfærdsovervågning har ført til en ny generation af ansvarligt spil-værktøjer. Systemer identificerer risikoadfærd i realtid (pludselige indsatsstigninger, jagning af tab, unormalt lange sessioner) og trigge proaktive interventioner – fra blide påmindelser til obligatoriske pauser." },
-              { icon: BarChart3, title: "5. Transparens og datadeling med spillere", desc: "En emerging trend i 2026 er øget transparens: nye casinoer deler aggregerede statistikker med spillerne – f.eks. gennemsnitlig RTP på tværs af alle spil, gennemsnitlige udbetalingstider og bonusopfyldelsesrater. Det bygger tillid og differentierer seriøse operatører fra mindre gennemsigtige konkurrenter." },
+              { iconName: "smartphone", title: "1. AI-drevet personalisering i realtid", desc: "Nye casinoer bruger maskinlæring til at tilpasse spilforslag, bonustilbud og kampagnetiming til din individuelle spillestil. Teknologien analyserer dine præferencer i realtid og tilpasser forsiden dynamisk – uden at kompromittere dit privatliv. De bedste implementeringer øger spillertilfredshed med 30–40% ifølge operatør-data, da irrelevante tilbud elimineres." },
+              { iconName: "clock", title: "2. Instant withdrawals som basisfunktionalitet", desc: "Open banking via Trustly og MobilePay muliggør udbetalinger på under 2 minutter. I 2026 er dette ikke længere et premium-feature, men basisfunktionalitet hos alle seriøse nye casinoer. Pre-KYC via MitID eliminerer forsinkelser ved første udbetaling. Se vores detaljerede testdata på nye casinoer med hurtig udbetaling." },
+              { iconName: "trending-up", title: "3. Gamification 2.0 med storyline-progression", desc: "Storyline-baserede loyalitetsprogrammer med quests, achievements, sæsonbaserede events og collectibles erstatter traditionelle VIP-point-systemer. Spillere oplever progression og belønning uanset spillevolumen. De mest avancerede systemer inkluderer multiplayer-elementer og community-konkurrencer med leaderboards." },
+              { iconName: "shield-check", title: "4. AI-baseret ansvarligt spil (regulatorisk krav)", desc: "Spillemyndighedens 2026-krav om automatiseret adfærdsovervågning har ført til en ny generation af ansvarligt spil-værktøjer. Systemer identificerer risikoadfærd i realtid (pludselige indsatsstigninger, jagning af tab, unormalt lange sessioner) og trigge proaktive interventioner – fra blide påmindelser til obligatoriske pauser." },
+              { iconName: "bar-chart3", title: "5. Transparens og datadeling med spillere", desc: "En emerging trend i 2026 er øget transparens: nye casinoer deler aggregerede statistikker med spillerne – f.eks. gennemsnitlig RTP på tværs af alle spil, gennemsnitlige udbetalingstider og bonusopfyldelsesrater. Det bygger tillid og differentierer seriøse operatører fra mindre gennemsigtige konkurrenter." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />

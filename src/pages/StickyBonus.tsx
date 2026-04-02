@@ -24,8 +24,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { AlertTriangle, Ban, Calculator, Check, Clock, Dog, DollarSign, Gamepad2, Gift, Lock, Minus, Scale, ShieldCheck, Target, TrendingUp, Users, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Ban, Check, Dog, DollarSign, Minus, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -491,7 +491,7 @@ const StickyBonus = () => {
               {
                 title: "Kig efter 'd+b' i specifikationerne",
                 desc: "Udtrykket 'd+b' (deposit + bonus) betyder, at omsætningskrav gælder for både indbetaling og bonus. Det er en klassisk indikator for en Sticky Bonus.",
-                icon: Target,
+                iconName: "target",
               },
               {
                 title: "Sammenblanding af midler",
@@ -501,12 +501,12 @@ const StickyBonus = () => {
               {
                 title: "Bonusbeløbet kan ikke hæves",
                 desc: "Finder du formuleringer om, at bonusbeløbet trækkes fra ved udbetaling, står du over for en Sticky Bonus.",
-                icon: Lock,
+                iconName: "lock",
               },
               {
                 title: "De fleste bonusser er Sticky",
                 desc: "Medmindre der specifikt står 'No-Sticky', 'lifeline' eller 'forfeitable', kan du som tommelfingerregel antage, at bonussen er Sticky.",
-                icon: AlertTriangle,
+                iconName: "alert-triangle",
               },
             ].map((item) => (
               <div
@@ -623,12 +623,12 @@ const StickyBonus = () => {
               {
                 title: "Vælg spil med høj RTP",
                 desc: "Spilleautomater med høj Return to Player (96%+) og lav volatilitet giver en mere stabil oplevelse, hvor du gradvist arbejder mod omsætningskravet.",
-                icon: TrendingUp,
+                iconName: "trending-up",
               },
               {
                 title: "Hold øje med spilbidrag",
                 desc: "Fokusér på spil, der bidrager 100% til omsætningskravet. Bordspil bidrager ofte kun 10%, så slots er typisk det mest effektive valg.",
-                icon: Gamepad2,
+                iconName: "gamepad2",
               },
               {
                 title: "Undgå progressive jackpots",
@@ -638,7 +638,7 @@ const StickyBonus = () => {
               {
                 title: "Hold styr på tidsfristen",
                 desc: "Planlæg dit spil, så du har tilstrækkeligt med tid til at opfylde omsætningskravene. Start tidligt og undgå at presse alting ind på de sidste dage.",
-                icon: Clock,
+                iconName: "clock",
               },
             ].map((item) => (
               <div
@@ -748,12 +748,12 @@ const StickyBonus = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { title: "✅ High Roller (indsats 50+ kr./spin)", desc: "Ideel. Større saldo giver bedre variansabsorption under omsætning. Med 10x (d+b) og 2.000 kr. bonus har high rolleren 40.000 kr. omsætning – opnåeligt på 4-6 timer med 50 kr./spin. EV forbliver positiv på høj-RTP slots.", icon: TrendingUp },
-              { title: "✅ Bonusjæger (systematisk approach)", desc: "Fungerer, men kræver disciplin. Bonusjægeren vælger sticky bonusser med lavest mulig omsætning og højest mulig RTP-slots. Matematisk optimal strategi: 1-2% af saldo per spin, kun 97%+ RTP slots, og aldrig progressive jackpots.", icon: Target },
-              { title: "⚠️ Casual spiller (10-25 kr./spin)", desc: "Brug forsigtighed. En sticky bonus på 500 kr. med 10x (d+b) kræver 10.000 kr. omsætning – 400-1.000 spins. Casual spilleren risikerer at føle sig 'låst' og presse indsatsen op for at nå kravet hurtigere. Overvej i stedet en no-sticky bonus.", icon: Users },
-              { title: "❌ Bordspil-entusiast", desc: "Undgå sticky. Bordspil bidrager typisk kun 10% til omsætningen – en 10x (d+b) bonus kræver reelt 100x i bordspilsindsatser. Med blackjack (RTP 99%) lyder det godt, men 200.000 kr. i samlet omsætning for en 1.000 kr. bonus er urealistisk. Vælg bonus uden omsætningskrav.", icon: Gamepad2 },
+              { title: "✅ High Roller (indsats 50+ kr./spin)", desc: "Ideel. Større saldo giver bedre variansabsorption under omsætning. Med 10x (d+b) og 2.000 kr. bonus har high rolleren 40.000 kr. omsætning – opnåeligt på 4-6 timer med 50 kr./spin. EV forbliver positiv på høj-RTP slots.", iconName: "trending-up" },
+              { title: "✅ Bonusjæger (systematisk approach)", desc: "Fungerer, men kræver disciplin. Bonusjægeren vælger sticky bonusser med lavest mulig omsætning og højest mulig RTP-slots. Matematisk optimal strategi: 1-2% af saldo per spin, kun 97%+ RTP slots, og aldrig progressive jackpots.", iconName: "target" },
+              { title: "⚠️ Casual spiller (10-25 kr./spin)", desc: "Brug forsigtighed. En sticky bonus på 500 kr. med 10x (d+b) kræver 10.000 kr. omsætning – 400-1.000 spins. Casual spilleren risikerer at føle sig 'låst' og presse indsatsen op for at nå kravet hurtigere. Overvej i stedet en no-sticky bonus.", iconName: "users" },
+              { title: "❌ Bordspil-entusiast", desc: "Undgå sticky. Bordspil bidrager typisk kun 10% til omsætningen – en 10x (d+b) bonus kræver reelt 100x i bordspilsindsatser. Med blackjack (RTP 99%) lyder det godt, men 200.000 kr. i samlet omsætning for en 1.000 kr. bonus er urealistisk. Vælg bonus uden omsætningskrav.", iconName: "gamepad2" },
               { title: "❌ Live casino-spiller", desc: "Helt uegnet. Live casino er ofte 0-10% bidrag eller helt udelukket. En sticky bonus er værdiløs, hvis du primært spiller live roulette, blackjack eller game shows. Se vores guide til live casino for bedre alternativer.", icon: Ban },
-              { title: "❌ Ny spiller (første casino-oplevelse)", desc: "Anbefales ikke som første bonus. Sticky-mekanikken er kompleks og kan skabe frustration. Nye spillere bør starte med en no-deposit bonus eller no-sticky velkomstbonus, hvor egne gevinster altid kan hæves frit.", icon: AlertTriangle },
+              { title: "❌ Ny spiller (første casino-oplevelse)", desc: "Anbefales ikke som første bonus. Sticky-mekanikken er kompleks og kan skabe frustration. Nye spillere bør starte med en no-deposit bonus eller no-sticky velkomstbonus, hvor egne gevinster altid kan hæves frit.", iconName: "alert-triangle" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
@@ -881,22 +881,22 @@ const StickyBonus = () => {
           <div className="space-y-3">
             {[
               {
-                icon: Gift,
+                iconName: "gift",
                 title: "Sticky bonusser er industristandarden – forstå dem",
                 desc: "Over 80% af danske bonusser er sticky. Kan du ikke identificere en sticky bonus i vilkårene, vil du uundgåeligt acceptere en uden at vide det. Kig efter 'd+b', 'sammenblandet saldo' eller fravær af 'no-sticky/forfeitable' i vilkårene.",
               },
               {
-                icon: Calculator,
+                iconName: "calculator",
                 title: "EV er positiv – men marginen er lille",
                 desc: "Med danske vilkår (10x d+b) og 96% RTP er EV ca. 200 kr. per 1.000 kr. bonus – 20% reel værdi. Det er positivt, men ikke generøst. En no-sticky bonus med samme vilkår giver 2-3x højere EV. Vælg no-sticky når muligt.",
               },
               {
-                icon: Scale,
+                iconName: "scale",
                 title: "Danmark beskytter dig – men du skal stadig tænke selv",
                 desc: "Spillemyndighedens 10x-loft sikrer rimelige vilkår, men det fjerner ikke risikoen for tab. Selv med favorable danske vilkår kan du miste hele din indbetaling under omsætningen. Accepter aldrig en sticky bonus med penge du ikke har råd til at tabe.",
               },
               {
-                icon: ShieldCheck,
+                iconName: "shield-check",
                 title: "Spil ansvarligt – det er den eneste vindende strategi",
                 desc: "Omsætningskrav kan friste til længere sessioner end planlagt. Sæt tids- og pengebudgetter FØR du begynder. Brug casinoets indbetalingsgrænser. Kontakt ROFUS og StopSpillet.dk ved behov. 18+.",
               },

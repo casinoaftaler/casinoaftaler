@@ -13,11 +13,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Check, ChevronDown, ChevronUp, Loader2, TrendingUp, User, UserCheck, UserX, Users, X } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
 import { useProfileCompletionStats, UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 
 function StatCard({
-  icon: Icon,
+  iconName,
   label,
   value,
   subValue,
@@ -38,7 +38,7 @@ function StatCard({
   return (
     <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border">
       <div className={`p-2 rounded-full bg-background ${iconColors[variant]}`}>
-        <Icon className="h-5 w-5" />
+        <MenuIcon iconName={iconName} className="h-5 w-5" />
       </div>
       <div>
         <p className="text-2xl font-bold">{value}</p>
