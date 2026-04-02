@@ -33,6 +33,13 @@ const StakelogicGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Stakelogic blev grundlagt i 2014 som Novomatic Groups digitale satsning med hovedkvarter i Eindhoven, Holland. Novomatics landbaserede slots – Book of Ra, Sizzling Hot, Lucky Lady's Charm – er blandt de mest ikoniske spilleautomater nogensinde produceret, med en samlet installationsbase på hundredtusindvis af maskiner globalt. Stakelogics mission var at oversætte denne arvs essens til online-formatet: den umiddelbare spænding ved hjulet der spinner, det taktile ved knapperne, den simple elegance ved en veldesignet matematisk model. Men i stedet for blot at porte landbaserede titler til browseren (som mange konkurrenter har gjort med varierende succes) valgte Stakelogic at skabe originale online-spil med landbaseret DNA.
         </p>
+        <ReviewScreenshot
+          src={stakeLogo}
+          alt="Stakelogic officielt logo – grøn og mørkeblå tekst med tagline Think Bigger"
+          caption="Stakelogics brand-identitet: 'Think Bigger' understreger studioets ambition om at overskride landbaseret casino-traditioner."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Resultatet er en portefølje på 150+ titler der er umiddelbart genkendelige for spillere med landbaseret erfaring, men som fuldt udnytter de muligheder online-platformen tilbyder. Super Stake™ – Stakelogics signaturfeature – eksemplificerer denne fusion. Mekanikken giver spillere mulighed for at fordoble deres indsats til gengæld for en dramatisk forøget chance for at udløse bonusfunktioner. Det er en simpel, intuitiv idé der trækker på den landbaserede traditions fokus på spillervalg og risikostyring, men som implementeres med en sofistikering der kun er mulig i det digitale format.
         </p>
