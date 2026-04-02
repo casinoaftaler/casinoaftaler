@@ -1,41 +1,36 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, BarChart3, Scale, Eye, Award } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const trustPoints = [
   {
-    icon: ShieldCheck,
+    iconName: "shield-check",
     title: "Kun dansk licens",
-    description:
-      "Vi anbefaler udelukkende casinoer med aktiv licens fra Spillemyndigheden. Hver licens verificeres direkte mod det officielle register.",
+    description: "Vi anbefaler udelukkende casinoer med aktiv licens fra Spillemyndigheden. Hver licens verificeres direkte mod det officielle register.",
     stat: "30+ casinoer testet",
   },
   {
-    icon: BarChart3,
+    iconName: "chart-bar",
     title: "Matematisk bonusanalyse",
-    description:
-      "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
+    description: "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
     stat: "1.470+ slots i database",
   },
   {
-    icon: Scale,
+    iconName: "scale",
     title: "Uafhængig redaktion",
-    description:
-      "Vores anmeldelser er udarbejdet af forfattere med 5+ års erfaring i den danske gambling-branche. Affiliate-links påvirker aldrig vurderinger.",
+    description: "Vores anmeldelser er udarbejdet af forfattere med 5+ års erfaring i den danske gambling-branche. Affiliate-links påvirker aldrig vurderinger.",
     stat: "320+ indexerede sider",
     link: { to: "/saadan-tester-vi-casinoer", label: "Læs vores metode →" },
   },
   {
-    icon: Eye,
+    iconName: "eye",
     title: "Løbende compliance-overvågning",
-    description:
-      "Vi scanner casinoers bonusvilkår og licensstatus automatisk og dagligt, så vi opdager ændringer før du gør.",
+    description: "Vi scanner casinoers bonusvilkår og licensstatus automatisk og dagligt, så vi opdager ændringer før du gør.",
     stat: "Daglig scanning",
   },
   {
-    icon: Award,
+    iconName: "award",
     title: "GPWA-godkendt portal",
-    description:
-      "Vi er officielt godkendt af GPWA (Gambling Portal Webmasters Association) – branchens ældste tillidsmærke for casino-affiliates.",
+    description: "Vi er officielt godkendt af GPWA (Gambling Portal Webmasters Association) – branchens ældste tillidsmærke for casino-affiliates.",
     stat: "Verified Seal of Approval",
     link: { to: "/om", label: "Verificér os →" },
   },
@@ -57,8 +52,8 @@ export function WhyTrustUs() {
               key={point.title}
               className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:shadow-md"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
-                <point.icon className="h-6 w-6" />
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <MenuIcon iconName={point.iconName} className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-lg font-semibold">{point.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">

@@ -1,5 +1,5 @@
-import { ShieldCheck, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MenuIcon } from "@/components/MenuIcon";
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { ProviderLogoIcon, getProviderLogoUrl } from "@/components/ProviderLogoIcon";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
@@ -27,7 +27,6 @@ const providerRoutes: Record<string, string> = {
   "Betsoft": "/spiludviklere/betsoft",
 };
 
-/** Maps provider display names to their /spillemaskiner/ hub slugs */
 const providerHubSlugs: Record<string, string> = {
   "NetEnt": "netent",
   "Pragmatic Play": "pragmatic-play",
@@ -61,7 +60,6 @@ interface QuickFactsProvidersProps {
 export function QuickFactsProviders({ providers }: QuickFactsProvidersProps) {
   if (!providers.length) return null;
 
-  // Find providers that have a /spillemaskiner/ hub page
   const hubProviders = providers
     .map((name) => ({ name, slug: providerHubSlugs[name] }))
     .filter((p) => p.slug && PROVIDER_HUB_SLUGS.includes(p.slug));
@@ -78,29 +76,16 @@ export function QuickFactsProviders({ providers }: QuickFactsProvidersProps) {
             const slug = providerHubSlugs[name];
             const route = providerRoutes[name];
             const logoSrc = slug ? getProviderLogoUrl(slug) : null;
-            const pill = (
-              <span className="inline-flex items-center gap-1">
-                {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
-                {name}
-              </span>
-            );
             if (route) {
               return (
-                <Link
-                  key={name}
-                  to={route}
-                  className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-                >
+                <Link key={name} to={route} className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors">
                   {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
                   {name}
                 </Link>
               );
             }
             return (
-              <span
-                key={name}
-                className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
-              >
+              <span key={name} className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
                 {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
                 {name}
               </span>
@@ -109,20 +94,15 @@ export function QuickFactsProviders({ providers }: QuickFactsProvidersProps) {
         </div>
       </div>
 
-      {/* Provider data hub links → /spillemaskiner/ */}
       {hubProviders.length > 0 && (
         <div className="mt-2 rounded-lg border border-border p-3">
           <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center justify-center gap-1.5">
-            <BarChart3 className="h-3.5 w-3.5" />
+            <MenuIcon iconName="chart-bar" className="h-3.5 w-3.5" />
             Slot-kataloger
           </p>
           <div className="flex flex-wrap justify-center gap-1.5">
             {hubProviders.slice(0, 4).map(({ name, slug }) => (
-              <Link
-                key={slug}
-                to={`/spillemaskiner/${slug}`}
-                className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-              >
+              <Link key={slug} to={`/spillemaskiner/${slug}`} className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors">
                 {name} Slots
               </Link>
             ))}
@@ -142,18 +122,13 @@ export function QuickFactsLicense({ licenseId, authority = "Spillemyndigheden" }
   return (
     <div className="mt-4 rounded-lg border border-border p-3">
       <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center justify-center gap-1.5">
-        <ShieldCheck className="h-3.5 w-3.5" />
+        <MenuIcon iconName="shield-check" className="h-3.5 w-3.5" />
         Licensverifikation
       </p>
       <div className="flex items-center justify-center gap-2 text-sm">
         <span className="font-medium text-foreground">Dansk licens #{licenseId}</span>
         <span className="text-muted-foreground">–</span>
-        <a
-          href="https://www.spillemyndigheden.dk/tilladelsesindehavere"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-primary underline hover:text-primary/80 text-xs"
-        >
+        <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary underline hover:text-primary/80 text-xs">
           Verificér hos {authority} →
         </a>
       </div>
@@ -168,12 +143,7 @@ interface QuickFactsLogoProps {
 
 export function QuickFactsLogo({ logoUrl, casinoName }: QuickFactsLogoProps) {
   if (!logoUrl) return null;
-
   return (
-    <img
-      src={logoUrl}
-      alt={casinoName ? `${casinoName} logo` : "Casino logo"}
-      className="h-10 w-auto object-contain md:h-12"
-    />
+    <img src={logoUrl} alt={casinoName ? `${casinoName} logo` : "Casino logo"} className="h-10 w-auto object-contain md:h-12" />
   );
 }
