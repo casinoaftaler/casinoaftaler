@@ -63,6 +63,11 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdans Energy Saving Mode og Ultra Lite Mode er ikke blot convenience-features – de repræsenterer en strategisk forståelse af mobile spillermønstre. Over 70% af al iGaming-aktivitet foregår på mobile enheder, og i mange markeder (særligt Latinamerika og dele af Østeuropa) er internetforbindelserne langsomme og ustabile. Ved at optimere dataudveksling og batteriforbrug når Wazdan spillere som konkurrenter simpelthen ikke kan servicere effektivt. Denne tilgang har gjort dem særligt populære i markeder som Rumænien, Ungarn og de baltiske lande.
         </p>
+        <ReviewScreenshot
+          src={wazStats}
+          alt="Wazdan statistik – 400+ HTML5 spil, 40+ årlige udgivelser, Hot Slot 777 Crown og Magic Spins som top-performere, mobile-first design"
+          caption="Wazdans nøgletal: 400+ HTML5-spil, 40+ nye titler årligt og mobile-first design med support for 30+ sprog."
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Hold & Win-Arkitekturen og Jackpot-Integration</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdan har adopteret Hold & Win-mekanikken med en interessant twist: deres implementering kombinerer fast-respin-systemet med Volatility Levels™, hvilket betyder at spillere kan justere risikoprofilen i selve bonusrunden. Spil som 9 Lions, Power of Gods og Larry the Leprechaun demonstrerer denne hybrid-tilgang. Derudover har Wazdan integreret progressive jackpot-netværk i udvalgte titler, hvilket skaber et ekstra engagement-lag.
