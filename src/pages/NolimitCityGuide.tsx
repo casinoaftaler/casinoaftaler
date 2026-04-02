@@ -122,13 +122,23 @@ const NolimitCityGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={nolimitKatalog}
+          alt="Nolimit City spilkatalog hos CampoBet casino – oversigt over slots som Catfish Hunters, Munchies, The Crypt og San Quentin"
+          caption="Nolimit Citys fulde katalog hos et dansk casino – fra Catfish Hunters til True Grit Redemption."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Nolimit City specialiserer sig i ultra-high-volatility slots der kombinerer patenterede mekanikker med kontroversielle temaer. Hvert spil er designet til at skabe en oplevelse der er umulig at glemme – uanset om det er via den emotionelle intensitet af temaet eller den matematiske ekstremitet af gevinstpotentialet. Porteføljen er bevidst kompakt: 60+ titler vs. konkurrenters hundredvis. Men per-titel omsætningen er branchens højeste.
         </p>
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Bonus Buy-systemet med tre niveauer (Standard, Super, Lucky Draw) giver spillere kontrol over risikoprofilen inden for hvert spil. Standard-bonus koster 67-80x og giver basis free spins; Super koster 150-400x og giver forbedrede free spins med ekstra modifikatorer; Lucky Draw er et tilfældighedselement der kan give Standard eller Super til nedsat pris. Denne multi-tier-tilgang er unik i branchen og afspejler Nolimit Citys filosofi: giv spilleren valg, men gør konsekvenserne tydelige.
         </p>
-      </>
+        <ReviewScreenshot
+          src={nolimitBonuskob}
+          alt="Nolimit Bonus-købsystem – tre niveauer af Raid Spins med priser fra 95x til 777x grundindsatsen"
+          caption="Nolimit Citys bonus-købsystem – tre tiers med stigende pris og risiko, fra 95x til 777x indsatsen."
+          size="medium"
+        />
     }
     games={[
       { name: "San Quentin xWays", desc: "Det definerende Nolimit City-spil og branchens absolutte gevinstrekord: 2.084.000x maks. gevinst. Fængsels-tema med xWays og xNudge i samspil – expanding wilds nudger ned mens vinderkombinationer eksploderer. Lockdown Spins og Solitary Confinement free spins repræsenterer to volatilitetsniveauer. RTP: 96,03%. Bonus Buy: Standard 80x, Super 400x.", highlight: "2.084.000x – branchens absolutte højeste" },
