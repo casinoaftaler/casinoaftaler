@@ -5,6 +5,7 @@ import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { MENU_ICON_MAP } from "./header/menuIconMap";
+import { MenuIcon } from "@/components/MenuIcon";
 
 /* ─── Eager-load logo assets for sidebar ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
