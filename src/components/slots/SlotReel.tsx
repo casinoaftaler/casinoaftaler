@@ -121,8 +121,14 @@ export const SlotReel = React.memo(function SlotReel({
     const el = stripContainerRef.current;
     if (!el) return;
     el.style.transform = `translateY(-${offset}px)`;
-    el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
-    el.style.transition = isSlowing ? 'filter 0.2s ease-out' : 'none';
+    // Skip blur filter entirely on mobile — major GPU bottleneck
+    if (isMobileRef.current) {
+      el.style.filter = 'none';
+      el.style.transition = 'none';
+    } else {
+      el.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+      el.style.transition = isSlowing ? 'filter 0.2s ease-out' : 'none';
+    }
   }, []);
 
   useEffect(() => {
