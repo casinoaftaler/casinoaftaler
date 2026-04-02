@@ -1158,6 +1158,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           tumbleCollisionPhase={collisionPhase}
           tumbleVisible={isMobile && tumbleBarVisible}
           tumbleHideMultiplier={!isBonusActive}
+          bonusCumulativeMultiplier={cumulativeMultiplier}
+          bonusRunningMultiplier={runningMultiplier}
+          bonusTumblePhase={tumblePhase}
         />
       </div>
     </div>
