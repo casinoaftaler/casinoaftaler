@@ -283,6 +283,7 @@ export const SlotReel = React.memo(function SlotReel({
                     isDarkened={shouldDarkenSymbol}
                     gameId={gameId}
                     shimmerClass={shimmeringCells.has(rowIndex) && spinState === "idle" ? `slot-idle-shimmer ${shimmerTheme}` : undefined}
+                    size={SYMBOL_HEIGHT}
                   />
               </div>
             );
