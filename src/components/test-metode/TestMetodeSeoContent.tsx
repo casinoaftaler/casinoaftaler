@@ -293,9 +293,9 @@ export function TestMetodeSeoContent() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon: Clock, label: "Gns. udbetalingstid", value: "21 timer", desc: "Baseret på 28 testudbetalinger" },
-            { icon: Zap, label: "Gns. support-svartid", value: "1 min 31 sek", desc: "Baseret på 42 kontaktforsøg" },
-            { icon: Shield, label: "Dansk licens", value: "100%", desc: "Alle anmeldte casinoer har licens" },
+             { label: "Gns. udbetalingstid", value: "21 timer", desc: "Baseret på 28 testudbetalinger", iconName: "clock" },
+             { label: "Gns. support-svartid", value: "1 min 31 sek", desc: "Baseret på 42 kontaktforsøg", iconName: "zap" },
+             { label: "Dansk licens", value: "100%", desc: "Alle anmeldte casinoer har licens", iconName: "shield-check" },
           ].map((stat) => (
             <Card key={stat.label} className="border-border bg-card">
               <CardContent className="p-4 flex items-start gap-3">
