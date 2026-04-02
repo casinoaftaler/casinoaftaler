@@ -27,11 +27,6 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
     <div
       className={cn(
         "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
-      )}
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        ...(isWinning ? {
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
@@ -49,6 +44,8 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
           : "border-amber-400 animate-[scatter-celebration_0.4s_ease-in-out_infinite]")
       )}
       style={{
+        width: `${size}px`,
+        height: `${size}px`,
         ...(isWinning ? {
           boxShadow: isWizard
             ? '0 0 20px rgba(168,85,247,0.5)'
