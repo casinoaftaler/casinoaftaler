@@ -28,7 +28,7 @@ const HacksawGamingGuide = () => (
     licensesTitle="Regulatorisk Kompas: Hacksaws Licensstruktur"
     prosConsTitle="Hacksaws Styrker og Akilleshæle"
     responsibleTitle="Volatilitetens Ansvar: Hacksaw og Spillerbeskyttelse"
-    sectionOrder={["intro", "strategic", "technical", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    sectionOrder={["intro", "games", "strategic", "technical", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Skrabelodder, Punk-Attitude og 55.000x: Hacksaw Gamings Usandsynlige Oprejsning"
     introContent={
       <>

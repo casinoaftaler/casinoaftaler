@@ -21,7 +21,7 @@ const PlayNGoGuide = () => (
     licensesTitle="To Årtiers Pletfri Compliance: Play'n GOs Licenser"
     prosConsTitle="Princippernes Styrker og Omkostninger"
     responsibleTitle="Bonus Buy-Fravalg som Ansvarligt Spil-Statement"
-    sectionOrder={["strategic", "intro", "technical", "history", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    sectionOrder={["strategic", "history", "intro", "technical", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Play'n GO: Franchise-Tænkningen der Definerede en Genre"
     introContent={
       <>

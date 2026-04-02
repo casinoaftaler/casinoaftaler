@@ -22,7 +22,7 @@ const ISoftBetGuide = () => (
     licensesTitle="iSoftBets Multi-Jurisdiktionelle Licensstruktur"
     prosConsTitle="iSoftBets Fordele og Ulemper"
     responsibleTitle="Ansvarligt Spil hos iSoftBet"
-    sectionOrder={["strategic", "technical", "intro", "games", "history", "casinos", "licenses", "proscons", "providers", "responsible"]}
+    sectionOrder={["strategic", "intro", "games", "technical", "history", "casinos", "licenses", "proscons", "providers", "responsible"]}
     introTitle="iSoftBet: Aggregatoren der Også Laver Verdens Slots"
     introContent={
       <>

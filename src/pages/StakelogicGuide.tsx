@@ -23,7 +23,7 @@ const StakelogicGuide = () => (
     licensesTitle="Stakelogics Licenser og Regulatorisk Ramme"
     prosConsTitle="Stakelogics Styrker og Begrænsninger"
     responsibleTitle="Ansvarligt Spil i Stakelogics Rammer"
-    sectionOrder={["technical", "intro", "strategic", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    sectionOrder={["technical", "strategic", "games", "intro", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Novomatic-Arvingen: Stakelogics Rejse fra Landbaseret DNA til Digital Dominans"
     introContent={
       <>
