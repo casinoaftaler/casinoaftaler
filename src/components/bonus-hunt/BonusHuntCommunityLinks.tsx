@@ -5,7 +5,7 @@ const COMMUNITY_LINKS = [
   { iconName: "gamepad-2", title: "Gratis Spillehal", description: "Spil gratis slots og optjen points uden risiko.", to: "/community/slots" },
   { iconName: "trophy", title: "Turneringer", description: "Deltag i ugentlige turneringer og vind præmier.", to: "/community/turneringer" },
   { iconName: "archive", title: "Bonus Hunt Arkiv", description: "Alle dokumenterede hunt-resultater med statistik.", to: "/bonus-hunt/arkiv" },
-  { iconName: "database", title: "Slot Database", description: "1.470+ slots med community-data og performance-stats.", to: "/slot-database" },
+  { iconName: "database", title: "Slot Database", description: "1.640+ slots med community-data og performance-stats.", to: "/slot-database" },
   { iconName: "chart-bar", title: "Statistik", description: "Aggregeret data fra alle bonus hunts og slot-tests.", to: "/statistik" },
   { iconName: "crown", title: "Hall of Fame", description: "All-time leaderboards, top clips og community-legender.", to: "/community/hall-of-fame" },
   { iconName: "tv", title: "Highlights & Clips", description: "Se de bedste stream-øjeblikke og del dine egne wins.", to: "/highlights" },

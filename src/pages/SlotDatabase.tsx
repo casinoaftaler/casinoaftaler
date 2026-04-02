@@ -341,7 +341,7 @@ export default function SlotDatabase() {
           </div>
         )}
 
-        <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.470+ spillemaskiner testet på Twitch." />
+        <SnippetAnswer answer={`Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for ${slotCountLabel} spillemaskiner testet på Twitch.`} />
 
         
 
@@ -410,9 +410,9 @@ export default function SlotDatabase() {
         {/* noscript fallback for crawlers that don't execute JS */}
         <noscript>
           <div className="rounded-lg border border-border p-6 my-8 bg-muted/30">
-            <h2 className="text-xl font-bold mb-3">Slot Database – 1.470+ Spillemaskiner</h2>
+            <h2 className="text-xl font-bold mb-3">Slot Database – {slotCountLabel} Spillemaskiner</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Denne database indeholder over 1.470 spillemaskiner testet og catalogiseret med data fra vores live bonus hunts på Twitch.
+              Denne database indeholder over {slotCountLabel} spillemaskiner testet og catalogiseret med data fra vores live bonus hunts på Twitch.
               Hver maskine har detaljerede data om RTP, volatilitet, højeste multiplikator (X) og antal
               bonus hunt-optrædener. Databasen dækker udbydere som Pragmatic Play, Hacksaw Gaming,
               Nolimit City, Play'n GO, NetEnt, Big Time Gaming, Red Tiger, ELK Studios, Yggdrasil og mange flere.
@@ -428,7 +428,7 @@ export default function SlotDatabase() {
               <a href="/casino-bonus" className="text-primary underline"> casino bonusser</a>.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.470+ spillemaskiner.
+              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.640+ spillemaskiner.
             </p>
           </div>
         </noscript>

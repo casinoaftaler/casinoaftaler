@@ -12,7 +12,7 @@ const trustPoints = [
     iconName: "chart-bar",
     title: "Matematisk bonusanalyse",
     description: "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
-    stat: "1.470+ slots i database",
+    stat: "1.640+ slots i database",
   },
   {
     iconName: "scale",

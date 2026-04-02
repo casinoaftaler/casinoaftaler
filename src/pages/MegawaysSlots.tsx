@@ -367,7 +367,7 @@ const MegawaysSlots = () => {
             Vores anbefalinger er baseret på en kombination af RTP, vindpotentiale, spiloplevelse
             og community-data fra vores{" "}
             <Link to="/slot-database" className={linkClass}>Slot Database</Link>, hvor vi tracker
-            statistik fra 1.470+ spilleautomater testet i{" "}
+            statistik fra 1.640+ spilleautomater testet i{" "}
             <Link to="/bonus-hunt" className={linkClass}>bonus hunts</Link>.
           </p>
 
@@ -606,7 +606,7 @@ const MegawaysSlots = () => {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Vores <Link to="/slot-database" className={linkClass}>Slot Database</Link> indeholder
-            detaljerede statistikker fra 1.470+ spilleautomater testet i live{" "}
+            detaljerede statistikker fra 1.640+ spilleautomater testet i live{" "}
             <Link to="/bonus-hunt" className={linkClass}>bonus hunts</Link>. Megaways-titler er
             konsekvent repræsenteret i vores tests og leverer følgende gennemsnitlige resultater:
           </p>
@@ -681,7 +681,7 @@ const MegawaysSlots = () => {
               { to: "/bonus-buy-slots", title: "Bonus Buy Slots", desc: "Køb bonus direkte – spring base game over" },
               { to: "/casinospil/spillemaskiner", title: "Spillemaskiner Guide", desc: "Komplet guide til alle spilleautomater" },
               { to: "/casinospil/spillemaskiner/hoej-rtp", title: "Høj RTP Slots", desc: "Spillemaskiner med bedst tilbagebetaling" },
-              { to: "/slot-database", title: "Slot Database", desc: "1.470+ slots med community-statistik" },
+              { to: "/slot-database", title: "Slot Database", desc: "1.640+ slots med community-statistik" },
               { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link
