@@ -367,7 +367,7 @@ const MegawaysSlots = () => {
             Vores anbefalinger er baseret på en kombination af RTP, vindpotentiale, spiloplevelse
             og community-data fra vores{" "}
             <Link to="/slot-database" className={linkClass}>Slot Database</Link>, hvor vi tracker
-            statistik fra 1.470+ spilleautomater testet i{" "}
+            statistik fra 1.640+ spilleautomater testet i{" "}
             <Link to="/bonus-hunt" className={linkClass}>bonus hunts</Link>.
           </p>
 
