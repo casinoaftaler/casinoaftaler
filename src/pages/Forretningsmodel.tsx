@@ -345,9 +345,9 @@ const Forretningsmodel = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Vores casino-ranking på forsiden og i guides som{" "}
             <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">Top 10 Casino Online</Link>{" "}
-            er baseret på en vægtet score-model, hvor sikkerhed og licens udgør 30 % af den samlede vurdering. 
-            Spiludvalg og bonusvilkår vægter hver 20 %, mens udbetalingshastighed og samlet brugeroplevelse 
-            vægter 15 % hver.
+            er baseret på en vægtet score-model med seks kategorier, hvor sikkerhed og licens udgør 25 % af den samlede vurdering. 
+            Bonus og vilkår vægter 20 %, spiludvalg, udbetaling og mobiloplevelse vægter hver 15 %, 
+            og kundeservice vægter 10 %.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Et casino med et affiliate-samarbejde kan blive placeret lavere end et casino uden samarbejde, 
