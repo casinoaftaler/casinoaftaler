@@ -397,8 +397,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
       const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
 
-      const targetX = fallbackWidth / 2;
-      const targetY = 20;
+      const targetX = fallbackWidth / 4;
+      const targetY = fallbackHeight + 40;
 
       for (const bomb of sorted) {
         const animState: CellAnimState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
