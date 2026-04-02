@@ -543,7 +543,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     setRunningWin(0);
     setRunningMultiplier(0);
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
-    if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+    if (isBonusSpin) {
+      setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+      freeSpinsRemainingRef.current = Math.max(0, freeSpinsRemainingRef.current - 1);
+    }
     setIsWinAnimating(false);
     pendingPostWinSpinRef.current = null;
     setWinningPositions(new Set());
