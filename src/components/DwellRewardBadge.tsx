@@ -318,7 +318,7 @@ export function DwellRewardBadge() {
                   </span>
                 ) : currentMilestone ? (
                   <span className="flex items-center gap-1.5 animate-fade-in font-medium" style={{ color: "hsl(25, 90%, 48%)" }}>
-                    {(() => { // icon resolved via iconName on currentMilestone return <MenuIcon iconName={iconName} className="h-3.5 w-3.5" />; })()}
+                    <MenuIcon iconName={currentMilestone.iconName} className="h-3.5 w-3.5" />
                     {currentMilestone.text.replace(/\s*[\p{Emoji_Presentation}\p{Extended_Pictographic}]+$/u, "")} – {timeDisplay}
                   </span>
                 ) : isActive ? (
