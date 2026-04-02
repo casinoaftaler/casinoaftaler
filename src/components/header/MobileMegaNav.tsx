@@ -156,7 +156,7 @@ function MobileExpandableLinks({ links, initialCount, onClose, indent = "ml-6" }
 
 /* ─── Section accordion ─── */
 function MobileSection({ label, iconName, sectionKey, expanded, onToggle, children }: {
-  label: string; icon: any; sectionKey: string; expanded: boolean; onToggle: (key: string) => void; children: React.ReactNode;
+  label: string; iconName: string; sectionKey: string; expanded: boolean; onToggle: (key: string) => void; children: React.ReactNode;
 }) {
   return (
     <>
