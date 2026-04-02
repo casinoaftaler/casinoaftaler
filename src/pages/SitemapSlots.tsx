@@ -38,7 +38,7 @@ export default function SitemapSlots() {
     <>
       <SEO
         title="Sitemap: Casinospil"
-        description="Komplet liste over alle ${SLOT_COUNT_LABEL} spillemaskiner på Casinoaftaler.dk med statistik, RTP og bonus hunt data."
+        description=`Komplet liste over alle ${SLOT_COUNT_LABEL} spillemaskiner på Casinoaftaler.dk med statistik, RTP og bonus hunt data.`
         noindex
       />
       <div className="container py-8">
@@ -112,7 +112,7 @@ export default function SitemapSlots() {
         <noscript>
           <div>
             <p>Se alle spillemaskiner i vores <a href="/slot-database">Slot Database</a>.</p>
-            <p>Se det komplette katalog med links til alle {slots?.length || "${SLOT_COUNT_LABEL}"} spillemaskiner: <a href="/slot-directory.html">Slot Directory</a>.</p>
+            <p>Se det komplette katalog med links til alle {slots?.length || `${SLOT_COUNT_LABEL}`} spillemaskiner: <a href="/slot-directory.html">Slot Directory</a>.</p>
           </div>
         </noscript>
       </div>
