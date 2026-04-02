@@ -194,6 +194,12 @@ const PragmaticPlayGuide = () => (
           En vigtig advarsel: tjek altid RTP-niveauet i spillets informationsmenu. Gates of Olympus ved 96,50% og Gates of Olympus ved 94,00% er teknisk set to forskellige spil fra et matematisk perspektiv, selvom de ser identiske ud. Forskellen over tid er substantiel og kan betyde forskellen mellem en acceptabel session og en unødvendigt dyr oplevelse. De RTP-værdier der angives nedenfor er standard-niveauerne – dit casino kan have konfigureret lavere.
         </p>
         <ReviewScreenshot
+          src={ppSpilleregler}
+          alt="Gates of Olympus spilleregler – RTP 95,50%, høj volatilitet 5/5, mindste indsats kr1 og højeste indsats kr50"
+          caption="Gates of Olympus spilleregler viser RTP på 95,50% og høj volatilitet – bemærk at RTP kan variere mellem casinoer pga. operatør-konfiguration."
+          size="medium"
+        />
+        <ReviewScreenshot
           src={pragmaticSlotKatalog}
           alt="Pragmatic Play spillemaskiner sorteret i casinolobby – Sweet Bonanza, Gates of Olympus, Big Bass og 539 titler"
           caption="Pragmatic Play har over 539 spillemaskiner tilgængelige i danske casinoer – her vist i et dansk casino med provider-filteret aktiveret."
