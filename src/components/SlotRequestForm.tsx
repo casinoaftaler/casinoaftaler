@@ -146,7 +146,7 @@ export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number 
                 return (
                   <div key={req.id} className="flex items-center justify-between rounded-lg border border-border p-3 text-sm">
                     <div className="flex items-center gap-2">
-                      <MenuIcon iconName={iconName} className="h-4 w-4 text-muted-foreground" />
+                      <MenuIcon iconName={config.iconName} className="h-4 w-4 text-muted-foreground" />
                       <span className="font-medium">{req.slot_name}</span>
                       <span className="text-muted-foreground">({req.provider})</span>
                     </div>
