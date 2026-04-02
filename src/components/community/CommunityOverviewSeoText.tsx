@@ -202,8 +202,8 @@ export function CommunityOverviewSeoText() {
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
             Vores turneringssystem kører i månedlige cyklusser med tre kategorier, der tester
-            forskellige spilaspekter: Biggest Win (den største enkeltgevinst), Biggest X (den
-            højeste multiplikator) og Highest Win Amount (den højeste samlede gevinst). Hver
+            forskellige spilaspekter: Flest Point (den højeste samlede gevinst i Fedesvin Bonanza), Højeste X (den
+            højeste multiplikator i Book of Fedesvin) og Største Gevinst (den største enkeltgevinst i Rise of Fedesvin). Hver
             kategori har sin egen leaderboard, og præmierne fordeles til top 3 i hver kategori:
             500 kr (1. plads), 300 kr (2. plads) og 200 kr (3. plads).
           </p>
@@ -234,8 +234,8 @@ export function CommunityOverviewSeoText() {
         </h2>
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
-            En af de unikke fordele ved Casinoaftaler Community er, at data fra tusindvis af daglige
-            spins og hundredvis af dokumenterede bonus hunts integreres direkte i vores{" "}
+            En af de unikke fordele ved Casinoaftaler Community er, at data fra næsten 200.000
+            spins og 185+ dokumenterede bonus hunts integreres direkte i vores{" "}
             <Link to="/casino-anmeldelser" className="text-primary hover:underline">
               casino-anmeldelser
             </Link>{" "}
