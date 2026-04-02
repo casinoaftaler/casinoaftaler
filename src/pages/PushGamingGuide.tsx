@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pushLogo from "@/assets/screenshots/push-logo.webp";
+import pushKatalog from "@/assets/screenshots/push-katalog.webp";
+import pushGameplay from "@/assets/screenshots/push-gameplay.webp";
+import pushAbout from "@/assets/screenshots/push-about.webp";
 
 const PushGamingGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const PushGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche der belønner volumenproduktion og franchise-genbrug, har Push Gaming valgt en radikalt anderledes vej: at gøre hvert eneste spil til et statement. Grundlagt i London i 2010 af James Marshall og Winston Lee – begge veteraner fra den britiske gambling-sektor – startede Push Gaming med en simpel men ambitiøs tese: at et lille, fokuseret team med ubegrænset kreativ frihed kan producere bedre spil end store studier med hundredvis af ansatte. Fjorten år senere har de bevist den tese så overbevisende, at selv deres argeste kritikere må indrømme det.
         </p>
+        <ReviewScreenshot
+          src={pushLogo}
+          alt="Push Gaming officielt logo – britisk indie-spiludvikler"
+          caption="Push Gamings minimalistiske logo – det londoner indie-studio bag Fat Santa og Jammin' Jars."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gamings portefølje er lille – omkring 40 titler – men den indeholder en uforholdsmæssig stor andel af branchens mest indflydelsesrige spil. Fat Santa revolutionerede jule-slots med sin Fat Santa-mekanik (udvidende symboler der overtager hele hjul). Razor Returns redefinerede hvad en sequel kunne være med sin Razor Reveal-feature. Jammin' Jars, selvom det teknisk er et <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>-parallelt cluster pays-spil, var Push Gamings bevis på at de kunne mestre den mest trendende mekanik i branchen og gøre den til deres egen. Og Wild Swarm var en af de første slots der brugte insektsværme som gameplay-element – en idé så original at den stadig ikke er blevet kopieret overbevisende.
         </p>
@@ -53,6 +65,13 @@ const PushGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den strategiske implikation er at Push Gaming lever af at skabe "evergreen" titler – spil der forbliver relevante i casinolobbyerne i 3-5 år, ikke kun 3-5 uger. Fat Santa er stadig et af de mest spillede jule-slots fire år efter lanceringen. Jammin' Jars har opretholdt en top-200 position globalt i over fem år. Denne levetid kompenserer for den lave udgivelsesfrekvens: hvor Pragmatic Play kræver en konstant strøm af nye titler for at opretholde indtægterne, kan Push Gaming leve af en håndfuld tidløse hits.
         </p>
+
+        <ReviewScreenshot
+          src={pushGameplay}
+          alt="Razor Shark gameplay – undervandsslot fra Push Gaming med Razor Reveal-mekanik"
+          caption="Razor Shark gameplay på CasinoSlots – Push Gamings kultklassiker med hajsymboler og Razor Reveal-feature."
+          size="full"
+        />
 
         <h3 className="text-xl font-bold mb-3 mt-6">Push Gaming vs. Hacksaw Gaming: To Veje til Kultstatus</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -135,6 +154,12 @@ const PushGamingGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={pushKatalog}
+          alt="Push Gaming spilkatalog med 40+ titler inkl. Big Bamboo, Razor Shark og Fat Santa"
+          caption="Push Gamings komplette katalog – boutique-størrelse med høj hit-rate: Big Bamboo, Razor Shark, Jammin' Jars og Fat-serien."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gamings katalog er boutique-sized men rummer en bemærkelsesværdig koncentration af innovative, veldesignede titler. De nedenstående seks spil repræsenterer studiets kreative bredde – fra den sæsonbestemte Fat-serie til den mere intense Razor-franchise. Hvert spil har sin egen mekanik, sit eget tema og sin egen stemning – og det er netop Push Gamings pointe.
         </p>
@@ -161,6 +186,12 @@ const PushGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gaming er licenseret af UK Gambling Commission (UKGC) som primær jurisdiktion – verdens strengeste spillemyndighed med omfattende krav til spillerbeskyttelse, anti-hvidvask og fair play. Derudover holder de licens fra Malta Gaming Authority (MGA), der sikrer bred adgang til europæiske markeder.
         </p>
+        <ReviewScreenshot
+          src={pushAbout}
+          alt="Push Gaming i tal – 200+ medarbejdere, 40+ spil, 5 licenser, 200+ operatører"
+          caption="Push Gaming i tal: 200+ medarbejdere, 40+ spil, 5 licenser og 200+ operatører – fra studiets officielle hjemmeside."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Push Gaming fuldt certificeret til det danske marked via Spillemyndigheden. Alle spil testes af uafhængige laboratorier (eCOGRA og iTech Labs) for RNG-integritet og RTP-verifikation. Push Gamings compliance-team sikrer løbende opdatering i takt med at regulatoriske krav ændrer sig – en nødvendighed i en branche med hastig regulatorisk evolution.
         </p>
