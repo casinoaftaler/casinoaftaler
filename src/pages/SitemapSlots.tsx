@@ -111,7 +111,7 @@ export default function SitemapSlots() {
         <noscript>
           <div>
             <p>Se alle spillemaskiner i vores <a href="/slot-database">Slot Database</a>.</p>
-            <p>Se det komplette katalog med links til alle {slots?.length || "1.470+"} spillemaskiner: <a href="/slot-directory.html">Slot Directory</a>.</p>
+            <p>Se det komplette katalog med links til alle {slots?.length || "1.640+"} spillemaskiner: <a href="/slot-directory.html">Slot Directory</a>.</p>
           </div>
         </noscript>
       </div>
