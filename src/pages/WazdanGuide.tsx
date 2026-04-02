@@ -134,6 +134,11 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdan opererer under en omfattende licensstruktur der afspejler deres globale rækkevidde. Primære licenser inkluderer Malta Gaming Authority (MGA), UK Gambling Commission (UKGC), og den rumænske ONJN. I de seneste år har Wazdan tilføjet licenser til nordamerikanske markeder – New Jersey Division of Gaming Enforcement og Michigan Gaming Control Board – som del af deres transatlantiske ekspansionsstrategi.
         </p>
+        <ReviewScreenshot
+          src={wazLicenses}
+          alt="Wazdan compliance og licenser – 30+ regulerede markeder, MGA, UKGC, DGE, MGCB, EiGE Awards, 15+ års erfaring, 2500+ partnere"
+          caption="Wazdans globale compliance-profil: licenser i 30+ markeder, EiGE Award som Best Mobile Gaming Provider og 2500+ casino-partnere."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Wazdan-titler tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Alle spil er RNG-certificeret af BMM Testlabs og GLI – to af verdens mest respekterede uafhængige testlaboratorier. Volatility Levels™-teknologien er individuelt certificeret for hvert volatilitetsniveau, hvilket sikrer at alle tre matematiske modeller overholder de regulatoriske krav for fairness og tilfældighed.
         </p>
