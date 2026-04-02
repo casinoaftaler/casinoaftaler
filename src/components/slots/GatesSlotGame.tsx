@@ -1003,34 +1003,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           </div>
           {/* Main game grid */}
           <div className="relative" style={{ width: gridWidth }}>
-            {/* Bonus bar overlay at top of grid */}
-            {isBonusActive && (
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 animate-fade-in">
-                <div className="flex items-center gap-4 px-6 py-2 rounded-xl border-2 bg-gradient-to-b from-yellow-900/95 via-amber-950/98 to-yellow-950/95 border-yellow-500/60 shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)] backdrop-blur-sm">
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
-                    <div className="flex items-baseline gap-1">
-                      <AnimatedSpinCounter value={freeSpinsRemaining} className="text-2xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums" />
-                      <span className="text-sm text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
-                    </div>
-                  </div>
-                  <div className="w-px h-8 bg-yellow-500/30" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-blue-400/80 font-semibold">Total Multiplier</span>
-                    <span className="text-xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                      x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
-                    </span>
-                  </div>
-                  <div className="w-px h-8 bg-yellow-500/30" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-emerald-400/80 font-semibold">Tumble Win</span>
-                    <span className="text-xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">
-                      {Number(runningWin.toFixed(2))}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* Bonus info moved to control bar */}
             <div
               ref={gridContainerRef}
               className={cn(
