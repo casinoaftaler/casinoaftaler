@@ -318,6 +318,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const skipRef = useRef(false);
   const clickCountRef = useRef(0);
   const lightningIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
 
   const finalMultiplier = bet > 0 ? winAmount / bet : 0;
   const finalTier = getTier(finalMultiplier);
@@ -441,14 +442,16 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     setTimeout(() => setImpactShake(false), 180);
 
     const palette = makePalette(finalTier);
-    setCoins(makeCoins(finalCfg.coins, palette));
-    // Rain coins: scale with tier
-    const rainCount = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
-    setRainCoins(makeRainCoins(rainCount, palette));
-    setSparks(makeSparks(finalCfg.sparks, palette));
+    const mobile = isMobileRef.current;
+    const mobileScale = mobile ? 0.35 : 1; // 65% fewer particles on mobile
+    setCoins(makeCoins(Math.round(finalCfg.coins * mobileScale), palette));
+    // Rain coins: scale with tier, heavily reduced on mobile
+    const rainCountBase = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
+    setRainCoins(makeRainCoins(Math.round(rainCountBase * mobileScale), palette));
+    setSparks(makeSparks(Math.round(finalCfg.sparks * mobileScale), palette));
     // Floating sparkles: scale with tier
-    const sparkleCount = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
-    setFloatingSparkles(makeFloatingSparkles(sparkleCount, palette));
+    const sparkleCountBase = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
+    setFloatingSparkles(makeFloatingSparkles(Math.round(sparkleCountBase * mobileScale), palette));
     setCurrentDisplayTier("nice");
     setShowOverlay(true);
   }, [isActive, winAmount, bet]);
@@ -503,8 +506,8 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               animation: "win-radial-pulse 1.5s ease-in-out infinite",
             }}
           />
-          {/* Rotating light rays */}
-          {isMegaPlus && (
+          {/* Rotating light rays - skip on mobile (expensive compositing) */}
+          {isMegaPlus && !isMobileRef.current && (
             <div
               className="absolute"
               style={{
@@ -650,8 +653,8 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         </div>
       )}
 
-      {/* Floating sparkles (drift and respawn) */}
-      {showOverlay && (
+      {/* Floating sparkles (drift and respawn) - skip entirely on mobile */}
+      {showOverlay && !isMobileRef.current && (
         <div
           className={cn(
             "absolute inset-0 z-[1003] pointer-events-none overflow-hidden",

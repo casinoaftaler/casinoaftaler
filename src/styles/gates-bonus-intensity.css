@@ -182,3 +182,25 @@
     box-shadow: 0 0 40px rgba(250, 204, 21, 0.5), 0 0 80px rgba(250, 204, 21, 0.25);
   }
 }
+
+/* === MOBILE PERFORMANCE: simplify bonus intensity effects === */
+@media (max-width: 767px) {
+  [data-bonus="true"] .gates-win-highlight {
+    box-shadow: none;
+    filter: brightness(1.2);
+  }
+  [data-bonus="true"][data-intensity="win"] .gates-intensity-high {
+    box-shadow: none;
+  }
+  .gates-bonus-mult-landing {
+    animation: none;
+    filter: brightness(1.3);
+  }
+  @keyframes bonus-bar-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(250, 204, 21, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.3); }
+  }
+  [data-mult-tier="extreme"] .bonus-multiplier-counter {
+    animation: mult-glow-pulse 1.5s ease-in-out infinite;
+  }
+}
