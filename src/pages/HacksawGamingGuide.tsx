@@ -50,6 +50,12 @@ const HacksawGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Matematisk er Hacksaw kompromisløse. Deres volatilitetsprofil er konsekvent ekstremt høj – typisk i det øverste percentil af hvad branchen tilbyder. Hitfrekvenser under 18% er standarden, ikke undtagelsen. Det betyder lange perioder uden signifikante gevinster, afbrudt af sjældne men potentielt massive hits. Maks. gevinster spænder fra 10.000x til 55.000x – tal der ville have været utænkelige for fem år siden, men som Hacksaw har normaliseret for en hel generation af spillere.
         </p>
+        <ReviewScreenshot
+          src={hacksawStats}
+          alt="Hacksaw Gaming nøgletal – +250 spil, +3.000 operatør-brands og +35 regulerede markeder fra deres officielle hjemmeside"
+          caption="Hacksaw Gamings officielle statistik: +250 spil, +3.000 operatør-brands og tilstedeværelse i +35 regulerede markeder"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Strategisk har Hacksaw positioneret sig som branchens outsider – den kreative rebel der ikke konkurrerer på volumen men på kulturel relevans. Med en portefølje på 80+ titler er de dværge sammenlignet med Pragmatic Plays 250+ eller <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgamings</Link> 800+. Men det er netop pointen. Hacksaw bygger ikke et bibliotek – de bygger et brand. Og i en industri hvor de fleste udviklere er anonyme leverandører af indhold, har Hacksaw opnået noget sjældent: spillere der aktivt søger efter deres spil.
         </p>
