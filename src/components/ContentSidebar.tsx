@@ -27,29 +27,17 @@ function resolveLogoUrl(path?: string): string | null {
   return all[path]?.default ?? null;
 }
 
-const iconMap: Record<string, React.ElementType> = {
-  crown: Crown,
-  sparkles: Sparkles,
-  gift: Gift,
-  dices: Dices,
-  creditCard: CreditCard,
-  gamepad2: Gamepad2,
-  tv: Tv,
-  star: Star,
+/* iconName → MENU_ICON_MAP kebab-case name for category headers */
+const CATEGORY_ICON_MAP: Record<string, string> = {
+  crown: "crown",
+  sparkles: "sparkles",
+  gift: "gift",
+  dices: "dice-5",
+  creditCard: "credit-card",
+  gamepad2: "gamepad-2",
+  tv: "tv",
+  star: "star",
 };
-/* ─── Direct icon map for sidebar fallback (no wildcard import) ─── */
-const SIDEBAR_ICON_MAP: Record<string, React.ElementType> = {
-  "dices": Dices,
-  "layout-grid": LayoutGrid,
-  "cherry": Cherry,
-  "creditCard": CreditCard,
-  "gamepad2": Gamepad2,
-};
-
-function getLucideIcon(name?: string): React.ElementType | null {
-  if (!name) return null;
-  return SIDEBAR_ICON_MAP[name] ?? null;
-}
 
 /* ─── Icon accent colors (matching mega menu) ─── */
 const ICON_COLORS = [
