@@ -21,6 +21,7 @@ interface SlotSymbolProps {
 // Base size: 150×150 container, 136×136 image (overridable via size prop)
 export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass, size = 150 }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
+  const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
   const imgSize = Math.floor(size * 136 / 150);
   
   return (
