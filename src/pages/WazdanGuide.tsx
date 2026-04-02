@@ -114,7 +114,13 @@ const WazdanGuide = () => (
       { year: "2022", event: "Nordamerikansk debut – licenser i New Jersey og Michigan" },
       { year: "2024", event: "200+ titler i porteføljen – 30+ regulerede markeder dækket globalt" },
     ]}
-    gamesIntro={<p className="mb-6 text-muted-foreground leading-relaxed">Disse seks spil demonstrerer bredden i Wazdans portefølje – fra klassiske Hold & Win-titler til innovative megaways-implementeringer, alle med Volatility Levels™.</p>}
+    gamesIntro={<><p className="mb-6 text-muted-foreground leading-relaxed">Disse seks spil demonstrerer bredden i Wazdans portefølje – fra klassiske Hold & Win-titler til innovative megaways-implementeringer, alle med Volatility Levels™.</p>
+        <ReviewScreenshot
+          src={wazKatalog}
+          alt="Wazdan spilkatalog på Campobet – Magic Eggs, Mighty Wild Gorilla, Cash Grotto, Hot Slot 777 og 200+ titler"
+          caption="Wazdans brede katalog hos Campobet med Hold the Jackpot-titler, sæsonbetonede spil og klassiske frugttemaer."
+        />
+      </>}
     games={[
       { name: "9 Lions", desc: "Wazdans mest populære Hold & Win-titel med asiatisk tema, 3x3 grid og respin-mekanik med stigende multiplikatorer. De tre volatilitetsniveauer skaber tre fundamentalt forskellige spiloplevelser i samme ramme. RTP: 96,32%. Spillervalgt volatilitet. Maks. gevinst: 2.430x. Hold & Win Respin-mekanikken kombineret med Volatility Levels™ og Sticky Wilds gør dette til det perfekte introduktionsspil til Wazdans teknologi.", highlight: "2.430x maks. – Volatility Levels™ + Hold & Win" },
       { name: "Power of Gods™: Hades", desc: "Mytologisk slot med 5x4 grid og 50 betalingslinjer. Hades' bonus inkluderer expanding wilds med op til 10x multiplikator – en mekanik der ændrer karakter dramatisk afhængig af det valgte volatilitetsniveau. RTP: 96,15%. Spillervalgt volatilitet. Maks. gevinst: 5.000x. Free spins med retrigger og den tematiske integration af græsk underverden-æstetik gør dette til et visuelt og mekanisk stærkt spil.", highlight: "5.000x maks. – Expanding Wilds + 10x Multiplikator" },
