@@ -1020,6 +1020,20 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
     onReelStopRef.current?.(reelIndex);
   }, []);
 
+  // On mobile, calculate symbol size to fill viewport width natively (no CSS transform scaling)
+  const mobileSymbolSize = useMemo(() => {
+    if (!isMobile || typeof window === 'undefined') return DEFAULT_SYMBOL_SIZE;
+    const viewportWidth = window.innerWidth;
+    const reelCount = 5;
+    const dividerWidth = 2; // w-[2px] dividers between reels
+    const framePadding = 48; // p-6 = 24px each side
+    const outerPadding = 8; // px-1 = 4px each side
+    return Math.floor((viewportWidth - outerPadding - framePadding - (reelCount - 1) * dividerWidth) / reelCount);
+  }, [isMobile]);
+
+  const SYMBOL_SIZE = isMobile ? mobileSymbolSize : DEFAULT_SYMBOL_SIZE;
+  const SYMBOL_GAP = isMobile ? Math.max(4, Math.floor(DEFAULT_SYMBOL_GAP * (mobileSymbolSize / DEFAULT_SYMBOL_SIZE))) : DEFAULT_SYMBOL_GAP;
+
   const symbolDimensions = { size: SYMBOL_SIZE, gap: SYMBOL_GAP };
 
   if (symbolsLoading) {
