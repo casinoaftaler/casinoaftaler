@@ -78,6 +78,7 @@ export const SlotReel = React.memo(function SlotReel({
   const shimmeringCells = useIdleShimmer(3, !isSpinning && spinState === "idle" && !isBonusActive);
   const animationRef = useRef<number | null>(null);
   const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
+  const containerRef = useRef<HTMLDivElement>(null);
   const stripContainerRef = useRef<HTMLDivElement>(null);
   const hasStartedSpinRef = useRef(false);
   const hasStartedSlowdownRef = useRef(false);
