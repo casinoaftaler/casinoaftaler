@@ -210,25 +210,25 @@ export function HomepageLiveCommunity() {
         <div className="flex flex-wrap gap-3 mt-6">
           <Button asChild variant="default" className="gap-2">
             <Link to="/bonus-hunt">
-              <Target className="h-4 w-4" />
+              <MenuIcon iconName="target" className="h-4 w-4" />
               Se live bonus hunt
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/community/slots">
-              <Gamepad2 className="h-4 w-4" />
+              <MenuIcon iconName="gamepad-2" className="h-4 w-4" />
               Prøv spillehallen
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/slot-database">
-              <TrendingUp className="h-4 w-4" />
+              <MenuIcon iconName="trending-up" className="h-4 w-4" />
               Slot Database
             </Link>
           </Button>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/statistik">
-              <TrendingUp className="h-4 w-4" />
+              <MenuIcon iconName="chart-bar" className="h-4 w-4" />
               Statistik
             </Link>
           </Button>
