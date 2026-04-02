@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import tkLogo from "@/assets/screenshots/tk-logo.webp";
+import tkProviders from "@/assets/screenshots/tk-providers.webp";
+import tkKatalog from "@/assets/screenshots/tk-katalog.webp";
+import tkGameplay from "@/assets/screenshots/tk-gameplay.webp";
 
 const ThunderkickGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche domineret af volumenstrategi og franchise-produktion eksisterer der et svensk studio, der konsekvent nægter at følge konventionerne. Thunderkick, grundlagt i Stockholm i 2012 af tidligere <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-medarbejdere, har på lidt over et årti skabt en portefølje der er kvantitativt beskeden – kun cirka 60 titler – men kvalitativt ekstraordinær. Hvert eneste spil i deres katalog bærer et umiskendeligt fingeraftryk: uventet tematik, originale mekanikker og en visuel stil der ligger et sted mellem europæisk kunstfilm og japansk animation.
         </p>
+        <ReviewScreenshot
+          src={tkLogo}
+          alt="Thunderkick officielt logo – sort flamme-ikon med T og THUNDERKICK tekst"
+          caption="Thunderkicks minimalistiske flamme-logo symboliserer studioets brændende passion for originalt spildesign."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkicks grundlæggere forlod NetEnt med en specifik vision: at bevise at kvalitet kunne erstatte kvantitet som forretningsmodel i online gambling. Hvor <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 nye titler per måned og satser på markedsmætning, lancerer Thunderkick 4-6 spil per år – hver eneste titel udviklet over 8-14 måneder med et dedikeret team. Resultatet er spil der ikke ligner noget andet på markedet: Esqueleto Explosivo med sine mexicanske sukker-kranier der eksploderer i kæder, Barracuda med sin undervandsjagt og stigende multiplikatorer, eller Beat the Beast-serien der kombinerer mytologisk ikonografi med progressiv jackpot-integration.
         </p>
@@ -69,6 +81,11 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den mest relevante sammenligning for Thunderkick er ikke Pragmatic Play eller NetEnt, men <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> – det andet svenske indie-studio der har skabt en niché baseret på kvalitet over kvantitet. Begge deler den skandinaviske design-æstetik, begge prioriterer innovation over volumen, og begge har opbygget loyale fanbases i niche-communities. Men der er afgørende forskelle.
         </p>
+        <ReviewScreenshot
+          src={tkProviders}
+          alt="Campobet udbyderoversigt – Thunderkick med 55 titler blandt 80+ spiludviklere inklusiv Pragmatic, NetEnt og Yggdrasil"
+          caption="Thunderkick med 55 titler på Campobet – en boutique-portefølje sammenlignet med Pragmatics 527 og PlaynGOs 434."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios har specialiseret sig i funktionelle innovationer: Avalanche Reels-varianter (Kaiju), Walking Wilds (Cygnus), og deres signaturtilgang til gamification med XP-progression. Thunderkick prioriterer æstetisk innovation: unikke visuelle stilarter, uventede temaer og en fortællemæssig dybde der overskrider det funktionelle. ELK-spil er mekanisk interessante; Thunderkick-spil er oplevelsesmæssigt unikke. For spillere der prioriterer gameplay-dybde er ELK det bedre valg. For spillere der søger en immersiv, kunstnerisk oplevelse er Thunderkick uovertruffen.
         </p>
@@ -141,6 +158,11 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkicks katalog er boutique-sized men hvert spil repræsenterer en unik kreativ vision. De nedenstående seks titler spænder fra studiets ikoniske debut til nyere eksperimenter der viser, at innovationslysten ikke er aftaget. Fælles for dem alle er den umiskendelige Thunderkick-æstetik: hver slot er et kunstværk der tilfældigvis også er en velfungerende spilleautomat.
         </p>
+        <ReviewScreenshot
+          src={tkKatalog}
+          alt="Thunderkick spilkatalog på Campobet – 12 Bolts of Thunder, Beat the Beast-serien, Carnival Queen og Crystal Quest"
+          caption="Thunderkicks katalog hos Campobet: fra Beat the Beast-franchisen til Crystal Quest og Carnival Queen."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig nuance for danske spillere: Thunderkick-spil er generelt velegnet til dem der søger underholdningsværdi per time snarere end eksplosive enkelt-gevinster. Medium-høj volatilitet med konsistent RTP gør dem til solide valg til bonus-omsætning via{" "}
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
@@ -162,6 +184,12 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkick er licenseret af Malta Gaming Authority (MGA) som primær jurisdiktion samt UK Gambling Commission for det britiske marked. For danske spillere er det afgørende at Thunderkick-spil er fuldt certificeret til det danske marked via Spillemyndigheden – de opfylder alle regulatoriske krav for fairness, RNG-integritet og spillerbeskyttelse, der gælder i Danmark.
         </p>
+        <ReviewScreenshot
+          src={tkGameplay}
+          alt="Beat the Beast: Griffin's Gold gameplay – 5x3 hjulopsætning med gylden griffin, fjer-symboler og armbrøst på blå stenbaggrund"
+          caption="Beat the Beast: Griffin's Gold – Thunderkicks mytologiske franchise med karakteristisk detaljeret kunsthåndværk og dansk DKK-interface."
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Alle Thunderkick-spil testes af uafhængige testlaboratorier (eCOGRA og BMM Testlabs) for at verificere RTP-nøjagtighed og RNG-randomhed. Studiets engagement i regulatorisk compliance afspejles i deres tilstedeværelse i 15+ regulerede jurisdiktioner, herunder Sverige (Spelinspektionen), Finland, og flere europæiske markeder.
         </p>
