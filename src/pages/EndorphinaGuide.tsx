@@ -26,6 +26,13 @@ const EndorphinaGuide = () => (
     introTitle="Tjekkisk Præcisionsarbejde: Endorphinas DNA og Vision for Moderne Spilleautomater"
     introContent={
       <>
+        <ReviewScreenshot
+          src={endorphinaLogo}
+          alt="Endorphina officielt logo – det farverige E-ikon med tagline reel endorphin fra studiets hjemmeside"
+          caption="Endorphinas officielle logo – det tjekkiske studios brand med sloganet reel endorphin"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphina er et af de mest konsistente – og muligvis mest undervurderede – studier i den europæiske iGaming-industri. Grundlagt i 2012 med hovedkvarter i Prag har det tjekkiske studio opbygget sin position gennem en uortodoks kombination af matematisk stringens, visuelt poleret design og en bevidst afvisning af hype-drevne trends. Mens konkurrenter jager viral opmærksomhed med ekstreme volatiliteter og clickbait-mekanikker, fokuserer Endorphina på at skabe spil der belønner tålmodig, informeret gameplay – slots hvor spillere med forståelse for RTP, hitfrekvens og varians konsekvent opnår bedre resultater end impulsspillere.
         </p>
@@ -74,6 +81,12 @@ const EndorphinaGuide = () => (
     }
     technicalProfile={
       <>
+        <ReviewScreenshot
+          src={endorphinaGameplay}
+          alt="Panda Strike spillemaskine fra Endorphina – gameplay med bambusramme, asiatisk tema og Bonus Pop feature"
+          caption="Panda Strike i aktion – Endorphinas stilrene grafik med tematisk Bonus Pop-feature"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphinas tekniske platform er bygget med en "matematik-først"-tilgang. Hvert spil starter med en detaljeret matematisk model – gevinstdistribution, hitfrekvens, volatilitetsprofil – der gennemtestes via millioner af simulerede spins før det visuelle design overhovedet påbegyndes. Denne omvendte proces (i forhold til mange studier der starter med tema og grafik) sikrer at den underliggende spilmekanik altid er solid.
         </p>
