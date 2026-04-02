@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import endorphinaLogo from "@/assets/screenshots/endorphina-logo.webp";
+import endorphinaStats from "@/assets/screenshots/endorphina-stats.webp";
+import endorphinaKatalog from "@/assets/screenshots/endorphina-katalog.webp";
+import endorphinaGameplay from "@/assets/screenshots/endorphina-gameplay.webp";
 
 const EndorphinaGuide = () => (
   <ProviderPage
@@ -21,6 +26,13 @@ const EndorphinaGuide = () => (
     introTitle="Tjekkisk Præcisionsarbejde: Endorphinas DNA og Vision for Moderne Spilleautomater"
     introContent={
       <>
+        <ReviewScreenshot
+          src={endorphinaLogo}
+          alt="Endorphina officielt logo – det farverige E-ikon med tagline reel endorphin fra studiets hjemmeside"
+          caption="Endorphinas officielle logo – det tjekkiske studios brand med sloganet reel endorphin"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphina er et af de mest konsistente – og muligvis mest undervurderede – studier i den europæiske iGaming-industri. Grundlagt i 2012 med hovedkvarter i Prag har det tjekkiske studio opbygget sin position gennem en uortodoks kombination af matematisk stringens, visuelt poleret design og en bevidst afvisning af hype-drevne trends. Mens konkurrenter jager viral opmærksomhed med ekstreme volatiliteter og clickbait-mekanikker, fokuserer Endorphina på at skabe spil der belønner tålmodig, informeret gameplay – slots hvor spillere med forståelse for RTP, hitfrekvens og varians konsekvent opnår bedre resultater end impulsspillere.
         </p>
@@ -51,6 +63,12 @@ const EndorphinaGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphina markedsfører sig bevidst til det segment af spillere der forstår RTP, varians og matematiske modeller. Denne positionering begrænser deres massemarkedsappel men skaber en loyal kernebrugerskare med høj livstidsværdi. I casinodata ser dette typisk ud som lavere initial-adoption (færre spillere prøver Endorphina-spil sammenlignet med trending Pragmatic-titler) men højere retention (spillere der finder Endorphina, bliver der længere).
         </p>
+        <ReviewScreenshot
+          src={endorphinaStats}
+          alt="Endorphina nøgletal – 13+ år på markedet, 200+ spil, 180+ teammedlemmer, 22 branchepriser, 6000+ globale partnere"
+          caption="Endorphinas nøgletal: 13+ års erfaring, 200+ spil og 6.000+ operatørpartnerskaber globalt"
+          size="full"
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Tjekkisk Teknologikultur som Konkurrencefordel</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Prags teknologi-scene – hjemsted for virksomheder som Avast, JetBrains og Socialbakers – har skabt et talent-økosystem der kombinerer ingeniørmæssig stringens med kreativ ambition. Endorphina drager fordel af dette miljø: deres udviklere har typisk baggrund i software engineering snarere end gaming, hvilket resulterer i renere kode, bedre performance og mere robuste matematiske modeller. Denne kulturelle faktor er svær at kopiere for konkurrenter i Malta, Gibraltar eller Stockholm.
@@ -63,6 +81,12 @@ const EndorphinaGuide = () => (
     }
     technicalProfile={
       <>
+        <ReviewScreenshot
+          src={endorphinaGameplay}
+          alt="Panda Strike spillemaskine fra Endorphina – gameplay med bambusramme, asiatisk tema og Bonus Pop feature"
+          caption="Panda Strike i aktion – Endorphinas stilrene grafik med tematisk Bonus Pop-feature"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphinas tekniske platform er bygget med en "matematik-først"-tilgang. Hvert spil starter med en detaljeret matematisk model – gevinstdistribution, hitfrekvens, volatilitetsprofil – der gennemtestes via millioner af simulerede spins før det visuelle design overhovedet påbegyndes. Denne omvendte proces (i forhold til mange studier der starter med tema og grafik) sikrer at den underliggende spilmekanik altid er solid.
         </p>
@@ -93,7 +117,7 @@ const EndorphinaGuide = () => (
       { year: "2022", event: "100+ titler i porteføljen – ny fokus på branded content og serier" },
       { year: "2024", event: "Rumænsk, græsk og baltisk licens tilføjet – paneuropæisk dækning opnået" },
     ]}
-    gamesIntro={<p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler repræsenterer Endorphinas kernefilosofi: matematisk fairness kombineret med visuelt poleret design og innovative sekundære features.</p>}
+    gamesIntro={<><ReviewScreenshot src={endorphinaKatalog} alt="Endorphina spilkatalog – oversigt over nyeste slots inkl. Nazar Wishes, Gambleman, Clover Flames Dice og 2026 Hit Slot" caption="Endorphinas officielle spilkatalog med nyeste udgivelser som Nazar Wishes og Gambleman" size="full" /><p className="mb-6 text-muted-foreground leading-relaxed">Disse seks titler repræsenterer Endorphinas kernefilosofi: matematisk fairness kombineret med visuelt poleret design og innovative sekundære features.</p></>}
     games={[
       { name: "Book of Santa", desc: "Endorphinas mest populære titel – en juletematisk Book-of-variant med expanding symbols i free spins. Særligt populær i Skandinavien takket være den festlige æstetik og solid matematisk model med fair hitfrekvens. RTP: 96,0%. Medium-høj volatilitet. Maks. gevinst: 5.000x. Chance Feature tilbyder interaktiv gamble efter gevinster.", highlight: "5.000x maks. – Expanding Symbols + Chance Feature" },
       { name: "Lucky Streak 3", desc: "Klassisk 3-hjuls slot med en af branchens højeste RTP-værdier på hele 97,0%. Perfekt til spillere der prioriterer langvarig underholdning med minimal risiko. Den rene, retro-inspirerede grafik er bevidst nostalgisk. Lav volatilitet. Maks. gevinst: 1.800x. Chance Feature tilbyder mulighed for at multiplicere gevinster.", highlight: "97,0% RTP – Branchens højeste i klassisk format" },
