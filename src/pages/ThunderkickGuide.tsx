@@ -29,6 +29,13 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche domineret af volumenstrategi og franchise-produktion eksisterer der et svensk studio, der konsekvent nægter at følge konventionerne. Thunderkick, grundlagt i Stockholm i 2012 af tidligere <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-medarbejdere, har på lidt over et årti skabt en portefølje der er kvantitativt beskeden – kun cirka 60 titler – men kvalitativt ekstraordinær. Hvert eneste spil i deres katalog bærer et umiskendeligt fingeraftryk: uventet tematik, originale mekanikker og en visuel stil der ligger et sted mellem europæisk kunstfilm og japansk animation.
         </p>
+        <ReviewScreenshot
+          src={tkLogo}
+          alt="Thunderkick officielt logo – sort flamme-ikon med T og THUNDERKICK tekst"
+          caption="Thunderkicks minimalistiske flamme-logo symboliserer studioets brændende passion for originalt spildesign."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkicks grundlæggere forlod NetEnt med en specifik vision: at bevise at kvalitet kunne erstatte kvantitet som forretningsmodel i online gambling. Hvor <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 nye titler per måned og satser på markedsmætning, lancerer Thunderkick 4-6 spil per år – hver eneste titel udviklet over 8-14 måneder med et dedikeret team. Resultatet er spil der ikke ligner noget andet på markedet: Esqueleto Explosivo med sine mexicanske sukker-kranier der eksploderer i kæder, Barracuda med sin undervandsjagt og stigende multiplikatorer, eller Beat the Beast-serien der kombinerer mytologisk ikonografi med progressiv jackpot-integration.
         </p>
