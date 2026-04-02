@@ -698,3 +698,39 @@
 .duration-800 {
   transition-duration: 800ms;
 }
+
+/* === MOBILE PERFORMANCE OPTIMIZATIONS === */
+@media (max-width: 767px) {
+  /* Simplify heavy filter chains on mobile GPUs */
+  .gates-gold-highlight {
+    animation: gates-gold-highlight 0.8s ease-in-out infinite;
+  }
+  @keyframes gates-gold-highlight {
+    0%, 100% {
+      filter: brightness(1.2);
+      transform: scale(1);
+    }
+    50% {
+      filter: brightness(1.6);
+      transform: scale(1.05);
+    }
+  }
+  .gates-gold-highlight::after {
+    display: none; /* Remove pseudo-element border animation */
+  }
+  .gates-win-highlight {
+    animation-duration: 0.8s;
+  }
+  /* Reduce box-shadow complexity */
+  .gates-grid-intensity-glow {
+    box-shadow: none !important;
+  }
+  /* Disable slow-motion on mobile */
+  .gates-slow-motion {
+    animation-duration: inherit !important;
+  }
+  /* Simplify lightning overlay */
+  .gates-lightning-overlay {
+    opacity: 0.5;
+  }
+}
