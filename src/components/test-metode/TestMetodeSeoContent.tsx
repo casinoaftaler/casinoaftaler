@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { MenuIcon } from "@/components/MenuIcon";
+import { Play } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

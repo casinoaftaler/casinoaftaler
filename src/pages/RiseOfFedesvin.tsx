@@ -27,7 +27,6 @@ import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
 
 
 
-
 const GAME_ID = "rise-of-fedesvin";
 
 type LoadingPhase = 'loading' | 'intro' | 'ready';

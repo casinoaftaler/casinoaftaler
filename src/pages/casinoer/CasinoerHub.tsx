@@ -21,7 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { type ReactNode } from "react";
-import { ChevronRight, Activity } from "lucide-react"
+import { Activity, Apple, Bitcoin, Calculator, ChevronRight, Globe, Monitor, Play, ShieldCheck, Smartphone, Star, Trophy, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
@@ -195,7 +195,6 @@ export default function CasinoerHub() {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 min" />
 
-
         <SnippetAnswer answer="Find det rette casino i Danmark – sammenlign licenserede casinoer efter bonus, udbetaling, spiludvalg og specialfunktioner." />
 
         <QuickComparisonTable count={3} title="Populære casinoer – vores top 3" prioritySlugs={["betinia", "spilleautomaten", "campobet"]} />
@@ -218,7 +217,6 @@ export default function CasinoerHub() {
             Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> er dokumenteret og transparent: vi opretter reelle konti, gennemfører KYC-verifikation, indbetaler egne penge, spiller minimum 200 spins, tester kundeservice og måler udbetalingstider med stopur. Det er denne tilgang, der gør vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> troværdige – og det er fundamentet for alle anbefalinger i denne hub.
           </p>
         </section>
-
 
         {/* ── SECTION 2: Alle Casino-Kategorier (cards) ── */}
         <section className="mb-12">

@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Check, X } from "lucide-react"
+import { Check, Flame, Receipt, Shield, X, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

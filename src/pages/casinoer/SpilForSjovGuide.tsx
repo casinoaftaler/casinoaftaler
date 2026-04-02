@@ -21,7 +21,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Sparkles, Star, AlertTriangle, Target, Heart, Smile, Gamepad2, Gift, BookOpen, Shield, Zap, Users } from "lucide-react"
+import { AlertTriangle, BookOpen, Fish, Gamepad2, Gift, Heart, Play, Shield, Smile, Sparkles, Star, Target, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -70,7 +70,6 @@ const SpilForSjovGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="21 min" />
 
-
         <SnippetAnswer answer="Spil for sjov med demo-versioner af populære slots og bordspil – helt uden risiko og uden registrering." />
 
         <QuickComparisonTable count={3} title="Bedste Casinoer til Demo-Spil – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
@@ -80,7 +79,6 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Gratis casinospil tjener flere vigtige formål. For nye spillere er det den perfekte introduktion til casinoverdenens mekanik og terminologi uden risiko for at tabe penge. For erfarne spillere er det en mulighed for at teste nye spil og spiludbydere, udforske bonusfunktioner, og evaluere et casinos platform inden de forpligter sig med en indbetaling. Og for alle, der blot ønsker underholdning, er demo-tilstand en uendelig kilde til gratis tidsfordriv.</p>
           <p className="text-muted-foreground leading-relaxed">I denne guide gennemgår vi alle muligheder for at spille casino for sjov: Demo-tilstand på spilleautomater og bordspil, <Link to="/bonus-uden-indbetaling" className={linkClass}>gratis bonusser uden indbetaling</Link>, <Link to="/free-spins" className={linkClass}>free spins</Link> og sociale casinospil. Vi forklarer, hvordan du finder de bedste gratis muligheder, hvad du skal være opmærksom på med bonusvilkår, og hvordan du udnytter gratis spil til at forbedre din forståelse af casinospil.</p>
         </section>
-
 
         <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 

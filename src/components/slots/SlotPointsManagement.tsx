@@ -17,7 +17,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Pencil, Trash2, Loader2, History } from "lucide-react"
+import { Filter, Gem, History, Loader2, Pencil, Search, Trash2, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { toast } from "sonner";
 

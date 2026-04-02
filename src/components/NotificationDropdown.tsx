@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Bell, Megaphone } from "lucide-react"
+import { Bell, Megaphone, Sparkles } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import {

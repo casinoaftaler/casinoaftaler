@@ -18,7 +18,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Layers, Zap } from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Scale, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
@@ -71,7 +71,6 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Spillet er IKKE ideelt for begyndere (de multiple beslutningslag kan forvirre), spillere med begrænset bankroll (den høje volatilitet kræver buffer), eller dem, der foretrækker simple mekanikker. For disse profiler anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (beginnervenlig) eller <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (simpel klassiker).</p>
           <p className="text-muted-foreground leading-relaxed">For Megaways-entusiaster, der allerede kender <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, er Extra Chilli den naturlige evolution – bedre RTP, højere ceiling, og den kritiske free spins-gamble, der tilfører en strategisk dimension, originalen manglede.</p>
         </section>
-
 
         <Separator className="my-10" />
 

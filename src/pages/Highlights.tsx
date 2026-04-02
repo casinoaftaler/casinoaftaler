@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Video, Plus } from "lucide-react"
+import { Plus, Search, Sparkles, Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";

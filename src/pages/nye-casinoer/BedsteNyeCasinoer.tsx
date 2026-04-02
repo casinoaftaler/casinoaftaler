@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Sparkles, Star, CheckCircle2, XCircle, ShieldCheck, TrendingUp, Target, BarChart3, AlertTriangle } from "lucide-react"
+import { AlertTriangle, BarChart3, CheckCircle2, Play, ShieldCheck, Sparkles, Star, Target, TrendingUp, Trophy, XCircle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -68,7 +68,6 @@ const BedsteNyeCasinoer = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="111 Min." />
 
-
         <SnippetAnswer answer="De bedste nye casinoer i Danmark kombinerer friske bonusser, moderne platforme og hurtige udbetalinger. Vi har testet og rangeret dem alle." />
 
         <QuickComparisonTable count={3} title="Bedste Nye Casinoer – Top 3" prioritySlugs={["swift-casino", "luna-casino", "playkasino"]} />
@@ -87,7 +86,6 @@ const BedsteNyeCasinoer = () => {
             Herunder præsenterer vi de nye casinoer, der har scoret 8/10 eller højere i vores samlede vurdering. Listen opdateres løbende, og vi gennemfører kvartalsvise re-evalueringer for at sikre, at kvaliteten fastholdes.
           </p>
         </section>
-
 
         <Separator className="my-10" />
 
@@ -323,7 +321,6 @@ const BedsteNyeCasinoer = () => {
             ))}
           </div>
         </section>
-
 
         <Separator className="my-10" />
 

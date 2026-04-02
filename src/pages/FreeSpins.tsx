@@ -29,7 +29,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
 import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.webp";
-import { Ban } from "lucide-react"
+import { Ban, Clock, Dog, Gift, Play, RefreshCw, Sparkles, Star, Target, TrendingUp, Trophy, User, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

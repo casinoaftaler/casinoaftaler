@@ -7,7 +7,7 @@ import { TwitchAuthButton } from "@/components/TwitchAuthButton";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react"
+import { Loader2, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";

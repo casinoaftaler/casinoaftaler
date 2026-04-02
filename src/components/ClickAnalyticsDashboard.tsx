@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, MousePointerClick, Loader2 } from "lucide-react"
+import { ChevronDown, Loader2, MousePointerClick, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";

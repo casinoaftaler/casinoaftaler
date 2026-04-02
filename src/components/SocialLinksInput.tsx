@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Loader2, Save, Instagram } from "lucide-react"
+import { Gem, Instagram, Loader2, Save } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";

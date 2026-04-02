@@ -18,7 +18,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DollarSign, Activity, Dices, Timer, Gauge } from "lucide-react"
+import { Activity, Dices, Dog, DollarSign, Gauge, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
@@ -115,7 +115,6 @@ const DealOrNoDealGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="33 min" />
-
 
         <SnippetAnswer answer="Deal or No Deal Live kombinerer den kendte tv-mekanik med live casino. RTP er 95,42% og banker-tilbuddet kræver strategi." />
 

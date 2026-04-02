@@ -29,7 +29,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Handshake, Megaphone, BadgeCheck } from "lucide-react"
+import { BadgeCheck, Handshake, Megaphone, Newspaper, Send, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useToast } from "@/hooks/use-toast";
 import { useSiteSettings } from "@/hooks/useSiteSettings";

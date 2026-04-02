@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gauge, ArrowRight } from "lucide-react"
+import { ArrowRight, BookOpen, Gauge, Heart, Lock, Phone, ShieldCheck } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 

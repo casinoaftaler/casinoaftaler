@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MenuIcon } from "@/components/MenuIcon";
+;
 
 const pillClass =
   "inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 font-medium text-primary transition-colors hover:bg-accent/50 hover:border-primary/40";

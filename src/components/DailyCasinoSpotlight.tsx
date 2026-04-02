@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star, Crown } from "lucide-react"
+import { Crown, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { getTodayDanish } from "@/lib/danishDate";
 import { CASINO_SCORES } from "@/lib/reviewScoring";

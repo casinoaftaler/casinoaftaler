@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { ArrowRight, Ban } from "lucide-react"
+import { Apple, ArrowRight, Ban, CreditCard, Eye, Landmark, Lock, Play, Scale, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -706,7 +706,6 @@ const CasinoUdenKonto = () => {
         <InlineCasinoCards title="Anbefalede Casinoer med Hurtig Registrering" />
 
         <Separator className="my-10" />
-
 
         <Separator className="my-10" />
 

@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, Dices, MoreHorizontal } from "lucide-react"
+import { BookOpen, ChevronDown, ChevronRight, Dices, Info, Landmark, MoreHorizontal, Play, Sparkles, Tv, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import {
@@ -49,7 +49,6 @@ const BOOSTED_PROVIDER_LOGOS = new Set([
   "Pragmatic Play",
   "Booming Games",
 ]);
-
 
 function MegaLogoCard({
   to,

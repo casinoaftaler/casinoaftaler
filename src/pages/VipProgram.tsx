@@ -18,7 +18,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Dog } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────

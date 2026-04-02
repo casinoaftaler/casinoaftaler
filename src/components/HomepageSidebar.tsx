@@ -2,7 +2,7 @@ import { LatestNewsSidebar } from "./LatestNewsSidebar";
 import { SpillehalPromoBanner } from "./SpillehalPromoBanner";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, Dices, LayoutGrid, Cherry } from "lucide-react"
+import { Cherry, ChevronRight, CreditCard, Crown, Dices, Gamepad2, Gift, LayoutGrid, Sparkles, Star, Tv } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react"
+import { Apple, ArrowRight, CreditCard, Gamepad2, Play, Scale, ShieldCheck, TrendingUp, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 export function HomepageSeoSections() {

@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import selvudelukkelseHero from "@/assets/heroes/selvudelukkelse-guide-hero.jpg";
-import { Gavel, ArrowRight, Timer, Ban, UserX, Key } from "lucide-react"
+import { ArrowRight, Ban, CheckCircle, Clock, Dog, Gavel, Globe, Info, Key, Timer, UserX, Wallet } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

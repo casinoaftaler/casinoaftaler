@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight, Pen } from "lucide-react"
+import { BadgeCheck, Banknote, ChevronLeft, ChevronRight, Pen, PiggyBank, Play, Shield, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import niklasImage from "@/assets/niklas-forfatter.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";

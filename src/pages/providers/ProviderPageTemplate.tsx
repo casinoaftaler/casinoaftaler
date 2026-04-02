@@ -17,21 +17,7 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ShieldCheck,
-  
-  Award,
-  CheckCircle2,
-  AlertTriangle,
-  ThumbsUp,
-  ThumbsDown,
-  Star,
-  User,
-  CalendarDays,
-  BookOpen,
-  BarChart3,
-  Target,
-} from "lucide-react"
+import { AlertTriangle, Award, BarChart3, BookOpen, CalendarDays, CheckCircle2, Play, ShieldCheck, Star, Target, ThumbsDown, ThumbsUp, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReactNode, Fragment, useMemo } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";

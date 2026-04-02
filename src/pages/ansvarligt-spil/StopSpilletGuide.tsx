@@ -16,7 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
-import { Gavel, ArrowRight, HandHeart, UserCheck } from "lucide-react"
+import { ArrowRight, BarChart3, BookOpen, Calendar, Gavel, Globe, HandHeart, Headphones, Heart, HelpCircle, Mail, MessageCircle, Phone, Send, Shield, UserCheck, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -178,7 +178,6 @@ const StopSpilletGuide = () => {
             loading="eager"
           />
         </div>
-
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER STOPSPILLET?

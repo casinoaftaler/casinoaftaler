@@ -15,7 +15,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight } from "lucide-react"
+import { BadgeCheck, ChevronLeft, ChevronRight, Gamepad2, ShieldCheck, Smile, Tv, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import frederikImage from "@/assets/frederik-forfatter.webp";
 
@@ -106,7 +106,6 @@ const personSchema = {
   description:
     "Frederik er fast streamer på Casinoaftaler.dk med fokus på test af casino bonusser og underholdende live gameplay.",
 };
-
 
 export default function ForfatterFrederik() {
   const { data: siteSettings } = useSiteSettings();

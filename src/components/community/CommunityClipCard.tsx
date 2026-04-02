@@ -8,7 +8,7 @@ import {
   getEmbedUrl,
   useToggleLike,
 } from "@/hooks/useCommunityClips";
-import { Heart, MessageCircle, Play, User, ExternalLink } from "lucide-react"
+import { ExternalLink, Heart, Info, MessageCircle, Play, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";

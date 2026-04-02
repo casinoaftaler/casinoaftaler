@@ -18,10 +18,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
-  Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -128,7 +125,6 @@ const RazorSharkGuide = () => {
             Vi har analyseret Mystery Stack-sandsynlighederne, beregnet EV for forskellige afsløringer, og testet spillets risikoprofil på tværs af hundredvis af simulerede sessioner. Resultatet er en analyse, der går langt dybere end "det er en fed slot" – vi viser dig præcist, hvorfor Razor Shark fungerer matematisk, og hvornår den er dit bedste valg.
           </p>
         </section>
-
 
         <Separator className="my-10" />
 

@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Quote, MessageSquare, Pen, FileCheck } from "lucide-react"
+import { ArrowRight, BookOpen, Briefcase, CheckCircle2, Eye, FileCheck, Gamepad2, Heart, MessageSquare, Pen, Quote, RefreshCw, Scale, Search, Sparkles, Trophy, Tv, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { usePublishedNews } from "@/hooks/useCasinoNews";

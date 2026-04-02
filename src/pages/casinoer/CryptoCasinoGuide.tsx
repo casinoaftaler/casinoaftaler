@@ -18,7 +18,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Bitcoin, Dog } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -57,7 +57,6 @@ const CryptoCasinoGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="23 min" />
 
-
         <SnippetAnswer answer="Crypto casinoer accepterer Bitcoin og Ethereum, men i Danmark kræver alle lovlige casinoer dansk licens uanset betalingsmetode." />
 
         <QuickComparisonTable count={3} title="Krypto-venlige casinoer – top 3" prioritySlugs={["betinia", "campobet", "spilleautomaten"]} />
@@ -68,7 +67,6 @@ const CryptoCasinoGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at forstå konteksten: I Danmark har vi et veludviklet og spillervenligt reguleret marked, hvor casinogevinster er skattefri, og spillere har stærk forbrugerbeskyttelse. Crypto casinoer opererer typisk uden for denne regulering, hvilket både tilbyder frihed og medfører risici. Denne guide hjælper dig med at navigere disse kompleksiteter.</p>
           <Card className="bg-destructive/10 border-destructive/30 my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Gevinster kan være skattepligtige, og der er ingen garanteret adskillelse af spillermidler. Vi anbefaler altid at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed.</p></div></div></CardContent></Card>
         </section>
-
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" />
 

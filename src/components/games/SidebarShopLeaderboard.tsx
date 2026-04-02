@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBag, Crown } from "lucide-react"
+import { Crown, ShoppingBag } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -100,7 +100,6 @@ export function SidebarShopLeaderboard() {
         );
 
         // Build badge map by user_id (targeted fetch only)
-
 
         setEntries(
           topUsers.map((u) => {

@@ -14,7 +14,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Activity, LineChart } from "lucide-react"
+import { Activity, LineChart, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/james-bond-roulette-hero.jpg";
@@ -126,7 +126,6 @@ export default function JamesBondRouletteGuide() {
             Men det betyder ikke, at systemet er uinteressant. Det tilbyder en unik spilleoplevelse, en anden resultatfordeling end progressionssystemer, og – for Ian Fleming-fans – en charmerende forbindelse til fiktion. Lad os grave ned i detaljerne.
           </p>
         </section>
-
 
         {/* Sådan fungerer det */}
         <section className="mb-12">

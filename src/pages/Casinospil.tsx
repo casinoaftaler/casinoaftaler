@@ -20,7 +20,7 @@ import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-sp
 import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { type ReactNode } from "react";
-import { Lightbulb, Cpu } from "lucide-react"
+import { Apple, Cpu, Database, Dog, Lightbulb, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -167,7 +167,6 @@ const Casinospil = () => {
             Danske spillere søger typisk en af tre ting: underholdning (spilleautomater med spændende temaer), intellektuel udfordring (bordspil med strategi), eller den sociale oplevelse (live casino med interaktion). Denne guide hjælper dig med at forstå mekanikken bag hvert spil, så du kan vælge det, der passer til netop din motivation.
           </p>
         </section>
-
 
 
 

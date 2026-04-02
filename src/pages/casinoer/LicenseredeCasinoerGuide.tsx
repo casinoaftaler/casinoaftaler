@@ -17,7 +17,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { BadgeCheck, Gavel, Ban } from "lucide-react"
+import { BadgeCheck, Ban, Gavel } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -66,7 +66,6 @@ const LicenseredeCasinoerGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="27 min" />
 
-
         <SnippetAnswer answer="Alle casinoer med dansk licens er overvåget af Spillemyndigheden, tilsluttet ROFUS og tilbyder skattefri gevinster." />
 
         <QuickComparisonTable count={3} title="Licenserede Casinoer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]} />
@@ -77,7 +76,6 @@ const LicenseredeCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">I Danmark blev online gambling legaliseret og reguleret med Spilleloven i 2012, som åbnede markedet for private operatører under streng myndighedskontrol. Siden da har Spillemyndigheden udviklet sig til en af Europas mest kompetente og strengeste reguleringsmyndigheder. Myndigheden gennemfører regelmæssige auditeringer, behandler spillerklager, og har magt til at udstede bøder og tilbagekalde licenser ved overtrædelser.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om licenserede casinoer i Danmark: Hvad licensen kræver, hvilken beskyttelse den giver dig, hvordan du verificerer et casinos licens, og hvorfor du altid bør undgå ulicenserede platforme. Læs også vores <Link to="/casino-med-dansk-licens" className={linkClass}>komplet guide til casino med dansk licens</Link> for en praktisk gennemgang af skattefrihed, omsætningskrav og MitID. Vi sammenligner også den danske licens med internationale alternativer og giver dig konkrete værktøjer til at vurdere kvaliteten af licenserede casinoer.</p>
         </section>
-
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 

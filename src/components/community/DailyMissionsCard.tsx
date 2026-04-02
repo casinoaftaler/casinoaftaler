@@ -4,7 +4,7 @@ import { SCROLL_DEPTH_BONUS_CREDITS } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, ArrowRight } from "lucide-react"
+import { ArrowRight, Check, Flame } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 

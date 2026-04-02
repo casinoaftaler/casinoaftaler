@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SlotSoundUpload } from "./SlotSoundUpload";
 import { useSlotSoundFiles, getSoundSettingKeys, type SlotSoundFiles } from "@/hooks/useSlotSoundFiles";
-import { Loader2, FileAudio, ChevronDown, Music, Cat } from "lucide-react"
+import { Cat, ChevronDown, FileAudio, Loader2, Music, Scroll } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface SlotSoundFilesSectionProps {

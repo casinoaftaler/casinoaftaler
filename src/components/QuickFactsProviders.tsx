@@ -3,6 +3,7 @@ import { MenuIcon } from "@/components/MenuIcon";
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { ProviderLogoIcon, getProviderLogoUrl } from "@/components/ProviderLogoIcon";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
+import { Play } from "lucide-react";
 
 const providerRoutes: Record<string, string> = {
   "NetEnt": "/spiludviklere/netent",

@@ -19,7 +19,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DollarSign, Wifi, Timer } from "lucide-react"
+import { Apple, DollarSign, Play, Timer, Wifi } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -247,7 +247,6 @@ const LiveCasino = () => {
             Multi-angle kamera-teknologien er særligt avanceret i game shows. I Crazy Time bruger Evolution op til 14 kameraer med automatiserede robotarme, der følger hjulet, bonusflikflappere og studieværten simultant. Denne produktionsværdi er sammenlignelig med live tv-shows – og budgetterne matcher: Evolution investerer estimeret 2-5 millioner euro pr. ny game show-titel i studie-setup alene.
           </p>
         </section>
-
 
         <Separator className="my-10" />
 

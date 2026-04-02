@@ -16,7 +16,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { Gavel, ArrowRight, Wifi, Battery, Settings, Download } from "lucide-react"
+import { Apple, ArrowRight, Battery, Clock, Download, Gavel, Globe, Lock, Monitor, Play, Scale, Settings, Shield, Smartphone, TrendingUp, User, Wifi, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

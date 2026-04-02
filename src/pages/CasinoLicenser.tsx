@@ -14,7 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, AlertTriangle, Sparkles, CheckCircle2, XCircle, Scale, Globe, Landmark } from "lucide-react"
+import { AlertTriangle, CheckCircle2, Dog, Globe, Landmark, Scale, ShieldCheck, Sparkles, XCircle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.webp";

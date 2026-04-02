@@ -1,4 +1,4 @@
-import { MessageSquare, EyeOff } from "lucide-react"
+import { EyeOff, MessageSquare, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";

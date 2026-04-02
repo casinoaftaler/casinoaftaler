@@ -16,26 +16,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Gamepad2,
-  Shield,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  HelpCircle,
-  Zap,
-  Globe,
-  Layers,
-  TrendingUp,
-  Target,
-  Star,
-  Trophy,
-  Sparkles,
-  ShoppingCart,
-} from "lucide-react"
+import { AlertTriangle, BarChart3, CheckCircle, Database, Dog, Gamepad2, Globe, HelpCircle, Layers, Lock, Play, Scale, Shield, ShoppingCart, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { type ReactNode } from "react";
 import { ContentPageLayout } from "@/components/ContentPageLayout";

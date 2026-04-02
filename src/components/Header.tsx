@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, LogOut, Menu, X, Dices, Video, UserCircle, MoreHorizontal, DollarSign } from "lucide-react"
+import { ChevronDown, Dices, DollarSign, LogOut, Menu, MoreHorizontal, UserCircle, Video, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 // Note: Many icons above are used in the desktop dropdown menus
 import { CreditCoin } from "@/components/CreditCoin";

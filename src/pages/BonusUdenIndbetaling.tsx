@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
-import { DollarSign, Ban, ArrowRight } from "lucide-react"
+import { AlertTriangle, ArrowRight, Ban, BookOpen, Calculator, Clock, CreditCard, DollarSign, Eye, Flame, Gamepad2, Info, Lock, Scale, ShieldCheck, Sparkles, Target, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

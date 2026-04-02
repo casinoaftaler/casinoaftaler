@@ -27,7 +27,6 @@ import { MenuIcon } from "@/components/MenuIcon";;
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 
 
-
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {

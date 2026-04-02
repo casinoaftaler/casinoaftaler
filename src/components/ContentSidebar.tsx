@@ -39,7 +39,6 @@ const CATEGORY_ICON_MAP: Record<string, string> = {
   star: "star",
 };
 
-
 function CategorySection({
   category,
   isActiveCategory,

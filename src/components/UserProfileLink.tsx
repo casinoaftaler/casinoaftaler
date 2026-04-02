@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, ExternalLink } from "lucide-react"
+import { ExternalLink, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface UserProfileLinkProps {

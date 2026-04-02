@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Film, ArrowRight } from "lucide-react"
+import { ArrowRight, Film, Play, Star, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";

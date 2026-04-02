@@ -18,7 +18,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Wand2 } from "lucide-react"
+import { Play, Wand2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";

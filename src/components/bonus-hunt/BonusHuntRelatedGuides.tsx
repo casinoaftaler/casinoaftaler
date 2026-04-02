@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MenuIcon } from "@/components/MenuIcon";
+;
 
 const guides = [
   { iconName: "trending-up", title: "Casino Bonus Guide", description: "Komplet overblik over bonustyper, vilkår og strategier for danske spillere.", to: "/casino-bonus" },

@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import hjaelpelinjerHero from "@/assets/heroes/hjaelpelinjer-guide-hero.jpg";
-import { Gavel, ArrowRight, HandHeart, UserCheck, Building, Ban } from "lucide-react"
+import { ArrowRight, Ban, Building, Clock, Gavel, Globe, HandHeart, Heart, MapPin, Phone, Shield, UserCheck, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

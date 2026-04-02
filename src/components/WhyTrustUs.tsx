@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MenuIcon } from "@/components/MenuIcon";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
+;
 
 const trustPoints = [
   {

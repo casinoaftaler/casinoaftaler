@@ -249,7 +249,6 @@ const CasinoNyhedArticle = () => {
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
 
-
         {/* Contextual CTA Bridge – category-based money-page links */}
         <NewsContextualCTA category={article.category} />
 

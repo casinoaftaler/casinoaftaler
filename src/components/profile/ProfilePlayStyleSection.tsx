@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Gauge } from "lucide-react"
+import { Gauge, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface ProfilePlayStyleSectionProps {

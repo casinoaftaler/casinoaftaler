@@ -1,7 +1,7 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
-import { Gavel } from "lucide-react"
+import { Clock, Gavel, Globe, HelpCircle, Phone, Shield, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

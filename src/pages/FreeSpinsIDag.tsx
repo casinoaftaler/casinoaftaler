@@ -24,7 +24,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Link } from "react-router-dom";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Timer, RotateCcw, ArrowRight, ChevronDown, CalendarClock } from "lucide-react"
+import { ArrowRight, Award, CalendarClock, ChevronDown, CreditCard, Filter, Gamepad2, Gift, RefreshCw, RotateCcw, Timer, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
@@ -451,7 +451,6 @@ const FreeSpinsIDag = () => {
             </section>
           </>
         )}
-
 
         <Separator className="my-8" />
 

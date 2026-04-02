@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Monitor } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";

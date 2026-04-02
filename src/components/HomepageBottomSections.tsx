@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Apple, ArrowRight, Database, Play } from "lucide-react";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 import { MenuIcon } from "@/components/MenuIcon";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";

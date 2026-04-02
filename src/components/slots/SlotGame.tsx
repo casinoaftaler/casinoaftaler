@@ -24,7 +24,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PAY_LINES, getScatterTeaseReels, type TeaseInfo, type SlotSymbol } from "@/lib/slotGameLogic";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { Loader2 } from "lucide-react"
+import { Filter, Loader2, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";

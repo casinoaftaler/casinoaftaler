@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Ban } from "lucide-react"
+import { Ban, Bitcoin, Gem } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -110,7 +110,6 @@ const NyeCasinoerUdenRofus = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="114 Min." />
 
-
         <SnippetAnswer answer="Casinoer uden ROFUS mangler dansk licens og spillerbeskyttelse. Vi anbefaler altid licenserede alternativer med fuldt tilsyn." />
 
         <QuickComparisonTable count={3} title="Sikre Alternativer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]} />
@@ -141,7 +140,6 @@ const NyeCasinoerUdenRofus = () => {
             I det følgende gennemgår vi de konkrete risici med dokumenterede beregninger, den juridiske ramme, håndhævelsesmekanismer, og et detaljeret migrationsforløb for spillere der ønsker at skifte fra ulovlige til lovlige casinoer.
           </p>
         </section>
-
 
         <Separator className="my-10" />
 

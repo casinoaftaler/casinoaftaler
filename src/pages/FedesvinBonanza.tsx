@@ -144,7 +144,6 @@ export default function FedesvinBonanza() {
     );
   }
 
-
   if (sessionLoading) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">

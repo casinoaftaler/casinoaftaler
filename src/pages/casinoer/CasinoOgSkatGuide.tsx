@@ -17,7 +17,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Scale, Calculator, Star, Globe, Landmark, Shield, AlertTriangle, BookOpen, FileText, Coins, TrendingUp, HelpCircle } from "lucide-react"
+import { AlertTriangle, Bitcoin, BookOpen, Calculator, Coins, FileText, Gem, Globe, HelpCircle, Landmark, Scale, Shield, Star, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -65,7 +65,6 @@ const CasinoOgSkatGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="22 min" />
-
 
         <SnippetAnswer answer="Casino-gevinster på danske licenserede casinoer er skattefri. Gevinster fra udenlandske casinoer uden dansk licens kan være skattepligtige." />
 

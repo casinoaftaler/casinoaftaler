@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Shuffle, Timer } from "lucide-react"
+import { Dog, Play, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/video-poker-hero.jpg";
@@ -134,7 +134,6 @@ export default function VideoPokerGuide() {
             For danske spillere er video poker tilgængeligt hos de fleste <Link to="/casinoer" className={linkClass}>licenserede danske casinoer</Link>, primært via softwareudbydere som Microgaming, IGT og Betsoft. Udvalget varierer dog markant – nogle casinoer tilbyder 20+ varianter med forskellige udbetalingstabeller, mens andre kun har 2-3 standardversioner. Denne guide hjælper dig med at identificere de bedste spil og maksimere din tilbagebetaling uanset hvor du spiller.
           </p>
         </section>
-
 
         {/* ═══════════════════════════════════════════════════════
             SEKTION 2 – RTP-analyse og udbetalingstabeller

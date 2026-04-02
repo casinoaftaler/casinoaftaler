@@ -32,7 +32,7 @@ import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemask
 import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
-import { RotateCcw, Check, X, Timer, ArrowRight, Cpu, Puzzle } from "lucide-react"
+import { Apple, ArrowRight, Check, Club, Cpu, Gamepad2, Gift, Globe, Headphones, Layers, Play, Puzzle, RotateCcw, Smartphone, Timer, Trophy, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

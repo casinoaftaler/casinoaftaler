@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { Separator } from "@/components/ui/separator";
-import { Video, UserCircle, ArrowRight } from "lucide-react"
+import { ArrowRight, Info, Send, UserCircle, Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Wand2, ChevronDown, Save } from "lucide-react"
+import { ChevronDown, Gem, Loader2, Save, Scroll, Wand2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";

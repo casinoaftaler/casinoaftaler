@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { Shield, Lock, Eye, FileText, Calendar, User, CalendarDays, BookOpen } from "lucide-react"
+import { BookOpen, Calendar, CalendarDays, Eye, FileText, Lock, Shield, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

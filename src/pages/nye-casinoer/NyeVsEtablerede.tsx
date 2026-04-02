@@ -16,7 +16,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Scale, Sparkles, CheckCircle2, XCircle, TrendingUp, ShieldCheck, Zap, Target, Users, BarChart3, Clock, Smartphone } from "lucide-react"
+import { BarChart3, CheckCircle2, Clock, Play, Scale, ShieldCheck, Smartphone, Sparkles, Target, TrendingUp, Users, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -69,7 +69,6 @@ const NyeVsEtablerede = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="115 Min." />
 
-
         <SnippetAnswer answer="Nye casinoer tilbyder typisk bedre bonusser og moderne UI, mens etablerede casinoer har bredere spiludvalg og dokumenteret track record." />
 
         <QuickComparisonTable count={3} title="Nye vs. etablerede – top 3 valg" prioritySlugs={["betinia", "swift-casino", "spildansknu"]} />
@@ -88,7 +87,6 @@ const NyeVsEtablerede = () => {
             Konklusionen (spoiler): de fleste spillere vil have gavn af at have konti hos begge typer. Men rækkefølgen – og hvilken der får din primære opmærksomhed – afhænger af din spillerprofil.
           </p>
         </section>
-
 
         <Separator className="my-10" />
 

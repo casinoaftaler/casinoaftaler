@@ -21,7 +21,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Timer, DollarSign } from "lucide-react"
+import { DollarSign, Lock, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
@@ -146,7 +146,6 @@ const LiveCasinoStrategiGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="57 Min." />
-
 
         <SnippetAnswer answer="Live casino-strategi handler om at vælge spil med lav husfordel, bruge grundstrategi i blackjack og sætte stop-loss grænser." />
 

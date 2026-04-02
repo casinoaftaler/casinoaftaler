@@ -15,7 +15,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Database, Hash, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";

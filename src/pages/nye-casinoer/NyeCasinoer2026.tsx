@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, ShieldCheck, Clock, TrendingUp, Smartphone, Trophy, CheckCircle2, XCircle, AlertTriangle, Zap, Calendar, BarChart3 } from "lucide-react"
+import { AlertTriangle, BarChart3, Calendar, CheckCircle2, Clock, Play, ShieldCheck, Smartphone, Sparkles, TrendingUp, Trophy, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -118,7 +118,6 @@ const NyeCasinoer2026 = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="92 Min." />
 
-
         <SnippetAnswer answer="Nye casinoer i 2026 byder på moderne teknologi, mobile-first design og konkurrencedygtige bonusser. Se hvilke der er værd at prøve." />
 
         <QuickComparisonTable count={3} title="Nye Casinoer 2026 – Top 3" prioritySlugs={["playkasino", "swift-casino", "luna-casino"]} />
@@ -143,7 +142,6 @@ const NyeCasinoer2026 = () => {
             </p>
           </div>
         </section>
-
 
         <Separator className="my-10" />
 

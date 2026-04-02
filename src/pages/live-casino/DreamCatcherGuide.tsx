@@ -18,7 +18,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DollarSign, Activity, Dices, Timer, Gauge } from "lucide-react"
+import { Activity, Dices, DollarSign, Gauge, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
@@ -118,7 +118,6 @@ const DreamCatcherGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="37 min" />
-
 
         <SnippetAnswer answer="Dream Catcher er Evolutions enkleste money wheel med 96,58% RTP. Ideelt for begyndere i live casino game shows." />
 

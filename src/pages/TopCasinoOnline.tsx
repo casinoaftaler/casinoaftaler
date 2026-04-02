@@ -34,7 +34,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Loader2, ArrowRight } from "lucide-react"
+import { ArrowRight, Loader2, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];

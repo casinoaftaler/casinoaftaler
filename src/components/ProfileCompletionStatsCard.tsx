@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Loader2, UserCheck, UserX, Check, X, ChevronDown, ChevronUp } from "lucide-react"
+import { Check, ChevronDown, ChevronUp, Loader2, TrendingUp, User, UserCheck, UserX, Users, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useProfileCompletionStats, UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 

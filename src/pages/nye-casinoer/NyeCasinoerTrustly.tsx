@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Landmark, Sparkles, CheckCircle2, Zap, ShieldCheck, AlertTriangle, Clock, Building2, XCircle } from "lucide-react"
+import { AlertTriangle, Building2, CheckCircle2, Clock, Landmark, Play, ShieldCheck, Sparkles, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
@@ -95,7 +95,6 @@ const NyeCasinoerTrustly = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="19 Min." />
-
 
         <SnippetAnswer answer="Nye casinoer med Trustly tilbyder instant ind- og udbetalinger direkte fra din bankkonto uden kortoplysninger." />
 

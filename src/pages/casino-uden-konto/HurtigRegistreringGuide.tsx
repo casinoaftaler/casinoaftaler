@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ArrowRight, Ban } from "lucide-react"
+import { Apple, ArrowRight, Ban, Globe, Mail, Play, Shield, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -131,7 +131,6 @@ const HurtigRegistreringGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="128 Min." />
-
 
         <SnippetAnswer answer="Hurtig registrering via MitID eller BankID tager under 2 minutter – sammenlign med traditionel registrering og Pay N Play." />
 
@@ -663,7 +662,6 @@ const HurtigRegistreringGuide = () => {
         </section>
 
         <Separator className="my-10" />
-
 
         <Separator className="my-10" />
 

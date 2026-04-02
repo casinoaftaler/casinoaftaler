@@ -20,10 +20,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
-  Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Crown
-} from "lucide-react"
+import { AlertTriangle, BarChart3, Calculator, Crown, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -145,7 +142,6 @@ const GatesOfOlympusGuide = () => {
           <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
           <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
         </VideoContextBox>
-
 
         <Separator className="my-10" />
 

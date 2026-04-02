@@ -7,7 +7,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { glossaryTerms, getTermsByLetter, getGlossaryLetters } from "@/data/glossaryTerms";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Search } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";

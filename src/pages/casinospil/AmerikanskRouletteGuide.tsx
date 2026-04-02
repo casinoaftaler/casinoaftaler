@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Timer, Activity, LineChart } from "lucide-react"
+import { Activity, LineChart, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/amerikansk-roulette-hero.jpg";
@@ -158,7 +158,6 @@ export default function AmerikanskRouletteGuide() {
             Men denne guide handler ikke bare om at sige "spil europæisk i stedet" – selvom det er det korrekte råd i 99 % af tilfældene. Vi dykker ned i den komplette matematik bag det amerikanske hjul, analyserer alle væddemålstyper, dokumenterer den berygtede Five Number Bet, simulerer 10.000 spins, og giver dig de data du har brug for til at forstå præcis hvad du betaler for den ekstra underholdning.
           </p>
         </section>
-
 
         <InlineCasinoCards title="Casinoer med Live Roulette-Borde" count={3} />
 

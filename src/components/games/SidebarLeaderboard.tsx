@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Crown } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

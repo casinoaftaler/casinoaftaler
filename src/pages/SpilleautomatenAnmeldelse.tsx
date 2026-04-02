@@ -28,12 +28,11 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import { RotateCcw, Check, X, Activity, BadgeCheck, Timer, MessageSquare } from "lucide-react"
+import { Activity, BadgeCheck, Check, Gamepad2, MessageSquare, Play, RotateCcw, ShoppingBag, Timer, TrendingUp, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
