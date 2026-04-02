@@ -230,13 +230,31 @@ const HacksawGamingGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={hacksawGameplay}
+          alt="Wanted Dead or a Wild gameplay – western-temaet med 5x5 grid, whiskey-flasker, pengesække og skull-symboler på mørk baggrund"
+          caption="Wanted Dead or a Wild i aktion – Hacksaws flagskib med det ikoniske western-tema og kompakte 5x5 grid"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hacksaws spilkatalog er kompakt men ekstremt fokuseret. Hvert spil er designet til at udfylde en specifik rolle i porteføljen – der er ingen fyldtitler. Nedenstående seks spil repræsenterer bredden i Hacksaws katalog og illustrerer de forskellige mekaniske tilgange de mestrer. Disse titler er særligt populære i{" "}
           <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-sammenhænge, hvor de høje maks. gevinster giver et asymmetrisk risiko/gevinst-forhold der favoriserer spilleren.
         </p>
+        <ReviewScreenshot
+          src={hacksawBonuskob}
+          alt="Wanted Dead or a Wild bonuskøb – tre muligheder: Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.)"
+          caption="Bonus buy-menuen i Wanted Dead or a Wild med tre forskellige bonusrunder til varierende priser – fra 1.600 til 8.000 kr."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig nuance: Hacksaws spil spiller sig markant forskelligt i basis-spillet versus bonus-runden. Basis-spillet er ofte langsomt og repetitivt med hitfrekvenser der kan falde til 12-13%. Bonus-runden er hvor den virkelige handling er – og det er her Hacksaw investerer deres designressourcer. Denne dualitet er bevidst: bonus buy-funktionen er ikke et supplement, den er den intenderede spillemåde for de fleste titler.
         </p>
+        <ReviewScreenshot
+          src={hacksawSearch}
+          alt="Hacksaw Gaming i casinolobby-søgning – 254 spil tilgængelige under Hacksaw-udbyderen"
+          caption="Hacksaw Gaming i en dansk casinolobby – 254 tilgængelige spil under udbyderen Hacksaw"
+          size="full"
+        />
       </>
     }
     games={[
