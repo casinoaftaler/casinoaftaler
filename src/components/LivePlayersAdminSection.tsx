@@ -107,7 +107,7 @@ export function LivePlayersAdminSection() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Total aktive</CardDescription>
@@ -118,6 +118,19 @@ export function LivePlayersAdminSection() {
           </CardHeader>
           <CardContent>
             <p className="text-xs text-muted-foreground">Opdateres hvert 5. sekund</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardDescription>Fedesvin Bonanza</CardDescription>
+            <CardTitle className="text-4xl flex items-center gap-2">
+              <Gamepad2 className="h-8 w-8 text-green-500" />
+              {isLoading ? "..." : bonanzaPlayers.length}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">Aktive spillere på denne maskine</p>
           </CardContent>
         </Card>
 
