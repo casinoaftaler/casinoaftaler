@@ -3,15 +3,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  CheckCircle2,
   ArrowRight,
   Search,
-  Star,
 } from "lucide-react";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
+import { MenuIcon } from "@/components/MenuIcon";
 
 function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
   const src = MENU_ICON_MAP[iconName];
