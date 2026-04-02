@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import qsLogo from "@/assets/screenshots/qs-logo.webp";
+import qsGames from "@/assets/screenshots/qs-games.webp";
+import qsKatalog from "@/assets/screenshots/qs-katalog.webp";
+import qsGameplay from "@/assets/screenshots/qs-gameplay.webp";
 
 const QuickspinGuide = () => (
   <ProviderPage
