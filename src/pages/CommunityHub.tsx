@@ -136,7 +136,7 @@ function CommunityCard({ section }: { section: typeof SECTIONS[number] }) {
         </div>
         <CardContent className="p-5">
           <h3 className="font-semibold text-lg mb-1.5 group-hover:text-primary transition-colors flex items-center gap-2">
-            <MenuIcon iconName={iconName} className="h-5 w-5 text-muted-foreground" />
+            <MenuIcon iconName={section.iconName} className="h-5 w-5 text-muted-foreground" />
             {section.title}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3 card-description">

@@ -156,7 +156,7 @@ function MobileExpandableLinks({ links, initialCount, onClose, indent = "ml-6" }
 
 /* ─── Section accordion ─── */
 function MobileSection({ label, iconName, sectionKey, expanded, onToggle, children }: {
-  label: string; icon: any; sectionKey: string; expanded: boolean; onToggle: (key: string) => void; children: React.ReactNode;
+  label: string; iconName: string; sectionKey: string; expanded: boolean; onToggle: (key: string) => void; children: React.ReactNode;
 }) {
   return (
     <>
@@ -178,7 +178,7 @@ function MobileSection({ label, iconName, sectionKey, expanded, onToggle, childr
 
 /* ─── Sub-section accordion ─── */
 function MobileSubSection({ label, iconName, expanded, onToggle, children }: {
-  label: string; icon: any; expanded: boolean; onToggle: () => void; children: React.ReactNode;
+  label: string; iconName: string; expanded: boolean; onToggle: () => void; children: React.ReactNode;
 }) {
   return (
     <>
@@ -223,7 +223,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
   return (
     <nav className="container flex flex-col py-3">
       {/* Casinoer */}
-      <MobileSection label="Casinoer" icon={Landmark} sectionKey="casino" expanded={section === "casino"} onToggle={toggleSection}>
+      <MobileSection label="Casinoer" iconName="landmark" sectionKey="casino" expanded={section === "casino"} onToggle={toggleSection}>
         <Link to="/casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <MenuIcon iconName="landmark" className="h-4 w-4" />Alle Casinoer
         </Link>
@@ -231,7 +231,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Nye Casinoer */}
-      <MobileSection label="Nye Casinoer" icon={Sparkles} sectionKey="nye" expanded={section === "nye"} onToggle={toggleSection}>
+      <MobileSection label="Nye Casinoer" iconName="sparkles" sectionKey="nye" expanded={section === "nye"} onToggle={toggleSection}>
         <Link to="/nye-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <MenuIcon iconName="sparkles" className="h-4 w-4" />Alle Nye Casinoer
         </Link>
@@ -239,7 +239,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Casinospil */}
-      <MobileSection label="Casinospil" icon={Dices} sectionKey="casinospil" expanded={section === "casinospil"} onToggle={toggleSection}>
+      <MobileSection label="Casinospil" iconName="dices" sectionKey="casinospil" expanded={section === "casinospil"} onToggle={toggleSection}>
         <Link to="/casinospil" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <Dices className="h-4 w-4" />Casinospil Oversigt
         </Link>
@@ -273,7 +273,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Live Casino */}
-      <MobileSection label="Live Casino" icon={Tv} sectionKey="live" expanded={section === "live"} onToggle={toggleSection}>
+      <MobileSection label="Live Casino" iconName="tv" sectionKey="live" expanded={section === "live"} onToggle={toggleSection}>
         <Link to="/live-casino" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <MenuIcon iconName="tv" className="h-4 w-4" />Live Casino Oversigt
         </Link>
@@ -281,7 +281,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Casino Bonus */}
-      <MobileSection label="Casino Bonus" icon={BookOpen} sectionKey="bonus" expanded={section === "bonus"} onToggle={toggleSection}>
+      <MobileSection label="Casino Bonus" iconName="book-open" sectionKey="bonus" expanded={section === "bonus"} onToggle={toggleSection}>
         <Link to="/casino-bonus" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <MenuIcon iconName="book-open" className="h-4 w-4" />Casino Bonus Oversigt
         </Link>
@@ -289,28 +289,28 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Mere */}
-      <MobileSection label="Mere" icon={MoreHorizontal} sectionKey="more" expanded={section === "more"} onToggle={toggleSection}>
+      <MobileSection label="Mere" iconName="more-horizontal" sectionKey="more" expanded={section === "more"} onToggle={toggleSection}>
         <MobileSmartLinks links={MORE_LINKS} onClose={onClose} />
 
-        <MobileSubSection label="Forfattere" icon={User} expanded={forfattereExpanded} onToggle={() => setForfattereExpanded(!forfattereExpanded)}>
+        <MobileSubSection label="Forfattere" iconName="user" expanded={forfattereExpanded} onToggle={() => setForfattereExpanded(!forfattereExpanded)}>
           <MobileSmartLinks links={FORFATTER_LINKS} onClose={onClose} indent="ml-12" />
         </MobileSubSection>
 
-        <MobileSubSection label="Betalingsmetoder" icon={CreditCard} expanded={paymentsExpanded} onToggle={() => setPaymentsExpanded(!paymentsExpanded)}>
+        <MobileSubSection label="Betalingsmetoder" iconName="credit-card" expanded={paymentsExpanded} onToggle={() => setPaymentsExpanded(!paymentsExpanded)}>
           <Link to="/betalingsmetoder" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
             <MenuIcon iconName="credit-card" className="h-3 w-3" />Alle betalingsmetoder
           </Link>
           <MobileSmartLinks links={PAYMENT_LINKS} onClose={onClose} indent="ml-10" />
         </MobileSubSection>
 
-        <MobileSubSection label="Spiludviklere" icon={Gamepad2} expanded={providersExpanded} onToggle={() => setProvidersExpanded(!providersExpanded)}>
+        <MobileSubSection label="Spiludviklere" iconName="gamepad2" expanded={providersExpanded} onToggle={() => setProvidersExpanded(!providersExpanded)}>
           <Link to="/spiludviklere" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
             <MenuIcon iconName="gamepad2" className="h-3 w-3" />Alle spiludviklere
           </Link>
           <MobileSmartLinks links={PROVIDER_LINKS} onClose={onClose} indent="ml-10" />
         </MobileSubSection>
 
-        <MobileSubSection label="Casino Anmeldelser" icon={Star} expanded={reviewsExpanded} onToggle={() => setReviewsExpanded(!reviewsExpanded)}>
+        <MobileSubSection label="Casino Anmeldelser" iconName="star" expanded={reviewsExpanded} onToggle={() => setReviewsExpanded(!reviewsExpanded)}>
           <Link to="/casino-anmeldelser" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
             <MenuIcon iconName="star" className="h-3 w-3" />Alle anmeldelser
           </Link>
@@ -326,7 +326,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       </MobileSection>
 
       {/* Community */}
-      <MobileSection label="Community" icon={Users} sectionKey="community" expanded={section === "community"} onToggle={toggleSection}>
+      <MobileSection label="Community" iconName="users" sectionKey="community" expanded={section === "community"} onToggle={toggleSection}>
         <Link to="/community" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
           <MenuIcon iconName="users" className="h-4 w-4" />Community Hub
         </Link>

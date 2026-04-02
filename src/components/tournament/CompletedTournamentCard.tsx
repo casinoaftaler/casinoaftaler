@@ -245,7 +245,7 @@ function PremiumRankBadge({ rank, isDark }: { rank: number; isDark: boolean }) {
         background: badgeStyle.bg,
         color: badgeStyle.color,
       }}>
-        <MenuIcon iconName={badgeStyle.iconName || "trophy"} className="h-4 w-4" />
+        <MenuIcon iconName={(badgeStyle as any).iconName || "trophy"} className="h-4 w-4" />
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ function StatCard({
   subValue,
   accentColor = "primary"
 }: { 
-  icon: React.ElementType; 
+  iconName: string;
   label: string; 
   value: string | number | null; 
   subValue?: string | null;
@@ -279,7 +279,7 @@ export default function PublicProfile() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {(profile.highest_win_amount !== null || profile.highest_win_game) && (
                 <StatCard
-                  icon={Trophy}
+                  iconName="trophy"
                   label="Største Gevinst"
                   value={profile.highest_win_amount ? formatAmount(profile.highest_win_amount) : profile.highest_win_game}
                   subValue={profile.highest_win_amount ? profile.highest_win_game : profile.highest_win_casino}
@@ -288,7 +288,7 @@ export default function PublicProfile() {
               )}
               {profile.biggest_spin_win !== null && (
                 <StatCard
-                  icon={Sparkles}
+                  iconName="sparkles"
                   label="Største Enkelt Spin"
                   value={formatAmount(profile.biggest_spin_win)}
                   accentColor="purple"
@@ -296,7 +296,7 @@ export default function PublicProfile() {
               )}
               {profile.biggest_x_win !== null && (
                 <StatCard
-                  icon={TrendingUp}
+                  iconName="trending-up"
                   label="Største X-Gevinst"
                   value={`${profile.biggest_x_win}x`}
                   accentColor="green"
@@ -316,7 +316,7 @@ export default function PublicProfile() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {profile.favorite_slot && (
                 <StatCard
-                  icon={Gamepad2}
+                  iconName="gamepad2"
                   label="Yndlings Slot"
                   value={profile.favorite_slot}
                   accentColor="primary"
@@ -324,7 +324,7 @@ export default function PublicProfile() {
               )}
               {profile.favorite_provider && (
                 <StatCard
-                  icon={Building2}
+                  iconName="building2"
                   label="Yndlings Udbyder"
                   value={profile.favorite_provider}
                   accentColor="primary"
@@ -332,7 +332,7 @@ export default function PublicProfile() {
               )}
               {profile.favorite_casino && (
                 <StatCard
-                  icon={Building2}
+                  iconName="building2"
                   label="Yndlings Casino"
                   value={profile.favorite_casino}
                   accentColor="primary"

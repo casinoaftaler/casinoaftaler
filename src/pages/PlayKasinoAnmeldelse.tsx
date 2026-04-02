@@ -1209,7 +1209,7 @@ const PlayKasinoAnmeldelse = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-3">
-                    <item.icon className={`h-6 w-6 flex-shrink-0 mt-0.5 ${item.color}`} />
+                    <MenuIcon iconName={item.iconName} className={`h-6 w-6 flex-shrink-0 mt-0.5 ${item.color}`} />
                     <div>
                       <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
