@@ -397,8 +397,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
       const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
 
-      const targetX = fallbackWidth / 2;
-      const targetY = 20;
+      const targetX = fallbackWidth / 4;
+      const targetY = fallbackHeight + 40;
 
       for (const bomb of sorted) {
         const animState: CellAnimState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
@@ -1003,34 +1003,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           </div>
           {/* Main game grid */}
           <div className="relative" style={{ width: gridWidth }}>
-            {/* Bonus bar overlay at top of grid */}
-            {isBonusActive && (
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 animate-fade-in">
-                <div className="flex items-center gap-4 px-6 py-2 rounded-xl border-2 bg-gradient-to-b from-yellow-900/95 via-amber-950/98 to-yellow-950/95 border-yellow-500/60 shadow-[0_0_30px_rgba(250,204,21,0.3),0_0_60px_rgba(250,204,21,0.15)] backdrop-blur-sm">
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
-                    <div className="flex items-baseline gap-1">
-                      <AnimatedSpinCounter value={freeSpinsRemaining} className="text-2xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums" />
-                      <span className="text-sm text-yellow-500/60 font-bold">/ {totalFreeSpins}</span>
-                    </div>
-                  </div>
-                  <div className="w-px h-8 bg-yellow-500/30" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-blue-400/80 font-semibold">Total Multiplier</span>
-                    <span className="text-xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                      x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
-                    </span>
-                  </div>
-                  <div className="w-px h-8 bg-yellow-500/30" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-emerald-400/80 font-semibold">Tumble Win</span>
-                    <span className="text-xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">
-                      {Number(runningWin.toFixed(2))}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* Bonus info moved to control bar */}
             <div
               ref={gridContainerRef}
               className={cn(
@@ -1146,13 +1119,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
 
       {/* Bonus remaining spins */}
       {isBonusActive && isMobile && (
-        <div className="w-full flex justify-center">
-          <div className="flex items-baseline gap-2">
-            <span className="text-sm uppercase tracking-widest font-black text-white" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>
-              Resterende spins
-            </span>
-            <AnimatedSpinCounter value={freeSpinsRemaining} className="text-2xl font-black text-white tabular-nums" />
-            <span className="text-sm text-white/60 font-black">/ {totalFreeSpins}</span>
+        <div className="w-full flex justify-center gap-4">
+          <div className="flex items-baseline gap-1">
+            <span className="text-xs uppercase tracking-widest font-black text-yellow-400" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>Spins</span>
+            <AnimatedSpinCounter value={freeSpinsRemaining} className="text-xl font-black text-white tabular-nums" />
+            <span className="text-xs text-white/60 font-black">/{totalFreeSpins}</span>
+          </div>
+          <div className="flex items-baseline gap-1">
+            <span className="text-xs uppercase tracking-widest font-black text-blue-400" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>Multi</span>
+            <span className="text-xl font-black text-blue-300 tabular-nums">x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}</span>
           </div>
         </div>
       )}
@@ -1185,6 +1160,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           tumbleCollisionPhase={collisionPhase}
           tumbleVisible={isMobile && tumbleBarVisible}
           tumbleHideMultiplier={!isBonusActive}
+          bonusCumulativeMultiplier={cumulativeMultiplier}
+          bonusRunningMultiplier={runningMultiplier}
+          bonusTumblePhase={tumblePhase}
         />
       </div>
     </div>
