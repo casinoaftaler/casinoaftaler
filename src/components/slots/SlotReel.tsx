@@ -35,6 +35,8 @@ interface SlotReelProps {
   isDarkenedForTease?: boolean;
   isDarkenedForExpansion?: boolean;
   gameId?: string;
+  symbolSize?: number;
+  symbolGap?: number;
 }
 
 export const SlotReel = React.memo(function SlotReel({
