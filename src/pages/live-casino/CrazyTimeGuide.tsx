@@ -112,10 +112,10 @@ const CrazyTimeGuide = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(330 65% 28%), hsl(280 55% 22%) 45%, hsl(240 70% 18%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><Flame className="mr-1.5 h-3.5 w-3.5" /> Evolutions flagskib</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Crazy Time – Det Ultimative Casino Game Show</h1>
             <p className="text-lg text-white/80">
               Evolutions mest populære live game show med 4 bonusspil, Top Slot-multiplikatorer og max gevinst på 25.000x. Her er den fulde matematiske analyse.
@@ -486,14 +486,14 @@ const CrazyTimeGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For optimal værdi anbefaler vi at vælge et casino med hurtige udbetalinger (under 24 timer), lave eller ingen <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, og gode ansvarlighed-værktøjer (tab-limits, session-reminders). Besøg vores <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste tilbud, eller <Link to="/casino-anmeldelser" className={linkClass}>læs anmeldelser</Link> af etablerede operatører.
           </p>
-          <InlineCasinoCards title="Spil Crazy Time her" count={3} />
+          <InlineCasinoCards title="Crazy Time hos danske casinoer" count={3} />
         </section>
 
         <Separator className="my-10" />
 
         {/* ── H2 12: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Times kombination af ultra-høj volatilitet, konstante bonusspil, energiske værter og social interaktion gør det til et af de mest vanedannende casino-spil. De psykologiske virkemidler (AR-effekter, near-miss-oplevelser, variable belønninger) er bevidst designet til at forlænge spilletiden og øge indsatserne. Det er afgørende at sætte og overholde faste grænser.
           </p>
@@ -508,10 +508,10 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
-        <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
-        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
+        <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
+        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />

@@ -107,7 +107,7 @@ const LiveCasino = () => {
     headline: "Live Casino i Danmark – Komplet Guide med House Edge & Strategi",
     description: "Komplet live casino guide 2026. House edge-analyse for blackjack, roulette og baccarat. Streaming-teknologi, bankroll management og danske licenskrav.",
     url: `${SITE_URL}/live-casino`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-12-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -121,7 +121,7 @@ const LiveCasino = () => {
         description="Live casino guide 2026: bedste danske live casinoer, blackjack, roulette, baccarat, game shows, house edge og strategi samlet ét sted."
         jsonLd={[faqJsonLd, articleJsonLd]}
         type="article"
-        datePublished="2025-06-01"
+        datePublished="2025-12-08"
       />
 
       {/* Hero */}

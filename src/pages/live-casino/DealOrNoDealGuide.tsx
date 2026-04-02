@@ -104,10 +104,10 @@ const DealOrNoDealGuide = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(35 80% 30%), hsl(25 70% 22%) 50%, hsl(15 60% 18%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><Target className="mr-1.5 h-3.5 w-3.5" /> Interaktivt game show</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Deal or No Deal Live – Bankierens Matematik</h1>
             <p className="text-lg text-white/80">
               Evolutions interaktive game show med kufferter, bankier-tilbud og spillervalg. Den komplette matematiske analyse af odds, strategi og prospect theory.
@@ -443,14 +443,14 @@ const DealOrNoDealGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For optimal værdi anbefaler vi casinoer med hurtige udbetalinger, gode ansvarlighedsværktøjer og stabil streaming. Besøg <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for aktuelle tilbud eller <Link to="/casino-anmeldelser" className={linkClass}>læs anmeldelser</Link>.
           </p>
-          <InlineCasinoCards title="Spil Deal or No Deal her" count={3} />
+          <InlineCasinoCards title="Deal or No Deal – anbefalede casinoer" count={3} />
         </section>
 
         <Separator className="my-10" />
 
         {/* ── H2 10: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deals kvalifikationsrunde skaber en unik risiko for "chasing" – spillere, der øger indsatsen eller boost-niveauet for at kvalificere sig hurtigere efter en dårlig runde. Denne eskaleringsadfærd kan hurtigt overskride budgettet, fordi kvalifikationsomkostningen er "skjult" i mange små indsatser snarere end én synlig stor indsats.
           </p>
@@ -462,10 +462,10 @@ const DealOrNoDealGuide = () => {
           </p>
         </section>
 
-        <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
-        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
-        <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
+        <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
+        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
