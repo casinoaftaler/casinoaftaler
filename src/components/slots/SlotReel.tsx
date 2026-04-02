@@ -228,7 +228,7 @@ export const SlotReel = React.memo(function SlotReel({
   const spinningStripJsx = useMemo(() => {
     if (reelStrip.length === 0) return null;
     return reelStrip.map((symbol, index) => (
-      <SlotSymbol key={`reel-${index}-${symbol.id}`} symbol={symbol} isSpinning={true} isTeasing={false} gameId={gameId} />
+      <SlotSymbol key={`reel-${index}-${symbol.id}`} symbol={symbol} isSpinning={true} isTeasing={false} gameId={gameId} size={SYMBOL_HEIGHT} />
     ));
   }, [reelStrip, gameId]);
 
