@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mgLogo from "@/assets/screenshots/mg-logo.webp";
+import mgGameplay from "@/assets/screenshots/mg-gameplay.webp";
+import mgUpcoming from "@/assets/screenshots/mg-upcoming.webp";
 
 const MicrogamingGuide = () => (
   <ProviderPage
