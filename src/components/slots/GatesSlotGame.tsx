@@ -33,6 +33,7 @@ import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
 import gatesTitleArt from "@/assets/slots/gates/title-art.png";
+import { ChromaKeyVideo } from "./ChromaKeyVideo";
 
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
@@ -971,8 +972,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         )}
 
         <div className="flex flex-col items-center relative">
-          {/* Title art — top right outside the grid */}
-          <div className="absolute z-30 pointer-events-none" style={{
+          {/* Title art + character — top right outside the grid */}
+          <div className="absolute z-30 pointer-events-none flex flex-col items-center" style={{
             top: isMobile ? -30 : -50,
             left: `calc(100% + ${isMobile ? 4 : 8}px)`,
             width: isMobile ? gridWidth * 0.28 : gridWidth * 0.35,
@@ -982,6 +983,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               alt="Gates of Fedesvin"
               className="w-full pointer-events-none block drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               draggable={false}
+            />
+            <ChromaKeyVideo
+              src="/videos/gates-character.mp4"
+              width={isMobile ? Math.round(gridWidth * 0.28) : Math.round(gridWidth * 0.35)}
+              height={isMobile ? Math.round(gridWidth * 0.35) : Math.round(gridWidth * 0.45)}
+              className="mt-[-8px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
             />
           </div>
           {/* Main game grid */}
