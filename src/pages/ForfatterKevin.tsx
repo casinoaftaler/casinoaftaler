@@ -345,8 +345,8 @@ export default function ForfatterKevin() {
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6">
             <p className="text-muted-foreground leading-relaxed">
               Kevin har deltaget i test og gennemgang af en lang række danske online casinoer og bidrager med first-hand erfaring fra live-streams og gameplay.
-              Han har stremet slots i over tre år og er kendt for sin analytiske tilgang til bonusvilkår, RTP-vurdering og spillemønstre.
-              Kevin arbejder desuden som IT-medansvarlig for Casinoaftaler.dk og bidrager til platformens tekniske udvikling og kvalitetssikring.
+              Han har streamet slots i over 4 år og er kendt for sin analytiske tilgang til bonusvilkår, RTP-vurdering og spillemønstre.
+              Kevin arbejder desuden som spiludvikler for Casinoaftaler.dk og bidrager til platformens community-spil og tekniske udvikling.
             </p>
           </div>
         </section>
