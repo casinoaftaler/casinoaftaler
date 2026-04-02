@@ -185,7 +185,7 @@ Deno.serve(async (req) => {
       const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
       // --- Settle GTW ---
-      if (endBalance) {
+      if (endBalance !== null) {
         const { data: gtwBets } = await admin
           .from('bonus_hunt_gtw_bets')
           .select('*')
