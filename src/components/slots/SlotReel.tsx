@@ -63,6 +63,8 @@ export const SlotReel = React.memo(function SlotReel({
   isDarkenedForTease = false,
   isDarkenedForExpansion = false,
   gameId,
+  symbolSize,
+  symbolGap,
 }: SlotReelProps) {
   const isWizard = gameId === "rise-of-fedesvin";
   const isBonanza = gameId === "fedesvin-bonanza";
