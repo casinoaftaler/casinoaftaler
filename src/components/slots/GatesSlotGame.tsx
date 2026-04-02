@@ -1006,9 +1006,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   </div>
                   <div className="w-px h-8 bg-yellow-500/30" />
                   <div className="flex flex-col items-center">
-                    <span className="text-[9px] uppercase tracking-widest text-emerald-400/80 font-semibold">Gevinst</span>
+                    <span className="text-[9px] uppercase tracking-widest text-emerald-400/80 font-semibold">Tumble Win</span>
                     <span className="text-xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">
-                      {Number(bonusWinnings.toFixed(2))}
+                      {Number(runningWin.toFixed(2))}
                     </span>
                   </div>
                 </div>
