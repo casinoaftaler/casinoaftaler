@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pngLogo from "@/assets/screenshots/png-logo.webp";
+import pngKatalog from "@/assets/screenshots/png-katalog.webp";
+import pngFreespins from "@/assets/screenshots/png-freespins.webp";
+import pngGameplay from "@/assets/screenshots/png-gameplay.webp";
 
 const PlayNGoGuide = () => (
   <ProviderPage
