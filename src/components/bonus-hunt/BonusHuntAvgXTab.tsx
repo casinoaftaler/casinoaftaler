@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Users } from "lucide-react";
+import { Loader2, Users, Trophy, Crown } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
 
 const GROUPS = [
