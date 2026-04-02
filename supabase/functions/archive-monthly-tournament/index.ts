@@ -21,6 +21,7 @@ Deno.serve(async (req) => {
     const now = new Date();
     const prevMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
     const monthStr = prevMonth.toISOString().slice(0, 10);
+    const nextMonthStr = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().slice(0, 10);
 
     // Check if already archived
     const { data: existing } = await supabase
@@ -36,7 +37,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Fetch active tournament configs to know which game_id per category
+    // Fetch active tournament configs
     const { data: configs } = await supabase
       .from("monthly_tournament_config")
       .select("*")
@@ -49,33 +50,70 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Map category to sort column in the per-game view
-    const categoryColMap: Record<string, string> = {
-      total_points: "monthly_winnings",
-      highest_x: "monthly_biggest_multiplier",
-      highest_win: "monthly_biggest_win",
-    };
-
     const archives = [];
 
     for (const config of configs) {
-      const col = categoryColMap[config.category] || "monthly_winnings";
-
-      // Query per-game view for this game_id, sorted by the relevant column
-      const { data: top10 } = await supabase
-        .from("slot_leaderboard_by_game")
-        .select("user_id, monthly_winnings, monthly_biggest_win, monthly_biggest_multiplier, monthly_spins, monthly_bonuses")
+      // Query raw slot_game_results for the month to avoid materialized view timing issues
+      const { data: results, error: resultsErr } = await supabase
+        .from("slot_game_results")
+        .select("user_id, win_amount, bonus_win_amount, bet_amount, is_bonus_triggered")
         .eq("game_id", config.game_id)
-        .order(col, { ascending: false })
-        .limit(10);
+        .gte("created_at", `${monthStr}T00:00:00Z`)
+        .lt("created_at", `${nextMonthStr}T00:00:00Z`);
 
-      if (!top10 || top10.length === 0) continue;
+      if (resultsErr) {
+        console.error(`Error fetching results for ${config.game_id}:`, resultsErr);
+        continue;
+      }
+      if (!results || results.length === 0) continue;
 
-      const winnerValue = (top10[0] as any)[col] || 0;
+      // Aggregate per user
+      const userStats: Record<string, {
+        totalWinnings: number;
+        biggestWin: number;
+        biggestMultiplier: number;
+        totalSpins: number;
+        totalBonuses: number;
+      }> = {};
+
+      for (const r of results) {
+        const uid = r.user_id;
+        if (!uid) continue;
+        if (!userStats[uid]) {
+          userStats[uid] = { totalWinnings: 0, biggestWin: 0, biggestMultiplier: 0, totalSpins: 0, totalBonuses: 0 };
+        }
+        const s = userStats[uid];
+        const winTotal = Number(r.win_amount || 0) + Number(r.bonus_win_amount || 0);
+        const betAmt = Number(r.bet_amount || 1);
+        const multiplier = betAmt > 0 ? winTotal / betAmt : 0;
+
+        s.totalWinnings += winTotal;
+        s.biggestWin = Math.max(s.biggestWin, winTotal);
+        s.biggestMultiplier = Math.max(s.biggestMultiplier, multiplier);
+        s.totalSpins++;
+        if (r.is_bonus_triggered) s.totalBonuses++;
+      }
+
+      // Determine sort key based on category
+      const sortKeyMap: Record<string, keyof typeof userStats[string]> = {
+        total_points: "totalWinnings",
+        highest_x: "biggestMultiplier",
+        highest_win: "biggestWin",
+      };
+      const sortKey = sortKeyMap[config.category] || "totalWinnings";
+
+      // Sort and take top 10
+      const sorted = Object.entries(userStats)
+        .sort(([, a], [, b]) => (b[sortKey] as number) - (a[sortKey] as number))
+        .slice(0, 10);
+
+      if (sorted.length === 0) continue;
+
+      const winnerValue = sorted[0][1][sortKey] as number;
       if (winnerValue <= 0) continue;
 
       // Get profiles for top 10
-      const userIds = top10.map((r) => r.user_id).filter(Boolean) as string[];
+      const userIds = sorted.map(([id]) => id);
       const { data: profiles } = await supabase
         .from("profiles_leaderboard")
         .select("user_id, display_name, avatar_url")
@@ -85,25 +123,25 @@ Deno.serve(async (req) => {
         (profiles || []).map((p: any) => [p.user_id, p])
       );
 
-      const winnerProfile = profileMap.get(top10[0].user_id!) || {};
+      const winnerProfile = profileMap.get(sorted[0][0]) || {};
 
-      const topEntries = top10.map((r, i) => {
-        const p = profileMap.get(r.user_id!) || {};
+      const topEntries = sorted.map(([uid, stats], i) => {
+        const p = profileMap.get(uid) || {};
         return {
           rank: i + 1,
-          user_id: r.user_id,
+          user_id: uid,
           display_name: (p as any).display_name || "Anonym",
           avatar_url: (p as any).avatar_url || null,
-          value: (r as any)[col] || 0,
-          total_spins: (r as any).monthly_spins || 0,
-          total_bonuses: (r as any).monthly_bonuses || 0,
+          value: stats[sortKey] as number,
+          total_spins: stats.totalSpins,
+          total_bonuses: stats.totalBonuses,
         };
       });
 
       archives.push({
         month: monthStr,
         category: config.category,
-        winner_user_id: top10[0].user_id!,
+        winner_user_id: sorted[0][0],
         winner_display_name: (winnerProfile as any).display_name || "Anonym",
         winner_avatar_url: (winnerProfile as any).avatar_url || null,
         winning_value: winnerValue,
