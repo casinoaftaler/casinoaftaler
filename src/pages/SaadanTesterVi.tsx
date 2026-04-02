@@ -103,11 +103,12 @@ const testProcess = [
 ];
 
 const scoringModel = [
-  { label: "Sikkerhed & Licens", pct: 30, color: "hsl(var(--primary))" },
-  { label: "Spiludvalg", pct: 20, color: "hsl(var(--chart-2))" },
-  { label: "Bonus & Vilkår", pct: 20, color: "hsl(var(--chart-3))" },
-  { label: "Udbetaling", pct: 15, color: "hsl(var(--chart-4))" },
-  { label: "Brugeroplevelse", pct: 15, color: "hsl(var(--chart-5))" },
+  { label: "Sikkerhed & Licens", pct: 25, color: "hsl(var(--primary))" },
+  { label: "Bonus & Vilkår", pct: 20, color: "hsl(var(--chart-2))" },
+  { label: "Spiludvalg", pct: 15, color: "hsl(var(--chart-3))" },
+  { label: "Ind- og udbetaling", pct: 15, color: "hsl(var(--chart-4))" },
+  { label: "Mobiloplevelse", pct: 15, color: "hsl(var(--chart-5))" },
+  { label: "Kundeservice", pct: 10, color: "hsl(var(--chart-1))" },
 ];
 
 const faqs = [
