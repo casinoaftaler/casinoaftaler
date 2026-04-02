@@ -11,7 +11,7 @@ import { useBonusHuntSession } from "@/hooks/useBonusHuntSession";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
-import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings } from "lucide-react";
+import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
