@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { seoRoutes } from "@/lib/seoRoutes";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 // ── Static sitemap grouping ──
 
@@ -162,7 +163,7 @@ export default function Sitemap() {
         <section className="mb-10">
           <h2 className="text-xl font-bold mb-4 text-foreground border-b border-border pb-2">Komplet Slot Katalog</h2>
           <p className="text-sm text-muted-foreground">
-            Se alle 1.640+ spillemaskiner med direkte links: <a href="/slot-directory.html" className="text-primary hover:underline">Slot Directory (statisk oversigt)</a>
+            Se alle {SLOT_COUNT_LABEL} spillemaskiner med direkte links: <a href="/slot-directory.html" className="text-primary hover:underline">Slot Directory (statisk oversigt)</a>
           </p>
         </section>
 
@@ -175,7 +176,7 @@ export default function Sitemap() {
             <h2>Casinospil</h2>
             <p>Se alle spillemaskiner på <a href="/sitemap/casinospil">Casinospil Sitemap</a>.</p>
             <h2>Komplet Slot Katalog</h2>
-            <p>Se alle 1.640+ spillemaskiner med direkte links: <a href="/slot-directory.html">Slot Directory</a>.</p>
+            <p>Se alle {SLOT_COUNT_LABEL} spillemaskiner med direkte links: <a href="/slot-directory.html">Slot Directory</a>.</p>
           </div>
         </noscript>
       </div>

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 import { MenuIcon } from "@/components/MenuIcon";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 // MenuIcon is now imported from @/components/MenuIcon
 
@@ -125,7 +126,7 @@ export function HomepageBonusHuntSection() {
         <Link to="/statistik" className="text-primary hover:underline font-medium">bonus hunt statistik</Link>
         {" "}med provider-rankings og historiske grafer. Udforsk vores{" "}
         <Link to="/slot-database" className="text-primary hover:underline font-medium">Slot Database</Link>
-        {" "}med community-data fra 1.640+ testede spillemaskiner, eller følg med i{" "}
+        {" "}med community-data fra {SLOT_COUNT_LABEL} testede spillemaskiner, eller følg med i{" "}
         <Link to="/community/turneringer" className="text-primary hover:underline font-medium">månedlige turneringer</Link>
         {" "}med kontante præmier. Følg{" "}
         <Link to="/om" className="text-primary hover:underline font-medium">Casinoaftaler</Link>

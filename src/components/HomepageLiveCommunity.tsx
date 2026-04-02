@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
 function useHomepageCommunityData() {
   return useQuery({
@@ -243,7 +244,7 @@ export function HomepageLiveCommunity() {
               <li><a href="/bonus-hunt/arkiv">Bonus Hunt Arkiv – alle tidligere hunts</a></li>
               <li><a href="/community/slots">Prøv spillehallen</a></li>
               <li><a href="/community/turneringer">Community turneringer</a></li>
-              <li><a href="/slot-database"><li><a href="/slot-database">Slot Database – 1.640+ spilleautomater</a></li></a></li>
+              <li><a href="/slot-database"><li><a href="/slot-database">Slot Database – {SLOT_COUNT_LABEL} spilleautomater</a></li></a></li>
               <li><a href="/statistik">Bonus Hunt Statistik – aggregeret data</a></li>
             </ul>
           </div>
