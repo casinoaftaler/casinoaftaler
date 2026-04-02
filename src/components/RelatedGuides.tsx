@@ -880,7 +880,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/casinospil/poker", label: "Poker Guide", iconName: "gamepad2", desc: "Alle pokervarianter sammenlignet" },
         { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", iconName: "target", desc: "Anvend strategien i praksis" },
-        { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "Avanceret multi-draw strategi" },
+        { to: "/casinospil/poker/omaha", label: "Omaha Poker", iconName: "shuffle", desc: "Avanceret multi-draw strategi" },
         { to: "/casinospil/poker/video-poker", label: "Video Poker", iconName: "gamepad2", desc: "Solo strategi med 99,5 % RTP" },
         { to: "/omsaetningskrav", label: "Omsætningskrav", iconName: "target", desc: "Poker og bonusomsætning" },
       ],
