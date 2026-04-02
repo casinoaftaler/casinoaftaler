@@ -1142,7 +1142,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
           {/* Slot machine reels with frame */}
           <div className="flex justify-center relative">
             <SlotMachineFrame isBonus={bonusState.isActive} isSpinning={isSpinning} gameId={gameId}>
-              <div className="relative p-6 rounded-xl">
+              <div className={cn("relative rounded-xl", isMobile ? "p-1" : "p-6")}>
                 {/* Win Celebration Effects */}
                 <WinCelebration
                   isActive={isWinAnimating}
