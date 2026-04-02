@@ -278,7 +278,7 @@ export function HomepageSlotShowcase() {
           {" "}– Money Collect-mekanikken fra Pragmatic Play med 96,71 % RTP.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/mega-moolah" className="text-primary hover:underline font-medium">Mega Moolah</Link>
           {" "}– Den progressive jackpot-legende fra Microgaming med milliongevinster.
         </li>
