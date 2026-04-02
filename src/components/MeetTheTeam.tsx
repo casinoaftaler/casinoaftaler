@@ -13,10 +13,10 @@ const teamMembers = [
   {
     id: "kevin",
     name: "Kevin",
-    role: "Casino-streamer & Redaktør",
+    role: "Casino-streamer & Spiludvikler",
     image: "/kevin-avatar.webp",
     link: "/forfatter/kevin",
-    description: "Live-tester casinoer on-stream og skriver dybdegående guides til slots og live casino.",
+    description: "Streamer slots live og udvikler community-spil i spillehallen. 4+ års erfaring med casino-streaming.",
   },
   {
     id: "ajse",
