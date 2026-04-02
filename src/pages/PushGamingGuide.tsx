@@ -154,6 +154,12 @@ const PushGamingGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={pushKatalog}
+          alt="Push Gaming spilkatalog med 40+ titler inkl. Big Bamboo, Razor Shark og Fat Santa"
+          caption="Push Gamings komplette katalog – boutique-størrelse med høj hit-rate: Big Bamboo, Razor Shark, Jammin' Jars og Fat-serien."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gamings katalog er boutique-sized men rummer en bemærkelsesværdig koncentration af innovative, veldesignede titler. De nedenstående seks spil repræsenterer studiets kreative bredde – fra den sæsonbestemte Fat-serie til den mere intense Razor-franchise. Hvert spil har sin egen mekanik, sit eget tema og sin egen stemning – og det er netop Push Gamings pointe.
         </p>
