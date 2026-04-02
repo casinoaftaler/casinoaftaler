@@ -976,7 +976,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           <div className="absolute z-30 pointer-events-none flex flex-col items-center" style={{
             top: isMobile ? -30 : -50,
             left: `calc(100% + ${isMobile ? 4 : 8}px)`,
-            width: isMobile ? gridWidth * 0.45 : gridWidth * 0.55,
+            width: isMobile ? gridWidth * 0.28 : gridWidth * 0.35,
           }}>
             <img
               src={gatesTitleArt}
@@ -987,8 +987,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
             <div className="mt-[-8px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
               <ChromaKeyVideo
                 src="/videos/gates-character.mp4"
-                width={isMobile ? Math.round(gridWidth * 0.7) : Math.round(gridWidth * 0.85)}
-                height={isMobile ? Math.round(gridWidth * 0.9) : Math.round(gridWidth * 1.1)}
+                width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
                 className=""
               />
             </div>
