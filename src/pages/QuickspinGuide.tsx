@@ -29,6 +29,13 @@ const QuickspinGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche hvor de fleste spiludviklere konkurrerer på enten volumen eller volatilitet, har Quickspin valgt en tredje vej: spillerengagement. Det Stockholm-baserede studio, grundlagt i 2011 af tre <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-veteraner, har opbygget sin identitet på en deceptivt simpel præmis – at den bedste spilleautomat ikke nødvendigvis er den med den højeste maks. gevinst eller den mest eksotiske mekanik, men den der får spilleren til at vende tilbage dag efter dag. Denne filosofi manifesterer sig i alt hvad Quickspin producerer: fra deres patenterede Achievement Engine til den omhyggelige balancering af RTP og hitfrekvens i hvert eneste spil.
         </p>
+        <ReviewScreenshot
+          src={qsLogo}
+          alt="Quickspin officielt logo – svensk premium-spiludvikler"
+          caption="Quickspins orange signaturlogo – det Stockholm-baserede studio bag Achievement Engine og Big Bad Wolf."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Quickspins grundlæggere – Daniel Lindberg, Mats Westerlund og Joachim Timmermans – forlod NetEnt med en præcis diagnose af branchens fundamentale problem: spillemaskiner var designet til at tiltrække spillere, men ikke til at fastholde dem. Den gennemsnitlige spiller prøver et nyt spil i 3-5 minutter og går videre til det næste. Quickspins løsning var at integrere gamification-principper fra mobilspilindustrien – XP-progression, achievements, daglige missioner – direkte i slot-oplevelsen. Resultatet var Achievement Engine, et proprietært system der transformerer passive slot-spillere til aktive deltagere i en progressions-mekanisme.
         </p>
