@@ -29,7 +29,14 @@ const PragmaticPlayGuide = () => (
     introContent={
       <>
         <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-5">
-          <div className="flex items-start gap-3">
+        <ReviewScreenshot
+          src={ppLogo}
+          alt="Pragmatic Play officielt logo – orange krone-ikon med sort tekst, grundlagt 2015 på Malta"
+          caption="Pragmatic Plays ikoniske logo – verdens mest produktive spiludvikler med 250+ slots og 100+ live casino-borde."
+          size="medium"
+          eager
+        />
+        <div className="flex items-start gap-3">
             <Award className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
             <div>
               <p className="mb-1 font-semibold">Officiel partner af Pragmatic Play</p>
