@@ -460,7 +460,7 @@ const Forretningsmodel = () => {
               { to: "/live-casino", icon: Users, title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
               { to: "/betalingsmetoder", icon: CreditCard, title: "Betalingsmetoder", desc: "Alle godkendte betalingsmetoder" },
               { to: "/spiludviklere", icon: Search, title: "Spiludviklere", desc: "12 ledende studier analyseret" },
-              { to: "/ordbog", icon: BookOpen, title: "Casino Ordbog", desc: "30+ tekniske termer forklaret" },
+              { to: "/ordbog", icon: BookOpen, title: "Casino Ordbog", desc: "70+ tekniske termer forklaret" },
               { to: "/free-spins", icon: Sparkles, title: "Free Spins", desc: "Alt om gratis spins på danske casinoer" },
               { to: "/omsaetningskrav", icon: Scale, title: "Omsætningskrav", desc: "Forstå bonusvilkår og omsætning" },
             ].map((item) => (

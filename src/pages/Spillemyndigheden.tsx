@@ -26,7 +26,7 @@ const keyFacts = [
   { label: "Placering", value: "Odense, Danmark" },
   { label: "Antal medarbejdere", value: "100+" },
   { label: "Ressorterer under", value: "Skatteministeriet" },
-  { label: "Blokerede sider (2025)", value: "178 ulovlige spillesider" },
+  { label: "Blokerede sider (2026)", value: "178+ ulovlige spillesider" },
   { label: "Officiel hjemmeside", value: "spillemyndigheden.dk" },
 ];
 
