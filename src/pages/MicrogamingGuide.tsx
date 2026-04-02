@@ -100,12 +100,22 @@ const MicrogamingGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={mgGameplay}
+          alt="Lucha Legends spilleautomat fra Microgaming – mexicansk wrestling-tema med farverig grafik"
+          caption="Lucha Legends – et eksempel på Microgamings tematiske bredde med mexicansk wrestling-tema og karakteristisk grafisk stil."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Microgaming har branchens største spilbibliotek med 900+ titler, men det er kvaliteten – ikke kvantiteten – der definerer arven. Fire titler skiller sig ud som tidløse klassikere: Mega Moolah (jackpot-kongen), Immortal Romance (narrativt mesterværk), Thunderstruck II (mytologisk dybde) og Avalon II (teknisk ambition). Resten af biblioteket indeholder mange daterede titler der primært eksisterer af historiske grunde.
         </p>
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Jackpot-slots har lavere basis-RTP (88-92%) fordi en del af indsatsen kanaliseres til den progressive pulje. For spillere der vælger Mega Moolah bør dette være en bevidst beslutning: du bytter daglig spilleroplevelse (lavere afkast) for potentielt livsændrende gevinst. Standard-slots i porteføljen har konkurrencedygtige RTP-værdier (95-96,86%) men mangler den kreative innovation man finder hos <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> eller <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>.
         </p>
+        <ReviewScreenshot
+          src={mgUpcoming}
+          alt="Microgaming kommende spilutgivelser – Coming Soon oversigt med nye slots planlagt til april 2026"
+          caption="Microgamings kommende udgivelser – nye titler planlagt via deres globale studie-netværk."
+        />
       </>
     }
     games={[
