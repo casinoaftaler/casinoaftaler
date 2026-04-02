@@ -83,6 +83,9 @@ export function BonanzaControlBar({
   tumbleCollisionPhase = 'idle',
   tumbleVisible = false,
   tumbleHideMultiplier = false,
+  bonusCumulativeMultiplier = 0,
+  bonusRunningMultiplier = 0,
+  bonusTumblePhase = 'idle',
 }: BonanzaControlBarProps) {
   const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
