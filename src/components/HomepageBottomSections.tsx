@@ -258,7 +258,7 @@ export function HomepageSlotShowcase() {
       </p>
       <ul className="space-y-2 mb-4">
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline font-medium">Sweet Bonanza</Link>
           {" "}– Pragmatic Plays cluster-pays hit med 96,48 % RTP og 21.175× max win.
         </li>
