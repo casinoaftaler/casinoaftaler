@@ -133,6 +133,12 @@ const PragmaticPlayGuide = () => (
     }
     technicalProfile={
       <div className="space-y-6">
+        <ReviewScreenshot
+          src={ppGatesGameplay}
+          alt="Gates of Olympus gameplay – 6x5 grid med ædelstenssymboler, Køb Gratis Spins og Dobbelt Chance funktion"
+          caption="Gates of Olympus gameplay med Tumble-mekanik, multiplikator-bomber og Bonus Buy til kr500 – Pragmatic Plays flagskib."
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Pragmatic Plays tekniske infrastruktur er bygget til skala. Deres HTML5-motor håndterer milliarder af spins dagligt på tværs af 250+ titler og 20+ regulerede markeder. Load-tider er typisk under 3 sekunder, og alle spil er mobile-first designet med responsivt layout. Pragmatics tekniske differentiator er ikke innovation men pålidelighed: deres spil crasher sjældnere og loader hurtigere end gennemsnittet. Backend-arkitekturen er designet til at håndtere peak-belastninger under store kampagner – Black Friday, nyårsaften og store sportsevents – uden degradering af spilleroplevelsen.
         </p>
