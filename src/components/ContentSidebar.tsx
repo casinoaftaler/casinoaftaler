@@ -83,8 +83,6 @@ function CategorySection({
       <ul className="bg-card/80 dark:bg-card">
         {category.links.map((link, idx) => {
           const isActive = location.pathname === link.to;
-          const LinkIcon = getLucideIcon(link.iconName);
-          const iconColor = ICON_COLORS[idx % ICON_COLORS.length];
           const logoSrc = resolveLogoUrl(link.logoUrl);
 
           return (
