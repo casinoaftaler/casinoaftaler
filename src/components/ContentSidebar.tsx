@@ -56,7 +56,7 @@ function CategorySection({
   isActiveCategory: boolean;
 }) {
   const location = useLocation();
-  const Icon = iconMap[category.iconName] || Crown;
+  const menuIconName = CATEGORY_ICON_MAP[category.iconName] || "crown";
 
   return (
     <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
