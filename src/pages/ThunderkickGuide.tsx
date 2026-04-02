@@ -158,6 +158,11 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkicks katalog er boutique-sized men hvert spil repræsenterer en unik kreativ vision. De nedenstående seks titler spænder fra studiets ikoniske debut til nyere eksperimenter der viser, at innovationslysten ikke er aftaget. Fælles for dem alle er den umiskendelige Thunderkick-æstetik: hver slot er et kunstværk der tilfældigvis også er en velfungerende spilleautomat.
         </p>
+        <ReviewScreenshot
+          src={tkKatalog}
+          alt="Thunderkick spilkatalog på Campobet – 12 Bolts of Thunder, Beat the Beast-serien, Carnival Queen og Crystal Quest"
+          caption="Thunderkicks katalog hos Campobet: fra Beat the Beast-franchisen til Crystal Quest og Carnival Queen."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig nuance for danske spillere: Thunderkick-spil er generelt velegnet til dem der søger underholdningsværdi per time snarere end eksplosive enkelt-gevinster. Medium-høj volatilitet med konsistent RTP gør dem til solide valg til bonus-omsætning via{" "}
           <Link to="/free-spins" className="text-primary underline hover:text-primary/80">free spins</Link>{" "}
