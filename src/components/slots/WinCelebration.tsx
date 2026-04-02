@@ -558,9 +558,11 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               <div
                 className="w-full h-full rounded-full"
                 style={{
-                  background: `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
-                  boxShadow: `0 0 8px ${coin.color}, 0 0 16px ${coin.color}60, inset 0 -2px 4px rgba(0,0,0,0.3)`,
-                  border: "1px solid hsl(45,80%,70%)",
+                  background: isMobileRef.current
+                    ? coin.color
+                    : `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
+                  boxShadow: isMobileRef.current ? 'none' : `0 0 8px ${coin.color}, 0 0 16px ${coin.color}60, inset 0 -2px 4px rgba(0,0,0,0.3)`,
+                  border: isMobileRef.current ? 'none' : "1px solid hsl(45,80%,70%)",
                   animation: `coin-spin-3d ${coin.spinDuration}s linear infinite`,
                 }}
               />
