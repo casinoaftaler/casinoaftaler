@@ -139,6 +139,7 @@ const NolimitCityGuide = () => (
           caption="Nolimit Citys bonus-købsystem – tre tiers med stigende pris og risiko, fra 95x til 777x indsatsen."
           size="medium"
         />
+      </>
     }
     games={[
       { name: "San Quentin xWays", desc: "Det definerende Nolimit City-spil og branchens absolutte gevinstrekord: 2.084.000x maks. gevinst. Fængsels-tema med xWays og xNudge i samspil – expanding wilds nudger ned mens vinderkombinationer eksploderer. Lockdown Spins og Solitary Confinement free spins repræsenterer to volatilitetsniveauer. RTP: 96,03%. Bonus Buy: Standard 80x, Super 400x.", highlight: "2.084.000x – branchens absolutte højeste" },
