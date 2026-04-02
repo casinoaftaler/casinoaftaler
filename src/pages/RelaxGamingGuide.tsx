@@ -141,6 +141,12 @@ const RelaxGamingGuide = () => (
           Som aggregator tilfører Relax en ekstra kvalitetskontrol: alle partnerstudios screenes for regulatorisk compliance, matematisk integritet og teknisk kvalitet inden de får adgang til platformen. Powered By Relax-partnere gennemgår den mest omfattende screening; Silver Bullet er lettere men stadig substantiel. For danske spillere betyder dette at ethvert spil distribueret via Relax Gamings platform er dobbelt-verificeret: først af partnerstudioets egne regulatorer, dernæst af Relax' interne QA-team. Læs mere om{" "}
           <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og hvordan RTP og volatilitet påvirker bonusspil.
         </p>
+        <ReviewScreenshot
+          src={relaxMoneytrainGameplay}
+          alt="Money Train 2 gameplay – 4x5 hjulopsætning med steampunk-karakterer, multiplikatorer og dansk interface"
+          caption="Money Train 2 i aktion: karaktersymboler med steampunk-tema og den ikoniske 4x5 hjulstruktur."
+          size="medium"
+        />
       </>
     }
     pros={[
