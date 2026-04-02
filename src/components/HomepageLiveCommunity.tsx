@@ -128,7 +128,7 @@ export function HomepageLiveCommunity() {
             <Card className="border-border bg-card">
               <CardContent className="pt-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5" />
                   <h3 className="font-bold text-sm">Seneste Bonus Hunts</h3>
                 </div>
                 <ul className="space-y-2.5">
