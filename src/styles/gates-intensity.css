@@ -131,17 +131,7 @@
   animation: gates-spin-press 0.2s ease-out;
 }
 
-/* ===== CLIMAX ZOOM ===== */
-@keyframes gates-climax-zoom {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1.03); }
-}
-
-[data-intensity="climax"] .gates-grid-container {
-  animation: gates-climax-zoom 0.6s ease-out forwards;
-  transform-origin: center;
-}
+/* ===== CLIMAX ZOOM (disabled) ===== */
 
 /* Return to normal scale on non-climax */
 [data-intensity="idle"] .gates-grid-container,
