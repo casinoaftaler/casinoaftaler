@@ -376,8 +376,8 @@ export default function ForfatterKevin() {
             siden har været kendt som <strong>"Mr. Verify"</strong> – et kælenavn, der stadig nævnes med et smil.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som både streamer og medansvarlig for
-            hjemmeside og udvikling. Han bidrager med teknisk forståelse, analytisk tilgang og et skarpt øje for
+            I dag er Kevin en fast del af <strong>Casinoaftaler.dk</strong> som både streamer og spiludvikler.
+            Han bidrager med teknisk forståelse, analytisk tilgang og et skarpt øje for
             detaljer i både indhold og platformens videre udvikling.
           </p>
         </section>
