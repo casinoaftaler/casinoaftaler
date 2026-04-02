@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import yggLogo from "@/assets/screenshots/ygg-logo.webp";
+import yggStats from "@/assets/screenshots/ygg-stats.webp";
+import yggCount from "@/assets/screenshots/ygg-count.webp";
+import yggKatalog from "@/assets/screenshots/ygg-katalog.webp";
+import yggGameplay from "@/assets/screenshots/ygg-gameplay.webp";
 
 const YggdrasilGuide = () => (
   <ProviderPage
@@ -21,6 +27,13 @@ const YggdrasilGuide = () => (
     technicalTitle="Gigablox-Matematikken og Splitz-Algoritmens Vinderkombinationer"
     introContent={
       <>
+        <ReviewScreenshot
+          src={yggLogo}
+          alt="Yggdrasil Gaming officielt logo – orange livets træ-ikon med mørkeblå YGGDRASIL tekst"
+          caption="Yggdrasils ikoniske logo med livets træ fra nordisk mytologi – et symbol på studiets ambition om at forbinde alle aspekter af casinobranchen."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Yggdrasil Gaming er en svensk spiludvikler grundlagt i 2013 af Frederik Elmqvist – den tidligere CEO for <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, et af branchens mest ikoniske navne. Navngivet efter livets træ i nordisk mytologi – Yggdrasil – har studiet udfoldet sig som en platform-først virksomhed der fundamentalt adskiller sig fra traditionelle spiludviklere. Hvor de fleste studios måles på deres spil, måles Yggdrasil lige så meget på den teknologi de licenserer til andre. Med over 230 spiltitler, datterselskaber i Malta, Gibraltar, Polen, Storbritannien og Spanien, og ejerskab fordelt mellem Cherry AB Sweden (84%) og Yggdrasil Gaming Sweden AB (16%), er de en kompleks organisation med global rækkevidde.
         </p>
@@ -50,6 +63,12 @@ const YggdrasilGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Yggdrasil Gaming er en platform-infrastruktur-virksomhed forklædt som et spiludviklingsstudio – en strategisk position der er unik i casinobranchen. Deres primære konkurrencefordel er ikke individuelle spiltitler men BOOST-tools og GEM-frameworket der licenseres til tredjepartsstudios og operatører. Denne model skaber passiv indkomst: hver gang et partnerstudio udgiver et spil på GEM-platformen, og hver gang en operatør kører en BOOST-kampagne, genererer Yggdrasil indtægter uafhængigt af egne spils performance. Det er en strategisk moat der minder om Salesforces position i CRM-markedet – de ejer infrastrukturen andre bygger på.
         </p>
+        <ReviewScreenshot
+          src={yggStats}
+          alt="Yggdrasil Gaming statistik – 110+ Yggdrasilians medarbejdere fra 20+ nationaliteter"
+          caption="Yggdrasils globale team: 110+ medarbejdere ('Yggdrasilians') fra over 20 nationaliteter – en mangfoldig organisation bag platform-innovationen."
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Sammenlignet med <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link>, der også har en aggregator-komponent, differentierer Yggdrasil sig fundamentalt i sin approach. Relax aggregerer og distribuerer spil – de er en logistics-platform. Yggdrasil leverer teknologi der ændrer, hvordan operatører engagerer spillere – de er en engagement-platform. BOOST-turneringer kan f.eks. køre på tværs af en operators hele spilportefølje, ikke kun Yggdrasil-titler. Golden Chips kan distribueres til specifikke spil baseret på spillerens adfærdsprofil. Missions kan lede spillere gennem en progressiv rejse på tværs af multiple studios' spil.
         </p>
@@ -98,6 +117,17 @@ const YggdrasilGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Yggdrasil Gaming kombinerer visuelt imponerende spil med platform-drevne features der transformerer spilleoplevelsen. Tre proprietære mekanikker definerer de bedste titler: Gigablox med kæmpesymboler der dominerer skærmen, Splitz med eksplosiv vinderkombinations-ekspansion, og MultiMAX med permanente stigende multiplikatorer. BOOST-tools tilføjer et usynligt engagement-lag der gør hver session mere dynamisk.
         </p>
+        <ReviewScreenshot
+          src={yggCount}
+          alt="Yggdrasil spilantal – 295 titler tilgængelige hos dansk online casino"
+          caption="Yggdrasils portefølje tæller 295 titler hos danske operatører – et bibliotek der dækker alle volatilitets- og tema-præferencer."
+          size="compact"
+        />
+        <ReviewScreenshot
+          src={yggKatalog}
+          alt="Yggdrasil Gaming spilkatalog med populære titler som Fantastic Fish, Zeus God of Gaming, Pearl Reef og Raptor 2"
+          caption="Yggdrasils nyeste udgivelser inkluderer visuelt ambitiøse titler med Gigablox, Splitz og DoubleMAX-mekanikker."
+        />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           En vigtig observation om Yggdrasils portefølje: kvaliteten er mere inkonsistent end hos fokuserede studios som <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link> eller <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link>. De bedste Yggdrasil-titler (Champions of the Underworld, Vikings Go Berzerk, Hades Gigablox) er exceptionelle; de svageste er gennemsnitlige. Den brede volatilitetsvifte afspejler en platform-filosofi snarere end en fokuseret kreativ vision – Yggdrasil forsøger at dække alle segmenter, hvilket nødvendigvis betyder at ikke alle titler rammer lige hårdt.
         </p>
@@ -116,6 +146,11 @@ const YggdrasilGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Yggdrasil Gaming har licenser fra Malta Gaming Authority, UK Gambling Commission, HM Government of Gibraltar og den rumænske reguleringsmyndighed – fire jurisdiktioner der dækker de fleste europæiske markeder. De er ISO 27001 certificeret for informationssikkerhed – en standard der dækker alt fra spillerdata og BOOST-kampagnedata til GEM-platformens partner-integrationer.
         </p>
+        <ReviewScreenshot
+          src={yggGameplay}
+          alt="Raptor 2 DoubleMAX fra Yggdrasil – dinosaur-tema med eksponentiel multiplikator op til x1024 og 5x7 udvidet grid"
+          caption="Raptor 2 DoubleMAX: multiplikatoren fordobles ved hver lavine (2x→4x→...→1024x), og griddet udvides til 5x7 i free spins."
+        />
         <p className="text-muted-foreground leading-relaxed">
           BOOST-platformens kampagneværktøjer er separat auditeret for{" "}
           <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>-compliance: turneringer har indsatslofter, Missions har session-grænser, og Golden Chips distribueres med opt-out-muligheder. Alle proprietære mekanikker (Gigablox, Splitz, MultiMAX) er certificeret af uafhængige testlaboratorier for RNG-integritet. GEM-partnerstudios screenes for regulatorisk compliance på alle markeder hvor Yggdrasil opererer – en kvalitetskontrol der beskytter både operatører og spillere.
