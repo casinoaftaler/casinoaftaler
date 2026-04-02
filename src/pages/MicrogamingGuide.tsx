@@ -24,6 +24,13 @@ const MicrogamingGuide = () => (
     responsibleTitle="PlayItForward: Microgamings Ansvarlige Spil-Indsats"
     introContent={
       <>
+        <ReviewScreenshot
+          src={mgLogo}
+          alt="Microgaming officielt logo – spiludvikler grundlagt i 1994 på Isle of Man"
+          caption="Microgamings logo – branchens pioner siden 1994 og skaberne af Mega Moolah."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Microgaming er en af de mest indflydelsesrige aktører i casinobranchens historie. Grundlagt i 1994 på Isle of Man var de blandt de allerførste til at lancere et funktionelt online casino – et skridt der fundamentalt ændrede den globale spilleindustri. Med over 900 spiltitler, det mest kendte progressive jackpot-netværk i verden (Mega Moolah) og rollen som medstifter af eCOGRA i 2003, har Microgaming sat standarden for fairness og innovation i tre årtier. Det er ikke en overdrivelse at sige, at uden Microgaming ville online casinoindustrien se markant anderledes ud i dag.
         </p>
