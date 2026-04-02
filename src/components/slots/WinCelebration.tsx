@@ -653,8 +653,8 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         </div>
       )}
 
-      {/* Floating sparkles (drift and respawn) */}
-      {showOverlay && (
+      {/* Floating sparkles (drift and respawn) - skip entirely on mobile */}
+      {showOverlay && !isMobileRef.current && (
         <div
           className={cn(
             "absolute inset-0 z-[1003] pointer-events-none overflow-hidden",
