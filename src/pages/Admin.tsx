@@ -764,7 +764,7 @@ function AdminDashboard() {
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
   const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contentSubTab, setContentSubTab] = useState("casinos");
 
@@ -797,14 +797,19 @@ function AdminDashboard() {
 
   const defaultTab = (isModerator && !isAdmin) ? "bonus-hunt" : "content";
 
-  useEffect(() => {
-    const isModOnly = isModerator && !isAdmin;
-    if (!activeTab) {
-      setActiveTab(isModOnly ? "bonus-hunt" : "content");
-    } else if (isModOnly && !moderatorAllowedTabs.includes(activeTab)) {
-      setActiveTab("bonus-hunt");
+  const urlTab = searchParams.get("tab");
+  const isModOnly = isModerator && !isAdmin;
+  const activeTab = (() => {
+    if (urlTab && navItems.some(item => item.value === urlTab)) {
+      if (isModOnly && !moderatorAllowedTabs.includes(urlTab)) return defaultTab;
+      return urlTab;
     }
-  }, [isModerator, isAdmin, activeTab]);
+    return defaultTab;
+  })();
+
+  const setActiveTab = (value: string) => {
+    setSearchParams({ tab: value }, { replace: true });
+  };
 
   useEffect(() => {
     if (siteSettings?.header_icon) {
