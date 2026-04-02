@@ -81,21 +81,21 @@ export function HomepageLiveCommunity() {
   if (isLoading || !data) return null;
 
   const quickStats = [
-    { icon: Users, label: "Aktive medlemmer", value: data.activeMembers.toLocaleString("da-DK"), color: "text-violet-400" },
-    { icon: Gamepad2, label: "Spins spillet", value: data.totalSpins.toLocaleString("da-DK"), color: "text-amber-400" },
-    { icon: Trophy, label: "Turneringer", value: `${data.tournamentsThisMonth} denne måned`, color: "text-emerald-400" },
+    { iconName: "users", label: "Aktive medlemmer", value: data.activeMembers.toLocaleString("da-DK") },
+    { iconName: "gamepad-2", label: "Spins spillet", value: data.totalSpins.toLocaleString("da-DK") },
+    { iconName: "trophy", label: "Turneringer", value: `${data.tournamentsThisMonth} denne måned` },
   ];
 
   return (
     <section className="py-8 md:py-12" aria-label="Live fra communityet">
       <div>
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <h2 className="text-2xl md:text-3xl font-bold">
             <span aria-hidden="true">📡</span> Live fra Communityet
           </h2>
         </div>
-        <p className="text-muted-foreground mb-8 max-w-3xl leading-relaxed">
+        <p className="text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed text-center">
           Følg med i real-time data fra vores{" "}
           <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Twitch-community</a>
           . Alle resultater er dokumenterede og verificerbare – fra live bonus hunts til månedlige turneringer.
