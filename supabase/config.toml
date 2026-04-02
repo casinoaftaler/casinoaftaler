@@ -116,3 +116,6 @@ verify_jwt = false
 
 [functions.slot-classify-archetypes]
 verify_jwt = false
+
+[functions.bonus-hunt-bulk-id-import]
+verify_jwt = false
