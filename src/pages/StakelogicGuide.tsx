@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import stakeLogo from "@/assets/screenshots/stake-logo.webp";
+import stakeStats1 from "@/assets/screenshots/stake-stats1.webp";
+import stakeStats2 from "@/assets/screenshots/stake-stats2.webp";
+import stakeKatalog from "@/assets/screenshots/stake-katalog.webp";
+import stakeGameplay from "@/assets/screenshots/stake-gameplay.webp";
 
 const StakelogicGuide = () => (
   <ProviderPage
