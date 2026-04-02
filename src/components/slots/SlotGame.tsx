@@ -29,8 +29,8 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Fixed symbol dimensions at base resolution (scaling is handled at container level)
-const SYMBOL_SIZE = 150;
-const SYMBOL_GAP = 16;
+const DEFAULT_SYMBOL_SIZE = 150;
+const DEFAULT_SYMBOL_GAP = 16;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
