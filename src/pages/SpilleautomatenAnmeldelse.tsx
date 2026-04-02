@@ -505,7 +505,7 @@ const SpilleautomatenAnmeldelse = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { iconName: "shopping-bag", title: "Kontante præmier", desc: "Points konverteres til rigtige bonusmidler – ikke kun gratis spins eller kuponer." },
-              { icon: Timer, title: "Ingen udløbsdato", desc: "Optjente points forsvinder aldrig. Spil i dit eget tempo uden tidspres." },
+              { iconName: "timer", title: "Ingen udløbsdato", desc: "Optjente points forsvinder aldrig. Spil i dit eget tempo uden tidspres." },
               { iconName: "trending-up", title: "Bedre rate ved volumen", desc: "Jo flere points du indløser på én gang, desto højere kontantværdi pr. point." },
               { iconName: "gamepad2", title: "Kun slots tæller", desc: "1 point pr. 5 kr. omsat på spilleautomater. Bordspil og live casino tæller ikke." },
             ].map((item) => (

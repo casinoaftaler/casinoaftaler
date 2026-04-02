@@ -71,7 +71,7 @@ const expertiseItems = [
     desc: "Aktiv community-builder med fokus på dialog, turneringer og et inkluderende spil-fællesskab.",
   },
   {
-    icon: Code,
+    iconName: "code",
     label: "Spiludvikling",
     desc: "Udvikler community-spil i spillehallen og bidrager med kreative spilidéer til platformen.",
   },

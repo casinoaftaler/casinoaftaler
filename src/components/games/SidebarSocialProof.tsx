@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import "@/styles/community-micro.css";
 
 interface StatItem {
-  icon: React.ReactNode;
+  iconName: "react".ReactNode;
   value: number | null;
   label: string;
 }

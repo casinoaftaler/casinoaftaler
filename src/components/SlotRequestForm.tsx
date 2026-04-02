@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: typeof Clock }> = {
   pending: { label: "Afventer", variant: "secondary", iconName: "clock" },
   bonus_hit: { label: "Bonus Hit! 🎉", variant: "default", iconName: "check-circle2" },
-  no_bonus: { label: "Ingen Bonus", variant: "outline", icon: Minus },
+  no_bonus: { label: "Ingen Bonus", variant: "outline", iconName: "minus" },
   rejected: { label: "Afvist", variant: "destructive", iconName: "x-circle" },
 };
 

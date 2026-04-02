@@ -777,24 +777,24 @@ function AdminDashboard({ user, isAdmin, isModerator, signOut }: AdminDashboardP
   const moderatorAllowedTabs = ["bonus-hunt", "requests"];
 
   const allNavItems = [
-    { value: "content", label: "Indhold", icon: Gift },
-    { value: "news", label: "Nyheder", icon: Bell },
-    { value: "community-clips", label: "Community", icon: Sparkles },
-    { value: "reviews", label: "Anmeldelser", icon: MessageSquare },
-    { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
+    { value: "content", label: "Indhold", iconName: "gift" },
+    { value: "news", label: "Nyheder", iconName: "bell" },
+    { value: "community-clips", label: "Community", iconName: "sparkles" },
+    { value: "reviews", label: "Anmeldelser", iconName: "message-square" },
+    { value: "slotmachine", label: "Spillemaskine", iconName: "gamepad2" },
     
-    { value: "tournaments", label: "Turneringer", icon: Trophy },
-    { value: "bonus-hunt", label: "Bonus Hunt", icon: Target },
-    { value: "requests", label: "Requests", icon: Gamepad2 },
-    { value: "slot-catalog", label: "Slot Katalog", icon: Database },
-    { value: "codes", label: "Koder", icon: Ticket },
-    { value: "notifications", label: "Notifikationer", icon: Bell },
-    { value: "analytics", label: "Analytics", icon: BarChart3 },
-    { value: "factcheck", label: "Fact-Check", icon: Shield },
-    { value: "link-density", label: "Link Monitor", icon: Link2 },
-    { value: "settings", label: "Indstillinger", icon: Settings },
-    { value: "support", label: "Support", icon: MessageSquare },
-    { value: "users", label: "Brugere", icon: Users },
+    { value: "tournaments", label: "Turneringer", iconName: "trophy" },
+    { value: "bonus-hunt", label: "Bonus Hunt", iconName: "target" },
+    { value: "requests", label: "Requests", iconName: "gamepad2" },
+    { value: "slot-catalog", label: "Slot Katalog", iconName: "database" },
+    { value: "codes", label: "Koder", iconName: "ticket" },
+    { value: "notifications", label: "Notifikationer", iconName: "bell" },
+    { value: "analytics", label: "Analytics", iconName: "bar-chart3" },
+    { value: "factcheck", label: "Fact-Check", iconName: "shield" },
+    { value: "link-density", label: "Link Monitor", iconName: "link2" },
+    { value: "settings", label: "Indstillinger", iconName: "settings" },
+    { value: "support", label: "Support", iconName: "message-square" },
+    { value: "users", label: "Brugere", iconName: "users" },
   ];
 
   const navItems = (isModerator && !isAdmin)

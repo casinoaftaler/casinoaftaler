@@ -274,7 +274,7 @@ const StopSpilletGuide = () => {
                 href: "tel:70222825",
               },
               {
-                icon: MessageCircle,
+                iconName: "message-circle",
                 title: "Chat",
                 desc: "Chat med en rådgiver via stopspillet.dk. Åbningstid: Hverdage kl. 10-16. Chatten er anonym og krypteret. Ideel hvis du foretrækker at skrive fremfor at tale, eller befinder dig et sted, hvor du ikke kan ringe.",
                 cta: "Åbn chat",
@@ -356,14 +356,14 @@ const StopSpilletGuide = () => {
               },
               {
                 step: 3,
-                icon: HelpCircle,
+                iconName: "help-circle",
                 title: "Vurdering og vejledning",
                 content:
                   "Baseret på din situation hjælper rådgiveren dig med at forstå, om din spilleadfærd er problematisk, og hvilke muligheder der er for støtte. Du modtager konkrete, handlingsorienterede råd tilpasset din specifikke situation – ikke generelle floskler.",
               },
               {
                 step: 4,
-                icon: ArrowRight,
+                iconName: "arrow-right",
                 title: "Handling og opfølgning",
                 content:
                   "Hvis du ønsker det, kan rådgiveren hjælpe dig med næste skridt: Henvisning til Center for Ludomani, vejledning om ROFUS-tilmelding, eller information om andre støttemuligheder. Du forpligter dig ikke til noget – du bestemmer selv dit tempo og dine beslutninger.",
@@ -414,7 +414,7 @@ const StopSpilletGuide = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
-              { icon: UserCheck, title: "Bekymrede spillere", desc: "Spillere, der oplever de første tegn på problematisk adfærd og ønsker en samtale, før det eskalerer." },
+              { iconName: "user-check", title: "Bekymrede spillere", desc: "Spillere, der oplever de første tegn på problematisk adfærd og ønsker en samtale, før det eskalerer." },
               { iconName: "users", title: "Pårørende", desc: "Partnere, forældre, børn og venner, der er bekymrede for en andens spilleadfærd. Ca. 30 % af alle henvendelser." },
               { iconName: "heart", title: "Diagnosticerede ludomaner", desc: "Spillere med klinisk ludomani, der søger vejledning om behandlingsmuligheder og ROFUS-tilmelding." },
               { iconName: "shield", title: "Forebyggende henvendelser", desc: "Rekreative spillere, der ønsker information om ansvarligt spil og værktøjer til at holde kontrol." },
@@ -590,7 +590,7 @@ const StopSpilletGuide = () => {
                 desc: "Under Servicelovens § 101 har kommunerne behandlingsgaranti for afhængighed, herunder ludomani. StopSpillet kan hjælpe dig med at finde dit lokale tilbud.",
               },
               {
-                icon: MessageCircle,
+                iconName: "message-circle",
                 title: "Gamblers Anonymous (GA)",
                 desc: "Selvhjælpsgruppe baseret på 12-trins modellen. Gratis, anonyme møder i flere danske byer. StopSpillet kan informere om det nærmeste GA-møde.",
               },

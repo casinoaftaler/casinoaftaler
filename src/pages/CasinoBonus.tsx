@@ -572,7 +572,7 @@ const CasinoBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "1. Max. indsats-overtrædelse",
                 desc: "Den hyppigste årsag til konfiskeret bonus. Du spiller med 50 kr. pr. spin, men vilkårene tillader kun 25 kr. Casinoets system registrerer overtrædelsen – ofte først, når du anmoder om udbetaling. Resultat: bonus og gevinster annulleret. Tjek altid max. indsats i vilkårene, og hold dig under grænsen med margin."
               },
@@ -839,7 +839,7 @@ const CasinoBonus = () => {
               { to: "/indskudsbonus", label: "Indskudsbonus Guide", iconName: "credit-card" },
               { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", iconName: "zap" },
               { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", iconName: "check-circle2" },
-              { to: "/cashback-bonus", label: "Cashback Bonus Guide", icon: DollarSign },
+              { to: "/cashback-bonus", label: "Cashback Bonus Guide", iconName: "dollar-sign" },
               { to: "/reload-bonus", label: "Reload Bonus Guide", iconName: "refresh-cw" },
               { to: "/omsaetningskrav", label: "Omsætningskrav Guide", iconName: "percent" },
               { to: "/vip-program", label: "VIP Program Guide", iconName: "crown" },

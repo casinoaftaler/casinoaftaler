@@ -864,7 +864,7 @@ const BetiniaAnmeldelse = () => {
                 desc: "Betinia har ingen dedikeret mobilapp – kun en mobiloptimeret hjemmeside. For spillere der foretrækker native apps med push-notifikationer, genveje på homescreen og offline-funktionalitet, er LeoVegas eller Unibet med deres prisbelønnede apps bedre alternativer.",
               },
               {
-                icon: Search,
+                iconName: "search",
                 title: "Spillere der søger ren casinofokus",
                 desc: "Betinias dual-motor tilgang betyder, at platformens navigation og brugerflade er designet til at servere to målgrupper. Hvis du udelukkende spiller casino og aldrig rører sportsbetting, kan du finde en mere strømlinet oplevelse hos fokuserede casinoer som Luna Casino eller Spilleautomaten.",
               },

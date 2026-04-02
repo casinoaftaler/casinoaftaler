@@ -750,7 +750,7 @@ const IPhoneCasinoGuide = () => {
               {
                 title: "Deaktiver Low Power Mode under spil",
                 desc: "Low Power Mode reducerer CPU-hastigheden med op til 40 %, hvilket kan forårsage hakken i live casino og langsommere loading. Deaktiver den under Indstillinger → Batteri, når du spiller.",
-                icon: Battery,
+                iconName: "battery",
               },
               {
                 title: "Brug 'Fokus' til casino-sessioner",

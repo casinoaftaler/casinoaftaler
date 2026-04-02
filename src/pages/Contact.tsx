@@ -43,9 +43,9 @@ const INQUIRY_TYPES = [
 ] as const;
 
 const COOPERATION_AREAS = [
-  { icon: Handshake, label: "Casino partnerskaber" },
+  { iconName: "handshake", label: "Casino partnerskaber" },
   { iconName: "users", label: "Affiliate aftaler" },
-  { icon: Megaphone, label: "Kampagner og promotions" },
+  { iconName: "megaphone", label: "Kampagner og promotions" },
   { iconName: "newspaper", label: "Presse- og mediehenvendelser" },
 ];
 

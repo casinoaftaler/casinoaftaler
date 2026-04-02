@@ -106,13 +106,13 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const bingoVarianter = [
   {
-    icon: Grid3X3,
+    iconName: "grid3x3",
     title: "90-kugle bingo",
     description: "Den mest populære variant i Europa og Danmark. Spilles på et 9×3 grid med 15 numre og 12 tomme felter. Tre gevinstniveauer: 1 række, 2 rækker og fuld plade. Giver flere vindere pr. spil og længere, mere sociale sessions. Typisk RTP: 75-85%.",
     tag: "Mest populært",
   },
   {
-    icon: Hash,
+    iconName: "hash",
     title: "75-kugle bingo (Amerikansk)",
     description: "Spilles på et 5×5 grid med et frit felt i midten. Gevinstmønstre varierer fra simple linjer til komplekse former som bogstaver, rammer og specialmønstre. Mere variation i gameplay, men typisk kun én vinder pr. spil. Populært i nordamerikanske markeder og hos mere erfarne bingo-spillere.",
     tag: "Varieret gameplay",
@@ -124,7 +124,7 @@ const bingoVarianter = [
     tag: "Hurtigt tempo",
   },
   {
-    icon: Dice1,
+    iconName: "dice1",
     title: "30-kugle bingo (Speed Ball)",
     description: "Ultra-hurtig variant med et 3×3 grid og kun 9 numre pr. plade. Hvert spil tager under 2 minutter. Simpelt og intenst – perfekt til mobilspil og korte pauser. Mindre social interaktion, men højere spænding pr. sekund.",
     tag: "Ultra-hurtigt",

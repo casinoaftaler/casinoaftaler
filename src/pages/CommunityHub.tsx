@@ -60,7 +60,7 @@ const SECTIONS = [
     title: "Highlights",
     description: "Se de bedste øjeblikke fra streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights.",
     href: "/highlights",
-    icon: Video,
+    iconName: "video",
     badge: "Clips & Streams",
     badgeColor: "bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30",
     image: highlightsImg,

@@ -261,10 +261,10 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll
 const TRIGGERS = [
   { key: "casinoer", label: "Casinoer", iconName: "landmark" },
   { key: "nye-casinoer", label: "Nye Casinoer", iconName: "sparkles" },
-  { key: "casinospil", label: "Casinospil", icon: Dices },
+  { key: "casinospil", label: "Casinospil", iconName: "dices" },
   { key: "live-casino", label: "Live Casino", iconName: "tv" },
   { key: "casino-bonus", label: "Casino Bonus", iconName: "book-open" },
-  { key: "mere", label: "Mere", icon: MoreHorizontal },
+  { key: "mere", label: "Mere", iconName: "more-horizontal" },
   { key: "community", label: "Community", iconName: "users" },
 ] as const;
 

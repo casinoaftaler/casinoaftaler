@@ -496,7 +496,7 @@ const StickyBonus = () => {
               {
                 title: "Sammenblanding af midler",
                 desc: "Hvis vilkårene angiver, at bonussen tilføjes direkte til din spillesaldo uden separation, er det en Sticky Bonus.",
-                icon: DollarSign,
+                iconName: "dollar-sign",
               },
               {
                 title: "Bonusbeløbet kan ikke hæves",
@@ -633,7 +633,7 @@ const StickyBonus = () => {
               {
                 title: "Undgå progressive jackpots",
                 desc: "Selvom det er fristende, kan en stor jackpotgevinst være begrænset af bonussens gevinstloft. Prioriter spil med jævne udbetalinger.",
-                icon: Ban,
+                iconName: "ban",
               },
               {
                 title: "Hold styr på tidsfristen",
@@ -752,7 +752,7 @@ const StickyBonus = () => {
               { title: "✅ Bonusjæger (systematisk approach)", desc: "Fungerer, men kræver disciplin. Bonusjægeren vælger sticky bonusser med lavest mulig omsætning og højest mulig RTP-slots. Matematisk optimal strategi: 1-2% af saldo per spin, kun 97%+ RTP slots, og aldrig progressive jackpots.", iconName: "target" },
               { title: "⚠️ Casual spiller (10-25 kr./spin)", desc: "Brug forsigtighed. En sticky bonus på 500 kr. med 10x (d+b) kræver 10.000 kr. omsætning – 400-1.000 spins. Casual spilleren risikerer at føle sig 'låst' og presse indsatsen op for at nå kravet hurtigere. Overvej i stedet en no-sticky bonus.", iconName: "users" },
               { title: "❌ Bordspil-entusiast", desc: "Undgå sticky. Bordspil bidrager typisk kun 10% til omsætningen – en 10x (d+b) bonus kræver reelt 100x i bordspilsindsatser. Med blackjack (RTP 99%) lyder det godt, men 200.000 kr. i samlet omsætning for en 1.000 kr. bonus er urealistisk. Vælg bonus uden omsætningskrav.", iconName: "gamepad2" },
-              { title: "❌ Live casino-spiller", desc: "Helt uegnet. Live casino er ofte 0-10% bidrag eller helt udelukket. En sticky bonus er værdiløs, hvis du primært spiller live roulette, blackjack eller game shows. Se vores guide til live casino for bedre alternativer.", icon: Ban },
+              { title: "❌ Live casino-spiller", desc: "Helt uegnet. Live casino er ofte 0-10% bidrag eller helt udelukket. En sticky bonus er værdiløs, hvis du primært spiller live roulette, blackjack eller game shows. Se vores guide til live casino for bedre alternativer.", iconName: "ban" },
               { title: "❌ Ny spiller (første casino-oplevelse)", desc: "Anbefales ikke som første bonus. Sticky-mekanikken er kompleks og kan skabe frustration. Nye spillere bør starte med en no-deposit bonus eller no-sticky velkomstbonus, hvor egne gevinster altid kan hæves frit.", iconName: "alert-triangle" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">

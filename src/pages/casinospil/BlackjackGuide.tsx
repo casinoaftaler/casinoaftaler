@@ -66,7 +66,7 @@ const blackjackCluster = [
     to: "/casinospil/blackjack/fibonacci",
     title: "Fibonacci System",
     desc: "Fibonacci-sekvensen som betting-system: langsommere progression, lavere varians, samme house edge.",
-    icon: Shuffle,
+    iconName: "shuffle",
   },
   {
     to: "/casinospil/blackjack/dalembert",

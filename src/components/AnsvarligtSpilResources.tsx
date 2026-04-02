@@ -22,7 +22,7 @@ const ALL_RESOURCES: SpilResource[] = [
   { to: "/ansvarligt-spil/rofus", title: "ROFUS Guide", desc: "Selvudelukkelse via Danmarks officielle register", iconName: "lock" },
   { to: "/ansvarligt-spil/ludomani", title: "Ludomani", desc: "Symptomer, behandling og hjælp ved spilleafhængighed", iconName: "heart" },
   { to: "/ansvarligt-spil/stopspillet", title: "StopSpillet", desc: "Gratis og fortrolig rådgivning – 70 22 28 25", iconName: "phone" },
-  { to: "/ansvarligt-spil/spillegraenser", title: "Spillegrænser", desc: "Sæt indbetalings- og tabsgrænser hos danske casinoer", icon: Gauge },
+  { to: "/ansvarligt-spil/spillegraenser", title: "Spillegrænser", desc: "Sæt indbetalings- og tabsgrænser hos danske casinoer", iconName: "gauge" },
   { to: "/ansvarligt-spil/selvudelukkelse-guide", title: "Selvudelukkelse", desc: "Trin-for-trin guide til midlertidig og permanent udelukkelse", iconName: "lock" },
   { to: "/ansvarligt-spil/hjaelpelinjer", title: "Hjælpelinjer", desc: "Alle hjælpemuligheder for spillere og pårørende", iconName: "phone" },
   { to: "/spillemyndigheden", title: "Spillemyndigheden", desc: "Danmarks tilsynsmyndighed for spil og licenser", iconName: "shield-check" },

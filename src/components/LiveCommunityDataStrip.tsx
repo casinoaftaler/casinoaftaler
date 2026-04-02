@@ -120,7 +120,7 @@ export function LiveCommunityDataStrip({ context = "general" }: LiveCommunityDat
       value: `${hunt.totalSlots}+ i seneste hunt`,
       to: "/slot-database",
     },
-  ].filter(Boolean) as { icon: React.ReactNode; label: string; value: string; to: string }[];
+  ].filter(Boolean) as { iconName: "react".ReactNode; label: string; value: string; to: string }[];
 
   // Show max 4 items
   const displayed = items.slice(0, 4);

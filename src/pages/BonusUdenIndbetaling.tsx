@@ -562,7 +562,7 @@ const BonusUdenIndbetaling = () => {
               {
                 title: "1. Overskridelse af maksimumindsatsen",
                 desc: "De fleste no deposit bonusser har en maks-indsatsregel (typisk 25-50 kr. per spin). Overskrider du den – selv én gang – kan casinoet konfiskere hele bonussen og alle gevinster. Tjek ALTID maks-indsatsen før du spiller.",
-                icon: Ban,
+                iconName: "ban",
               },
               {
                 title: "2. Udløbet tidsfrist",

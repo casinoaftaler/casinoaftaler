@@ -96,7 +96,7 @@ const OmTeamet = () => {
 
   const missionPoints = [
     { iconName: "check-circle2", text: "At give ærlige og opdaterede anmeldelser" },
-    { icon: Search, text: "At teste casinoer systematisk" },
+    { iconName: "search", text: "At teste casinoer systematisk" },
     { iconName: "heart", text: "At skabe et engageret community" },
     { iconName: "sparkles", text: "At kombinere streaming og ekspertise" },
   ];
@@ -113,7 +113,7 @@ const OmTeamet = () => {
       desc: "Bonusser og vilkår ændres ofte. Vi holder vores anmeldelser opdateret, så du altid har de nyeste oplysninger.",
     },
     {
-      icon: Search,
+      iconName: "search",
       title: "Vi analyserer vilkår",
       desc: "Omsætningskrav, tidsfrister og spilbidrag – vi nedbryder det hele, så du forstår hvad du accepterer.",
     },

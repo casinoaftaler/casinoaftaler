@@ -360,7 +360,7 @@ const SelvudelukkelseGuide = () => {
                 step: 2,
                 title: "Log ind med MitID",
                 desc: "Brug dit MitID (app eller kodeviser) til at identificere dig. NemID understøttes ikke længere. Hvis du ikke har MitID, kan du kontakte Spillemyndigheden direkte.",
-                icon: Key,
+                iconName: "key",
               },
               {
                 step: 3,

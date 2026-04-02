@@ -35,7 +35,7 @@ export function BonusHuntSlotPopoverContent({ slotName }: Props) {
   );
 }
 
-function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function InfoRow({ icon, label, value }: { iconName: "react".ReactNode; label: string; value: string }) {
   return (
     <div className="flex items-center gap-2 text-xs">
       {icon}

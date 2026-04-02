@@ -210,7 +210,7 @@ const FordeleOgUlemperGuide = () => {
                 content: "Traditionelle casinoer kræver ofte upload af ID-dokument og adressebevis ved første udbetaling. Denne proces kan tage fra minutter til dage, afhængigt af casinoets verifikationshastighed. Pay N Play eliminerer dette fuldstændigt – bankforbindelsen leverer alle nødvendige KYC-data automatisk og øjeblikkeligt.",
               },
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "8. Ingen marketing-spam (Privatliv: Lav-Moderat)",
                 content: "Da du ikke opgiver email-adresse ved Pay N Play, modtager du ingen marketing-mails fra casinoet. Dette er en mindre, men ofte undervurderet fordel for spillere, der finder casino-marketing irriterende eller fristende. Casinoet har simpelthen ikke din email-adresse at sende til.",
               },
@@ -242,7 +242,7 @@ const FordeleOgUlemperGuide = () => {
           <div className="space-y-6">
             {[
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "1. Begrænset betalingsfleksibilitet (Praktisk: Kritisk)",
                 content: "Den mest konkrete ulempe er, at Pay N Play er låst til Trustly som betalingsmetode. Du kan ikke bruge MobilePay, Apple Pay, Skrill, PayPal eller kreditkort. For spillere, der foretrækker disse metoder – eller ønsker at sprede deres transaktioner – er dette en betydelig begrænsning. Dog tilbyder nogle casinoer hybridmodellen, hvor du registrerer via Pay N Play men efterfølgende kan tilføje andre betalingsmetoder. I vores test tilbød 1 af 4 casinoer denne hybridmulighed.",
               },

@@ -83,7 +83,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const mitidFordele = [
   {
-    icon: Fingerprint,
+    iconName: "fingerprint",
     title: "Sikker identitetskontrol",
     description: "To-faktor-autentificering med biometri sikrer at ingen kan oprette en konto i dit navn. Din identitet verificeres øjeblikkeligt mod det danske CPR-register med bank-niveau kryptering.",
     tag: "Sikkerhed",
@@ -107,7 +107,7 @@ const mitidFordele = [
     tag: "Privatliv",
   },
   {
-    icon: Scan,
+    iconName: "scan",
     title: "Aldersverifikation (18+)",
     description: "Automatisk kontrol mod CPR-registret sikrer at kun personer over 18 kan oprette konti. Det eliminerer risikoen for at mindreårige får adgang til online gambling – et krav som ulicenserede casinoer ikke overholder.",
     tag: "Compliance",
@@ -330,9 +330,9 @@ const CasinoMedMitID = () => {
           <div className="space-y-3">
             {[
               { iconName: "eye", title: "Indsigtsret (GDPR art. 15)", desc: "Du har ret til at se alle de personoplysninger casinoet opbevarer om dig. Anmod via casinoets GDPR-kontaktperson eller kundeservice. De skal svare inden for 30 dage." },
-              { icon: Ban, title: "Ret til sletning (GDPR art. 17)", desc: "Du kan bede om sletning af dine data efter kontoafslutning. Dog er casinoer forpligtede til at opbevare visse data i 5 år iht. hvidvasklovgivningen. Herefter slettes alt automatisk." },
+              { iconName: "ban", title: "Ret til sletning (GDPR art. 17)", desc: "Du kan bede om sletning af dine data efter kontoafslutning. Dog er casinoer forpligtede til at opbevare visse data i 5 år iht. hvidvasklovgivningen. Herefter slettes alt automatisk." },
               { iconName: "refresh-cw", title: "Ret til dataportabilitet (GDPR art. 20)", desc: "Du kan anmode om at modtage dine data i et maskinlæsbart format. Det kan være relevant, hvis du ønsker at skifte casino og vil dokumentere din spilhistorik." },
-              { icon: Settings, title: "Ret til begrænsning (GDPR art. 18)", desc: "Du kan bede casinoet om at begrænse behandlingen af dine data under specifikke omstændigheder, f.eks. hvis du bestrider nøjagtigheden af de opbevarede oplysninger." },
+              { iconName: "settings", title: "Ret til begrænsning (GDPR art. 18)", desc: "Du kan bede casinoet om at begrænse behandlingen af dine data under specifikke omstændigheder, f.eks. hvis du bestrider nøjagtigheden af de opbevarede oplysninger." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -509,7 +509,7 @@ const CasinoMedMitID = () => {
           <div className="space-y-3">
             {[
               { iconName: "shield", title: "ROFUS-integration", desc: "MitID er koblet direkte til ROFUS-registret. Selvudelukkede spillere blokeres automatisk og øjeblikkeligt ved ethvert loginforsøg eller kontooprettelse hos alle danske licenserede casinoer. Det er teknisk umuligt at omgå inden for det danske system." },
-              { icon: Timer, title: "Realtids-kontrol ved login", desc: "I modsætning til mange internationale systemer der kun kontrollerer ved registrering, kontrollerer danske casinoer din ROFUS-status ved hvert eneste login. Det betyder at en ROFUS-registrering der oprettes midt i en session, træder i kraft ved næste login." },
+              { iconName: "timer", title: "Realtids-kontrol ved login", desc: "I modsætning til mange internationale systemer der kun kontrollerer ved registrering, kontrollerer danske casinoer din ROFUS-status ved hvert eneste login. Det betyder at en ROFUS-registrering der oprettes midt i en session, træder i kraft ved næste login." },
               { iconName: "users", title: "Mindreårige forhindres", desc: "MitID's kobling til CPR-registret giver en vandtæt aldersverifikation. Det er teknisk umuligt for en person under 18 at oprette en konto hos et dansk licenseret casino – i modsætning til internationale casinoer der kun kræver selvdeklaret alder." },
               { iconName: "eye", title: "Sporing og analyse", desc: "MitID-verifikation sikrer at casinoet kan spore individuelle spillemønstre nøjagtigt. Det gør det muligt at identificere tidlige tegn på problematisk spilleadfærd og gribe ind proaktivt – f.eks. ved at foreslå spillegrænser eller midlertidig pause." },
               { iconName: "heart", title: "Spillegrænser bundet til identitet", desc: "Fordi MitID sikrer entydig identifikation, kan indbetalingsgrænser og tabsgrænser håndhæves effektivt. En spiller der har sat en grænse på ét casino, kan ikke omgå den ved at oprette en konto under et andet navn – CPR-nummeret sikrer konsistens." },

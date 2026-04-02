@@ -1014,7 +1014,7 @@ const RofusGuide = () => {
                 label: "Besøg StopSpillet",
               },
               {
-                icon: HelpCircle,
+                iconName: "help-circle",
                 title: "Center for Ludomani",
                 desc: "Tilbyder gratis, professionel behandling baseret på kognitiv adfærdsterapi. Individuel terapi, gruppeterapi og online-rådgivning. Behandling i hele Danmark.",
                 url: "https://ludomani.dk/",

@@ -434,7 +434,7 @@ const LudomaniGuide = () => {
                   "Genetisk disposition (50–60 % arvelighed), dysregulering af dopamin- og serotonin-systemet, neurologiske forskelle i prefrontal cortex (impulskontroltcentret), og forhøjet respons i hjernens belønningssystem ved gambling-stimuli. Mænd har biologisk højere risiko pga. testosteronens indflydelse på risikoadfærd.",
               },
               {
-                icon: UserX,
+                iconName: "user-x",
                 title: "Psykologiske faktorer",
                 content:
                   "Kognitive forvrængninger (gambler's fallacy, illusion of control), impulsivitet, sensationssøgen, komorbide tilstande (depression, angst, ADHD), lavt selvværd, og brug af gambling som mestringsmekanisme mod stress eller negative følelser. Tidlig eksponering for gambling i barndommen øger risikoen markant.",
@@ -652,7 +652,7 @@ const LudomaniGuide = () => {
                 url: "#",
               },
               {
-                icon: MessageCircle,
+                iconName: "message-circle",
                 title: "Gamblers Anonymous (GA)",
                 desc: "Selvhjælpsgruppe baseret på 12-trins modellen, tilgængelig i flere danske byer. GA tilbyder et støttende fællesskab af mennesker med lignende erfaringer. Møderne er gratis, anonyme og kræver ingen tilmelding. Supplerer professionel behandling.",
                 url: "#",

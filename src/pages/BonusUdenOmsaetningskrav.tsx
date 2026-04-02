@@ -562,7 +562,7 @@ const BonusUdenOmsaetningskrav = () => {
               {
                 title: "2. Spilrestriktioner du overser",
                 desc: "Omsætningsfrie free spins er næsten altid begrænset til én specifik automat – ofte en med lavere RTP end gennemsnittet. Omsætningsfrie bonuspenge kan have maks-indsatsregler. Bordspil og live casino er typisk ekskluderet.",
-                icon: Ban,
+                iconName: "ban",
               },
               {
                 title: "3. Kort tidsfrist",

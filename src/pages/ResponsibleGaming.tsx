@@ -65,7 +65,7 @@ const helpResources = [
     url: "https://www.spillemyndigheden.dk/rofus",
   },
   {
-    icon: HelpCircle,
+    iconName: "help-circle",
     title: "Center for Ludomani",
     description: "Tilbyder gratis behandling og rådgivning til personer med spilleproblemer og deres pårørende.",
     url: "https://ludomani.dk/",

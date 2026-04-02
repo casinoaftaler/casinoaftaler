@@ -46,7 +46,7 @@ const faqs = [
 
 const expertiseItems = [
   {
-    icon: Gavel,
+    iconName: "gavel",
     label: "Casino-lovgivning & regulering",
     desc: "2+ års daglig fordybelse i dansk spillelov, licenskrav og regulatoriske ændringer.",
   },

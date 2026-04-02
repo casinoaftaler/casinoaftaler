@@ -650,7 +650,7 @@ const FreeSpins = () => {
               { title: "✅ Den nye spiller", desc: "Ideel startbonus. Free spins giver risikofri introduktion til spilleautomater og casinoets platform. Ingen indbetaling nødvendig ved no-deposit free spins – perfekt til at teste uden forpligtelse.", iconName: "user" },
               { title: "✅ Bonusjægeren", desc: "Profitable ved korrekt selektion. Bonusjægeren fokuserer på 0x-omsætning free spins og høj-RTP slots. Med systematisk approach kan EV per tilbud nå 50-90% af den nominelle værdi.", iconName: "target" },
               { title: "⚠️ Casual spilleren", desc: "Acceptabelt, men læs vilkårene. Free spins med omsætningskrav kræver yderligere spil – casual spilleren skal vurdere om tidsforbruget matcher den forventede gevinst (typisk 50-100 kr.).", iconName: "clock" },
-              { title: "❌ Bordspil-spilleren", desc: "Irrelevant. Free spins fungerer kun på slots – bordspil-entusiasten bør i stedet kigge efter cashback-bonusser eller no-deposit bonuspenge, der kan bruges på blackjack/roulette.", icon: Ban },
+              { title: "❌ Bordspil-spilleren", desc: "Irrelevant. Free spins fungerer kun på slots – bordspil-entusiasten bør i stedet kigge efter cashback-bonusser eller no-deposit bonuspenge, der kan bruges på blackjack/roulette.", iconName: "ban" },
               { title: "❌ High rolleren", desc: "Undervældende. Med typisk spinværdi på 1-5 kr. er free spins' samlede værdi (50-250 kr.) negligibel for high rollere. En matchbonus på 100% op til 1.000 kr. giver bedre værdi.", iconName: "trending-up" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">

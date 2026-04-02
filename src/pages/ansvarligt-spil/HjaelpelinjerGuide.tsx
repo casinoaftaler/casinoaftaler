@@ -371,7 +371,7 @@ const HjaelpelinjerGuide = () => {
               { iconName: "heart", text: "Ingen professionelle terapeuter – deltagerne støtter hinanden" },
               { iconName: "map-pin", text: "Grupper i København, Aarhus, Odense, Aalborg og flere byer" },
               { iconName: "globe", text: "Online-møder tilgængelige for hele Danmark" },
-              { icon: HandHeart, text: "Gam-Anon: Parallelle grupper specifikt for pårørende" },
+              { iconName: "hand-heart", text: "Gam-Anon: Parallelle grupper specifikt for pårørende" },
             ].map((item) => (
               <div key={item.text} className="flex items-start gap-3">
                 <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -450,7 +450,7 @@ const HjaelpelinjerGuide = () => {
                 desc: "Gratis parterapi med fokus på genopbygning af tillid og fælles økonomihåndtering.",
               },
               {
-                icon: Building,
+                iconName: "building",
                 title: "Kommunale familietilbud",
                 desc: "Mange kommuner tilbyder familierådgivning under Serviceloven. Kontakt din kommunes borgerservice.",
               },

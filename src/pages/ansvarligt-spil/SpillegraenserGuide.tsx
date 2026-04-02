@@ -614,7 +614,7 @@ const SpillegraenserGuide = () => {
                 desc: "Hold en simpel log over dine indbetalinger og udbetalinger. Mange casinoer tilbyder forbrugsrapporter – brug dem aktivt til at evaluere dine spillevaner.",
               },
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "Aldrig jag tab",
                 desc: "Hvis du rammer din grænse, er det et signal om at stoppe. At forsøge at vinde tabet tilbage (chasing) er den mest almindelige årsag til spilleproblemer.",
               },

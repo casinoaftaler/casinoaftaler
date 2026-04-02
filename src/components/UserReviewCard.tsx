@@ -13,7 +13,7 @@ interface UserReviewCardProps {
 }
 
 // Quick-summary tag detection
-const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] = [
+const TAG_RULES: { keywords: string[]; label: string; iconName: "react".ReactNode }[] = [
   { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <MenuIcon iconName="zap" className="h-3 w-3" /> },
   { keywords: ["spiludvalg", "spil", "slots", "spillemaskiner", "provider"], label: "Stort spiludvalg", icon: <MenuIcon iconName="gamepad2" className="h-3 w-3" /> },
   { keywords: ["support", "kundeservice", "chat", "hjælp"], label: "God support", icon: <MenuIcon iconName="headphones" className="h-3 w-3" /> },
@@ -21,9 +21,9 @@ const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] 
   { keywords: ["mobil", "app", "mobilvenlig"], label: "Mobilvenlig", icon: <MenuIcon iconName="clock" className="h-3 w-3" /> },
 ];
 
-function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
+function detectTags(text: string): { label: string; iconName: "react".ReactNode }[] {
   const lower = text.toLowerCase();
-  const matched: { label: string; icon: React.ReactNode }[] = [];
+  const matched: { label: string; iconName: "react".ReactNode }[] = [];
   for (const rule of TAG_RULES) {
     if (matched.length >= 3) break;
     if (rule.keywords.some(k => lower.includes(k))) {

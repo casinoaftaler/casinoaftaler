@@ -266,17 +266,17 @@ const TabletCasinoGuide = () => {
               {
                 title: "Batteri – Moderat indflydelse",
                 desc: "Tablets har generelt store batterier (7.000-11.000 mAh), der holder til 8-25 timers casino-spil. Batteristørrelse er vigtigst for spillere, der bruger tabletten som primær casino-enhed og spiller flere timer dagligt. Alle testede tablets holder til mindst én komplet aftensession.",
-                icon: Battery,
+                iconName: "battery",
               },
               {
                 title: "Lagring – Lav indflydelse",
                 desc: "Casino-webapps og PWA'er bruger minimal lagerplads (2-10 MB per casino). Selv 64 GB modeller har rigeligt plads. Lagring er kun relevant, hvis du installerer mange native casino-apps (50-150 MB per app) eller bruger tabletten til andre formål.",
-                icon: Download,
+                iconName: "download",
               },
               {
                 title: "Connectivity (WiFi/5G) – Moderat indflydelse",
                 desc: "WiFi 6/6E giver den bedste oplevelse med lavere latency og bedre stabilitet i tætbefolkede netværk. Cellular (4G/5G) er et plus for casino on-the-go men ikke nødvendigt, da de fleste tablet-casino-sessioner foregår hjemme. Bluetooth 5.x er relevant for trådløse hovedtelefoner til live casino.",
-                icon: Wifi,
+                iconName: "wifi",
               },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
@@ -785,10 +785,10 @@ const TabletCasinoGuide = () => {
             {[
               { title: "Brug Night Shift/Blue Light Filter", desc: "Reducer blåt lys under aftensessioner. iPad: Indstillinger → Skærm → Night Shift. Samsung: Indstillinger → Skærm → Eye Comfort Shield.", iconName: "eye" },
               { title: "Investér i et godt stativ", desc: "Et justerbart tablet-stativ giver den bedste ergonomi for længere casino-sessioner og forhindrer nakke-/rygsmerter.", iconName: "monitor" },
-              { title: "Tilslut Bluetooth-høretelefoner", desc: "AirPods Pro eller Galaxy Buds giver den bedste live casino-lydoplevelse med aktiv støjreduktion – perfekt til dealer-kommunikation.", icon: Wifi },
+              { title: "Tilslut Bluetooth-høretelefoner", desc: "AirPods Pro eller Galaxy Buds giver den bedste live casino-lydoplevelse med aktiv støjreduktion – perfekt til dealer-kommunikation.", iconName: "wifi" },
               { title: "Aktiver 'Do Not Disturb' under spil", desc: "Forhindrer notifikationer i at afbryde din casino-session, særligt vigtigt under live casino-hænder.", iconName: "shield" },
               { title: "Brug Reader Mode til casinoguides", desc: "Safari Reader Mode og Samsung Internet Reader giver en distraktionsfri læseoplevelse for casino-strategiguides og anmeldelser.", iconName: "globe" },
-              { title: "Tilslut ekstern tastatur til chat", desc: "Et Bluetooth-tastatur gør det nemt at kommunikere i live casino-chat. Magic Keyboard (iPad) eller Samsung Keyboard Cover anbefales.", icon: Settings },
+              { title: "Tilslut ekstern tastatur til chat", desc: "Et Bluetooth-tastatur gør det nemt at kommunikere i live casino-chat. Magic Keyboard (iPad) eller Samsung Keyboard Cover anbefales.", iconName: "settings" },
             ].map((t) => (
               <div key={t.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 <t.icon className="h-5 w-5 mt-0.5 text-primary shrink-0" />

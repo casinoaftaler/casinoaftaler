@@ -399,7 +399,7 @@ const CampobetAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { icon: RotateCcw, title: "Ugentlig Reload (man-tor)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
+              { iconName: "rotate-ccw", title: "Ugentlig Reload (man-tor)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
               { iconName: "gift", title: "Weekend Reload (fre-søn)", desc: "100% op til 500 kr., No-Sticky, 10x omsætning, min. 100 kr.", badge: "Casino" },
               { iconName: "target", title: "Odds-velkomstbonus", desc: "100% op til 1.000 kr., 5x omsætning, min. odds 2,0 single / 1,5 multi.", badge: "Sport" },
               { iconName: "trending-up", title: "Akkumulator Boost + Foran med 2", desc: "Op til 100% ekstra på multibets. Automatisk udbetaling ved 2-0 føring.", badge: "Sport" },

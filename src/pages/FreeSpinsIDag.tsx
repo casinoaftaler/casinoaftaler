@@ -96,7 +96,7 @@ interface CampaignOffer {
 
 type FilterType = "all" | "new" | "existing" | "no_deposit";
 
-const filterConfig: { id: FilterType; label: string; icon: React.ReactNode }[] = [
+const filterConfig: { id: FilterType; label: string; iconName: "react".ReactNode }[] = [
   { id: "all", label: "Alle Tilbud", icon: <MenuIcon iconName="sparkles" className="h-3.5 w-3.5" /> },
   { id: "new", label: "Nye Spillere", icon: <MenuIcon iconName="star" className="h-3.5 w-3.5" /> },
   { id: "existing", label: "Eksisterende", icon: <MenuIcon iconName="users" className="h-3.5 w-3.5" /> },
@@ -174,7 +174,7 @@ function Countdown({ validUntil }: { validUntil: string }) {
 }
 
 // ─── Badge config ───
-const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNode; className: string }> = {
+const offerTypeBadgeConfig: Record<string, { label: string; iconName: "react".ReactNode; className: string }> = {
   no_deposit: { label: "Uden indbetaling", icon: <MenuIcon iconName="zap" className="h-3 w-3" />, className: "bg-green-500/20 text-green-400 border-green-500/30" },
   welcome: { label: "Nye spillere", icon: <MenuIcon iconName="star" className="h-3 w-3" />, className: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
   daily: { label: "Dagligt", icon: <MenuIcon iconName="refresh-cw" className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
@@ -568,7 +568,7 @@ const FreeSpinsIDag = () => {
 };
 
 // ─── Stat Card ───
-function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNode; value: number; label: string; revealed: boolean; delay: number }) {
+function StatCard({ icon, value, label, revealed, delay }: { iconName: "react".ReactNode; value: number; label: string; revealed: boolean; delay: number }) {
   return (
     <Card className={`text-center border-border/50 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1 ${revealed ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: `${delay}ms` }}>
       <CardContent className="pt-5 pb-4">

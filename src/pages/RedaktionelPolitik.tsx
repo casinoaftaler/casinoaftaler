@@ -31,8 +31,8 @@ const RedaktionelPolitik = () => {
   });
 
   const editorialSteps = [
-    { icon: Search, title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
-    { icon: Pen, title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
+    { iconName: "search", title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
+    { iconName: "pen", title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
     { iconName: "eye", title: "Analyse & dokumentation", desc: "Alle observationer dokumenteres systematisk efter faste kriterier. Vi vurderer brugeroplevelse, spiludvalg, bonusvilkår og sikkerhed." },
     { iconName: "refresh-cw", title: "Løbende opdatering", desc: "Anmeldelser og guides opdateres løbende, når vilkår ændres, nye funktioner lanceres, eller casinoer forbedrer deres tilbud." },
   ];

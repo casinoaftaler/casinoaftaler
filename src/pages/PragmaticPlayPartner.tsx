@@ -261,7 +261,7 @@ const PragmaticPlayPartner = () => {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { year: "2015", event: "Pragmatic Play grundlægges", icon: Lightbulb },
+              { year: "2015", event: "Pragmatic Play grundlægges", iconName: "lightbulb" },
               { year: "2018", event: "Live casino lanceres", iconName: "monitor" },
               { year: "2020", event: "Sweet Bonanza & eksplosiv vækst", iconName: "flame" },
               { year: "2026", event: "Partnerskab med Casinoaftaler", iconName: "heart-handshake" },
@@ -359,7 +359,7 @@ const PragmaticPlayPartner = () => {
                 desc: "Pragmatic Plays Ante Bet-system giver spillere mulighed for at betale 25% ekstra pr. spin for at fordoble chancen for at triggere bonus-runden. Feature Drop (Bonus Buy) lader dig købe direkte adgang til free spins – typisk til 100x indsatsen. Disse funktioner appellerer til forskellige spillertyper: Ante Bet for dem, der vil optimere deres odds uden at betale fuld bonus buy-pris, og Feature Drop for dem, der vil direkte til aktionen.",
               },
               {
-                icon: Cpu,
+                iconName: "cpu",
                 title: "Hold & Spin / Money Collect",
                 desc: "Populært i spil som Big Bass Bonanza-serien, John Hunter og Wolf Gold. Mekanikken kombinerer elementer af klassiske re-spin features med moderne bonus-runder, hvor du samler pengeværdier og multipliers på et grid. Big Bass-serien har udvidet konceptet med Fisherman-wilds, der opsamler værdier – en unik twist, der har genereret en hel franchise af efterfølgere og varianter.",
               },
@@ -427,7 +427,7 @@ const PragmaticPlayPartner = () => {
                 desc: "Mange af Pragmatic Plays mest populære spillemaskiner tilbyder Bonus Buy (Feature Drop) – muligheden for at købe direkte adgang til bonus-runden. Vi evaluerer, om Bonus Buy-prisen (typisk 100x indsatsen) giver rimelig værdi sammenlignet med at triggere bonussen organisk. Dette er særligt relevant for Sweet Bonanza, Gates of Olympus og Big Bass serien.",
               },
               {
-                icon: Search,
+                iconName: "search",
                 title: "Sessionstest og dokumentation",
                 desc: "Hver spillemaskine testes med minimum 200-500 spins i reelle sessioner. Vi dokumenterer gevinstfrekvens, gennemsnitlig gevinst, bonus-trigger hyppighed og maksimale gevinster. Disse data danner grundlaget for vores anmeldelser og for de statistikker, du kan finde i vores slot-katalog.",
               },
@@ -687,7 +687,7 @@ const PragmaticPlayPartner = () => {
                 desc: "Alle Pragmatic Play spil certificeres af uafhængige testlaboratorier (herunder BMM Testlabs og GLI), der verificerer, at RNG (Random Number Generator) fungerer korrekt, og at de publicerede RTP-værdier er nøjagtige.",
               },
               {
-                icon: FileCheck,
+                iconName: "file-check",
                 title: "ISO 27001 certificeret",
                 desc: "Pragmatic Play er ISO 27001 certificeret, hvilket er den internationale standard for informationssikkerhed. Det sikrer, at spillerdata og transaktioner behandles med det højeste sikkerhedsniveau.",
               },
@@ -869,7 +869,7 @@ const PragmaticPlayPartner = () => {
                 { label: "Pragmatic Play spillemaskiner", path: "/spillemaskiner/pragmatic-play", iconName: "gamepad2" },
                 { label: "Bedste online casinoer", path: "/top-10-casino-online", iconName: "star" },
                 { label: "Casino bonusser", path: "/casino-bonus", iconName: "trending-up" },
-                { label: "Sådan tester vi casinoer", path: "/saadan-tester-vi-casinoer", icon: Search },
+                { label: "Sådan tester vi casinoer", path: "/saadan-tester-vi-casinoer", iconName: "search" },
                 { label: "Vores forretningsmodel", path: "/forretningsmodel", iconName: "scale" },
                 { label: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", iconName: "trophy" },
                 { label: "Slot Database", path: "/slot-database", iconName: "bar-chart3" },

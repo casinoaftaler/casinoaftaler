@@ -261,7 +261,7 @@ const CasinoApp = () => {
             {[
               {
                 title: "Native App",
-                icon: Download,
+                iconName: "download",
                 items: [
                   "Downloadet fra App Store / Google Play",
                   "Fuld hardware-adgang (kamera, biometri)",
@@ -477,7 +477,7 @@ const CasinoApp = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Search,
+                iconName: "search",
                 title: "App Store Review",
                 desc: "Alle casino apps gennemgår Apples/Googles review-proces, der screener for malware, uautoriseret dataindsamling og sikkerhedshuller. Apps skal dokumentere gyldig licens.",
               },

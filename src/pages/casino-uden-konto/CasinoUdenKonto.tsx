@@ -517,7 +517,7 @@ const CasinoUdenKonto = () => {
                 desc: "Din identitet verificeres automatisk via bankforbindelsen. Casinoet modtager dit CPR-nummer og verificerer det mod Spillemyndighedens ROFUS-register – alt sammen maskinelt.",
               },
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "Ingen credential-risiko",
                 desc: "Da der ikke oprettes brugernavn/adgangskode, er der ingen risiko for password-lækage, brute-force angreb eller credential stuffing. Du er beskyttet mod de mest almindelige cyberangreb.",
               },

@@ -263,7 +263,7 @@ const SpilDanskNuAnmeldelse = () => {
             {[
               { iconName: "award", title: "Automatisk deltagelse", desc: "Aktiveres ved registrering + nyhedsbrev. Ingen ekstra aktivering påkrævet." },
               { iconName: "trending-up", title: "1 point pr. 5 kr. omsat", desc: "Kun rigtige penge på spilleautomater. Bordspil/live casino giver færre." },
-              { icon: Store, title: "Kontante præmier", desc: "Points indløses til rigtige penge i Præmieshoppen – ikke bonusmidler." },
+              { iconName: "store", title: "Kontante præmier", desc: "Points indløses til rigtige penge i Præmieshoppen – ikke bonusmidler." },
               { iconName: "clock", title: "Ingen udløbsdato", desc: "Dine points forsvinder aldrig. Spar op og indløs i dit eget tempo." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
