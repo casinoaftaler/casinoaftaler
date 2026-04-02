@@ -196,17 +196,24 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              {/* Authors — use file-text icon */}
+              {/* Authors — with avatar */}
               {[
-                { to: "/forfatter/jonas", label: "Jonas – Forfatter" },
-                { to: "/forfatter/kevin", label: "Kevin – Forfatter" },
-                { to: "/forfatter/ajse", label: "Ajse – Forfatter" },
-                { to: "/forfatter/niklas", label: "Niklas – Forfatter" },
-                { to: "/forfatter/frederik", label: "Frederik – Forfatter" },
+                { to: "/forfatter/jonas", label: "Jonas – Forfatter", avatar: "/jonas-avatar.webp" },
+                { to: "/forfatter/kevin", label: "Kevin – Forfatter", avatar: "/kevin-avatar.webp" },
+                { to: "/forfatter/ajse", label: "Ajse – Forfatter", avatar: "/ajse-avatar.webp" },
+                { to: "/forfatter/niklas", label: "Niklas – Forfatter", avatar: "/niklas-avatar.webp" },
+                { to: "/forfatter/frederik", label: "Frederik – Forfatter", avatar: "/frederik-avatar.webp" },
               ].map((item) => (
                 <li key={item.to}>
                   <Link to={item.to} className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                    <FooterIcon name="file-text" />
+                    <img
+                      src={item.avatar}
+                      alt={item.label}
+                      className="h-5 w-5 rounded-full object-cover"
+                      loading="lazy"
+                      width={20}
+                      height={20}
+                    />
                     {item.label}
                   </Link>
                 </li>
