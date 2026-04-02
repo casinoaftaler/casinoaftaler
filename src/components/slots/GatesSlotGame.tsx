@@ -1119,13 +1119,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
 
       {/* Bonus remaining spins */}
       {isBonusActive && isMobile && (
-        <div className="w-full flex justify-center">
-          <div className="flex items-baseline gap-2">
-            <span className="text-sm uppercase tracking-widest font-black text-white" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>
-              Resterende spins
-            </span>
-            <AnimatedSpinCounter value={freeSpinsRemaining} className="text-2xl font-black text-white tabular-nums" />
-            <span className="text-sm text-white/60 font-black">/ {totalFreeSpins}</span>
+        <div className="w-full flex justify-center gap-4">
+          <div className="flex items-baseline gap-1">
+            <span className="text-xs uppercase tracking-widest font-black text-yellow-400" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>Spins</span>
+            <AnimatedSpinCounter value={freeSpinsRemaining} className="text-xl font-black text-white tabular-nums" />
+            <span className="text-xs text-white/60 font-black">/{totalFreeSpins}</span>
+          </div>
+          <div className="flex items-baseline gap-1">
+            <span className="text-xs uppercase tracking-widest font-black text-blue-400" style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>Multi</span>
+            <span className="text-xl font-black text-blue-300 tabular-nums">x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}</span>
           </div>
         </div>
       )}
