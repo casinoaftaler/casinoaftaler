@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useCasinos, useCreateCasino, useUpdateCasino, useDeleteCasino, useUpdateCasinoPositions, type Casino, type CasinoInsert } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
