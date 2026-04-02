@@ -186,6 +186,12 @@ const PushGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gaming er licenseret af UK Gambling Commission (UKGC) som primær jurisdiktion – verdens strengeste spillemyndighed med omfattende krav til spillerbeskyttelse, anti-hvidvask og fair play. Derudover holder de licens fra Malta Gaming Authority (MGA), der sikrer bred adgang til europæiske markeder.
         </p>
+        <ReviewScreenshot
+          src={pushAbout}
+          alt="Push Gaming i tal – 200+ medarbejdere, 40+ spil, 5 licenser, 200+ operatører"
+          caption="Push Gaming i tal: 200+ medarbejdere, 40+ spil, 5 licenser og 200+ operatører – fra studiets officielle hjemmeside."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er Push Gaming fuldt certificeret til det danske marked via Spillemyndigheden. Alle spil testes af uafhængige laboratorier (eCOGRA og iTech Labs) for RNG-integritet og RTP-verifikation. Push Gamings compliance-team sikrer løbende opdatering i takt med at regulatoriske krav ændrer sig – en nødvendighed i en branche med hastig regulatorisk evolution.
         </p>
