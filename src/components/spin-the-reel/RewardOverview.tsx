@@ -25,7 +25,7 @@ export function RewardOverview() {
               key={i}
               className="flex items-center gap-2.5 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 py-2.5"
             >
-              <Icon className={`h-4 w-4 shrink-0 ${colorClass}`} />
+              <MenuIcon iconName={r.iconName} className={`h-4 w-4 shrink-0`} />
               <span className="text-sm font-medium text-foreground truncate">{r.label}</span>
             </div>
           );

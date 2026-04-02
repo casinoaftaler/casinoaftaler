@@ -232,7 +232,7 @@ export function QuickComparisonTable({
                       key={label}
                       className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1"
                     >
-                      <Icon className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
+                      <MenuIcon iconName={iconName} className="h-3.5 w-3.5" />
                       <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
                         {label}
                       </span>
