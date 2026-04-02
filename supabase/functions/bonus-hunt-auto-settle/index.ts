@@ -134,10 +134,19 @@ Deno.serve(async (req) => {
         continue;
       }
 
-      const endBalance = huntData.end || null;
+      // Calculate endBalance from slot wins (more reliable than huntData.end which can be 0)
+      let endBalance: number | null = null;
+      if (huntData.end && huntData.end > 0) {
+        endBalance = huntData.end;
+      } else if (huntData.slots && Array.isArray(huntData.slots)) {
+        const sumWinnings = huntData.slots
+          .filter((b: any) => b.isOpen || b.played)
+          .reduce((sum: number, b: any) => sum + (Number(b.win) || 0), 0);
+        if (sumWinnings > 0) endBalance = sumWinnings;
+      }
       const averageX = stats.runAverage ? parseFloat(stats.runAverage) : null;
 
-      if (!endBalance && !averageX) {
+      if (endBalance === null && !averageX) {
         results.push({ huntNumber: session.hunt_number, status: 'completed_but_no_data' });
         continue;
       }
@@ -176,7 +185,7 @@ Deno.serve(async (req) => {
       const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
       // --- Settle GTW ---
-      if (endBalance) {
+      if (endBalance !== null) {
         const { data: gtwBets } = await admin
           .from('bonus_hunt_gtw_bets')
           .select('*')
