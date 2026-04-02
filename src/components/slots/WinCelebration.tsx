@@ -442,14 +442,16 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     setTimeout(() => setImpactShake(false), 180);
 
     const palette = makePalette(finalTier);
-    setCoins(makeCoins(finalCfg.coins, palette));
-    // Rain coins: scale with tier
-    const rainCount = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
-    setRainCoins(makeRainCoins(rainCount, palette));
-    setSparks(makeSparks(finalCfg.sparks, palette));
+    const mobile = isMobileRef.current;
+    const mobileScale = mobile ? 0.35 : 1; // 65% fewer particles on mobile
+    setCoins(makeCoins(Math.round(finalCfg.coins * mobileScale), palette));
+    // Rain coins: scale with tier, heavily reduced on mobile
+    const rainCountBase = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
+    setRainCoins(makeRainCoins(Math.round(rainCountBase * mobileScale), palette));
+    setSparks(makeSparks(Math.round(finalCfg.sparks * mobileScale), palette));
     // Floating sparkles: scale with tier
-    const sparkleCount = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
-    setFloatingSparkles(makeFloatingSparkles(sparkleCount, palette));
+    const sparkleCountBase = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
+    setFloatingSparkles(makeFloatingSparkles(Math.round(sparkleCountBase * mobileScale), palette));
     setCurrentDisplayTier("nice");
     setShowOverlay(true);
   }, [isActive, winAmount, bet]);
