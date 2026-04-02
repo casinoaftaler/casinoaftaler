@@ -543,7 +543,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     setRunningWin(0);
     setRunningMultiplier(0);
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
-    if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+    if (isBonusSpin) {
+      setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
+      freeSpinsRemainingRef.current = Math.max(0, freeSpinsRemainingRef.current - 1);
+    }
     setIsWinAnimating(false);
     pendingPostWinSpinRef.current = null;
     setWinningPositions(new Set());
@@ -698,6 +701,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                       setTimeout(() => setScreenShake('none'), 500);
                       setShowRetrigger(true);
                       setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                      freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                       setTotalFreeSpins(bs.totalFreeSpins);
                       setBonusWinnings(bs.bonusWinnings || 0);
                       setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
@@ -710,12 +714,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                 setTimeout(() => setScreenShake('none'), 500);
                 setShowRetrigger(true);
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
               } else {
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
