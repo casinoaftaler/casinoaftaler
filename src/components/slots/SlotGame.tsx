@@ -1026,7 +1026,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
     const viewportWidth = window.innerWidth;
     const reelCount = 5;
     const dividerWidth = 2; // w-[2px] dividers between reels
-    const framePadding = 48; // p-6 = 24px each side
+    const framePadding = 8; // p-1 = 4px each side on mobile
     const outerPadding = 8; // px-1 = 4px each side
     return Math.floor((viewportWidth - outerPadding - framePadding - (reelCount - 1) * dividerWidth) / reelCount);
   }, [isMobile]);
