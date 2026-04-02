@@ -299,7 +299,7 @@ export function TestMetodeSeoContent() {
           ].map((stat) => (
             <Card key={stat.label} className="border-border bg-card">
               <CardContent className="p-4 flex items-start gap-3">
-                <stat.icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <MenuIcon iconName={stat.iconName} className="h-5 w-5 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
                   <p className="text-lg font-bold">{stat.value}</p>
