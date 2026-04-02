@@ -546,7 +546,7 @@ export function TestMetodeSeoContent() {
           ].map((item, i) => (
             <Card key={i} className="border-border bg-card">
               <CardContent className="p-4 flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <MenuIcon iconName="circle-check" className="h-5 w-5 mt-0.5 shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
