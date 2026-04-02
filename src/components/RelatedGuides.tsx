@@ -1286,7 +1286,7 @@ export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(f
               to={link.to}
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <link.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName={link.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-sm">{link.label}</h3>
                 <p className="text-xs text-muted-foreground">{link.desc}</p>
