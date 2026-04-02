@@ -95,6 +95,11 @@ const NetEntGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Matematisk er forskellen dramatisk. 100 spins i Starburst til 10 DKK vil typisk returnere 85-110 DKK med konsistente små gevinster undervejs. 100 spins i San Quentin til 10 DKK vil typisk returnere enten 20-30 DKK (85% sandsynlighed) eller 500-5.000 DKK (15% sandsynlighed). NetEnt giver dig en forudsigelig oplevelse; Nolimit City giver dig en lotteriseddel pakket ind i en spilleautomat.
         </p>
+        <ReviewScreenshot
+          src={netentStarburst}
+          alt="Starburst XXXtreme gameplay screenshot – NetEnts ikoniske slot med expanding wilds og 4.160 kr. gevinst"
+          caption="Starburst XXXtreme i aktion – NetEnts moderniserede klassiker med x10 multiplikator og expanding wilds."
+        />
         <p className="text-muted-foreground leading-relaxed">
           For spillere der prioriterer underholdningsværdi per time – den mest rationelle tilgang – er NetEnt det overlegne valg. For spillere der søger den ene transformative oplevelse – det store hit der ændrer sessionen – er Nolimit City svaret. Begge er legitime, men de kræver fundamentalt forskellige bankroll-strategier og forventningsindstillinger.
         </p>
