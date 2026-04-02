@@ -29,11 +29,11 @@ function formatTime(ts: string | null): string {
 export function BonusHuntFooter({ stats }: Props) {
   const items: { label: string; value: string; iconName: string }[] = [
     { label: 'Hunt Start', value: formatTime(stats.huntStart), iconName: "play" },
-    { label: 'Duration', value: formatDuration(stats.huntDuration), icon: Timer },
+    { label: 'Duration', value: formatDuration(stats.huntDuration), iconName: "timer" },
     { label: 'Opening', value: formatTime(stats.openingStart), iconName: "gamepad2" },
-    { label: 'Open Dur.', value: formatDuration(stats.openingDuration), icon: Hourglass },
-    { label: 'Hunt End', value: formatTime(stats.bonusHuntEnd), icon: Square },
-    { label: 'Total', value: formatDuration(stats.totalDuration), icon: Package },
+    { label: 'Open Dur.', value: formatDuration(stats.openingDuration), iconName: "hourglass" },
+    { label: 'Hunt End', value: formatTime(stats.bonusHuntEnd), iconName: "square" },
+    { label: 'Total', value: formatDuration(stats.totalDuration), iconName: "package" },
   ];
 
   return (

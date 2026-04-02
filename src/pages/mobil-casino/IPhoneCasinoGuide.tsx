@@ -641,7 +641,7 @@ const IPhoneCasinoGuide = () => {
               <Card key={method.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <method.icon className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName={method.iconName} className="h-4 w-4 text-primary" />
                     {method.title}
                   </CardTitle>
                 </CardHeader>
@@ -750,7 +750,7 @@ const IPhoneCasinoGuide = () => {
               {
                 title: "Deaktiver Low Power Mode under spil",
                 desc: "Low Power Mode reducerer CPU-hastigheden med op til 40 %, hvilket kan forårsage hakken i live casino og langsommere loading. Deaktiver den under Indstillinger → Batteri, når du spiller.",
-                icon: Battery,
+                iconName: "battery",
               },
               {
                 title: "Brug 'Fokus' til casino-sessioner",
@@ -779,7 +779,7 @@ const IPhoneCasinoGuide = () => {
               },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <tip.icon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                <MenuIcon iconName={tip.iconName} className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground">{tip.title}</h3>
                   <p className="text-xs text-muted-foreground">{tip.desc}</p>

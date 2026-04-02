@@ -614,7 +614,7 @@ const SpillegraenserGuide = () => {
                 desc: "Hold en simpel log over dine indbetalinger og udbetalinger. Mange casinoer tilbyder forbrugsrapporter – brug dem aktivt til at evaluere dine spillevaner.",
               },
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "Aldrig jag tab",
                 desc: "Hvis du rammer din grænse, er det et signal om at stoppe. At forsøge at vinde tabet tilbage (chasing) er den mest almindelige årsag til spilleproblemer.",
               },
@@ -632,7 +632,7 @@ const SpillegraenserGuide = () => {
               <Card key={tip.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <tip.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={tip.iconName} className="h-5 w-5 text-primary" />
                     {tip.title}
                   </CardTitle>
                 </CardHeader>

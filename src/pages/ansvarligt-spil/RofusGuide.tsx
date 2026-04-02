@@ -411,7 +411,7 @@ const RofusGuide = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-foreground mb-1 flex items-center gap-2">
-                        <item.icon className="h-4 w-4 text-primary" />
+                        <MenuIcon iconName={item.iconName} className="h-4 w-4 text-primary" />
                         {item.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{item.content}</p>
@@ -720,7 +720,7 @@ const RofusGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     <h3 className="font-semibold text-sm text-foreground">{item.title}</h3>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -840,7 +840,7 @@ const RofusGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -1014,7 +1014,7 @@ const RofusGuide = () => {
                 label: "Besøg StopSpillet",
               },
               {
-                icon: HelpCircle,
+                iconName: "help-circle",
                 title: "Center for Ludomani",
                 desc: "Tilbyder gratis, professionel behandling baseret på kognitiv adfærdsterapi. Individuel terapi, gruppeterapi og online-rådgivning. Behandling i hele Danmark.",
                 url: "https://ludomani.dk/",
@@ -1031,7 +1031,7 @@ const RofusGuide = () => {
               <Card key={resource.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <resource.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={resource.iconName} className="h-5 w-5 text-primary" />
                     {resource.title}
                   </CardTitle>
                 </CardHeader>

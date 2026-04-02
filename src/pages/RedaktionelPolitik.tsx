@@ -31,8 +31,8 @@ const RedaktionelPolitik = () => {
   });
 
   const editorialSteps = [
-    { icon: Search, title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
-    { icon: Pen, title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
+    { iconName: "search", title: "Research & registrering", desc: "Vi opretter en reel konto, verificerer identitet og gennemfører hele registreringsprocessen som enhver anden spiller." },
+    { iconName: "pen", title: "Praktisk test", desc: "Vi indbetaler, spiller og tester bonusser, kundeservice og udbetalingsprocesser med rigtige penge." },
     { iconName: "eye", title: "Analyse & dokumentation", desc: "Alle observationer dokumenteres systematisk efter faste kriterier. Vi vurderer brugeroplevelse, spiludvalg, bonusvilkår og sikkerhed." },
     { iconName: "refresh-cw", title: "Løbende opdatering", desc: "Anmeldelser og guides opdateres løbende, når vilkår ændres, nye funktioner lanceres, eller casinoer forbedrer deres tilbud." },
   ];
@@ -107,7 +107,7 @@ const RedaktionelPolitik = () => {
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
                       {i + 1}
                     </div>
-                    <step.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={step.iconName} className="h-5 w-5 text-primary" />
                   </div>
                   <h3 className="mb-2 font-semibold">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>

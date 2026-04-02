@@ -235,7 +235,7 @@ const ReloadBonus = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <type.icon className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName={type.iconName} className="h-5 w-5 text-primary" />
                       {type.title}
                     </CardTitle>
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
@@ -470,7 +470,7 @@ const ReloadBonus = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{typeof item.desc === 'string' ? item.desc : item.desc}</p>
@@ -502,7 +502,7 @@ const ReloadBonus = () => {
               ) },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{typeof item.desc === 'string' ? item.desc : item.desc}</p>
@@ -552,7 +552,7 @@ const ReloadBonus = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{typeof item.desc === 'string' ? item.desc : item.desc}</p>

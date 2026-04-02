@@ -227,7 +227,7 @@ const NyeCasinoer2026 = () => {
               { iconName: "bar-chart3", title: "5. Transparens og datadeling med spillere", desc: "En emerging trend i 2026 er øget transparens: nye casinoer deler aggregerede statistikker med spillerne – f.eks. gennemsnitlig RTP på tværs af alle spil, gennemsnitlige udbetalingstider og bonusopfyldelsesrater. Det bygger tillid og differentierer seriøse operatører fra mindre gennemsigtige konkurrenter." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

@@ -240,7 +240,7 @@ const SaadanTesterVi = () => {
               <Card key={krit.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <krit.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={krit.iconName} className="h-5 w-5 text-primary" />
                     {krit.title}
                   </CardTitle>
                 </CardHeader>

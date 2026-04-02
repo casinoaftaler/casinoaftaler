@@ -371,10 +371,10 @@ const HjaelpelinjerGuide = () => {
               { iconName: "heart", text: "Ingen professionelle terapeuter – deltagerne støtter hinanden" },
               { iconName: "map-pin", text: "Grupper i København, Aarhus, Odense, Aalborg og flere byer" },
               { iconName: "globe", text: "Online-møder tilgængelige for hele Danmark" },
-              { icon: HandHeart, text: "Gam-Anon: Parallelle grupper specifikt for pårørende" },
+              { iconName: "hand-heart", text: "Gam-Anon: Parallelle grupper specifikt for pårørende" },
             ].map((item) => (
               <div key={item.text} className="flex items-start gap-3">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item.text}</span>
               </div>
             ))}
@@ -450,7 +450,7 @@ const HjaelpelinjerGuide = () => {
                 desc: "Gratis parterapi med fokus på genopbygning af tillid og fælles økonomihåndtering.",
               },
               {
-                icon: Building,
+                iconName: "building",
                 title: "Kommunale familietilbud",
                 desc: "Mange kommuner tilbyder familierådgivning under Serviceloven. Kontakt din kommunes borgerservice.",
               },
@@ -458,7 +458,7 @@ const HjaelpelinjerGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>

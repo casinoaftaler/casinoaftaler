@@ -34,7 +34,7 @@ const Forretningsmodel = () => {
   const principles = [
     { iconName: "scale", title: "Redaktionel uafhængighed", desc: "Vores vurderinger bygger på faste kriterier og reel test. Kommercielle samarbejder påvirker aldrig vores scoring eller anbefalinger." },
     { iconName: "shield-check", title: "Gennemsigtighed", desc: "Vi oplyser tydeligt om alle bonusvilkår, betingelser og potentielle interessekonflikter." },
-    { icon: Search, title: "Systematisk testning", desc: "Hvert casino testes med reel registrering, indbetaling og gameplay – ikke skrivebordsvurdering." },
+    { iconName: "search", title: "Systematisk testning", desc: "Hvert casino testes med reel registrering, indbetaling og gameplay – ikke skrivebordsvurdering." },
     { iconName: "users", title: "Community først", desc: "Vores community er vores fundament. Vi prioriterer altid brugernes interesser over kommercielle hensyn." },
   ];
 
@@ -188,7 +188,7 @@ const Forretningsmodel = () => {
             {principles.map((p) => (
               <Card key={p.title} className="border-border bg-card">
                 <CardContent className="p-6">
-                  <p.icon className="mb-3 h-6 w-6 text-primary" />
+                  <MenuIcon iconName={p.iconName} className="mb-3 h-6 w-6 text-primary" />
                   <h3 className="mb-2 font-semibold">{p.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                 </CardContent>
@@ -440,7 +440,7 @@ const Forretningsmodel = () => {
               { to: "/casinospil/spillemaskiner", iconName: "star", title: "Spillemaskiner", desc: "30+ dybdegående spillemaskineguides" },
               { to: "/live-casino", iconName: "users", title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
               { to: "/betalingsmetoder", iconName: "credit-card", title: "Betalingsmetoder", desc: "Alle godkendte betalingsmetoder" },
-              { to: "/spiludviklere", icon: Search, title: "Spiludviklere", desc: "12 ledende studier analyseret" },
+              { to: "/spiludviklere", iconName: "search", title: "Spiludviklere", desc: "12 ledende studier analyseret" },
               { to: "/ordbog", iconName: "book-open", title: "Casino Ordbog", desc: "70+ tekniske termer forklaret" },
               { to: "/free-spins", iconName: "sparkles", title: "Free Spins", desc: "Alt om gratis spins på danske casinoer" },
               { to: "/omsaetningskrav", iconName: "scale", title: "Omsætningskrav", desc: "Forstå bonusvilkår og omsætning" },
@@ -450,7 +450,7 @@ const Forretningsmodel = () => {
                 to={item.to}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{item.title}</h3>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>

@@ -106,13 +106,13 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const bingoVarianter = [
   {
-    icon: Grid3X3,
+    iconName: "grid3x3",
     title: "90-kugle bingo",
     description: "Den mest populære variant i Europa og Danmark. Spilles på et 9×3 grid med 15 numre og 12 tomme felter. Tre gevinstniveauer: 1 række, 2 rækker og fuld plade. Giver flere vindere pr. spil og længere, mere sociale sessions. Typisk RTP: 75-85%.",
     tag: "Mest populært",
   },
   {
-    icon: Hash,
+    iconName: "hash",
     title: "75-kugle bingo (Amerikansk)",
     description: "Spilles på et 5×5 grid med et frit felt i midten. Gevinstmønstre varierer fra simple linjer til komplekse former som bogstaver, rammer og specialmønstre. Mere variation i gameplay, men typisk kun én vinder pr. spil. Populært i nordamerikanske markeder og hos mere erfarne bingo-spillere.",
     tag: "Varieret gameplay",
@@ -124,7 +124,7 @@ const bingoVarianter = [
     tag: "Hurtigt tempo",
   },
   {
-    icon: Dice1,
+    iconName: "dice1",
     title: "30-kugle bingo (Speed Ball)",
     description: "Ultra-hurtig variant med et 3×3 grid og kun 9 numre pr. plade. Hvert spil tager under 2 minutter. Simpelt og intenst – perfekt til mobilspil og korte pauser. Mindre social interaktion, men højere spænding pr. sekund.",
     tag: "Ultra-hurtigt",
@@ -234,7 +234,7 @@ const BingoGuide = () => {
               <Card key={type.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <type.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{type.title}</CardTitle>
@@ -407,7 +407,7 @@ const BingoGuide = () => {
               { iconName: "star", title: "Chat-præmier og mini-spil", desc: "Chat-moderatorer uddeler regelmæssigt bonuspræmier via mini-spil i chatfunktionen. Disse præmier (typisk 5-25 kr. i bonuspenge eller gratis plader) har ingen omsætningskrav og er en ren ekstra-gevinst. Aktive chatdeltagere har markant flere gevinstmuligheder end passive spillere." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -486,7 +486,7 @@ const BingoGuide = () => {
               { iconName: "clock", title: "On-the-go", desc: "Speed bingo og 30-kugle varianter er ideelle til korte pauser. 2-5 minutters spil med fuld funktionalitet – perfekt til transport og ventetid." },
             ].map((device) => (
               <div key={device.title} className="rounded-lg border border-border p-4 text-center">
-                <device.icon className="mx-auto h-8 w-8 text-primary mb-2" />
+                <MenuIcon iconName={device.iconName} className="mx-auto h-8 w-8 text-primary mb-2" />
                 <p className="font-semibold">{device.title}</p>
                 <p className="text-xs text-muted-foreground mt-1">{device.desc}</p>
               </div>
@@ -568,7 +568,7 @@ const BingoGuide = () => {
               { iconName: "alert-triangle", title: "Fejl 5: At spille på ulicenserede bingo-sider", desc: "Ulicenserede bingo-sider tilbyder ingen spillerbeskyttelse, ingen garanti for fair RNG, og gevinster er skattepligtige. Spil kun på sider med dansk licens fra Spillemyndigheden for at sikre dine rettigheder som spiller. Tjek altid licens-status i bunden af websiden." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -699,7 +699,7 @@ const BingoGuide = () => {
               { iconName: "eye", title: "8. Studer rummets spillerantal før du køber plader", desc: "De fleste bingo-lobbyer viser antal aktive spillere og pladeantal i hvert rum. Brug denne information strategisk: et rum med 15 spillere giver markant bedre odds end et rum med 150 spillere, selv om præmiepuljen er proportionelt mindre. Fokuser på forventet værdi, ikke absolut præmiestørrelse." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -801,7 +801,7 @@ const BingoGuide = () => {
               { iconName: "lock", title: "Skærpet spillerbeskyttelse", desc: "Danske og europæiske regulatorer arbejder mod strengere regler for ansvarligt spil, herunder AI-drevne adfærdsmønstre der identificerer problematisk spilleadfærd tidligt. Bingo-operatører skal investere i proaktive værktøjer der beskytter sårbare spillere – ikke kun reaktive tiltag som ROFUS." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

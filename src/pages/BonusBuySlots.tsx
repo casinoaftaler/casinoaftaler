@@ -408,7 +408,7 @@ const BonusBuySlots = () => {
               <Card key={item.title}>
                 <CardContent className="pt-4">
                   <h3 className="font-semibold flex items-center gap-2 mb-2">
-                    <item.icon className="h-4 w-4 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-4 w-4 text-primary" />
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">{item.content}</p>

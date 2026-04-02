@@ -116,7 +116,7 @@ export function CommunitySeoBridge() {
               "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
           }}
         >
-          <primaryLink.icon className="h-4 w-4" />
+          <MenuIcon iconName={primaryLink.iconName} className="h-4 w-4" />
           {primaryLink.label}
           <ArrowRight className="h-3.5 w-3.5 ml-auto" />
         </Button>
@@ -132,7 +132,7 @@ export function CommunitySeoBridge() {
                 onClick={() => trackClick(link.label)}
                 className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50 group"
               >
-                <MenuIcon iconName={iconName} className="h-4 w-4 shrink-0 text-primary/70" />
+                <MenuIcon iconName={link.iconName} className="h-4 w-4 shrink-0" />
                 <span className="flex-1">{link.label}</span>
                 <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-60 group-hover:translate-x-0" />
               </Link>

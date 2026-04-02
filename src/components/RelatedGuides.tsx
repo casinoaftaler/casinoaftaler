@@ -815,7 +815,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/casinospil/poker", label: "Poker Guide", iconName: "gamepad2", desc: "Komplet overblik over alle pokervarianter" },
         { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider", iconName: "trophy", desc: "Top pokersider i Danmark 2026" },
-        { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "4 hole cards – højere action og varians" },
+        { to: "/casinospil/poker/omaha", label: "Omaha Poker", iconName: "shuffle", desc: "4 hole cards – højere action og varians" },
         { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", iconName: "brain", desc: "GTO, pot odds og avanceret teori" },
         { to: "/live-casino", label: "Live Casino", iconName: "tv", desc: "Spil poker med live dealere" },
       ],
@@ -880,7 +880,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/casinospil/poker", label: "Poker Guide", iconName: "gamepad2", desc: "Alle pokervarianter sammenlignet" },
         { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", iconName: "target", desc: "Anvend strategien i praksis" },
-        { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "Avanceret multi-draw strategi" },
+        { to: "/casinospil/poker/omaha", label: "Omaha Poker", iconName: "shuffle", desc: "Avanceret multi-draw strategi" },
         { to: "/casinospil/poker/video-poker", label: "Video Poker", iconName: "gamepad2", desc: "Solo strategi med 99,5 % RTP" },
         { to: "/omsaetningskrav", label: "Omsætningskrav", iconName: "target", desc: "Poker og bonusomsætning" },
       ],
@@ -1286,7 +1286,7 @@ export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(f
               to={link.to}
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <link.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName={link.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-sm">{link.label}</h3>
                 <p className="text-xs text-muted-foreground">{link.desc}</p>

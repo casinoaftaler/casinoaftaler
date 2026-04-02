@@ -71,7 +71,7 @@ export function CommunityStatsStaticBlock({ className = "" }: CommunityStatsStat
             itemScope
             itemType="https://schema.org/InteractionCounter"
           >
-            <stat.icon className={`h-5 w-5 ${stat.color}`} aria-hidden="true" />
+            <MenuIcon iconName={stat.iconName} className={`h-5 w-5`} />
             <dd className="text-xl md:text-2xl font-bold text-foreground tabular-nums" itemProp="userInteractionCount">
               {stat.value.toLocaleString("da-DK")}
             </dd>

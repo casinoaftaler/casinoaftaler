@@ -164,7 +164,7 @@ function MobileSection({ label, icon: Icon, sectionKey, expanded, onToggle, chil
         onClick={() => onToggle(sectionKey)}
         className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50"
       >
-        <span className="flex items-center gap-2"><Icon className="h-4 w-4" />{label}</span>
+        <span className="flex items-center gap-2"><MenuIcon iconName={iconName} className="h-4 w-4" />{label}</span>
         <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", expanded && "rotate-180")} />
       </button>
       {expanded && (
@@ -186,7 +186,7 @@ function MobileSubSection({ label, icon: Icon, expanded, onToggle, children }: {
         onClick={onToggle}
         className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary"
       >
-        <span className="flex items-center gap-2"><Icon className="h-4 w-4" />{label}</span>
+        <span className="flex items-center gap-2"><MenuIcon iconName={iconName} className="h-4 w-4" />{label}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", expanded && "rotate-180")} />
       </button>
       {expanded && <div className="flex flex-col">{children}</div>}

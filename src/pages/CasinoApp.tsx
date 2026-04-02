@@ -261,7 +261,7 @@ const CasinoApp = () => {
             {[
               {
                 title: "Native App",
-                icon: Download,
+                iconName: "download",
                 items: [
                   "Downloadet fra App Store / Google Play",
                   "Fuld hardware-adgang (kamera, biometri)",
@@ -299,7 +299,7 @@ const CasinoApp = () => {
               <Card key={type.title} className="border-border bg-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <type.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-5 w-5 text-primary" />
                     {type.title}
                   </CardTitle>
                 </CardHeader>
@@ -477,7 +477,7 @@ const CasinoApp = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
               {
-                icon: Search,
+                iconName: "search",
                 title: "App Store Review",
                 desc: "Alle casino apps gennemgår Apples/Googles review-proces, der screener for malware, uautoriseret dataindsamling og sikkerhedshuller. Apps skal dokumentere gyldig licens.",
               },
@@ -500,7 +500,7 @@ const CasinoApp = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>

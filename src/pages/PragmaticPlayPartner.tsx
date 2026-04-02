@@ -214,7 +214,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.label} className="border-border">
                 <CardContent className="flex flex-col items-center p-6 text-center">
-                  <item.icon className="mb-3 h-8 w-8 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-8 w-8 text-primary" />
                   <p className="font-semibold">{item.label}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -261,14 +261,14 @@ const PragmaticPlayPartner = () => {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { year: "2015", event: "Pragmatic Play grundlægges", icon: Lightbulb },
+              { year: "2015", event: "Pragmatic Play grundlægges", iconName: "lightbulb" },
               { year: "2018", event: "Live casino lanceres", iconName: "monitor" },
               { year: "2020", event: "Sweet Bonanza & eksplosiv vækst", iconName: "flame" },
               { year: "2026", event: "Partnerskab med Casinoaftaler", iconName: "heart-handshake" },
             ].map((item) => (
               <Card key={item.year} className="border-border">
                 <CardContent className="flex flex-col items-center p-5 text-center">
-                  <item.icon className="mb-2 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-2 h-7 w-7 text-primary" />
                   <p className="text-lg font-bold text-primary">{item.year}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.event}</p>
                 </CardContent>
@@ -308,7 +308,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border">
                 <CardContent className="p-6">
-                  <item.icon className="mb-3 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-7 w-7 text-primary" />
                   <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -359,13 +359,13 @@ const PragmaticPlayPartner = () => {
                 desc: "Pragmatic Plays Ante Bet-system giver spillere mulighed for at betale 25% ekstra pr. spin for at fordoble chancen for at triggere bonus-runden. Feature Drop (Bonus Buy) lader dig købe direkte adgang til free spins – typisk til 100x indsatsen. Disse funktioner appellerer til forskellige spillertyper: Ante Bet for dem, der vil optimere deres odds uden at betale fuld bonus buy-pris, og Feature Drop for dem, der vil direkte til aktionen.",
               },
               {
-                icon: Cpu,
+                iconName: "cpu",
                 title: "Hold & Spin / Money Collect",
                 desc: "Populært i spil som Big Bass Bonanza-serien, John Hunter og Wolf Gold. Mekanikken kombinerer elementer af klassiske re-spin features med moderne bonus-runder, hvor du samler pengeværdier og multipliers på et grid. Big Bass-serien har udvidet konceptet med Fisherman-wilds, der opsamler værdier – en unik twist, der har genereret en hel franchise af efterfølgere og varianter.",
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
-                <item.icon className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
                   <h3 className="mb-1 font-semibold">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
@@ -427,7 +427,7 @@ const PragmaticPlayPartner = () => {
                 desc: "Mange af Pragmatic Plays mest populære spillemaskiner tilbyder Bonus Buy (Feature Drop) – muligheden for at købe direkte adgang til bonus-runden. Vi evaluerer, om Bonus Buy-prisen (typisk 100x indsatsen) giver rimelig værdi sammenlignet med at triggere bonussen organisk. Dette er særligt relevant for Sweet Bonanza, Gates of Olympus og Big Bass serien.",
               },
               {
-                icon: Search,
+                iconName: "search",
                 title: "Sessionstest og dokumentation",
                 desc: "Hver spillemaskine testes med minimum 200-500 spins i reelle sessioner. Vi dokumenterer gevinstfrekvens, gennemsnitlig gevinst, bonus-trigger hyppighed og maksimale gevinster. Disse data danner grundlaget for vores anmeldelser og for de statistikker, du kan finde i vores slot-katalog.",
               },
@@ -438,7 +438,7 @@ const PragmaticPlayPartner = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
-                <item.icon className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
                   <h3 className="mb-1 font-semibold">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
@@ -687,14 +687,14 @@ const PragmaticPlayPartner = () => {
                 desc: "Alle Pragmatic Play spil certificeres af uafhængige testlaboratorier (herunder BMM Testlabs og GLI), der verificerer, at RNG (Random Number Generator) fungerer korrekt, og at de publicerede RTP-værdier er nøjagtige.",
               },
               {
-                icon: FileCheck,
+                iconName: "file-check",
                 title: "ISO 27001 certificeret",
                 desc: "Pragmatic Play er ISO 27001 certificeret, hvilket er den internationale standard for informationssikkerhed. Det sikrer, at spillerdata og transaktioner behandles med det højeste sikkerhedsniveau.",
               },
             ].map((item) => (
               <Card key={item.title} className="border-border">
                 <CardContent className="p-6">
-                  <item.icon className="mb-3 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-7 w-7 text-primary" />
                   <h3 className="mb-2 font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -869,7 +869,7 @@ const PragmaticPlayPartner = () => {
                 { label: "Pragmatic Play spillemaskiner", path: "/spillemaskiner/pragmatic-play", iconName: "gamepad2" },
                 { label: "Bedste online casinoer", path: "/top-10-casino-online", iconName: "star" },
                 { label: "Casino bonusser", path: "/casino-bonus", iconName: "trending-up" },
-                { label: "Sådan tester vi casinoer", path: "/saadan-tester-vi-casinoer", icon: Search },
+                { label: "Sådan tester vi casinoer", path: "/saadan-tester-vi-casinoer", iconName: "search" },
                 { label: "Vores forretningsmodel", path: "/forretningsmodel", iconName: "scale" },
                 { label: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", iconName: "trophy" },
                 { label: "Slot Database", path: "/slot-database", iconName: "bar-chart3" },
@@ -879,7 +879,7 @@ const PragmaticPlayPartner = () => {
                   to={item.path}
                   className="group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 transition-all hover:border-primary/40 hover:shadow-sm"
                 >
-                  <item.icon className="h-5 w-5 shrink-0 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="h-5 w-5 shrink-0 text-primary" />
                   <span className="font-medium group-hover:text-primary">{item.label}</span>
                   <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
                 </Link>

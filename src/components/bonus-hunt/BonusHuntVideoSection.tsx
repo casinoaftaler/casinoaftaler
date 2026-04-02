@@ -177,8 +177,8 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
           <div className="flex flex-wrap gap-2">
             {[
               { iconName: "monitor", label: "Streamet live", color: "text-green-500" },
-              { icon: Video, label: "Fuld VOD", color: "text-primary" },
-              { icon: MessageCircle, label: "Chat aktiv", color: "text-primary" },
+              { iconName: "video", label: "Fuld VOD", color: "text-primary" },
+              { iconName: "message-circle", label: "Chat aktiv", color: "text-primary" },
               { iconName: "calendar", label: video.date, color: "text-primary" },
             ].map((badge) => {
               // icon resolved via iconName on badge
@@ -187,7 +187,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
                   key={badge.label}
                   className="inline-flex items-center gap-1 rounded-full bg-muted/40 px-2.5 py-1 text-[11px] text-muted-foreground transition-all duration-[180ms] hover:bg-muted/60"
                 >
-                  <Icon className={`h-3 w-3 ${badge.color}`} />
+                  <MenuIcon iconName={badge.iconName} className={`h-3 w-3`} />
                   {badge.label}
                 </span>
               );

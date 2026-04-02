@@ -358,12 +358,12 @@ const PayNPlayGuide = () => {
               { iconName: "shield", title: "Lag 2: SOC 2 Type II + PCI DSS", desc: "Trustly er SOC 2 Type II-certificeret, hvilket bekræfter at virksomhedens sikkerhedskontroller er designet korrekt og fungerer effektivt over tid. PCI DSS Level 1 certificering dækker behandling af betalingsdata. Auditeringen dækker sikkerhed, tilgængelighed, procesintegritet og fortrolighed." },
               { iconName: "eye", title: "Lag 3: Zero-Knowledge Authentication", desc: "Trustly modtager aldrig spillerens bankloginoplysninger direkte. Al autentificering sker via bankens egen sikre loginside (redirect-model), og Trustly modtager kun det resulterende OAuth2-token med begrænset scope og levetid." },
               { iconName: "file-text", title: "Lag 4: GDPR & Databeskyttelse", desc: "Alle persondata behandles i overensstemmelse med GDPR og den danske databeskyttelseslov. Data opbevares inden for EU/EØS, og spilleren kan til enhver tid anmode om sletning af sine data hos Trustly. Data retention policy: KYC-data slettes efter 5 år (jf. hvidvaskloven)." },
-              { icon: Ban, title: "Lag 5: Fraud Detection & Monitoring", desc: "Trustly's fraud detection-system analyserer transaktionsmønstre i realtid med machine learning-modeller. Usædvanlige mønstre (store beløb, hyppige transaktioner, nye enheder) trigger automatisk review. False positive rate: under 0,5% ifølge Trustly's offentlige data." },
-              { icon: Server, title: "Lag 6: Infrastructure Security", desc: "Trustly's serverinfrastruktur kører i ISO 27001-certificerede datacentre i EU med redundant strøm, køling og netværk. Disaster recovery med RPO < 1 time og RTO < 4 timer. DDoS-beskyttelse via enterprise-grade WAF og CDN." },
+              { iconName: "ban", title: "Lag 5: Fraud Detection & Monitoring", desc: "Trustly's fraud detection-system analyserer transaktionsmønstre i realtid med machine learning-modeller. Usædvanlige mønstre (store beløb, hyppige transaktioner, nye enheder) trigger automatisk review. False positive rate: under 0,5% ifølge Trustly's offentlige data." },
+              { iconName: "server", title: "Lag 6: Infrastructure Security", desc: "Trustly's serverinfrastruktur kører i ISO 27001-certificerede datacentre i EU med redundant strøm, køling og netværk. Disaster recovery med RPO < 1 time og RTO < 4 timer. DDoS-beskyttelse via enterprise-grade WAF og CDN." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base"><item.icon className="h-5 w-5 text-primary" />{item.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent><p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p></CardContent>
               </Card>

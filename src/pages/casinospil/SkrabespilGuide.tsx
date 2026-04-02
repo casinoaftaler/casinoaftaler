@@ -227,7 +227,7 @@ const SkrabespilGuide = () => {
               <Card key={type.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <type.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{type.title}</CardTitle>
@@ -343,7 +343,7 @@ const SkrabespilGuide = () => {
           <div className="space-y-3">
             {[
               { iconName: "bar-chart3", title: "1. Prioritér høj RTP over temaer", desc: "Et flot tema ændrer ikke din forventede afkast. Et skrabespil med 96% RTP giver dig statistisk 6 kr. mere per 100 kr. end et med 90% RTP. Over en session på 50 lodder á 10 kr. er forskellen 30 kr. – nok til 3 ekstra lodder. Tjek altid RTP i spillets info-sektion." },
-              { icon: DollarSign, title: "2. Sæt et ufravigeligt sessionsbudget", desc: "Bestem dit budget FØR du starter og hold dig 100% til det. En god regel: dit skrabespil-budget bør være penge du er villig til at miste for underholdningsværdien. Skrabespils hurtige tempo (op til 60 lodder per time) gør budgetoverskridelser særligt risikable." },
+              { iconName: "dollar-sign", title: "2. Sæt et ufravigeligt sessionsbudget", desc: "Bestem dit budget FØR du starter og hold dig 100% til det. En god regel: dit skrabespil-budget bør være penge du er villig til at miste for underholdningsværdien. Skrabespils hurtige tempo (op til 60 lodder per time) gør budgetoverskridelser særligt risikable." },
               { iconName: "calculator", title: "3. Beregn din forventede spilletid", desc: "Divider dit budget med indsats per lod for at kende dit maksimale antal lodder. 200 kr. budget ÷ 5 kr. per lod = 40 lodder. Med gevinster undervejs kan du typisk spille 50-70 lodder. Denne beregning forebygger overraskelser og giver realistiske forventninger." },
               { iconName: "alert-triangle", title: "4. Undgå 'Afslør alle' som standard", desc: "Den øjeblikkelige afsløring er bekvem, men fjerner den primære underholdningsværdi: spændingen ved at skrabe. Brug den taktile skrabe-oplevelse til at sænke tempoet og forlænge din session. Langsommere spil = bedre budgetkontrol = mere underholdning per krone." },
               { iconName: "gift", title: "5. Udnyt bonusser med omtanke", desc: "Tjek om din casino-bonus har fuld eller reduceret vægtning for skrabespil. De fleste bonusser vægter skrabespil kun 10-25% mod omsætningskrav. En 1.000 kr. bonus med 40x omsætningskrav og 10% skrabespil-vægtning kræver 400.000 kr. i indsatser – sjældent realistisk." },
@@ -352,7 +352,7 @@ const SkrabespilGuide = () => {
               { iconName: "heart", title: "8. Betragt skrabespil som underholdning", desc: "Med 3-15% house edge er skrabespil designet til at generere profit for casinoet over tid. Du vil statistisk tabe penge på lang sigt. Den korrekte tilgang er at betragte dit skrabespil-budget som en underholdningsudgift – ligesom en koncertbillet eller et restaurantbesøg. Nyd spændingen, men jagé aldrig tab." },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <tip.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={tip.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{tip.title}</h3>
                   <p className="text-sm text-muted-foreground">{tip.desc}</p>
@@ -422,7 +422,7 @@ const SkrabespilGuide = () => {
               { iconName: "check-circle2", title: "Grænseværktøjer og reality checks", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Reality checks – pop-up-beskeder om varighed og resultat – er særligt vigtige for skrabespil grundet det hurtige spilletempo." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -590,7 +590,7 @@ const SkrabespilGuide = () => {
               { iconName: "lock", title: "AI-drevet spillerbeskyttelse", desc: "Danske og europæiske regulatorer investerer i AI-systemer der identificerer problematisk spilleadfærd i realtid. Skrabespils hurtige tempo gør dem særligt relevante for tidlig intervention. Fremtidige platforme vil have integrerede AI-assistenter der proaktivt foreslår pauser og budgetjusteringer." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

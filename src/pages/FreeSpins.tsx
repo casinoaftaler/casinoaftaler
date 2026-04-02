@@ -281,7 +281,7 @@ const FreeSpins = () => {
               <Card key={type.id} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <type.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-5 w-5 text-primary" />
                     {type.name}
                   </CardTitle>
                 </CardHeader>
@@ -444,7 +444,7 @@ const FreeSpins = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -650,13 +650,13 @@ const FreeSpins = () => {
               { title: "✅ Den nye spiller", desc: "Ideel startbonus. Free spins giver risikofri introduktion til spilleautomater og casinoets platform. Ingen indbetaling nødvendig ved no-deposit free spins – perfekt til at teste uden forpligtelse.", iconName: "user" },
               { title: "✅ Bonusjægeren", desc: "Profitable ved korrekt selektion. Bonusjægeren fokuserer på 0x-omsætning free spins og høj-RTP slots. Med systematisk approach kan EV per tilbud nå 50-90% af den nominelle værdi.", iconName: "target" },
               { title: "⚠️ Casual spilleren", desc: "Acceptabelt, men læs vilkårene. Free spins med omsætningskrav kræver yderligere spil – casual spilleren skal vurdere om tidsforbruget matcher den forventede gevinst (typisk 50-100 kr.).", iconName: "clock" },
-              { title: "❌ Bordspil-spilleren", desc: "Irrelevant. Free spins fungerer kun på slots – bordspil-entusiasten bør i stedet kigge efter cashback-bonusser eller no-deposit bonuspenge, der kan bruges på blackjack/roulette.", icon: Ban },
+              { title: "❌ Bordspil-spilleren", desc: "Irrelevant. Free spins fungerer kun på slots – bordspil-entusiasten bør i stedet kigge efter cashback-bonusser eller no-deposit bonuspenge, der kan bruges på blackjack/roulette.", iconName: "ban" },
               { title: "❌ High rolleren", desc: "Undervældende. Med typisk spinværdi på 1-5 kr. er free spins' samlede værdi (50-250 kr.) negligibel for high rollere. En matchbonus på 100% op til 1.000 kr. giver bedre værdi.", iconName: "trending-up" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -773,7 +773,7 @@ const FreeSpins = () => {
               { title: "🎰 Nye spil-lanceringer – Hele året", desc: "Når store spiludviklere lancerer nye titler, tilbyder casinoer ofte free spins specifikt på det nye spil. Disse spins har typisk favorabel RTP (95-97%) og giver dig mulighed for at teste nye spil uden risiko. Hold øje med lanceringer fra populære udviklere som NetEnt, Pragmatic Play og Play'n GO.", iconName: "sparkles" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

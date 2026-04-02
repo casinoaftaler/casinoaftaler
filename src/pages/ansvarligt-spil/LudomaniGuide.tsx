@@ -434,7 +434,7 @@ const LudomaniGuide = () => {
                   "Genetisk disposition (50–60 % arvelighed), dysregulering af dopamin- og serotonin-systemet, neurologiske forskelle i prefrontal cortex (impulskontroltcentret), og forhøjet respons i hjernens belønningssystem ved gambling-stimuli. Mænd har biologisk højere risiko pga. testosteronens indflydelse på risikoadfærd.",
               },
               {
-                icon: UserX,
+                iconName: "user-x",
                 title: "Psykologiske faktorer",
                 content:
                   "Kognitive forvrængninger (gambler's fallacy, illusion of control), impulsivitet, sensationssøgen, komorbide tilstande (depression, angst, ADHD), lavt selvværd, og brug af gambling som mestringsmekanisme mod stress eller negative følelser. Tidlig eksponering for gambling i barndommen øger risikoen markant.",
@@ -456,7 +456,7 @@ const LudomaniGuide = () => {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 shrink-0">
-                      <item.icon className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
@@ -652,7 +652,7 @@ const LudomaniGuide = () => {
                 url: "#",
               },
               {
-                icon: MessageCircle,
+                iconName: "message-circle",
                 title: "Gamblers Anonymous (GA)",
                 desc: "Selvhjælpsgruppe baseret på 12-trins modellen, tilgængelig i flere danske byer. GA tilbyder et støttende fællesskab af mennesker med lignende erfaringer. Møderne er gratis, anonyme og kræver ingen tilmelding. Supplerer professionel behandling.",
                 url: "#",
@@ -661,7 +661,7 @@ const LudomaniGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -853,7 +853,7 @@ const LudomaniGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     <h3 className="font-semibold text-sm text-foreground">{item.title}</h3>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -980,7 +980,7 @@ const LudomaniGuide = () => {
               <Card key={resource.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <resource.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={resource.iconName} className="h-5 w-5 text-primary" />
                     {resource.title}
                   </CardTitle>
                 </CardHeader>

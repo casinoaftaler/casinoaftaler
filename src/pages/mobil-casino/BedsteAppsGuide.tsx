@@ -119,7 +119,7 @@ const BedsteAppsGuide = () => {
               { title: "App Store-rating (10 %)", desc: "Gennemsnitlig bruger-rating i App Store/Google Play, antal anmeldelser og seneste opdateringsdato.", iconName: "star" },
             ].map((c) => (
               <Card key={c.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><c.icon className="h-4 w-4 text-primary" />{c.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><MenuIcon iconName={c.iconName} className="h-4 w-4 text-primary" />{c.title}</CardTitle></CardHeader>
                 <CardContent><p className="text-xs text-muted-foreground">{c.desc}</p></CardContent>
               </Card>
             ))}
@@ -711,15 +711,15 @@ const BedsteAppsGuide = () => {
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             {[
-              { title: "AI-personalisering", desc: "Machine learning-algoritmer vil tilpasse spillobby, bonustilbud og UI-layout baseret på individuel spilprofil. Nogle casinoer eksperimenterer allerede med AI-drevne 'For dig'-sektioner, der prioriterer spil baseret på din historik. Denne teknologi rejser dog privacy-spørgsmål, der kræver gennemsigtighed.", icon: Search },
+              { title: "AI-personalisering", desc: "Machine learning-algoritmer vil tilpasse spillobby, bonustilbud og UI-layout baseret på individuel spilprofil. Nogle casinoer eksperimenterer allerede med AI-drevne 'For dig'-sektioner, der prioriterer spil baseret på din historik. Denne teknologi rejser dog privacy-spørgsmål, der kræver gennemsigtighed.", iconName: "search" },
               { title: "AR/VR Casino", desc: "Augmented Reality kan bringe casino-elementer ind i din fysiske omverden – forestil dig et holografisk roulette-hjul på dit sofabord. Apple Vision Pro og Meta Quest 3 har allerede casino-apps i beta. For dansk marked forventer vi AR-features i mainstream casino-apps inden 2028.", iconName: "globe" },
               { title: "Wearable Casino", desc: "Apple Watch og Samsung Galaxy Watch kan allerede vise kontobalancer og notifikationer. Næste trin er simple spil (scratch cards, jackpot-spin) direkte på smartwatch. Wear OS 5 og watchOS 11 giver tilstrækkelig processing power til simple WebGL-animationer.", iconName: "smartphone" },
               { title: "Voice Betting", desc: "Med Siri, Google Assistant og Alexa kan stemmestyrede væddemål blive mulige – 'Hey Siri, sæt 50 kr. på sort i roulette'. Regulatoriske udfordringer (verifikation, ansvarligt spil) bremser dog implementeringen. Vi forventer voice-integration for kontoforespørgsler først, dernæst simple bets.", iconName: "heart" },
-              { title: "5G-eksklusive features", desc: "5G's lave latency (< 10 ms) muliggør real-time multiplayer casino-oplevelser, synkron slot-turneringer med tusindvis af spillere, og 4K live casino-streaming uden buffering. Se vores analyse i " , icon: Wifi },
+              { title: "5G-eksklusive features", desc: "5G's lave latency (< 10 ms) muliggør real-time multiplayer casino-oplevelser, synkron slot-turneringer med tusindvis af spillere, og 4K live casino-streaming uden buffering. Se vores analyse i " , iconName: "wifi" },
               { title: "Blockchain & Transparens", desc: "Provably fair-teknologi baseret på blockchain kan give spillere mulighed for at verificere RNG-resultater uafhængigt. Selvom regulatorisk accept i Danmark er begrænset, eksperimenterer flere internationale operatører med hybrid-modeller.", iconName: "shield" },
             ].map((t) => (
               <Card key={t.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><t.icon className="h-4 w-4 text-primary" />{t.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><MenuIcon iconName={t.iconName} className="h-4 w-4 text-primary" />{t.title}</CardTitle></CardHeader>
                 <CardContent><p className="text-xs text-muted-foreground">{t.desc}</p></CardContent>
               </Card>
             ))}

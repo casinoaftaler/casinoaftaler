@@ -219,7 +219,7 @@ const HurtigUdbetaling = () => {
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <method.icon className="h-6 w-6 text-primary" />
+                      <MenuIcon iconName={method.iconName} className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">{method.title}</CardTitle>
                     </div>
                     <Badge variant="outline" className="text-xs">{method.tag}</Badge>
@@ -319,16 +319,16 @@ const HurtigUdbetaling = () => {
           </p>
           <div className="space-y-3">
             {[
-              { icon: Fingerprint, title: "1. Verificer din konto proaktivt ved registrering", desc: "Upload ID-dokumenter og adressebevis lige efter kontooprettelse – ikke først når du vil hæve. Det eliminerer den største forsinkelseskilde og sparer dig potentielt 24+ timer ved din første udbetaling. MitID-verifikation gør dette nærmest automatisk." },
+              { iconName: "fingerprint", title: "1. Verificer din konto proaktivt ved registrering", desc: "Upload ID-dokumenter og adressebevis lige efter kontooprettelse – ikke først når du vil hæve. Det eliminerer den største forsinkelseskilde og sparer dig potentielt 24+ timer ved din første udbetaling. MitID-verifikation gør dette nærmest automatisk." },
               { iconName: "zap", title: "2. Indbetal via Trustly fra start", desc: "De fleste casinoer kræver at du udbetaler via den metode du indbetalte med. Vælg Trustly fra starten for at sikre den hurtigste udbetalingskanal (5-15 min.) – i stedet for at sidde fast med kort-udbetaling (1-3 dage)." },
               { iconName: "check-circle2", title: "3. Opfyld omsætningskrav INDEN udbetalingsanmodning", desc: "Anmod aldrig om udbetaling med aktive bonuskrav. Det forsinker behandlingen, kan resultere i annullering af bonus og gevinster, og kræver ofte manuel gennemgang af casinoets bonusafdeling. Tjek din bonusstatus under 'Konto' før du anmoder." },
-              { icon: Timer, title: "4. Udbetal på hverdage formiddag", desc: "Bankoverførsler og kortudbetalinger behandles kun på hverdage. For hurtigst mulig bankoverførsel: udbetal tirsdag-torsdag formiddag. Fredag eftermiddag og weekendudbetalinger forsinkes typisk til mandag. Trustly og e-wallets er dog tilgængelige 24/7." },
+              { iconName: "timer", title: "4. Udbetal på hverdage formiddag", desc: "Bankoverførsler og kortudbetalinger behandles kun på hverdage. For hurtigst mulig bankoverførsel: udbetal tirsdag-torsdag formiddag. Fredag eftermiddag og weekendudbetalinger forsinkes typisk til mandag. Trustly og e-wallets er dog tilgængelige 24/7." },
               { iconName: "bar-chart3", title: "5. Hold dig under den interne auto-godkendelsesgrænse", desc: "Udbetalinger under casinoets interne grænse (typisk 10.000-25.000 kr.) behandles automatisk og hurtigere. Store beløb kræver ofte manuel godkendelse, hvilket tilføjer 24-72 timer. VIP-spillere har højere auto-grænser." },
               { iconName: "lock", title: "6. Undgå at ændre betalingsmetode", desc: "Skift af betalingsmetode mellem indbetaling og udbetaling kræver ofte ekstra KYC-verifikation og kan forsinke processen med 24-48 timer. Vælg din foretrukne metode fra starten og hold dig til den." },
               { iconName: "eye", title: "7. Vælg casinoer med 0 timers pending time", desc: "Pending time er den tid casinoet 'holder' din udbetaling, før de begynder at behandle den. Casinoer med 0 timers pending time behandler din anmodning øjeblikkeligt – ingen ventetid, ingen fristelse til reverse withdrawal." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -448,7 +448,7 @@ const HurtigUdbetaling = () => {
               { iconName: "alert-triangle", title: "Fejl 5: At udbetale fredag eftermiddag", desc: "Bankoverførsler og kortudbetalinger behandles ikke i weekender. En fredagsanmodning kan reelt forsinke udbetalingen til tirsdag. Løsning: Brug Trustly (24/7) eller udbetal tirsdag-torsdag formiddag for bankmetoder." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

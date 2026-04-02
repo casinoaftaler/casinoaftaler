@@ -572,7 +572,7 @@ const CasinoBonus = () => {
           <div className="space-y-4">
             {[
               {
-                icon: Ban,
+                iconName: "ban",
                 title: "1. Max. indsats-overtrædelse",
                 desc: "Den hyppigste årsag til konfiskeret bonus. Du spiller med 50 kr. pr. spin, men vilkårene tillader kun 25 kr. Casinoets system registrerer overtrædelsen – ofte først, når du anmoder om udbetaling. Resultat: bonus og gevinster annulleret. Tjek altid max. indsats i vilkårene, og hold dig under grænsen med margin."
               },
@@ -608,7 +608,7 @@ const CasinoBonus = () => {
               },
             ].map((item, idx) => (
               <div key={idx} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -839,7 +839,7 @@ const CasinoBonus = () => {
               { to: "/indskudsbonus", label: "Indskudsbonus Guide", iconName: "credit-card" },
               { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", iconName: "zap" },
               { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", iconName: "check-circle2" },
-              { to: "/cashback-bonus", label: "Cashback Bonus Guide", icon: DollarSign },
+              { to: "/cashback-bonus", label: "Cashback Bonus Guide", iconName: "dollar-sign" },
               { to: "/reload-bonus", label: "Reload Bonus Guide", iconName: "refresh-cw" },
               { to: "/omsaetningskrav", label: "Omsætningskrav Guide", iconName: "percent" },
               { to: "/vip-program", label: "VIP Program Guide", iconName: "crown" },
@@ -853,7 +853,7 @@ const CasinoBonus = () => {
               { to: "/ordbog", label: "Casino Ordbog", iconName: "book-open" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium hover:border-primary/50 transition-colors">
-                <link.icon className="h-4 w-4 text-primary flex-shrink-0" />
+                <MenuIcon iconName={link.iconName} className="h-4 w-4 text-primary flex-shrink-0" />
                 {link.label}
                 <ArrowRight className="h-3 w-3 ml-auto text-muted-foreground" />
               </Link>

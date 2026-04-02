@@ -109,13 +109,13 @@ const risici = [
     tag: "Retssikkerhed",
   },
   {
-    icon: Ban,
+    iconName: "ban",
     title: "Blokerede sider",
     description: "Spillemyndigheden kan pålægge danske internetudbydere at blokere adgangen til ulicenserede gambling-sider. Du risikerer at miste adgang – og potentielt indeståender – uden varsel.",
     tag: "Teknisk",
   },
   {
-    icon: Fingerprint,
+    iconName: "fingerprint",
     title: "Svagere identitetskontrol",
     description: "Ulicenserede casinoer bruger ikke MitID og har svagere KYC-procedurer. Det øger risikoen for identitetstyveri, kontoovertag og at mindreårige kan oprette konti uhindret.",
     tag: "Sikkerhed",
@@ -254,7 +254,7 @@ const CasinoUdenRofus = () => {
               <Card key={risk.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <risk.icon className="h-6 w-6 text-destructive" />
+                    <MenuIcon iconName={risk.iconName} className="h-6 w-6 text-destructive" />
                     <Badge variant="outline" className="text-xs">{risk.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{risk.title}</CardTitle>
@@ -467,13 +467,13 @@ const CasinoUdenRofus = () => {
 
           <div className="space-y-3">
             {[
-              { icon: Gavel, title: "Licenskrav", desc: "Operatører skal dokumentere økonomisk stabilitet, have en bankgaranti på minimum 5 mio. DKK, implementere ansvarligt spil-værktøjer og tilslutte sig ROFUS. Licensen koster en årlig afgift og kræver løbende rapportering til Spillemyndigheden." },
+              { iconName: "gavel", title: "Licenskrav", desc: "Operatører skal dokumentere økonomisk stabilitet, have en bankgaranti på minimum 5 mio. DKK, implementere ansvarligt spil-værktøjer og tilslutte sig ROFUS. Licensen koster en årlig afgift og kræver løbende rapportering til Spillemyndigheden." },
               { iconName: "scale", title: "Bonusregulering", desc: "Danske bonusser er begrænset til max 10x omsætningskrav (effektivt en af de laveste i verden). Bonusvilkår skal være klart kommunikeret, og casinoer må ikke tilbyde bonusser der tilskynder til overdrevent spil. Der må desuden ikke tilbydes velkomstbonusser til spillere under 21 år (skærpet krav fra 2025)." },
               { iconName: "eye", title: "Overvågning og håndhævelse", desc: "Spillemyndigheden overvåger aktivt markedet for ulicenserede operatører, gennemfører uanmeldte audits af licenserede casinoer, og kan udstede bøder, tilbagekalde licenser og blokere domæner. I 2025 blev der udstedt bøder for over 12 mio. DKK for overtrædelser." },
               { iconName: "landmark", title: "EU-ramme", desc: "Danmark opererer inden for EU's ramme for online gambling-regulering, men spillelovgivning er primært et nationalt anliggende. EU-domstolen har gentagne gange bekræftet medlemsstaternes ret til at regulere gambling-markedet af hensyn til folkesundhed og offentlig orden." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -555,7 +555,7 @@ const CasinoUdenRofus = () => {
               { iconName: "shield", title: "Pårørenderådgivning", desc: "Er du pårørende til en person med spilleproblemer? StopSpillet tilbyder også rådgivning til familie og venner. Det kan være lige så belastende at være pårørende som at have problemet selv. Ring 70 22 28 25 – hjælpen gælder også dig." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

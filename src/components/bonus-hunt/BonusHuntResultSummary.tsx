@@ -71,7 +71,7 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
               className={`group/card rounded-[14px] bg-gradient-to-br ${card.bgClass} px-3 py-2 transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-md`}
             >
               <div className="flex items-center gap-1.5 mb-0.5">
-                <Icon className={`h-3.5 w-3.5 ${card.colorClass} transition-all duration-[180ms] group-hover/card:drop-shadow-[0_0_4px_currentColor]`} />
+                <MenuIcon iconName={card.iconName} className={`h-3.5 w-3.5`} />
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{card.label}</p>
               </div>
               <p className={`text-lg font-bold ${card.colorClass} transition-transform duration-[180ms] group-hover/card:scale-[1.02]`}>

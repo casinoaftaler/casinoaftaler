@@ -439,7 +439,7 @@ const MobilCasino = () => {
                 desc: "CSS media queries og flexible grids tilpasser automatisk layoutet til din skærmstørrelse – fra iPhone SE til iPad Pro. Touch-targets er forstørrede for nem navigation.",
               },
               {
-                icon: Wifi,
+                iconName: "wifi",
                 title: "Progressive Web Apps (PWA)",
                 desc: "Mange casinoer tilbyder PWA-funktionalitet: gem som app på startskærmen, offline-caching af UI-elementer, og push-notifikationer – uden App Store download.",
               },
@@ -454,7 +454,7 @@ const MobilCasino = () => {
                 desc: "Al kommunikation mellem din enhed og casinoet krypteres med den nyeste TLS 1.3 protokol – identisk sikkerhed som internetbankering og MitID.",
               },
               {
-                icon: Battery,
+                iconName: "battery",
                 title: "Batterioptimering",
                 desc: "Moderne spilmotorer optimerer CPU/GPU-forbrug for at minimere batteridrain. HTML5-spil er typisk mere batterivenlige end native apps med tung grafik.",
               },
@@ -462,7 +462,7 @@ const MobilCasino = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -744,7 +744,7 @@ const MobilCasino = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -1469,7 +1469,7 @@ const MobilCasino = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>

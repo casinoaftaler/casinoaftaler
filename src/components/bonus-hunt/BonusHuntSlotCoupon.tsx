@@ -300,7 +300,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
               riskProfile.type === "defensive" && "slot-coupon-result-hit",
               riskProfile.type === "balanced" && "slot-coupon-info-bar",
             )} style={{ padding: '2px 8px' }}>
-              <riskProfile.icon className="h-3 w-3" />
+              <MenuIcon iconName={riskProfile.iconName} className="h-3 w-3" />
               {riskProfile.label}
             </span>
           ) : <span />}

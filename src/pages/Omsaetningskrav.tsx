@@ -394,7 +394,7 @@ const Omsaetningskrav = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -593,7 +593,7 @@ const Omsaetningskrav = () => {
               { title: "Breakeven-punkt", desc: "Bonussen har positiv EV så længe: Bonusbeløb > Total omsætning × House Edge. For 10x (d+b) med 2.000 kr. saldo kræves en RTP over 95% for positiv EV. Under 95% RTP er bonussen statistisk værdiløs.", iconName: "target" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -720,7 +720,7 @@ const Omsaetningskrav = () => {
             {[
               { title: "✅ Slot-spilleren (5-25 kr./spin)", desc: "Mest kompatibel med omsætningskrav. Slots bidrager 100% og med 96-98% RTP taber du kun 2-4% per omsættet krone. Med 10x omsætning på 1.000 kr. (10.000 kr. total) og 5 kr./spin tager det ~33 min. ved 10 sek./spin. Anbefalet strategi: Blood Suckers (98% RTP), Starburst (96,1%), 1429 Uncharted Seas (98,6%).", iconName: "sparkles" },
               { title: "⚠️ Casual spilleren (mixede spil)", desc: "Moderat kompatibel. Casual spillere skifter mellem slots, bordspil og live casino – men kun slots tæller 100%. En mixed strategi forlænger gennemspilningstiden dramatisk. Anbefaling: Afslut omsætningen med slots først, spil derefter bordspil/live med egne penge.", iconName: "gamepad2" },
-              { title: "❌ Bordspil-entusiasten", desc: "Dårlig kompatibilitet. Med 10% bidrag fra blackjack kræver en 10x bonus reelt 100x i bordspilsindsatser. 1.000 kr. bonus × 10 ÷ 0,10 = 100.000 kr. i blackjack-omsætning. Selv med 99,5% RTP er det en massiv indsats. Anbefaling: Undgå bonusser eller vælg bonus uden omsætningskrav.", icon: Ban },
+              { title: "❌ Bordspil-entusiasten", desc: "Dårlig kompatibilitet. Med 10% bidrag fra blackjack kræver en 10x bonus reelt 100x i bordspilsindsatser. 1.000 kr. bonus × 10 ÷ 0,10 = 100.000 kr. i blackjack-omsætning. Selv med 99,5% RTP er det en massiv indsats. Anbefaling: Undgå bonusser eller vælg bonus uden omsætningskrav.", iconName: "ban" },
               { title: "❌ Live casino-spilleren", desc: "Værste kompatibilitet. Live casino bidrager typisk 0-10% til omsætningen og er ofte helt udelukket. En bonus er reelt ubrugelig for den rene live-spiller. Anbefaling: Afslå bonussen og spil med egne penge. En cashback-bonus er det eneste relevante alternativ.", iconName: "alert-triangle" },
               { title: "✅ Bonusjægeren", desc: "Optimal kompatibilitet – men kræver disciplin. Bonusjægere vælger systematisk slots med 97%+ RTP, holder indsatsen på 1-2% af saldo, og beregner EV på forhånd. Med rigtig spilvalg og tålmodighed er 10x omsætning profitable i ca. 65% af tilfældene.", iconName: "target" },
               { title: "⚠️ High rolleren (50+ kr./spin)", desc: "Betinget kompatibilitet. Høje indsatser gennemfører omsætningen hurtigt, men maks-indsatsreglen (typisk 50 kr.) kan begrænse high rollere under bonusspil. Derudover giver højere indsatser større varians – risikoen for bust stiger. Anbefaling: VIP-bonusser med højere maks-indsatsgrænse.", iconName: "trending-up" },
@@ -728,7 +728,7 @@ const Omsaetningskrav = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -849,7 +849,7 @@ const Omsaetningskrav = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
