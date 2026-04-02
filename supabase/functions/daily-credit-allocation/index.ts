@@ -177,33 +177,53 @@ Deno.serve(async (req) => {
 
       if (todayBalance !== undefined) {
         // User already has a row for today (e.g., from missions before cron ran)
-        // ALWAYS add the full daily amount on top
-        updateRows.push({ user_id: p.user_id, addAmount: dailyAmount, currentBalance: todayBalance });
+        // Only top up if below daily cap — never add more if already at/above cap
+        if (todayBalance >= dailyAmount) {
+          skipped++;
+          continue;
+        }
+        const topUpAmount = dailyAmount - todayBalance;
+        updateRows.push({ user_id: p.user_id, addAmount: topUpAmount, currentBalance: todayBalance });
         logRows.push({
           user_id: p.user_id,
-          amount: dailyAmount,
+          amount: topUpAmount,
           source: "daily_cron",
-          note: `Daglig tildeling: +${dailyAmount} credits (fra ${todayBalance} til ${todayBalance + dailyAmount})`,
+          note: `Daglig tildeling: +${topUpAmount} credits (fra ${todayBalance} til ${dailyAmount})`,
         });
       } else {
-        // No row for today — create one with carry-over + daily amount
+        // No row for today — create one with carry-over
         const previous = latestSpinMap.get(p.user_id) ?? 0;
         const carryOver = Math.max(0, previous);
-        const startValue = carryOver + dailyAmount;
 
-        newRows.push({
-          user_id: p.user_id,
-          date: today,
-          spins_remaining: startValue,
-          game_id: "shared",
-        });
-
-        logRows.push({
-          user_id: p.user_id,
-          amount: dailyAmount,
-          source: "daily_cron",
-          note: `Daglig tildeling: +${dailyAmount} credits (carry-over: ${carryOver}, ny balance: ${startValue})`,
-        });
+        if (carryOver >= dailyAmount) {
+          // Already above cap from carry-over, just carry over without adding
+          newRows.push({
+            user_id: p.user_id,
+            date: today,
+            spins_remaining: carryOver,
+            game_id: "shared",
+          });
+          logRows.push({
+            user_id: p.user_id,
+            amount: 0,
+            source: "daily_cron",
+            note: `Daglig tildeling: carry-over ${carryOver} >= cap ${dailyAmount}, ingen ekstra credits`,
+          });
+        } else {
+          // Top up to daily cap
+          newRows.push({
+            user_id: p.user_id,
+            date: today,
+            spins_remaining: dailyAmount,
+            game_id: "shared",
+          });
+          logRows.push({
+            user_id: p.user_id,
+            amount: dailyAmount - carryOver,
+            source: "daily_cron",
+            note: `Daglig tildeling: +${dailyAmount - carryOver} credits (carry-over: ${carryOver}, ny balance: ${dailyAmount})`,
+          });
+        }
       }
     }
 
