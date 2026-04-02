@@ -888,3 +888,24 @@
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+/* === MOBILE PERFORMANCE OPTIMIZATIONS === */
+@media (max-width: 767px) {
+  /* Remove heavy box-shadows from coin particles on mobile */
+  .absolute .rounded-full {
+    box-shadow: none !important;
+  }
+  /* Disable rotating light rays (huge compositing cost) */
+  @keyframes light-ray-rotate {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0; }
+  }
+  /* Simplify win screen flash */
+  @keyframes win-screen-flash {
+    0% { opacity: 0.5; }
+    100% { opacity: 0; }
+  }
+  /* Reduce counter tick animation */
+  @keyframes counter-tick {
+    0%, 100% { transform: none; }
+  }
+}
