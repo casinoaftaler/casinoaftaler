@@ -443,14 +443,14 @@ const DealOrNoDealGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For optimal værdi anbefaler vi casinoer med hurtige udbetalinger, gode ansvarlighedsværktøjer og stabil streaming. Besøg <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for aktuelle tilbud eller <Link to="/casino-anmeldelser" className={linkClass}>læs anmeldelser</Link>.
           </p>
-          <InlineCasinoCards title="Spil Deal or No Deal her" count={3} />
+          <InlineCasinoCards title="Deal or No Deal – anbefalede casinoer" count={3} />
         </section>
 
         <Separator className="my-10" />
 
         {/* ── H2 10: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Ansvarligt spil med Deal or No Deal</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deals kvalifikationsrunde skaber en unik risiko for "chasing" – spillere, der øger indsatsen eller boost-niveauet for at kvalificere sig hurtigere efter en dårlig runde. Denne eskaleringsadfærd kan hurtigt overskride budgettet, fordi kvalifikationsomkostningen er "skjult" i mange små indsatser snarere end én synlig stor indsats.
           </p>
@@ -462,10 +462,10 @@ const DealOrNoDealGuide = () => {
           </p>
         </section>
 
-        <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
-        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
-        <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
+        <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
+        <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
+        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />

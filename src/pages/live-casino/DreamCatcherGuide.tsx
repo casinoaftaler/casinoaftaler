@@ -448,7 +448,7 @@ const DreamCatcherGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For den bedste oplevelse anbefaler vi casinoer med hurtige udbetalinger (under 24 timer), gode ansvarlighedsværktøjer og stabil streaming-kvalitet. Besøg vores <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for aktuelle tilbud eller <Link to="/casino-anmeldelser" className={linkClass}>læs anmeldelser</Link> af etablerede operatører.
           </p>
-          <InlineCasinoCards title="Spil Dream Catcher her" count={3} />
+          <InlineCasinoCards title="Prøv Dream Catcher på disse casinoer" count={3} />
         </section>
 
         <Separator className="my-10" />
@@ -467,11 +467,11 @@ const DreamCatcherGuide = () => {
           </p>
         </section>
 
-        <LiveCasinoMoneyLinks gameName="Dream Catcher" currentPath="/live-casino/dream-catcher" />
         <LatestNewsByCategory pagePath="/live-casino/dream-catcher" />
+        <LiveCasinoMoneyLinks gameName="Dream Catcher" currentPath="/live-casino/dream-catcher" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dream Catcher" faqs={faqs} />
-        <RelatedGuides currentPath="/live-casino/dream-catcher" />
         <AuthorBio author="jonas" />
+        <RelatedGuides currentPath="/live-casino/dream-catcher" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

@@ -486,14 +486,14 @@ const CrazyTimeGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For optimal værdi anbefaler vi at vælge et casino med hurtige udbetalinger (under 24 timer), lave eller ingen <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, og gode ansvarlighed-værktøjer (tab-limits, session-reminders). Besøg vores <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste tilbud, eller <Link to="/casino-anmeldelser" className={linkClass}>læs anmeldelser</Link> af etablerede operatører.
           </p>
-          <InlineCasinoCards title="Spil Crazy Time her" count={3} />
+          <InlineCasinoCards title="Crazy Time hos danske casinoer" count={3} />
         </section>
 
         <Separator className="my-10" />
 
         {/* ── H2 12: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt spil med Crazy Time – en nødvendig advarsel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Crazy Times kombination af ultra-høj volatilitet, konstante bonusspil, energiske værter og social interaktion gør det til et af de mest vanedannende casino-spil. De psykologiske virkemidler (AR-effekter, near-miss-oplevelser, variable belønninger) er bevidst designet til at forlænge spilletiden og øge indsatserne. Det er afgørende at sætte og overholde faste grænser.
           </p>
@@ -508,10 +508,10 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
-        <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
-        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
+        <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
+        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
