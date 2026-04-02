@@ -446,6 +446,13 @@ const BingoGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spilnuBingo}
+          alt="Spilnu bingo-rum med aktive spil, pladekøb og chat-funktion"
+          caption="Spilnu bingo – eksempel på et dansk bingo-rum med live chat og automatisk talmarkering"
+          size="full"
+        />
+
         <Separator className="my-8" />
 
         {/* Bankroll management */}

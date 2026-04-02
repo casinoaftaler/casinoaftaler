@@ -594,6 +594,13 @@ const BlackjackSkemaGuide = () => {
             </p>
           </section>
 
+          <ReviewScreenshot
+            src={classicBlackjack}
+            alt="Classic Blackjack-bord med basic strategy-beslutning om hit, stand eller double down"
+            caption="Classic Blackjack – her kan du afprøve basic strategy-skemaet i praksis med lave indsatser"
+            size="full"
+          />
+
           <Separator className="my-8" />
 
           {/* ── Varianter ── */}
