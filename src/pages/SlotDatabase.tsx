@@ -24,8 +24,8 @@ import { Separator } from "@/components/ui/separator";
 import { ProgrammaticPriorityLinks } from "@/components/ProgrammaticPriorityLinks";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
+import {
   buildSlotDatabasePath,
   buildSlotDatabaseSearchParams,
   getSlotDatabaseSeo,
