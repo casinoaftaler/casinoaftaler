@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import tkLogo from "@/assets/screenshots/tk-logo.webp";
+import tkProviders from "@/assets/screenshots/tk-providers.webp";
+import tkKatalog from "@/assets/screenshots/tk-katalog.webp";
+import tkGameplay from "@/assets/screenshots/tk-gameplay.webp";
 
 const ThunderkickGuide = () => (
   <ProviderPage
