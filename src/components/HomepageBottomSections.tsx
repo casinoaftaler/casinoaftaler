@@ -350,7 +350,7 @@ export function HomepageKonverteringsSection() {
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Button asChild size="lg" className="gap-2">
               <a href="#top-casinos">
-                <Trophy className="h-5 w-5" />
+                <MenuIcon iconName="trophy" className="h-5 w-5" />
                 Sammenlign Casinoer
               </a>
             </Button>
