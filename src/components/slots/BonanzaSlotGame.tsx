@@ -721,6 +721,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
               } else {
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
