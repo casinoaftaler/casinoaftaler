@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import relaxLogo from "@/assets/screenshots/relax-logo.webp";
+import relaxKatalog from "@/assets/screenshots/relax-katalog.webp";
+import relaxMoneytrainIntro from "@/assets/screenshots/relax-moneytrain-intro.webp";
+import relaxMoneytrainGameplay from "@/assets/screenshots/relax-moneytrain-gameplay.webp";
 
 const RelaxGamingGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const RelaxGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Relax Gaming er en maltesisk spiludvikler grundlagt i 2010, der opererer i en unik dobbeltrolle som både kreativt spiludviklingsstudio og B2B-aggregeringsplatform. Denne dualitet er ikke bare et forretningsstrategisk valg – det er en informationsfordel: ved at distribuere spil fra over 20 partnerstudios til 200+ operatører har Relax Gaming adgang til kommercielle data der fortæller dem præcist hvad der fungerer i markedet. Denne dataindsigt kanaliseres direkte ind i deres egne spildesigns, hvilket skaber en feedback-loop konkurrenter uden aggregator-funktion simpelthen ikke har.
         </p>
+        <ReviewScreenshot
+          src={relaxLogo}
+          alt="Relax Gaming officielt logo – sort tekst med dots-design"
+          caption="Relax Gamings minimalistiske logo afspejler studioets fokus på mekanik fremfor pynt."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Money Train-serien (nu fire titler: Money Train 1-4) har defineret Relax Gamings identitet og skabt en hel genre af efterlignere. Respins-mekanikken med persistente multiplikatorer og collector-symboler var revolutionerende ved lanceringen af Money Train 1 i 2018 og er siden perfektioneret i hver opfølger. Money Train 3 toppede med 100.000x maks. gevinst og 96,10% RTP – en kombination af fair afkast og ekstremt gevinstpotentiale der er svær at matche. Serien har inspireret titler fra konkurrenter som <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> (Hold & Win-serien) og mange mindre studios.
         </p>
@@ -49,6 +61,11 @@ const RelaxGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Relax Gaming besidder en sjælden dobbeltposition i branchen der minder om Shopifys rolle i e-handel: de sælger egne produkter (spil), men tjener også på at distribuere andres via deres platform. Denne hybridmodel skaber en strategisk moat der er ekstremt svær at kopiere – det kræver samtidig succes som kreativt studio og teknologisk platform, to discipliner der sjældent kombineres. Forskellen til <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> er skarp: hvor Pragmatic fokuserer på volumen med 6-8 egne udgivelser/måned, udgiver Relax 3-4 nøje polerede egne titler månedligt og supplerer med 15-20 partnertitler via deres platform.
         </p>
+        <ReviewScreenshot
+          src={relaxKatalog}
+          alt="Relax Gaming spilkatalog på Campobet – Grillmaster Grizzly, Hellcatraz, Money Pot og flere populære titler"
+          caption="Relax Gamings brede katalog hos Campobet inkluderer egne titler og partnerstudios via deres aggregeringsplatform."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Money Train-seriens strategiske værdi rækker ud over den individuelle spilleoplevelse. Respins-mekanikken med persistente multiplikatorer og symboltyper (Collector, Payer, Sniper, Shapeshifter) har inspireret en hel bølge af efterlignere – fra Pragmatic Plays Hold & Win til utallige indie-studios. Men originalen forbliver den mest velbalancerede: Money Train 3's matematiske model tillader 100.000x maks. gevinst med 96,10% RTP, hvilket er exceptionelt. Hitfrekvensen er lav (under 20%), men bonusrundens design belønner tålmodighed med potentielt massive vinderkaskader.
         </p>
@@ -100,6 +117,11 @@ const RelaxGamingGuide = () => (
           Dream Drop-titlerne tilføjer en ekstra dimension: progressive jackpots der kan falde under enhver session, uafhængigt af bonusrunden. Jackpot-bidraget er gennemsnitligt under 1% af indsatsen, hvilket gør det til det mindst invasive jackpot-system i branchen – basis-RTP forringes næsten ikke. Relax Gaming-spil er populære i{" "}
           <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-tilbud takket være kombinationen af høj maks. gevinst og acceptabel RTP.
         </p>
+        <ReviewScreenshot
+          src={relaxMoneytrainIntro}
+          alt="Money Train 2 intro-skærm med Money Cart Bonusrunde, 50.000x maks. gevinst og Re-Spin funktion"
+          caption="Money Train 2's intro-skærm præsenterer de tre kernefeatures: Money Cart Bonusrunde, 50.000x maks. og Re-Spin."
+        />
       </>
     }
     games={[
@@ -119,6 +141,12 @@ const RelaxGamingGuide = () => (
           Som aggregator tilfører Relax en ekstra kvalitetskontrol: alle partnerstudios screenes for regulatorisk compliance, matematisk integritet og teknisk kvalitet inden de får adgang til platformen. Powered By Relax-partnere gennemgår den mest omfattende screening; Silver Bullet er lettere men stadig substantiel. For danske spillere betyder dette at ethvert spil distribueret via Relax Gamings platform er dobbelt-verificeret: først af partnerstudioets egne regulatorer, dernæst af Relax' interne QA-team. Læs mere om{" "}
           <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link> og hvordan RTP og volatilitet påvirker bonusspil.
         </p>
+        <ReviewScreenshot
+          src={relaxMoneytrainGameplay}
+          alt="Money Train 2 gameplay – 4x5 hjulopsætning med steampunk-karakterer, multiplikatorer og dansk interface"
+          caption="Money Train 2 i aktion: karaktersymboler med steampunk-tema og den ikoniske 4x5 hjulstruktur."
+          size="medium"
+        />
       </>
     }
     pros={[
