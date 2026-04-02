@@ -64,6 +64,11 @@ export const SlotReel = React.memo(function SlotReel({
   symbolSize,
   symbolGap,
 }: SlotReelProps) {
+  const SYMBOL_HEIGHT = symbolSize ?? DEFAULT_SYMBOL_HEIGHT;
+  const GAP = symbolGap ?? DEFAULT_GAP;
+  const TOTAL_SYMBOL_HEIGHT = SYMBOL_HEIGHT + GAP;
+  const VIEWPORT_HEIGHT = 3 * SYMBOL_HEIGHT + 2 * GAP;
+
   const isWizard = gameId === "rise-of-fedesvin";
   const isBonanza = gameId === "fedesvin-bonanza";
   const shimmerTheme = isBonanza ? "slot-idle-shimmer-pink" : isWizard ? "slot-idle-shimmer-purple" : "slot-idle-shimmer-gold";
