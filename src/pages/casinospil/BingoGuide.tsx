@@ -243,6 +243,13 @@ const BingoGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilBingo}
+          alt="Danske Spil bingo-lobby med 75-kugle og 90-kugle bingo-rum samt aktive jackpots"
+          caption="Danske Spil bingo – et af de mest populære bingo-rum hos danske casinoer med licens"
+          size="full"
+        />
+
         <Separator className="my-8" />
 
         {/* Varianter */}
