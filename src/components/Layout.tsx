@@ -38,7 +38,7 @@ export function Layout() {
       <BackToTop />
       {isCommunityPage && <TwitchLivePlayer />}
       <ProfileCompletionPrompt />
-      <SupportChatWidget />
+      {!isSlotMachinePage && <SupportChatWidget />}
     </div>
   );
 }
