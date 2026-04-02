@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Dices } from "lucide-react";
+import { ChevronDown, Dices, Star } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { MENU_ICON_MAP } from "./menuIconMap";
