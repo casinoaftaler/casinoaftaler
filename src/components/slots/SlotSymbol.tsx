@@ -27,13 +27,15 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-lg border-2 transition-all duration-300 overflow-hidden",
+        "relative flex items-center justify-center rounded-lg border-2 overflow-hidden",
+        // Use specific transition properties instead of transition-all to avoid unnecessary repaints
+        "transition-[border-color,transform,background-color] duration-300",
         isWinning
           ? isWizard
             ? "border-purple-400 scale-105 bg-purple-900/30"
             : "border-amber-400 scale-105 bg-amber-900/30"
           : "border-transparent",
-        isSpinning && "animate-pulse",
+        // Skip animate-pulse on spinning symbols — invisible while reels move fast and wastes GPU
         isExpanded && (isWizard ? "scale-110 border-purple-400/50" : "scale-110 border-amber-400/50"),
         isNewlyExpanded && "animate-[expansion-flash_0.6s_ease-out]",
         symbol.is_scatter && hasLanded && !isSpinning && "animate-[scatter-land_0.5s_ease-out]",
