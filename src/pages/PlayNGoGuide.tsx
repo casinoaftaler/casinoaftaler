@@ -124,9 +124,21 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Play'n GOs portefølje er organiseret omkring franchises og tematiske familier snarere end mekaniske kategorier. Rich Wilde-serien, Reactoonz-universet, Olympus-trilogien og de standalone-titler der eksperimenterer med nye formater – hver gruppe har sin egen identitet, sin egen spillerbase og sin egen rolle i porteføljen. Det er en organisatorisk tilgang der minder mere om et filmstudio end et traditionelt spiludviklingsselskab.
         </p>
+        <ReviewScreenshot
+          src={pngKatalog}
+          alt="Play'n GO spilkatalog på CampoBet casino med 434 spilleautomater"
+          caption="Play'n GOs komplette katalog på CampoBet – 434 titler inkl. Honey Rush, Book of Dead og Reactoonz 100."
+          size="full"
+        />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Følgende seks titler repræsenterer bredden i Play'n GOs kreative vision – fra den ikoniske Book of Dead til grid-innovationen i Reactoonz og den mytologiske storytelling i Rise of Olympus. Alle med fast RTP der ikke kan ændres af operatører – en garanti der gør disse titler særligt velegnede til informerede spillere der vil have gennemsigtighed i deres spiloplevelse.
         </p>
+        <ReviewScreenshot
+          src={pngGameplay}
+          alt="Book of Dead gameplay – Rich Wilde egyptisk spilleautomat fra Play'n GO"
+          caption="Book of Dead gameplay med symboler som Anubis, farao og scarab – Play'n GOs mest ikoniske titel med 96,21% fast RTP."
+          size="full"
+        />
       </>
     }
     games={[
