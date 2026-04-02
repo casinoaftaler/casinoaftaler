@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import endorphinaLogo from "@/assets/screenshots/endorphina-logo.webp";
+import endorphinaStats from "@/assets/screenshots/endorphina-stats.webp";
+import endorphinaKatalog from "@/assets/screenshots/endorphina-katalog.webp";
+import endorphinaGameplay from "@/assets/screenshots/endorphina-gameplay.webp";
 
 const EndorphinaGuide = () => (
   <ProviderPage
