@@ -273,7 +273,7 @@ export function HomepageSlotShowcase() {
           {" "}– Hacksaw Gamings westernslot med Duel at Dawn og 12.500× max win.
         </li>
         <li className="flex items-center gap-2 text-muted-foreground">
-          <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
+           <MenuIcon iconName="sparkles" className="h-4 w-4 flex-shrink-0" />
           <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className="text-primary hover:underline font-medium">Big Bass Bonanza</Link>
           {" "}– Money Collect-mekanikken fra Pragmatic Play med 96,71 % RTP.
         </li>
