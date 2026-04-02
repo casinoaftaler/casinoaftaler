@@ -152,7 +152,7 @@ export const MENU_ICON_MAP: Record<string, string> = {
   "alert-triangle": img("alert-triangle.webp"),
   "globe": img("globe-earth.webp"),
   "headphones": img("headphones.webp"),
-  "coins": img("coins-stack.webp"),
+  
   "lock": img("lock-secure.webp"),
   "search": img("search-magnify.webp"),
   "check-circle-2": img("check-circle-green.webp"),
