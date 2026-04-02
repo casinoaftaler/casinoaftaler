@@ -86,6 +86,11 @@ const NolimitCityGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Målgruppen er tydelig og snæver: thrill-seekers og streamere med den højeste risikovillighed i markedet. Nolimit City laver ikke spil for alle – de laver spil for de 5-10% af markedet der vil have den mest intense oplevelse mulig. Og Evolutions villighed til at betale €340 millioner bekræfter at dette snævre segment er ekstremt lukrativt. For danske spillere der søger <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-oplevelser med maksimalt upside og minimalt downside-risiko (du mister kun bonusbeløbet), er Nolimit City det ultimative valg – forudsat at man forstår og accepterer volatilitetens konsekvenser.
         </p>
+        <ReviewScreenshot
+          src={nolimitGameplay}
+          alt="xWays Hoarder xSplit gameplay – Nolimit City slot med Fallout Scatter symboler og Bunker Raid bonusfunktion"
+          caption="xWays Hoarder xSplit – Nolimit Citys patenterede xWays og xSplit mekanikker i aktion med Bunker Raid bonus."
+        />
       </>
     }
     technicalProfile={
