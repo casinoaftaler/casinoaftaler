@@ -4,6 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import hacksawLogo from "@/assets/screenshots/hacksaw-logo.webp";
+import hacksawStats from "@/assets/screenshots/hacksaw-stats.webp";
+import hacksawGameplay from "@/assets/screenshots/hacksaw-gameplay.webp";
+import hacksawBonuskob from "@/assets/screenshots/hacksaw-bonuskob.webp";
+import hacksawVsSymbol from "@/assets/screenshots/hacksaw-vs-symbol.webp";
+import hacksawPaylines from "@/assets/screenshots/hacksaw-paylines.webp";
+import hacksawSearch from "@/assets/screenshots/hacksaw-search.webp";
 
 const HacksawGamingGuide = () => (
   <ProviderPage
@@ -24,6 +32,12 @@ const HacksawGamingGuide = () => (
     introTitle="Skrabelodder, Punk-Attitude og 55.000x: Hacksaw Gamings Usandsynlige Oprejsning"
     introContent={
       <>
+        <ReviewScreenshot
+          src={hacksawLogo}
+          alt="Hacksaw Gaming officielt logo – sort tekst med karakteristisk split-design der afspejler studiets disruptive tilgang"
+          caption="Hacksaw Gamings officielle logo fra deres hjemmeside – det grafiske split-design symboliserer studiets brud med konventioner"
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I 2018 registrerede en gruppe iværksættere et nyt spiludviklingsselskab på Malta. Deres produkt? Skrabelodder – den digitale ækvivalent til de fysiske skrabespil du finder i kiosken. Ingen tog notits. Ingen burde have gjort det. Skrabelodder er casinoindustriens parkeringsplads: funktionelle, uinspirerende og med en margen der næppe retfærdiggør investeringen. Men Hacksaw Gaming havde aldrig intentioner om at blive på parkeringspladsen. De brugte skrabelodderne som et laboratorium – en kontrolleret sandkasse hvor de testede kompakte spilflader, øjeblikkelig feedback og visuelle overdrev, der ville forme alt hvad de efterfølgende skabte.
         </p>
@@ -36,6 +50,12 @@ const HacksawGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Matematisk er Hacksaw kompromisløse. Deres volatilitetsprofil er konsekvent ekstremt høj – typisk i det øverste percentil af hvad branchen tilbyder. Hitfrekvenser under 18% er standarden, ikke undtagelsen. Det betyder lange perioder uden signifikante gevinster, afbrudt af sjældne men potentielt massive hits. Maks. gevinster spænder fra 10.000x til 55.000x – tal der ville have været utænkelige for fem år siden, men som Hacksaw har normaliseret for en hel generation af spillere.
         </p>
+        <ReviewScreenshot
+          src={hacksawStats}
+          alt="Hacksaw Gaming nøgletal – +250 spil, +3.000 operatør-brands og +35 regulerede markeder fra deres officielle hjemmeside"
+          caption="Hacksaw Gamings officielle statistik: +250 spil, +3.000 operatør-brands og tilstedeværelse i +35 regulerede markeder"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Strategisk har Hacksaw positioneret sig som branchens outsider – den kreative rebel der ikke konkurrerer på volumen men på kulturel relevans. Med en portefølje på 80+ titler er de dværge sammenlignet med Pragmatic Plays 250+ eller <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgamings</Link> 800+. Men det er netop pointen. Hacksaw bygger ikke et bibliotek – de bygger et brand. Og i en industri hvor de fleste udviklere er anonyme leverandører af indhold, har Hacksaw opnået noget sjældent: spillere der aktivt søger efter deres spil.
         </p>
@@ -155,6 +175,13 @@ const HacksawGamingGuide = () => (
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">RNG & Certificering</p><p className="text-lg font-bold">Uafhængigt certificeret</p><p className="text-xs text-muted-foreground">MGA + UKGC reguleret</p></CardContent></Card>
         </div>
 
+        <ReviewScreenshot
+          src={hacksawPaylines}
+          alt="Wanted Dead or a Wild gevinstlinjer – 15 faste linjer vist med grøn markering på det kompakte 5x5 grid"
+          caption="Wanted Dead or a Wilds 15 faste gevinstlinjer – et eksempel på Hacksaws kompakte grid-design med klare vindermønstre"
+          size="full"
+        />
+
         <h3 className="text-xl font-bold mb-3 mt-6">Cluster Pays: Hacksaws Mekaniske Rygrad</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De fleste Hacksaw-spil bruger cluster pays fremfor traditionelle gevinstlinjer. I et cluster pays-system tæller gevinster når klynger af identiske symboler rører hinanden horisontalt eller vertikalt – typisk kræves minimum 5 sammenhængende symboler. Denne mekanik tillader langt flere potentielle gevinstkombinationer per spin end faste linjer, og er optimeret til kompakte grids hvor pladsen er begrænset. Cluster pays-systemet er matematisk mere fleksibelt end linjebaserede systemer: det tillader dynamisk justering af gevinst-sandsynligheder baseret på grid-størrelse og symbolfordeling.
@@ -167,6 +194,12 @@ const HacksawGamingGuide = () => (
         </p>
 
         <h3 className="text-xl font-bold mb-3 mt-6">VS Bonus og Duel-Mekanikken: Hacksaws Signatur</h3>
+        <ReviewScreenshot
+          src={hacksawVsSymbol}
+          alt="VS-symbolet fra Wanted Dead or a Wild – det ikoniske duel-symbol med multiplikator-forklaring og mekanik-beskrivelse"
+          caption="VS-symbolet i Wanted Dead or a Wild – Hacksaws signaturmekanik hvor to outlaws duellerer med eskalerende multiplikatorer"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           VS-bonussen er Hacksaws mest ikoniske mekaniske opfindelse, introduceret i Wanted Dead or a Wild. Konceptet er simpelt men genialt: to karakter-wilds – i Wanteds tilfælde en revolverhelt og en banditterne – placeres på hjulene og "kæmper" mod hinanden. Hver gang en af dem lander, tilføjes en multiplikator til deres side. Duellen fortsætter gennem free spins, og den akkumulerede multiplikator appliceres på alle gevinster der involverer den respektive karakter. Denne mekanik skaber en narrativ spænding der transcenderer traditionel slot-mekanik.
         </p>
@@ -197,13 +230,31 @@ const HacksawGamingGuide = () => (
     ]}
     gamesIntro={
       <>
+        <ReviewScreenshot
+          src={hacksawGameplay}
+          alt="Wanted Dead or a Wild gameplay – western-temaet med 5x5 grid, whiskey-flasker, pengesække og skull-symboler på mørk baggrund"
+          caption="Wanted Dead or a Wild i aktion – Hacksaws flagskib med det ikoniske western-tema og kompakte 5x5 grid"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hacksaws spilkatalog er kompakt men ekstremt fokuseret. Hvert spil er designet til at udfylde en specifik rolle i porteføljen – der er ingen fyldtitler. Nedenstående seks spil repræsenterer bredden i Hacksaws katalog og illustrerer de forskellige mekaniske tilgange de mestrer. Disse titler er særligt populære i{" "}
           <Link to="/no-sticky-bonus" className="text-primary underline hover:text-primary/80">no-sticky bonus</Link>-sammenhænge, hvor de høje maks. gevinster giver et asymmetrisk risiko/gevinst-forhold der favoriserer spilleren.
         </p>
+        <ReviewScreenshot
+          src={hacksawBonuskob}
+          alt="Wanted Dead or a Wild bonuskøb – tre muligheder: Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.)"
+          caption="Bonus buy-menuen i Wanted Dead or a Wild med tre forskellige bonusrunder til varierende priser – fra 1.600 til 8.000 kr."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig nuance: Hacksaws spil spiller sig markant forskelligt i basis-spillet versus bonus-runden. Basis-spillet er ofte langsomt og repetitivt med hitfrekvenser der kan falde til 12-13%. Bonus-runden er hvor den virkelige handling er – og det er her Hacksaw investerer deres designressourcer. Denne dualitet er bevidst: bonus buy-funktionen er ikke et supplement, den er den intenderede spillemåde for de fleste titler.
         </p>
+        <ReviewScreenshot
+          src={hacksawSearch}
+          alt="Hacksaw Gaming i casinolobby-søgning – 254 spil tilgængelige under Hacksaw-udbyderen"
+          caption="Hacksaw Gaming i en dansk casinolobby – 254 tilgængelige spil under udbyderen Hacksaw"
+          size="full"
+        />
       </>
     }
     games={[
