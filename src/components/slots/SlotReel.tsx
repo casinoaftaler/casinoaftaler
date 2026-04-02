@@ -5,11 +5,9 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
 
-// Fixed dimensions at base resolution
-const SYMBOL_HEIGHT = 150;
-const GAP = 16;
-const TOTAL_SYMBOL_HEIGHT = SYMBOL_HEIGHT + GAP;
-const VIEWPORT_HEIGHT = 3 * SYMBOL_HEIGHT + 2 * GAP;
+// Default dimensions at base resolution (can be overridden via props)
+const DEFAULT_SYMBOL_HEIGHT = 150;
+const DEFAULT_GAP = 16;
 
 interface SlotReelProps {
   symbols: SlotSymbolType[];
