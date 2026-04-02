@@ -109,7 +109,7 @@ const PragmaticPlayPartner = () => {
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 18% / 0.97), hsl(210 80% 22% / 0.95)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 15%) 40%, hsl(210 80% 20%))",
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

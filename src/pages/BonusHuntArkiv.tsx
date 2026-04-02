@@ -72,7 +72,7 @@ export default function BonusHuntArkiv() {
       <section
         className="relative overflow-hidden py-12 text-white md:py-16"
         style={{
-          backgroundImage: "linear-gradient(160deg, hsl(220 75% 20% / 0.97), hsl(280 60% 25% / 0.95))",
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
         }}
       >
         <div className="container">
