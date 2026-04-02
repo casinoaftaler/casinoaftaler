@@ -194,6 +194,12 @@ const HacksawGamingGuide = () => (
         </p>
 
         <h3 className="text-xl font-bold mb-3 mt-6">VS Bonus og Duel-Mekanikken: Hacksaws Signatur</h3>
+        <ReviewScreenshot
+          src={hacksawVsSymbol}
+          alt="VS-symbolet fra Wanted Dead or a Wild – det ikoniske duel-symbol med multiplikator-forklaring og mekanik-beskrivelse"
+          caption="VS-symbolet i Wanted Dead or a Wild – Hacksaws signaturmekanik hvor to outlaws duellerer med eskalerende multiplikatorer"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           VS-bonussen er Hacksaws mest ikoniske mekaniske opfindelse, introduceret i Wanted Dead or a Wild. Konceptet er simpelt men genialt: to karakter-wilds – i Wanteds tilfælde en revolverhelt og en banditterne – placeres på hjulene og "kæmper" mod hinanden. Hver gang en af dem lander, tilføjes en multiplikator til deres side. Duellen fortsætter gennem free spins, og den akkumulerede multiplikator appliceres på alle gevinster der involverer den respektive karakter. Denne mekanik skaber en narrativ spænding der transcenderer traditionel slot-mekanik.
         </p>
