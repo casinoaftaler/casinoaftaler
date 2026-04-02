@@ -29,6 +29,13 @@ const RelaxGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Relax Gaming er en maltesisk spiludvikler grundlagt i 2010, der opererer i en unik dobbeltrolle som både kreativt spiludviklingsstudio og B2B-aggregeringsplatform. Denne dualitet er ikke bare et forretningsstrategisk valg – det er en informationsfordel: ved at distribuere spil fra over 20 partnerstudios til 200+ operatører har Relax Gaming adgang til kommercielle data der fortæller dem præcist hvad der fungerer i markedet. Denne dataindsigt kanaliseres direkte ind i deres egne spildesigns, hvilket skaber en feedback-loop konkurrenter uden aggregator-funktion simpelthen ikke har.
         </p>
+        <ReviewScreenshot
+          src={relaxLogo}
+          alt="Relax Gaming officielt logo – sort tekst med dots-design"
+          caption="Relax Gamings minimalistiske logo afspejler studioets fokus på mekanik fremfor pynt."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Money Train-serien (nu fire titler: Money Train 1-4) har defineret Relax Gamings identitet og skabt en hel genre af efterlignere. Respins-mekanikken med persistente multiplikatorer og collector-symboler var revolutionerende ved lanceringen af Money Train 1 i 2018 og er siden perfektioneret i hver opfølger. Money Train 3 toppede med 100.000x maks. gevinst og 96,10% RTP – en kombination af fair afkast og ekstremt gevinstpotentiale der er svær at matche. Serien har inspireret titler fra konkurrenter som <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> (Hold & Win-serien) og mange mindre studios.
         </p>
