@@ -22,7 +22,7 @@ const WazdanGuide = () => (
     licensesTitle="Wazdans Licensstruktur og Regulatorisk Profil"
     prosConsTitle="Wazdans Styrker og Begrænsninger"
     responsibleTitle="Ansvarligt Spil i Wazdans Teknologiramme"
-    sectionOrder={["intro", "technical", "strategic", "history", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    sectionOrder={["intro", "history", "technical", "strategic", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     introTitle="Den Polske Outsider: Hvordan Wazdan Udfordrer Industriens Konventioner med Spillerdrevet Innovation"
     introContent={
       <>

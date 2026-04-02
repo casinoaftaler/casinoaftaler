@@ -62,12 +62,6 @@ const ELKStudiosGuide = () => (
           Den kommercielle konsekvens af denne strategi er paradoksal: ELK Studios er blandt de mest respekterede studier i branchen (målt på EGR Awards per udgivelse), men blandt de mindst synlige i casinolobbyer (målt på tilgængelige titler). Det kræver en aktiv indsats fra spilleren at finde ELK Studios-spil: brug casinoets filtreringsmenu, søg efter studio-navn, eller tjek dedikerede ELK-sektioner som flere danske casinoer tilbyder. Den passive browser – spilleren der klikker på det nærmeste nye spil i lobbyen – vil sjældnere støde på ELK Studios end Pragmatic Play. Det er en trade-off ELK Studios har accepteret: de sigter efter loyale fans, ikke tilfældige kliks.
         </p>
 
-        <ReviewScreenshot
-          src={elkTimeline}
-          alt="ELK Studios udviklings-timeline med milepæle og ikoniske spilkarakterer fra Bushido Gold, Bompers og andre titler"
-          caption="ELK Studios' timeline – fra grundlæggelse i 2012 til nutidens 80+ titler med fokus på kvalitet over kvantitet"
-          size="medium"
-        />
 
         <h3 className="text-xl font-bold mb-4">ELK Studios vs. Play'n GO: Kvalitets-First Rivalisering</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -103,7 +97,14 @@ const ELKStudiosGuide = () => (
       </>
     }
     technicalProfile={
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="space-y-6">
+        <ReviewScreenshot
+          src={elkTimeline}
+          alt="ELK Studios udviklings-timeline med milepæle og ikoniske spilkarakterer fra Bushido Gold, Bompers og andre titler"
+          caption="ELK Studios' timeline – fra grundlæggelse i 2012 til nutidens 80+ titler med fokus på kvalitet over kvantitet"
+          size="medium"
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">RTP-interval</p><p className="text-lg font-bold">95,0% – 96,5%</p><p className="text-xs text-muted-foreground">Konsistent og IKKE operatør-konfigurerbar</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Volatilitet</p><p className="text-lg font-bold">Medium – Høj</p><p className="text-xs text-muted-foreground">Hitfrekvens 22-28% – branchens sweet spot</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Patenterede Teknologier</p><p className="text-lg font-bold">Precision Spins, Avalanche, Walking Wilds</p></CardContent></Card>
@@ -112,6 +113,7 @@ const ELKStudiosGuide = () => (
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Udviklingstid per spil</p><p className="text-lg font-bold">6-9 måneder</p><p className="text-xs text-muted-foreground">Dobbelt branchens gennemsnit på 3-4 mdr.</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Lyddesign</p><p className="text-lg font-bold">Original produktion</p><p className="text-xs text-muted-foreground">Professionelle musikstudier, ingen stock-lyd</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Visuel standard</p><p className="text-lg font-bold">Cinematisk</p><p className="text-xs text-muted-foreground">Håndtegnede symboler, partikeleffekter</p></CardContent></Card>
+        </div>
       </div>
     }
     historyTitle="Fra Stockholm til Global Anerkendelse: ELK Studios' Rejse"

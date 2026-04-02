@@ -22,7 +22,7 @@ const QuickspinGuide = () => (
     licensesTitle="Quickspins Licenser og Regulatorisk Profil"
     prosConsTitle="Quickspins Styrker og Begrænsninger"
     responsibleTitle="Ansvarligt Spil hos Quickspin"
-    sectionOrder={["intro", "strategic", "technical", "history", "games", "casinos", "licenses", "proscons", "providers", "responsible"]}
+    sectionOrder={["intro", "technical", "history", "strategic", "games", "casinos", "licenses", "proscons", "providers", "responsible"]}
     introTitle="Quickspin: Det Svenske Premium-Studio der Revolutionerede Spillerengagement"
     introContent={
       <>

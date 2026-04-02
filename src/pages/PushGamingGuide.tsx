@@ -66,12 +66,6 @@ const PushGamingGuide = () => (
           Den strategiske implikation er at Push Gaming lever af at skabe "evergreen" titler – spil der forbliver relevante i casinolobbyerne i 3-5 år, ikke kun 3-5 uger. Fat Santa er stadig et af de mest spillede jule-slots fire år efter lanceringen. Jammin' Jars har opretholdt en top-200 position globalt i over fem år. Denne levetid kompenserer for den lave udgivelsesfrekvens: hvor Pragmatic Play kræver en konstant strøm af nye titler for at opretholde indtægterne, kan Push Gaming leve af en håndfuld tidløse hits.
         </p>
 
-        <ReviewScreenshot
-          src={pushGameplay}
-          alt="Razor Shark gameplay – undervandsslot fra Push Gaming med Razor Reveal-mekanik"
-          caption="Razor Shark gameplay på CasinoSlots – Push Gamings kultklassiker med hajsymboler og Razor Reveal-feature."
-          size="full"
-        />
 
         <h3 className="text-xl font-bold mb-3 mt-6">Push Gaming vs. Hacksaw Gaming: To Veje til Kultstatus</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -111,6 +105,12 @@ const PushGamingGuide = () => (
     }
     technicalProfile={
       <div className="space-y-6">
+        <ReviewScreenshot
+          src={pushGameplay}
+          alt="Razor Shark gameplay – undervandsslot fra Push Gaming med Razor Reveal-mekanik"
+          caption="Razor Shark gameplay på CasinoSlots – Push Gamings kultklassiker med hajsymboler og Razor Reveal-feature."
+          size="full"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Push Gamings tekniske platform afspejler deres designfilosofi: fleksibel, modulær og optimeret til eksperimentation. Deres HTML5-motor er bygget til at understøtte en bred vifte af mekanikker – fra standard grid-baserede slots til ukonventionelle layouts som Jammin' Jars' 8x8 cluster-grid og Wild Swarm's dynamisk ekspanderende spilleflade. Load-tider er konkurrencedygtige (under 2,5 sekunder på 4G), og alle spil er mobile-first designet med touch-optimerede kontroller. Lydsystemet bruger adaptive soundtracks der responderer på gameplay-events – en teknik inspireret af videospilindustrien der markant øger immersionen.
         </p>

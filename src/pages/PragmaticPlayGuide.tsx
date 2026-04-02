@@ -20,7 +20,7 @@ const PragmaticPlayGuide = () => (
     licensesTitle="Global Compliance: Pragmatics Regulatoriske Fodaftryk"
     prosConsTitle="Pragmatics Trumfer og Svagheder"
     responsibleTitle="Ansvarligt Spil i en High-Volume Verden"
-    sectionOrder={["strategic", "technical", "intro", "games", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
+    sectionOrder={["strategic", "games", "technical", "intro", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
     introTitle="Industriens Maskinrum: Hvordan Pragmatic Play Blev Branchens Mest Spillede Udvikler"
     introContent={
       <>
