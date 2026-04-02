@@ -66,6 +66,13 @@ const PushGamingGuide = () => (
           Den strategiske implikation er at Push Gaming lever af at skabe "evergreen" titler – spil der forbliver relevante i casinolobbyerne i 3-5 år, ikke kun 3-5 uger. Fat Santa er stadig et af de mest spillede jule-slots fire år efter lanceringen. Jammin' Jars har opretholdt en top-200 position globalt i over fem år. Denne levetid kompenserer for den lave udgivelsesfrekvens: hvor Pragmatic Play kræver en konstant strøm af nye titler for at opretholde indtægterne, kan Push Gaming leve af en håndfuld tidløse hits.
         </p>
 
+        <ReviewScreenshot
+          src={pushGameplay}
+          alt="Razor Shark gameplay – undervandsslot fra Push Gaming med Razor Reveal-mekanik"
+          caption="Razor Shark gameplay på CasinoSlots – Push Gamings kultklassiker med hajsymboler og Razor Reveal-feature."
+          size="full"
+        />
+
         <h3 className="text-xl font-bold mb-3 mt-6">Push Gaming vs. Hacksaw Gaming: To Veje til Kultstatus</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Push Gaming og <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link> deler flere karakteristika: begge er relativt unge, begge har opbygget kultstatus i slot-communities, og begge prioriterer innovation over volumen. Men deres filosofier divergerer markant.
