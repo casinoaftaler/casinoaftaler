@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { MULTIPLIER_SYMBOLS } from "@/lib/gatesMultiplierSymbols";
 import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useBombSymbols } from "@/hooks/useBombSymbols";
