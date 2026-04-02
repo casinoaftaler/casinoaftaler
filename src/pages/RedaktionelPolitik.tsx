@@ -9,22 +9,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
-import {
-  FileText,
-  ShieldCheck,
-  CheckCircle2,
-  BookOpen,
-  RefreshCw,
-  Scale,
-  Search,
-  Eye,
-  Pen,
-  Users,
-  Bot,
-  AlertTriangle,
-  Globe,
-  BookMarked,
-} from "lucide-react";
+import { Pen, Bot, BookMarked } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -82,7 +68,7 @@ const RedaktionelPolitik = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <FileText className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="file-text" className="mr-1.5 h-3.5 w-3.5" />
               Kvalitetssikring
             </Badge>
             <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
@@ -105,7 +91,7 @@ const RedaktionelPolitik = () => {
         {/* Vores redaktionelle proces */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Vores redaktionelle proces
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -142,7 +128,7 @@ const RedaktionelPolitik = () => {
         {/* Faktatjek & krydsverifikation */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Faktatjek & krydsverifikation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -158,7 +144,7 @@ const RedaktionelPolitik = () => {
               "Udbetalingstider – baseres på reelle tests, ikke casinoets egne angivelser",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -179,7 +165,7 @@ const RedaktionelPolitik = () => {
         {/* Anmeldelser */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Search className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="search" className="h-7 w-7 text-primary" />
             Sådan udformes anmeldelser
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -197,7 +183,7 @@ const RedaktionelPolitik = () => {
               "Ansvarligt spil-funktioner",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="font-medium">{item}</span>
               </div>
             ))}
@@ -205,7 +191,7 @@ const RedaktionelPolitik = () => {
           <div className="mt-6">
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
-                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                <MenuIcon iconName="shield-check" className="mr-1.5 h-4 w-4" />
                 Læs mere om vores testmetode
               </Button>
             </Link>
@@ -228,7 +214,7 @@ const RedaktionelPolitik = () => {
             <Card className="border-primary/20 bg-primary/5">
               <CardContent className="p-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   Hvor AI bruges
                 </h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -242,7 +228,7 @@ const RedaktionelPolitik = () => {
             <Card className="border-destructive/20 bg-destructive/5">
               <CardContent className="p-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Hvor AI aldrig bruges alene
                 </h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -267,7 +253,7 @@ const RedaktionelPolitik = () => {
         {/* Kildepolitik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Kildepolitik & referencer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -310,7 +296,7 @@ const RedaktionelPolitik = () => {
         {/* Opdateringspolitik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <RefreshCw className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />
             Opdateringspolitik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -325,7 +311,7 @@ const RedaktionelPolitik = () => {
               "Forældet indhold fjernes eller markeres tydeligt",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span>{item}</span>
               </li>
             ))}
@@ -352,7 +338,7 @@ const RedaktionelPolitik = () => {
               "Vi sletter aldrig indhold for at skjule fejl – vi korrigerer gennemsigtigt",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -369,7 +355,7 @@ const RedaktionelPolitik = () => {
         {/* Skelnen mellem kommercielt og redaktionelt */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Kommercielt vs. redaktionelt
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -382,7 +368,7 @@ const RedaktionelPolitik = () => {
           </p>
           <Link to="/forretningsmodel">
             <Button variant="outline" size="sm">
-              <Scale className="mr-1.5 h-4 w-4" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-4 w-4" />
               Vores forretningsmodel
             </Button>
           </Link>
@@ -393,13 +379,13 @@ const RedaktionelPolitik = () => {
         {/* Retningslinjer */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Redaktionelle retningslinjer
           </h2>
           <div className="rounded-xl border border-border bg-card p-6">
             {guidelines.map((g) => (
               <div key={g} className="flex items-start gap-3 py-2">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="font-medium">{g}</span>
               </div>
             ))}

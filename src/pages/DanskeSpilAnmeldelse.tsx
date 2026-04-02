@@ -28,7 +28,8 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
-import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe } from "lucide-react";
+import { RotateCcw, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -60,7 +61,7 @@ const DanskeSpilAnmeldelse = () => {
       {/* Hero */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.5 / 5 – Troværdigt Casino</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.5 / 5 – Troværdigt Casino</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Danske Spil Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet og uafhængig anmeldelse af Danske Spil Casino – Danmarks statsligt forankrede online casino med dansk licens, bredt spiludvalg fra topudbydere, hurtige udbetalinger og branchens højeste sikkerhedsniveau.</p>
         </div></div>
@@ -73,7 +74,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Hurtige Fakta */}
         <section className="mb-12">
-          <Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Danske Spil Casino</CardTitle></CardHeader><CardContent>
+          <Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Danske Spil Casino</CardTitle></CardHeader><CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
               <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 500 kr.</p></div>
               <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
@@ -148,7 +149,7 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Registreringsprocessen hos Danske Spil Casino er designet til at være hurtig, sikker og i fuld overensstemmelse med dansk lovgivning. I modsætning til mange internationale casinoer, hvor du manuelt skal uploade dokumenter til verifikation, bruger Danske Spil MitID – Danmarks nationale digitale ID-løsning. Det betyder, at din identitet verificeres øjeblikkeligt, og du kan begynde at spille inden for få minutter. Det er en markant fordel over konkurrenter, der kan tage 4-24 timer at verificere nye spillere.</p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Users className="h-5 w-5 text-primary" />Trin-for-trin registrering</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="users" className="h-5 w-5 text-primary" />Trin-for-trin registrering</CardTitle></CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {[
@@ -179,9 +180,9 @@ const DanskeSpilAnmeldelse = () => {
           <ReviewScreenshot src={danskespilCasinoLobby} alt="Danske Spil Casino lobby med spilleautomater, kampagner og senest spillede spil" caption="Casino-lobbyen hos Danske Spil med weekendtilbud, senest spillede slots og nem kategorinavigation." size="full" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Hundredvis af slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link>. Starburst, Book of Dead, Sweet Bonanza, Gates of Olympus.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Stærkt <Link to="/live-casino" className={linkClass}>live casino</Link> fra <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med roulette, blackjack, baccarat, Crazy Time og Dream Catcher.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassiske <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>- og <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-varianter i digitale versioner. Perfekt til spillere, der foretrækker eget tempo.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Hundredvis af slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link>. Starburst, Book of Dead, Sweet Bonanza, Gates of Olympus.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Stærkt <Link to="/live-casino" className={linkClass}>live casino</Link> fra <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med roulette, blackjack, baccarat, Crazy Time og Dream Catcher.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassiske <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>- og <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-varianter i digitale versioner. Perfekt til spillere, der foretrækker eget tempo.</p></CardContent></Card>
           </div>
 
           <h3 className="mt-6 mb-3 text-xl font-bold">RTP og regulatorisk garanti</h3>
@@ -215,7 +216,7 @@ const DanskeSpilAnmeldelse = () => {
               { title: "Dankort / Visa / Mastercard", desc: "Klassiske kortbetalinger med øjeblikkelig indbetaling. Udbetalinger inden for 1–3 hverdage.", speed: "🕐 1-3 dage" },
               { title: "Bankoverførsel", desc: "Direkte overførsel fra din bankkonto. Sikker og pålidelig, men med lidt længere behandlingstid.", speed: "🕐 2-4 dage" },
             ].map((method) => (
-              <div key={method.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{method.title}</h3><Badge variant="outline" className="text-xs">{method.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{method.desc}</p></div></div>
+              <div key={method.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{method.title}</h3><Badge variant="outline" className="text-xs">{method.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{method.desc}</p></div></div>
             ))}
           </div>
 
@@ -239,9 +240,9 @@ const DanskeSpilAnmeldelse = () => {
           <ReviewScreenshot src={danskespilOddset} alt="Danske Spil Oddset sportsbetting med populære væddemål, odds boost og live kampe" caption="Oddset-sektionen er tilgængelig direkte fra samme konto – her med populære væddemål og odds boost." size="full" />
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Smartphone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Dedikeret app</h3><p className="text-sm text-muted-foreground">iOS og Android med MitID-login og push-notifikationer.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Tværgående platform</h3><p className="text-sm text-muted-foreground">Casino, Oddset, Lotto – alt tilgængeligt i samme app.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Globe className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Browser-adgang</h3><p className="text-sm text-muted-foreground">Fuld funktionalitet i mobilbrowseren uden download.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="smartphone" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Dedikeret app</h3><p className="text-sm text-muted-foreground">iOS og Android med MitID-login og push-notifikationer.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Tværgående platform</h3><p className="text-sm text-muted-foreground">Casino, Oddset, Lotto – alt tilgængeligt i samme app.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="globe" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Browser-adgang</h3><p className="text-sm text-muted-foreground">Fuld funktionalitet i mobilbrowseren uden download.</p></div></div>
           </div>
         </section>
 
@@ -255,8 +256,8 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret og dækker de fleste standardspørgsmål. Danske Spils hjælpesektion er struktureret og letforståelig med klare kategorier og en effektiv søgefunktion. E-mails besvares typisk inden for 24 timer med detaljerede og hjælpsomme svar.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Live Chat & Telefon</h3><p className="text-sm text-muted-foreground">Dansk kundeservice via live chat og telefon. Typisk svartid under 5 minutter.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">E-mail & FAQ</h3><p className="text-sm text-muted-foreground">Omfattende hjælpesektion. E-mails besvares typisk inden for 24 timer.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Live Chat & Telefon</h3><p className="text-sm text-muted-foreground">Dansk kundeservice via live chat og telefon. Typisk svartid under 5 minutter.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">E-mail & FAQ</h3><p className="text-sm text-muted-foreground">Omfattende hjælpesektion. E-mails besvares typisk inden for 24 timer.</p></div></div>
           </div>
         </section>
 
@@ -269,9 +270,9 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Den tekniske sikkerhed er ligeledes i top med 256-bit SSL-kryptering, PCI DSS-certificering for kortbehandling og avancerede anti-fraud-systemer. MitID-integration eliminerer risikoen for identitetssvindel og gør verifikationsprocessen øjeblikkelig. <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>-tilslutning sikrer, at selvudelukkede spillere ikke kan oprette konto.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og ekstra parlamentarisk kontrol.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Statsligt ejerskab</h3><p className="text-sm text-muted-foreground">Delvist ejet af den danske stat – Rigsrevisionen kontrollerer årligt.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">MitID & ROFUS</h3><p className="text-sm text-muted-foreground">Øjeblikkelig verifikation og selvudelukkelse via nationale systemer.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og ekstra parlamentarisk kontrol.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Statsligt ejerskab</h3><p className="text-sm text-muted-foreground">Delvist ejet af den danske stat – Rigsrevisionen kontrollerer årligt.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">MitID & ROFUS</h3><p className="text-sm text-muted-foreground">Øjeblikkelig verifikation og selvudelukkelse via nationale systemer.</p></div></div>
           </div>
 
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Sæt et budget, hold pauser og spil aldrig for mere, end du har råd til at tabe. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> eller ring til Danske Ludomanilinje på +45 70111810.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p></CardContent></Card>
@@ -333,8 +334,8 @@ const DanskeSpilAnmeldelse = () => {
           <RatingBreakdown scores={CASINO_SCORES["danske-spil"].scores} total={CASINO_SCORES["danske-spil"].total} />
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

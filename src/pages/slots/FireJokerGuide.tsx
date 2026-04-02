@@ -20,7 +20,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -80,7 +81,7 @@ const FireJokerGuide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Klassisk slot & respin-mekanik</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Klassisk slot & respin-mekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Fire Joker – Klassisk Slot-Mekanik & Multiplier-Analyse</h1>
             <p className="text-lg text-white/80">Play'n GO's moderne klassiker: hvordan et 3×3 grid med kun 5 linjer leverer en af markedets mest tilgængelige og matematisk elegante slot-oplevelser.</p>
           </div>
@@ -96,7 +97,7 @@ const FireJokerGuide = () => {
         {/* ── Segment First: Hvem er spillet til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Hvem Er Fire Joker Designet Til?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -116,7 +117,7 @@ const FireJokerGuide = () => {
         {/* ── Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
             Spilmekanik: Simpelt Design, Sofistikeret Matematik
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -136,7 +137,7 @@ const FireJokerGuide = () => {
         {/* ── Respin of Fire ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Respin of Fire: Den Skjulte RTP-Booster
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -158,7 +159,7 @@ const FireJokerGuide = () => {
         {/* ── Wheel of Multipliers ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Wheel of Multipliers: Full Screen-Bonus i Dybden
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -178,7 +179,7 @@ const FireJokerGuide = () => {
         {/* ── RTP & EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             RTP-Analyse og Expected Value-Beregning
           </h2>
           <Card className="mb-6">
@@ -218,7 +219,7 @@ const FireJokerGuide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Fire Joker vs. Andre Klassiske Slots
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -235,7 +236,7 @@ const FireJokerGuide = () => {
         {/* ── Risiko og ansvarligt spil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Risikoprofil og Ansvarligt Spil-Perspektiv
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -252,7 +253,7 @@ const FireJokerGuide = () => {
         {/* ── Konklusion ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Den Perfekte Begynder-Slot med Dybde
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

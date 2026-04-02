@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { activateMissionMode } from "@/hooks/useDwellReward";
-import { Clock, Sparkles, ExternalLink, Coins, ArrowRight, Check, Flame } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -96,14 +97,14 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                 <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-40" />
                   <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-amber-500 items-center justify-center">
-                    <Sparkles className="h-2 w-2 text-white" />
+                    <MenuIcon iconName="sparkles" className="h-2 w-2 text-white" />
                   </span>
                 </div>
               )}
 
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-                  <Coins className={`h-4 w-4 ${hasNoneCompleted ? "text-amber-500 animate-bounce" : "text-amber-500"}`} />
+                  <MenuIcon iconName="coins" className="h-5 w-5" />
                   Daily Missions
                 </h3>
                 <span
@@ -162,11 +163,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                       {page.completed ? (
                         <Check className="h-3 w-3 text-emerald-500" />
                       ) : (
-                        <Clock className={`h-3 w-3 transition-colors ${
-                          hasNoneCompleted && index === 0
-                            ? "text-amber-500"
-                            : "text-muted-foreground group-hover:text-amber-500"
-                        }`} />
+                        <MenuIcon iconName="clock" className="h-5 w-5" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -238,7 +235,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
           )}
 
           <div className="flex items-center justify-center gap-2 text-primary">
-            <Clock className="h-3.5 w-3.5" />
+            <MenuIcon iconName="clock" className="h-3.5 w-3.5" />
             <span className="text-xs font-medium">Nye credits om</span>
           </div>
 
@@ -287,7 +284,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                       onClick={() => getAffiliateRedirect(slug, user?.id)}
                     >
                       Spil hos {name}
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <MenuIcon iconName="external-link" className="h-3.5 w-3.5" />
                     </Button>
                   </div>
                 ) : (
@@ -297,7 +294,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                     className="block rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-sm font-bold text-primary-foreground text-center transition-transform hover:scale-[1.03] active:scale-95"
                   >
                     Besøg {name}
-                    <ExternalLink className="h-3.5 w-3.5 inline ml-1.5" />
+                    <MenuIcon iconName="external-link" className="h-3.5 w-3.5 inline ml-1.5" />
                   </Link>
                 )
               ))}
@@ -305,7 +302,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
           </div>
 
           <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/70 pt-1">
-            <Sparkles className="h-3 w-3" />
+            <MenuIcon iconName="sparkles" className="h-3 w-3" />
             <span>Credits nulstilles ved midnat (dansk tid)</span>
           </div>
         </div>

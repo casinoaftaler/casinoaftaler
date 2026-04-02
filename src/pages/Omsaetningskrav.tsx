@@ -26,29 +26,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Sparkles,
-  ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  RefreshCw,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Scale,
-  Calculator,
-  Ban,
-  BarChart3,
-  Percent,
-} from "lucide-react";
+import { Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
@@ -151,7 +130,7 @@ const Omsaetningskrav = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Bonusvilkår guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -309,7 +288,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Indbetaling uden bonus (1x)
                 </CardTitle>
               </CardHeader>
@@ -326,7 +305,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Percent className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="percent" className="h-5 w-5 text-primary" />
                   Bonus med 10x kun på bonussen
                 </CardTitle>
               </CardHeader>
@@ -347,7 +326,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Bonus med 10x (d+b)
                 </CardTitle>
               </CardHeader>
@@ -442,7 +421,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Maks. indsats (Max Bet)
                 </CardTitle>
               </CardHeader>
@@ -459,7 +438,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Tidsfrister
                 </CardTitle>
               </CardHeader>
@@ -492,7 +471,7 @@ const Omsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Udelukkede betalingsmetoder
                 </CardTitle>
               </CardHeader>
@@ -773,7 +752,7 @@ const Omsaetningskrav = () => {
           </p>
           <div className="space-y-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Race mod bunden: Lavere omsætningskrav som konkurrencevåben</h3>
                 <p className="text-sm text-muted-foreground">
@@ -782,7 +761,7 @@ const Omsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Spillemyndighedens kommende revurdering</h3>
                 <p className="text-sm text-muted-foreground">
@@ -791,7 +770,7 @@ const Omsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <RefreshCw className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="refresh-cw" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Transparenskrav og real-time tracking</h3>
                 <p className="text-sm text-muted-foreground">
@@ -800,7 +779,7 @@ const Omsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Hybrid-modellen vinder frem</h3>
                 <p className="text-sm text-muted-foreground">

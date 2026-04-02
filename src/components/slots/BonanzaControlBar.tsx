@@ -1,4 +1,5 @@
-import { Minus, Plus, RotateCw, Square } from "lucide-react";
+import { Plus, Square } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { getNextBet, getPrevBet } from "@/lib/betSteps";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
@@ -97,7 +98,7 @@ export function BonanzaControlBar({
 
   const renderSpinContent = () => {
     if (isSpinning) {
-      return <RotateCw className="h-8 w-8 sm:h-10 sm:w-10 text-white animate-spin" style={{ animationDuration: "0.7s" }} />;
+      return <MenuIcon iconName="rotate-cw" className="h-8 w-8 sm:h-10 sm:w-10 text-white animate-spin" />;
     }
     if (!canSpinNow && !bonusState.isActive) {
       return <span className="text-[9px] sm:text-[10px] text-white/80 text-center leading-tight font-bold">INGEN<br />SPINS</span>;
@@ -121,7 +122,7 @@ export function BonanzaControlBar({
     if (isAutoSpinning) {
       return (
         <div className="flex flex-col items-center">
-          <RotateCw className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+          <MenuIcon iconName="rotate-cw" className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           <span className="text-[7px] uppercase text-white/60 -mt-0.5 tracking-wider">AUTO</span>
         </div>
       );
@@ -129,12 +130,12 @@ export function BonanzaControlBar({
     if (bonusState.isActive) {
       return (
         <div className="flex flex-col items-center">
-          <RotateCw className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+          <MenuIcon iconName="rotate-cw" className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           <span className="text-[8px] sm:text-[9px] font-bold text-white">FREE</span>
         </div>
       );
     }
-    return <RotateCw className="h-8 w-8 sm:h-10 sm:w-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />;
+    return <MenuIcon iconName="rotate-cw" className="h-8 w-8 sm:h-10 sm:w-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />;
   };
 
   /* shared label style */
@@ -164,7 +165,7 @@ export function BonanzaControlBar({
             onClick={() => onBetChange(getPrevBet(bet, minBet))}
             disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
           >
-            <Minus className="h-6 w-6 text-white" />
+            <MenuIcon iconName="minus" className="h-6 w-6 text-white" />
           </button>
 
           {/* Spin + Autoplay */}
@@ -207,7 +208,7 @@ export function BonanzaControlBar({
                   )}
                   style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
                 >
-                  {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><RotateCw className="h-3.5 w-3.5 text-white" />Autoplay</>)}
+                  {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><MenuIcon iconName="rotate-cw" className="h-3.5 w-3.5 text-white" />Autoplay</>)}
                 </button>
               )}
             />
@@ -370,7 +371,7 @@ export function BonanzaControlBar({
           onClick={() => onBetChange(getPrevBet(bet, minBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
-          <Minus className="h-6 w-6 text-white" />
+          <MenuIcon iconName="minus" className="h-6 w-6 text-white" />
         </button>
 
         <div className="flex flex-col items-center flex-shrink-0">
@@ -417,7 +418,7 @@ export function BonanzaControlBar({
                 )}
                 style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
               >
-                {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><RotateCw className="h-3.5 w-3.5 text-white" />Autoplay</>)}
+                {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><MenuIcon iconName="rotate-cw" className="h-3.5 w-3.5 text-white" />Autoplay</>)}
               </button>
             )}
           />

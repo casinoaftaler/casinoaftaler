@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Trophy, Target, Gamepad2, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface LiveCommunityDataStripProps {
   /** Context-aware: which cluster is this placed on? */
@@ -90,31 +91,31 @@ export function LiveCommunityDataStrip({ context = "general" }: LiveCommunityDat
 
   const items = [
     hunt && {
-      icon: <Target className="h-4 w-4 text-primary" />,
+      icon: <MenuIcon iconName="target" className="h-4 w-4 text-primary" />,
       label: "Seneste hunt",
       value: `#${hunt.huntNumber} – ${hunt.avgX?.toFixed(1)}x avg`,
       to: `/bonus-hunt?hunt=${hunt.huntNumber}`,
     },
     stats && {
-      icon: <Users className="h-4 w-4 text-violet-400" />,
+      icon: <MenuIcon iconName="users" className="h-4 w-4 text-violet-400" />,
       label: "Community",
       value: `${stats.activeMembers.toLocaleString("da-DK")} medlemmer`,
       to: "/community",
     },
     stats && stats.totalSpins > 0 && {
-      icon: <Gamepad2 className="h-4 w-4 text-amber-400" />,
+      icon: <MenuIcon iconName="gamepad2" className="h-4 w-4 text-amber-400" />,
       label: "Spins spillet i alt",
       value: stats.totalSpins.toLocaleString("da-DK"),
       to: "/community/slots",
     },
     topPlayer && {
-      icon: <Trophy className="h-4 w-4 text-amber-400" />,
+      icon: <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-400" />,
       label: "Månedens #1",
       value: `${topPlayer.name} (${topPlayer.points.toLocaleString("da-DK")} pts)`,
       to: "/community/turneringer",
     },
     hunt && {
-      icon: <TrendingUp className="h-4 w-4 text-emerald-400" />,
+      icon: <MenuIcon iconName="trending-up" className="h-4 w-4 text-emerald-400" />,
       label: "Slots testet",
       value: `${hunt.totalSlots}+ i seneste hunt`,
       to: "/slot-database",

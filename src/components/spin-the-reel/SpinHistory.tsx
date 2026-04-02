@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { Coins, Zap, XCircle, History } from "lucide-react";
+import { History } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export function SpinHistory() {
   const { user } = useAuth();
@@ -25,9 +26,9 @@ export function SpinHistory() {
   if (!history || history.length === 0) return null;
 
   const getIcon = (type: string) => {
-    if (type === "points") return <Coins className="h-4 w-4 text-primary" />;
-    if (type === "spins") return <Zap className="h-4 w-4 text-accent" />;
-    return <XCircle className="h-4 w-4 text-muted-foreground" />;
+    if (type === "points") return <MenuIcon iconName="coins" className="h-4 w-4 text-primary" />;
+    if (type === "spins") return <MenuIcon iconName="zap" className="h-4 w-4 text-accent" />;
+    return <MenuIcon iconName="x-circle" className="h-4 w-4 text-muted-foreground" />;
   };
 
   const getLabel = (type: string, value: number) => {

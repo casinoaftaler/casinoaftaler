@@ -16,24 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Trophy,
-  Zap,
-  Layers,
-  AlertTriangle,
-  TrendingUp,
-  Users,
-  Scale,
-  Eye,
-  ArrowRight,
-  Shuffle,
-  Brain,
-  Gamepad2,
-} from "lucide-react";
+import { ArrowRight, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import blackjackHero from "@/assets/heroes/blackjack-hero.jpg";
 
@@ -177,7 +161,7 @@ const BlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub
+              <MenuIcon iconName="brain" className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Blackjack Regler, Strategi og Online Varianter
@@ -201,7 +185,7 @@ const BlackjackGuide = () => {
         {/* ═══════════════ CLUSTER NAVIGATION GRID ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-8 w-8 text-primary" />
             Udforsk Alle Blackjack-Guides
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -258,7 +242,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Hvorfor blackjack er det eneste casinospil med reel spiller-edge
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -287,7 +271,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Grundregler forklaret på 5 minutter
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -322,7 +306,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Basic Strategy – matematikken bag perfekte beslutninger
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -396,7 +380,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Husets fordel i forskellige blackjack-varianter
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -490,7 +474,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Korttælling – hvad virker, og hvad er myte?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -526,7 +510,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Varians, volatilitet og bankroll management
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -545,7 +529,7 @@ const BlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Konservativ spiller
                 </CardTitle>
               </CardHeader>
@@ -561,7 +545,7 @@ const BlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   Standard spiller
                 </CardTitle>
               </CardHeader>
@@ -577,7 +561,7 @@ const BlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                   Aggressiv spiller
                 </CardTitle>
               </CardHeader>
@@ -607,7 +591,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Sparkles className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />
             Live blackjack vs. RNG blackjack
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -681,7 +665,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             De 7 mest almindelige fejl blackjack-spillere laver
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -762,7 +746,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />
             Sammenligning: Blackjack vs. Roulette vs. Baccarat
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -838,7 +822,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Regulering i Danmark og ansvarligt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -859,7 +843,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Hvem bør spille blackjack – og hvem bør holde sig væk
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -914,7 +898,7 @@ const BlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Fremtiden for blackjack online
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -16,11 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import {
-  Shield, AlertTriangle, CheckCircle, Scale, Lock, Eye, BarChart3,
-  ArrowRight, FileText, Globe, TrendingUp, Users, Gavel, Ban,
-  Clock, CreditCard, Smartphone, Zap, RefreshCw,
-} from "lucide-react";
+import { ArrowRight, Gavel, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const fordeleUlemperFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -131,7 +128,7 @@ const FordeleOgUlemperGuide = () => {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Scale className="mr-1.5 h-3.5 w-3.5" />Evaluering</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />Evaluering</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Casino uden Konto – Fordele og Ulemper</h1>
             <p className="text-lg text-white/80">Dybdegående evaluering: sikkerhed, KYC, ROFUS, databeskyttelse, risk/reward-model og compliance-perspektiv.</p>
           </div>
@@ -151,7 +148,7 @@ const FordeleOgUlemperGuide = () => {
         <QuickComparisonTable count={3} title="Hurtig registrering – top 3 casinoer" prioritySlugs={["swift-casino", "betinia", "spilleautomaten"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" />En balanceret vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" />En balanceret vurdering</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Casino uden konto via Pay N Play tilbyder ubestridelige fordele i hastighed og sikkerhed. Men som med enhver teknologisk innovation er der nuancer og kompromiser, der fortjener en ærlig og dybdegående analyse. Denne guide evaluerer Pay N Play-modellen fra fire perspektiver: sikkerhed, compliance, brugeroplevelse og ansvarligt spil.
           </p>
@@ -173,7 +170,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 2. FORDELE – DYB ANALYSE */}
         <section className="mb-12" id="fordele">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CheckCircle className="h-7 w-7 text-primary" />Fordele – i dybden</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="check-circle" className="h-7 w-7 text-primary" />Fordele – i dybden</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Vi har identificeret 8 primære fordele ved casino uden konto, rangeret efter signifikans baseret på vores test og analyse:
           </p>
@@ -234,7 +231,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 3. ULEMPER – DYB ANALYSE */}
         <section className="mb-12" id="ulemper">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Ulemper – i dybden</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />Ulemper – i dybden</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Vi har identificeret 7 primære ulemper ved casino uden konto, rangeret efter signifikans:
           </p>
@@ -296,7 +293,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 4. RISK/REWARD MODEL */}
         <section className="mb-12" id="risk-reward">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Risk/reward-analyse – vægtet scoring-model</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Risk/reward-analyse – vægtet scoring-model</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Vi har kvantificeret fordele og ulemper i en vægtet risk/reward-model for at give et objektivt billede. Vægtningen afspejler den typiske danske spillers prioriteter baseret på Spillemyndighedens brugerundersøgelse 2025:
           </p>
@@ -390,7 +387,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 6. ANSVARLIGT SPIL – DYB ANALYSE */}
         <section className="mb-12" id="ansvarligt-spil">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Ansvarligt spil og friktion – en kritisk analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Ansvarligt spil og friktion – en kritisk analyse</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Den lavere friktion i Pay N Play-flowet rejser vigtige spørgsmål om ansvarligt spil. Vi analyserer dette fra et forskningsbaseret perspektiv:
           </p>
@@ -419,7 +416,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 7. DATABESKYTTELSESANALYSE */}
         <section className="mb-12" id="databeskyttelse">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Eye className="h-7 w-7 text-primary" />Databeskyttelsesanalyse – hvad deles, og med hvem?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="eye" className="h-7 w-7 text-primary" />Databeskyttelsesanalyse – hvad deles, og med hvem?</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             En detaljeret sammenligning af datadeling ved de tre registreringsmetoder:
           </p>
@@ -477,7 +474,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* 9. SAMLET KONKLUSION */}
         <section className="mb-12" id="konklusion">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Samlet konklusion: Hvem bør vælge hvad?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Samlet konklusion: Hvem bør vælge hvad?</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Baseret på vores 14-dages test og analyse er her vores anbefalinger for forskellige spillerprofiler:
           </p>
@@ -524,7 +521,7 @@ const FordeleOgUlemperGuide = () => {
 
         {/* CLUSTER NAVIGATION */}
         <section className="mb-12" id="relaterede-guides">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><FileText className="h-7 w-7 text-primary" />Relaterede guides</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />Relaterede guides</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               { to: "/casino-uden-konto", title: "Casino uden Konto – Hub", desc: "Komplet overblik over casino uden kontooprettelse" },

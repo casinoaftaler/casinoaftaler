@@ -16,12 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
-  TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
-  Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
-  HelpCircle, Globe, ExternalLink,
-} from "lucide-react";
+import { ArrowRight, Settings, Download, Wifi, Battery } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -141,7 +137,7 @@ const IPhoneCasinoGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Smartphone className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="smartphone" className="mr-1.5 h-3.5 w-3.5" />
               Mobil Casino
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -170,7 +166,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Hvorfor iPhone er ideel til casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -209,7 +205,7 @@ const IPhoneCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               iPhone casino i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -242,7 +238,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="performance-benchmarks">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Performance-benchmarks: iPhone-modeller sammenlignet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -290,7 +286,7 @@ const IPhoneCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="info" className="h-5 w-5 text-primary" />
               Analyse af benchmark-data
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-3">
@@ -333,7 +329,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="skaerm-stoerrelse">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Monitor className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />
             Skærmstørrelse og casino-UI: Mini vs. Standard vs. Pro Max
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -372,7 +368,7 @@ const IPhoneCasinoGuide = () => {
                     <p className="text-xs font-semibold text-primary mb-1">Fordele:</p>
                     {size.pros.map((p) => (
                       <div key={p} className="flex items-start gap-1.5 mb-1">
-                        <CheckCircle className="h-3 w-3 mt-0.5 text-primary shrink-0" />
+                        <MenuIcon iconName="check-circle" className="h-3 w-3 mt-0.5 text-primary shrink-0" />
                         <span className="text-xs text-muted-foreground">{p}</span>
                       </div>
                     ))}
@@ -381,7 +377,7 @@ const IPhoneCasinoGuide = () => {
                     <p className="text-xs font-semibold text-destructive mb-1">Ulemper:</p>
                     {size.cons.map((c) => (
                       <div key={c} className="flex items-start gap-1.5 mb-1">
-                        <AlertTriangle className="h-3 w-3 mt-0.5 text-destructive shrink-0" />
+                        <MenuIcon iconName="alert-triangle" className="h-3 w-3 mt-0.5 text-destructive shrink-0" />
                         <span className="text-xs text-muted-foreground">{c}</span>
                       </div>
                     ))}
@@ -411,7 +407,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="face-id-sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Face ID, Touch ID og biometrisk casino-sikkerhed
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -437,7 +433,7 @@ const IPhoneCasinoGuide = () => {
                 { title: "MitID-integration", desc: "MitID-appen på iPhone bruger Face ID/Touch ID som en del af den stærke kundeautentificering (SCA), der er påkrævet for danske casinoer. Dette giver et dobbelt lag af biometrisk sikkerhed." },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                   <div>
                     <h4 className="font-medium text-sm text-foreground">{item.title}</h4>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -473,7 +469,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="safari-vs-chrome-vs-app">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Safari vs. Chrome vs. dedikeret casino-app
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -517,7 +513,7 @@ const IPhoneCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Star className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
               Vores anbefaling
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-3">
@@ -575,7 +571,7 @@ const IPhoneCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="info" className="h-5 w-5 text-primary" />
               PWA vs. native app – hvad er forskellen?
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-3">
@@ -599,7 +595,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="betalingsmetoder-ios">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CreditCard className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />
             iOS-specifikke betalingsmetoder
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -710,7 +706,7 @@ const IPhoneCasinoGuide = () => {
               "Appen skal tydeligt vise odds og regler for alle spiltyper",
             ].map((rule) => (
               <div key={rule} className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{rule}</span>
               </div>
             ))}
@@ -742,7 +738,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ios-tips">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             iOS-specifikke tips og tricks til casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -860,7 +856,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="spiltyper">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Spiltyper og iOS-kompatibilitet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -954,7 +950,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ios-sikkerhed-deep-dive">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             iOS Sikkerhedsarkitektur – Deep-Dive for Casino-Spillere
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1211,7 +1207,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="tilgaengelighed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Tilgængelighed (Accessibility) – Casino på iPhone for Alle
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1313,7 +1309,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ios-opdateringer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <RefreshCw className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />
             iOS Opdateringer & Casino-Kompatibilitet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1381,7 +1377,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="fejlfinding">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Fejlfinding – De 12 Hyppigste iPhone-Casino-Problemer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1434,7 +1430,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="icloud-handoff">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             iCloud & Handoff – Casino på Tværs af Apple-Enheder
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1509,7 +1505,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil-ios">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Ansvarligt spil på iPhone – iOS-specifikke værktøjer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1537,7 +1533,7 @@ const IPhoneCasinoGuide = () => {
               },
             ].map((tool) => (
               <div key={tool.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Shield className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                <MenuIcon iconName="shield" className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground">{tool.title}</h3>
                   <p className="text-sm text-muted-foreground">{tool.desc}</p>
@@ -1574,7 +1570,7 @@ const IPhoneCasinoGuide = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Hjælp og ressourcer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">

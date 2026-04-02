@@ -13,19 +13,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ShieldCheck,
-  CreditCard,
-  Award,
-  CheckCircle2,
-  AlertTriangle,
-  ThumbsUp,
-  ThumbsDown,
-  ArrowRight,
-  Wallet,
-  Banknote,
-  Gift,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReactNode } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -224,7 +213,7 @@ export function PaymentMethodPage({
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <CreditCard className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="credit-card" className="mr-1.5 h-3.5 w-3.5" />
               Betalingsmetode
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">{name}</h1>
@@ -273,7 +262,7 @@ export function PaymentMethodPage({
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             {securityTitle || "Sikkerhed og Pålidelighed"}
           </h2>
           {securityContent}
@@ -303,7 +292,7 @@ export function PaymentMethodPage({
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                  <ThumbsUp className="h-5 w-5" />
+                  <MenuIcon iconName="thumbs-up" className="h-5 w-5" />
                   Fordele
                 </CardTitle>
               </CardHeader>
@@ -311,7 +300,7 @@ export function PaymentMethodPage({
                 <ul className="space-y-2">
                   {pros.map((pro, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                      <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                       <span>{pro}</span>
                     </li>
                   ))}
@@ -321,7 +310,7 @@ export function PaymentMethodPage({
             <Card className="border-destructive/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                  <ThumbsDown className="h-5 w-5" />
+                  <MenuIcon iconName="thumbs-down" className="h-5 w-5" />
                   Ulemper
                 </CardTitle>
               </CardHeader>
@@ -329,7 +318,7 @@ export function PaymentMethodPage({
                 <ul className="space-y-2">
                   {cons.map((con, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                      <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                       <span>{con}</span>
                     </li>
                   ))}
@@ -348,7 +337,7 @@ export function PaymentMethodPage({
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Banknote className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="banknote" className="h-4 w-4 text-primary" />
                   Minimumsindskud
                 </CardTitle>
               </CardHeader>
@@ -357,7 +346,7 @@ export function PaymentMethodPage({
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Wallet className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="wallet" className="h-4 w-4 text-primary" />
                   Velkomstbonus
                 </CardTitle>
               </CardHeader>
@@ -366,7 +355,7 @@ export function PaymentMethodPage({
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   Skat på Gevinster
                 </CardTitle>
               </CardHeader>
@@ -466,7 +455,7 @@ export function PaymentMethodPage({
           return (
             <section className="mb-12">
               <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-                <Gift className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="gift" className="h-6 w-6 text-primary" />
                 {headingVariants[name.length % headingVariants.length]}
               </h2>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -491,7 +480,7 @@ export function PaymentMethodPage({
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 {["Ansvarligt Spil", "Spil med Omtanke", "Sæt Dine Grænser", "Beskyt Dit Spil", "Spil Trygt"][name.length % 5]}
               </CardTitle>
             </CardHeader>

@@ -16,32 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Calculator,
-  Flame,
-  Activity,
-  LineChart,
-} from "lucide-react";
+import { Timer, Activity, LineChart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/amerikansk-roulette-hero.jpg";
 
@@ -125,7 +101,7 @@ export default function AmerikanskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Amerikansk Roulette – Dobbelt-Nul Hjulet der Koster Dig Dobbelt Så Meget
@@ -151,7 +127,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvad er Amerikansk Roulette? Anatomien af et Dobbelt-Nul Hjul
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -167,7 +143,7 @@ export default function AmerikanskRouletteGuide() {
           <Card className="mb-6 border-destructive/30 bg-destructive/5">
             <CardContent className="pt-6">
               <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
                 <div>
                   <h3 className="font-bold text-lg mb-2">Kritisk Fakta: House Edge Sammenligning</h3>
                   <p className="text-muted-foreground text-sm">
@@ -191,7 +167,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Hjulets Anatomi: 38 Felter, Talrækkefølge og Bordlayout
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -252,7 +228,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Matematikken bag 5,26 %: Sådan Beregnes House Edge
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -350,7 +326,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />
             Five Number Bet: Det Eneste Væddemål du Aldrig Bør Placere
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -385,7 +361,7 @@ export default function AmerikanskRouletteGuide() {
             <Card className="border-destructive/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Five Number Bet (UNDGÅ)
                 </CardTitle>
               </CardHeader>
@@ -402,7 +378,7 @@ export default function AmerikanskRouletteGuide() {
             <Card className="border-primary/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Alternativ: Separate Straight-Ups
                 </CardTitle>
               </CardHeader>
@@ -424,7 +400,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             10.000-Spins Simulering: Amerikansk vs. Europæisk i Praksis
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -475,7 +451,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Surrender-Reglen: Den Eneste Grund til at Spille Amerikansk Roulette
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -524,7 +500,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Historisk Kontekst: Hvordan Dobbelt-Nul Blev Amerikansk Standard
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -546,7 +522,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Indsatsstrategier på Amerikansk Roulette: Hvad Virker (og Hvad Der Ikke Gør)
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -636,7 +612,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Online RNG vs. Live Dealer: Hvor Skal Du Spille?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -647,7 +623,7 @@ export default function AmerikanskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   RNG Amerikansk Roulette
                 </CardTitle>
               </CardHeader>
@@ -665,7 +641,7 @@ export default function AmerikanskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Dealer Amerikansk Roulette
                 </CardTitle>
               </CardHeader>
@@ -692,7 +668,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Bankroll Management til Amerikansk Roulette: Overlevelsesregler
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -701,10 +677,10 @@ export default function AmerikanskRouletteGuide() {
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
-              { title: "1 % Reglen", icon: <ShieldCheck className="h-5 w-5 text-primary" />, desc: "Sats aldrig mere end 1 % af din totale bankroll pr. spin. Med 5.000 kr. er din max-indsats 50 kr. Dette giver dig ca. 100+ spins selv i worst-case scenariet." },
-              { title: "20/30 Stop-Loss/Take-Profit", icon: <Target className="h-5 w-5 text-primary" />, desc: "Stop ved 20 % tab af session-bankroll (1.000 kr. af 5.000 kr.). Tag profit ved 30 % gevinst (1.500 kr.). Disse asymmetriske grænser kompenserer for den negative forventede værdi." },
+              { title: "1 % Reglen", icon: <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />, desc: "Sats aldrig mere end 1 % af din totale bankroll pr. spin. Med 5.000 kr. er din max-indsats 50 kr. Dette giver dig ca. 100+ spins selv i worst-case scenariet." },
+              { title: "20/30 Stop-Loss/Take-Profit", icon: <MenuIcon iconName="target" className="h-5 w-5 text-primary" />, desc: "Stop ved 20 % tab af session-bankroll (1.000 kr. af 5.000 kr.). Tag profit ved 30 % gevinst (1.500 kr.). Disse asymmetriske grænser kompenserer for den negative forventede værdi." },
               { title: "Tidslimit: Max 45 Min.", icon: <Timer className="h-5 w-5 text-primary" />, desc: "Sæt en alarm. Jo længere du spiller, jo tættere konvergerer dit resultat mod -5,26 %. Korte sessions har den højeste sandsynlighed for at afslutte med profit." },
-              { title: "Undgå Five Number Bet", icon: <AlertTriangle className="h-5 w-5 text-destructive" />, desc: "Det eneste absolutte 'nej' i amerikansk roulette. 7,89 % house edge er uacceptabelt. Brug straight-up bets på 0 og 00 i stedet, hvis du vil dække nullerne." },
+              { title: "Undgå Five Number Bet", icon: <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />, desc: "Det eneste absolutte 'nej' i amerikansk roulette. 7,89 % house edge er uacceptabelt. Brug straight-up bets på 0 og 00 i stedet, hvis du vil dække nullerne." },
             ].map((rule) => (
               <Card key={rule.title}>
                 <CardContent className="pt-6">
@@ -724,7 +700,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Spillerpsykologi: Hvorfor Vælger Folk det Matematisk Dårligere Hjul?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -836,7 +812,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Bonus Wagering på Amerikansk Roulette: EV-Analyse for Danske Bonusser
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -910,7 +886,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Lightning Roulette og Game Show-Varianter: Den Skjulte Dobbelt-Nul Effekt
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -961,7 +937,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Clock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="clock" className="h-7 w-7 text-primary" />
             Tidskostnads-Analyse: Hvad Koster Amerikansk Roulette pr. Time?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -1009,7 +985,7 @@ export default function AmerikanskRouletteGuide() {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Konklusion: Kend Prisen – og Vælg Bevidst
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

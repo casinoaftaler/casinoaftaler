@@ -29,12 +29,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
-import {
-  ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, BookOpen, Smartphone, Headphones,
-  Gamepad2, Zap, RotateCcw, Check, X, Globe, Award, Clock, Target,
-  TrendingUp, Users, Lock, Layers, BadgeCheck, Flame,
-} from "lucide-react";
+import { RotateCcw, Check, X, BadgeCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -138,7 +134,7 @@ const LunaCasinoAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4">
-              <Badge variant="secondary"><Star className="mr-1.5 h-3.5 w-3.5" />4.6 / 5 – Anbefalet</Badge>
+              <Badge variant="secondary"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.6 / 5 – Anbefalet</Badge>
               <Badge variant="outline" className="border-white/40 text-white">Kvalitets-Kuratoren</Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Luna Casino Anmeldelse 2026</h1>
@@ -146,7 +142,7 @@ const LunaCasinoAnmeldelse = () => {
               14 dages dybdegående test af Luna Casino – Kvalitets-Kuratoren blandt danske casinoer. 100 % bonus op til 500 kr. med kun 10x omsætningskrav, loyalitetsprogram med stigende levels, daglige bonuskampagner og et bevidst kurateret spiludvalg fra premium-udbydere.
             </p>
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8">
-              <Gift className="mr-2 h-5 w-5" />Hent Bonus hos Luna Casino
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent Bonus hos Luna Casino
             </Button>
           </div>
         </div>
@@ -163,7 +159,7 @@ const LunaCasinoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Luna Casino</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Luna Casino</CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
               </div>
             </CardHeader>
@@ -432,10 +428,10 @@ const LunaCasinoAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {[
-              { level: "Level 1–3", icon: <Star className="h-6 w-6 text-primary" />, title: "Nybegynder", desc: "Free spins ved level-up, adgang til daglige kampagner, basis-cashback på 5 %." },
-              { level: "Level 4–6", icon: <TrendingUp className="h-6 w-6 text-primary" />, title: "Regelmæssig", desc: "Personlige kampagner via e-mail, 7 % cashback, adgang til eksklusive turneringer." },
-              { level: "Level 7–9", icon: <Trophy className="h-6 w-6 text-primary" />, title: "Erfaren", desc: "Højere reload-bonusser, 10 % cashback, fødselsdagsbonus, prioriteret kundeservice." },
-              { level: "Level 10+", icon: <Award className="h-6 w-6 text-primary" />, title: "Elite", desc: "Dedikeret kontaktperson, 15 % cashback, eksklusive turneringer, skræddersyede tilbud." },
+              { level: "Level 1–3", icon: <MenuIcon iconName="star" className="h-6 w-6 text-primary" />, title: "Nybegynder", desc: "Free spins ved level-up, adgang til daglige kampagner, basis-cashback på 5 %." },
+              { level: "Level 4–6", icon: <MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />, title: "Regelmæssig", desc: "Personlige kampagner via e-mail, 7 % cashback, adgang til eksklusive turneringer." },
+              { level: "Level 7–9", icon: <MenuIcon iconName="trophy" className="h-6 w-6 text-primary" />, title: "Erfaren", desc: "Højere reload-bonusser, 10 % cashback, fødselsdagsbonus, prioriteret kundeservice." },
+              { level: "Level 10+", icon: <MenuIcon iconName="award" className="h-6 w-6 text-primary" />, title: "Elite", desc: "Dedikeret kontaktperson, 15 % cashback, eksklusive turneringer, skræddersyede tilbud." },
             ].map((item) => (
               <Card key={item.level} className="border-border bg-card">
                 <CardContent className="pt-6">
@@ -477,7 +473,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">Kurateret udvalg af premium-slots fra{" "}
                   <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
@@ -488,14 +484,14 @@ const LunaCasinoAnmeldelse = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">Klassiske bordspil i digitale versioner: roulette (europæisk, fransk), blackjack (multi-hand, single deck), baccarat og video poker.</p>
                 <p className="text-sm text-muted-foreground">RTP-niveauer: European Roulette 97,3 %, Blackjack Classic 99,5 %, Jacks or Better 99,54 %.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">Live casino drevet af{" "}
                   <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med professionelle dealere og HD-streaming.</p>
@@ -626,9 +622,9 @@ const LunaCasinoAnmeldelse = () => {
             Luna Casino tilbyder kundeservice via live chat og e-mail. Under vores test kontaktede vi live chat tre gange med forskellige forespørgsler og oplevede gennemsnitlige svartider på 1–3 minutter. Rådgiverne var kompetente, venlige og i stand til at besvare detaljerede spørgsmål om loyalitetsprogrammet, bonusvilkår og betalingsmetoder.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Headphones className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat</h3><p className="text-sm text-muted-foreground">Tilgængelig dagligt. Svartid: 1–3 min. Kompetent og venlig support.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><CreditCard className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 24 timer. Velegnet til komplekse henvendelser.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><BookOpen className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ-sektion</h3><p className="text-sm text-muted-foreground">Omfattende FAQ der dækker de mest almindelige spørgsmål.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="headphones" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat</h3><p className="text-sm text-muted-foreground">Tilgængelig dagligt. Svartid: 1–3 min. Kompetent og venlig support.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="credit-card" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 24 timer. Velegnet til komplekse henvendelser.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="book-open" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ-sektion</h3><p className="text-sm text-muted-foreground">Omfattende FAQ der dækker de mest almindelige spørgsmål.</p></CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Testresultat 1:</strong> Spurgte om loyalitetsprogrammets Level 10+ fordele kl. 11:30. Svar efter 2 minutter med detaljeret forklaring af dedikeret kontaktperson, højere cashback-procenter og eksklusive turneringsadgang.
@@ -674,10 +670,10 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { icon: <Target className="h-5 w-5 text-primary" />, title: "Kvalitetsbevidste spillere", desc: "Du foretrækker et kurateret udvalg af premium-spil frem for tusindvis af ufiltrerede titler. Du vil ikke bruge tid på at lede efter kvalitet." },
-              { icon: <TrendingUp className="h-5 w-5 text-primary" />, title: "Loyalitets-orienterede spillere", desc: "Du spiller regelmæssigt og ønsker at blive belønnet for din loyalitet med stigende fordele, cashback og eksklusive kampagner." },
-              { icon: <Gift className="h-5 w-5 text-primary" />, title: "Bonusjægere med forstand", desc: "Du forstår vigtigheden af lave omsætningskrav og værdsætter 10x-kravet, der giver en realistisk chance for at konvertere bonus til kontanter." },
-              { icon: <Users className="h-5 w-5 text-primary" />, title: "Turneringsspillere", desc: "Du nyder den sociale og konkurrencemæssige dimension ved turneringer og ranglister." },
+              { icon: <MenuIcon iconName="target" className="h-5 w-5 text-primary" />, title: "Kvalitetsbevidste spillere", desc: "Du foretrækker et kurateret udvalg af premium-spil frem for tusindvis af ufiltrerede titler. Du vil ikke bruge tid på at lede efter kvalitet." },
+              { icon: <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />, title: "Loyalitets-orienterede spillere", desc: "Du spiller regelmæssigt og ønsker at blive belønnet for din loyalitet med stigende fordele, cashback og eksklusive kampagner." },
+              { icon: <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />, title: "Bonusjægere med forstand", desc: "Du forstår vigtigheden af lave omsætningskrav og værdsætter 10x-kravet, der giver en realistisk chance for at konvertere bonus til kontanter." },
+              { icon: <MenuIcon iconName="users" className="h-5 w-5 text-primary" />, title: "Turneringsspillere", desc: "Du nyder den sociale og konkurrencemæssige dimension ved turneringer og ranglister." },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card border-l-4 border-l-primary">
                 <CardContent className="pt-6">
@@ -829,7 +825,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8">
-              <Gift className="mr-2 h-5 w-5" />Hent din bonus hos Luna Casino
+              <MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent din bonus hos Luna Casino
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/casino-anmeldelser">Se alle casino anmeldelser</Link>

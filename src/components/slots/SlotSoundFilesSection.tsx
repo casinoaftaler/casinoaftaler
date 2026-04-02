@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SlotSoundUpload } from "./SlotSoundUpload";
 import { useSlotSoundFiles, getSoundSettingKeys, type SlotSoundFiles } from "@/hooks/useSlotSoundFiles";
-import { Loader2, FileAudio, ChevronDown, Music, Volume2, Coins, Trophy, Crown, Sparkles, Cat } from "lucide-react";
+import { Loader2, FileAudio, ChevronDown, Music, Cat } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface SlotSoundFilesSectionProps {
   gameId?: string;
@@ -103,7 +104,7 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
             {/* Spinning Sounds */}
             <div className="space-y-4 pt-4 border-t">
               <h4 className="font-medium flex items-center gap-2">
-                <Volume2 className="h-4 w-4 text-blue-400" />
+                <MenuIcon iconName="volume2" className="h-4 w-4 text-blue-400" />
                 Spil Lyde
               </h4>
               <div className="pl-6 space-y-4">
@@ -127,7 +128,7 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
             {/* Win Sounds */}
             <div className="space-y-4 pt-4 border-t">
               <h4 className="font-medium flex items-center gap-2">
-                <Coins className="h-4 w-4 text-amber-400" />
+                <MenuIcon iconName="coins" className="h-4 w-4 text-amber-400" />
                 Gevinst Lyde
               </h4>
               <div className="pl-6 space-y-4">
@@ -158,7 +159,7 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
             {/* Bonus Sounds */}
             <div className="space-y-4 pt-4 border-t">
               <h4 className="font-medium flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-yellow-400" />
+                <MenuIcon iconName="sparkles" className="h-4 w-4 text-yellow-400" />
                 Bonus Lyde
               </h4>
               <div className="pl-6 space-y-4">

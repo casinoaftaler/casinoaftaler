@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Gamepad2, RefreshCw, MonitorSmartphone } from "lucide-react";
+import { MonitorSmartphone } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface SlotSessionGateProps {
   backgroundImage: string;
@@ -55,12 +56,12 @@ export function SlotSessionGate({
             >
               {isLoading ? (
                 <>
-                  <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                  <MenuIcon iconName="refresh-cw" className="h-4 w-4 mr-2 animate-spin" />
                   Overtager...
                 </>
               ) : (
                 <>
-                  <Gamepad2 className="h-4 w-4 mr-2" />
+                  <MenuIcon iconName="gamepad2" className="h-4 w-4 mr-2" />
                   Spil her i stedet
                 </>
               )}
@@ -72,7 +73,7 @@ export function SlotSessionGate({
               disabled={isLoading}
               className="text-muted-foreground hover:text-foreground"
             >
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <MenuIcon iconName="refresh-cw" className="h-4 w-4 mr-2" />
               Tjek igen
             </Button>
           </div>

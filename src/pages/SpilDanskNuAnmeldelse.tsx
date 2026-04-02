@@ -40,11 +40,8 @@ import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { UserReviewSection } from "@/components/UserReviewSection";
-import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  Zap, RotateCcw, Check, X, Award, TrendingUp, BarChart3, Target,
-  Gamepad2, Headphones, Smartphone, Store, Calculator
-} from "lucide-react";
+import { RotateCcw, Check, X, Store } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -78,10 +75,10 @@ const SpilDanskNuAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.6 / 5 – Anbefalet</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.6 / 5 – Anbefalet</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">SpilDanskNu Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet og ærlig anmeldelse af SpilDanskNu.dk – et etableret dansk casino drevet af Winteq ApS med 100 % bonus op til 1.000 kr. fordelt over 5 dage, kun 10x omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram med kontante præmier og hurtige MobilePay-udbetalinger.</p>
-          <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent Bonus hos SpilDanskNu</Button>
+          <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent Bonus hos SpilDanskNu</Button>
         </div></div>
       </section>
 
@@ -93,7 +90,7 @@ const SpilDanskNuAnmeldelse = () => {
         {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><div className="flex items-center justify-between"><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – SpilDanskNu</CardTitle><QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} /></div></CardHeader>
+            <CardHeader><div className="flex items-center justify-between"><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – SpilDanskNu</CardTitle><QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} /></div></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 {[{ label: "Velkomstbonus", value: "100% op til 1.000 kr." }, { label: "Omsætningskrav", value: "10x (d+b)" }, { label: "Licens", value: "Spillemyndigheden" }, { label: "Lanceret", value: "2017" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p></div>))}
@@ -145,7 +142,7 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indskud + bonus) med 60 dages gyldighed. Maks. indsats med bonusmidler er 40 kr. pr. runde – lidt lavere end de 50 kr., man finder hos de fleste konkurrenter. Kun spilleautomater bidrager fuldt til omsætningskravet; progressive jackpotspil, bordspil og live casino er undtaget. Det er vigtigt at vide, at du kun kan have ét aktivt bonustilbud ad gangen, så gennemspil dagens bonus inden du aktiverer næste dags.</p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gift className="h-5 w-5 text-primary" />Sådan aktiverer du 5-dages bonussen</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gift" className="h-5 w-5 text-primary" />Sådan aktiverer du 5-dages bonussen</CardTitle></CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {[
@@ -166,7 +163,7 @@ const SpilDanskNuAnmeldelse = () => {
 
           <Card className="border-border bg-card mb-6 border-l-4 border-l-accent">
             <CardContent className="pt-6">
-              <div className="flex items-center gap-3 mb-3"><Gift className="h-6 w-6 text-accent" /><h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Aktuel bonuskode 2026</h3></div>
+              <div className="flex items-center gap-3 mb-3"><MenuIcon iconName="gift" className="h-6 w-6 text-accent" /><h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Aktuel bonuskode 2026</h3></div>
               <div className="flex items-center gap-4 rounded-lg border border-border bg-muted/30 p-4">
                 <code className="text-2xl font-bold text-primary tracking-widest">VELKOMMEN</code>
                 <Badge variant="secondary" className="text-xs">Aktiv – bruges alle 5 dage</Badge>
@@ -198,7 +195,7 @@ const SpilDanskNuAnmeldelse = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Calculator className="h-5 w-5 text-primary" />Formlen</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Formlen</CardTitle></CardHeader>
               <CardContent>
                 <div className="p-4 bg-muted/30 rounded-lg font-mono text-sm mb-3">
                   EV = Bonus - (Omsætningskrav × House Edge)
@@ -210,7 +207,7 @@ const SpilDanskNuAnmeldelse = () => {
             </Card>
             
             <Card className="border-border bg-card border-l-4 border-l-emerald-500">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-emerald-500" />Resultatet</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-emerald-500" />Resultatet</CardTitle></CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
                   <li className="flex justify-between"><span>Bonusbeløb:</span> <span className="font-bold">1.000 kr.</span></li>
@@ -356,8 +353,8 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Der er ingen telefon-support, hvilket kan være en ulempe for spillere der foretrækker at ringe. En FAQ-sektion dækker de mest almindelige spørgsmål om konto, bonus, betaling og ansvarligt spil. Den er grundig og velskrevet – og naturligvis på dansk.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Live Chat (08:00-23:00)</h3><p className="text-sm text-muted-foreground">Dansk support. Gns. ventetid under 2 minutter. Kompetente medarbejdere.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">E-mail Support</h3><p className="text-sm text-muted-foreground">Svar inden for 12-24 timer. God til dokumentation af komplekse henvendelser.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Live Chat (08:00-23:00)</h3><p className="text-sm text-muted-foreground">Dansk support. Gns. ventetid under 2 minutter. Kompetente medarbejdere.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">E-mail Support</h3><p className="text-sm text-muted-foreground">Svar inden for 12-24 timer. God til dokumentation af komplekse henvendelser.</p></div></div>
           </div>
         </section>
 
@@ -415,7 +412,7 @@ const SpilDanskNuAnmeldelse = () => {
           <RatingBreakdown scores={CASINO_SCORES["spildansknu"].scores} total={CASINO_SCORES["spildansknu"].total} />
 
           <div className="flex justify-center">
-            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent din bonus hos SpilDanskNu</Button>
+            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent din bonus hos SpilDanskNu</Button>
           </div>
         </section>
 

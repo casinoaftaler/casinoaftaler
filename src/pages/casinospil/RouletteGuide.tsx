@@ -15,20 +15,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Sparkles,
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Layers,
-  Zap,
-  Users,
-  BookOpen,
-  Dice1,
-  ArrowRight,
-  Scale,
-  AlertTriangle,
-} from "lucide-react";
+import { Dice1, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import rouletteHero from "@/assets/heroes/roulette-hero.jpg";
 
@@ -352,7 +340,7 @@ const RouletteGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" /> Fransk (La Partage)
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> Fransk (La Partage)
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -367,7 +355,7 @@ const RouletteGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary" /> Europæisk
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" /> Europæisk
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -382,7 +370,7 @@ const RouletteGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" /> Amerikansk
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" /> Amerikansk
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -536,7 +524,7 @@ const RouletteGuide = () => {
             <Card className="border-primary/30 hover:border-primary/60 transition-colors">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>Europæisk Roulette</Link>
                 </CardTitle>
               </CardHeader>
@@ -548,7 +536,7 @@ const RouletteGuide = () => {
             <Card className="border-primary/30 hover:border-primary/60 transition-colors">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>Fransk Roulette</Link>
                 </CardTitle>
               </CardHeader>
@@ -560,7 +548,7 @@ const RouletteGuide = () => {
             <Card className="border-destructive/30 hover:border-destructive/60 transition-colors">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>Amerikansk Roulette</Link>
                 </CardTitle>
               </CardHeader>

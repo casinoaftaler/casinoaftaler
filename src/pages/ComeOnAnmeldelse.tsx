@@ -28,10 +28,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet,
-  TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe,
-} from "lucide-react";
+import { RotateCcw, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -104,7 +102,7 @@ const ComeOnAnmeldelse = () => {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.2 / 5 – Solid Platform</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.2 / 5 – Solid Platform</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">ComeOn Casino Anmeldelse 2026</h1>
             <p className="mb-6 text-lg text-white/80">Komplet og uafhængig anmeldelse af ComeOn Casino – en erfaren international operatør med dansk licens, bredt spiludvalg og fokus på brugervenlig design.</p>
           </div>
@@ -136,7 +134,7 @@ const ComeOnAnmeldelse = () => {
 
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – ComeOn Casino</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – ComeOn Casino</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr.</p></div>
@@ -202,15 +200,15 @@ const ComeOnAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Med over 1.000 spiltitler fra mere end 20 udbydere har ComeOn et af de bredere kataloger i den danske mellemklasse. Det er ikke i GetLucky-klassen (1.500+), men overgår mange konkurrenter i den samme priskategori.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater (~800)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater (~800)</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Omfattende samling fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>. Plus nicheudbydere: Thunderkick, Quickspin, <Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasil</Link>. Populære titler: Mega Moolah, Reactoonz, Wolf Gold.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Professionelt <Link to="/live-casino" className={linkClass}>live casino</Link> fra <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. Roulette, blackjack, baccarat, poker og game shows (Crazy Time, Monopoly Live, Lightning Roulette). 10% bidrag til bonusomsætning.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil & Jackpots</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Bordspil & Jackpots</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Digitale versioner af <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/poker" className={linkClass}>poker</Link> og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link>. Progressive jackpots inkl. Mega Moolah og Divine Fortune.</p></CardContent>
             </Card>
           </div>
@@ -250,8 +248,8 @@ const ComeOnAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Dansk support med personligt touch</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn tilbyder kundeservice på dansk via live chat og e-mail. Vi testede to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Torsdag kl. 13:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 10 sek. Dansk agent, venlig og kompetent. Besvarede spørgsmål om spilbidragsprocenter korrekt og præcist.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Lørdag kl. 21:45</h3><p className="text-sm text-muted-foreground">Svartid: 4 min 30 sek. Stadig tilgængelig i weekenden. Agent hjalp med udbetaling-spørgsmål uden at eskalere.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Torsdag kl. 13:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 10 sek. Dansk agent, venlig og kompetent. Besvarede spørgsmål om spilbidragsprocenter korrekt og præcist.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Lørdag kl. 21:45</h3><p className="text-sm text-muted-foreground">Svartid: 4 min 30 sek. Stadig tilgængelig i weekenden. Agent hjalp med udbetaling-spørgsmål uden at eskalere.</p></div></div>
           </div>
           <p className="text-muted-foreground leading-relaxed">Dansk kundeservice er en klar fordel – mange internationale casinoer tilbyder kun engelsktsproget support. ComeOns FAQ-sektion er omfattende og dækker de mest almindelige spørgsmål. E-mail besvares typisk inden for 12-24 timer.</p>
         </section>
@@ -284,7 +282,7 @@ const ComeOnAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Bankroll-analyse og Expected Value</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Lad os analysere ComeOns <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> fra et matematisk perspektiv. Med en maks. bonus på 1.000 kr. og 5x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) er den teoretiske Expected Value (EV) som følger:</p>
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />EV-beregning – ComeOn bonus</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />EV-beregning – ComeOn bonus</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud</p><p className="text-xl font-bold text-foreground">1.000 kr.</p></div>
@@ -339,8 +337,8 @@ const ComeOnAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 4.2/5 anerkender vi ComeOns styrker i gennemsigtighed, hastighed og brugervenlighed – mens vi kvantificerer begrænsningerne: 1.000 spil vs. branchens 2.000+ gennemsnit, fravær af VIP-struktur, og et design der prioriterer funktion over form. For den rigtige spillerprofil er ComeOn et af de bedste fund på det danske marked. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["comeon"].scores} total={CASINO_SCORES["comeon"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

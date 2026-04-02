@@ -7,7 +7,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { BookOpen, Crown, Sparkles } from "lucide-react";
+import { BookOpen, Crown, Sparkles } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { getSymbolEmoji, RARITY_LABELS } from "@/lib/slotGameLogic";
 import { cn } from "@/lib/utils";
@@ -86,7 +87,7 @@ export function PayTable({ gameId, bet = 1 }: PayTableProps) {
             "transition-all duration-200"
           )}
         >
-          <BookOpen className={cn("h-4 w-4", theme.dropShadowGlow)} />
+          <MenuIcon iconName="book-open" className="h-5 w-5" />
           Gevinsttabel
         </Button>
       </DialogTrigger>
@@ -107,7 +108,7 @@ export function PayTable({ gameId, bet = 1 }: PayTableProps) {
           {premiumSymbols.length > 0 && (
             <div className="space-y-2">
               <div className={cn("flex items-center gap-2", theme.accent)}>
-                <Crown className="h-4 w-4" />
+                <MenuIcon iconName="crown" className="h-4 w-4" />
                 <span className="text-sm font-semibold">{RARITY_LABELS.premium} Symboler</span>
                 <span className={cn("text-xs px-2 py-0.5 rounded", theme.bgAccent)}>Vinder fra 2×</span>
               </div>
@@ -154,7 +155,7 @@ export function PayTable({ gameId, bet = 1 }: PayTableProps) {
           {scatterSymbol && (
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-purple-400">
-                <Sparkles className="h-4 w-4" />
+                <MenuIcon iconName="sparkles" className="h-4 w-4" />
                 <span className="text-sm font-semibold">{RARITY_LABELS.scatter}</span>
                 <span className="text-xs bg-purple-500/20 px-2 py-0.5 rounded">Wild + Bonus</span>
               </div>

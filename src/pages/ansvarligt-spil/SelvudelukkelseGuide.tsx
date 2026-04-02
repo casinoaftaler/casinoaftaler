@@ -17,33 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import selvudelukkelseHero from "@/assets/heroes/selvudelukkelse-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Timer,
-  Ban,
-  ShieldCheck,
-  Info,
-  UserX,
-  RefreshCw,
-  FileText,
-  Smartphone,
-  Key,
-  Wallet,
-} from "lucide-react";
+import { Gavel, ArrowRight, Timer, Ban, UserX, Key } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -192,7 +167,7 @@ const SelvudelukkelseGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -246,7 +221,7 @@ const SelvudelukkelseGuide = () => {
         {/* ── ROFUS vs. Casino ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             ROFUS vs. casinoernes egne værktøjer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -257,7 +232,7 @@ const SelvudelukkelseGuide = () => {
             <Card className="border-primary/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   ROFUS (National)
                 </CardTitle>
               </CardHeader>
@@ -272,7 +247,7 @@ const SelvudelukkelseGuide = () => {
                   "Administreret af Spillemyndigheden",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -282,7 +257,7 @@ const SelvudelukkelseGuide = () => {
             <Card className="border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Lock className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-muted-foreground" />
                   Casinoernes egne værktøjer
                 </CardTitle>
               </CardHeader>
@@ -319,7 +294,7 @@ const SelvudelukkelseGuide = () => {
         {/* ── Midlertidig vs. permanent ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Clock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="clock" className="h-7 w-7 text-primary" />
             Midlertidig vs. permanent udelukkelse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -366,7 +341,7 @@ const SelvudelukkelseGuide = () => {
         {/* ── Step-by-step ROFUS ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <FileText className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />
             Trin-for-trin: Selvudelukkelse via ROFUS
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -426,13 +401,13 @@ const SelvudelukkelseGuide = () => {
           <div className="flex flex-wrap gap-3">
             <Button asChild>
               <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                <Shield className="mr-2 h-4 w-4" />
+                <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                 Gå til ROFUS
               </a>
             </Button>
             <Button variant="outline" asChild>
               <Link to="/ansvarligt-spil/rofus">
-                <BookOpen className="mr-2 h-4 w-4" />
+                <MenuIcon iconName="book-open" className="mr-2 h-4 w-4" />
                 Læs komplet ROFUS-guide
               </Link>
             </Button>
@@ -450,7 +425,7 @@ const SelvudelukkelseGuide = () => {
         {/* ── Internationale ordninger ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Internationale selvudelukkelsesordninger
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -506,7 +481,7 @@ const SelvudelukkelseGuide = () => {
               { title: "Udbetaling af saldo", desc: "Ved selvudelukkelse har du altid ret til udbetaling af din resterende kontosaldo. Casinoet kan ikke tilbageholde dine midler." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <p className="font-medium text-sm">{item.title}</p>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -521,7 +496,7 @@ const SelvudelukkelseGuide = () => {
         {/* ── Casino-specifik guide ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Casinoernes egne selvudelukkelsesværktøjer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -563,13 +538,13 @@ const SelvudelukkelseGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     Ring StopSpillet: 70 22 28 25
                   </a>
                 </Button>

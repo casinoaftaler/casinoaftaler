@@ -16,31 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
-import {
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Smartphone,
-  Lock,
-  Scale,
-  BarChart3,
-  BookOpen,
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Timer,
-  Ban,
-  ShieldCheck,
-  FileText,
-  UserX,
-  RefreshCw,
-  Info,
-} from "lucide-react";
+import { Gavel, ArrowRight, Timer, Ban, UserX } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -206,7 +183,7 @@ const RofusGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -243,7 +220,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-rofus">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Hvad er ROFUS?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -274,7 +251,7 @@ const RofusGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               ROFUS i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -323,7 +300,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="statistik">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             ROFUS i tal – Statistik og udvikling
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -369,7 +346,7 @@ const RofusGuide = () => {
 
           <div className="rounded-xl border border-border bg-muted/30 p-5">
             <h3 className="text-base font-semibold mb-2 flex items-center gap-2">
-              <Info className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="info" className="h-4 w-4 text-primary" />
               Kilde
             </h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -388,7 +365,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="tilmelding">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Sådan tilmelder du dig ROFUS – trin for trin
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -448,7 +425,7 @@ const RofusGuide = () => {
 
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-5 flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-sm text-foreground mb-1">Vigtigt at vide før tilmelding</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -507,7 +484,7 @@ const RofusGuide = () => {
           </div>
 
           <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
             Midlertidig udelukkelse – hvornår er det det rigtige valg?
           </h3>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -523,7 +500,7 @@ const RofusGuide = () => {
               "Spillere, der ikke oplever afhængighed, men ønsker proaktiv kontrol",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" />
+                <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm leading-relaxed">{item}</span>
               </li>
             ))}
@@ -546,7 +523,7 @@ const RofusGuide = () => {
               "Alle, der ønsker en definitiv afslutning på deres forhold til gambling",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <AlertTriangle className="h-4 w-4 mt-1 text-destructive shrink-0" />
+                <MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-1 text-destructive shrink-0" />
                 <span className="text-sm leading-relaxed">{item}</span>
               </li>
             ))}
@@ -567,7 +544,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ophaevelse">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <RefreshCw className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />
             Ophævelse af ROFUS-registrering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -579,7 +556,7 @@ const RofusGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Midlertidig udelukkelse
                 </CardTitle>
               </CardHeader>
@@ -689,7 +666,7 @@ const RofusGuide = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <span className="font-medium text-sm text-foreground">{item.title}:</span>{" "}
                   <span className="text-sm text-muted-foreground">{item.desc}</span>
@@ -724,7 +701,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="daekningsomraade">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Hvad dækker ROFUS?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -769,7 +746,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="begransninger">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />
             Begrænsninger ved ROFUS
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -802,7 +779,7 @@ const RofusGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
                   <h3 className="font-semibold text-sm text-foreground mb-1 flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-destructive shrink-0" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive shrink-0" />
                     {item.title}
                   </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed ml-6">{item.desc}</p>
@@ -830,7 +807,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="alternativer">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Supplerende selvudelukkelsesværktøjer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -901,7 +878,7 @@ const RofusGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 space-y-4 mb-6">
             <h3 className="font-semibold text-foreground flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
               Nøgleindsigter fra forskning i selvudelukkelse
             </h3>
             <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
@@ -959,7 +936,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="international">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             International sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -1020,7 +997,7 @@ const RofusGuide = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Phone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="phone" className="h-7 w-7 text-primary" />
             Få hjælp og støtte
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -1065,7 +1042,7 @@ const RofusGuide = () => {
                   </p>
                   <Button variant="outline" asChild className="w-full">
                     <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-3.5 w-3.5" />
+                      <MenuIcon iconName="external-link" className="mr-2 h-3.5 w-3.5" />
                       {resource.label}
                     </a>
                   </Button>
@@ -1086,13 +1063,13 @@ const RofusGuide = () => {
               <div className="flex flex-wrap justify-center gap-3">
                 <Button asChild>
                   <a href="https://www.spillemyndigheden.dk/rofus" target="_blank" rel="noopener noreferrer">
-                    <Shield className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="shield" className="mr-2 h-4 w-4" />
                     Tilmeld dig ROFUS
                   </a>
                 </Button>
                 <Button variant="outline" asChild>
                   <a href="tel:70222825">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MenuIcon iconName="phone" className="mr-2 h-4 w-4" />
                     Ring til StopSpillet: 70 22 28 25
                   </a>
                 </Button>

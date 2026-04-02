@@ -2,7 +2,8 @@ import { useState, useMemo, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp, Eye, X } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
@@ -140,7 +141,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
       <div className="slot-coupon-header">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Ticket className="h-5 w-5" style={{ color: 'hsl(220 20% 20%)' }} />
+            <MenuIcon iconName="ticket" className="h-5 w-5" />
             <span className="font-black text-base tracking-tight" style={{ color: 'hsl(220 20% 12%)' }}>
               Slot Kupon
             </span>
@@ -270,7 +271,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         {combinedMultiplier !== null && (
           <div className="slot-coupon-multiplier-box flex items-center justify-between">
             <div className="flex items-center gap-1.5 text-xs" style={{ color: 'hsl(220 15% 40%)' }}>
-              <TrendingUp className="h-3.5 w-3.5" style={{ color: 'hsl(15 60% 50%)' }} />
+              <MenuIcon iconName="trending-up" className="h-3.5 w-3.5" />
               Samlet odds
             </div>
             <span className={cn(
@@ -332,7 +333,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         {isArchived ? (
           <div className="space-y-2">
             <div className="slot-coupon-info-bar flex items-center justify-center gap-2 text-xs font-semibold">
-              <Lock className="h-3.5 w-3.5" />
+              <MenuIcon iconName="lock" className="h-3.5 w-3.5" />
               Bonus hunt afsluttet – kuponer låst
             </div>
           </div>
@@ -348,7 +349,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
               className="slot-coupon-info-bar w-full flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setShowReceipt((v) => !v)}
             >
-              <Eye className="h-3.5 w-3.5" />
+              <MenuIcon iconName="eye" className="h-3.5 w-3.5" />
               {showReceipt ? "Skjul Slot Kupon" : "Se Slot Kupon"}
             </button>
           </div>
@@ -385,7 +386,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
           )
         ) : (
           <div className="slot-coupon-info-bar flex items-center justify-center gap-2 text-xs">
-            <Lock className="h-3.5 w-3.5" />
+            <MenuIcon iconName="lock" className="h-3.5 w-3.5" />
             Log ind for at deltage
           </div>
         )}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link2, X, ExternalLink, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Link2, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { SITE_URL } from "@/lib/seo";
 
@@ -71,9 +72,9 @@ export function LinkDensityMonitor() {
   };
 
   const getIcon = () => {
-    if (internalCount > 60) return <AlertTriangle className="h-3.5 w-3.5" />;
-    if (internalCount > 40) return <AlertTriangle className="h-3.5 w-3.5" />;
-    return <CheckCircle2 className="h-3.5 w-3.5" />;
+    if (internalCount > 60) return <MenuIcon iconName="alert-triangle" className="h-3.5 w-3.5" />;
+    if (internalCount > 40) return <MenuIcon iconName="alert-triangle" className="h-3.5 w-3.5" />;
+    return <MenuIcon iconName="check-circle2" className="h-3.5 w-3.5" />;
   };
 
   return (
@@ -180,7 +181,7 @@ export function LinkDensityMonitor() {
                   key={`ext-${i}`}
                   className="flex items-start gap-2 px-3 py-1.5 text-xs border-b border-border/50 hover:bg-muted/30"
                 >
-                  <ExternalLink className="h-3 w-3 mt-0.5 text-muted-foreground flex-shrink-0" />
+                  <MenuIcon iconName="external-link" className="h-3 w-3 mt-0.5 text-muted-foreground flex-shrink-0" />
                   <div className="min-w-0">
                     <div className="truncate text-foreground">{link.text || "(tom)"}</div>
                     <div className="truncate text-muted-foreground">{link.href}</div>

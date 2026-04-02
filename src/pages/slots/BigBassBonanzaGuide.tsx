@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -120,7 +121,7 @@ const BigBassBonanzaGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Target className="mr-1.5 h-3.5 w-3.5" /> Mekanik-Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="target" className="mr-1.5 h-3.5 w-3.5" /> Mekanik-Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Big Bass Bonanza</h1>
             <p className="text-lg text-white/80">Pragmatic Plays fiskeeventyr har skabt en helt ny slot-genre. Vi dissekerer Money Collect-systemet med matematik.</p>
           </div>
@@ -172,7 +173,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk Profil: Grid, Symboler og Basismekanik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk Profil: Grid, Symboler og Basismekanik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -216,7 +217,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: MONEY COLLECT DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Money Collect: Fiskerens Matematik Forklaret</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Money Collect: Fiskerens Matematik Forklaret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Money Collect-systemet er genialt i sin simpelhed: under free spins kan fisk-symboler lande hvor som helst på hjulene med tilfældige pengeværdier (typisk 2x, 3x, 5x, 8x, 10x, 15x, 20x, 25x, 30x, eller 50x din indsats). Disse fisk "venter" på at blive indsamlet. Når fisker-symbolet lander på hjul 5 (og kun hjul 5), indsamles ALLE synlige fisk-pengeværdier og udbetales.
           </p>
@@ -235,7 +236,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: RTP VARIANTER ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter: Den Usynlige Forskel</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP-Varianter: Den Usynlige Forskel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ligesom <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> tilbyder Big Bass Bonanza tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-konfigurationer. Standardversionen på 96,71 % har en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,29 % – bedre end de fleste konkurrenter. Men den reducerede version på 91,60 % har en house edge på 8,40 %, hvilket er næsten uacceptabelt for et moderne slot-produkt.
           </p>
@@ -267,7 +268,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Volatilitetsprofil: Mellem Sweet Bonanza og Starburst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Mellem Sweet Bonanza og Starburst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Big Bass Bonanza klassificeres som høj volatilitet, men i praksis er den mere moderat end Ultra-højvolatile slots som Razor Shark eller Dead or Alive 2. Med en estimeret standardafvigelse på ca. 8x indsatsen pr. spin placerer den sig i den nedre del af "høj volatilitet"-spektret – snarere 3,5/5 end 4,5/5.
           </p>
@@ -283,7 +284,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: FREE SPINS ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Free Spins: Fiskeeventyret Starter Her</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Free Spins: Fiskeeventyret Starter Her</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Free spins udløses med 3+ scatter-symboler (fisketegn): 3 scatters giver 10 free spins, 4 giver 15, og 5 giver 20. Sandsynligheden for 3 scatters er ca. 1:200 spins – en standard trigger-frekvens for <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-slots.
           </p>
@@ -302,7 +303,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: FRANCHISE SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Original vs. Opfølgere: Hvilken Big Bass Er Bedst?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Original vs. Opfølgere: Hvilken Big Bass Er Bedst?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Pragmatic Play har lanceret en hel franchise af Big Bass-varianter. Lad os sammenligne de vigtigste:
           </p>
@@ -339,7 +340,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Risikovurdering og Bankroll-Perspektiv</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Risikovurdering og Bankroll-Perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Big Bass Bonanza er en moderat risiko-slot. Med en volatilitet på 3,5/5 er den mere tilgivende end ultra-volatile alternativer, men stadig risikabel nok til at kræve respekt for bankroll-management. Den estimerede bust-risiko for en 200-spins session (100:1 ratio) er ca. 20 % – lavere end de 35–40 % du ser hos Razor Shark.
           </p>
@@ -355,7 +356,7 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: HVEM PASSER SPILLET TIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Målgruppen: Hvem Bider på Krogen?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Målgruppen: Hvem Bider på Krogen?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Big Bass Bonanza har en bred appel, men er bedst egnet til spillere i mellemniveauet. Nybegyndere kan nyde det simple gameplay, men bør være opmærksomme på den moderate volatilitet. Erfarne spillere, der søger ekstrem spænding, vil finde max win på 2.100x utilstrækkeligt. Det perfekte segment er spillere, der nyder tematisk gameplay med en rimelig balance mellem risiko og belønning.
           </p>

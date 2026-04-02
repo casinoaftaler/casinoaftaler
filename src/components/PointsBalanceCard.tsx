@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Coins, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 
 interface PointsBalanceCardProps {
@@ -28,7 +29,7 @@ export function PointsBalanceCard({
   if (variant === "compact") {
     return (
       <div className={cn("flex items-center gap-2", className)}>
-        <Coins className="h-4 w-4 text-yellow-500" />
+        <MenuIcon iconName="coins" className="h-4 w-4 text-yellow-500" />
         {isLoading ? (
           <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
         ) : (
@@ -49,7 +50,7 @@ export function PointsBalanceCard({
         <CardContent className="p-6 sm:p-8">
           <div className="flex items-center gap-4">
             <div className="p-3 sm:p-4 rounded-xl bg-gradient-to-br from-yellow-500/30 to-amber-500/20 border border-yellow-500/30">
-              <Coins className="h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
+              <MenuIcon iconName="coins" className="h-8 w-8 sm:h-10 sm:w-10 text-yellow-400" />
             </div>
             <div className="flex-1">
               {showLabel && (
@@ -83,7 +84,7 @@ export function PointsBalanceCard({
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-yellow-500/20 border border-yellow-500/30">
-            <Coins className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
+            <MenuIcon iconName="coins" className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
           </div>
           <div className="flex-1 min-w-0">
             {showLabel && (

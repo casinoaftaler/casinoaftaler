@@ -21,7 +21,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -101,7 +102,7 @@ const RazorSharkGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Flame className="mr-1.5 h-3.5 w-3.5" /> Volatilitets-Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="flame" className="mr-1.5 h-3.5 w-3.5" /> Volatilitets-Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Razor Shark</h1>
             <p className="text-lg text-white/80">50.000x max win, Mystery Stacks og en af branchens mest geniale bonusmekanikker – dissekeret ned til sidste decimal.</p>
           </div>
@@ -133,7 +134,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk DNA: Grid, Linjer og Grundlæggende Struktur</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk DNA: Grid, Linjer og Grundlæggende Struktur</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -177,7 +178,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: MYSTERY STACKS DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Mystery Stack-Systemet: Tre Lag af Afsløring</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Mystery Stack-Systemet: Tre Lag af Afsløring</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Mystery Stacks er Razor Sharks signaturmekanik, og den fungerer i tre distinkte faser. Først lander mystery-symboler som grønne, ukendte blokke på hjulene – typisk i stacks af 2–4 symboler. Dernæst afslører de sig som enten et tilfældigt betalende symbol (basisspil) eller en af tre specialfunktioner: Nudge & Reveal, Golden Shark, eller en multiplikator (kun i free spins).
           </p>
@@ -196,7 +197,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: RTP & HOUSE EDGE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP 96,70 %: Over Gennemsnittet, Men Med Forbehold</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP 96,70 %: Over Gennemsnittet, Men Med Forbehold</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Razor Sharks RTP på 96,70 % placerer den komfortabelt over branchens gennemsnit på ca. 96,20 %. House edge er 3,30 %, hvilket er lavere end de fleste konkurrerende høj-volatilitets slots. Over 1.000 spins á 10 kr. er dit forventede tab 330 kr. – ca. 60 kr. mindre end på en typisk 96,10 %-slot.
           </p>
@@ -218,7 +219,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Volatilitet: Hvad 4,5 ud af 5 Reelt Indebærer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Volatilitet: Hvad 4,5 ud af 5 Reelt Indebærer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Razor Shark klassificeres som "meget høj" volatilitet – og det er ikke overdrivelse. Med en estimeret standardafvigelse på ca. 15x indsatsen pr. spin (sammenlignet med 2,5x for Starburst), er bankroll-svingningerne dramatiske. Over 100 spins á 10 kr. kan din saldo realistisk svinge fra 0 kr. til 3.000+ kr. – en total uforudsigelighed, der kræver mental og finansiel forberedelse.
           </p>
@@ -234,7 +235,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: FREE SPINS ANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Free Spins: Hvor den Virkelige Matematik Bor</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Free Spins: Hvor den Virkelige Matematik Bor</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Razor Sharks free spins-runde er den primære kilde til store gevinster og bidrager med ca. 65–70 % af spillets samlede RTP. Du udløser den med 3+ scatter-symboler: 3 scatters = 5 free spins, 4 scatters = 10, og 5 scatters = 15. Sandsynligheden for at trigge free spins er ca. 1:180 spins.
           </p>
@@ -253,7 +254,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Razor Shark vs. Dead or Alive 2 vs. Sweet Bonanza</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Razor Shark vs. Dead or Alive 2 vs. Sweet Bonanza</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De tre mest populære høj-volatilitets slots i Danmark har vidt forskellige profiler trods samme grundlæggende appel: jagten på store gevinster. Lad os sammenligne dem objektivt:
           </p>
@@ -290,7 +291,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: SPILLERPROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Hvem Er Razor Shark Bygget Til?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Hvem Er Razor Shark Bygget Til?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Razor Shark er designet til erfarne spillere med tilstrækkeligt bankroll og mental modstandskraft til at håndtere lange tørrperioder. Det er ikke en begynderslot – fraværet af bonus buy, den høje volatilitet, og den komplekse Mystery Stack-mekanik kræver forståelse og tålmodighed. Ideelle spillere har et budget på minimum 2.000–3.000 kr. pr. session og accepterer, at 3 ud af 4 sessioner kan ende med tab.
           </p>
@@ -306,7 +307,7 @@ const RazorSharkGuide = () => {
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Risikovurdering og Ansvarligt Spil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Risikovurdering og Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med en volatilitet på 4,5/5 er Razor Shark et af de mest risikable slot-produkter på markedet. Det er essentielt at forstå, at dette spil er designet til at producere tab i størstedelen af spilsessionerne. Gevinstrater over tid konvergerer mod 96,70 %, men individuelle sessioner kan variere fra total bust til massiv profit.
           </p>

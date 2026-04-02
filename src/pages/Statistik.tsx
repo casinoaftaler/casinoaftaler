@@ -15,11 +15,8 @@ import { Separator } from "@/components/ui/separator";
 import { useBonusHuntArchives, useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { formatLastmodDanish, getRouteLastmod } from "@/lib/seoRoutes";
-import {
-  BarChart3, TrendingUp, Trophy, Gamepad2, Database,
-  Target, ArrowRight, ExternalLink, BookOpen, ShieldCheck,
-  Activity, Layers, Calculator, Scale
-} from "lucide-react";
+import { ArrowRight, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import {
   ChartContainer, ChartTooltip, ChartTooltipContent
 } from "@/components/ui/chart";
@@ -322,7 +319,7 @@ export default function Statistik() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="bar-chart3" className="mr-1.5 h-3.5 w-3.5" />
               Opdateret {freshnessLabel}
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -385,10 +382,10 @@ export default function Statistik() {
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" aria-label="Nøgletal">
-              <KpiCard icon={<Database className="h-5 w-5" />} label="Testede Slots" value={formatNumber(totalSlotsCatalog)} />
-              <KpiCard icon={<Target className="h-5 w-5" />} label="Bonus Hunts" value={formatNumber(archiveStats.huntCount)} />
-              <KpiCard icon={<TrendingUp className="h-5 w-5" />} label="Gns. X" value={archiveStats.avgX.toFixed(2) + "x"} />
-              <KpiCard icon={<Trophy className="h-5 w-5" />} label="Bedste Hunt X" value={archiveStats.bestHuntX.toFixed(2) + "x"} accent />
+              <KpiCard icon={<MenuIcon iconName="database" className="h-5 w-5" />} label="Testede Slots" value={formatNumber(totalSlotsCatalog)} />
+              <KpiCard icon={<MenuIcon iconName="target" className="h-5 w-5" />} label="Bonus Hunts" value={formatNumber(archiveStats.huntCount)} />
+              <KpiCard icon={<MenuIcon iconName="trending-up" className="h-5 w-5" />} label="Gns. X" value={archiveStats.avgX.toFixed(2) + "x"} />
+              <KpiCard icon={<MenuIcon iconName="trophy" className="h-5 w-5" />} label="Bedste Hunt X" value={archiveStats.bestHuntX.toFixed(2) + "x"} accent />
             </div>
 
             {/* Investment overview */}
@@ -546,12 +543,12 @@ export default function Statistik() {
                           <div className="flex items-center gap-2">
                             {p.guideSlug && (
                               <Link to={`/spiludviklere/${p.guideSlug}`} className="text-primary hover:underline text-xs inline-flex items-center gap-0.5" title={`Læs ${p.provider} guide`}>
-                                <BookOpen className="h-3 w-3" /> Guide
+                                <MenuIcon iconName="book-open" className="h-3 w-3" /> Guide
                               </Link>
                             )}
                             {p.hubSlug && (
                               <Link to={`/spillemaskiner/${p.hubSlug}`} className="text-primary hover:underline text-xs inline-flex items-center gap-0.5" title={`Se alle ${p.provider} slots`}>
-                                <Gamepad2 className="h-3 w-3" /> Slots
+                                <MenuIcon iconName="gamepad2" className="h-3 w-3" /> Slots
                               </Link>
                             )}
                           </div>
@@ -597,7 +594,7 @@ export default function Statistik() {
                       return (
                         <tr key={s.id} className="border-b border-border hover:bg-muted/30 transition-colors">
                           <td className="px-4 py-3 text-muted-foreground">
-                            {i === 0 ? <Trophy className="h-4 w-4 text-primary" /> : i + 1}
+                            {i === 0 ? <MenuIcon iconName="trophy" className="h-4 w-4 text-primary" /> : i + 1}
                           </td>
                           <td className="px-4 py-3 font-medium">
                             <Link to={`/slot-katalog/${slotSlug}`} className="text-primary hover:underline">

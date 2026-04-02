@@ -26,7 +26,8 @@ import {
   Brain,
   Calculator,
   Sigma,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import rouletteStrategiHero from "@/assets/heroes/roulette-strategi-hero.jpg";
 
@@ -118,7 +119,7 @@ const RouletteStrategiGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Calculator className="mr-1.5 h-3.5 w-3.5" /> Systemsammenligning
+              <MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Systemsammenligning
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Roulette Strategi – Matematisk Analyse af Systemer og Sandsynlighed
@@ -413,7 +414,7 @@ const RouletteStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" /> Fransk (La Partage)
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> Fransk (La Partage)
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -428,7 +429,7 @@ const RouletteStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary" /> Europæisk
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" /> Europæisk
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -443,7 +444,7 @@ const RouletteStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" /> Amerikansk
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" /> Amerikansk
                 </CardTitle>
               </CardHeader>
               <CardContent>

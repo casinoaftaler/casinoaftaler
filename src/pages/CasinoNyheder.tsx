@@ -8,7 +8,8 @@ import { NewsHubSections } from "@/components/NewsHubSections";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import { CalendarDays, ChevronLeft, ChevronRight, Newspaper, Crown } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -340,13 +341,13 @@ const CasinoNyheder = () => {
                     <Badge variant="secondary" className="text-xs">{getCategoryLabel(article.category)}</Badge>
                     {(article as any).is_cornerstone && (
                       <Badge variant="default" className="text-xs flex items-center gap-1">
-                        <Crown className="h-3 w-3" />
+                        <MenuIcon iconName="crown" className="h-3 w-3" />
                         Cornerstone
                       </Badge>
                     )}
                     {article.published_at && (
                       <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <CalendarDays className="h-3 w-3" />
+                        <MenuIcon iconName="calendar-days" className="h-3 w-3" />
                         {new Date(article.published_at).toLocaleDateString("da-DK", {
                           day: "numeric",
                           month: "long",

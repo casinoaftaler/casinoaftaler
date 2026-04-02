@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Dices, Trophy } from "lucide-react";
+import { Dices } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import "@/styles/community-micro.css";
 
@@ -50,9 +51,9 @@ function AnimatedCount({ value }: { value: number }) {
 
 export function SidebarSocialProof() {
   const [stats, setStats] = useState<StatItem[]>([
-    { icon: <Users className="h-4 w-4 text-violet-400" />, value: null, label: "Aktive medlemmer" },
+    { icon: <MenuIcon iconName="users" className="h-4 w-4 text-violet-400" />, value: null, label: "Aktive medlemmer" },
     { icon: <Dices className="h-4 w-4 text-amber-400" />, value: null, label: "Spins spillet" },
-    { icon: <Trophy className="h-4 w-4 text-emerald-400" />, value: null, label: "Turneringer denne måned" },
+    { icon: <MenuIcon iconName="trophy" className="h-4 w-4 text-emerald-400" />, value: null, label: "Turneringer denne måned" },
   ]);
 
   useEffect(() => {

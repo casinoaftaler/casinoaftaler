@@ -24,7 +24,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Sparkles, Zap, Target, BarChart3, AlertTriangle, DollarSign, TrendingUp, Shield, Clock } from "lucide-react";
+import { DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -112,7 +113,7 @@ const LightningRouletteGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />
               Live roulette analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -191,7 +192,7 @@ const LightningRouletteGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Udbetalingssammenligning: Lightning vs. Standard Roulette
               </CardTitle>
             </CardHeader>
@@ -267,7 +268,7 @@ const LightningRouletteGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 EV-beregning: Straight-up bet i Lightning Roulette
               </CardTitle>
             </CardHeader>
@@ -319,7 +320,7 @@ const LightningRouletteGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Zap className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                 500x i perspektiv: Den totale omkostning
               </CardTitle>
             </CardHeader>
@@ -429,15 +430,15 @@ const LightningRouletteGuide = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Multiplikator-fokus</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Multiplikator-fokus</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Spred 5-10 straight-up bets pr. spin. Med 10 bets har du ca. 51 % chance for at mindst ét af dine numre er Lightning. Ulempe: din samlede indsats er 10x højere pr. spin, og kun ét nummer kan vinde. Forventet tab skalerer lineært. Bedst for spillere med stor bankroll, der søger multiplikator-action.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Shield className="h-5 w-5 text-primary" />Lav-risiko hybrid</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Lav-risiko hybrid</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Placér hovedindsatsen på outside bets (rød/sort) for stabil cashflow (2,70 % edge) og tilføj 1-2 straight-up bets som "lotto-billetter" til Lightning-multiplikatorer. Laveste samlede varians af alle tilgange. Bedst for konservative spillere, der vil have Lightning-oplevelsen uden høj risiko.</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-primary" />Enkelt nummer fokus</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Enkelt nummer fokus</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Bet på ét enkelt straight-up nummer konsekvent. Laveste totale indsats pr. spin, men kun 6,76 % chance for Lightning-aktivering pr. spin. Kræver tålmodighed og en lang session for at opleve multiplikatorer. Bedst for spillere med lille bankroll og lang tidshorisont.</p></CardContent>
             </Card>
           </div>

@@ -18,7 +18,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Heart, Layers } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Heart, Layers } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -51,7 +52,7 @@ const ImmortalRomanceGuide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Chamber of Spins & RTP</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Chamber of Spins & RTP</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Immortal Romance – Chamber of Spins & EV-Analyse</h1>
             <p className="text-lg text-white/80">Microgamings narrativ-drevne mesterværk: fire vampyrs kærlighedshistorier, fire progressive bonusniveauer og en af markedets højeste RTP'er ved 96,86 %.</p>
           </div>
@@ -65,7 +66,7 @@ const ImmortalRomanceGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Bonusfunktioner: Chamber of Spins Dekonstrueret</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Bonusfunktioner: Chamber of Spins Dekonstrueret</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Immortal Romance's Chamber of Spins er et masterclass i progressiv spilmekanik. Ligesom søsterspillet <Link to="/casinospil/spillemaskiner/thunderstruck-ii" className={linkClass}>Thunderstruck II</Link> låser hver bonustrigger op for stadig stærkere funktioner – men Immortal Romance tager konceptet et skridt videre med unikke mekanikker for hvert karakter-niveau, der fundamentalt ændrer spillets dynamik.</p>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="space-y-4 text-sm">
@@ -87,7 +88,7 @@ const ImmortalRomanceGuide = () => {
         />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: RTP og Gevinststruktur</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil: RTP og Gevinststruktur</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Microgaming</strong></div>
@@ -106,7 +107,7 @@ const ImmortalRomanceGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning: Vampyr-Value</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Beregning: Vampyr-Value</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -121,7 +122,7 @@ const ImmortalRomanceGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Sammenligning: Immortal Romance vs. Konkurrenterne</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Sammenligning: Immortal Romance vs. Konkurrenterne</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -140,13 +141,13 @@ const ImmortalRomanceGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Risikoprofil og Bankroll-Krav</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Risikoprofil og Bankroll-Krav</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den høje volatilitet kræver en bankroll på minimum 250-350 spins (1.000-1.400 kr. ved 4 kr. indsats). For spillere, der ønsker at nå de avancerede bonusniveauer (Michael/Sarah), kræves 1.000+ spins (4.000+ kr.). Tabsstop anbefales ved 55 % af startkapitalen – lidt højere end for medium-volatile slots pga. den større chance for comeback-gevinster.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Immortal Romance's progressive bonussystem kan skabe en psykologisk fristelse til at "jage" næste niveau – en fristelse, der bør modstås med disciplin. Den høje volatilitet betyder, at lange tørke-perioder er normalt, ikke tegn på at en stor gevinst er "due".</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Udødelig Kvalitet – Et Varigt Mesterværk</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Udødelig Kvalitet – Et Varigt Mesterværk</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Immortal Romance forbliver en af online slot-verdenens absolutte klassikere. Den kombinerer en uovertruffen RTP (96,86 %), dyb narrativ, progressiv bonus-mekanik og en balanceret risk/reward-profil, der tilfredsstiller både casual og seriøse spillere. For danske spillere er det svært at finde en slot, der tilbyder bedre samlet value.</p>
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde det rette match til din risikoprofil, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-tilbud.</p>
         </section>

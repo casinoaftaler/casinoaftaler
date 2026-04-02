@@ -22,7 +22,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -106,7 +107,7 @@ const ReactoonzGuide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Reactoonz – Cluster Pays Analyse & Volatilitetsprofil</h1>
             <p className="text-lg text-white/80">En matematisk gennemgang af Play'n GO's ikoniske 7×7 cluster pays-slot: Quantum-funktioner, kædegevinster og hvornår Gargantoon reelt leverer værdi.</p>
           </div>
@@ -122,7 +123,7 @@ const ReactoonzGuide = () => {
         {/* ── Udviklerkontekst ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Play'n GO og Cluster Pays-Revolutionen
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -148,7 +149,7 @@ const ReactoonzGuide = () => {
         {/* ── Cluster Pays-Mekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Cluster Pays-Mekanikken Forklaret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -189,7 +190,7 @@ const ReactoonzGuide = () => {
         {/* ── Quantum-Systemet ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
             Quantum-Funktionerne: Det Progressive Bonussystem
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -232,7 +233,7 @@ const ReactoonzGuide = () => {
         {/* ── RTP & House Edge ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             RTP-Analyse og House Edge Dekonstruktion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -275,7 +276,7 @@ const ReactoonzGuide = () => {
         {/* ── Volatilitetsprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Volatilitetsanalyse: Høj med Progressiv Buffer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -308,7 +309,7 @@ const ReactoonzGuide = () => {
         {/* ── EV-Perspektiv ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Expected Value: Sessionsbaseret EV-Beregning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -349,7 +350,7 @@ const ReactoonzGuide = () => {
         {/* ── Bonuskompatibilitet ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Bonuskompatibilitet og Wagering-Effektivitet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -369,7 +370,7 @@ const ReactoonzGuide = () => {
         {/* ── Risikoprofil & Bankroll ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Risikoprofil og Bankroll-Dimensionering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -408,7 +409,7 @@ const ReactoonzGuide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Reactoonz vs. Sweet Bonanza vs. Gonzo's Quest
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -449,7 +450,7 @@ const ReactoonzGuide = () => {
         {/* ── Myter vs. Fakta ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Myter og Misforståelser om Reactoonz
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -480,7 +481,7 @@ const ReactoonzGuide = () => {
         {/* ── Hvem passer spillet til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Målgruppeanalyse: Hvem Får Mest Ud af Reactoonz?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -513,7 +514,7 @@ const ReactoonzGuide = () => {
         {/* ── Fremtidsperspektiv ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Reactoonz i det Moderne Slot-Landskab
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

@@ -1,4 +1,5 @@
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
@@ -32,9 +33,9 @@ export function ThemeToggle() {
       className="h-9 w-9"
     >
       {isDark ? (
-        <Sun className="h-5 w-5" />
+        <MenuIcon iconName="sun" className="h-5 w-5" />
       ) : (
-        <Moon className="h-5 w-5" />
+        <MenuIcon iconName="moon" className="h-5 w-5" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

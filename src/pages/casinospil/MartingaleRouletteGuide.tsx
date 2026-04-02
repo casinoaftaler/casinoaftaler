@@ -15,12 +15,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, Sparkles, Zap, AlertTriangle,
-  TrendingUp, Scale, Eye, Layers, Clock, Users, CheckCircle,
-  XCircle, Coins, Brain, Gamepad2, BookOpen, Calculator, Flame,
-  Activity, LineChart, ArrowRight, Repeat,
-} from "lucide-react";
+import { Activity, LineChart, ArrowRight, Repeat } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/martingale-roulette-hero.jpg";
 
@@ -102,7 +98,7 @@ export default function MartingaleRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Fordoblingsanalyse
+              <MenuIcon iconName="trending-up" className="mr-1.5 h-3.5 w-3.5" /> Fordoblingsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale Roulette System 2026 – Fordoblingsprincippet Under Mikroskop
@@ -126,7 +122,7 @@ export default function MartingaleRouletteGuide() {
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Martingale: Det mest misforståede system i casino-historien
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -146,7 +142,7 @@ export default function MartingaleRouletteGuide() {
         {/* Sådan fungerer Martingale */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Sådan fungerer Martingale-systemet trin for trin
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -239,7 +235,7 @@ export default function MartingaleRouletteGuide() {
         {/* Matematikken bag Martingale */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Den matematiske sandhed om Martingale
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -312,7 +308,7 @@ export default function MartingaleRouletteGuide() {
         {/* Bordmaksimum-fælden */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Bordmaksimum-fælden: Hvorfor Martingale altid fejler
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -371,7 +367,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Kortsigtet (500 spins)</p>
                 </div>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -414,7 +410,7 @@ export default function MartingaleRouletteGuide() {
         {/* Varianter */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Martingale-varianter: Mini, Grand, Reverse og Anti-Martingale
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -425,7 +421,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Mini-Martingale (Capped Martingale)
                 </CardTitle>
               </CardHeader>
@@ -434,8 +430,8 @@ export default function MartingaleRouletteGuide() {
                   Begrænser antal fordoblinger til et fast antal (typisk 3-5). Ved cap accepterer du tabet og nulstiller til basisenheden. Reducerer worst-case-tabet dramatisk: med cap-4 er dit maksimale tab pr. serie 750 kr. (vs. 6.350 kr. ved 7 fordoblinger).
                 </p>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-xs"><CheckCircle className="h-3 w-3 mr-1" /> Lavere risiko</Badge>
-                  <Badge variant="outline" className="text-xs"><XCircle className="h-3 w-3 mr-1" /> Lavere recovery-rate</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="check-circle" className="h-3 w-3 mr-1" /> Lavere risiko</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="x-circle" className="h-3 w-3 mr-1" /> Lavere recovery-rate</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -443,7 +439,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Flame className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="flame" className="h-4 w-4 text-primary" />
                   Grand Martingale
                 </CardTitle>
               </CardHeader>
@@ -452,8 +448,8 @@ export default function MartingaleRouletteGuide() {
                   Fordobler OG tilføjer én basisenhed: 50→150→350→750. Giver større profit per gevinst (mere end 50 kr.) men eskalerer endnu hurtigere end standard Martingale. Ekstremt aggressivt – anbefales aldrig.
                 </p>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-xs"><CheckCircle className="h-3 w-3 mr-1" /> Højere profit per serie</Badge>
-                  <Badge variant="outline" className="text-xs"><XCircle className="h-3 w-3 mr-1" /> Ekstrem risiko</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="check-circle" className="h-3 w-3 mr-1" /> Højere profit per serie</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="x-circle" className="h-3 w-3 mr-1" /> Ekstrem risiko</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -470,8 +466,8 @@ export default function MartingaleRouletteGuide() {
                   Fordobler ved GEVINST i stedet for tab. Typisk capped ved 3-4 gevinster i træk, hvorefter du nulstiller. Forsøger at udnytte "hot streaks" og begrænser tab til basisenheden. Matematisk stadig -2,70% EV, men med en behageligere risikoprofil.
                 </p>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-xs"><CheckCircle className="h-3 w-3 mr-1" /> Begrænset tab</Badge>
-                  <Badge variant="outline" className="text-xs"><XCircle className="h-3 w-3 mr-1" /> Kræver winning streaks</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="check-circle" className="h-3 w-3 mr-1" /> Begrænset tab</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="x-circle" className="h-3 w-3 mr-1" /> Kræver winning streaks</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -479,7 +475,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Scale className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="scale" className="h-4 w-4 text-primary" />
                   Hybride systemer
                 </CardTitle>
               </CardHeader>
@@ -488,8 +484,8 @@ export default function MartingaleRouletteGuide() {
                   Kombinerer Martingale med andre systemer, f.eks. D'Alembert-base med Martingale-trin ved specifikke tabsserier. Disse er akademisk interessante men komplicerer spillet uden at ændre den fundamentale EV.
                 </p>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className="text-xs"><CheckCircle className="h-3 w-3 mr-1" /> Tilpasset risiko</Badge>
-                  <Badge variant="outline" className="text-xs"><XCircle className="h-3 w-3 mr-1" /> Kompeks tracking</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="check-circle" className="h-3 w-3 mr-1" /> Tilpasset risiko</Badge>
+                  <Badge variant="outline" className="text-xs"><MenuIcon iconName="x-circle" className="h-3 w-3 mr-1" /> Kompeks tracking</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -503,7 +499,7 @@ export default function MartingaleRouletteGuide() {
         {/* Sammenligning med andre systemer */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Martingale vs. andre roulette-systemer: Komplet sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -566,7 +562,7 @@ export default function MartingaleRouletteGuide() {
         {/* Psykologiske fælder */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
             Psykologiske fælder: Hvorfor Martingale føles rigtigt
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -612,7 +608,7 @@ export default function MartingaleRouletteGuide() {
         {/* Praktiske tips */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Praktiske anbefalinger: Hvis du alligevel vil bruge Martingale
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -623,7 +619,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Vælg Mini-Martingale (cap: 4)</p>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -634,7 +630,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Spil fransk roulette</p>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -645,7 +641,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Sæt et sessionstab-limit</p>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -656,7 +652,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Sæt et gevinstmål</p>
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -681,7 +677,7 @@ export default function MartingaleRouletteGuide() {
         {/* Historisk kontekst */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
             Martingales historie: Fra 18. århundrede til online casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -707,7 +703,7 @@ export default function MartingaleRouletteGuide() {
         {/* Bonusomsætning med Martingale */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Coins className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />
             Martingale og Bonusomsætning: En Analyse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -744,7 +740,7 @@ export default function MartingaleRouletteGuide() {
         {/* Live vs RNG for Martingale */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Live vs. RNG Roulette: Hvad er Bedst for Martingale?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -755,7 +751,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="users" className="h-4 w-4 text-primary" />
                   Live Dealer (Anbefalet for Martingale)
                 </h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -771,7 +767,7 @@ export default function MartingaleRouletteGuide() {
             <Card className="border-border">
               <CardContent className="pt-4">
                 <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <Gamepad2 className="h-4 w-4 text-muted-foreground" />
+                  <MenuIcon iconName="gamepad2" className="h-4 w-4 text-muted-foreground" />
                   RNG Roulette
                 </h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -797,7 +793,7 @@ export default function MartingaleRouletteGuide() {
         {/* Konklusion */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Konklusion: Martingale er underholdning, ikke investering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

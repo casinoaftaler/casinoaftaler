@@ -1,4 +1,5 @@
-import { Sparkles, Gift } from "lucide-react";
+import { Sparkles, Gift } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useCommunityBonusSpins } from "@/hooks/useCommunityBonusSpins";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -15,7 +16,7 @@ export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
   if (isLoading) {
     return (
       <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 animate-pulse">
-        <Sparkles className="h-4 w-4" />
+        <MenuIcon iconName="sparkles" className="h-4 w-4" />
         <span className="text-sm">Indlæser...</span>
       </div>
     );
@@ -32,13 +33,13 @@ export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
               ? "bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-500/30"
               : "bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30"
           }`}>
-            <Sparkles className={`h-4 w-4 ${accentColor}`} />
+            <MenuIcon iconName="sparkles" className="h-5 w-5" />
             <span className="text-sm font-medium">
               <span className={accentColor}>{spinsRemaining}</span>
               <span className="text-muted-foreground">/{maxSpins} credits i dag</span>
             </span>
             {bonusSpinsPermanent > 0 && (
-              <Gift className="h-3 w-3 text-primary" />
+              <MenuIcon iconName="gift" className="h-3 w-3 text-primary" />
             )}
           </div>
         </TooltipTrigger>

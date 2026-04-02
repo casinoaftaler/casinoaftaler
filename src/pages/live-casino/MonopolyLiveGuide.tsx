@@ -19,7 +19,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Sparkles, Gamepad2, BarChart3, AlertTriangle, Target, DollarSign, TrendingUp, Shield, Clock, Dice1 } from "lucide-react";
+import { DollarSign, Dice1 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -97,7 +98,7 @@ const MonopolyLiveGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="gamepad2" className="mr-1.5 h-3.5 w-3.5" />
               Game show analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -154,7 +155,7 @@ const MonopolyLiveGuide = () => {
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Komplet hjulfordeling med EV-analyse
               </CardTitle>
             </CardHeader>
@@ -328,7 +329,7 @@ const MonopolyLiveGuide = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Shield className="h-5 w-5 text-primary" />Konservativ</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Konservativ</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2"><strong>Fokus:</strong> Kun tal-bets (1, 2, 5)</p>
                 <p className="text-sm text-muted-foreground mb-2"><strong>House edge:</strong> 3,70 %</p>
@@ -337,7 +338,7 @@ const MonopolyLiveGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-primary" />Balanceret</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Balanceret</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2"><strong>Fokus:</strong> Tal-bets + 4 Rolls</p>
                 <p className="text-sm text-muted-foreground mb-2"><strong>House edge:</strong> ~4,20 % blended</p>
@@ -346,7 +347,7 @@ const MonopolyLiveGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-destructive" />Aggressiv</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-destructive" />Aggressiv</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2"><strong>Fokus:</strong> Alle segmenter inkl. Chance</p>
                 <p className="text-sm text-muted-foreground mb-2"><strong>House edge:</strong> ~5,50 % blended</p>
@@ -550,7 +551,7 @@ const MonopolyLiveGuide = () => {
           <h2 className="mb-4 text-3xl font-bold">Hvem bør spille Monopoly Live – ærlig segmentering</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card border-l-4 border-l-primary">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Monopoly Live er ideelt for dig, hvis du:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Monopoly Live er ideelt for dig, hvis du:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc pl-4">
                   <li>Prioriterer underholdning og oplevelse over matematisk optimering – du behandler det som en underholdningsudgift</li>
@@ -562,7 +563,7 @@ const MonopolyLiveGuide = () => {
               </CardContent>
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-destructive">
-              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-destructive" />Undgå Monopoly Live, hvis du:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />Undgå Monopoly Live, hvis du:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc pl-4">
                   <li>Søger lav house edge og matematisk fordel – vælg <Link to="/live-casino/blackjack" className={linkClass}>blackjack</Link> (0,5 %) eller <Link to="/live-casino/baccarat" className={linkClass}>baccarat</Link> (1,06 %)</li>

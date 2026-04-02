@@ -15,7 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, Sparkles, CheckCircle2, Calculator, TrendingDown, AlertTriangle, Zap, BarChart3 } from "lucide-react";
+import { TrendingDown } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -82,7 +83,7 @@ const NyeCasinoerLavWagering = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Target className="mr-1.5 h-3.5 w-3.5" />Lav Wagering</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="target" className="mr-1.5 h-3.5 w-3.5" />Lav Wagering</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med Lav Wagering</h1>
           <p className="text-lg text-white/80">Casino-specifik sammenligning af omsætningskrav hos nye danske casinoer. EV-modeller, spilbidragsanalyse og strategier for optimal bonus-udnyttelse.</p>
         </div></div>
@@ -219,7 +220,7 @@ const NyeCasinoerLavWagering = () => {
           <div className="space-y-4">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><CheckCircle2 className="h-5 w-5 text-primary" />0x – Ingen omsætningskrav</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />0x – Ingen omsætningskrav</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Du beholder alle gevinster direkte og kan udbetale med det same. Bonusbeløbet er typisk lavere (200-500 kr.), men den reelle værdi er 100%. En 500 kr. bonus med 0x er 500 kr. værd – punkt.</p>
@@ -229,7 +230,7 @@ const NyeCasinoerLavWagering = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-primary/80">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><CheckCircle2 className="h-5 w-5 text-primary" />5x – Markant under standard (GetLucky & ComeOn)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />5x – Markant under standard (GetLucky & ComeOn)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>En bonus på 1.000 kr. med 5x kræver 5.000 kr. i spil – ca. 500 spins á 10 kr. på en standard spilleautomat. Med 96% RTP bevarer du statistisk set 800 kr. af bonusværdien (80%).</p>
@@ -239,7 +240,7 @@ const NyeCasinoerLavWagering = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-muted-foreground/50">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-muted-foreground" />10x – Dansk standard (flertallet af nye casinoer)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="target" className="h-5 w-5 text-muted-foreground" />10x – Dansk standard (flertallet af nye casinoer)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Det danske lovmæssige loft. En 1.000 kr. bonus kræver 10.000 kr. i spil – ca. 1.000 spins á 10 kr. Med 96% RTP bevarer du statistisk set 600 kr. af bonusværdien (60%). Stadig markant bedre end internationale standarder.</p>
@@ -267,7 +268,7 @@ const NyeCasinoerLavWagering = () => {
               { title: "Regel 5: Kend dine stop-loss og take-profit grænser", desc: "Sæt en mental stop-loss: hvis din saldo falder under 30% af startbeløbet, kan det være værd at opgive bonussen (hvis den er no-sticky). Sæt en take-profit: har du dobbelt startbeløbet, overvej at sænke indsatsen til minimum for at sikre gevinsten." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -342,7 +343,7 @@ const NyeCasinoerLavWagering = () => {
               { mistake: "Fejl 5: At glemme forskellen på D+B og kun bonus", fix: "10x omsætning 'kun bonus' på en 1.000 kr. bonus = 10.000 kr. i spil. 10x 'D+B' med 1.000 kr. indbetaling + 1.000 kr. bonus = 20.000 kr. i spil. Det er dobbelt så meget – og halverer den reelle bonusværdi." },
             ].map((item) => (
               <div key={item.mistake} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.mistake}</h3>
                   <p className="text-sm text-muted-foreground">{item.fix}</p>
@@ -367,7 +368,7 @@ const NyeCasinoerLavWagering = () => {
               { title: "Høj RTP-automater (96%+)", desc: "Lavere husets fordel = mere af din saldo bevaret pr. spin. Med 98% RTP og 5x omsætning bevarer du statistisk 90% af bonusværdien – næsten som 0x wagering." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -427,7 +428,7 @@ const NyeCasinoerLavWagering = () => {
               { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", desc: "Bonusser helt uden wagering" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
               </Link>
             ))}
           </div>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Instagram, MessageCircle, ExternalLink } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import { MenuIcon } from "@/components/MenuIcon";
@@ -53,7 +53,7 @@ export function Footer() {
             <div className="flex flex-wrap items-center gap-2 pt-2">
               {discordUrl && (
                 <a href={discordUrl} target="_blank" rel="noopener noreferrer" className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground" aria-label="Discord">
-                  <MessageCircle className="h-5 w-5" />
+                  <MenuIcon iconName="message-circle" className="h-5 w-5" />
                 </a>
               )}
               {instagramUrl && (
@@ -318,19 +318,19 @@ export function Footer() {
             <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
               <MenuIcon iconName="shield" className="h-4 w-4" />
               StopSpillet.dk
-              <ExternalLink className="h-3 w-3" />
+              <MenuIcon iconName="external-link" className="h-3 w-3" />
             </a>
 
             <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
               <MenuIcon iconName="scale" className="h-4 w-4" />
               ROFUS.nu
-              <ExternalLink className="h-3 w-3" />
+              <MenuIcon iconName="external-link" className="h-3 w-3" />
             </a>
 
             <a href="https://ludomani.dk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
               <MenuIcon iconName="shield-off" className="h-4 w-4" />
               Center for Ludomani
-              <ExternalLink className="h-3 w-3" />
+              <MenuIcon iconName="external-link" className="h-3 w-3" />
             </a>
 
             <a href="https://www.ingenco2.dk/certificate/7836/da" target="_blank" rel="noopener noreferrer" className="inline-block">
@@ -343,7 +343,7 @@ export function Footer() {
             <a href="https://dk.trustpilot.com/review/casinoaftaler.dk" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
               <MenuIcon iconName="star" className="h-4 w-4" />
               Trustpilot
-              <ExternalLink className="h-3 w-3" />
+              <MenuIcon iconName="external-link" className="h-3 w-3" />
             </a>
           </div>
         </div>

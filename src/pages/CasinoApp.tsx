@@ -16,40 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import {
-  Smartphone,
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Zap,
-  Download,
-  Star,
-  TrendingUp,
-  CreditCard,
-  Gamepad2,
-  Eye,
-  Settings,
-  Bell,
-  RefreshCw,
-  Info,
-  Trophy,
-  Apple,
-  MonitorSmartphone,
-  Search,
-  Heart,
-} from "lucide-react";
+import { Gavel, ArrowRight, Download, Settings, Bell, MonitorSmartphone } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data
@@ -244,7 +212,7 @@ const CasinoApp = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Casino apps i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -368,7 +336,7 @@ const CasinoApp = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Smartphone className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
                   iOS (iPhone / iPad)
                 </CardTitle>
               </CardHeader>
@@ -384,7 +352,7 @@ const CasinoApp = () => {
                   "Notarisering beskytter mod malware",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -394,7 +362,7 @@ const CasinoApp = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Smartphone className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
                   Android
                 </CardTitle>
               </CardHeader>
@@ -410,7 +378,7 @@ const CasinoApp = () => {
                   "Google Pay integration på udvalgte casinoer",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -420,7 +388,7 @@ const CasinoApp = () => {
 
           <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 mb-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
               <div>
                 <p className="font-semibold text-sm text-foreground mb-1">Advarsel: Undgå sideloaded APK-filer</p>
                 <p className="text-sm text-muted-foreground">
@@ -499,7 +467,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Sikkerhed og privatlivsbeskyttelse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -555,7 +523,7 @@ const CasinoApp = () => {
               "Slet appen, hvis du tilmelder dig ROFUS – appen vil dog selv blokere din adgang",
             ].map((tip) => (
               <div key={tip} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{tip}</span>
               </div>
             ))}
@@ -569,7 +537,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="spiludvalg">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Spiludvalg i casino apps
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -613,7 +581,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="betaling">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CreditCard className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />
             Betalinger via casino apps
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -629,7 +597,7 @@ const CasinoApp = () => {
               { method: "Visa/Mastercard", desc: "Kortoplysninger kan gemmes sikkert i appen med tokenisering" },
             ].map((item) => (
               <div key={item.method} className="flex items-start gap-3">
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <span className="font-medium text-sm text-foreground">{item.method}:</span>{" "}
                   <span className="text-sm text-muted-foreground">{item.desc}</span>
@@ -654,7 +622,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="native-vs-pwa">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <RefreshCw className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />
             Native app vs. PWA – dybdegående sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -707,7 +675,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="fordele-ulemper">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Fordele og ulemper ved casino apps
           </h2>
 
@@ -715,7 +683,7 @@ const CasinoApp = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base text-primary">
-                  <CheckCircle className="h-5 w-5" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5" />
                   Fordele
                 </CardTitle>
               </CardHeader>
@@ -730,7 +698,7 @@ const CasinoApp = () => {
                   "App store review tilføjer et ekstra sikkerhedslag",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -740,7 +708,7 @@ const CasinoApp = () => {
             <Card className="border-destructive/30 bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base text-destructive">
-                  <AlertTriangle className="h-5 w-5" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5" />
                   Ulemper
                 </CardTitle>
               </CardHeader>
@@ -755,7 +723,7 @@ const CasinoApp = () => {
                   "Potentielt mere synlig på enheden (privatlivshensyn)",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 mt-0.5 text-destructive shrink-0" />
+                    <MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-0.5 text-destructive shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -771,7 +739,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Heart className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="heart" className="h-7 w-7 text-primary" />
             Ansvarligt spil i casino apps
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -788,7 +756,7 @@ const CasinoApp = () => {
               "Link til StopSpillet (70 22 28 25) direkte i appens menusystem",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -827,7 +795,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="fremtiden">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Fremtidens casino apps
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -872,7 +840,7 @@ const CasinoApp = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Hjælp og ressourcer
           </h2>
           <p className="text-muted-foreground mb-6 leading-relaxed">

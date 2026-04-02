@@ -17,7 +17,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, Sparkles, CheckCircle2, XCircle, AlertTriangle, Scale, FileText, Users, TrendingUp, Gavel } from "lucide-react";
+import { Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -93,7 +94,7 @@ const NyeCasinoerDanskLicens = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />Licenserede Spillesteder</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />Licenserede Spillesteder</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med Dansk Licens</h1>
             <p className="text-lg text-white/80">Find de nyeste online casinoer med gyldig licens fra Spillemyndigheden. Alle casinoer er verificerede, sikre og tilbyder skattefri gevinster.</p>
           </div>
@@ -141,7 +142,7 @@ const NyeCasinoerDanskLicens = () => {
               { title: "6. Dansk kundesupport og kommunikation", desc: "Nye casinoer med dansk licens tilbyder typisk support på dansk via live chat og e-mail. Spillemyndigheden kræver, at alle væsentlige vilkår, bonusbetingelser og ansvarligt spil-informationer er tilgængelige på dansk. Det eliminerer sprogbarrierer og misforståelser." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -246,7 +247,7 @@ const NyeCasinoerDanskLicens = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><ShieldCheck className="h-5 w-5 text-primary" />Dansk Licens</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />Dansk Licens</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• Gevinster er <strong>skattefri</strong> (operatøren betaler 28% BSI-afgift)</p>
@@ -262,7 +263,7 @@ const NyeCasinoerDanskLicens = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-destructive">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><AlertTriangle className="h-5 w-5 text-destructive" />Udenlandsk Licens (MGA/Curaçao/Gibraltar)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />Udenlandsk Licens (MGA/Curaçao/Gibraltar)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• Gevinster er <strong>skattepligtige</strong> (op til 45% i DK)</p>
@@ -298,7 +299,7 @@ const NyeCasinoerDanskLicens = () => {
               { title: "Tilbagekaldelse af licens (mest alvorlig)", desc: "I de mest alvorlige tilfælde kan licensen tilbagekaldes permanent. Det sker ved: systematisk ROFUS-overtrædelse, dokumenteret spillermanipulation, hvidvask, finansiel insolvens eller gentagne grove overtrædelser. Tilbagekaldelse er endelig og offentliggøres bredt." },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -327,7 +328,7 @@ const NyeCasinoerDanskLicens = () => {
               { title: "Forbud mod gamification af tab", desc: "Nye retningslinjer forbyder funktioner der 'belønner' tab – f.eks. cashback-programmer der motiverer til fortsat spil efter tab. Cashback-bonusser er stadig tilladt, men de må ikke markedsføres som en grund til at spille mere." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -359,7 +360,7 @@ const NyeCasinoerDanskLicens = () => {
           </div>
           <div className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
               <p className="text-sm text-muted-foreground">
                 <strong>Advarsel:</strong> Nogle ulovlige casinoer viser falske eller forældede licensnumre. Stol aldrig på casinoets egne påstande – verificér altid direkte hos Spillemyndigheden. Hvis et casino ikke fremgår af listen, bør du ikke oprette en konto uanset hvor attraktive <Link to="/casino-bonus" className={linkClass}>bonusserne</Link> måtte virke.
               </p>
@@ -389,7 +390,7 @@ const NyeCasinoerDanskLicens = () => {
               { title: "Skærpet tilsyn med nye operatører", desc: "Nye licensindehavere er nu underlagt forstærket tilsyn i de første 18 måneder (tidligere 12 måneder). Det inkluderer hyppigere uanmeldte audits, månedlige compliance-rapporter og tættere monitorering af spillerklager." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -411,7 +412,7 @@ const NyeCasinoerDanskLicens = () => {
               { to: "/casino-licenser", label: "Alle Casino-licenser", desc: "Komplet licenssammenligning" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

@@ -13,7 +13,8 @@ import {
   isCasinoTrustHubPath,
   isCasinoTrustPath,
 } from "@/lib/casinoTrust";
-import { Clock3, ExternalLink, FileClock, Loader2, ShieldCheck } from "lucide-react";
+import { Clock3, FileClock, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface CasinoTrustPanelProps {
   pagePath: string;
@@ -49,7 +50,7 @@ function TrustSourceLink({
         <p className="mt-1 text-sm font-medium text-foreground">{description}</p>
         <p className="mt-1 text-xs text-muted-foreground break-all">{url}</p>
       </div>
-      <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+      <MenuIcon iconName="external-link" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
     </a>
   );
 }
@@ -83,7 +84,7 @@ function TrustHistoryItem({
             className="inline-flex items-center gap-1 text-xs font-medium text-primary underline-offset-4 hover:underline"
           >
             {sourceLabel ?? "Kilde"}
-            <ExternalLink className="h-3.5 w-3.5" />
+            <MenuIcon iconName="external-link" className="h-3.5 w-3.5" />
           </a>
         ) : null}
       </div>
@@ -166,7 +167,7 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
-                <ShieldCheck className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                 {hubCopy.title}
               </CardTitle>
               <p className="mt-1 text-sm text-muted-foreground">{hubCopy.description}</p>
@@ -237,7 +238,7 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <CardTitle className="flex items-center gap-2 text-base">
-              <ShieldCheck className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
               Trust & friskhed
             </CardTitle>
             <p className="mt-1 text-sm text-muted-foreground">

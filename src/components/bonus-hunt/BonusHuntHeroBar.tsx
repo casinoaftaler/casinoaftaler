@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Target, Radio } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Radio } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Props {
@@ -53,7 +54,7 @@ export function BonusHuntHeroBar({
       <div className="flex items-center justify-between gap-3">
         {/* Left: Title + date + badge */}
         <div className="flex items-center gap-2.5 min-w-0">
-          <Target className="h-5 w-5 text-primary shrink-0" />
+          <MenuIcon iconName="target" className="h-5 w-5 text-primary shrink-0" />
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <h1 className="text-lg md:text-xl font-bold tracking-wide uppercase text-foreground leading-none truncate">

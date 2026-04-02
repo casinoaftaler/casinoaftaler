@@ -12,34 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Zap,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Clock,
-  CreditCard,
-  TrendingUp,
-  Wallet,
-  Banknote,
-  Timer,
-  ArrowRight,
-  BarChart3,
-  Lock,
-  Users,
-  Star,
-  Eye,
-  Target,
-  Smartphone,
-  Scale,
-  Percent,
-  Calculator,
-  BookOpen,
-  Info,
-  Heart,
-  Shield,
-  Fingerprint,
-} from "lucide-react";
+import { Timer, ArrowRight, Fingerprint } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -194,7 +168,7 @@ const HurtigUdbetaling = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />
               Udbetalingsguide & testede tider
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -444,7 +418,7 @@ const HurtigUdbetaling = () => {
           </p>
           <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-5 mb-4">
             <div className="flex items-start gap-3">
-              <Heart className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="heart" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <p className="font-semibold mb-2">3 ansvarligt spil-principper for udbetalinger</p>
                 <ul className="space-y-2 text-sm text-muted-foreground">

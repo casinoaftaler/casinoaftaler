@@ -34,7 +34,8 @@ import {
   Award,
   Smartphone,
   Clock,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import type { ReactNode } from "react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -129,7 +130,7 @@ const CasinoMedDanskLicens = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
               Verificeret guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -336,7 +337,7 @@ const CasinoMedDanskLicens = () => {
           <div className="space-y-6">
             <div>
               <h3 className="mb-2 text-xl font-bold flex items-center gap-2">
-                <FileText className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="file-text" className="h-5 w-5 text-primary" />
                 Trin 1: Ansøgning og due diligence
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-2">
@@ -349,7 +350,7 @@ const CasinoMedDanskLicens = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-bold flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Trin 2: Teknisk audit og RNG-certificering
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-2">
@@ -364,7 +365,7 @@ const CasinoMedDanskLicens = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-bold flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                 Trin 3: Compliance og ansvarligt spil
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-2">
@@ -379,7 +380,7 @@ const CasinoMedDanskLicens = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-bold flex items-center gap-2">
-                <Lock className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                 Trin 4: Bankgaranti og finansiel sikkerhed
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -389,7 +390,7 @@ const CasinoMedDanskLicens = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-bold flex items-center gap-2">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Trin 5: Licensudstedelse og løbende tilsyn
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -505,7 +506,7 @@ const CasinoMedDanskLicens = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Eksempel: Reel bonusværdi – dansk vs. udenlandsk
               </CardTitle>
             </CardHeader>
@@ -562,7 +563,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="zap" className="h-4 w-4 text-primary" />
                   Spillemaskiner
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -579,7 +580,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Users className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="users" className="h-4 w-4 text-primary" />
                   Live Casino
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -596,7 +597,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-4 w-4 text-primary" />
                   Bordspil
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -612,7 +613,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Globe className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="globe" className="h-4 w-4 text-primary" />
                   Specialspil
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -653,7 +654,7 @@ const CasinoMedDanskLicens = () => {
               { name: "PayPal", link: "/betalingsmetoder/paypal", speed: "Øjeblikkelig indbetaling, 0-24 timer udbetaling", desc: "Verdens største e-wallet med stærk køber-beskyttelse. Begrænset tilgængelighed hos danske casinoer." },
             ].map((method) => (
               <div key={method.name} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h4 className="font-semibold">
                     <Link to={method.link} className={linkClass}>{method.name}</Link>
@@ -694,7 +695,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   ROFUS
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -706,7 +707,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <Target className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="target" className="h-4 w-4 text-primary" />
                   Spillegrænser
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -718,7 +719,7 @@ const CasinoMedDanskLicens = () => {
             <Card>
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-primary" />
                   Hjælpelinjer
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -752,7 +753,7 @@ const CasinoMedDanskLicens = () => {
             <Card className="border-amber-500/30">
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-amber-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-amber-500" />
                   Undgå ulovlige casinoer der ligner danske
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -765,7 +766,7 @@ const CasinoMedDanskLicens = () => {
             <Card className="border-amber-500/30">
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-amber-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-amber-500" />
                   .dk vs. .com – en afgørende forskel
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -777,7 +778,7 @@ const CasinoMedDanskLicens = () => {
             <Card className="border-amber-500/30">
               <CardContent className="pt-5">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-amber-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-amber-500" />
                   Læs bonusvilkårene – også hos danske casinoer
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -880,7 +881,7 @@ const CasinoMedDanskLicens = () => {
             <Card className="border-primary/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   Dansk licens – skattefrit
                 </CardTitle>
               </CardHeader>
@@ -894,7 +895,7 @@ const CasinoMedDanskLicens = () => {
             <Card className="border-destructive/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Udenlandsk licens – skattepligtigt
                 </CardTitle>
               </CardHeader>

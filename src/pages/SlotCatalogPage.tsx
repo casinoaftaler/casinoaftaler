@@ -15,7 +15,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers, Gift, Star, ShieldCheck, CheckCircle } from "lucide-react";
+import { ArrowLeft } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 import type { ReactNode } from "react";
@@ -955,7 +956,7 @@ export default function SlotCatalogPage() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Slot Data
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -974,16 +975,16 @@ export default function SlotCatalogPage() {
         {/* Human-edited signal: editor note + verification badge */}
         <div className="flex flex-wrap items-center gap-3 mb-6 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+            <MenuIcon iconName="shield-check" className="h-3.5 w-3.5 text-emerald-500" />
             Sidst verificeret: marts 2026
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
-            <CheckCircle className="h-3.5 w-3.5 text-primary" />
+            <MenuIcon iconName="check-circle" className="h-3.5 w-3.5 text-primary" />
             Redaktionelt gennemgået
           </span>
           {slot.bonus_count > 0 && (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
-              <BarChart3 className="h-3.5 w-3.5 text-amber-500" />
+              <MenuIcon iconName="bar-chart3" className="h-3.5 w-3.5 text-amber-500" />
               Baseret på {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""}
             </span>
           )}
@@ -1150,7 +1151,7 @@ export default function SlotCatalogPage() {
                             onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
                             className="text-xs"
                           >
-                            <Gift className="h-3 w-3 mr-1" />
+                            <MenuIcon iconName="gift" className="h-3 w-3 mr-1" />
                             Hent Bonus
                           </Button>
                         ) : (
@@ -1288,7 +1289,7 @@ export default function SlotCatalogPage() {
         {similarSlots && similarSlots.length > 0 && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Layers className="h-6 w-6 text-primary" />
+              <MenuIcon iconName="layers" className="h-6 w-6 text-primary" />
               Flere slots fra {slot.provider}
             </h2>
             <p className="text-muted-foreground mb-4">
@@ -1339,7 +1340,7 @@ export default function SlotCatalogPage() {
                     to="/free-spins"
                     className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
                   >
-                    <Gift className="h-5 w-5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName="gift" className="h-5 w-5 text-primary flex-shrink-0" />
                     <div>
                       <span className="font-medium text-sm text-foreground block">Free Spins</span>
                       <span className="text-xs text-muted-foreground">Gratis spins til spillemaskiner</span>
@@ -1349,7 +1350,7 @@ export default function SlotCatalogPage() {
                     to="/velkomstbonus"
                     className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
                   >
-                    <Trophy className="h-5 w-5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName="trophy" className="h-5 w-5 text-primary flex-shrink-0" />
                     <div>
                       <span className="font-medium text-sm text-foreground block">Velkomstbonus</span>
                       <span className="text-xs text-muted-foreground">Bedste tilbud til nye spillere</span>
@@ -1359,7 +1360,7 @@ export default function SlotCatalogPage() {
                     to="/casino-bonus"
                     className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
                   >
-                    <Star className="h-5 w-5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName="star" className="h-5 w-5 text-primary flex-shrink-0" />
                     <div>
                       <span className="font-medium text-sm text-foreground block">Alle Bonusser</span>
                       <span className="text-xs text-muted-foreground">Sammenlign casino bonusser</span>

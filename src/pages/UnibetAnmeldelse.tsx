@@ -22,7 +22,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibetLobby from "@/assets/screenshots/unibet-lobby.webp";
@@ -57,7 +58,7 @@ const UnibetAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Komplet spilleplatform</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="globe" className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Komplet spilleplatform</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Unibet Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af Unibet – Danmarks mest alsidige spilleplatform med casino, sportsbetting, poker og live casino. Kindred Group-ejerskab og dansk licens.</p>
         </div></div>
@@ -69,7 +70,7 @@ const UnibetAnmeldelse = () => {
         <ReviewMoneyLinks />
 
         {/* Hurtige Fakta */}
-        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Unibet</CardTitle></CardHeader><CardContent>
+        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Unibet</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 500 kr.</p></div>
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
@@ -134,7 +135,7 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Lad os beregne den reelle værdi af casinobonussen: Indbetaler du 500 kr. og modtager 500 kr. i bonus, har du 1.000 kr. i samlet saldo. Med 10x omsætningskrav skal du gennemspille 10.000 kr., før du kan udbetale bonusmidler. Spiller du primært på <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link> med en gennemsnitlig RTP på 96%, betyder det et statistisk forventet tab på ca. 400 kr. under gennemspilningen – hvilket efterlader dig med en teoretisk nettogevinst på ca. 100 kr. fra bonussen.</p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />Bonusregneeksempel</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Bonusregneeksempel</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud + Bonus</p><p className="text-xl font-bold text-foreground">1.000 kr.</p></div>
@@ -165,10 +166,10 @@ const UnibetAnmeldelse = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">1.800+ slots inkl. klassikere som Starburst, Book of Dead, Gates of Olympus og eksklusive Unibet-titler.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Jackpots</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Progressive jackpots fra Pragmatic Play og Red Tiger med puljer der regelmæssigt overstiger 10 mio. kr.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Roulette, blackjack, baccarat og video poker i digitale versioner med varierende limits.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Star className="h-5 w-5 text-primary" />Eksklusive spil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Unibet-eksklusive titler designet i samarbejde med udvalgte studier. Unikt for platformen.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">1.800+ slots inkl. klassikere som Starburst, Book of Dead, Gates of Olympus og eksklusive Unibet-titler.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Jackpots</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Progressive jackpots fra Pragmatic Play og Red Tiger med puljer der regelmæssigt overstiger 10 mio. kr.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Roulette, blackjack, baccarat og video poker i digitale versioner med varierende limits.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="star" className="h-5 w-5 text-primary" />Eksklusive spil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Unibet-eksklusive titler designet i samarbejde med udvalgte studier. Unikt for platformen.</p></CardContent></Card>
           </div>
 
           <h3 className="mt-6 mb-3 text-xl font-bold">RTP og gennemsigtighed</h3>
@@ -240,7 +241,7 @@ const UnibetAnmeldelse = () => {
               { title: "Skrill / Neteller", desc: "E-wallets med hurtige udbetalinger, typisk inden for 24 timer. Praktisk for spillere med flere konti.", speed: "⚡ Under 24 timer" },
               { title: "Paysafecard", desc: "Forudbetalt kort til anonyme indbetalinger. Kan ikke bruges til udbetalinger – vælg alternativ metode.", speed: "🕐 Kun indbetaling" },
             ].map((m) => (
-              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
+              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
             ))}
           </div>
 
@@ -269,9 +270,9 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Groups "Journey towards zero" er branchens mest ambitiøse ansvarlig-spil-initiativ. Målet er at eliminere al skadelig spilaktivitet inden 2030 – defineret som spil, der påvirker spillerens liv negativt. Initiativet bruger AI-drevet adfærdsanalyse til proaktivt at identificere risikospillere og intervenere med personlige beskeder, grænseforslag og i alvorlige tilfælde kontobegrænsninger. I 2024 udgjorde indkomst fra "high-risk" spillere under 4% af Kindred Groups samlede omsætning – et konkret bevis på, at initiativet har effekt.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og løbende tilsyn.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Børsnoteret</h3><p className="text-sm text-muted-foreground">Del af FDJ United – kvartalsrapporter offentligt tilgængelige via koncernen.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Journey towards zero</h3><p className="text-sm text-muted-foreground">AI-drevet ansvarlig spil-initiativ med mål om nul skadeligt spil inden 2030.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og løbende tilsyn.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Børsnoteret</h3><p className="text-sm text-muted-foreground">Del af FDJ United – kvartalsrapporter offentligt tilgængelige via koncernen.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Journey towards zero</h3><p className="text-sm text-muted-foreground">AI-drevet ansvarlig spil-initiativ med mål om nul skadeligt spil inden 2030.</p></div></div>
           </div>
 
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt. Unibet tilbyder avancerede værktøjer til selvevaluering og grænser. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> ved behov.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p></CardContent></Card>
@@ -281,7 +282,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Kindred Group dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Kindred Group – koncernen bag Unibet dissekeret</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="bar-chart3" className="inline h-7 w-7 text-primary mr-2" />Kindred Group – koncernen bag Unibet dissekeret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå Unibet fuldt ud er det nødvendigt at forstå Kindred Group PLC – koncernen, der ejer og driver Unibet. Grundlagt i 1997 som Unibet Group og omdøbt til Kindred Group i 2016, er selskabet en af Europas mest etablerede online gambling-koncerner med en årlig omsætning på over £1,5 milliarder. Som en del af FDJ United (Euronext Paris) er finansielle data offentligt tilgængelige via koncernens rapportering – en transparens, der er sjælden i gambling-branchen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Group driver ud over Unibet flere andre brands: 32Red (UK-fokuseret casino), Maria Casino (nordisk fokus) og iGame. Den samlede portefølje giver koncernen en diversificeret indtægtsbase, der reducerer afhængigheden af enkeltstående markeder. For den danske Unibet-spiller betyder det finansiel stabilitet – Kindred Group har reserver og indtægtsstrømme, der sikrer, at den danske operation kan opretholdes uafhængigt af kortsigtet markedsperformance.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et særligt bemærkelsesværdigt aspekt er Kindred Groups ESG-profil (Environmental, Social, Governance). Koncernens "Journey towards zero" er branchens mest ambitiøse ansvarlig-spil-initiativ med et konkret, offentligt mål om at eliminere al skadelig spilaktivitet inden 2030. I 2024-rapporten udgjorde indkomst fra "high-risk" spillere under 3,6% af den samlede omsætning – et tal, der er faldet konsekvent over 5 år. Det er et konkret, kvantificerbart bevis på, at initiativet har effekt – og det giver danske Unibet-spillere en ekstra tryghed: operatøren prioriterer aktivt at beskytte sårbare spillere, selv på bekostning af omsætning.</p>
@@ -292,10 +293,10 @@ const UnibetAnmeldelse = () => {
 
         {/* Årlig EV-analyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårs-analyse – den samlede Unibet-værdi beregnet</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Helårs-analyse – den samlede Unibet-værdi beregnet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibets unikke styrke er multi-produkt-tilgangen. For at beregne den reelle værdi skal vi inkludere EV fra casino, sport og poker – ikke blot casino isoleret. Her er en beregning for en typisk alsidigt spillende Unibet-bruger:</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig samlet EV – den alsidige Unibet-spiller</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />Årlig samlet EV – den alsidige Unibet-spiller</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Casino (10.000 kr./måned omsætning)</p>
@@ -331,7 +332,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Unibet Open og community */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Trophy className="inline h-7 w-7 text-primary mr-2" />Unibet Open og community-dimensionen</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trophy" className="inline h-7 w-7 text-primary mr-2" />Unibet Open og community-dimensionen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et aspekt af Unibet, der sjældent dækkes i traditionelle anmeldelser, er community-dimensionen. Unibet Open – brandets flagskibspokertur – er en af Europas mest tilgængelige live-pokerbegivenheder med stop i byer som København, London, Paris og Barcelona. Buy-ins starter fra €115, hvilket gør den realistisk for rekreative spillere – ikke kun professionelle. Unibet-ambassadører og streamere deltager regelmæssigt, hvilket skaber en forbindelse mellem online og live-spil, som ingen anden dansk-licenseret operatør kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udover Unibet Open har platformen et aktivt community med foraer, sociale medier-kanaler og streaming-partnerskaber. Unibets danske Twitter/X og Instagram konti er relativt aktive med kampagneopdateringer, odds-highlights og community-engagement. Det er ikke på niveau med <Link to="/casino-anmeldelser/stake-casino" className={linkClass}>Stakes</Link> globale community-infrastruktur, men det er markant mere end hvad de fleste danske operatører tilbyder.</p>
           <p className="text-muted-foreground leading-relaxed">For den danske spiller, der søger mere end bare et casino – der ønsker at være del af et fællesskab med events, turneringer og social interaktion – er Unibet en af de få platforme, der leverer denne dimension. Det er en underapprecieret differentiator, der ikke reflekteres i simple sammenligninger af spiludvalg og bonusstørrelser, men som for mange spillere udgør en reel del af oplevelsen.</p>
@@ -368,8 +369,8 @@ const UnibetAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Hvis du ønsker én platform til alt – og du værdsætter den sikkerhed, der kommer med en børsnoteret operatør med 25+ års track record – er Unibet et fremragende valg. Det er den platform, vi anbefaler til den alsidige spiller, der ikke vil kompromittere på nogen front. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["unibet"].scores} total={CASINO_SCORES["unibet"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

@@ -20,24 +20,8 @@ import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-sp
 import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { type ReactNode } from "react";
-import {
-  Gamepad2,
-  ShieldCheck,
-  Trophy,
-  Star,
-  Sparkles,
-  Users,
-  TrendingUp,
-  Zap,
-  Target,
-  BarChart3,
-  AlertTriangle,
-  CheckCircle2,
-  Lightbulb,
-  Globe,
-  Cpu,
-  Scale,
-} from "lucide-react";
+import { Lightbulb, Cpu } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -140,7 +124,7 @@ const Casinospil = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="gamepad2" className="mr-1.5 h-3.5 w-3.5" />
               Komplet guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -203,7 +187,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Klassiske og Video Slots
                 </CardTitle>
               </CardHeader>
@@ -216,7 +200,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                   Megaways og Progressive Jackpots
                 </CardTitle>
               </CardHeader>
@@ -308,7 +292,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Matematikken bag casinospil – house edge, RTP og varians
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -397,7 +381,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Hvilket casinospil passer til din spillestil?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -408,7 +392,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   Lav-risiko spilleren
                 </CardTitle>
               </CardHeader>
@@ -421,7 +405,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   Adrenalin-jægeren
                 </CardTitle>
               </CardHeader>
@@ -447,7 +431,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Social experience-spilleren
                 </CardTitle>
               </CardHeader>
@@ -460,7 +444,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   Jackpot-drømmeren
                 </CardTitle>
               </CardHeader>
@@ -473,7 +457,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Casual-spilleren
                 </CardTitle>
               </CardHeader>
@@ -493,7 +477,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Myter om casinospil – hvad er fakta, og hvad er fiktion?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -545,7 +529,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Sikkerhed, dansk licens og ansvarligt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -565,7 +549,7 @@ const Casinospil = () => {
           <Card className="border-primary/20 bg-primary/5 mb-6">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <ShieldCheck className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                 Vores holdning til ansvarligt spil
               </CardTitle>
             </CardHeader>
@@ -609,7 +593,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Fremtidens casinospil – hvad kan vi forvente?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -633,7 +617,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Skill-based casinospil
                 </CardTitle>
               </CardHeader>
@@ -646,7 +630,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   VR og augmented reality
                 </CardTitle>
               </CardHeader>
@@ -659,7 +643,7 @@ const Casinospil = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Scale className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
                   Strengere regulering
                 </CardTitle>
               </CardHeader>
@@ -763,7 +747,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Bankroll management for casinospil – den praktiske guide
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -923,7 +907,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Avanceret RTP-analyse – skjulte faktorer, der påvirker din tilbagebetaling
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -985,7 +969,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             De 10 mest kostbare fejl, nye casinospillere begår
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -1099,7 +1083,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Sammenligning af casinospil-kategorier – en struktureret analyse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -1200,7 +1184,7 @@ const Casinospil = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CheckCircle2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="check-circle2" className="h-7 w-7 text-primary" />
             Den optimale spilsession – en struktureret tilgang
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

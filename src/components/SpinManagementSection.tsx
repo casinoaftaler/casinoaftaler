@@ -5,22 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Coins,
-  Loader2,
-  Search,
-  Plus,
-  Minus,
-  Users,
-  ArrowUpDown,
-  ArrowDown,
-  ArrowUp,
-  Ban,
-  ShieldCheck,
-  Check,
-  X,
-  RotateCw,
-} from "lucide-react";
+import { Loader2, Plus, ArrowUpDown, ArrowDown, ArrowUp, Ban, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useProfileCompletionStats, type UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 import { toast } from "sonner";
 import { getTodayDanish } from "@/lib/danishDate";
@@ -364,7 +350,7 @@ export function SpinManagementSection() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Coins className="h-5 w-5" />
+            <MenuIcon iconName="coins" className="h-5 w-5" />
             Brugere
           </CardTitle>
         </CardHeader>
@@ -376,7 +362,7 @@ export function SpinManagementSection() {
 
           {/* Bulk give spins */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-lg border border-border bg-muted/50">
-            <Users className="h-5 w-5 text-primary flex-shrink-0" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary flex-shrink-0" />
             <span className="text-sm font-medium">Giv til alle:</span>
             <Input
               type="number"
@@ -463,7 +449,7 @@ export function SpinManagementSection() {
                       />
                     ) : (
                       <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
-                        <Coins className="h-5 w-5 text-muted-foreground" />
+                        <MenuIcon iconName="coins" className="h-5 w-5 text-muted-foreground" />
                       </div>
                     )}
                     <div>
@@ -540,7 +526,7 @@ export function SpinManagementSection() {
                         disabled={updateSpins.isPending}
                         className="text-destructive hover:text-destructive"
                       >
-                        <Minus className="h-4 w-4" />
+                        <MenuIcon iconName="minus" className="h-4 w-4" />
                       </Button>
                       <Button
                         size="icon"
@@ -597,7 +583,7 @@ export function SpinManagementSection() {
                         disabled={grantReelSpins.isPending}
                         title="Giv Spin the Reel spins"
                       >
-                        <RotateCw className="h-4 w-4" />
+                        <MenuIcon iconName="rotate-cw" className="h-4 w-4" />
                       </Button>
                       <span className="text-xs text-muted-foreground min-w-[40px] text-right">
                         {user.spin_reel_extra_spins} 🎡
@@ -614,7 +600,7 @@ export function SpinManagementSection() {
                         title="Unban bruger"
                         className="text-green-500 hover:text-green-500"
                       >
-                        <ShieldCheck className="h-4 w-4" />
+                        <MenuIcon iconName="shield-check" className="h-4 w-4" />
                       </Button>
                     ) : (
                       <Button

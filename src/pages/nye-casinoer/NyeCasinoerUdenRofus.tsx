@@ -15,7 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, AlertTriangle, Sparkles, XCircle, CheckCircle2, Scale, Calculator, FileText, Users, Ban } from "lucide-react";
+import { Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -99,7 +100,7 @@ const NyeCasinoerUdenRofus = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><AlertTriangle className="mr-1.5 h-3.5 w-3.5" />Informationsguide</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="alert-triangle" className="mr-1.5 h-3.5 w-3.5" />Informationsguide</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer uden ROFUS</h1>
             <p className="text-lg text-white/80">Hvad du bør vide om nye casinoer uden ROFUS-tilslutning, de tilknyttede risici og hvorfor vi altid anbefaler licenserede alternativer.</p>
           </div>
@@ -116,7 +117,7 @@ const NyeCasinoerUdenRofus = () => {
         <Card className="mb-8 border-l-4 border-l-destructive">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
               <div>
                 <p className="font-semibold">Vigtig advarsel</p>
                 <p className="text-sm text-muted-foreground">Casinoaftaler.dk anbefaler udelukkende casinoer med dansk licens og ROFUS-tilslutning. Denne guide er informativ og har til formål at oplyse om risici ved ulovlige spillesteder, så du kan træffe et informeret valg.</p>
@@ -228,7 +229,7 @@ const NyeCasinoerUdenRofus = () => {
               { title: "Betalingsproblemer og blokerede transaktioner", desc: "Danske banker og betalingsudbydere blokerer i stigende grad transaktioner til og fra ulovlige casinoer. Det kan resultere i, at du ikke kan hverken indbetale eller udbetale. Spillemyndighedens samarbejde med betalingssektoren intensiveres i 2026." },
             ].map((risk) => (
               <div key={risk.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="x-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{risk.title}</h3>
                   <p className="text-sm text-muted-foreground">{risk.desc}</p>
@@ -254,7 +255,7 @@ const NyeCasinoerUdenRofus = () => {
               { title: "Skattemæssige konsekvenser", desc: "Gevinster fra casinoer uden dansk licens er skattepligtige efter personskattelovens § 4. Skattesatsen afhænger af din samlede indkomst og kan nå op til 45%. Du har pligt til at selvangive gevinster. SKAT kan indhente oplysninger om udenlandske transaktioner via banksamarbejde og internationale informationsudvekslingsaftaler." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -339,7 +340,7 @@ const NyeCasinoerUdenRofus = () => {
               "Certificerede RNG-systemer – garanteret fairness verificeret af uafhængige laboratorier",
             ].map((benefit) => (
               <div key={benefit} className="flex items-center gap-3 rounded-lg border border-border bg-card p-3">
-                <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="h-5 w-5 flex-shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground">{benefit}</p>
               </div>
             ))}
@@ -361,7 +362,7 @@ const NyeCasinoerUdenRofus = () => {
               { title: "Spillemyndighedens klageinstans", desc: "Hvis du har en tvist med et dansk licenseret casino, kan du klage til Spillemyndigheden. Klagen er gratis og behandles upartisk. Casinoet er forpligtet til at følge Spillemyndighedens afgørelse." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -383,7 +384,7 @@ const NyeCasinoerUdenRofus = () => {
               { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Guide til ansvarligt spil" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

@@ -15,28 +15,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Target,
-  Trophy,
-  Gift,
-  Brain,
-  Timer,
-  Calculator,
-  Gamepad2,
-  Users,
-  Puzzle,
-  Flame,
-  BookOpen,
-} from "lucide-react";
+import { Timer, Puzzle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/spanish-21-hero.jpg";
 
@@ -101,7 +81,7 @@ const Spanish21Guide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Bonusudbetaling-variant
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Bonusudbetaling-variant
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spanish 21 – Bonusregler, Strategi og Hvornår Varianten Giver Mening
@@ -124,7 +104,7 @@ const Spanish21Guide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
-            <Brain className="h-7 w-7 text-primary" /> Hvad gør Spanish 21 unik?
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" /> Hvad gør Spanish 21 unik?
           </h2>
           <p className="mb-4 leading-relaxed text-muted-foreground">
             Spanish 21 fjerner 10-kortene fra bunken, men giver spilleren flere værktøjer tilbage i form af bonusudbetalinger, fleksible fordoblinger og særlige redningsregler. Derfor kan du ikke evaluere spillet med standard-blackjack-logik alene.
@@ -139,7 +119,7 @@ const Spanish21Guide = () => {
         {/* ═══════════════ Spanish 21 vs Pontoon ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Spanish 21 vs. Pontoon – Samme Spil, Forskellige Navne?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -187,7 +167,7 @@ const Spanish21Guide = () => {
         {/* ═══════════════ Bankroll og varians ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Bankroll og Varians i Spanish 21
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -271,7 +251,7 @@ const Spanish21Guide = () => {
         {/* ═══════════════ Er Spanish 21 det rigtige valg? ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Flame className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="flame" className="h-7 w-7 text-primary" />
             Er Spanish 21 Den Rigtige Blackjack-Variant for Dig?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

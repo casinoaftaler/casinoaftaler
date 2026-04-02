@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, Heart, Phone, Lock, Gauge, BookOpen, ArrowRight } from "lucide-react";
+import { Gauge, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 
 /**
@@ -59,7 +60,7 @@ export function AnsvarligtSpilResources({ currentPath }: AnsvarligtSpilResources
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <ShieldCheck className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
         {headingVariants[idx]}
       </h2>
       <p className="text-muted-foreground mb-6 leading-relaxed">

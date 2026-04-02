@@ -23,7 +23,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { BonanzaSlotGame } from "@/components/slots/BonanzaSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Gamepad2, Candy } from "lucide-react";
+import { ArrowLeft } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
@@ -128,7 +129,7 @@ export default function FedesvinBonanza() {
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-pink-500/20">
             <div className="h-20 w-20 mx-auto rounded-full bg-pink-500/20 flex items-center justify-center">
-              <Candy className="h-10 w-10 text-pink-400" />
+              <MenuIcon iconName="candy" className="h-10 w-10 text-pink-400" />
             </div>
             <h1 className="text-2xl font-bold">Log ind for at spille</h1>
             <p className="text-muted-foreground">

@@ -22,12 +22,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import {
-  ShieldCheck, Shield, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
-  Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
-  BarChart3, Activity, Crown,
-} from "lucide-react";
+import { RotateCcw, Check, X, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoSportsbook from "@/assets/screenshots/betano-sportsbook.webp";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
@@ -90,7 +86,7 @@ const BetanoAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Globe className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="globe" className="mr-1.5 h-3.5 w-3.5" />
               4.2 / 5 – Tech-drevet nyere aktør
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -113,7 +109,7 @@ const BetanoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                 Overblik – Betano i tal
               </CardTitle>
             </CardHeader>
@@ -222,7 +218,7 @@ const BetanoAnmeldelse = () => {
         {/* Live Casino */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Sparkles className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="sparkles" className="inline h-7 w-7 text-primary mr-2" />
             Live casinoet – standard uden overraskelser
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -242,7 +238,7 @@ const BetanoAnmeldelse = () => {
         {/* Sportsbetting */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Trophy className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="trophy" className="inline h-7 w-7 text-primary mr-2" />
             Sportsbettingen – Betanos stærkeste kort
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -261,7 +257,7 @@ const BetanoAnmeldelse = () => {
         {/* Mobiloplevelse med sammenligning */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Smartphone className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="smartphone" className="inline h-7 w-7 text-primary mr-2" />
             Mobiloplevelsen – Betanos bedste side
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -294,7 +290,7 @@ const BetanoAnmeldelse = () => {
               { title: "Skrill", desc: "E-wallet med udbetalinger inden for 24 timer. Kræver separat Skrill-konto.", speed: "⚡ 24 timer" },
             ].map((m) => (
               <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold">{m.title}</h3>
@@ -318,7 +314,7 @@ const BetanoAnmeldelse = () => {
         {/* Kundeservice */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Headphones className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="headphones" className="inline h-7 w-7 text-primary mr-2" />
             Kundeservice – dansk, men med begrænsninger
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -337,7 +333,7 @@ const BetanoAnmeldelse = () => {
         {/* Sikkerhed */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Shield className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="shield" className="inline h-7 w-7 text-primary mr-2" />
             Licensforhold og databeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -430,7 +426,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Kaizen Gaming Corporate Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Kaizen Gaming – den græske tech-disruptor bag Betano</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />Kaizen Gaming – den græske tech-disruptor bag Betano</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå Betanos potentiale og begrænsninger er det nødvendigt at forstå moderselskabet Kaizen Gaming. Grundlagt i 2012 i Athen af Georgios Daskalakis har Kaizen gennemgået en af de mest imponerende vækstrejser i europæisk online gambling. Fra en lokal græsk bookmaker til en multi-markeds operatør med licenser i 17+ lande, over 2.000 ansatte og en estimeret omsætning på €1+ mia. – alt opnået på godt et årti uden børsnotering og uden opkøb af eksisterende brands.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">CVC Capital Partners – en af Europas største private equity-fonde med €185+ mia. under forvaltning – investerede i Kaizen Gaming i 2022. CVC's portefølje inkluderer brands som Formula 1, La Liga (den spanske fodboldliga), Tipico og Sisal. Investeringen validerer Kaizen's forretningsmodel og giver adgang til kapital, globale netværk og strategisk rådgivning. For danske spillere er den praktiske konsekvens, at Betano har seriøs finansiering bag sig – dette er ikke en startup der risikerer at lukke, det er en operatør med kapital til at investere i vækst i årtier.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Teknologi som DNA:</strong> Kaizen Gaming er fundamentalt et teknologiselskab der tilfældigvis opererer inden for gambling. Hele platformen – fra odds-engine til casino-frontend, fra betalingsinfrastruktur til risk management – er udviklet internt. Det er en sjældenhed i en branche, hvor de fleste operatører kører på tredjepartsløsninger fra Kambi (odds), EveryMatrix (casino-aggregation) eller SBTech (sportsbook). Kaizens in-house tilgang giver en fleksibilitet i produktudvikling, som de fleste konkurrenter ikke kan matche.</p>
@@ -441,7 +437,7 @@ const BetanoAnmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Spillerøkonomi: Matematisk bonusanalyse og odds-EV</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Spillerøkonomi: Matematisk bonusanalyse og odds-EV</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi har beregnet Expected Value (EV) på tværs af Betanos casino-bonus, sportsvæddemål og løbende kampagner for at give et matematisk funderet billede af platformens reelle værdi.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">Casino-velkomstbonus EV (maks. indbetaling)</CardTitle></CardHeader>
@@ -480,7 +476,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvilke spillere passer Betano IKKE til?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" />Hvilke spillere passer Betano IKKE til?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dedikerede casino-spillere:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil, eksklusive live borde), <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+ titler) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> giver en dybere rendyrket casino-oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Seriøse bettors der jager laveste marginer:</strong> <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har konsekvent 0,5-1,5 procentpoint lavere marginer – over et år sparer en aktiv bettor ~1.800 kr.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High rollers og VIP-spillere:</strong> Betanos VIP-program er under modning. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' MGM-VIP, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> loyalitetsprogram eller bet365's high-roller services er klart stærkere.</p>
@@ -522,13 +518,13 @@ const BetanoAnmeldelse = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
-                <Trophy className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/casino-anmeldelser">
-                <Star className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="star" className="mr-2 h-5 w-5" />
                 Alle Casino Anmeldelser
               </Link>
             </Button>

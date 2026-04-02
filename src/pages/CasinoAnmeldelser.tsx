@@ -23,29 +23,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState } from "react";
-import {
-  ShieldCheck,
-  Star,
-  CreditCard,
-  Gift,
-  Trophy,
-  Sparkles,
-  CheckCircle2,
-  Gamepad2,
-  Award,
-  ThumbsDown,
-  Users,
-  Tv,
-  Target,
-  Zap,
-  Search,
-  TrendingUp,
-  BarChart3,
-  Scale,
-  Eye,
-  Clock,
-  Loader2,
-} from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const reviewSlugs = [
   "playkasino",
@@ -226,7 +205,7 @@ const CasinoAnmeldelser = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Star className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />
               Testet med rigtige penge
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -290,7 +269,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Search className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="search" className="h-5 w-5 text-primary" />
                   Fase 1: Kontooprettelse og KYC-verifikation (Dag 1–2)
                 </CardTitle>
               </CardHeader>
@@ -307,7 +286,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Fase 2: Indbetaling og betalingsmetodetest (Dag 2–3)
                 </CardTitle>
               </CardHeader>
@@ -325,7 +304,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   Fase 3: Bonusanalyse og omsætningskrav (Dag 3–7)
                 </CardTitle>
               </CardHeader>
@@ -346,7 +325,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Fase 4: Udbetalingstest med dokumentation (Dag 7–14)
                 </CardTitle>
               </CardHeader>
@@ -363,7 +342,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Fase 5: Spiludvalg, RTP og <Link to="/ordbog/fairness-audit" className={linkClass}>fairness</Link>-kontrol (Løbende)
                 </CardTitle>
               </CardHeader>
@@ -382,7 +361,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Fase 6: Kundeservice og mobiltest (Dag 10–14)
                 </CardTitle>
               </CardHeader>
@@ -465,7 +444,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
                   Spilleren der prioriterer hurtige udbetalinger
                 </CardTitle>
               </CardHeader>
@@ -482,7 +461,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   Bonusjægeren med lavt omsætningskrav-fokus
                 </CardTitle>
               </CardHeader>
@@ -500,7 +479,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   High rolleren med stort budget
                 </CardTitle>
               </CardHeader>
@@ -515,7 +494,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Den casual spiller med lille budget
                 </CardTitle>
               </CardHeader>
@@ -532,7 +511,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Tv className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="tv" className="h-5 w-5 text-primary" />
                   Live casino-entusiasten
                 </CardTitle>
               </CardHeader>
@@ -550,7 +529,7 @@ const CasinoAnmeldelser = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Dual-platform spilleren (casino + sport)
                 </CardTitle>
               </CardHeader>
@@ -709,7 +688,7 @@ const CasinoAnmeldelser = () => {
                     <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{casino.udbetaling}</td>
                     <td className="px-4 py-3 text-center">
                       <span className="flex items-center justify-center gap-1 font-semibold">
-                        <Star className="h-4 w-4 fill-primary text-primary" />
+                        <MenuIcon iconName="star" className="h-4 w-4 fill-primary text-primary" />
                         {casino.rating}
                       </span>
                     </td>
@@ -846,7 +825,7 @@ const CasinoAnmeldelser = () => {
                     <Card key={review.slug} className="border-border bg-card">
                       <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2 text-lg">
-                          <Star className="h-5 w-5 text-primary" />
+                          <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                           {review.name}
                         </CardTitle>
                       </CardHeader>

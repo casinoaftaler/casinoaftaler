@@ -13,9 +13,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Gamepad2, Trophy, Video, Gift, ShoppingBag, ArrowRight, Users, Target, BarChart3,
-} from "lucide-react";
+import { Video, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useAuth } from "@/hooks/useAuth";
 import { useMemo } from "react";
 

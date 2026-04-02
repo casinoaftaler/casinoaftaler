@@ -41,7 +41,8 @@ import {
   Scale,
   Coins,
   BarChart3,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -182,7 +183,7 @@ const ReloadBonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="refresh-cw" className="mr-1.5 h-3.5 w-3.5" />
               Reload guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -332,7 +333,7 @@ const ReloadBonus = () => {
             <Card className="border-primary/30 bg-accent/30">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   Fremragende reload
                 </CardTitle>
               </CardHeader>
@@ -348,7 +349,7 @@ const ReloadBonus = () => {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />
                   God reload
                 </CardTitle>
               </CardHeader>
@@ -364,7 +365,7 @@ const ReloadBonus = () => {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Dårlig reload
                 </CardTitle>
               </CardHeader>
@@ -384,7 +385,7 @@ const ReloadBonus = () => {
           <Card className="mb-6 border-primary/30 bg-accent/30">
             <CardContent className="p-5">
               <h3 className="mb-3 text-lg font-semibold flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Hurtig EV-formel for reload bonus
               </h3>
               <div className="space-y-2 text-sm text-muted-foreground font-mono">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Gift, Sparkles, Star, CreditCard, ArrowRight, BarChart3 } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
@@ -118,7 +119,7 @@ export function GlossaryMoneyLinks({ termSlug, termTitle, category }: GlossaryMo
   return (
     <section className="mb-10">
       <h2 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
-        <Gift className="h-5 w-5 text-primary" />
+        <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
         Brug din viden om {termTitle}
       </h2>
       <p className="text-sm text-muted-foreground mb-4 leading-relaxed">

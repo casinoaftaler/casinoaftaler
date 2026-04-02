@@ -22,7 +22,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -102,7 +103,7 @@ const LegacyOfDeadGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Progressiv bonusmekanik</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Progressiv bonusmekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Legacy of Dead – Progressiv Expanding Symbol-Analyse</h1>
             <p className="text-lg text-white/80">Play'n GO's evolution af Book of Dead-formlen: hvordan det progressive expanding symbol-system transformerer en velkendt mekanik til en matematisk overlegen oplevelse.</p>
           </div>
@@ -118,7 +119,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Experience First: Book of Dead-arven ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Fra Book of Dead til Legacy of Dead: Evolutionen
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -145,7 +146,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Kernetal og Matematisk Profil
           </h2>
           <Card className="mb-6">
@@ -177,7 +178,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Progressivt expanding symbol ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Det Progressive Expanding Symbol-System Dekonstrueret
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -199,7 +200,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── EV-analyse ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             EV-Perspektiv: Hvornår Leverer Legacy of Dead Bedre end Book of Dead?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -238,7 +239,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Bankroll-Strategi og Risikostyring
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -255,7 +256,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Hvem passer det til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Målgruppe: Hvem Bør Vælge Legacy of Dead Fremfor Book of Dead?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -272,7 +273,7 @@ const LegacyOfDeadGuide = () => {
         {/* ── Konklusion ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Opfølgeren Der Overgår Originalen
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

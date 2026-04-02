@@ -1,7 +1,8 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
-import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen, Scale, BarChart3, Gavel } from "lucide-react";
+import { Gavel } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -149,7 +150,7 @@ const ResponsibleGaming = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield" className="mr-1.5 h-3.5 w-3.5" />
               Ansvarligt Spil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -174,7 +175,7 @@ const ResponsibleGaming = () => {
         {/* Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Hvad er ansvarligt spil?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -201,7 +202,7 @@ const ResponsibleGaming = () => {
         {/* Danske statistikker */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Spilleproblemer i Danmark – fakta & tal
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -236,7 +237,7 @@ const ResponsibleGaming = () => {
         {/* Warning Signs */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-8 w-8 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-8 w-8 text-destructive" />
             Advarselstegn på Problematisk Spil
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -320,7 +321,7 @@ const ResponsibleGaming = () => {
               "Alle markedsføringsmaterialer skal indeholde oplysning om 18+ og ansvarligt spil",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -357,7 +358,7 @@ const ResponsibleGaming = () => {
             ].map((item, i) => (
               <Card key={i} className="border-border bg-card">
                 <CardContent className="flex items-center gap-3 pt-6">
-                  <Shield className="h-5 w-5 shrink-0 text-primary" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 shrink-0 text-primary" />
                   <p className="text-sm text-muted-foreground">{item}</p>
                 </CardContent>
               </Card>
@@ -418,7 +419,7 @@ const ResponsibleGaming = () => {
         {/* Casinoaftaler.dk's ansvar */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Vores ansvar som platform
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -435,7 +436,7 @@ const ResponsibleGaming = () => {
               "Vi inkluderer 18+ og ansvarligt spil-budskaber i vores footer på alle sider",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}

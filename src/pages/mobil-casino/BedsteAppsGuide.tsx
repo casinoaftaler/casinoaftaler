@@ -15,12 +15,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
-  TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
-  Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
-  HelpCircle, Globe, Bell, Search, Heart,
-} from "lucide-react";
+import { ArrowRight, Settings, Download, Wifi, Battery, Bell } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -110,7 +106,7 @@ const BedsteAppsGuide = () => {
 
         {/* 2. SCORING MODEL */}
         <section className="mb-12" id="scoring-model">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Vores vurderings-model: 6 vægtede kriterier</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Vores vurderings-model: 6 vægtede kriterier</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">For at sikre objektiv og reproducerbar rangering bruger vi en standardiseret scoring-model med 6 kriterier:</p>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
@@ -134,7 +130,7 @@ const BedsteAppsGuide = () => {
 
         {/* 3. TOP 10 RANGERING */}
         <section className="mb-12" id="top-10">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" />Top 10 Casino Apps i Danmark 2026</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />Top 10 Casino Apps i Danmark 2026</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Baseret på vores scoring-model præsenterer vi de 10 bedste casino apps tilgængelige for danske spillere:</p>
 
           <div className="space-y-4 mb-6">
@@ -221,7 +217,7 @@ const BedsteAppsGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Star className="h-5 w-5 text-primary" />Vores anbefaling efter spillertype</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="star" className="h-5 w-5 text-primary" />Vores anbefaling efter spillertype</h3>
             <div className="space-y-3 text-sm text-muted-foreground">
               <p><strong>Daglige spillere:</strong> Native app giver den bedste oplevelse med hurtig adgang, push-notifikationer om bonusser og biometrisk login.</p>
               <p><strong>Lejlighedsvise spillere:</strong> PWA er det bedste kompromis – app-lignende oplevelse uden at optage lagerplads permanent.</p>
@@ -273,7 +269,7 @@ const BedsteAppsGuide = () => {
 
         {/* 6. SIKKERHED */}
         <section className="mb-12" id="sikkerhed">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Sikkerhed: App permissions og privacy</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Sikkerhed: App permissions og privacy</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Casino-apps kræver visse tilladelser for at fungere korrekt. Her er hvad du bør acceptere – og hvad du bør afvise:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -310,7 +306,7 @@ const BedsteAppsGuide = () => {
 
         {/* 7. SCORING-METODOLOGI DEEP-DIVE */}
         <section className="mb-12" id="scoring-metodologi">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Scoring-metodologi: Sådan vurderer vi casino apps</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Scoring-metodologi: Sådan vurderer vi casino apps</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Vores vurderingsmodel er udviklet over 3 års systematisk test af danske casino-apps. Modellen bygger på kvantitative målinger og kvalitative vurderinger, vægtet efter hvad der har størst indflydelse på den daglige brugeroplevelse. Her gennemgår vi hvert kriterium i dybden.</p>
 
           <h3 className="text-xl font-semibold mt-8 mb-3" id="vaegtet-formel">Den vægtede scoring-formel</h3>
@@ -363,7 +359,7 @@ const BedsteAppsGuide = () => {
               "Tilgængelighed af eksklusive mobil-titler eller early access-spil",
               "Søge- og filtreringsfunktionalitet i spillobbyen",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+              <div key={t} className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
             ))}
           </div>
 
@@ -426,7 +422,7 @@ const BedsteAppsGuide = () => {
 
         {/* 8. APP STORE REGLER OG POLITIK */}
         <section className="mb-12" id="app-store-regler">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Lock className="h-7 w-7 text-primary" />App Store regler for casino-apps</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="lock" className="h-7 w-7 text-primary" />App Store regler for casino-apps</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Både Apple App Store og Google Play har strenge regler for gambling-apps. Disse regler påvirker direkte, hvilke casino-apps der er tilgængelige for danske spillere, og hvordan de fungerer. Forståelse af disse regler hjælper dig med at vurdere, hvorfor nogle casinoer tilbyder native apps og andre ikke gør.</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -464,7 +460,7 @@ const BedsteAppsGuide = () => {
 
         {/* 9. APP PERFORMANCE BENCHMARKS */}
         <section className="mb-12" id="performance-benchmarks">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" />App-performance benchmarks: Detaljeret test</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" />App-performance benchmarks: Detaljeret test</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Vi har gennemført standardiserede performance-tests på alle Top 10 casino-apps for at give dig et datadrevet grundlag for dit valg. Tests er udført på iPhone 15 Pro (iOS 17.4) og Samsung Galaxy S24+ (Android 14) over WiFi 6.</p>
 
           <div className="overflow-x-auto mb-6">
@@ -506,7 +502,7 @@ const BedsteAppsGuide = () => {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><Info className="h-5 w-5 text-primary" />Benchmark-analyse</h3>
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="info" className="h-5 w-5 text-primary" />Benchmark-analyse</h3>
             <p className="text-muted-foreground leading-relaxed mb-3"><strong>Loadtid:</strong> iOS-apps er generelt 15-25 % hurtigere end Android-ækvivalenterne, primært pga. WebKit-optimering og Apples tættere hardware-software integration. LeoVegas' native app skiller sig markant ud med sub-1-sekunds loading på iOS.</p>
             <p className="text-muted-foreground leading-relaxed mb-3"><strong>Memory:</strong> bet365 bruger mest RAM (210 MB) pga. sit enorme spilkatalog og integrerede sportsbetting. PWA-baserede løsninger (Betano, ComeOn) bruger typisk 40-60 % mindre memory end native apps, da browseren håndterer garbage collection mere effektivt.</p>
             <p className="text-muted-foreground leading-relaxed"><strong>Batteriforbrug:</strong> Gennemsnitligt 6-10 % pr. time er acceptabelt. Live casino-streaming øger forbruget med yderligere 3-5 % pr. time pga. kontinuerlig video-dekoding. Vi anbefaler at holde øje med enheder, der overskrider 12 % pr. time, da det kan indikere en dårligt optimeret app.</p>
@@ -557,7 +553,7 @@ const BedsteAppsGuide = () => {
 
         {/* 11. OPDATERINGSCYKLUS-ANALYSE */}
         <section className="mb-12" id="opdateringscyklus">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><RefreshCw className="h-7 w-7 text-primary" />Opdateringscyklus: Hvor ofte opdateres casino apps?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />Opdateringscyklus: Hvor ofte opdateres casino apps?</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Opdateringsfrekvensen er en vigtig indikator for app-kvalitet og sikkerhed. En app, der opdateres regelmæssigt, får løbende sikkerhedspatches, nye features og fejlrettelser. Vi har analyseret opdateringshistorikken for alle Top 10 casino-apps over de seneste 12 måneder:</p>
 
           <div className="overflow-x-auto mb-6">
@@ -599,7 +595,7 @@ const BedsteAppsGuide = () => {
 
         {/* 12. TILGÆNGELIGHED I CASINO APPS */}
         <section className="mb-12" id="tilgaengelighed">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Eye className="h-7 w-7 text-primary" />Tilgængelighed (Accessibility) i casino apps</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="eye" className="h-7 w-7 text-primary" />Tilgængelighed (Accessibility) i casino apps</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Tilgængelighed i casino-apps er et ofte overset men vigtigt aspekt. Danske casinoer med <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">Spillemyndighedens licens</Link> har en forpligtelse til at sikre, at deres platforme er tilgængelige for alle spillere, inklusive dem med handicap. Vi har auditeret tilgængeligheden for alle Top 10 apps:</p>
 
           <div className="overflow-x-auto mb-6">
@@ -641,7 +637,7 @@ const BedsteAppsGuide = () => {
               "Touch-targets i spilgrids er ofte for små på mindre skærme",
               "Farveblinde spillere kan have svært ved at skelne chip-farver i live casino",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+              <div key={t} className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
             ))}
           </div>
           <p className="text-muted-foreground leading-relaxed mb-4">Vi opfordrer danske casinoer til at prioritere WCAG 2.1 AA-compliance i deres næste app-opdateringer. Spillere med tilgængelighedsbehov kan kontakte casinoets kundeservice for at få information om tilpassede visuelle temaer eller alternative navigationsmetoder.</p>
@@ -651,7 +647,7 @@ const BedsteAppsGuide = () => {
 
         {/* 13. SIKKERHED & PRIVACY DEEP-DIVE */}
         <section className="mb-12" id="sikkerhed-privacy">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Lock className="h-7 w-7 text-primary" />Sikkerhed og privacy: Komplet audit</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="lock" className="h-7 w-7 text-primary" />Sikkerhed og privacy: Komplet audit</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Vi har gennemført en omfattende sikkerhedsaudit af alle Top 10 casino-apps, der inkluderer netværksanalyse, permissions-review, og privacy policy-gennemgang. Her er de vigtigste resultater:</p>
 
           <h3 className="text-xl font-semibold mt-8 mb-3" id="kryptering">Kryptering og netværkssikkerhed</h3>
@@ -710,7 +706,7 @@ const BedsteAppsGuide = () => {
 
         {/* 14. FREMTIDENS CASINO APPS */}
         <section className="mb-12" id="fremtiden">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Fremtidens casino apps: Trends og teknologi</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Fremtidens casino apps: Trends og teknologi</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Casino-applandskabet udvikler sig hurtigt. Her er de teknologier og trends, vi forventer vil forme mobilcasino-oplevelsen de kommende 2-3 år:</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -751,7 +747,7 @@ const BedsteAppsGuide = () => {
               { problem: "PWA mister data/session", solution: "Ryd ikke browser-cache mens du er logget ind. Tjek at Chrome har tilladelse til at gemme data. Deaktiver 'Automatisk sletning af data' i privacy-indstillinger." },
             ].map((f) => (
               <div key={f.problem} className="rounded-lg border border-border bg-card p-4">
-                <h3 className="font-semibold text-sm text-foreground mb-1 flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-destructive shrink-0" />{f.problem}</h3>
+                <h3 className="font-semibold text-sm text-foreground mb-1 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive shrink-0" />{f.problem}</h3>
                 <p className="text-xs text-muted-foreground">{f.solution}</p>
               </div>
             ))}
@@ -764,7 +760,7 @@ const BedsteAppsGuide = () => {
 
         {/* 16. ANSVARLIGT SPIL */}
         <section className="mb-12" id="ansvarligt-spil">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Ansvarligt spil og casino apps</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Ansvarligt spil og casino apps</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Casino apps gør det nemmere end nogensinde at spille – men det øger også risikoen for overforbrug. Den konstante tilgængelighed via mobilen kræver ekstra bevidsthed om dine spillevaner. Her er vores dybdegående anbefalinger:</p>
           <div className="space-y-3 mb-6">
             {[
@@ -777,7 +773,7 @@ const BedsteAppsGuide = () => {
               "Sæt aldrig indbetalingsgrænser højere end du har råd til at tabe",
               "Spil aldrig for at indhente tab – dette er det mest destruktive spilmønster",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+              <div key={t} className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-1 text-destructive shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
             ))}
           </div>
           <p className="text-muted-foreground leading-relaxed">Kontakt <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link> (70 22 28 25) for gratis, anonym rådgivning. Se alle <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">hjælpelinjer</Link>.</p>
@@ -787,7 +783,7 @@ const BedsteAppsGuide = () => {
 
         {/* 17. HJÆLP */}
         <section className="mb-12" id="hjaelp">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><HelpCircle className="h-7 w-7 text-primary" />Hjælp og ressourcer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />Hjælp og ressourcer</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { to: "/mobil-casino", title: "Mobil Casino Hub", desc: "Komplet oversigt" },

@@ -31,7 +31,8 @@ import {
   BookOpen,
   BarChart3,
   Target,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReactNode, Fragment, useMemo } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -206,7 +207,7 @@ export function ProviderPage({
             <Card key={game.name}>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   {game.name}
                 </CardTitle>
               </CardHeader>
@@ -233,7 +234,7 @@ export function ProviderPage({
           <Card className="border-primary/20">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg text-primary">
-                <ThumbsUp className="h-5 w-5" />
+                <MenuIcon iconName="thumbs-up" className="h-5 w-5" />
                 Fordele
               </CardTitle>
             </CardHeader>
@@ -241,7 +242,7 @@ export function ProviderPage({
               <ul className="space-y-2">
                 {pros.map((pro, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span>{pro}</span>
                   </li>
                 ))}
@@ -251,7 +252,7 @@ export function ProviderPage({
           <Card className="border-destructive/20">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg text-destructive">
-                <ThumbsDown className="h-5 w-5" />
+                <MenuIcon iconName="thumbs-down" className="h-5 w-5" />
                 Ulemper
               </CardTitle>
             </CardHeader>
@@ -259,7 +260,7 @@ export function ProviderPage({
               <ul className="space-y-2">
                 {cons.map((con, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span>{con}</span>
                   </li>
                 ))}
@@ -272,7 +273,7 @@ export function ProviderPage({
     strategic: strategicAnalysis ? (
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Target className="h-7 w-7 text-primary" />
+          <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
           {strategicTitle || "Strategisk Analyse og Markedsposition"}
         </h2>
         {strategicAnalysis}
@@ -281,7 +282,7 @@ export function ProviderPage({
     technical: technicalProfile ? (
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <BarChart3 className="h-7 w-7 text-primary" />
+          <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
           {technicalTitle || "Teknisk Profil"}
         </h2>
         {technicalProfile}
@@ -342,7 +343,7 @@ export function ProviderPage({
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 {responsibleTitle || "Ansvarligt Spil"}
               </CardTitle>
             </CardHeader>

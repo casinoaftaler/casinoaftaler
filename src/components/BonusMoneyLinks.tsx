@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gamepad2, BarChart3, Cpu, Sparkles, Smartphone, Globe, Zap } from "lucide-react";
+import { ArrowRight, Cpu } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Authority-loop closure component for bonus cluster pages.
@@ -58,7 +59,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-6 w-6 text-primary" />
+        <MenuIcon iconName="gamepad2" className="h-6 w-6 text-primary" />
         Spillemaskiner & Udbydere til din bonus
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">{intro}</p>
@@ -69,7 +70,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
           to="/slot-database"
           className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <BarChart3 className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">Slot Database</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -84,7 +85,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
           to="/casinospil/spillemaskiner"
           className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <Sparkles className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">Spillemaskiner Guide</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -99,7 +100,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
           to="/nye-casinoer"
           className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <Sparkles className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">Nye Casinoer 2026</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -114,7 +115,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
           to="/mobil-casino"
           className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <Smartphone className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="smartphone" className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">Mobil Casino</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -129,7 +130,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
           to="/casino-uden-konto"
           className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <Zap className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">Casino uden Konto</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -162,7 +163,7 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
       {/* Featured slots cross-links */}
       <div className="mt-3 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
-          <Gamepad2 className="h-3.5 w-3.5" />
+          <MenuIcon iconName="gamepad2" className="h-3.5 w-3.5" />
           Populære slots til bonus
         </p>
         <div className="flex flex-wrap gap-2">

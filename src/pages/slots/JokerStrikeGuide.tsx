@@ -17,7 +17,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, BarChart3, Calculator, Flame, Scale, AlertTriangle, Trophy, Zap, Star, Layers, Users, TrendingUp } from "lucide-react";
+import { Sparkles, BarChart3, Calculator, Flame, Scale, AlertTriangle, Trophy, Zap, Star, Layers, Users, TrendingUp } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -54,7 +55,7 @@ const JokerStrikeGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />98,11 % RTP: Hvad Betyder Det I Praksis?</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />98,11 % RTP: Hvad Betyder Det I Praksis?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">98,11 % <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> er ikke bare høj – det er næsten uhørt i slot-industrien. Kun en håndfuld slots i hele markedet overgår dette tal, og de fleste af dem er enten nedtaget eller har begrænset tilgængelighed. For at sætte det i perspektiv: en session på 500 spins à 4 kr. (2.000 kr. indsats) har et forventet tab på kun 38 kr. – prisen for en biograf-billet med popcorn.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sammenlignet med branchens gennemsnit (~96 % RTP) sparer Joker Strike dig ca. 2 % af din indsats pr. spin. Over 1.000 spins à 4 kr. er forskellen: Joker Strike tab = 76 kr. vs. gennemsnitsslot tab = 160 kr. Den besparelse på 84 kr. er reel og kvantificerbar – og over lange sessioner akkumulerer fordelen markant.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den kritiske detalje: 98,11 % RTP gælder KUN med Hi Roller-funktionen aktiveret. Standard spiltilstand har en basis-RTP på 96,60 % – stadig god, men ikke exceptionel. Hi Roller koster 30× din standard indsats for 10 spins, men den dramatisk forbedrede RTP gør det til den klart optimale spilstrategi. At spille Joker Strike uden Hi Roller er som at købe en Ferrari og kun bruge 1. gear.</p>
@@ -62,7 +63,7 @@ const JokerStrikeGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Hi Roller-Funktionen: Premium-Tilstand Analyseret</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Hi Roller-Funktionen: Premium-Tilstand Analyseret</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Quickspin</strong></div>
@@ -80,7 +81,7 @@ const JokerStrikeGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Gevinststruktur og Hit Frequency</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Gevinststruktur og Hit Frequency</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Joker Strike's klassiske 5×3 grid med 10 faste paylines er bevidst simpelt. Hit frequency estimeres til 35-40 % i Hi Roller-mode – blandt de højeste i hele slot-markedet. Næsten halvdelen af alle spins producerer en gevinst, hvilket giver en konsistent og forudsigelig spiloplevelse uden de lange tørke-perioder, der kendetegner volatile slots.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Gevinstfordelingen er næsten symmetrisk: de fleste gevinster (80 %+) er i intervallet 0,5-3× indsatsen, med sjældne outliers op til 50-100× for fuld skærm af premium-symboler. Det lave max win (456×) begrænser upside men eliminerer også de ekstreme downswings, der følger med høj-volatile slots. Standardafvigelsen pr. session er markant lavere end for sammenlignelige slots.</p>
           <p className="text-muted-foreground leading-relaxed">Joker Strike inkluderer en Wild Wheel-bonus: ved landing af wilds i base game kan et hjul aktiveres med mulighed for at vinde yderligere wilds eller multiplikatorer. Denne funktion er sjælden (estimeret 1 pr. 50-80 spins) men bidrager med moderate ekstra gevinster (typisk 5-20× indsatsen). Det er ikke en traditionel free spins-funktion – Joker Strike har bevidst fravalgt free spins til fordel for Hi Roller-mekanikken.</p>
@@ -89,7 +90,7 @@ const JokerStrikeGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning: Den Billigste Slot</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Beregning: Den Billigste Slot</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr. (Hi Roller)</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -104,7 +105,7 @@ const JokerStrikeGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Joker Strike vs. Andre Lav-Volatile Slots</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Joker Strike vs. Andre Lav-Volatile Slots</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -123,13 +124,13 @@ const JokerStrikeGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll og Ansvarligt Spil</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Bankroll og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Joker Strike's lave volatilitet kræver den mindste bankroll af alle slots: 100-150 spins (400-600 kr. ved 4 kr. indsats) er tilstrækkelig for en komfortabel session. Med Hi Roller aktiv (30× pr. 10 spins) kræves ca. 5-10 Hi Roller-runder (150-300 kr. ved 30× á 1 kr. basis). Tabsstop ved 40 % – lavere end for volatile slots, fordi comebacks er sjældne ved lav volatilitet.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Joker Strike's konsistente gameplay kan skabe en illusion af "gratis underholdning" – men hvert spin har negativ EV, selv med 98,11 % RTP. Over tid taber du altid. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> og <Link to="/free-spins" className={linkClass}>free spins</Link>-side for at optimere din spiloplevelse.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Matematikkens Mester – For Den Rationelle Spiller</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Matematikkens Mester – For Den Rationelle Spiller</h2>
           <p className="text-muted-foreground leading-relaxed">Joker Strike med Hi Roller er den ultimative slot for den rationelle, value-orienterede spiller. 98,11 % RTP er uovertruffen, og den lave volatilitet giver den mest forudsigelige spiloplevelse i markedet. For danske spillere, der prioriterer matematisk effektivitet over adrenalin, er Joker Strike ikke bare et godt valg – det er det eneste logiske valg. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at diversificere din rotation.</p>
         </section>
 

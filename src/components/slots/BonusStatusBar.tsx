@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { getSymbolEmoji } from "@/lib/slotGameLogic";
-import { Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { getSlotTheme } from "@/lib/slotTheme";
 
 interface BonusStatusBarProps {
@@ -42,7 +43,7 @@ export function BonusStatusBar({
       <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Bonus indicator */}
         <div className="flex items-center gap-2">
-          <Sparkles className={cn("h-5 w-5 animate-pulse", theme.accent, theme.dropShadowGlowStrong)} />
+          <MenuIcon iconName="sparkles" className="h-5 w-5" />
           <span className={cn("text-lg font-bold", theme.accentLight, theme.dropShadowGlowStrong)}>
             FREE SPINS
           </span>

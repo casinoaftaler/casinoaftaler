@@ -19,7 +19,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
-import { Star, Zap, Check, X, Gamepad2, Trophy, Sparkles, Shield, Headphones, CreditCard, Users, Target, Smartphone, ShieldCheck, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import onecasinoForside from "@/assets/screenshots/onecasino-forside.webp";
@@ -121,7 +122,7 @@ const OneCasinoAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               3.8 / 5 – Simpel & Unik
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -144,7 +145,7 @@ const OneCasinoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                 Hurtige Fakta – One Casino
               </CardTitle>
             </CardHeader>
@@ -214,7 +215,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Exclusive Games Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Gamepad2 className="inline h-7 w-7 text-primary mr-2" />Det eksklusive spilunivers – innovation eller gimmick?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="gamepad2" className="inline h-7 w-7 text-primary mr-2" />Det eksklusive spilunivers – innovation eller gimmick?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casinos unikke salgsargument er de in-house udviklede spil. Disse eksklusive titler er kun tilgængelige på One Casino og repræsenterer en ægte differentiering i et marked, hvor næsten alle operatører tilbyder det samme katalog fra de samme udbydere. Det er et modigt koncept – men lever udførelsen op til idéen? Vi har testet seks titler grundigt og vurderer hver enkelt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De bedste eksklusive spil er genuint underholdende. Én pirat-tematiseret slot med cascading reels og en original bonusmekanik skiller sig positivt ud med en kreativ wild-expansion, der føles frisk og innovativ. En egyptisk-inspireret titel med en progressiv multiplikator-mekanik, der bygger op over flere spins, skaber en spændingsbue, som traditionelle slots sjældent leverer – efter 20 spins uden gevinst føles den næste spin ladet med potentiale. Et tredje highlight er en frugt-slot med en twist: klassisk design med moderne gamification-elementer som achievement-badges og en meta-progression, der belønner langvarigt spil. RTP-værdierne på de bedste titler ligger mellem 95.5% og 96.5% – acceptabelt, om end lidt under gennemsnittet for top-slots fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> eller NetEnt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De svageste eksklusive titler føles derimod underudviklede og demonstrerer de ressourcebegrænsninger, der uundgåeligt følger med in-house udvikling hos en mindre operatør. Simpel grafik, basale mekanikker og en generel mangel på polish, der gør det svært at anbefale dem over etablerede alternativer. Et par af titlene har en volatilitet, der føles arbitrær – lange tørkeperioder uden de store gevinstmuligheder, der normalt retfærdiggør høj volatilitet. Det er klart, at udviklingsteamet ikke har samme ressourcer som studios med hundredvis af ansatte som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> eller <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, og det mærkes i de mere ambitiøse titler, der ikke helt når deres potentiale.</p>
@@ -317,7 +318,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Payment methods */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><CreditCard className="inline h-7 w-7 text-primary mr-2" />Ind- og udbetalinger – funktionelt men begrænset</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="credit-card" className="inline h-7 w-7 text-primary mr-2" />Ind- og udbetalinger – funktionelt men begrænset</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casinos betalingsudvalg er funktionelt men begrænset – og det er et af de områder, hvor platformen halter mest bagefter konkurrenterne. Platformen dækker det basale via <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, men mangler de moderne alternativer, som danske spillere i stigende grad forventer i 2026.</p>
 
           <div className="overflow-x-auto mb-6">
@@ -366,7 +367,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Customer Service */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Headphones className="inline h-7 w-7 text-primary mr-2" />Kundeservice – det basale, men ikke mere</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="headphones" className="inline h-7 w-7 text-primary mr-2" />Kundeservice – det basale, men ikke mere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casino tilbyder kundeservice via live chat og e-mail. Live chat er tilgængelig dagligt, og i vores tre tests var svartiderne 2 minutter (morgen), 5 minutter (eftermiddag) og 8 minutter (aften). Det er acceptabelt, men langt fra markedets bedste – <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> leverer typisk svar inden for 30 sekunder i spidsbelastningsperioder. Ventetiderne indikerer et mindre supportteam, der kan presses under høj belastning.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kvaliteten af supportens svar var blandet. Standardforespørgsler om bonus, omsætningskrav og betalinger blev håndteret korrekt og venligt. Vi spurgte specifikt om, hvilke spil der bidrager til omsætningskravet, og modtog et klart og præcist svar med konkrete procentdele for forskellige spilkategorier. Mere tekniske spørgsmål – som detaljer om KYC-processen, verifikationstider og de eksklusive spils RTP-værdier – krævede eskalering, og svartiden på e-mail var 24-36 timer. Supporten er primært på engelsk med mulighed for maskinoversatte svar, hvilket ikke altid giver den mest naturlige kommunikation.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Der er ingen telefonisk support – en kanal, som særligt ældre danske spillere værdsætter og som <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> og <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> tilbyder. Der er ingen dansk FAQ-sektion – hjælpecentret er på engelsk med begrænset lokalisering. Det er standard for mindre internationale operatører, men det er en ulempe for danske spillere, der foretrækker fuld dansktalende support. Til sammenligning tilbyder <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> og <Link to="/casino-anmeldelser/maria-casino" className={linkClass}>Maria Casino</Link> fuld dansk support med typiske svartider under 1 minut.</p>
@@ -377,7 +378,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Smartphone className="inline h-7 w-7 text-primary mr-2" />Mobiloplevelsen – overraskende stærk</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="smartphone" className="inline h-7 w-7 text-primary mr-2" />Mobiloplevelsen – overraskende stærk</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casinos mobiloplevelse er et af de områder, hvor platformen overrasker positivt. Selvom der ikke er en dedikeret app, er det responsive webdesign velfungerende med hurtige indlæsningstider, touch-optimerede kontroller og en navigationsstruktur, der er tilpasset den mindre skærm. Vi testede på iPhone 15 Pro og Samsung Galaxy S24 og målte konsistente indlæsningstider under 2 sekunder for spilleautomater – hurtigere end mange større konkurrenter via browser.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De eksklusive spil er tydeligt designet med mobil som primær platform – interface-elementer er korrekt dimensionerede til touch-input, og layoutet tilpasser sig elegant til både portræt- og landskabsmode. Skift mellem spil er hurtigt, og vi oplevede ingen cache-problemer eller layout-fejl over vores testperiode. Live casino-sektionen fungerede acceptabelt på mobil, men med de samme ventetidsproblemer som på desktop – og på ældre enheder (iPhone 12 mini) var streaming-kvaliteten periodevis ustabil under spidsbelastning.</p>
           <p className="text-muted-foreground leading-relaxed">Samlet set er mobiloplevelsen et positivt punkt for One Casino og demonstrerer, at platformen er bygget med moderne standarder. Den mangler push-notifikationer (kræver app) og kan ikke matche den polerede native app-oplevelse hos LeoVegas, men for en browser-baseret løsning er den over gennemsnittet. For spillere, der primært spiller på mobil, er One Casino fuldt funktionsdygtigt – og de eksklusive spil fungerer faktisk bedre på mobil end på desktop takket være det touch-optimerede design.</p>
@@ -387,7 +388,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Security & License */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Licensforhold, sikkerhed og spillerbeskyttelse</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="shield-check" className="inline h-7 w-7 text-primary mr-2" />Licensforhold, sikkerhed og spillerbeskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casino opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, hvilket sikrer at platformen overholder den danske spillelovgivning i alle aspekter. Registrering sker via MitID, og casinoet er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> (Register Over Frivilligt Udelukkede Spillere). Teknisk sikkerhed er på plads med SSL/TLS-kryptering af alle transaktioner og data.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ud over den danske licens har Betreels Ltd licenser i andre europæiske jurisdiktioner, hvilket indikerer, at selskabet er vant til at operere under streng regulering og har erfaring med compliance-processer på tværs af markeder. Der er implementeret standardværktøjer til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, session-timere og selvudelukkelsesmuligheder. Implementeringen er funktionel og opfylder alle lovkrav – men den proaktive tilgang til spillerbeskyttelse, som eksempelvis <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Greens</Link> patenterede Green Gaming-værktøj tilbyder, mangler fuldstændigt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Der er ingen uafhængige certificeringer fra <a href="https://www.ecogra.org/" target="_blank" rel="noopener noreferrer" className={linkClass}>eCOGRA</a> eller lignende tredjeparts-auditører – hvilket ikke er ualmindeligt for mindre operatører, men som ville tilføje et ekstra lag af troværdighed. De eksklusive in-house spil er certificeret via Spillemyndighedens krav til RNG-testning, men individuelle RTP-værdier for de eksklusive titler er ikke offentligt tilgængelige på platformen – en gennemsigtigheds-mangel, som vi gerne så adresseret.</p>
@@ -398,10 +399,10 @@ const OneCasinoAnmeldelse = () => {
 
         {/* Target audience – Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><Target className="inline h-7 w-7 text-primary mr-2" />Hvem passer One Casino til – og hvem bør IKKE vælge platformen?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="target" className="inline h-7 w-7 text-primary mr-2" />Hvem passer One Casino til – og hvem bør IKKE vælge platformen?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Users className="h-5 w-5" />One Casino er det rette valg, hvis:</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><MenuIcon iconName="users" className="h-5 w-5" />One Casino er det rette valg, hvis:</CardTitle></CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   <li className="text-sm text-muted-foreground"><strong className="text-foreground">Nysgerrige eventyrere:</strong> Du værdsætter eksklusive oplevelser, som du ikke kan få andre steder, og du vil gerne teste spil, der er unikke for én platform. De bedste eksklusive titler leverer genuint originalt gameplay.</li>
@@ -443,7 +444,7 @@ const OneCasinoAnmeldelse = () => {
 
         {/* EV-analyse – Archetype E */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Matematisk analyse – dobbeltbonussens reelle værdi</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Matematisk analyse – dobbeltbonussens reelle værdi</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">One Casinos unikke dobbelt-bonusstrategi – gratis tilmeldingsbonus plus matchbonus – kræver en todelt EV-analyse for at kvantificere den samlede værdi for nye spillere. Vi gennemregner begge elementer separat og samler dem til en total Expected Value.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
             <CardContent className="pt-6">

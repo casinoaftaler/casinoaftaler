@@ -16,28 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Target,
-  Brain,
-  Timer,
-  Lightbulb,
-  XCircle,
-  CheckCircle,
-  Gamepad2,
-  Users,
-  Calculator,
-  BookOpen,
-  Puzzle,
-} from "lucide-react";
+import { Timer, Lightbulb, Puzzle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/double-exposure-blackjack-hero.jpg";
 
@@ -136,7 +116,7 @@ const DoubleExposureBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Åbne kort-variant
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Åbne kort-variant
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Double Exposure Blackjack – Fuld Information, Nye Regler
@@ -160,7 +140,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ CRITICAL FIRST: Advarsel ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-destructive" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />
             Advarsel: Hvorfor 90 % af Spillere Taber Mere på Double Exposure
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -172,7 +152,7 @@ const DoubleExposureBlackjackGuide = () => {
           <Card className="border-border bg-card my-6 border-destructive/30">
             <CardContent className="pt-4">
               <div className="flex items-start gap-3">
-                <XCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+                <MenuIcon iconName="x-circle" className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-foreground mb-2">Den Store Misforståelse</p>
                   <p className="text-sm text-muted-foreground">
@@ -192,7 +172,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ Hvad er Double Exposure ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Hvad er Double Exposure – Historien og Konceptet
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -221,14 +201,14 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ Reglerne ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Reglerne – Hvad Du Giver og Hvad Du Får (Med EV-Analyse)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Hvad Du Får (Spillerfordele)
                 </CardTitle>
               </CardHeader>
@@ -246,7 +226,7 @@ const DoubleExposureBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Hvad Du Betaler (Casino-Kompensationer)
                 </CardTitle>
               </CardHeader>
@@ -334,7 +314,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ Strategi ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Optimal Strategi – Tænk i Totaler, Ikke Up Cards
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -456,7 +436,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ Korttælling ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Korttælning i Double Exposure – Lettere men Stadig Svært
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -478,7 +458,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ 1000-hånds simulering ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Sessionssimulering: 1.000 Hænder Double Exposure vs. Standard
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -548,7 +528,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ RNG vs live tilgængelighed ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Tilgængelighed i Danmark – RNG og Live-Formater
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -558,7 +538,7 @@ const DoubleExposureBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   RNG Double Exposure
                 </CardTitle>
               </CardHeader>
@@ -575,7 +555,7 @@ const DoubleExposureBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Double Exposure
                 </CardTitle>
               </CardHeader>
@@ -600,7 +580,7 @@ const DoubleExposureBlackjackGuide = () => {
         {/* ═══════════════ Hvem bør spille ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Hvem Bør Spille Double Exposure – Og Hvem Bør Undgå Den?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -610,7 +590,7 @@ const DoubleExposureBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Double Exposure er for dig, hvis…
                 </CardTitle>
               </CardHeader>
@@ -627,7 +607,7 @@ const DoubleExposureBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Undgå Double Exposure, hvis…
                 </CardTitle>
               </CardHeader>

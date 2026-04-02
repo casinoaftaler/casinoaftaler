@@ -15,7 +15,8 @@ import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
-import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -315,7 +316,7 @@ export default function SlotDatabase() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="gamepad2" className="mr-1.5 h-3.5 w-3.5" />
               Live Data fra Bonus Hunts
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -336,7 +337,7 @@ export default function SlotDatabase() {
         {freshnessLabel && (
           <div className="flex items-center gap-2 mb-4 mt-2">
             <Badge variant="outline" className="text-xs">
-              <RefreshCw className="h-3 w-3 mr-1" />
+              <MenuIcon iconName="refresh-cw" className="h-3 w-3 mr-1" />
               {freshnessLabel}
             </Badge>
           </div>

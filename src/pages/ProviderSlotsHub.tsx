@@ -21,14 +21,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
-import {
-  
-  BarChart3,
-  TrendingUp,
-  Award,
-  ArrowRight,
-  BookOpen,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export default function ProviderSlotsHub() {
   const { providerSlug } = useParams<{ providerSlug: string }>();
@@ -187,7 +181,7 @@ export default function ProviderSlotsHub() {
             stats: stats ? (
               <section className="mb-12" key="stats">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-                  <BarChart3 className="h-7 w-7 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
                   {content.displayName} i tal
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -204,7 +198,7 @@ export default function ProviderSlotsHub() {
             top5: stats && stats.topSlots.length > 0 ? (
               <section className="mb-12" key="top5">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-                  <Award className="h-7 w-7 text-primary" />
+                  <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
                   Top 5 mest testede {content.displayName} slots
                 </h2>
                 <div className="space-y-3">
@@ -226,7 +220,7 @@ export default function ProviderSlotsHub() {
                         <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">{slot.bonus_count} hunts</span>
                         {slot.highest_x && slot.highest_x > 0 && (
                           <p className="text-sm font-semibold mt-1">
-                            <TrendingUp className="h-3 w-3 inline mr-1" />
+                            <MenuIcon iconName="trending-up" className="h-3 w-3 inline mr-1" />
                             {slot.highest_x.toFixed(1)}x
                           </p>
                         )}
@@ -266,7 +260,7 @@ export default function ProviderSlotsHub() {
             crosslinks: (
               <section className="mb-12" key="crosslinks">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-                  <BookOpen className="h-7 w-7 text-primary" />
+                  <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
                   Mere om {content.displayName}
                 </h2>
                 <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -290,7 +284,7 @@ export default function ProviderSlotsHub() {
                     to="/slot-database"
                     className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
                   >
-                    <BarChart3 className="h-5 w-5 text-primary flex-shrink-0" />
+                    <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary flex-shrink-0" />
                     <div className="flex-1">
                       <p className="font-semibold">Slot Database – Alle Spillemaskiner</p>
                       <p className="text-sm text-muted-foreground">

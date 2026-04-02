@@ -16,12 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
-  TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
-  Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
-  HelpCircle, Globe, ExternalLink,
-} from "lucide-react";
+import { ArrowRight, Settings, Download, Wifi, Battery } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -137,7 +133,7 @@ const AndroidCasinoGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Smartphone className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="smartphone" className="mr-1.5 h-3.5 w-3.5" />
               Mobil Casino
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -164,7 +160,7 @@ const AndroidCasinoGuide = () => {
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Hvorfor Android er en stærk casino-platform
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -195,7 +191,7 @@ const AndroidCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Android casino i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -232,7 +228,7 @@ const AndroidCasinoGuide = () => {
         {/* 2. PERFORMANCE BENCHMARKS */}
         <section className="mb-12" id="performance-benchmarks">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Performance-benchmarks: Android-telefoner sammenlignet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -281,7 +277,7 @@ const AndroidCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Info className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="info" className="h-5 w-5 text-primary" />
               Analyse af benchmark-data
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-3">
@@ -379,7 +375,7 @@ const AndroidCasinoGuide = () => {
         {/* 4. GOOGLE PLAY VS. APK SIKKERHED */}
         <section className="mb-12" id="google-play-vs-apk">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Google Play vs. APK-sideloading: Sikkerhedsanalyse
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -392,7 +388,7 @@ const AndroidCasinoGuide = () => {
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Google Play Store (Anbefalet)
                 </CardTitle>
               </CardHeader>
@@ -409,7 +405,7 @@ const AndroidCasinoGuide = () => {
             <Card className="border-border bg-card border-l-4 border-l-destructive">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive" />
                   APK-sideloading (Frarådes)
                 </CardTitle>
               </CardHeader>
@@ -426,7 +422,7 @@ const AndroidCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Lock className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
               Sikkerhedsguide: Undgå usikre casino-APK'er
             </h3>
             <div className="space-y-3">
@@ -460,7 +456,7 @@ const AndroidCasinoGuide = () => {
         {/* 5. BETALINGSMETODER */}
         <section className="mb-12" id="betalingsmetoder-android">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CreditCard className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />
             Android-specifikke betalingsmetoder
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -501,7 +497,7 @@ const AndroidCasinoGuide = () => {
         {/* 6. CHROME VS. SAMSUNG INTERNET */}
         <section className="mb-12" id="browsere">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Chrome vs. Samsung Internet vs. dedikeret app
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -555,7 +551,7 @@ const AndroidCasinoGuide = () => {
         {/* 7. ANDROID-SPECIFIKKE TIPS */}
         <section className="mb-12" id="android-tips">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Android-specifikke optimeringstips
           </h2>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -583,7 +579,7 @@ const AndroidCasinoGuide = () => {
         {/* 8. ANDROID SIKKERHEDSARKITEKTUR */}
         <section className="mb-12" id="android-sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Android sikkerhedsarkitektur for casino-spillere
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -683,7 +679,7 @@ const AndroidCasinoGuide = () => {
         {/* 9. SAMSUNG VS. PIXEL VS. XIAOMI VS. ONEPLUS */}
         <section className="mb-12" id="fabrikant-sammenligning">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Samsung vs. Pixel vs. Xiaomi vs. OnePlus: Casino-performance
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -730,7 +726,7 @@ const AndroidCasinoGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Star className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
               Vores anbefaling efter spillerprofil
             </h3>
             <div className="space-y-3 text-sm text-muted-foreground">
@@ -799,7 +795,7 @@ const AndroidCasinoGuide = () => {
               "Pixel-brugere: 'At a Glance' widget kan konfigureres til IKKE at vise casino-notifikationer",
               "OnePlus-brugere: 'Zen Mode' kan bruges som en tvungen pause fra alle apps i 20 min - 2 timer",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+              <div key={t} className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
             ))}
           </div>
         </section>
@@ -873,7 +869,7 @@ const AndroidCasinoGuide = () => {
               "Samsung-brugere: Samsung Internet har en indbygget 'Datasparetilstand' der komprimerer webindhold via proxy",
               "Overvåg dit dataforbrug: Indstillinger → Netværk → Dataforbrug → Chrome/casino-app for at se præcis forbrug",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+              <div key={t} className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
             ))}
           </div>
         </section>
@@ -883,7 +879,7 @@ const AndroidCasinoGuide = () => {
         {/* 12. SAMSUNG DEX OG DESKTOP MODE */}
         <section className="mb-12" id="samsung-dex">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Monitor className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />
             Samsung DeX og Desktop Mode: Casino på stor skærm
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -929,7 +925,7 @@ const AndroidCasinoGuide = () => {
         {/* 13. FEJLFINDING */}
         <section className="mb-12" id="fejlfinding">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Fejlfinding: 12 Android-specifikke casino-problemer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -954,7 +950,7 @@ const AndroidCasinoGuide = () => {
             ].map((f) => (
               <div key={f.problem} className="rounded-lg border border-border bg-card p-4">
                 <h3 className="font-semibold text-sm text-foreground mb-1 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-destructive shrink-0" />{f.problem}
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive shrink-0" />{f.problem}
                 </h3>
                 <p className="text-xs text-muted-foreground">{f.solution}</p>
               </div>
@@ -967,7 +963,7 @@ const AndroidCasinoGuide = () => {
         {/* 14. ANSVARLIGT SPIL */}
         <section className="mb-12" id="ansvarligt-spil-android">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Ansvarligt spil på Android
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -982,7 +978,7 @@ const AndroidCasinoGuide = () => {
               { title: "ROFUS via MitID-app", desc: "MitID-appen fungerer fuldt på Android. Tilmeld dig ROFUS for selvudelukkelse fra alle danske casinoer direkte fra din telefon." },
             ].map((t) => (
               <div key={t.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Shield className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                <MenuIcon iconName="shield" className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground">{t.title}</h3>
                   <p className="text-xs text-muted-foreground">{t.desc}</p>
@@ -1008,7 +1004,7 @@ const AndroidCasinoGuide = () => {
         {/* 15. HJÆLP OG RESSOURCER */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Hjælp og ressourcer
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

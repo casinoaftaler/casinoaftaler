@@ -41,27 +41,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.webp";
 import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
 import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.webp";
-import {
-  ShieldCheck,
-  Zap,
-  
-  Award,
-  CheckCircle2,
-  AlertTriangle,
-  Star,
-  Tv,
-  Layers,
-  ArrowRight,
-  Target,
-  TrendingUp,
-  BarChart3,
-  Users,
-  Building2,
-  Flame,
-  Sparkles,
-  Clock,
-  BookOpen,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /* ─────────────────────────────────────────────
    Central comparison table data
@@ -376,7 +357,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sammenligning af alle 22 ledende spiludviklere
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -425,7 +406,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Building2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="building2" className="h-7 w-7 text-primary" />
             Hvad laver en spiludvikler egentlig? – Fra matematisk model til færdigt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -436,7 +417,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
                   1. Matematisk modellering
                 </CardTitle>
               </CardHeader>
@@ -449,7 +430,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   2. RNG-implementering
                 </CardTitle>
               </CardHeader>
@@ -462,7 +443,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Sparkles className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-4 w-4 text-primary" />
                   3. Spiloplevelse og design
                 </CardTitle>
               </CardHeader>
@@ -477,7 +458,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Award className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="award" className="h-4 w-4 text-primary" />
                   4. Certificering og regulering
                 </CardTitle>
               </CardHeader>
@@ -499,7 +480,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             RTP og volatilitet – den matematiske virkelighed bag hvert spin
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -602,7 +583,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Flame className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
                   🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming, Push Gaming
                 </CardTitle>
               </CardHeader>
@@ -640,7 +621,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Tv className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="tv" className="h-5 w-5 text-primary" />
                   📺 Live Casino-Specialister – Evolution Gaming
                 </CardTitle>
               </CardHeader>
@@ -656,7 +637,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios, Wazdan, Thunderkick
                 </CardTitle>
               </CardHeader>
@@ -677,7 +658,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Star className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />
                   🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger, Blueprint Gaming
                 </CardTitle>
               </CardHeader>
@@ -694,7 +675,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Layers className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
                   🔗 Platforme & Aggregeringsspecialister – iSoftBet, Stakelogic, Quickspin, Booming Games
                 </CardTitle>
               </CardHeader>
@@ -725,7 +706,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvilken spiludvikler passer til din spillestil? – Strategisk matchmaking
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -736,7 +717,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary" />
                   "Jeg vil have store gevinster og kan tåle tørrperioder"
                 </CardTitle>
               </CardHeader>
@@ -748,7 +729,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="star" className="h-4 w-4 text-primary" />
                   "Jeg vil maksimere min bonusomsætning"
                 </CardTitle>
               </CardHeader>
@@ -761,7 +742,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Tv className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="tv" className="h-4 w-4 text-primary" />
                   "Jeg foretrækker live casino med rigtige dealere"
                 </CardTitle>
               </CardHeader>
@@ -774,7 +755,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Users className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="users" className="h-4 w-4 text-primary" />
                   "Jeg er casual spiller og vil underholdes"
                 </CardTitle>
               </CardHeader>
@@ -786,7 +767,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Sparkles className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-4 w-4 text-primary" />
                   "Jeg vil prøve nye og innovative mekanikker"
                 </CardTitle>
               </CardHeader>
@@ -798,7 +779,7 @@ const Spiludviklere = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Award className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="award" className="h-4 w-4 text-primary" />
                   "Jeg drømmer om en livsendrende jackpot"
                 </CardTitle>
               </CardHeader>
@@ -859,7 +840,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Branchetrends 2026 – seks teknologier, der former fremtidens casinospil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -868,38 +849,38 @@ const Spiludviklere = () => {
 
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Flame className="h-4 w-4 text-primary" /> 1. Bonus Buy-mekanik – komprimeret volatilitet</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="flame" className="h-4 w-4 text-primary" /> 1. Bonus Buy-mekanik – komprimeret volatilitet</h3>
               <p className="text-sm text-muted-foreground">
                 Bonus buy (Feature Drop, Ante Bet) giver spillere direkte adgang til bonusrunden for en fast pris – typisk 50-100x indsatsen. Mekanikken, populariseret af{" "}
                 <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> og adopteret af Pragmatic Play, Nolimit City og Hacksaw Gaming, komprimerer volatiliteten: i stedet for at spille 200-500 basegame-spins, køber du direkte adgang til den volatile bonusrunde. Spillemyndigheden tillader bonus buy på danske casinoer, men funktionen er forbudt i enkelte europæiske markeder (UK, Spanien).
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Layers className="h-4 w-4 text-primary" /> 2. Megaways-evolution – fra 117.649 til 1.000.000+ vinderkombinationer</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="layers" className="h-4 w-4 text-primary" /> 2. Megaways-evolution – fra 117.649 til 1.000.000+ vinderkombinationer</h3>
               <p className="text-sm text-muted-foreground">
                 Megaways-mekanikken har gennemgået en markant evolution siden lanceringen i 2016. Nyere varianter – Megaways Infinity, Ultra Megaways – udvider formatet med op til 1.000.000+ vinderkombinationer pr. spin via dynamiske hjulstrukturer og multi-level cascading. Licenseringen til andre udviklere har skabt et økosystem med 200+ Megaways-titler, men kvaliteten varierer – de bedste implementeringer forbliver hos BTG, Pragmatic Play og Red Tiger.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> 3. Crash-spil og instant games – real-time beslutningstagning</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary" /> 3. Crash-spil og instant games – real-time beslutningstagning</h3>
               <p className="text-sm text-muted-foreground">
                 Crash-spil (Aviator, Spaceman) repræsenterer en helt ny spilkategori: en multiplikator stiger i realtid, og spilleren skal cash-oute, før den "crasher". Beslutningen er aktiv – ikke passiv som i slots – hvilket tiltrækker en yngre, mere engageret demografi. Hacksaw Gamings instant win-portefølje og Pragmatic Plays Spaceman demonstrerer potentialet. Kategorien vokser med 40%+ årligt i det europæiske marked.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Sparkles className="h-4 w-4 text-primary" /> 4. Mobiloptimering 2.0 – touch-first og portrait-mode</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-4 w-4 text-primary" /> 4. Mobiloptimering 2.0 – touch-first og portrait-mode</h3>
               <p className="text-sm text-muted-foreground">
                 Over 70% af alle casinospil-sessioner i Danmark sker på mobil. Nye titler designes nu "mobile-first" med portrait-mode (lodret skærm) som standard og touch-optimerede bonusmekanikker. Hacksaw Gaming og ELK Studios er frontløbere med grænseflader, der føles native på smartphones. Ældre titler fra NetEnt og Microgaming konverteres gradvist, men oplevelsen er stadig bedst på nyere spil, der er designet til touch fra bunden.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><BookOpen className="h-4 w-4 text-primary" /> 5. Gamification og progression – langsigtede spillerforhold</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="book-open" className="h-4 w-4 text-primary" /> 5. Gamification og progression – langsigtede spillerforhold</h3>
               <p className="text-sm text-muted-foreground">
                 Spiludviklere integrerer i stigende grad gamification-elementer: achievements, level-systemer, samlebare items og narrative progressioner, der spænder over flere sessioner. Pragmatic Plays "Drops &amp; Wins"-turnering og Red Tigers Daily Drop Jackpots er tidlige eksempler, der øger spillerretention og session-længde markant. Trenden bevæger sig mod "meta-game"-oplevelser, der giver spilleren en langsigtede fremgang udover individuelle spins.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><BarChart3 className="h-4 w-4 text-primary" /> 6. AI-drevet spildesign og personalisering</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" /> 6. AI-drevet spildesign og personalisering</h3>
               <p className="text-sm text-muted-foreground">
                 Kunstig intelligens påvirker allerede spildesign-processen: AI-modeller simulerer milliarder af spins på timer (mod dages beregninger med traditionelle metoder), optimerer matematiske modeller og kan potentielt tilpasse volatilitetsprofiler til individuelle spillerpræferencer i realtid. Etiske og regulatoriske spørgsmål om AI-personalisering – specifikt risikoen for at øge problematisk spiladfærd – er et aktivt diskussionspunkt hos Spillemyndigheden og europæiske regulatorer.
               </p>
@@ -920,7 +901,7 @@ const Spiludviklere = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Regulering og spillerbeskyttelse – Spillemyndighedens rolle i spilkvalitet
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -929,21 +910,21 @@ const Spiludviklere = () => {
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Teknisk certificering</h3>
                 <p className="text-sm text-muted-foreground">Alle spil skal certificeres af et uafhængigt testlaboratorium (eCOGRA, iTech Labs, GLI) før lancering på det danske marked. Certificeringen dækker RNG-integritet (statistisk uafhængighed mellem spins), RTP-nøjagtighed (den faktiske tilbagebetaling matcher den annoncerede) og bonusmekanik-fairness (bonusrunder aktiveres med den dokumenterede frekvens). Spillemyndigheden kan til enhver tid kræve genuddannelse eller gentest.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">RTP-transparens</h3>
                 <p className="text-sm text-muted-foreground">Danske licenserede casinoer er forpligtede til at offentliggøre den faktiske RTP-konfiguration for hvert spil. Spillere kan typisk finde denne information i spillets informationsmenu (i-ikon). Bemærk, at samme spil kan operere med forskellige RTP-konfigurationer hos forskellige casinoer – udviklerne tilbyder typisk 2-4 godkendte niveauer, og casinoet vælger det relevante niveau.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Ansvarligt spil-funktioner</h3>
                 <p className="text-sm text-muted-foreground">Spillemyndigheden kræver, at alle spil understøtter session-reminders, indbetalingsgrænser og adgang til selvudelukkelse via{" "}
@@ -951,7 +932,7 @@ const Spiludviklere = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="building2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Licenskrav til udviklere</h3>
                 <p className="text-sm text-muted-foreground">Spiludviklere, der opererer på det danske marked, skal enten holde en dansk B2B-licens eller operere under en anerkendt EU-licens (Malta MGA, Gibraltar). Spillemyndigheden opretholder en offentlig liste over godkendte spil og udviklere. Udviklere, der overtræder reglerne, risikerer suspension og bøder, der kan løbe op i millioner af kroner. Læs mere om{" "}
@@ -963,7 +944,7 @@ const Spiludviklere = () => {
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Ansvarligt spil og spiludviklere
               </CardTitle>
             </CardHeader>

@@ -12,32 +12,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ShieldCheck,
-  AlertTriangle,
-  Ban,
-  Lock,
-  Scale,
-  Eye,
-  XCircle,
-  Shield,
-  Gavel,
-  FileWarning,
-  Users,
-  Heart,
-  CheckCircle2,
-  Banknote,
-  Fingerprint,
-  Globe,
-  BookOpen,
-  Timer,
-  DollarSign,
-  Phone,
-  Search,
-  ThumbsDown,
-  Landmark,
-  CircleDollarSign,
-} from "lucide-react";
+import { Ban, Gavel, FileWarning, Fingerprint, Timer, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
@@ -186,7 +162,7 @@ const CasinoUdenRofus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />
               Sikkerhed & regulering
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -220,7 +196,7 @@ const CasinoUdenRofus = () => {
           </p>
           <div className="rounded-lg border-2 border-destructive/50 bg-destructive/5 p-5">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
               <div>
                 <p className="font-semibold text-destructive mb-1">Casinoaftaler fraråder spil hos ulicenserede casinoer</p>
                 <p className="text-sm text-muted-foreground">
@@ -382,7 +358,7 @@ const CasinoUdenRofus = () => {
           <div className="space-y-4">
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
-                <CircleDollarSign className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="circle-dollar-sign" className="h-5 w-5 text-primary" />
                 Omsætningskravets reelle effekt
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -456,7 +432,7 @@ const CasinoUdenRofus = () => {
 
           <div className="rounded-lg border-2 border-primary/30 bg-primary/5 p-5 mb-6">
             <h3 className="font-semibold mb-3 flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
               Tre typiske profiler der søger "casino uden ROFUS"
             </h3>
             <div className="space-y-4">
@@ -520,7 +496,7 @@ const CasinoUdenRofus = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-primary" />
                   Malta Gaming Authority (MGA)
                 </CardTitle>
               </CardHeader>
@@ -534,7 +510,7 @@ const CasinoUdenRofus = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-destructive" />
                   Curaçao Gaming Control Board (GCB)
                 </CardTitle>
               </CardHeader>
@@ -548,7 +524,7 @@ const CasinoUdenRofus = () => {
             <Card className="border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-muted-foreground" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-muted-foreground" />
                   Gibraltar Gambling Commissioner
                 </CardTitle>
               </CardHeader>

@@ -22,7 +22,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -98,7 +99,7 @@ const MoneyTrain3Guide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Money Train 3 – Max Win Analyse & Bonusmekanik</h1>
             <p className="text-lg text-white/80">Relax Gamings flagskib med 100.000× max win: en matematisk dekonstruktion af Money Cart-bonusrunden, persistent modifiers og den reelle sandsynlighed for store gevinster.</p>
           </div>
@@ -114,7 +115,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Money Cart-Bonusrunden: Anatomien af et 100.000× Potentiale
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -175,7 +176,7 @@ const MoneyTrain3Guide = () => {
         {/* ── RTP & Variabel Konfiguration ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             RTP-Variationer og House Edge Implikationer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -214,7 +215,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Volatilitet ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Ekstremt Høj Volatilitet: Hvad Det Reelt Betyder
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -244,7 +245,7 @@ const MoneyTrain3Guide = () => {
         {/* ── EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Expected Value og Underholdningsomkostning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -284,7 +285,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Spilmekanik basespil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Basespillets Mekanik og Symbolstruktur
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -304,7 +305,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Risikoprofil og Bankroll-Krav
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -340,7 +341,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Money Train 3 vs. Razor Shark vs. Dead or Alive 2
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -377,7 +378,7 @@ const MoneyTrain3Guide = () => {
         {/* ── Hvem passer det til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Hvem Bør Spille Money Train 3?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

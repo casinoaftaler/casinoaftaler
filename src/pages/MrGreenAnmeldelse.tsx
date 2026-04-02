@@ -22,7 +22,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLobby from "@/assets/screenshots/mrgreen-lobby.webp";
@@ -57,7 +58,7 @@ const MrGreenAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Award className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Prisbelønnet Casino</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="award" className="mr-1.5 h-3.5 w-3.5" />4.4 / 5 – Prisbelønnet Casino</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Mr Green Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Dybdegående anmeldelse af Mr Green Casino – den prisbelønnede platform med dansk licens, innovativt Green Gaming-værktøj og et nøje kurateret spiludvalg.</p>
         </div></div>
@@ -69,7 +70,7 @@ const MrGreenAnmeldelse = () => {
         <ReviewMoneyLinks />
 
         {/* Hurtige Fakta */}
-        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Mr Green Casino</CardTitle></CardHeader><CardContent>
+        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Mr Green Casino</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr. + FS</p></div>
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
@@ -127,7 +128,7 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino tilbyder en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på op til 1.000 kr. plus free spins til nye spillere – svarende til det lovpligtige danske maksimum. Bonussen er underlagt <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (indskud + bonus), og vilkårene er klare og gennemsigtige.</p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />Bonusregneeksempel – Mr Green</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Bonusregneeksempel – Mr Green</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground">Indskud + Bonus</p><p className="text-xl font-bold text-foreground">2.000 kr.</p></div>
@@ -170,9 +171,9 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">I praksis betyder det, at du har <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> bedste (Starburst, Gonzo's Quest, Dead or Alive), <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GOs</Link> populæreste (Book of Dead, Reactoonz, Moon Princess) og <Link to="/spiludviklere/yggdrasil" className={linkClass}>Yggdrasils</Link> mest innovative (Valley of the Gods, Vikings Go Berzerk) – alt samlet i en elegant, browsebar grænseflade. Vi gennemgik 50 tilfældige spil i kataloget og fandt en gennemsnitlig RTP på 96,2% – marginalt højere end markedsgennemsnittet, hvilket bekræfter, at kureringsprocessen favoriserer spil med fair afkast.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">800+ håndplukkede slots fra NetEnt, Play'n GO, Yggdrasil, Red Tiger og Thunderkick. Fokus på kvalitetstitler med høj RTP.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Premium <Link to="/live-casino" className={linkClass}>live casino</Link> fra Evolution Gaming. Dedikerede Mr Green-borde med eksklusive limits og dealere.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil & Jackpots</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Udvalgte <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>- og <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-varianter plus progressive jackpots fra NetEnt og Red Tiger.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">800+ håndplukkede slots fra NetEnt, Play'n GO, Yggdrasil, Red Tiger og Thunderkick. Fokus på kvalitetstitler med høj RTP.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Premium <Link to="/live-casino" className={linkClass}>live casino</Link> fra Evolution Gaming. Dedikerede Mr Green-borde med eksklusive limits og dealere.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Bordspil & Jackpots</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Udvalgte <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>- og <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-varianter plus progressive jackpots fra NetEnt og Red Tiger.</p></CardContent></Card>
           </div>
 
           <h3 className="mt-6 mb-3 text-xl font-bold">Hvad mangler i Mr Greens katalog?</h3>
@@ -239,7 +240,7 @@ const MrGreenAnmeldelse = () => {
               { title: "Visa / Mastercard", desc: "Klassiske kortbetalinger med øjeblikkelig indbetaling. Udbetalinger inden for 1-3 hverdage.", speed: "🕐 1-3 dage" },
               { title: "Skrill / Neteller", desc: "E-wallets med branchens hurtigste udbetalinger – typisk under 24 timer.", speed: "⚡ Under 24 timer" },
             ].map((m) => (
-              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
+              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
             ))}
           </div>
 
@@ -270,9 +271,9 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> og <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> sikrer objektive vurderinger – og på sikkerhedsparameteren scorer Mr Green 10/10. Der er intet, der tyder på nogen som helst sikkerhedsrisiko ved at spille hos Mr Green. Din data og dine penge er i trygge hænder.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og løbende tilsyn.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Evoke PLC (tidl. 888 Holdings)</h3><p className="text-sm text-muted-foreground">Børsnoteret på London Stock Exchange med 20+ licenser globalt.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Green Gaming</h3><p className="text-sm text-muted-foreground">Patenteret AI-baseret ansvarligt spil-system med risikovurdering.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Spillemyndigheden</h3><p className="text-sm text-muted-foreground">Dansk licens med fuld regulering og løbende tilsyn.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Evoke PLC (tidl. 888 Holdings)</h3><p className="text-sm text-muted-foreground">Børsnoteret på London Stock Exchange med 20+ licenser globalt.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Green Gaming</h3><p className="text-sm text-muted-foreground">Patenteret AI-baseret ansvarligt spil-system med risikovurdering.</p></div></div>
           </div>
 
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Mr Green tilbyder Green Gaming-værktøjet til selvvurdering. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> ved behov.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p></CardContent></Card>
@@ -311,8 +312,8 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag anmeldelsen</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["mr-green"].scores} total={CASINO_SCORES["mr-green"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Gamepad2, ArrowRight, ChevronDown, RefreshCw } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROVIDER_TO_SLOTS, PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
@@ -28,7 +29,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
     return (
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <Gamepad2 className="h-7 w-7 text-primary" />
+          <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
           Alle spillemaskiner fra {providerName}
         </h2>
         <p className="text-muted-foreground">Indlæser slot-data...</p>
@@ -58,7 +59,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
   return (
     <section className="mb-12">
       <h3 className="mb-4 text-xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-7 w-7 text-primary" />
+        <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
         Alle spillemaskiner fra {providerName}
       </h3>
       <p className="mb-2 text-muted-foreground leading-relaxed">
@@ -69,7 +70,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
       {freshnessLabel && (
         <div className="flex items-center gap-2 mb-4">
           <Badge variant="outline" className="text-xs">
-            <RefreshCw className="h-3 w-3 mr-1" />
+            <MenuIcon iconName="refresh-cw" className="h-3 w-3 mr-1" />
             {freshnessLabel}
           </Badge>
         </div>
@@ -86,7 +87,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
                   to={`/casinospil/spillemaskiner/${slot.slug}`}
                   className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm font-medium transition-all hover:border-primary/50 hover:shadow-sm"
                 >
-                  <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+                  <MenuIcon iconName="gamepad2" className="h-4 w-4 text-primary flex-shrink-0" />
                   <span className="flex-1">{slot.name} – komplet guide</span>
                   <ArrowRight className="h-4 w-4 text-muted-foreground" />
                 </Link>

@@ -20,7 +20,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { BarChart3, TrendingUp, Target, ShieldCheck, CheckCircle2, Star, Gamepad2, AlertTriangle, Calculator, Percent, Layers, Eye, Zap, Award } from "lucide-react";
+import { BarChart3, TrendingUp, Target, ShieldCheck, CheckCircle2, Star, Gamepad2, AlertTriangle, Calculator, Percent, Layers, Eye, Zap, Award } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -54,7 +55,7 @@ const HoejRTPGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Percent className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="percent" className="mr-1.5 h-3.5 w-3.5" />
               RTP-analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -95,25 +96,25 @@ const HoejRTPGuide = () => {
 
         {/* Hvad er RTP */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Hvad er RTP, og hvordan beregnes det?</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Hvad er RTP, og hvordan beregnes det?</h2>
           <p className="text-muted-foreground mb-4"><Link to="/ordbog/rtp" className={linkClass}>RTP</Link> beregnes som den samlede sum af alle udbetalinger divideret med den samlede sum af alle indsatser, multipliceret med 100. Formlen er enkel: <strong>RTP = (Samlede udbetalinger ÷ Samlede indsatser) × 100</strong>. Denne beregning foretages over millioner af spilrunder for at sikre statistisk signifikans. Det er afgørende at forstå, at RTP er et langsigtigt gennemsnit – på kort sigt kan dine resultater variere enormt i begge retninger.</p>
           <p className="text-muted-foreground mb-6">For at give et konkret eksempel: Hvis en spilleautomat har en RTP på 96 % og modtager 10.000.000 kr. i samlede indsatser, vil den statistisk udbetale 9.600.000 kr. til spillerne og beholde 400.000 kr. som profit til casinoet. Men dette er et gennemsnit over millioner af spins – på din individuelle session kan du vinde langt mere eller langt mindre end dette gennemsnit. Det er præcis denne varians, der gør casinospil spændende.</p>
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Høj RTP (96%+)</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500" /> Høj RTP (96%+)</h3>
                 <p className="text-sm text-muted-foreground">Spil med RTP over 96 % anses for at have høj tilbagebetaling. Her er husets fordel under 4 %, hvilket giver dig de bedste langsigtede odds. Mange moderne spilleautomater fra topudviklere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> tilbyder RTP i dette interval. Bordspil som blackjack og baccarat ligger konsekvent i dette område.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500" /> Middel RTP (93-96%)</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500" /> Middel RTP (93-96%)</h3>
                 <p className="text-sm text-muted-foreground">De fleste spilleautomater falder i dette interval. Husets fordel er 4–7 %, hvilket stadig er acceptabelt for underholdningsværdi. Mange populære titler med avancerede funktioner og høj volatilitet ligger her, da en del af RTP'en er allokeret til sjældne, store gevinster. Det er her, du finder det bredeste udvalg af spil.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-red-500" /> Lav RTP (under 93%)</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500" /> Lav RTP (under 93%)</h3>
                 <p className="text-sm text-muted-foreground">Spil med RTP under 93 % giver casinoet en markant fordel. Progressive jackpot-slots har ofte lav basis-RTP (88–92 %), fordi en del af hver indsats tilføjes jackpotten. Keno og skrabelodder ligger typisk også i dette interval. Undgå disse spil, medmindre du specifikt jager en stor jackpot.</p>
               </CardContent>
             </Card>
@@ -131,7 +132,7 @@ const HoejRTPGuide = () => {
 
         {/* Top spilleautomater */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Top 10 spilleautomater med højest RTP</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" /> Top 10 spilleautomater med højest RTP</h2>
           <p className="text-muted-foreground mb-4">Her er de spilleautomater med den højeste tilbagebetalingsprocent, som er tilgængelige på danske licenserede casinoer. Vi har verificeret RTP-værdierne direkte hos spiludviklerne og testet tilgængeligheden på de mest populære danske casinoer.</p>
           <p className="text-muted-foreground mb-6">Det er værd at bemærke, at høj RTP ikke nødvendigvis betyder, at du vil vinde mere på en enkelt session. En spilleautomat med 99 % RTP og høj volatilitet kan sagtens give dig 50 tabende spins i træk, før den leverer en stor gevinst. Derfor er det vigtigt at kombinere RTP med volatilitet, når du vælger spil – og altid spille med et budget, du har råd til at tabe.</p>
           <div className="overflow-x-auto mb-6">
@@ -162,35 +163,35 @@ const HoejRTPGuide = () => {
 
         {/* RTP for bordspil */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Layers className="h-7 w-7 text-primary" /> RTP for bordspil og live casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> RTP for bordspil og live casino</h2>
           <p className="text-muted-foreground mb-4">Mens spilleautomater har forudbestemt RTP, afhænger bordspils RTP af dine beslutninger og den specifikke spilvariant. Med optimal strategi kan bordspil tilbyde markant bedre odds end selv de bedste spilleautomater. Her er en detaljeret gennemgang af RTP for de mest populære bordspil.</p>
           <p className="text-muted-foreground mb-6">Det vigtige at forstå om bordspils RTP er, at tallene forudsætter optimal spil. Hvis du spiller blackjack uden at kende grundlæggende strategi, vil din reelle RTP være markant lavere end den teoretiske. Investér tid i at lære optimal strategi for dit foretrukne bordspil – det er den mest effektive måde at forbedre dine odds på.</p>
           
           <div className="space-y-4 mb-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Award className="h-5 w-5 text-primary" /> Blackjack – Op til 99,5 % RTP</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="award" className="h-5 w-5 text-primary" /> Blackjack – Op til 99,5 % RTP</h3>
                 <p className="text-sm text-muted-foreground mb-2"><Link to="/casinospil/blackjack" className={linkClass}>Blackjack</Link> med optimal grundlæggende strategi tilbyder den højeste RTP af alle casinospil. Den præcise RTP afhænger af regelsættet: Single deck blackjack med favorable regler kan nå 99,83 % RTP, mens standard 6-deck blackjack typisk ligger på 99,4-99,6 %. Vigtigt: Denne RTP forudsætter, at du følger grundlæggende strategi perfekt – uden strategi kan RTP falde til under 95 %.</p>
                 <p className="text-sm text-muted-foreground">Side bets som "Perfect Pairs" og "21+3" har markant lavere RTP (typisk 92-96 %) og bør undgås af spillere, der optimerer for bedste odds. Fokusér på hoveddelen af spillet for maksimal RTP.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Award className="h-5 w-5 text-primary" /> Baccarat – 98,94 % RTP (Banker)</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="award" className="h-5 w-5 text-primary" /> Baccarat – 98,94 % RTP (Banker)</h3>
                 <p className="text-sm text-muted-foreground mb-2"><Link to="/casinospil/baccarat" className={linkClass}>Baccarat</Link> er det enkleste bordspil med hensyn til strategi: Spil altid på Banker. Banker-indsatsen har en RTP på 98,94 % (husets fordel 1,06 %), Player-indsatsen har 98,76 % RTP, mens Tie-indsatsen har en katastrofalt lav RTP på 85,64 % og bør altid undgås.</p>
                 <p className="text-sm text-muted-foreground">Baccarat er særligt populært i <Link to="/live-casino" className={linkClass}>live casino</Link>-formatet, hvor du spiller mod en rigtig dealer. RTP er identisk for live og RNG-versioner af spillet. For spillere, der ønsker enkelhed og gode odds, er baccarat et fremragende valg.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Award className="h-5 w-5 text-primary" /> Roulette – 97,3 % RTP (Europæisk)</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="award" className="h-5 w-5 text-primary" /> Roulette – 97,3 % RTP (Europæisk)</h3>
                 <p className="text-sm text-muted-foreground mb-2"><Link to="/casinospil/roulette" className={linkClass}>Europæisk roulette</Link> (med et enkelt nul) har en fast RTP på 97,30 % for alle standard-indsatser. Fransk roulette med "La Partage"-reglen tilbyder endnu bedre odds – 98,65 % RTP på even-money bets – da du kun mister halvdelen af din indsats, hvis kuglen lander på nul.</p>
                 <p className="text-sm text-muted-foreground">Undgå altid amerikansk roulette med dobbelt nul (00), da det sænker RTP til 94,74 %. Lightning Roulette fra Evolution Gaming har en RTP på 97,10 % og tilbyder mulighed for massive multiplikatorer – men husk, at den gennemsnitlige udbetaling er den samme som standard roulette, blot med højere varians.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-2 flex items-center gap-2"><Award className="h-5 w-5 text-primary" /> Video Poker – Op til 99,54 % RTP</h3>
+                <h3 className="font-bold mb-2 flex items-center gap-2"><MenuIcon iconName="award" className="h-5 w-5 text-primary" /> Video Poker – Op til 99,54 % RTP</h3>
                 <p className="text-sm text-muted-foreground">Video poker kombinerer elementer fra spilleautomater og bordspil og tilbyder nogle af de højeste RTP-værdier i online casinoer. "Jacks or Better" med fuld betalingstabel har en RTP på 99,54 % med optimal strategi, mens "Deuces Wild" kan nå 100,76 % RTP – et af de sjældne spil, hvor spilleren har en matematisk fordel over casinoet. Dog kræver dette perfekt spil af alle hænder, hvilket er ekstremt svært i praksis.</p>
               </CardContent>
             </Card>
@@ -208,7 +209,7 @@ const HoejRTPGuide = () => {
 
         {/* Volatilitet */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> Volatilitet – det oversete nøgletal</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Volatilitet – det oversete nøgletal</h2>
           <p className="text-muted-foreground mb-4">Mens RTP fortæller dig, hvor meget du statistisk får tilbage, fortæller volatilitet dig, <strong>hvordan</strong> du får det tilbage. Lav volatilitet giver hyppige, små gevinster. Høj volatilitet giver sjældne, men potentielt enorme gevinster. Valget afhænger af din spillestil og dit budget.</p>
           <p className="text-muted-foreground mb-6">Tænk på det sådan: To spilleautomater med 96 % RTP kan give vidt forskellige oplevelser. Den ene (lav volatilitet) giver dig små gevinster næsten hver tredje spin, så din saldo svinger minimalt. Den anden (høj volatilitet) kan give dig 50 tabende spins i træk, men så pludselig en gevinst på 500x din indsats. Begge returnerer 96 % over tid, men oplevelsen er dramatisk anderledes. Dit valg bør baseres på dit budget, din risikotolerance og hvad du finder mest underholdende.</p>
           <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -246,7 +247,7 @@ const HoejRTPGuide = () => {
 
         {/* Spiludviklere og RTP */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Star className="h-7 w-7 text-primary" /> Spiludviklere med konsekvent høj RTP</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="star" className="h-7 w-7 text-primary" /> Spiludviklere med konsekvent høj RTP</h2>
           <p className="text-muted-foreground mb-4">Ikke alle spiludviklere er skabt lige, når det gælder RTP. Nogle udviklere har en filosofi om at tilbyde høje tilbagebetalingsprocenter som standard, mens andre prioriterer lavere RTP til fordel for større jackpots eller avancerede funktioner. Her er de udviklere, der konsekvent leverer de bedste odds for spillerne.</p>
           <p className="text-muted-foreground mb-6">Når du vælger spil på et dansk casino, kan det være en god strategi at filtrere efter spiludvikler. Hvis du prioriterer høj RTP, bør du fokusere på udviklere med dokumenteret track record for fair og generøse tilbagebetalingsprocenter.</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -288,7 +289,7 @@ const HoejRTPGuide = () => {
 
         {/* Strategier for at udnytte RTP */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Strategier til at udnytte høj RTP optimalt</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Strategier til at udnytte høj RTP optimalt</h2>
           <p className="text-muted-foreground mb-6">At vælge spil med høj RTP er det første skridt, men der er flere strategier, du kan anvende for at maksimere dine chancer og få mest mulig underholdning for dine penge. Her er vores anbefalede fremgangsmåde for RTP-bevidste spillere.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -308,7 +309,7 @@ const HoejRTPGuide = () => {
 
         {/* RTP-regulering i Danmark */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" /> RTP-regulering i Danmark</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" /> RTP-regulering i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den danske spillelovgivning kræver, at alle <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> oplyser RTP for hvert eneste spil. <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> overvåger overholdelsen og gennemfører regelmæssige auditeringer af tilfældighedsgeneratorer (RNG) og udbetalingsprocenter. Det sikrer, at danske spillere altid har adgang til korrekte RTP-oplysninger – en rettighed, som spillere i mange andre lande ikke har.
           </p>
@@ -327,7 +328,7 @@ const HoejRTPGuide = () => {
 
         {/* RTP myter */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Eye className="h-7 w-7 text-primary" /> 5 udbredte myter om RTP</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="eye" className="h-7 w-7 text-primary" /> 5 udbredte myter om RTP</h2>
           <p className="text-muted-foreground mb-6">Der cirkulerer mange misforståelser om RTP blandt casinospillere. Lad os aflive de mest udbredte myter med fakta og logik.</p>
           <div className="space-y-4 mb-6">
             {[

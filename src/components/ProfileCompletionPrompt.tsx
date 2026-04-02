@@ -11,7 +11,8 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Gift, X } from "lucide-react";
+import { X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export function ProfileCompletionPrompt() {
   const { user, loading: authLoading } = useAuth();
@@ -77,7 +78,7 @@ export function ProfileCompletionPrompt() {
       <DialogContent className="sm:max-w-md border-primary/20">
         <DialogHeader className="text-center items-center">
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-            <Gift className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gift" className="h-7 w-7 text-primary" />
           </div>
           <DialogTitle className="text-xl">
             Få 20 ekstra credits hver dag! 🎰

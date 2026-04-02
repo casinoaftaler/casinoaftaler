@@ -10,7 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -52,7 +53,7 @@ export function AgeVerificationDialog({ open, onOpenChange, targetHref }: AgeVer
       <AlertDialogContent>
         <AlertDialogHeader>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-6 w-6 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
             <AlertDialogTitle>Aldersbekræftelse</AlertDialogTitle>
           </div>
           <AlertDialogDescription className="text-base pt-2">

@@ -21,7 +21,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, Check, X, Smartphone, Headphones, Users, Globe, AlertTriangle, Target, Crown } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import royalcasinoForside from "@/assets/screenshots/royalcasino-forside.webp";
@@ -57,7 +58,7 @@ const RoyalCasinoAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.2 / 5 – Dansk Casinokvalitet</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" />4.2 / 5 – Dansk Casinokvalitet</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Royal Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Royal Casino er en dansk-licenseret casinoplatform med fokus på live casino, klassiske bordspil og hurtige danske betalingsflows. Vi har opdateret anmeldelsen med korrekte ejeroplysninger og de aktuelle bonusvilkår (op til 750 kr.).</p>
         </div></div>
@@ -69,7 +70,7 @@ const RoyalCasinoAnmeldelse = () => {
         <ReviewMoneyLinks showMobilePay />
 
         {/* Hurtige Fakta */}
-        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Royal Casino</CardTitle></CardHeader><CardContent>
+        <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Royal Casino</CardTitle></CardHeader><CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 750 kr.</p></div>
             <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
@@ -109,7 +110,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Praktisk Test */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Vores testforløb – 10 dage med Royal Casino</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" />Vores testforløb – 10 dage med Royal Casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Registrering via MitID tog 1 minut og 20 sekunder i vores test. Der var intet behov for yderligere KYC-dokumentation i opstarten. Vi indbetalte 750 kr. via <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, som blev krediteret inden for 10 sekunder. Velkomstbonussen på 100% matchbonus (750 kr.) blev automatisk aktiveret.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dag 1–3: Spiludvalget.</strong> Royal Casino markedsføres med et bredt katalog på omkring 2.800+ spil. Vi fandt de kendte titler som Starburst, Book of Dead, Sweet Bonanza, Gonzo's Quest, Big Bass Bonanza og Reactoonz. Udvalget i praksis varierer over tid, så tjek altid den aktuelle lobby direkte hos casinoet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dag 4–6: Live casino – kronjuvelen.</strong> Her differentierer Royal Casino sig markant. Live casinoet, drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>, inkluderer dedikerede borde med dansktalende dealers. Vi spillede 3 sessioner à 45 minutter på dansk roulette og blackjack. Dealerne var professionelle og venlige, og atmosfæren mindede genkendeligt om Casino Copenhagen. Streaming-kvaliteten var upåklagelig med minimal latency (under 0,5 sekund). Vi testede også Lightning Roulette og Crazy Time, som begge fungerede fejlfrit.</p>
@@ -121,7 +122,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Live Casino i Dybden */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" />Live casino – det der gør Royal Casino unik</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" />Live casino – det der gør Royal Casino unik</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Hvis du elsker <Link to="/live-casino" className={linkClass}>live casino</Link>, er Royal Casino en af de stærkeste platforme i Danmark. Samarbejdet med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> giver adgang til 40+ live-spil, inklusiv dedikerede borde med dansk målretning. Det er en oplevelse, der føles mere autentisk end meget andet online tilbud – og det er Royal Casinos største differentiator.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udvalget dækker alle kernekategorier: europæisk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (inkl. Lightning Roulette, Immersive Roulette og dansk roulette), <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (Infinite Blackjack, VIP-borde med indsatser op til 50.000 kr., og standard-borde fra 50 kr.), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> i flere varianter, og et komplet game show-sortiment med Crazy Time, Monopoly Live, Dream Catcher, Lightning Dice og Deal or No Deal.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De danske borde er tilgængelige primært i aftentimerne (16:00–02:00) og hele weekenden. Dealerne taler flydende dansk, og interaktionen føles naturlig og afslappet. Vi observerede en gennemsnitlig ventetid på under 30 sekunder for at finde en plads på dansk blackjack – hurtigere end de fleste landbaserede casinoer. Streaming-kvaliteten var konsistent høj med jævn 60fps-video og klar lyd.</p>
@@ -145,12 +146,12 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Spiludvalg */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" />Spiludvalget – bredde med fokus på populære titler</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />Spiludvalget – bredde med fokus på populære titler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casino profileres med et stort katalog på omkring 2.800 spil. Udvalget dækker klassiske slots, live casino og bordspil fra kendte udviklere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">2.800+ slots med både klassiske og nyere titler. Kataloget ændrer sig løbende, så enkelte spil kan komme og gå.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">40+ live-spil med fokus på roulette, blackjack og andre live-borde målrettet danske spillere.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, europæisk og fransk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> samt flere varianter af poker og andre bordspil.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">2.800+ slots med både klassiske og nyere titler. Kataloget ændrer sig løbende, så enkelte spil kan komme og gå.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">40+ live-spil med fokus på roulette, blackjack og andre live-borde målrettet danske spillere.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, europæisk og fransk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> samt flere varianter af poker og andre bordspil.</p></CardContent></Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">For den gennemsnitlige danske spiller er udvalget bredt nok til daglig brug. Hvis du har meget specifikke præferencer for niche-studios eller helt nye udgivelser, kan det stadig være en god idé at sammenligne med flere platforme.</p>
           <ReviewScreenshot src={royalcasinoSpillemaskiner} alt="Royal Casino populære spillemaskiner med Starburst, Sweet Bonanza, Gates of Olympus, Book of Dead og Gonzo's Quest" caption="Populære spillemaskiner hos Royal Casino – klassikere som Starburst og Book of Dead samt nyere titler som Le Bandit og Gold Blitz Express." size="full" />
@@ -171,7 +172,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder med Test */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" />Transaktioner – alle metoder testet og dokumenteret</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="wallet" className="h-7 w-7 text-primary" />Transaktioner – alle metoder testet og dokumenteret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casino er konsekvent i sit danske fokus: de <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, der tilbydes, er dem, danske spillere faktisk bruger. Det betyder MobilePay, Dankort og bankoverførsel – men ingen internationale e-wallets.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
@@ -196,7 +197,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Kundeservice & Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Hjælp og mobiladgang – hvad vi oplevede</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />Hjælp og mobiladgang – hvad vi oplevede</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kundeservice foregår primært via e-mail og telefon i dagtimerne. Ifølge de seneste offentlige oplysninger ligger supportvinduet omkring kl. 10:00–18:00, så svartid kan variere uden for åbningstid. Vi anbefaler at bruge FAQ/hjælpesider ved akutte spørgsmål uden for supporttid.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mobiloplevelsen er mere poleret end man måske forventer. Browserversionen er fuldt responsiv med store touch-venlige knapper, intuitive kategorier og hurtige spilindlæsninger. Live casino-borde fungerer upåklageligt på mobil med justerbare kameravinkler. Designet er elegant-minimalistisk med dybrøde og guldtoner, der signalerer premium uden at virke overdrevet.</p>
           <p className="text-muted-foreground leading-relaxed">Der er dog ingen dedikeret app, hvilket betyder, at du mister push-notifikationer om kampagner og den hurtigere opstart, en native app tilbyder. For den dedikerede mobilspiller er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' prisbelønnede app stadig den bedste i Danmark. For lejlighedsvise mobilsessioner er Royal Casinos browserversion dog mere end tilstrækkelig.</p>
@@ -206,7 +207,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Dansk forankret regulering og spillerbeskyttelse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />Dansk forankret regulering og spillerbeskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos sikkerhedsprofil er stærk i dansk kontekst. Platformen opererer under dansk licens og er underlagt løbende regulatorisk tilsyn. Det betyder krav til ansvarligt spil, anti-hvidvask, spillerverifikation og dokumentation af centrale processer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration er fuldstændig og øjeblikkelig. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjerne er blandt de mest omfattende, vi har testet: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser, reality checks og selvudelukkelse – alt tilgængeligt med få klik.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer sikkerhed højt, er Royal Casino et solidt valg. Kombinationen af dansk licens, ROFUS-tilslutning og tydelige kontrolmekanismer giver en høj grad af tryghed. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser</Link> og deres betydning.</p>
@@ -217,7 +218,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge Royal Casino */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Tilfælde hvor et alternativt casino passer bedre</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />Tilfælde hvor et alternativt casino passer bedre</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Slots-entusiaster.</strong> Selvom kataloget markedsføres bredt, kan hardcore slots-spillere stadig opleve, at enkelte nicheudviklere eller specifikke nye titler mangler. Hvis dit primære kriterium er maksimal nichebredde, kan platforme som <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> eller <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> være mere passende.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægere.</strong> Royal Casinos sticky bonus og konservative kampagnestrategi appellerer ikke til spillere, der systematisk udnytter bonusser. Platforme som <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> med sin <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> med bonus uden indbetaling er matematisk mere fordelagtige for dette segment.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Internationale spillere.</strong> Fraværet af Skrill, PayPal, Neteller og kryptovaluta gør Royal Casino uegnet for spillere med internationale betalingspræferencer. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> dækker dette behov langt bedre med 10+ betalingsmetoder.</p>

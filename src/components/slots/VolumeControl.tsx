@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { Volume2, VolumeX, Volume1, Music, Sparkles } from "lucide-react";
+import { VolumeX, Volume1, Music } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 
@@ -78,7 +79,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
     } else if (volume < 50) {
       return <Volume1 className="h-5 w-5" />;
     }
-    return <Volume2 className="h-5 w-5" />;
+    return <MenuIcon iconName="volume2" className="h-5 w-5" />;
   };
 
   return (
@@ -123,7 +124,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
               disabled={!enabled}
               className="flex-1"
             />
-            <Volume2 className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="volume2" className="h-4 w-4 text-muted-foreground" />
           </div>
           
           <div className="text-center mb-2">
@@ -154,7 +155,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
           <div className="pt-2 border-t border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-amber-500" />
+                <MenuIcon iconName="sparkles" className="h-4 w-4 text-amber-500" />
                 <span className="text-sm font-medium">Lydeffekter</span>
               </div>
               <Switch

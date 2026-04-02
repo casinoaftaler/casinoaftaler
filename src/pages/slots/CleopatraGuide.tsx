@@ -18,7 +18,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, History, Layers } from "lucide-react";
+import { History } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -49,7 +50,7 @@ const CleopatraGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Klassiker-analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Klassiker-analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Cleopatra – Den Tidløse Klassiker fra IGT</h1>
             <p className="text-lg text-white/80">Fra landbaserede kasinoer i Las Vegas til danske online casinoer: en matematisk analyse af den slot, der definerede en hel genre og stadig tiltrækker millioner af spillere worldwide.</p>
           </div>
@@ -78,7 +79,7 @@ const CleopatraGuide = () => {
         />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: RTP, House Edge og Gevinststruktur</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil: RTP, House Edge og Gevinststruktur</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>IGT</strong></div>
@@ -95,7 +96,7 @@ const CleopatraGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins med 3× Multiplikator: Bonusmekanikken</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Free Spins med 3× Multiplikator: Bonusmekanikken</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatras free spins-runde er elegant i sin enkelhed. Ved landing af 3, 4 eller 5 Sphinx scatter-symboler modtager du 15 free spins med en fast 3× multiplikator på alle gevinster. Scatter-gevinsten selv (5×, 20× eller 100× total indsats) adderes oven i free spins-belønningen. Retrigger-muligheden (3+ scatters under free spins) giver yderligere 15 gratis spins uden begrænsning.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den faste 3× multiplikator er kernen i Cleopatras bonusmekanik. I modsætning til moderne slots som <Link to="/casinospil/spillemaskiner/buffalo-king" className={linkClass}>Buffalo King</Link> (variable stacking-multiplikatorer) eller <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (tumble-baserede multiplikatorer), tilbyder Cleopatra en forudsigelig forstørrelse af enhver base-gevinst. Denne forudsigelighed reducerer variansen i bonusrunden markant.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Free spins trigger-frekvens estimeres til cirka 1 pr. 120-150 spins – væsentligt hyppigere end de fleste high-volatility slots (typisk 1/200-300). Den gennemsnitlige bonusrunde (15 spins × 3×) leverer estimeret 20-40× indsatsen, med en standardafvigelse der er markant lavere end hos volatile konkurrenter. For spillere, der foretrækker konsistens over eksplosivitet, er dette en klar fordel.</p>
@@ -105,7 +106,7 @@ const CleopatraGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Perspektiv: Hvad Koster Cleopatra Dig?</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Perspektiv: Hvad Koster Cleopatra Dig?</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 2 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -120,7 +121,7 @@ const CleopatraGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Cleopatra vs. Moderne Egyptiske Slots</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Cleopatra vs. Moderne Egyptiske Slots</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -139,14 +140,14 @@ const CleopatraGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll og Ansvarlighed</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Bankroll og Ansvarlighed</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatras medium volatilitet kræver en bankroll på minimum 150-200 spins for en tilfredsstillende session. Med en indsats på 2 kr. svarer dette til 300-400 kr. Den relativt hyppige bonustrigger (1/120-150 spins) sikrer, at de fleste sessioner inkluderer mindst én free spins-runde, hvilket giver value for pengene.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Tabsstop anbefales ved 50 % af startkapitalen – lavere end for high-volatility slots, fordi Cleopatras gevinstfordeling sjældent producerer de dramatiske comebacks, der kan redde en session hos mere volatile titler. Cleopatra er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning pga. den lave RTP – de 4,98 % house edge gør gennemspilning inefficient.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Cleopatras tilgængelige design og høje hit frequency kan skabe en illusion af konsistente gevinster, men den matematiske realitet er, at hvert spin har negativ EV. Sæt dine grænser før du starter, og overhold dem uanset resultaterne.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Dronningen af Egypten – Stadig Relevant?</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Dronningen af Egypten – Stadig Relevant?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatra er et monument i slot-historien. For danske spillere, der søger en stabil, underholdende spiloplevelse med egyptisk tema, forbliver den et solidt valg – trods den lavere RTP. Den høje hit frequency, simple mekanik og nostalgiske charme tilbyder noget, som moderne high-volatility slots ikke kan matche: forudsigelighed og tilgængelighed.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer matematisk optimering, er nyere alternativer objektivt bedre. Men for dem, der værdsætter den klassiske slot-oplevelse, er Cleopatra tidløs. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde det rette match til din spillestil, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>

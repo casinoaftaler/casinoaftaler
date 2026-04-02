@@ -11,7 +11,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Video, Search, Sparkles, Plus } from "lucide-react";
+import { Video, Plus } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
@@ -257,7 +258,7 @@ export default function Highlights() {
                   Highlights
                 </TabsTrigger>
                 <TabsTrigger value="community" className="gap-2">
-                  <Sparkles className="h-4 w-4" />
+                  <MenuIcon iconName="sparkles" className="h-4 w-4" />
                   Community Clips
                 </TabsTrigger>
               </TabsList>

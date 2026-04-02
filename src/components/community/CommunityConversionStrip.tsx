@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import "@/styles/community-micro.css";
 
 interface CommunityConversionStripProps {
@@ -38,7 +39,7 @@ export function CommunityConversionStrip({
             className="flex items-center justify-center h-12 w-12 rounded-xl shrink-0"
             style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}
           >
-            <Sparkles className="h-6 w-6 text-white cta-icon-rotate" />
+            <MenuIcon iconName="sparkles" className="h-6 w-6 text-white cta-icon-rotate" />
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-bold text-foreground">{title}</h3>

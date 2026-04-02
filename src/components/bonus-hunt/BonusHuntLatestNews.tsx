@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Newspaper } from "lucide-react";
+import { Newspaper } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -24,7 +25,7 @@ export const BonusHuntLatestNews = forwardRef<HTMLElement>(function BonusHuntLat
   return (
     <section ref={ref} className="space-y-4">
       <div className="flex items-center gap-2">
-        <Newspaper className="h-4 w-4 text-primary" />
+        <MenuIcon iconName="newspaper" className="h-4 w-4 text-primary" />
         <h2 className="text-lg font-bold text-foreground">Seneste casino nyheder</h2>
       </div>
 

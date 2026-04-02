@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, RotateCw, Zap } from "lucide-react";
+import { Plus } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
@@ -77,7 +78,7 @@ export function GatesControlBar({
 
   const renderSpinContent = () => {
     if (isSpinning) {
-      return <RotateCw className="h-7 w-7 text-white animate-spin" style={{ animationDuration: "0.8s" }} />;
+      return <MenuIcon iconName="rotate-cw" className="h-7 w-7 text-white animate-spin" />;
     }
     if (!canSpinNow) {
       return <span className="text-[9px] text-white/80 text-center leading-tight font-bold">INGEN<br />SPINS</span>;
@@ -93,7 +94,7 @@ export function GatesControlBar({
     if (isAutoSpinning) {
       return (
         <div className="flex flex-col items-center">
-          <RotateCw className="h-6 w-6 text-white" />
+          <MenuIcon iconName="rotate-cw" className="h-6 w-6 text-white" />
           <span className="text-[7px] uppercase text-white/70 -mt-0.5">AUTO</span>
         </div>
       );
@@ -101,14 +102,14 @@ export function GatesControlBar({
     if (bonusState.isActive) {
       return (
         <div className="flex flex-col items-center">
-          <RotateCw className="h-6 w-6 text-white" />
+          <MenuIcon iconName="rotate-cw" className="h-6 w-6 text-white" />
           <span className="text-[8px] font-bold text-white">FREE</span>
         </div>
       );
     }
     return (
       <div className="flex flex-col items-center">
-        <RotateCw className="h-7 w-7 text-white" />
+        <MenuIcon iconName="rotate-cw" className="h-7 w-7 text-white" />
         <span className="text-[9px] font-bold text-white tracking-wide">SPIN</span>
       </div>
     );
@@ -165,7 +166,7 @@ export function GatesControlBar({
           onClick={() => onBetChange(getPrevBet(bet, minBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
-          <Minus className="h-3.5 w-3.5" />
+          <MenuIcon iconName="minus" className="h-3.5 w-3.5" />
         </button>
         <span className="w-8 text-center font-bold text-lg tabular-nums text-pink-100">
           {bet}

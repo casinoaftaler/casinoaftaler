@@ -18,7 +18,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -49,7 +50,7 @@ const DivineFortuneGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Progressiv jackpot & RTP</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Progressiv jackpot & RTP</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Divine Fortune – Progressiv Jackpot & RTP-Analyse</h1>
             <p className="text-lg text-white/80">NetEnt's mest populære progressive jackpot-slot: en matematisk gennemgang af jackpot-mekanikken, Falling Wilds og hvorfor 96,59 % RTP gør den til markedets mest fair jackpot-titel.</p>
           </div>
@@ -63,7 +64,7 @@ const DivineFortuneGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Jackpot-Slots Redefineret: Hvorfor Divine Fortune Skiller Sig Ud</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Jackpot-Slots Redefineret: Hvorfor Divine Fortune Skiller Sig Ud</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Progressive jackpot-slots har historisk set en dårlig <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> – typisk 93-95 % – fordi en andel af hver indsats dirigeres til jackpot-puljen. <Link to="/spiludviklere/netent" className={linkClass}>NetEnt's</Link> Divine Fortune bryder denne konvention med en RTP på 96,59 %, som konkurrerer med non-jackpot slots. Hemmeligheden ligger i NetEnt's jackpot-arkitektur: en relativt beskeden Mega Jackpot (typisk 50.000-500.000 kr.) kombineret med hyppigere udbetalinger, i modsætning til Mega Moolah-typen, der akkumulerer multi-million jackpots men med drastisk reduceret RTP.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne designfilosofi gør Divine Fortune unik i jackpot-segmentet. Du betaler ikke en urimelig "jackpot-skat" på din RTP, men har stadig adgang til en livsændrende gevinst. For danske spillere, der ønsker jackpot-spænding uden at acceptere en sub-95 % RTP, er Divine Fortune det oplagte valg – og ofte det eneste realistiske valg i segmentet.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Spillets græsk-mytologiske tema (Medusa, Minotauros, Phoenix) er visuelt imponerende og understøtter gameplay med tematisk relevante bonusfunktioner. De tre jackpot-niveauer (Minor, Major, Mega) svarer til bronzen, sølv og guld i den mytologiske kontekst – et designgreb der gør jackpot-systemet intuitivt at forstå, selv for nye spillere.</p>
@@ -78,7 +79,7 @@ const DivineFortuneGuide = () => {
         />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og Kernetal</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil og Kernetal</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>NetEnt</strong></div>
@@ -98,7 +99,7 @@ const DivineFortuneGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Falling Wilds og Wild on Wild-Mekanikken</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Falling Wilds og Wild on Wild-Mekanikken</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Falling Wilds er Divine Fortunes mest distinktive base game-funktion. Når et wild-symbol lander på griddet, forbliver det aktivt og falder én position ned ved hvert efterfølgende spin. Det fortsætter med at falde, indtil det når bunden af griddet og forsvinder. Under denne proces kan det generere nye gevinstkombinationer ved hvert spin – effektivt fungerende som en "gratis" multipel-spin bonus.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild on Wild-funktionen tilføjer et yderligere lag: hvis et nyt wild-symbol lander oven på et allerede eksisterende Falling Wild, ekspanderer det til at dække hele hjulet (3 positioner). Dette skaber en 3-position wild kolonne, som dramatisk øger gevinstpotentialet for det pågældende spin. Wild on Wild-sandsynligheden er lav (estimeret 1-2 % af spins med aktive Falling Wilds), men når det sker, er gevinsterne typisk 20-50× indsatsen.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Fra et matematisk perspektiv bidrager Falling Wilds med estimeret 12-15 % af spillets samlede return. Uden denne mekanik ville Divine Fortunes base game-RTP falde til cirka 78-81 % – langt under acceptabel standard. Falling Wilds er altså ikke et gimmick, men en matematisk nødvendighed for at opretholde RTP'en inden for rammerne af et jackpot-system, der absorberer 3-5 % af hver indsats.</p>
@@ -108,7 +109,7 @@ const DivineFortuneGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Jackpot Bonus Game: Vejen til Mega Jackpot</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Jackpot Bonus Game: Vejen til Mega Jackpot</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot Bonus Game aktiveres via Bonus-symboler (guldmønter). Tre eller flere Bonus-symboler trigger en mini-bonus, hvor du indsamler guldmønter på et 5×3 grid. Målet er at fylde vandrette rækker: én fuld række vinder Minor Jackpot (typisk 500-5.000 kr.), to fulde rækker vinder Major Jackpot (typisk 5.000-50.000 kr.), og alle tre rækker vinder Mega Jackpot (typisk 50.000-500.000 kr.).</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-spillets mekanik er delvist skill-baseret i visuel præsentation, men fuldt RNG-bestemt i praksis. Antallet af guldmønter du starter med (bestemt af triggeren) påvirker dine chancer for at fylde rækker, men placeringen af mønterne er forudbestemt. Gennemsnitlig trigger-frekvens for Jackpot Bonus Game er cirka 1 pr. 100-150 spins – markant højere end de fleste jackpot-slots.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sandsynlighedsfordelingen inden for Jackpot Bonus Game er skæv mod Minor: estimeret 75-80 % Minor, 15-20 % Major, og kun 2-5 % Mega. Den progressive Mega Jackpot har en gennemsnitlig faldfrekvens på cirka 1 pr. 500.000-1.000.000 spins globalt (fordelt på alle spillere). For en individuel spiller med 500 spins pr. session er sandsynligheden for Mega Jackpot ekstremt lav – men den er ikke nul, og det er dét, der driver spillets appel.</p>
@@ -116,7 +117,7 @@ const DivineFortuneGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning og Jackpot-Bias</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Beregning og Jackpot-Bias</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 10 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -131,21 +132,21 @@ const DivineFortuneGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Divine Fortune vs. Andre Jackpot-Slots</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Divine Fortune vs. Andre Jackpot-Slots</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">I jackpot-segmentet konkurrerer Divine Fortune primært med Mega Moolah (Microgaming), Hall of Gods (NetEnt) og Mega Fortune (NetEnt). Divine Fortunes fordel er entydig: den højeste RTP (96,59 % vs. 88-94 % for konkurrenterne) og den laveste volatilitet. Ulempen er en mindre jackpot – Mega Moolah har leveret jackpots på over 100 mio. kr., mens Divine Fortune typisk holder sig under 1 mio. kr.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">For den rationelle spiller er valget klart: Divine Fortunes kombination af fair RTP og realistisk jackpot-potentiale giver den bedste EV. De multi-million jackpot-slots er matematisk straffende – du betaler en massiv RTP-reduktion for en infinitesimal chance for en kæmpe jackpot. Divine Fortune tilbyder en mere proportional risiko-reward balance.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med non-jackpot slots som <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link> (som har en fixed Money Respin-jackpot) tilbyder Divine Fortune en ægte progressiv mekanik med ubegrænset potentiale. Wolf Golds Mega Jackpot er fast (typisk 1.000× indsatsen), mens Divine Fortunes vokser over tid. For spillere, der specifikt søger jackpot-spænding med fair matematik, er Divine Fortune det overlegne valg.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Risikostyring for Jackpot-Spillere</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Risikostyring for Jackpot-Spillere</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-slots kræver en fundamentalt anderledes bankroll-tilgang end standard-slots. Fordi jackpot-bidraget til RTP kun realiseres i sjældne hændelser, skal du forvente en lavere effektiv return i de fleste sessions. Vi anbefaler at allokere et "jackpot-budget" – et beløb du er villig til at bruge udelukkende for jackpot-chancen, adskilt fra dit regulære slot-budget.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortunes medium volatilitet gør bankroll-planlægning enklere end for high-volatility jackpot-slots. En bankroll på 200 spins (2.000 kr. ved 10 kr./spin) giver en komfortabel session med minimal bust-risiko fra base game-drain. Falling Wilds og hyppige Minor Jackpots holder saldoen relativt stabil.</p>
           <p className="text-muted-foreground leading-relaxed">Aldrig jag en jackpot. Mega Jackpots er RNG-bestemte og har ingen cyklisk "due"-mekanik. Uanset hvor længe siden seneste Mega Jackpot faldt, er sandsynligheden for næste spin identisk. Sæt altid tids- og beløbsgrænser, og behandl jackpot-gevinster som en uventet bonus – ikke en forventning. Læs mere om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> for konkrete værktøjer.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Den Faireste Jackpot-Slot i Markedet</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Den Faireste Jackpot-Slot i Markedet</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortune er et sjældent eksempel på en jackpot-slot, der ikke kræver massive kompromiser på RTP. Med 96,59 % return, medium volatilitet og en progressiv Mega Jackpot er det den mest balancerede jackpot-titel i markedet – og vores top-anbefaling for spillere, der ønsker jackpot-spænding uden at betale en urimelig matematisk pris.</p>
           <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
         </section>

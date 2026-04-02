@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { AlertTriangle } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -437,7 +436,7 @@ export function TestMetodeSeoContent() {
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-5">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 text-primary shrink-0" />
+              <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 text-primary shrink-0" />
               <div>
                 <h3 className="font-semibold mb-1">Vigtig begrænsning</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -626,7 +625,7 @@ export function TestMetodeSeoContent() {
       {/* ── Metodiske Begrænsninger ── */}
       <section>
         <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-          <AlertTriangle className="h-6 w-6 text-primary" />
+          <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-primary" />
           Metodiske Begrænsninger
         </h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">

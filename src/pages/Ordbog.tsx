@@ -7,7 +7,8 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { glossaryTerms, getTermsByLetter, getGlossaryLetters } from "@/data/glossaryTerms";
-import { Search, BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -76,7 +77,7 @@ const Ordbog = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               {glossaryTerms.length} begreber
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">

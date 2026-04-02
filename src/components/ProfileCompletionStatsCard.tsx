@@ -12,7 +12,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Loader2, Users, UserCheck, UserX, TrendingUp, Check, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Loader2, UserCheck, UserX, Check, X, ChevronDown, ChevronUp } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useProfileCompletionStats, UserProfileStatus } from "@/hooks/useProfileCompletionStats";
 
 function StatCard({
@@ -124,7 +125,7 @@ export function ProfileCompletionOverview() {
     <Card className="border-primary/20">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-lg">
-          <TrendingUp className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
           Profilfuldførelse Oversigt
         </CardTitle>
       </CardHeader>
@@ -181,7 +182,7 @@ export function ProfileCompletionStatsCard() {
       <Card className="border-primary/20">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             Profilfuldførelse Oversigt
           </CardTitle>
         </CardHeader>

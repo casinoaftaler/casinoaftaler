@@ -16,26 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Calculator,
-  Brain,
-  Timer,
-  Globe,
-  BookOpen,
-  Target,
-  Users,
-  Gamepad2,
-  Shield,
-} from "lucide-react";
+import { Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/europaeisk-blackjack-hero.jpg";
 
@@ -134,7 +116,7 @@ const EuropaeiskBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Blackjack guide
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Blackjack guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Blackjack – No Hole Card, ENHC og Strategisk Tilpasning
@@ -158,7 +140,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ DATA FIRST: Start med tallene ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Europæisk Blackjack i Tal – House Edge-Oversigt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -234,7 +216,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Hvad er europæisk blackjack ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Globe className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="globe" className="h-7 w-7 text-primary" />
             Hvad er Europæisk Blackjack – Historien og Logikken
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -266,7 +248,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ ENHC vs. OBO detaljeret ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             ENHC vs. OBO – Den Afgørende Regelforskydning i Detaljer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -276,7 +258,7 @@ const EuropaeiskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   ENHC (European No Hole Card)
                 </CardTitle>
               </CardHeader>
@@ -296,7 +278,7 @@ const EuropaeiskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   OBO (Original Bets Only)
                 </CardTitle>
               </CardHeader>
@@ -390,7 +372,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Komplet ENHC-strategi ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Komplet ENHC Basic Strategy – Alle 14 Afvigelser
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -473,7 +455,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Deck-penetration og korttælning ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Deck-Penetration og Korttælning i Europæisk Blackjack
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -495,7 +477,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Historisk kontekst ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Historisk Kontekst – Fra Monte Carlo til Online Live Dealer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -520,7 +502,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Sessionssimulering ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sessionssimulering: 1.000 Hænder ENHC vs. OBO
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -590,7 +572,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Europæiske bordvariationer i Danmark ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Europæiske Blackjack-Variationer hos Danske Casinoer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -682,7 +664,7 @@ const EuropaeiskBlackjackGuide = () => {
         {/* ═══════════════ Sammenligning med alle varianter ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Europæisk vs. Alle Andre Varianter – Den Fulde Sammenligning
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -16,38 +16,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Smartphone,
-  Shield,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  Users,
-  Lock,
-  Scale,
-  BarChart3,
-  
-  ExternalLink,
-  HelpCircle,
-  Phone,
-  Globe,
-  Gavel,
-  ArrowRight,
-  Zap,
-  Wifi,
-  Battery,
-  Monitor,
-  Star,
-  TrendingUp,
-  CreditCard,
-  Gamepad2,
-  Eye,
-  Settings,
-  Download,
-  RefreshCw,
-  Info,
-  Trophy,
-} from "lucide-react";
+import { Gavel, ArrowRight, Wifi, Battery, Settings, Download } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
@@ -199,7 +169,7 @@ const MobilCasino = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Smartphone className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="smartphone" className="mr-1.5 h-3.5 w-3.5" />
               Casino Guides
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -228,7 +198,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-mobil-casino">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Smartphone className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />
             Hvad er mobil casino?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -270,7 +240,7 @@ const MobilCasino = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Mobil casino i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -309,7 +279,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="markedet">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Mobil casino-markedet i Danmark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -365,7 +335,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="app-vs-browser">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Monitor className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />
             App vs. browser – hvad er bedst?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -382,7 +352,7 @@ const MobilCasino = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Globe className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-primary" />
                   Browser (Webapp)
                 </CardTitle>
               </CardHeader>
@@ -396,7 +366,7 @@ const MobilCasino = () => {
                   "Kan gemmes som genvej på startskærmen",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                    <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -518,7 +488,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Spil tilgængelige på mobil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -606,7 +576,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="live-casino-mobil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Live casino på mobilen
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -640,7 +610,7 @@ const MobilCasino = () => {
               "Lydløs modus slår ofte dealer-lyd fra – aktiver lyd i app-indstillinger",
             ].map((item) => (
               <div key={item} className="flex items-start gap-3">
-                <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="info" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{item}</span>
               </div>
             ))}
@@ -660,7 +630,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="betaling">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CreditCard className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />
             Betalingsmetoder på mobil casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -735,7 +705,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sikkerhed">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Sikkerhed og licens
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -787,7 +757,7 @@ const MobilCasino = () => {
 
           <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 mb-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 mt-0.5 text-destructive shrink-0" />
               <div>
                 <p className="font-semibold text-sm text-foreground mb-1">Advarsel: Undgå ulicenserede mobilcasinoer</p>
                 <p className="text-sm text-muted-foreground">
@@ -811,7 +781,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="performance">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Performance og optimering
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -856,7 +826,7 @@ const MobilCasino = () => {
               "Hold din mobilbrowser opdateret for de nyeste sikkerhedspatches",
             ].map((tip) => (
               <div key={tip} className="flex items-start gap-3">
-                <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">{tip}</span>
               </div>
             ))}
@@ -1101,7 +1071,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ux-analyse">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Mobil Casino UX-Analyse – Brugervenlighed i Dybden
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1205,7 +1175,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="sikkerhed-deep-dive">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             Sikkerhedsarkitektur i Dybden – Sådan Beskyttes Dit Casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1303,7 +1273,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="mobil-vs-desktop">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Monitor className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />
             Mobil Casino vs. Desktop – Den Komplette Sammenligning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1377,7 +1347,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="fremtiden">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Fremtidens Mobil Casino – Teknologier 2025-2030
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1477,7 +1447,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Ansvarligt spil på mobil
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -1520,7 +1490,7 @@ const MobilCasino = () => {
               "Fjerne gemte betalingsoplysninger, hvis du har svært ved at kontrollere dit spil",
             ].map((tip) => (
               <div key={tip} className="flex items-start gap-2">
-                <AlertTriangle className="h-4 w-4 mt-1 text-destructive shrink-0" />
+                <MenuIcon iconName="alert-triangle" className="h-4 w-4 mt-1 text-destructive shrink-0" />
                 <span className="text-sm text-muted-foreground">{tip}</span>
               </div>
             ))}
@@ -1549,7 +1519,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="vurderingskriterier">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Sådan vurderer vi mobilcasinoer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -1601,7 +1571,7 @@ const MobilCasino = () => {
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <HelpCircle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="help-circle" className="h-7 w-7 text-primary" />
             Hjælp og ressourcer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">

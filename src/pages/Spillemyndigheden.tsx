@@ -3,7 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
-import { Scale, Shield, FileCheck, AlertTriangle, Globe, BookOpen, User, CalendarDays, Clock, CheckCircle, Landmark, Gavel, Lock, Eye, Users, Phone, Ban } from "lucide-react";
+import { FileCheck, Gavel, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -168,7 +169,7 @@ const Spillemyndigheden = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />
               Dansk Spilleregulering
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -194,7 +195,7 @@ const Spillemyndigheden = () => {
 {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Landmark className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="landmark" className="h-8 w-8 text-primary" />
             Hvad er Spillemyndigheden?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -263,7 +264,7 @@ const Spillemyndigheden = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Eye className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
                   Tilsyn og Overvågning
                 </CardTitle>
               </CardHeader>
@@ -291,7 +292,7 @@ const Spillemyndigheden = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Globe className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="globe" className="h-5 w-5 text-primary" />
                   Internationalt Samarbejde
                 </CardTitle>
               </CardHeader>
@@ -309,7 +310,7 @@ const Spillemyndigheden = () => {
         {/* Licenstyper */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <CheckCircle className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="check-circle" className="h-8 w-8 text-primary" />
             Licenstyper i Danmark
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -321,7 +322,7 @@ const Spillemyndigheden = () => {
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center justify-between text-lg">
                     <span className="flex items-center gap-2">
-                      <Scale className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
                       {license.title}
                     </span>
                     <Badge variant="outline" className="text-xs">{license.fee}</Badge>
@@ -342,7 +343,7 @@ const Spillemyndigheden = () => {
         {/* Spillerbeskyttelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="shield" className="h-8 w-8 text-primary" />
             Spillerbeskyttelse og Ansvarligt Spil
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -386,19 +387,19 @@ const Spillemyndigheden = () => {
               <h3 className="mb-3 font-semibold text-foreground">Konsekvenser ved Brud på Reglerne</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                   <span><strong>Påbud og advarsler:</strong> Spillemyndigheden kan udstede påbud om at rette op på fejl inden for en fastsat frist.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                   <span><strong>Bøder:</strong> Overtrædelser kan medføre betydelige økonomiske sanktioner til operatøren.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                   <span><strong>Licensinddragelse:</strong> I alvorlige tilfælde kan Spillemyndigheden inddrage operatørens licens, hvilket lukker hele deres virksomhed i Danmark.</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                   <span><strong>Politianmeldelse:</strong> Grov overtrædelse eller ulovlig virksomhed kan føre til politianmeldelse og strafferetlig forfølgelse.</span>
                 </li>
               </ul>
@@ -411,7 +412,7 @@ const Spillemyndigheden = () => {
         {/* Tekniske krav */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="lock" className="h-8 w-8 text-primary" />
             Tekniske Krav og Datasikkerhed
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

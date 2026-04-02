@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun } from "lucide-react";
+import { ChevronDown, Dices, MoreHorizontal } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { MENU_ICON_MAP } from "./menuIconMap";
 import {
@@ -224,7 +225,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       {/* Casinoer */}
       <MobileSection label="Casinoer" icon={Landmark} sectionKey="casino" expanded={section === "casino"} onToggle={toggleSection}>
         <Link to="/casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <Landmark className="h-4 w-4" />Alle Casinoer
+          <MenuIcon iconName="landmark" className="h-4 w-4" />Alle Casinoer
         </Link>
         <MobileSmartLinks links={CASINO_LINKS} onClose={onClose} />
       </MobileSection>
@@ -232,7 +233,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       {/* Nye Casinoer */}
       <MobileSection label="Nye Casinoer" icon={Sparkles} sectionKey="nye" expanded={section === "nye"} onToggle={toggleSection}>
         <Link to="/nye-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <Sparkles className="h-4 w-4" />Alle Nye Casinoer
+          <MenuIcon iconName="sparkles" className="h-4 w-4" />Alle Nye Casinoer
         </Link>
         <MobileSmartLinks links={NYE_CASINOER_LINKS} onClose={onClose} />
       </MobileSection>
@@ -243,27 +244,27 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
           <Dices className="h-4 w-4" />Casinospil Oversigt
         </Link>
         <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <Star className="h-4 w-4" />Spillemaskiner
+          <MenuIcon iconName="star" className="h-4 w-4" />Spillemaskiner
         </Link>
         <MobileExpandableLinks links={allSlots} initialCount={8} onClose={onClose} indent="ml-10" />
 
         <div className="ml-6 flex flex-col">
           <Link to="/casinospil/blackjack" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <Star className="h-4 w-4" />Blackjack Guide
+            <MenuIcon iconName="star" className="h-4 w-4" />Blackjack Guide
           </Link>
           <MobileSmartLinks links={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]} onClose={onClose} indent="ml-4" />
         </div>
 
         <div className="ml-6 flex flex-col">
           <Link to="/casinospil/roulette" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <Star className="h-4 w-4" />Roulette Guide
+            <MenuIcon iconName="star" className="h-4 w-4" />Roulette Guide
           </Link>
           <MobileSmartLinks links={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]} onClose={onClose} indent="ml-4" />
         </div>
 
         <div className="ml-6 flex flex-col">
           <Link to="/casinospil/poker" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <Star className="h-4 w-4" />Poker Guide
+            <MenuIcon iconName="star" className="h-4 w-4" />Poker Guide
           </Link>
           <MobileSmartLinks links={POKER_LINKS} onClose={onClose} indent="ml-4" />
         </div>
@@ -274,7 +275,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       {/* Live Casino */}
       <MobileSection label="Live Casino" icon={Tv} sectionKey="live" expanded={section === "live"} onToggle={toggleSection}>
         <Link to="/live-casino" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <Tv className="h-4 w-4" />Live Casino Oversigt
+          <MenuIcon iconName="tv" className="h-4 w-4" />Live Casino Oversigt
         </Link>
         <MobileSmartLinks links={LIVE_CASINO_LINKS} onClose={onClose} />
       </MobileSection>
@@ -282,7 +283,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       {/* Casino Bonus */}
       <MobileSection label="Casino Bonus" icon={BookOpen} sectionKey="bonus" expanded={section === "bonus"} onToggle={toggleSection}>
         <Link to="/casino-bonus" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <BookOpen className="h-4 w-4" />Casino Bonus Oversigt
+          <MenuIcon iconName="book-open" className="h-4 w-4" />Casino Bonus Oversigt
         </Link>
         <MobileSmartLinks links={BONUS_LINKS} onClose={onClose} />
       </MobileSection>
@@ -297,21 +298,21 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
 
         <MobileSubSection label="Betalingsmetoder" icon={CreditCard} expanded={paymentsExpanded} onToggle={() => setPaymentsExpanded(!paymentsExpanded)}>
           <Link to="/betalingsmetoder" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <CreditCard className="h-3 w-3" />Alle betalingsmetoder
+            <MenuIcon iconName="credit-card" className="h-3 w-3" />Alle betalingsmetoder
           </Link>
           <MobileSmartLinks links={PAYMENT_LINKS} onClose={onClose} indent="ml-10" />
         </MobileSubSection>
 
         <MobileSubSection label="Spiludviklere" icon={Gamepad2} expanded={providersExpanded} onToggle={() => setProvidersExpanded(!providersExpanded)}>
           <Link to="/spiludviklere" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <Gamepad2 className="h-3 w-3" />Alle spiludviklere
+            <MenuIcon iconName="gamepad2" className="h-3 w-3" />Alle spiludviklere
           </Link>
           <MobileSmartLinks links={PROVIDER_LINKS} onClose={onClose} indent="ml-10" />
         </MobileSubSection>
 
         <MobileSubSection label="Casino Anmeldelser" icon={Star} expanded={reviewsExpanded} onToggle={() => setReviewsExpanded(!reviewsExpanded)}>
           <Link to="/casino-anmeldelser" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={onClose}>
-            <Star className="h-3 w-3" />Alle anmeldelser
+            <MenuIcon iconName="star" className="h-3 w-3" />Alle anmeldelser
           </Link>
           <MobileSmartLinks links={REVIEW_TOP_LINKS} onClose={onClose} indent="ml-10" />
           {!allReviewsExpanded ? (
@@ -327,14 +328,14 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
       {/* Community */}
       <MobileSection label="Community" icon={Users} sectionKey="community" expanded={section === "community"} onToggle={toggleSection}>
         <Link to="/community" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={onClose}>
-          <Users className="h-4 w-4" />Community Hub
+          <MenuIcon iconName="users" className="h-4 w-4" />Community Hub
         </Link>
         <MobileSmartLinks links={COMMUNITY_LINKS} onClose={onClose} />
       </MobileSection>
 
       {/* Theme toggle */}
       <button onClick={toggleTheme} className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary">
-        {isDark ? <><Sun className="h-4 w-4" />Lys tilstand</> : <><Moon className="h-4 w-4" />Mørk tilstand</>}
+        {isDark ? <><MenuIcon iconName="sun" className="h-4 w-4" />Lys tilstand</> : <><MenuIcon iconName="moon" className="h-4 w-4" />Mørk tilstand</>}
       </button>
     </nav>
   );

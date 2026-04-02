@@ -16,7 +16,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gift, Sparkles, CheckCircle2, AlertTriangle, Calculator, Target, Zap, XCircle, BarChart3 } from "lucide-react";
+import { Gift, Sparkles, CheckCircle2, AlertTriangle, Calculator, Target, Zap, XCircle, BarChart3 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -96,7 +97,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Gift className="mr-1.5 h-3.5 w-3.5" />Gratis Bonus</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="gift" className="mr-1.5 h-3.5 w-3.5" />Gratis Bonus</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med Bonus uden Indbetaling</h1>
             <p className="text-lg text-white/80">Få gratis free spins og bonuspenge ved oprettelse hos nye danske casinoer. EV-beregninger, udnyttelsesstrategi og vilkårsanalyse.</p>
           </div>
@@ -150,7 +151,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-3">
-                    <Gift className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="gift" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <div className="flex-1">
                       <h3 className="font-semibold mb-1">{item.title}</h3>
                       <p className="text-sm text-muted-foreground mb-2">{item.desc}</p>
@@ -237,7 +238,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               { step: "Trin 7: Udbetal når krav er opfyldt", desc: "Når omsætningskravet er opfyldt, udbetal straks den tilladte mængde. Brug Trustly for hurtigst mulig udbetaling (under 5 min.). Husk at udbetalingsbeløbet er begrænset af den maksimale udbetalingsgrænse i vilkårene." },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.step}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -264,7 +265,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               { title: "5. Samlet bonusværdi (EV) – bundlinjen", desc: "Beregn den reelle værdi med vores formel: EV ≈ Bonusbeløb × (1 – 0,04 × Omsætningskrav). En 50 kr. bonus med 1x omsætning (EV: 48 kr.) er bedre end en 100 kr. bonus med 10x (EV: 60 kr.) – fordi den lavere risiko gør førstnævnte mere forudsigelig." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Calculator className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="calculator" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -290,7 +291,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               { title: "Tidsbegrænset generøsitet", desc: "Vigtig indsigt: vi observerer konsekvent, at nye casinoer strammer deres no-deposit vilkår efter 6-12 måneders drift. Omsætningskrav øges, udbetalingsgrænser sænkes, og spinantal reduceres. Det er et mønster, der gentager sig, og det understreger vigtigheden af at agere tidligt." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -318,7 +319,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               { warning: "Uklarhed om spilbidrag", detail: "Hvis casinoet ikke tydeligt angiver, hvilke spil der bidrager til omsætningskravet (og med hvor meget), er det et advarselstegn. Du kan ende med at spille 100 spins, der kun tæller 10% mod din wagering." },
             ].map((item) => (
               <div key={item.warning} className="flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.warning}</h3>
                   <p className="text-sm text-muted-foreground">{item.detail}</p>
@@ -339,7 +340,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Gift className="h-5 w-5 text-primary" />No-Deposit Bonus</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gift" className="h-5 w-5 text-primary" />No-Deposit Bonus</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• <strong>Risiko:</strong> Nul – ingen indbetaling krævet</p>
@@ -353,7 +354,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-muted-foreground/50">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Target className="h-5 w-5 text-muted-foreground" /><Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link></CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="target" className="h-5 w-5 text-muted-foreground" /><Link to="/velkomstbonus" className={linkClass}>Velkomstbonus</Link></CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• <strong>Risiko:</strong> Din indbetaling</p>
@@ -411,7 +412,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
               { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Nye casinoer med hurtigste udbetalinger" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

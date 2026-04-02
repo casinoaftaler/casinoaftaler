@@ -1,4 +1,5 @@
-import { Coins, Clock } from "lucide-react";
+import { Coins, Clock } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { CooldownTimer } from "./CooldownTimer";
@@ -19,7 +20,7 @@ export function UserStatsBar({ cooldownEnd, isCooldownActive, onCooldownExpired 
         {/* SE Points */}
         <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-3">
           <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-            <Coins className="h-4 w-4 text-primary" />
+            <MenuIcon iconName="coins" className="h-4 w-4 text-primary" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs text-muted-foreground">SE Points</p>
@@ -41,7 +42,7 @@ export function UserStatsBar({ cooldownEnd, isCooldownActive, onCooldownExpired 
         {/* Cooldown */}
         <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-3">
           <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-            <Clock className="h-4 w-4 text-primary" />
+            <MenuIcon iconName="clock" className="h-4 w-4 text-primary" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs text-muted-foreground">Næste Spin</p>

@@ -15,27 +15,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  User,
-  CalendarDays,
-  BookOpen,
-  Gamepad2,
-  Star,
-  Tv,
-  Heart,
-  Zap,
-  Trophy,
-  Users,
-  ShieldCheck,
-  Scale,
-  CheckCircle2,
-  BadgeCheck,
-  Clock,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-  Smile,
-} from "lucide-react";
+import { BadgeCheck, ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import frederikImage from "@/assets/frederik-forfatter.webp";
 
 const FEATURED_SLUGS = ["spildansknu", "betinia", "campobet"];
@@ -196,15 +177,15 @@ export default function ForfatterFrederik() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary">
-                <User className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="user" className="mr-1.5 h-3.5 w-3.5" />
                 Forfatter
               </Badge>
               <Badge variant="secondary">
-                <Tv className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="tv" className="mr-1.5 h-3.5 w-3.5" />
                 Casino-streamer
               </Badge>
               <Badge variant="secondary">
-                <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+                <MenuIcon iconName="gamepad2" className="mr-1.5 h-3.5 w-3.5" />
                 Bonustester
               </Badge>
             </div>
@@ -236,42 +217,42 @@ export default function ForfatterFrederik() {
               <h2 className="text-3xl font-bold mb-4">Om Frederik</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <User className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="user" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
                     <p className="text-sm font-medium">Streamer</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Gamepad2 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Speciale</p>
                     <p className="text-sm font-medium">Streaming & bonusser</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Tv className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="tv" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Platform</p>
                     <p className="text-sm font-medium">Twitch / YouTube</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <FileText className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="file-text" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Fokusområde</p>
                     <p className="text-sm font-medium">Test af casino bonusser</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <CalendarDays className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="calendar-days" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Aktiv siden</p>
                     <p className="text-sm font-medium">2022</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <BookOpen className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="book-open" className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Artikler</p>
                     <p className="text-sm font-medium">{frederikArticles.length > 0 ? frederikArticles.length : "Opdateres"}</p>
@@ -294,7 +275,7 @@ export default function ForfatterFrederik() {
         {/* Om Frederik – hovedafsnit */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Om Frederik
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
@@ -346,7 +327,7 @@ export default function ForfatterFrederik() {
         {/* Dokumenteret erfaring */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Dokumenteret Erfaring
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6">
@@ -363,7 +344,7 @@ export default function ForfatterFrederik() {
         {/* Baggrund og Motivation */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Baggrund og Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -384,7 +365,7 @@ export default function ForfatterFrederik() {
         {/* Kendetegn og Fællesskab */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Kendetegn og Fællesskab
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -394,7 +375,7 @@ export default function ForfatterFrederik() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Tv className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="tv" className="h-4 w-4 text-primary" />
                   Streamingstil
                 </CardTitle>
               </CardHeader>
@@ -405,7 +386,7 @@ export default function ForfatterFrederik() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Gamepad2 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-4 w-4 text-primary" />
                   Spillepræferencer
                 </CardTitle>
               </CardHeader>
@@ -418,7 +399,7 @@ export default function ForfatterFrederik() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Heart className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="heart" className="h-4 w-4 text-primary" />
                   Personlighed
                 </CardTitle>
               </CardHeader>
@@ -500,7 +481,7 @@ export default function ForfatterFrederik() {
           <section className="mb-12">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-3xl font-bold flex items-center gap-2">
-                <BookOpen className="h-7 w-7 text-primary" />
+                <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
                 Artikler af Frederik
               </h2>
               {totalArticlePages > 1 && (
@@ -546,7 +527,7 @@ export default function ForfatterFrederik() {
         {/* Transparens & metode */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Transparens & metode
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -558,7 +539,7 @@ export default function ForfatterFrederik() {
               to="/saadan-tester-vi-casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Sådan tester vi casinoer</h3>
                 <p className="text-xs text-muted-foreground">Vores testmetode og vurderingskriterier</p>
@@ -568,7 +549,7 @@ export default function ForfatterFrederik() {
               to="/forretningsmodel"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Forretningsmodel</h3>
                 <p className="text-xs text-muted-foreground">Sådan finansieres Casinoaftaler.dk</p>
@@ -578,7 +559,7 @@ export default function ForfatterFrederik() {
               to="/redaktionel-politik"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="book-open" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Redaktionel politik</h3>
                 <p className="text-xs text-muted-foreground">Vores redaktionelle retningslinjer</p>
@@ -588,7 +569,7 @@ export default function ForfatterFrederik() {
               to="/casino-bonus"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="book-open" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Casino Bonus Guide</h3>
                 <p className="text-xs text-muted-foreground">Komplet guide til alle bonustyper</p>
@@ -598,7 +579,7 @@ export default function ForfatterFrederik() {
               to="/casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Star className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="star" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Alle Casinoer</h3>
                 <p className="text-xs text-muted-foreground">Kategoriguides og dybdegående analyser</p>
@@ -608,7 +589,7 @@ export default function ForfatterFrederik() {
               to="/community"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
             >
-              <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Community</h3>
                 <p className="text-xs text-muted-foreground">Bliv en del af fællesskabet</p>

@@ -2,25 +2,8 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  ShieldCheck,
-  Sparkles,
-  Trophy,
-  Users,
-  Gamepad2,
-  CreditCard,
-  TrendingUp,
-  Star,
-  BookOpen,
-  Zap,
-  Gift,
-  Target,
-  CheckCircle2,
-  ArrowRight,
-  Search,
-  Scale,
-  Newspaper,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 export function HomepageSeoSections() {
   return (

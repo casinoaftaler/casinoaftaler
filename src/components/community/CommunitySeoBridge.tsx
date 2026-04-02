@@ -1,20 +1,8 @@
 import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import {
-  Star,
-  Zap,
-  Gift,
-  Tv,
-  Gamepad2,
-  ArrowRight,
-  CheckCircle2,
-  Flame,
-  PartyPopper,
-  Trophy,
-  BookOpen,
-  Scale,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import "@/styles/community-micro.css";
 
@@ -107,7 +95,7 @@ export function CommunitySeoBridge() {
       />
 
       <div className="relative flex items-center gap-2 mb-1">
-        <Flame className="h-4 w-4 text-orange-400 animate-seo-fire-pulse" />
+        <MenuIcon iconName="flame" className="h-4 w-4 text-orange-400 animate-seo-fire-pulse" />
         <h3 className="text-base font-bold text-foreground">
           Klar til at spille på nye casinoer?
         </h3>

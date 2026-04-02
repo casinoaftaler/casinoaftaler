@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Infinity, RotateCw, Square } from "lucide-react";
+import { Infinity, Square } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import type { SlotTheme } from "@/lib/slotTheme";
@@ -68,7 +69,7 @@ export function AutoSpinPopover({
       )}
       disabled={disabled}
     >
-      <RotateCw className="h-4 w-4" />
+      <MenuIcon iconName="rotate-cw" className="h-4 w-4" />
     </Button>
   );
 

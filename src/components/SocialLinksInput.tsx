@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Loader2, Save, Instagram, MessageCircle, Coins } from "lucide-react";
+import { Loader2, Save, Instagram } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "@/hooks/use-toast";
@@ -90,7 +91,7 @@ export function SocialLinksInput() {
     <div className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="discord_url" className="flex items-center gap-2">
-          <MessageCircle className="h-4 w-4" />
+          <MenuIcon iconName="message-circle" className="h-4 w-4" />
           Discord URL
         </Label>
         <Input
@@ -206,7 +207,7 @@ export function SocialLinksInput() {
 
       <div className="space-y-2">
         <Label htmlFor="streamelements_channel_id" className="flex items-center gap-2">
-          <Coins className="h-4 w-4" />
+          <MenuIcon iconName="coins" className="h-4 w-4" />
           StreamElements Channel ID
         </Label>
         <Input

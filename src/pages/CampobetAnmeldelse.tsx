@@ -29,11 +29,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
-import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
-  Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
-} from "lucide-react";
+import { RotateCcw, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -148,12 +145,12 @@ const CampobetAnmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center gap-2 mb-4">
-              <Badge variant="secondary"><Star className="mr-1.5 h-3.5 w-3.5" />4.8 / 5 – Anbefalet Casino</Badge>
+              <Badge variant="secondary"><MenuIcon iconName="star" className="mr-1.5 h-3.5 w-3.5" />4.8 / 5 – Anbefalet Casino</Badge>
               <Badge variant="outline" className="border-white/40 text-white">No-Sticky + Sportsbetting</Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Campobet Anmeldelse 2026</h1>
             <p className="mb-6 text-lg text-white/80">Komplet og ærlig anmeldelse af Campobet.dk – et internationalt casino med dansk licens, 100 % No-Sticky bonus op til 1.000 kr., kun 10x omsætningskrav, tusindvis af spilleautomater, live casino, sportsbetting og hurtige udbetalinger.</p>
-            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent Bonus hos Campobet</Button>
+            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent Bonus hos Campobet</Button>
           </div>
         </div>
       </section>
@@ -168,7 +165,7 @@ const CampobetAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Campobet</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Campobet</CardTitle>
                 <QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} />
               </div>
             </CardHeader>
@@ -303,7 +300,7 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Omsætningskravet på 10x (indskud + bonus) er den lovgivningsmæssige standard for danske casinoer med licens fra Spillemyndigheden. Med 60 dages gyldighed og en maks. indsats på 50 kr. pr. runde er vilkårene konkurrencedygtige. Kun spilleautomater bidrager fuldt til omsætningskravet – bordspil bidrager typisk med 10 %, og live casino bidrager med 5 %. Progressive jackpotspil er helt udelukket.</p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gift className="h-5 w-5 text-primary" />Aktivering af velkomstbonussen – Trin for trin</CardTitle></CardHeader>
+            <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gift" className="h-5 w-5 text-primary" />Aktivering af velkomstbonussen – Trin for trin</CardTitle></CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {[
@@ -350,7 +347,7 @@ const CampobetAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Risk of Ruin (RoR)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />Risk of Ruin (RoR)</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">
                   Hvad er sandsynligheden for at tabe hele bonussaldoen før omsætningskravet er mødt?
@@ -367,7 +364,7 @@ const CampobetAnmeldelse = () => {
             </Card>
 
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="h-5 w-5 text-primary" />Expected Value (EV)</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Expected Value (EV)</CardTitle></CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-3">
                   Hvor meget er bonussen statistisk set værd?
@@ -535,9 +532,9 @@ const CampobetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Det er værd at bemærke, at der ikke er dansk telefon-support. For spillere, der foretrækker at ringe, er det en reel ulempe. En omfattende FAQ-sektion på dansk kompenserer delvist, men den dækker primært basale spørgsmål om registrering, indbetaling og bonus. For komplekse henvendelser er live chatten den bedste kanal.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Headphones className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat 24/7</h3><p className="text-sm text-muted-foreground">Svar under 2 minutter. Primært engelsk med auto-oversættelse til dansk.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><CreditCard className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 6-12 timer. God til dokumentation af komplekse henvendelser.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><Globe className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ på dansk</h3><p className="text-sm text-muted-foreground">Dækker basale spørgsmål om konto, bonus og betaling.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="headphones" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">Live Chat 24/7</h3><p className="text-sm text-muted-foreground">Svar under 2 minutter. Primært engelsk med auto-oversættelse til dansk.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="credit-card" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">E-mail</h3><p className="text-sm text-muted-foreground">Svar inden for 6-12 timer. God til dokumentation af komplekse henvendelser.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6 text-center"><MenuIcon iconName="globe" className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="font-bold text-foreground mb-1">FAQ på dansk</h3><p className="text-sm text-muted-foreground">Dækker basale spørgsmål om konto, bonus og betaling.</p></CardContent></Card>
           </div>
         </section>
 
@@ -596,7 +593,7 @@ const CampobetAnmeldelse = () => {
           <RatingBreakdown scores={CASINO_SCORES["campobet"].scores} total={CASINO_SCORES["campobet"].total} />
 
           <div className="flex justify-center">
-            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><Gift className="mr-2 h-5 w-5" />Hent din No-Sticky bonus hos Campobet</Button>
+            <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8"><MenuIcon iconName="gift" className="mr-2 h-5 w-5" />Hent din No-Sticky bonus hos Campobet</Button>
           </div>
         </section>
 

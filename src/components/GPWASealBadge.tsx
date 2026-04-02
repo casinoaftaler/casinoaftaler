@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface GPWASealBadgeProps {
   /** "inline" = compact for review intros, "block" = larger for trust pages */
@@ -54,7 +55,7 @@ export function GPWASealBadge({
       </a>
       <div className="flex flex-col gap-0.5">
         <span className={`flex items-center gap-1 font-medium text-foreground ${isBlock ? "text-sm" : "text-xs"}`}>
-          <ShieldCheck className={isBlock ? "h-4 w-4 text-primary" : "h-3.5 w-3.5 text-primary"} />
+          <MenuIcon iconName="shield-check" className="h-5 w-5" />
           {microcopy}
         </span>
         {isBlock && (

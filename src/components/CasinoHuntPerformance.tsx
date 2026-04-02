@@ -2,7 +2,8 @@ import { useCasinoHuntStats } from "@/hooks/useCasinoHuntStats";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FlaskConical, TrendingUp, TrendingDown, Zap, BarChart3, Target, ArrowRight } from "lucide-react";
+import { FlaskConical, TrendingDown, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /** Slugify a slot name for /slot-katalog/ links */
 function slotNameToSlug(name: string): string {
@@ -71,7 +72,7 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName, onCtaClick }: Ca
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <Card className="border-border/50">
           <CardContent className="p-4 text-center">
-            <BarChart3 className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
             <p className="text-2xl font-bold">{stats.totalHunts}</p>
             <p className="text-xs text-muted-foreground">Bonus Hunts</p>
           </CardContent>
@@ -79,7 +80,7 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName, onCtaClick }: Ca
 
         <Card className="border-border/50">
           <CardContent className="p-4 text-center">
-            <Target className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
+            <MenuIcon iconName="target" className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
             <p className="text-2xl font-bold">{stats.avgX}x</p>
             <p className="text-xs text-muted-foreground">Gennemsnitlig X</p>
           </CardContent>
@@ -87,7 +88,7 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName, onCtaClick }: Ca
 
         <Card className="border-border/50">
           <CardContent className="p-4 text-center">
-            <Zap className="h-5 w-5 mx-auto mb-1 text-primary" />
+            <MenuIcon iconName="zap" className="h-5 w-5 mx-auto mb-1 text-primary" />
             <p className="text-2xl font-bold">{stats.bestSlotX.toLocaleString("da-DK", { minimumFractionDigits: 1 })}x</p>
             <p className="text-xs text-muted-foreground">Bedste slot-hit</p>
           </CardContent>
@@ -96,7 +97,7 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName, onCtaClick }: Ca
         <Card className="border-border/50">
           <CardContent className="p-4 text-center">
             {isProfitable ? (
-              <TrendingUp className="h-5 w-5 mx-auto mb-1 text-green-500" />
+              <MenuIcon iconName="trending-up" className="h-5 w-5 mx-auto mb-1 text-green-500" />
             ) : (
               <TrendingDown className="h-5 w-5 mx-auto mb-1 text-red-500" />
             )}

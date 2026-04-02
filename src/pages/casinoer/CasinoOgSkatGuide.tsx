@@ -17,7 +17,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Scale, Calculator, Star, Globe, Landmark, Shield, AlertTriangle, BookOpen, FileText, Coins, TrendingUp, HelpCircle } from "lucide-react";
+import { Scale, Calculator, Star, Globe, Landmark, Shield, AlertTriangle, BookOpen, FileText, Coins, TrendingUp, HelpCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -49,7 +50,7 @@ const CasinoOgSkatGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />
               Skatteguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -80,14 +81,14 @@ const CasinoOgSkatGuide = () => {
         <InlineCasinoCards title="Skattefri casinoer med dansk licens" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Landmark className="h-7 w-7 text-primary" /> Det danske afgiftssystem for online casino</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="landmark" className="h-7 w-7 text-primary" /> Det danske afgiftssystem for online casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det danske system for beskatning af online casinospil er bygget på et simpelt og elegant princip: <strong>Operatøren betaler – spilleren beholder.</strong> Dette system blev introduceret med Spilleloven i 2012 og har vist sig at være en effektiv og administrativt enkel model, der sikrer statsindtægter uden at belaste individuelle spillere med komplicerede selvangivelseskrav.</p>
           <p className="text-muted-foreground mb-6">Systemet fungerer således: Alle casinooperatører med dansk licens betaler en afgift på 28 % af deres bruttospilleindtægt (GGR – Gross Gaming Revenue). GGR defineres som den samlede sum af spillerindsatser minus udbetalt gevinster. Denne afgift opkræves månedligt af Spillemyndigheden og indbetales til statskassen. Til gengæld for denne operatørafgift er alle gevinster, som spillere vinder på licenserede danske casinoer, fuldstændig skattefri – uanset beløb, frekvens eller type af spil.</p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardContent className="pt-6"><Coins className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">28 % operatørafgift</h3><p className="text-sm text-muted-foreground">Casinooperatører med dansk licens betaler 28 % af deres bruttospilleindtægt (GGR) til staten. GGR beregnes som: Samlede indsatser - Samlede udbetalinger = GGR. Afgiften opkræves månedligt og kontrolleres via regelmæssige auditeringer af Spillemyndigheden. Denne afgiftsrate er moderat sammenlignet med andre europæiske lande – Sverige opkræver 18 %, mens Frankrig opkræver op til 55 %.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6"><Shield className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">0 % spillerbeskatning</h3><p className="text-sm text-muted-foreground">Som spiller på et dansk licenseret casino betaler du 0 % skat af dine gevinster – uanset beløb, gevinsttype eller -frekvens. Du behøver ikke indberette eller selvangive noget til SKAT. Gevinsten er din fra det øjeblik, den lander på din casinokonto, og du kan hæve den til din bankkonto uden skattemæssige konsekvenser.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardContent className="pt-6"><TrendingUp className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">Ca. 1,5 mia. kr. årligt</h3><p className="text-sm text-muted-foreground">Den samlede statsindtægt fra casinoafgifter er ca. 1-1,5 milliarder kr. årligt (2025-tal). Systemet er administrativt effektivt med lave komplianceomkostninger for både staten og operatørerne. Modellen har vist sig økonomisk bæredygtig og har bidraget til at reducere det uregulerede marked ved at gøre licenserede casinoer attraktive for spillere.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6"><MenuIcon iconName="coins" className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">28 % operatørafgift</h3><p className="text-sm text-muted-foreground">Casinooperatører med dansk licens betaler 28 % af deres bruttospilleindtægt (GGR) til staten. GGR beregnes som: Samlede indsatser - Samlede udbetalinger = GGR. Afgiften opkræves månedligt og kontrolleres via regelmæssige auditeringer af Spillemyndigheden. Denne afgiftsrate er moderat sammenlignet med andre europæiske lande – Sverige opkræver 18 %, mens Frankrig opkræver op til 55 %.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6"><MenuIcon iconName="shield" className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">0 % spillerbeskatning</h3><p className="text-sm text-muted-foreground">Som spiller på et dansk licenseret casino betaler du 0 % skat af dine gevinster – uanset beløb, gevinsttype eller -frekvens. Du behøver ikke indberette eller selvangive noget til SKAT. Gevinsten er din fra det øjeblik, den lander på din casinokonto, og du kan hæve den til din bankkonto uden skattemæssige konsekvenser.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardContent className="pt-6"><MenuIcon iconName="trending-up" className="h-8 w-8 text-primary mb-3" /><h3 className="font-bold mb-2">Ca. 1,5 mia. kr. årligt</h3><p className="text-sm text-muted-foreground">Den samlede statsindtægt fra casinoafgifter er ca. 1-1,5 milliarder kr. årligt (2025-tal). Systemet er administrativt effektivt med lave komplianceomkostninger for både staten og operatørerne. Modellen har vist sig økonomisk bæredygtig og har bidraget til at reducere det uregulerede marked ved at gøre licenserede casinoer attraktive for spillere.</p></CardContent></Card>
           </div>
 
           <h3 className="text-xl font-bold mb-3">Hvorfor fungerer dette system?</h3>
@@ -98,7 +99,7 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" /> Skatteforhold for udenlandske casinoer</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Skatteforhold for udenlandske casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spiller du på casinoer uden dansk licens, ændrer skattereglerne sig markant. Det afgørende kriterium er, hvor casinoet er licenseret – ikke hvor serverne er placeret eller hvilken valuta der bruges. Her gennemgår vi de forskellige scenarior i detaljer med konkrete eksempler.</p>
           
           <div className="overflow-x-auto mb-6">
@@ -124,11 +125,11 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Skatteberegning: Konkrete eksempler</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Skatteberegning: Konkrete eksempler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at illustrere den økonomiske konsekvens af at spille på forskellige casinotyper har vi udarbejdet en række detaljerede regneksempler. Disse eksempler viser tydeligt, hvorfor det altid betaler sig at vælge et dansk licenseret casino – skattemæssigt kan forskellen være enorm.</p>
           
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <Card className="border-green-500/20 bg-green-500/5"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Shield className="h-5 w-5 text-green-500" /> Eksempel 1: Dansk licenseret casino</CardTitle></CardHeader><CardContent>
+            <Card className="border-green-500/20 bg-green-500/5"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-green-500" /> Eksempel 1: Dansk licenseret casino</CardTitle></CardHeader><CardContent>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p><strong>Situation:</strong> Du vinder 150.000 kr. på en jackpot slot.</p>
                 <ul className="space-y-1 ml-4">
@@ -141,7 +142,7 @@ const CasinoOgSkatGuide = () => {
               </div>
             </CardContent></Card>
 
-            <Card className="border-red-500/20 bg-red-500/5"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-red-500" /> Eksempel 2: Curaçao-licenseret casino</CardTitle></CardHeader><CardContent>
+            <Card className="border-red-500/20 bg-red-500/5"><CardHeader><CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-red-500" /> Eksempel 2: Curaçao-licenseret casino</CardTitle></CardHeader><CardContent>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p><strong>Situation:</strong> Samme gevinst på 150.000 kr., spiller med årsindkomst 500.000 kr.</p>
                 <ul className="space-y-1 ml-4">
@@ -199,7 +200,7 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Coins className="h-7 w-7 text-primary" /> Kryptovaluta og casino-skat</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="coins" className="h-7 w-7 text-primary" /> Kryptovaluta og casino-skat</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovaluta-gambling tilføjer et helt ekstra lag af skattemæssig kompleksitet, som mange spillere undervurderer. Med den voksende popularitet af <Link to="/casinoer/crypto-casino" className={linkClass}>crypto casinoer</Link> er det afgørende at forstå de skattemæssige implikationer af at gamble med Bitcoin, Ethereum og andre kryptovalutaer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det grundlæggende princip er, at der er <strong>to separate skattemæssige lag</strong> ved krypto-gambling: 1) Selve casino-gevinsten beskattes efter de normale regler (skattefri fra licenserede casinoer, skattepligtig fra ulicenserede), og 2) kursgevinster på den kryptovaluta, du bruger til gambling, kan være separat skattepligtige under reglerne for kryptovaluta-beskatning.</p>
 
@@ -223,7 +224,7 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" /> Fysiske casinoer i udlandet</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Fysiske casinoer i udlandet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mange danske spillere besøger fysiske casinoer under rejser i udlandet – fra Monte Carlo til Las Vegas. Skatteforholdene for gevinster fra fysiske casinoer følger det samme grundprincip som online casinoer: Det afgørende er beliggenheden (og dermed jurisdiktionen).</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-green-500/20"><CardContent className="pt-6"><h3 className="font-bold mb-3 text-green-500">EU-lande: Skattefri</h3><p className="text-sm text-muted-foreground mb-3">Gevinster fra fysiske casinoer i EU-lande er skattefri for danske statsborgere. Dette gælder Casino Copenhagen, Casino di Venezia, Casino de Monte-Carlo (Monaco er ikke EU, men har særaftale), Casino Barcelona, Casino Helsinki og andre EU-baserede casinoer. Du behøver ikke indberette disse gevinster til SKAT.</p></CardContent></Card>
@@ -235,7 +236,7 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><FileText className="h-7 w-7 text-primary" /> Praktisk guide: Selvangivelse af casinogevinster</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" /> Praktisk guide: Selvangivelse af casinogevinster</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Hvis du har vundet penge på et casino uden EU-licens, er du forpligtet til at selvangive gevinsten. Her er en trin-for-trin guide til, hvordan du gør det korrekt via SKATs systemer.</p>
           <div className="space-y-3 mb-6">
             {[
@@ -253,14 +254,14 @@ const CasinoOgSkatGuide = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" /> Konsekvenser ved manglende selvangivelse</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" /> Konsekvenser ved manglende selvangivelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at tage selvangivelse af skattepligtige casinogevinster alvorligt. SKAT har adgang til oplysninger om overførsler til og fra udenlandske spilleplatforme via bankrapportering, og de anvender i stigende grad data-analytiske værktøjer til at identificere uindberettede gambling-indtægter.</p>
           <Card className="bg-destructive/5 border-destructive/20 mb-6"><CardContent className="pt-6">
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Skattetillæg:</strong> Ved for sen selvangivelse pålægges et dagligt skattetillæg. Ved væsentlige udeladelser kan tillægget udgøre op til 1 % af den manglende skat pr. måned.</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Bøde for skatteunddragelse:</strong> Ved forsætlig udeladelse af indkomst risikerer du en bøde på typisk 1x det unddragne skattebeløb. I grove tilfælde kan bøden være højere.</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Strafforfølgelse:</strong> Ved grove og gentagne tilfælde af skatteunddragelse kan sagen oversendes til politiet. Skatteunddragelse over 500.000 kr. kan medføre fængselsstraf på op til 8 år.</li>
-              <li className="flex items-start gap-2"><AlertTriangle className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>5 års forældelsesfrist:</strong> SKAT kan genoptage tidligere skatteansættelser i op til 5 år. For grov skatteunddragelse kan fristen forlænges til 10 år.</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Skattetillæg:</strong> Ved for sen selvangivelse pålægges et dagligt skattetillæg. Ved væsentlige udeladelser kan tillægget udgøre op til 1 % af den manglende skat pr. måned.</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Bøde for skatteunddragelse:</strong> Ved forsætlig udeladelse af indkomst risikerer du en bøde på typisk 1x det unddragne skattebeløb. I grove tilfælde kan bøden være højere.</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>Strafforfølgelse:</strong> Ved grove og gentagne tilfælde af skatteunddragelse kan sagen oversendes til politiet. Skatteunddragelse over 500.000 kr. kan medføre fængselsstraf på op til 8 år.</li>
+              <li className="flex items-start gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive mt-0.5 flex-shrink-0" /> <strong>5 års forældelsesfrist:</strong> SKAT kan genoptage tidligere skatteansættelser i op til 5 år. For grov skatteunddragelse kan fristen forlænges til 10 år.</li>
             </ul>
           </CardContent></Card>
           <p className="text-muted-foreground leading-relaxed">Det enkleste og sikreste er at undgå hele problemstillingen ved at spille på et <Link to="/casino-licenser" className={linkClass}>dansk licenseret casino</Link>, hvor alle gevinster er 100 % skattefri. Dermed behøver du aldrig bekymre dig om selvangivelse, dokumentation eller skattemæssige konsekvenser.</p>

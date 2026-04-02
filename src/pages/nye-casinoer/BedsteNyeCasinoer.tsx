@@ -15,7 +15,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Sparkles, Star, CheckCircle2, XCircle, ShieldCheck, TrendingUp, Target, BarChart3, AlertTriangle } from "lucide-react";
+import { Trophy, Sparkles, Star, CheckCircle2, XCircle, ShieldCheck, TrendingUp, Target, BarChart3, AlertTriangle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -58,7 +59,7 @@ const BedsteNyeCasinoer = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" />Top Anbefalinger</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" />Top Anbefalinger</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bedste Nye Casinoer i Danmark</h1>
           <p className="text-lg text-white/80">Vores håndplukkede topvalg blandt nye casinoer – grundigt testede over minimum 14 dage og rangeret efter samlede kvalitetsparametre.</p>
         </div></div>
@@ -110,7 +111,7 @@ const BedsteNyeCasinoer = () => {
               { title: "6. Mobiloplevelse – 5% (max 5 point)", desc: "Vi tester på iPhone, Android og tablet (2p): loading-hastighed under 2 sek. (1p), funktionalitetsparitet med desktop (1p) og touch-optimeret navigation (1p). Mobile-first casinoer scorer typisk 4–5/5, mens adapterede desktop-platforme scorer 2–3/5." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Star className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="star" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div><h3 className="font-semibold">{item.title}</h3><p className="text-sm text-muted-foreground">{item.desc}</p></div>
               </div>
             ))}
@@ -148,7 +149,7 @@ const BedsteNyeCasinoer = () => {
               { tier: "Ikke anbefalet (under 7/10)", color: "text-destructive", desc: "Casinoer der ikke lever op til vores minimumsstandarder. Typiske årsager: langsom kundeservice, ugennemsigtige bonusvilkår, tekniske problemer eller begrænset spiludvalg. Disse casinoer anbefales ikke, uanset individuelle styrker." },
             ].map((item) => (
               <div key={item.tier} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Target className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="target" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className={`font-semibold ${item.color}`}>{item.tier}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -176,7 +177,7 @@ const BedsteNyeCasinoer = () => {
               "Hurtige udbetalinger som kernekompetence: De bedste nye casinoer behandler hurtige udbetalinger som en kernekompetence – ikke en nice-to-have. Automatiserede systemer, pre-KYC via MitID og direkte bankintegrationer sikrer udbetalinger under 5 minutter.",
             ].map((point, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground"><strong>{i + 1}.</strong> {point}</p>
               </div>
             ))}
@@ -201,7 +202,7 @@ const BedsteNyeCasinoer = () => {
               "Tekniske fejl og nedbrud i de første uger uden hurtig kommunikation – tyder på utilstrækkelig teknisk testning før lancering",
             ].map((warning, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3">
-                <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="x-circle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <p className="text-sm text-muted-foreground">{warning}</p>
               </div>
             ))}
@@ -287,7 +288,7 @@ const BedsteNyeCasinoer = () => {
               { title: "Nedgraderingsprocedure", desc: "Casinoer der falder under 80/100 point ved re-evaluering fjernes fra toplisten men kan forblive anbefalet (7+/10). Casinoer under 70/100 fjernes helt fra anbefalingslisten. Vi offentliggør ændringer og begrundelsen i vores changelog." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -313,7 +314,7 @@ const BedsteNyeCasinoer = () => {
               { title: "Casual spiller: Prioriter samlet oplevelse", desc: "Hvis du spiller lejlighedsvist, vælg det casino med den bedste samlede score – typisk 9+/10. God all-round oplevelse uden nogen kritiske svagheder er vigtigst for dig." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Target className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="target" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -336,7 +337,7 @@ const BedsteNyeCasinoer = () => {
               { to: "/top-10-casino-online", label: "Top 10 Casino Online", desc: "De bedste casinoer samlet" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
               </Link>
             ))}
           </div>

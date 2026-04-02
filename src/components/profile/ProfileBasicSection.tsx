@@ -3,7 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User } from "lucide-react";
+import { User } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ProfileData } from "@/hooks/useProfile";
 
 interface ProfileBasicSectionProps {
@@ -20,7 +21,7 @@ export function ProfileBasicSection({ profile, formData, onChange }: ProfileBasi
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <User className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="user" className="h-5 w-5 text-primary" />
           Grundlæggende Info
         </CardTitle>
         <CardDescription>
@@ -33,7 +34,7 @@ export function ProfileBasicSection({ profile, formData, onChange }: ProfileBasi
           <Avatar className="h-20 w-20">
             <AvatarImage src={profile.avatar_url || undefined} alt={formData.display_name || "Bruger"} />
             <AvatarFallback className="text-2xl">
-              <User className="h-8 w-8" />
+              <MenuIcon iconName="user" className="h-8 w-8" />
             </AvatarFallback>
           </Avatar>
           <div>

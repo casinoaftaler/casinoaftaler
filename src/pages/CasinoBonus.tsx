@@ -25,36 +25,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
-  Sparkles,
-  ShieldCheck,
-  Trophy,
-  Star,
-  Clock,
-  CreditCard,
-  Gamepad2,
-  Users,
-  TrendingUp,
-  CheckCircle2,
-  Gift,
-  RefreshCw,
-  Zap,
-  DollarSign,
-  Percent,
-  ArrowRight,
-  AlertTriangle,
-  Calculator,
-  Ban,
-  Target,
-  BarChart3,
-  Scale,
-  Eye,
-  BookOpen,
-  Lock,
-  Flame,
-  Info,
-  Crown,
-} from "lucide-react";
+import { DollarSign, ArrowRight, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -175,7 +147,7 @@ const CasinoBonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gift className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="gift" className="mr-1.5 h-3.5 w-3.5" />
               Bonusguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -319,7 +291,7 @@ const CasinoBonus = () => {
           <Card className="mb-6 border-primary/50 bg-card">
             <CardHeader>
               <div className="mb-2 inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">Anbefalet bonustype</div>
-              <CardTitle className="flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />No-Sticky Bonus (Faldskærmsbonus)</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />No-Sticky Bonus (Faldskærmsbonus)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -337,7 +309,7 @@ const CasinoBonus = () => {
           {/* Sticky Bonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Lock className="h-5 w-5 text-primary" />Sticky Bonus (Traditionel Bonus)</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="lock" className="h-5 w-5 text-primary" />Sticky Bonus (Traditionel Bonus)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -355,7 +327,7 @@ const CasinoBonus = () => {
           {/* Free Spins */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" />Free Spins</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />Free Spins</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -373,7 +345,7 @@ const CasinoBonus = () => {
           {/* Velkomstbonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Gift className="h-5 w-5 text-primary" />Velkomstbonus</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="gift" className="h-5 w-5 text-primary" />Velkomstbonus</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -391,7 +363,7 @@ const CasinoBonus = () => {
           {/* Indskudsbonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><CreditCard className="h-5 w-5 text-primary" />Indskudsbonus (Match Bonus)</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />Indskudsbonus (Match Bonus)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -409,7 +381,7 @@ const CasinoBonus = () => {
           {/* Bonus uden indbetaling */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Bonus uden indbetaling (No Deposit)</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Bonus uden indbetaling (No Deposit)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -427,7 +399,7 @@ const CasinoBonus = () => {
           {/* Bonus uden omsætningskrav */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" />Bonus uden omsætningskrav</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />Bonus uden omsætningskrav</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -445,7 +417,7 @@ const CasinoBonus = () => {
           {/* Reload Bonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" /><Link to="/reload-bonus" className={linkClass}>Reload-Bonus</Link></CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" /><Link to="/reload-bonus" className={linkClass}>Reload-Bonus</Link></CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -475,7 +447,7 @@ const CasinoBonus = () => {
           {/* Sportsbonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Sportsbonus (Odds Bonus)</CardTitle>
+              <CardTitle className="flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Sportsbonus (Odds Bonus)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
@@ -755,7 +727,7 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />Casual-spilleren (budget: 200-500 kr./måned)
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />Casual-spilleren (budget: 200-500 kr./måned)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Du spiller for underholdningens skyld og vil have mest mulig spilletid for dit budget. <strong>Anbefalet:</strong> No-sticky velkomstbonus med 100% match. Start med minimumsindbetalingen og vælg slots med høj RTP og lav volatilitet for stabil spilletid. Undgå sticky bonusser – de låser dine penge og skaber unødvendigt pres. Supplér med gratis <Link to="/free-spins" className={linkClass}>free spins</Link>-kampagner for ekstra spilletid uden ekstra investering. Overvej også <Link to="/bonus-uden-indbetaling" className={linkClass}>no-deposit bonusser</Link> til at teste nye casinoer.
@@ -766,7 +738,7 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Star className="h-5 w-5 text-primary" />High rolleren (budget: 5.000+ kr./måned)
+                  <MenuIcon iconName="star" className="h-5 w-5 text-primary" />High rolleren (budget: 5.000+ kr./måned)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Du omsætter store beløb og har brug for bonusser, der skalerer. <strong>Anbefalet:</strong> Cashback-programmer (5-15%) og VIP-reload bonusser med høje bonuslofter. Cashback reducerer din effektive house edge og giver automatisk kompensation ved tab. Undgå standard velkomstbonusser med lave lofter (1.000 kr.) – de er irrelevante ved dit volume. Kontakt casinoets VIP-afdeling direkte for skræddersyede tilbud, som ofte har bedre vilkår end standardprogrammet.
@@ -777,7 +749,7 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Calculator className="h-5 w-5 text-primary" />Strategispilleren (EV-fokuseret)
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Strategispilleren (EV-fokuseret)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Du vurderer bonusser udelukkende på matematisk værdi og er villig til at optimere hvert aspekt. <strong>Anbefalet:</strong> Bonusser uden <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (højeste reel-til-nominel ratio), efterfulgt af no-sticky bonusser med lavest mulig omsætning. Spil udelukkende slots med 97%+ RTP under omsætning. Beregn EV for hvert tilbud, og afvis bonusser med negativ EV. Overvej at udnytte reload-bonusser systematisk – over tid kan de give mere samlet EV end enkeltstående velkomstbonusser.
@@ -788,7 +760,7 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Target className="h-5 w-5 text-primary" />Bonusjægeren (multi-casino)
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />Bonusjægeren (multi-casino)
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Du opretter konti på mange casinoer for at udnytte velkomstbonusser. <strong>Anbefalet:</strong> Prioritér no-sticky velkomstbonusser og kør dem systematisk igennem. Start med de bedste tilbud fra vores <Link to="/top-10-casino-online" className={linkClass}>top 10 liste</Link> og arbejd dig ned. Brug en tracker til at notere, hvilke casinoer du har brugt, og hvilke der stadig tilbyder bonus. Vær opmærksom på, at du kun kan have én konto pr. casino, og at casinoer kan begrænse spillere, der udviser systematisk bonusjagt.
@@ -799,7 +771,7 @@ const CasinoBonus = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="mb-2 font-semibold flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-primary" />Sportsbettoren
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Sportsbettoren
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Du fokuserer primært på sportsvæddemål og bruger casino som supplement. <strong>Anbefalet:</strong> Vælg casinoer med stærke sportsbonusser – risikofri væddemål og odds-boost er mere værdifulde end matchbonusser for bettere. Casinoer som <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>Bet365</Link> tilbyder separerede sport- og casinobonusser. Ignorer casinobonussen, medmindre du aktivt spiller casino – omsætningskrav for casinobonusser kan ikke opfyldes via sportsvæddemål.
@@ -897,7 +869,7 @@ const CasinoBonus = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
                 Bonusser og ansvarligt spil
               </CardTitle>
             </CardHeader>

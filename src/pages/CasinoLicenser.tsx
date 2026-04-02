@@ -14,7 +14,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, AlertTriangle, Sparkles, CheckCircle2, XCircle, Scale, Globe, Landmark } from "lucide-react";
+import { ShieldCheck, AlertTriangle, Sparkles, CheckCircle2, XCircle, Scale, Globe, Landmark } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.webp";
 import spillemyndighedenLicensliste from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
@@ -97,7 +98,7 @@ const CasinoLicenser = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />Autoritetsguide</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />Autoritetsguide</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Casino Licenser – Dansk og Udenlandske Licenser Forklaret</h1>
             <p className="text-lg text-white/80">Alt du behøver at vide om casino-licenser. Hvad de betyder for din sikkerhed, dine rettigheder og dine gevinster som dansk spiller.</p>
           </div>
@@ -147,7 +148,7 @@ const CasinoLicenser = () => {
               { title: "Bankgaranti min. 750.000 kr.", desc: "Dine indeståender er beskyttet selv ved operatørens konkurs. Garantien administreres af et uafhængigt pengeinstitut." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -190,7 +191,7 @@ const CasinoLicenser = () => {
               "Begrænset tilsyn og håndhævelse af spillerbeskyttelse",
             ].map((risk) => (
               <div key={risk} className="flex items-center gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-3">
-                <XCircle className="h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="x-circle" className="h-5 w-5 flex-shrink-0 text-destructive" />
                 <p className="text-sm text-muted-foreground">{risk}</p>
               </div>
             ))}
@@ -218,7 +219,7 @@ const CasinoLicenser = () => {
               { title: "Spillerbeskyttelsesværktøjer", desc: "MGA kræver implementering af indbetalingsgrænser, session-timere og selvudelukkelsesmuligheder – dog ikke ROFUS." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="scale" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -249,7 +250,7 @@ const CasinoLicenser = () => {
               { title: "Kvalitetssignal", desc: "Operatører med UKGC-licens har investeret tungt i compliance. Det signalerer seriøsitet, selv om licensen ikke dækker DK." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Globe className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="globe" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -356,7 +357,7 @@ const CasinoLicenser = () => {
               { title: "Bonusværdi", desc: "Det danske omsætningsloft på 10x gør bonusser markant mere værdifulde. En 1.000 kr. bonus med 5x omsætning har en reel værdi på ca. 800 kr. – sammenlignet med ca. 200 kr. ved 40x omsætning hos et udenlandsk casino." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Landmark className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="landmark" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -391,7 +392,7 @@ const CasinoLicenser = () => {
               { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Guide til ansvarlig gambling" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold text-sm">{link.label}</h3>
                   <p className="text-xs text-muted-foreground">{link.desc}</p>

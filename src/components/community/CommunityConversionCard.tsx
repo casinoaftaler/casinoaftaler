@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import "@/styles/community-micro.css";
 
@@ -23,7 +24,7 @@ export function CommunityConversionCard() {
       />
 
       <div className="relative flex items-center gap-2 mb-1.5">
-        <Zap className="h-4 w-4 text-amber-400" />
+        <MenuIcon iconName="zap" className="h-4 w-4 text-amber-400" />
         <h3 className="text-sm font-bold text-foreground">
           Gratis Free Spins uden indbetaling
         </h3>

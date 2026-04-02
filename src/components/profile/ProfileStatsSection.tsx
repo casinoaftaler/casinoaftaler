@@ -1,7 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Sparkles, TrendingUp } from "lucide-react";
+import { Trophy, Sparkles, TrendingUp } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface ProfileStatsSectionProps {
   formData: {
@@ -19,7 +20,7 @@ export function ProfileStatsSection({ formData, onChange }: ProfileStatsSectionP
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Trophy className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
           Gambling Stats
         </CardTitle>
         <CardDescription>
@@ -30,7 +31,7 @@ export function ProfileStatsSection({ formData, onChange }: ProfileStatsSectionP
         {/* Highest Win Section */}
         <div className="space-y-4 p-4 rounded-lg bg-muted/50">
           <div className="flex items-center gap-2 text-sm font-medium">
-            <Trophy className="h-4 w-4 text-yellow-500" />
+            <MenuIcon iconName="trophy" className="h-4 w-4 text-yellow-500" />
             Største Gevinst
           </div>
           
@@ -72,7 +73,7 @@ export function ProfileStatsSection({ formData, onChange }: ProfileStatsSectionP
         {/* Single Spin Win */}
         <div className="space-y-4 p-4 rounded-lg bg-muted/50">
           <div className="flex items-center gap-2 text-sm font-medium">
-            <Sparkles className="h-4 w-4 text-purple-500" />
+            <MenuIcon iconName="sparkles" className="h-4 w-4 text-purple-500" />
             Største Enkelt Spin
           </div>
           
@@ -92,7 +93,7 @@ export function ProfileStatsSection({ formData, onChange }: ProfileStatsSectionP
         {/* X-Win */}
         <div className="space-y-4 p-4 rounded-lg bg-muted/50">
           <div className="flex items-center gap-2 text-sm font-medium">
-            <TrendingUp className="h-4 w-4 text-green-500" />
+            <MenuIcon iconName="trending-up" className="h-4 w-4 text-green-500" />
             Største X-Gevinst
           </div>
           

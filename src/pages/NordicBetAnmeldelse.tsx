@@ -19,7 +19,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { ShieldCheck, Zap, Check, X, Globe, Gamepad2, Trophy, Headphones, Wallet, Target, Users, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.webp";
@@ -51,7 +52,7 @@ const NordicBetAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />4.1 / 5 – Nordisk Specialist</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="globe" className="mr-1.5 h-3.5 w-3.5" />4.1 / 5 – Nordisk Specialist</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">NordicBet Casino Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af NordicBet – den nordiske specialist med stærkt sportsvæddemål, solidt casino og dansk licens under Betsson Group.</p>
         </div></div>
@@ -65,7 +66,7 @@ const NordicBetAnmeldelse = () => {
         {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – NordicBet</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – NordicBet</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino Bonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 100 kr.</p></div>
@@ -151,7 +152,7 @@ const NordicBetAnmeldelse = () => {
         {/* Casino Game Selection */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Casino-spiludvalget – fra supplement til konkurrent
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -217,7 +218,7 @@ const NordicBetAnmeldelse = () => {
         {/* Payment Methods */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Wallet className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="wallet" className="h-7 w-7 text-primary" />
             Betalingsmetoder og testresultater
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -263,7 +264,7 @@ const NordicBetAnmeldelse = () => {
         {/* Customer Support */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Headphones className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="headphones" className="h-7 w-7 text-primary" />
             Kundeservice og mobiloplevelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -282,7 +283,7 @@ const NordicBetAnmeldelse = () => {
         {/* Security */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Sikkerhed og Betsson Groups regulering
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -301,11 +302,11 @@ const NordicBetAnmeldelse = () => {
         {/* Negative Segmentation */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvem passer NordicBet til – og hvem gør det ikke?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Users className="h-5 w-5" />Ideelt for</CardTitle></CardHeader><CardContent><ul className="space-y-3">
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><MenuIcon iconName="users" className="h-5 w-5" />Ideelt for</CardTitle></CardHeader><CardContent><ul className="space-y-3">
               <li className="text-sm text-muted-foreground"><strong className="text-foreground">Nordiske sportsentusiaster:</strong> Bedste odds og dybde på danske, svenske, norske og finske sportsgrene. "Nordic Specials" med enhanced odds.</li>
               <li className="text-sm text-muted-foreground"><strong className="text-foreground">Sport + casino spillere:</strong> Komplet platform med separate bonusser for begge produkter under én konto.</li>
               <li className="text-sm text-muted-foreground"><strong className="text-foreground">Hacksaw-fans:</strong> En af de få sport+casino platforme med Hacksaw Gaming i udvalget.</li>
@@ -373,7 +374,7 @@ const NordicBetAnmeldelse = () => {
 
         {/* Betsson Group dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Betsson Group – koncernen bag NordicBet dissekeret</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="bar-chart3" className="inline h-7 w-7 text-primary mr-2" />Betsson Group – koncernen bag NordicBet dissekeret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå NordicBets langsigtede stabilitet og produktretning er det nødvendigt at forstå Betsson Group PLC – koncernen, der ejer og driver platformen. Grundlagt i 1963 (!) som et traditionelt væddemålsselskab i Sverige og børsnoteret (nu del af FDJ United) (ticker: BETS B) siden 2006, er Betsson Group en af Europas ældste online gambling-koncerner. Med en markedsværdi på over 30 milliarder SEK og en årlig omsætning, der overstiger 9 milliarder SEK, er det en finansiel tungvægter med ressourcer, der langt overstiger de fleste operatører på det danske marked.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Betsson Groups portefølje inkluderer ud over NordicBet også Betsson (internationalt brand), Betsafe (sportsfokuseret) og CasinoEuro. Denne multi-brand strategi giver koncernen mulighed for at målrette forskellige segmenter uden at udvande hvert brands identitet. NordicBet er specifikt positioneret som det nordiske brand – og den strategi er ikke tilfældig. Betsson Groups interne data viser, at spillere, der tiltrækkes af regional identitet, har højere lifetime value og lavere churn-rate end spillere hos de generiske internationale brands.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Finansielt set er Betsson Group en af de mest profitable operatører i Europa med en EBITDA-margin på over 20%. Det er relevant for danske spillere af én simpel grund: rentable operatører lukker ikke pludseligt, reducerer ikke spiludvalg og skærer ikke i kundeservice. Betsson Groups finansielle robusthed giver NordicBet en stabilitet, som mindre operatører ikke kan matche. Til sammenligning har flere mindre danske licenshavere lukket eller fusioneret de seneste år – en risiko, der er praktisk talt ikke-eksisterende for NordicBet.</p>
@@ -384,10 +385,10 @@ const NordicBetAnmeldelse = () => {
 
         {/* Årlig EV for den alsidige NordicBet-spiller */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårs-EV – den samlede NordicBet-værdi beregnet</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Helårs-EV – den samlede NordicBet-værdi beregnet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">NordicBets unikke proposition er kombinationen af sport og casino under ét brand med nordisk fokus. For at beregne den reelle årlige værdi inkluderer vi EV fra begge produkter:</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig samlet EV – sport + casino spilleren</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />Årlig samlet EV – sport + casino spilleren</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Sportsvæddemål (8.000 kr./måned omsætning)</p>

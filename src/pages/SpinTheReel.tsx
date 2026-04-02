@@ -13,7 +13,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { LogIn, Shield } from "lucide-react";
+import { LogIn } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -155,7 +156,7 @@ export default function SpinTheReel() {
       return (
         <div className="py-20 space-y-4 text-center">
           <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-            <Shield className="h-8 w-8 text-muted-foreground" />
+            <MenuIcon iconName="shield" className="h-8 w-8 text-muted-foreground" />
           </div>
           <p className="text-lg text-muted-foreground">
             Du skal tilknytte dit Twitch ID for at spinne

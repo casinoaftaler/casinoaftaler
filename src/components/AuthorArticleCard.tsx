@@ -3,19 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { getCategoryVisual } from "@/lib/categoryThumbnails";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { getHeroImageForPath } from "@/lib/heroImageMap";
-import {
-  BookOpen,
-  Gamepad2,
-  Star,
-  FileText,
-  Users,
-  Wrench,
-  ShieldCheck,
-  Newspaper,
-  CreditCard,
-  Scale,
-  Pen,
-} from "lucide-react";
+import { Wrench, Pen } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   "book-open": BookOpen,

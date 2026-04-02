@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
+import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
 import pokerstarsSpillemaskiner from "@/assets/screenshots/pokerstars-spillemaskiner.webp";
@@ -30,7 +31,7 @@ const PokerStarsAnmeldelse = () => {
       <SEO title="PokerStars Anmeldelse 2026 – Poker & Casino | Casinoaftaler" description="Komplet anmeldelse af PokerStars i Danmark. Verdens største poker-platform med casino og sportsvæddemål. Dansk licens og turneringer." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Poker-Kongen</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="trophy" className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Poker-Kongen</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">PokerStars Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af PokerStars – verdens største poker-platform, nu med fuldt casino og sportsvæddemål i Danmark.</p>
         </div></div>
@@ -43,7 +44,7 @@ const PokerStarsAnmeldelse = () => {
         {/* Hurtige Fakta */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – PokerStars</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – PokerStars</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr. (100%)</p></div>
@@ -142,7 +143,7 @@ const PokerStarsAnmeldelse = () => {
               { title: "Visa / Mastercard", desc: "Standard 1-3 hverdage. Visa Debit typisk hurtigere.", speed: "🕐 1-3 hverdage" },
               { title: "Neteller / Paysafecard", desc: "E-wallets under 24 timer. Paysafecard kun til indbetaling.", speed: "⚡ Under 24 timer" },
             ].map((m) => (
-              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
+              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">PokerStars' udbetalingsprocessering er generelt hurtig og pålidelig. MitID bruges til verifikation ved kontoprettelse, og yderligere KYC er sjældent nødvendig for standardbeløb. For større udbetalinger (over 50.000 kr.) kan der kræves yderligere dokumentation, hvilket er standard praksis under dansk lovgivning.</p>
@@ -166,7 +167,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge PokerStars */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Når PokerStars ikke dækker dine behov</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />Når PokerStars ikke dækker dine behov</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Pure casino-spillere:</strong> Hvis du aldrig rører poker og udelukkende spiller slots og live casino, får du en bedre oplevelse hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>. PokerStars' casino er godt, men det er designet som et supplement til poker – interface, navigation og bonus-struktur afspejler det.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sportsbet-fokuserede spillere:</strong> PokerStars Sports er funktionelt men langt bag <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> på live-betting, odds-dybde og features. Bruger du primært sportsvæddemål, er PokerStars det forkerte startsted.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Poker-nybegyndere uden villighed til at lære:</strong> PokerStars' spillerpool er den mest kompetitive i verden. Selv på de laveste stakes er der regulars med tusindvis af timers erfaring. Hvis du vil lære poker, er PokerStars det bedste sted at gøre det – men forvent at betale "tuition" i form af tabs, mens du udvikler dine færdigheder. Spillere der ønsker blødere spil kan overveje partypoker eller 888poker.</p>
@@ -210,7 +211,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Flutter Enterprise Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Flutter Entertainment – den globale gigant bag PokerStars</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />Flutter Entertainment – den globale gigant bag PokerStars</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå PokerStars' position i 2026 er det nødvendigt at forstå moderselskabet Flutter Entertainment. Flutter er verdens største online gambling-selskab med en markedsværdi over $35 mia. og drift i 100+ jurisdiktioner. Porteføljen inkluderer FanDuel (USA's markedsleder i sportsvæddemål), Paddy Power, Betfair, Sportsbet (Australien), Sisal (Italien) og PokerStars. Til sammen håndterer Flutter over $200 mia. i årligt væddemålsvolumen – et tal der overstiger mange nationale BNP'er.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Flutters børsnotering på London Stock Exchange (FLTR.L) og NYSE (FLUT) medfører streng regulering fra både britiske og amerikanske finansmyndigheder. Kvartalsregnskaber revideres af uafhængige revisorer, executive compensation offentliggøres fuldt ud, og selskabet er underlagt SOX-compliance (Sarbanes-Oxley Act) i USA. For den danske poker-spiller er den praktiske konsekvens enkel: dine penge er sikrere på PokerStars end hos nogen anden poker-operatør i verden. Flutter kan ikke skjule problemer – alt er offentligt tilgængeligt i SEC-filings og LSE-rapporter.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Flutters strategi for PokerStars har tre dimensioner: (1) <strong>Poker-kernens bevarelse:</strong> PokerStars forbliver verdens største poker-netværk med fortsatte investeringer i software, turneringer og Game Integrity. Flutter betragter poker som et "heritage brand" med uovertruffen loyalitet. (2) <strong>Casino-diversificering:</strong> PokerStars Casino er vokset 40%+ årligt de seneste tre år med tilføjelse af nye spiludbydere og eksklusive titler. Målet er, at casino-revenue skal udgøre 50% af PokerStars' samlede omsætning inden 2028. (3) <strong>Cross-selling:</strong> PokerStars' unikke position som den eneste platform med poker, casino OG sport under ét tag muliggør cross-selling, der er umulig for pure-play konkurrenter.</p>
@@ -221,7 +222,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Poker-Specifik EV Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />EV-beregning: Tre spillerprofiler på PokerStars gennemregnet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />EV-beregning: Tre spillerprofiler på PokerStars gennemregnet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For poker-spillere er Expected Value (EV) beregningen fundamentalt anderledes end for casino-spillere: du spiller mod andre mennesker, ikke mod et house edge. Din EV afhænger af din skill-edge over feltet minus den rake, PokerStars opkræver. Vi analyserer tre realistiske spillerprofiler for danske PokerStars-brugere og beregner deres månedlige EV.</p>
           
           <Card className="border-border bg-card mb-6">
@@ -281,7 +282,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Software Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Award className="h-7 w-7 text-primary" />Software-teknologien – derfor er PokerStars stadig branchens benchmark</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="award" className="h-7 w-7 text-primary" />Software-teknologien – derfor er PokerStars stadig branchens benchmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' software-overlegenhed er ikke tilfældig – den er resultatet af 25 års kontinuerlig udvikling og en R&D-afdeling med 200+ ingeniører. Desktop-klienten er skrevet i C++ for maksimal performance og understøtter multi-tabling op til 24 borde med individuelle eller tilede layouts. Hvert bord kan konfigureres separat med filtstørrelser, chipdesigns, farvetemaer og kortdesigns. Det er en grad af tilpasning, som ingen konkurrent kommer i nærheden af.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Hand replayer-funktionen lader dig genafspille hænder i et filmisk format med automatisk pot-size beregning, equity-visning og showdown-analyse. Noteringssystemet er branchens mest avancerede: du kan tilføje farvekodede etiketter til modstandere (f.eks. "tight-passive fish", "loose-aggressive reg"), skrive detaljerede noter og synkronisere dem på tværs af desktop og mobil. Disse noter bevares permanent og er tilgængelige, næste gang du møder spilleren – uanset om det er måneder eller år senere.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">HUD-integration (Heads-Up Display) med PokerTracker 4 og Hold'em Manager 3 er fuldt understøttet. En HUD viser real-time statistikker for dine modstandere direkte på bordet: VPIP (voluntarily put money in pot), PFR (pre-flop raise), 3-bet percentage, fold to c-bet og hundredvis af andre stats. For seriøse spillere er HUD-data afgørende for optimal beslutningstagning, og PokerStars er en af de få platforme, der stadig tillader det – GGPoker og partypoker har delvist begrænset eller forbudt ekstern HUD-software.</p>
@@ -305,8 +306,8 @@ const PokerStarsAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Svagheder inkluderer det nedgraderede Stars Rewards-program, relativt høj rake og et sportsprodukt der ikke kan matche specialisterne. Men samlet set er PokerStars 4.3/5 – en score der primært afspejler den uovertrufne poker-oplevelse, med fradrag for de områder hvor platformen endnu ikke har nået sit fulde potentiale. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["pokerstars"].scores} total={CASINO_SCORES["pokerstars"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

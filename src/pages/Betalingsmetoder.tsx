@@ -29,25 +29,8 @@ import revolutLogo from "@/assets/payments/revolut.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  CreditCard,
-  ShieldCheck,
-  Zap,
-  Wallet,
-  Banknote,
-  CheckCircle2,
-  AlertTriangle,
-  Star,
-  ArrowRight,
-  Clock,
-  Users,
-  Building2,
-  Smartphone,
-  Receipt,
-  TrendingUp,
-  Target,
-  Award,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /* ─────────────────────────────────────────────
    Central comparison table data
@@ -225,7 +208,7 @@ const Betalingsmetoder = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <CreditCard className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="credit-card" className="mr-1.5 h-3.5 w-3.5" />
               Hastighed, bonus & sikkerhed
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -283,7 +266,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Den centrale sammenligning – alle 10 metoder i overblik
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -331,7 +314,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Building2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="building2" className="h-7 w-7 text-primary" />
             Sådan fungerer betalinger på danske licenserede casinoer
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -342,7 +325,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   MitID – den obligatoriske identitetsverifikation
                 </CardTitle>
               </CardHeader>
@@ -355,7 +338,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <AlertTriangle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-primary" />
                   ROFUS – selvudelukkelses-registret
                 </CardTitle>
               </CardHeader>
@@ -369,7 +352,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Receipt className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="receipt" className="h-4 w-4 text-primary" />
                   AML-compliance og transaktionsmonitorering
                 </CardTitle>
               </CardHeader>
@@ -382,7 +365,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Banknote className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="banknote" className="h-4 w-4 text-primary" />
                   Skat på gevinster – betalingsmetoden er irrelevant
                 </CardTitle>
               </CardHeader>
@@ -402,28 +385,28 @@ const Betalingsmetoder = () => {
           </p>
           <div className="space-y-3 mb-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h4 className="font-semibold">1. Intern compliance-gennemgang</h4>
                 <p className="text-sm text-muted-foreground">Casinoets AML-afdeling gennemgår store udbetalinger manuelt. Denne proces tager typisk 15 minutter til 4 timer og er uafhængig af betalingsmetode. Første udbetaling tager altid længere end efterfølgende.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h4 className="font-semibold">2. Betalingsnetværkets processeringstid</h4>
                 <p className="text-sm text-muted-foreground">Open Banking (Trustly, Zimpler) processerer i realtid. Kortnetværk (Visa, Mastercard) kører batches 1-3 gange dagligt. Traditionelle bankoverførsler (Sumclearing) processerer 2-3 gange dagligt med cutoff-tider. Det er den primære årsag til hastighedsforskellene.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h4 className="font-semibold">3. Weekender og helligdage</h4>
                 <p className="text-sm text-muted-foreground">Bankbaserede metoder påvirkes af bankernes åbningstider. En udbetaling anmodet fredag aften kan først processeres mandag morgen for traditionelle overførsler. Open Banking og e-wallets opererer 24/7, men den endelige kreditering til bankkontoen afhænger af modtagerbanken.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h4 className="font-semibold">4. Beløbsgrænser og automatisk godkendelse</h4>
                 <p className="text-sm text-muted-foreground">De fleste casinoer har en grænse for automatisk godkendelse (typisk 10.000-25.000 kr.). Udbetalinger under grænsen processeres automatisk; udbetalinger over kræver manuel godkendelse af en supervisor, hvilket tilføjer 1-8 timers ekstra behandlingstid.</p>
@@ -447,7 +430,7 @@ const Betalingsmetoder = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Building2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="building2" className="h-5 w-5 text-primary" />
                   🏦 Bankbaserede metoder – Trustly, Zimpler & traditionel bankoverførsel
                 </CardTitle>
               </CardHeader>
@@ -469,7 +452,7 @@ const Betalingsmetoder = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   💳 Kortbetaling – Visa, Mastercard & Revolut
                 </CardTitle>
               </CardHeader>
@@ -490,7 +473,7 @@ const Betalingsmetoder = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Wallet className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="wallet" className="h-5 w-5 text-primary" />
                   👛 E-wallets – PayPal & Skrill
                 </CardTitle>
               </CardHeader>
@@ -511,7 +494,7 @@ const Betalingsmetoder = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Smartphone className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
                   📱 Mobile løsninger – MobilePay & Apple Pay
                 </CardTitle>
               </CardHeader>
@@ -534,7 +517,7 @@ const Betalingsmetoder = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Receipt className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="receipt" className="h-5 w-5 text-primary" />
                   🧾 Voucher-systemer – Paysafecard
                 </CardTitle>
               </CardHeader>
@@ -561,7 +544,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Hvilken betalingsmetode passer til din spillestil?
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -572,7 +555,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Zap className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="zap" className="h-4 w-4 text-primary" />
                   "Jeg vil have mine gevinster hurtigst muligt"
                 </CardTitle>
               </CardHeader>
@@ -585,7 +568,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Star className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="star" className="h-4 w-4 text-primary" />
                   "Jeg vil maksimere min velkomstbonus"
                 </CardTitle>
               </CardHeader>
@@ -597,7 +580,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
                   "Jeg vil holde casino adskilt fra min bank"
                 </CardTitle>
               </CardHeader>
@@ -609,7 +592,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Banknote className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="banknote" className="h-4 w-4 text-primary" />
                   "Jeg vil undgå alle gebyrer"
                 </CardTitle>
               </CardHeader>
@@ -621,7 +604,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary" />
                   "Jeg spiller med store beløb (high-roller)"
                 </CardTitle>
               </CardHeader>
@@ -633,7 +616,7 @@ const Betalingsmetoder = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Users className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="users" className="h-4 w-4 text-primary" />
                   "Jeg er casual spiller og vil have det nemmest"
                 </CardTitle>
               </CardHeader>
@@ -652,7 +635,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Clock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="clock" className="h-7 w-7 text-primary" />
             Udbetalingsanalyse – hvorfor hastigheden varierer med op til 500%
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -661,25 +644,25 @@ const Betalingsmetoder = () => {
 
           <div className="space-y-4 mb-6">
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Hurtigste: Trustly & Zimpler (0–24 timer til bankkonto)</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary" /> Hurtigste: Trustly & Zimpler (0–24 timer til bankkonto)</h3>
               <p className="text-sm text-muted-foreground">
                 Open Banking-løsninger eliminerer mellemmænd fuldstændigt. Når casinoet godkender udbetalingen, initierer Trustly/Zimpler en API-kald direkte til din banks system via PSD2-forbindelsen. Transaktionen valideres med MitID, og pengene krediteres din konto. I vores test med Danske Bank modtog vi Trustly-udbetalinger inden for 6 timer og 42 minutter gennemsnitligt. Nordea-brugere oplevede lidt længere tider (8-10 timer) grundet bankens interne processeringssekvenser. Weekend-udbetalinger kan forsinkes til mandag morgen hos banker, der ikke understøtter instant-processering uden for åbningstid.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Wallet className="h-4 w-4 text-primary" /> Hurtigt til wallet: Skrill & PayPal (0–24 timer til wallet)</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="wallet" className="h-4 w-4 text-primary" /> Hurtigt til wallet: Skrill & PayPal (0–24 timer til wallet)</h3>
               <p className="text-sm text-muted-foreground">
                 E-wallets modtager udbetalinger direkte på wallet-saldoen, som derefter kan overføres til bankkontoen. Skrill var hurtigst i vores test med 2 timer og 45 minutter til wallet-saldo. PayPal målte 4 timer og 18 minutter. Den ekstra overførsel fra wallet til bank tager 1-3 hverdage for Skrill og 1-2 hverdage for PayPal. Netto-effekten er, at pengene er tilgængelige på din wallet hurtigt, men den fulde kæde til bankkonto er sammenlignelig med kortudbetalinger.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><CreditCard className="h-4 w-4 text-primary" /> Middel: Visa/Mastercard & Revolut (1–3 hverdage)</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="credit-card" className="h-4 w-4 text-primary" /> Middel: Visa/Mastercard & Revolut (1–3 hverdage)</h3>
               <p className="text-sm text-muted-foreground">
                 Kortudbetalinger processeres som refunderinger via kortnetværket. Visa og Mastercard kører batches 1-3 gange dagligt, og din bank krediterer typisk beløbet inden for 1-3 hverdage efter processering. Visa Direct (push-betaling) kan reducere dette til timer, men ikke alle casinoer understøtter det endnu. Revolut-udbetalinger følger samme mønster, da betalingen teknisk håndteres via Visa/Mastercard-netværket.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-semibold mb-2 flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> Langsomst: Bankoverførsel (2–5 hverdage)</h3>
+              <h3 className="font-semibold mb-2 flex items-center gap-2"><MenuIcon iconName="building2" className="h-4 w-4 text-primary" /> Langsomst: Bankoverførsel (2–5 hverdage)</h3>
               <p className="text-sm text-muted-foreground">
                 Traditionelle bankoverførsler via Sumclearing processeres i batches med faste cutoff-tider. En udbetaling anmodet kl. 14:00 kan først indgå i næste dags batch, og modtagerbanken krediterer typisk 1-2 hverdage efter modtagelse. SEPA Instant (SCT Inst) kan reducere dette til under 10 sekunder, men protokollen er endnu ikke universelt implementeret mellem alle danske banker og casinoers betalingsudbydere. Fra 2026 kræver EU-mandatet, at alle SEPA-banker understøtter instant-overførsler, hvilket vil revolutionere bankoverførsler som casinobetaling.
               </p>
@@ -696,7 +679,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             Bonuskvalificering – det skjulte strategiske element i dit betalingsvalg
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -755,7 +738,7 @@ const Betalingsmetoder = () => {
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Sikkerhedsarkitekturen bag danske casino-betalinger
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -764,28 +747,28 @@ const Betalingsmetoder = () => {
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Lag 1: Transportkryptering (TLS 1.3)</h3>
                 <p className="text-sm text-muted-foreground">Alle transaktioner krypteres med TLS 1.3 under overførsel. Det betyder, at ingen mellemmand – hverken din internetudbyder, casinoets hosting-partner eller en potentiel angriber – kan læse dine betalingsdata under transit. Alle danske licenserede casinoer er forpligtet til at anvende minimum 256-bit AES-kryptering.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Lag 2: Autentificering (MitID / 3DS / biometri)</h3>
                 <p className="text-sm text-muted-foreground">Afhængigt af betalingsmetode autentificeres transaktionen via MitID (bankbaserede), 3D Secure 2.0 (kort), biometri (Apple Pay, MobilePay) eller wallet-login (PayPal, Skrill). Fælles for alle er, at de kræver aktiv godkendelse fra kontohaveren – ingen betaling kan gennemføres uden.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Lag 3: Transaktionsmonitorering (AML)</h3>
                 <p className="text-sm text-muted-foreground">Alle danske casinoer monitorerer transaktionsmønstre via automatiserede systemer, der flagger mistænkelig aktivitet: pludselige ændringer i indbetalingsmønstre, uforholdsmæssigt store transaktioner eller hyppige metode-skift. Flaggede transaktioner gennemgår manuel review af compliance-afdelingen.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Lag 4: Spillerbeskyttelse (ROFUS + grænser)</h3>
                 <p className="text-sm text-muted-foreground">Det øverste beskyttelseslag er adfærdsmæssigt: indbetalingsgrænser (daglige, ugentlige, månedlige), session-reminders, tabsgrænser og selvudelukkelse via{" "}
@@ -797,7 +780,7 @@ const Betalingsmetoder = () => {
           <Card className="border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Ansvarligt spil og betalingsvalg
               </CardTitle>
             </CardHeader>
@@ -862,7 +845,7 @@ const Betalingsmetoder = () => {
           <Card className="border-border bg-card border-l-4 border-l-destructive">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <AlertTriangle className="h-6 w-6 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive" />
                 Kryptovalutaer – hvorfor de er forbudte i det danske casinomiljø
               </CardTitle>
             </CardHeader>

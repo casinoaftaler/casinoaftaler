@@ -3,7 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
 import { useScrollDepthBonus } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak } from "@/hooks/useMissionStreak";
-import { Check, Gift, ArrowDown, ArrowRight, Flame, Zap, Trophy } from "lucide-react";
+import { Check, ArrowDown, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const MILESTONES = [
   { at: 90, text: "Godt i gang! 💪", icon: Flame },
@@ -293,7 +294,7 @@ export function DwellRewardBadge() {
           ) : (
             <>
               <div className="flex items-center gap-2">
-                <Gift className={`h-4.5 w-4.5 transition-colors duration-300 ${isNearEnd ? "text-orange-500" : "text-amber-500"}`} />
+                <MenuIcon iconName="gift" className="h-5 w-5" />
                 <span className="text-lg font-bold text-foreground">300 credits</span>
               </div>
               {/* Scroll-depth hints during active timer */}

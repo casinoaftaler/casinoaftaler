@@ -16,11 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, Sparkles, Zap, AlertTriangle, TrendingUp,
-  Scale, Eye, Layers, Clock, Users, CheckCircle, XCircle, Coins, Brain,
-  Gamepad2, BookOpen, Timer, Shield, Calculator, Flame, Activity, LineChart,
-} from "lucide-react";
+import { Timer, Activity, LineChart } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/europaeisk-roulette-hero.jpg";
 
@@ -90,7 +87,7 @@ export default function EuropaeiskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Target className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
+              <MenuIcon iconName="target" className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Roulette – Single Zero Hjulet der Halverer Casinoets Fordel
@@ -114,7 +111,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 1 – Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Hvad er Europæisk Roulette? Den Matematisk Optimale Standard
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -130,7 +127,7 @@ export default function EuropaeiskRouletteGuide() {
           <Card className="mb-6 border-primary/30 bg-primary/5">
             <CardContent className="pt-6">
               <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                 Nøgletal: Europæisk Roulette
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-muted-foreground">
@@ -155,7 +152,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 2 – House Edge Matematik */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             House Edge Matematik: Hvorfor 2,70 % Gælder for Alle Væddemål
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -214,7 +211,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 3 – Call Bets / Sector Betting */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Call Bets og Sector Betting: Voisins, Tiers og Orphelins
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -271,7 +268,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 4 – Simulering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             10.000-Spins Simulering: Europæisk Roulette i Praksis
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -308,7 +305,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 5 – Hjulets Fysik og Bias */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Sparkles className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />
             Hjulets Fysik: Kan Man Udnytte Mekaniske Bias?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -324,7 +321,7 @@ export default function EuropaeiskRouletteGuide() {
           <Card className="mb-6 border-border bg-card">
             <CardContent className="pt-6">
               <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                 Realistisk Vurdering: Bias-Jagt i 2026
               </h3>
               <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
@@ -354,7 +351,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 6 – Strategier */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Indsatsstrategier: Hvad Dataen Fortæller Os
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -399,7 +396,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 7 – Live vs. RNG */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Live Dealer vs. RNG: Det Komplette Sammenligning
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -410,7 +407,7 @@ export default function EuropaeiskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   RNG Europæisk Roulette
                 </CardTitle>
               </CardHeader>
@@ -428,7 +425,7 @@ export default function EuropaeiskRouletteGuide() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Dealer Europæisk Roulette
                 </CardTitle>
               </CardHeader>
@@ -453,7 +450,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 8 – Historisk Oprindelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Historisk Oprindelse: Fra Bad Homburg til Det Digitale Bord
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -544,7 +541,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 10 – Bonusomsætning med Roulette */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Bonusomsætning med Europæisk Roulette: EV-Analyse
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -583,7 +580,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 11 – Psykologiske Overvejelser */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Psykologiske Overvejelser: Disciplin ved Roulette-Bordet
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -603,7 +600,7 @@ export default function EuropaeiskRouletteGuide() {
             <Card className="border-primary/30">
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Sunde Spillevaner
                 </h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -619,7 +616,7 @@ export default function EuropaeiskRouletteGuide() {
             <Card className="border-destructive/30">
               <CardContent className="pt-6">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Advarselstegn
                 </h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -638,7 +635,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 12 – Bankroll Management */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Bankroll Management: Optimer Din Spilletid
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -647,10 +644,10 @@ export default function EuropaeiskRouletteGuide() {
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
-              { title: "2 % Indsatsregel", icon: <ShieldCheck className="h-5 w-5 text-primary" />, desc: "Hold hver indsats under 2 % af din totale bankroll. Med 10.000 kr. er max 200 kr. pr. spin. Dette sikrer 150+ spins selv i worst case. Vores simulering viser, at denne regel reducerer bankerot-risikoen med over 80 % sammenlignet med 5 %-indsatser." },
-              { title: "Session Budget", icon: <Coins className="h-5 w-5 text-primary" />, desc: "Afsæt max 20 % af din totale bankroll til én session. Resten er beskyttet mod tilt og følelsesmæssige beslutninger. Med 10.000 kr. total bankroll spiller du med max 2.000 kr. per session." },
+              { title: "2 % Indsatsregel", icon: <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />, desc: "Hold hver indsats under 2 % af din totale bankroll. Med 10.000 kr. er max 200 kr. pr. spin. Dette sikrer 150+ spins selv i worst case. Vores simulering viser, at denne regel reducerer bankerot-risikoen med over 80 % sammenlignet med 5 %-indsatser." },
+              { title: "Session Budget", icon: <MenuIcon iconName="coins" className="h-5 w-5 text-primary" />, desc: "Afsæt max 20 % af din totale bankroll til én session. Resten er beskyttet mod tilt og følelsesmæssige beslutninger. Med 10.000 kr. total bankroll spiller du med max 2.000 kr. per session." },
               { title: "Tidslimit: 60 Min.", icon: <Timer className="h-5 w-5 text-primary" />, desc: "Europæisk roulettes lavere house edge giver længere sessions. Men sæt stadig et tidslimit – træthed reducerer beslutningskvalitet. I live roulette er 60 minutter ca. 30 spins – en overkommelig session." },
-              { title: "Take Profit: 40 %", icon: <TrendingUp className="h-5 w-5 text-primary" />, desc: "Hvis du er 40 % foran din session-bankroll, overvej at stoppe. Varians-drevet profit skal beskyttes, da den matematisk vil forsvinde over tid. Med 2.000 kr. session-budget: stop ved +800 kr." },
+              { title: "Take Profit: 40 %", icon: <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />, desc: "Hvis du er 40 % foran din session-bankroll, overvej at stoppe. Varians-drevet profit skal beskyttes, da den matematisk vil forsvinde over tid. Med 2.000 kr. session-budget: stop ved +800 kr." },
             ].map((rule) => (
               <Card key={rule.title}>
                 <CardContent className="pt-6">
@@ -672,7 +669,7 @@ export default function EuropaeiskRouletteGuide() {
         {/* SECTION 9 – Konklusion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Konklusion: Europæisk Roulette er Den Rationelle Standard
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

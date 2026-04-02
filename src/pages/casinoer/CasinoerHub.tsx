@@ -21,12 +21,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { type ReactNode } from "react";
-import {
-  Zap, ShieldCheck, Monitor, Globe, Calculator, Smartphone,
-  ChevronRight, Trophy, Star, Layers, BarChart3, CreditCard,
-  Clock, Scale, Shield, Target, TrendingUp, AlertTriangle,
-  BookOpen, Users, Landmark, Sparkles, Activity, Eye,
-} from "lucide-react";
+import { ChevronRight, Activity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -184,7 +180,7 @@ export default function CasinoerHub() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Layers className="mr-1.5 h-3.5 w-3.5" /> Casino-kategorier
+              <MenuIcon iconName="layers" className="mr-1.5 h-3.5 w-3.5" /> Casino-kategorier
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Alle Casinoer – Den Komplette Guide til Online Casino i Danmark
@@ -206,7 +202,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 1: Introduktion ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Det Danske Casino-Landskab i 2026: En Markedsanalyse
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -227,7 +223,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 2: Alle Casino-Kategorier (cards) ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Alle Casino-Kategorier: Dybdegående Guides
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -265,7 +261,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 3: Licens & Sikkerhed ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Licens og Sikkerhed: Fundamentet for Ethvert Casinovalg
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -281,7 +277,7 @@ export default function CasinoerHub() {
           </p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader><CardTitle className="text-base flex items-center gap-2"><Shield className="h-4 w-4 text-primary" /> Hvad en dansk licens garanterer</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="shield" className="h-4 w-4 text-primary" /> Hvad en dansk licens garanterer</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div className="space-y-2">
@@ -309,7 +305,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 4: Udbetalingshastighed ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Clock className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
             Udbetalingshastighed: Den Mest Undervurderede Kvalitetsindikator
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -320,7 +316,7 @@ export default function CasinoerHub() {
           </p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader><CardTitle className="text-base flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Udbetalingstider efter betalingsmetode</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary" /> Udbetalingstider efter betalingsmetode</CardTitle></CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
@@ -358,7 +354,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 5: RTP & House Edge ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             RTP og House Edge: Matematikken Bag Dit Casinovalg
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -369,7 +365,7 @@ export default function CasinoerHub() {
           </p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader><CardTitle className="text-base flex items-center gap-2"><TrendingUp className="h-4 w-4 text-primary" /> RTP-sammenligning: Spilkategorier</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-4 w-4 text-primary" /> RTP-sammenligning: Spilkategorier</CardTitle></CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
@@ -410,7 +406,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 6: Bonusser & Omsætningskrav ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Casino Bonusser: Hvad er Reelt Værd?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -424,7 +420,7 @@ export default function CasinoerHub() {
           </p>
 
           <Card className="border-border bg-card mb-6">
-            <CardHeader><CardTitle className="text-base flex items-center gap-2"><Scale className="h-4 w-4 text-primary" /> Bonustyper: EV-sammenligning (1.000 kr. bonus)</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName="scale" className="h-4 w-4 text-primary" /> Bonustyper: EV-sammenligning (1.000 kr. bonus)</CardTitle></CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
@@ -461,7 +457,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 7: Betalingsmetoder ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <CreditCard className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
             Betalingsmetoder på Danske Casinoer
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -485,7 +481,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 8: Mobil Casino ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Smartphone className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
             Mobil Casino: Spil Overalt med Fuld Funktionalitet
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -502,7 +498,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 9: Casino-typer Sammenligning ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Etablerede vs. Nye Casinoer: En Strukturel Sammenligning
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -550,7 +546,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 10: Spiltyper ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Spiltyper: Fra Slots til Live Casino
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -578,7 +574,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 11: Spiludviklere ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Spiludviklere: Hvem Står Bag Spillene?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -628,7 +624,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 12: Ansvarligt Spil ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Ansvarligt Spil: Værktøjer og Ressourcer
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -652,7 +648,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 13: Fremtiden ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Casino-Trends i 2026: VR, AI og Instant Payments
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -669,7 +665,7 @@ export default function CasinoerHub() {
         {/* ── SECTION 14: Hvordan vi tester ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Vores Testmetode: Sådan Evaluerer Vi Casinoer
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { usePublishedNewsByAuthor } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { Badge } from "@/components/ui/badge";
-import { Newspaper, ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface AuthorNewsSectionProps {
   authorId: string;
@@ -33,7 +34,7 @@ export function AuthorNewsSection({ authorId, authorName }: AuthorNewsSectionPro
     <section className="mb-12">
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-3xl font-bold flex items-center gap-2">
-          <Newspaper className="h-7 w-7 text-primary" />
+          <MenuIcon iconName="newspaper" className="h-7 w-7 text-primary" />
           Nyheder af {authorName}
         </h2>
         {totalNewsPages > 1 && (
@@ -70,7 +71,7 @@ export function AuthorNewsSection({ authorId, authorName }: AuthorNewsSectionPro
                 <Badge variant="secondary" className="text-xs">Nyhed</Badge>
                 {article.published_at && (
                   <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
+                    <MenuIcon iconName="clock" className="h-3 w-3" />
                     {new Date(article.published_at).toLocaleDateString("da-DK")}
                   </span>
                 )}

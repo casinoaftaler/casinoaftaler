@@ -3,7 +3,8 @@ import { SEO } from "@/components/SEO";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingBag, Coins, LogIn, Loader2, ExternalLink, Sparkles, User, CalendarDays, BookOpen, Gift, Star, TrendingUp, Package } from "lucide-react";
+import { LogIn, Loader2, Package } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
@@ -36,7 +37,7 @@ function ShopHero() {
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4">
-            <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+            <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
             Community Butik
           </Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Butik</h1>
@@ -62,7 +63,7 @@ function PointsCard() {
         <CardContent className="p-5">
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <Coins className="h-7 w-7 text-primary" />
+              <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             </div>
             <div className="flex-1 text-center sm:text-left">
               <h3 className="font-bold text-foreground">Se dine point</h3>
@@ -86,7 +87,7 @@ function PointsCard() {
     return (
       <Card className="border-muted bg-muted/30">
         <CardContent className="flex items-center gap-3 p-4">
-          <Coins className="h-5 w-5 text-muted-foreground" />
+          <MenuIcon iconName="coins" className="h-5 w-5 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">Log ind med Twitch for at se dine point</p>
         </CardContent>
       </Card>
@@ -109,7 +110,7 @@ function PointsCard() {
       <CardContent className="p-5">
         <div className="flex items-center gap-4">
           <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-            <Coins className="h-7 w-7 text-white" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-white" />
           </div>
           <div className="flex-1">
             <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Din balance</p>
@@ -124,7 +125,7 @@ function PointsCard() {
               rel="noopener noreferrer"
               className="shrink-0 text-xs font-medium text-primary hover:underline flex items-center gap-1"
             >
-              <ExternalLink className="h-3.5 w-3.5" />
+              <MenuIcon iconName="external-link" className="h-3.5 w-3.5" />
               Twitch
             </a>
           )}
@@ -140,17 +141,17 @@ function HowToEarnSection() {
 
   const steps = [
     {
-      icon: <TrendingUp className="h-5 w-5" />,
+      icon: <MenuIcon iconName="trending-up" className="h-5 w-5" />,
       title: "Se streams",
       description: "Du optjener automatisk point mens du ser live streams på Twitch.",
     },
     {
-      icon: <Gift className="h-5 w-5" />,
+      icon: <MenuIcon iconName="gift" className="h-5 w-5" />,
       title: "Deltag i raffles",
       description: "Vind ekstra point ved at deltage i raffles under streams.",
     },
     {
-      icon: <Star className="h-5 w-5" />,
+      icon: <MenuIcon iconName="star" className="h-5 w-5" />,
       title: "Vær aktiv",
       description: "Engagér dig i chatten og community for at optjene bonus-point.",
     },
@@ -159,7 +160,7 @@ function HowToEarnSection() {
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-        <Sparkles className="h-5 w-5 text-primary" />
+        <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
         Sådan optjener du point
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -183,7 +184,7 @@ function HowToEarnSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
-            <ExternalLink className="h-3.5 w-3.5" />
+            <MenuIcon iconName="external-link" className="h-3.5 w-3.5" />
             Gå til Twitch-kanalen og begynd at optjene point
           </a>
         </div>
@@ -216,15 +217,15 @@ export default function Shop() {
         {/* Meta info bar */}
         <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
-            <User className="h-4 w-4" />
+            <MenuIcon iconName="user" className="h-4 w-4" />
             <span>Skrevet af: <span className="font-medium text-foreground">Casinoaftaler</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
+            <MenuIcon iconName="calendar-days" className="h-4 w-4" />
             <span>Siden opdateret: <span className="font-medium text-foreground">15-02-2026</span></span>
           </div>
           <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
+            <MenuIcon iconName="book-open" className="h-4 w-4" />
             <span>Læsetid: <span className="font-medium text-foreground">2 Min.</span></span>
           </div>
         </div>
@@ -279,7 +280,7 @@ export default function Shop() {
               <Card className="border-dashed border-border/60 bg-muted/10">
                 <CardContent className="flex flex-col items-center justify-center py-16 text-muted-foreground">
                   <div className="w-16 h-16 rounded-2xl bg-muted/30 flex items-center justify-center mb-4">
-                    <ShoppingBag className="h-8 w-8" />
+                    <MenuIcon iconName="shopping-bag" className="h-8 w-8" />
                   </div>
                   <p className="text-lg font-medium">Ingen produkter endnu</p>
                   <p className="text-sm mt-1">Der er ingen produkter i butikken lige nu. Kom snart tilbage!</p>

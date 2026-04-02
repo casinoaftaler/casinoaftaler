@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { SafeHelmet } from "@/lib/reactCompat";
 import { Button } from "@/components/ui/button";
-import { Award, BookOpen, ShieldCheck } from "lucide-react";
+import { Award, BookOpen, ShieldCheck } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
 
@@ -73,28 +74,28 @@ export function HeroSection() {
           {/* Social proof bar */}
           <div className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70">
             <span className="flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary" />
               30+ casinoer testet
             </span>
             <span className="flex items-center gap-1.5">
-              <Award className="h-4 w-4 text-accent" />
+              <MenuIcon iconName="award" className="h-4 w-4 text-accent" />
               100% dansk licens
             </span>
             <span className="flex items-center gap-1.5">
-              <BookOpen className="h-4 w-4 text-primary-foreground" />
+              <MenuIcon iconName="book-open" className="h-4 w-4 text-primary-foreground" />
               Opdateret {freshnessLabel}
             </span>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <a href="#top-casinos">
-                  <Award className="mr-2 h-5 w-5" />
+                  <MenuIcon iconName="award" className="mr-2 h-5 w-5" />
                   Se Top 10 Casinoer
                 </a>
               </Button>
               <Button size="lg" variant="outline" asChild className="bg-transparent border-white/30 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 <Link to="/casino-bonus">
-                  <BookOpen className="mr-2 h-5 w-5" />
+                  <MenuIcon iconName="book-open" className="mr-2 h-5 w-5" />
                   Læs Bonus Guide
                 </Link>
               </Button>

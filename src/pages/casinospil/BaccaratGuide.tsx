@@ -16,7 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Brain } from "lucide-react";
+import { Brain } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import baccaratHero from "@/assets/heroes/baccarat-hero.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -104,7 +105,7 @@ const BaccaratGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Matematik · Analyse
+              <MenuIcon iconName="brain" className="mr-1.5 h-3.5 w-3.5" /> Matematik · Analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Baccarat – House Edge, Banker-Fordel og Matematisk Analyse

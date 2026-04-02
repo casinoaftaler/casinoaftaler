@@ -2,7 +2,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Zap, Target, Gauge } from "lucide-react";
+import { Gauge } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface ProfilePlayStyleSectionProps {
   formData: {
@@ -47,7 +48,7 @@ export function ProfilePlayStyleSection({ formData, onChange }: ProfilePlayStyle
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
           Spillestil
         </CardTitle>
         <CardDescription>
@@ -58,7 +59,7 @@ export function ProfilePlayStyleSection({ formData, onChange }: ProfilePlayStyle
         {/* Play Styles (multi-select) */}
         <div className="space-y-4">
           <Label className="flex items-center gap-2">
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="target" className="h-4 w-4 text-muted-foreground" />
             Spillestil (vælg én eller flere)
           </Label>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -89,7 +90,7 @@ export function ProfilePlayStyleSection({ formData, onChange }: ProfilePlayStyle
         {/* Preferred Game Type */}
         <div className="space-y-2">
           <Label htmlFor="preferred_game_type" className="flex items-center gap-2">
-            <Target className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="target" className="h-4 w-4 text-muted-foreground" />
             Foretrukken Spiltype
           </Label>
           <Select

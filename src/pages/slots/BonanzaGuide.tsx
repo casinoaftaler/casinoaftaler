@@ -21,7 +21,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -92,7 +93,7 @@ const BonanzaGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Megaways, kaskader & bonusanalyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Megaways, kaskader & bonusanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bonanza Megaways – Den Komplette Megaways-Analyse</h1>
             <p className="text-lg text-white/80">Big Time Gamings banebrydende Megaways-slot: en matematisk dekonstruktion af den mekanik, der revolutionerede online slots og stadig definerer genren i 2026.</p>
           </div>
@@ -108,7 +109,7 @@ const BonanzaGuide = () => {
         {/* ── Critical First: Revolutionens betydning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Hvorfor Bonanza Megaways Ændrede Alt
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -135,7 +136,7 @@ const BonanzaGuide = () => {
         {/* ── Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Teknisk Profil: Megaways-Matematikken Bag Bonanza
           </h2>
           <Card className="mb-6">
@@ -170,7 +171,7 @@ const BonanzaGuide = () => {
         {/* ── Cascading Wins mekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
             Cascading Wins: Kædegevinst-Mekanikken i Dybden
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -190,7 +191,7 @@ const BonanzaGuide = () => {
         {/* ── Free Spins ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Free Spins: G-O-L-D Trigger og Multiplier-Dynamik
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -212,7 +213,7 @@ const BonanzaGuide = () => {
         {/* ── EV og volatilitetsprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             EV-Analyse og Volatilitetsprofil
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -243,7 +244,7 @@ const BonanzaGuide = () => {
         {/* ── Megaways-sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Bonanza vs. Andre Megaways-Titler: En Komparativ Analyse
           </h2>
           <Card className="mb-6">
@@ -281,7 +282,7 @@ const BonanzaGuide = () => {
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Risikoprofil og Bankroll-Strategi
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -301,7 +302,7 @@ const BonanzaGuide = () => {
         {/* ── Hvem passer spillet til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Hvem Passer Bonanza Megaways Til?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -318,7 +319,7 @@ const BonanzaGuide = () => {
         {/* ── Regulering ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Regulering, Fairness og RTP-Verifikation
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -335,7 +336,7 @@ const BonanzaGuide = () => {
         {/* ── Myter vs. fakta ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Myter vs. Fakta om Bonanza Megaways
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
@@ -355,7 +356,7 @@ const BonanzaGuide = () => {
         {/* ── Konklusion ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Arven fra Megaways-Pioneren
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">

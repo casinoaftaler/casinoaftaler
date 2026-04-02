@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { FileText, Scale, AlertTriangle, Ban, RefreshCw, Gavel, Coins, Gift, CircleDollarSign, ShieldAlert, User, CalendarDays, BookOpen } from "lucide-react";
+import { Ban, Gavel, ShieldAlert } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -72,7 +73,7 @@ const Terms = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />
               Juridisk Information
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -101,7 +102,7 @@ const Terms = () => {
         {/* Section 1 */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <FileText className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="file-text" className="h-8 w-8 text-primary" />
             1. Generelle vilkår
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -133,7 +134,7 @@ const Terms = () => {
             <CardContent className="p-6 md:p-8">
               <div className="flex items-start gap-4">
                 <div className="rounded-lg bg-destructive/10 p-3">
-                  <AlertTriangle className="h-6 w-6 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive" />
                 </div>
                 <div>
                   <h2 className="mb-3 text-2xl font-bold">3. Aldersbegrænsning</h2>
@@ -151,14 +152,14 @@ const Terms = () => {
         {/* Section 4 - Points & Gevinster */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="coins" className="h-8 w-8 text-primary" />
             4. Points & Gevinster
           </h2>
 
           <div className="space-y-6">
             <div>
               <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                 Alderskrav
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -168,7 +169,7 @@ const Terms = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <CircleDollarSign className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="circle-dollar-sign" className="h-5 w-5 text-primary" />
                 Points
               </h3>
               <p className="mb-3 text-muted-foreground leading-relaxed">
@@ -187,7 +188,7 @@ const Terms = () => {
 
             <div>
               <h3 className="mb-2 text-xl font-semibold flex items-center gap-2">
-                <Gift className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                 Gevinster
               </h3>
               <p className="mb-3 text-muted-foreground leading-relaxed">
@@ -262,7 +263,7 @@ const Terms = () => {
         {/* Section 10 */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <RefreshCw className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="h-8 w-8 text-primary" />
             10. Ændringer af vilkår
           </h2>
           <p className="text-muted-foreground leading-relaxed">

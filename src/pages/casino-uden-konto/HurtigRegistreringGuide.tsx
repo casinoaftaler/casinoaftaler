@@ -15,11 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import {
-  Zap, Shield, Clock, ArrowRight, CheckCircle, AlertTriangle,
-  BarChart3, Globe, CreditCard, Users, FileText, TrendingUp, Smartphone,
-  Lock, Eye, Scale, Ban, RefreshCw, Landmark,
-} from "lucide-react";
+import { ArrowRight, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const hurtigRegFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -122,7 +119,7 @@ const HurtigRegistreringGuide = () => {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Clock className="mr-1.5 h-3.5 w-3.5" />Sammenligning</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="clock" className="mr-1.5 h-3.5 w-3.5" />Sammenligning</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Hurtig Registrering – Metodesammenligning</h1>
             <p className="text-lg text-white/80">Pay N Play vs. MitID vs. standard email: Tidstest fra 12 casinoer, scenarieanalyser og EV-model for tidsbesparelse.</p>
           </div>
@@ -141,7 +138,7 @@ const HurtigRegistreringGuide = () => {
         <QuickComparisonTable count={3} title="Hurtig Registrering – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "playkasino"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Tre veje til dit casinospil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />Tre veje til dit casinospil</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             I 2026 tilbyder danske licenserede casinoer tre primære registreringsmetoder: Pay N Play (via{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>
@@ -160,7 +157,7 @@ const HurtigRegistreringGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <BarChart3 className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
               Testparametre i overblik
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -190,7 +187,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 2. SIDE-BY-SIDE COMPARISON */}
         <section className="mb-12" id="sammenligning">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Side-by-side sammenligning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Side-by-side sammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Denne sammenligning dækker alle de vigtigste parametre for at vælge den rigtige registreringsmetode. Scores er baseret på vores tests og objektive kriterier:
           </p>
@@ -278,7 +275,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 3. TIDSTEST-TABEL */}
         <section className="mb-12" id="tidstest">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Clock className="h-7 w-7 text-primary" />Tidstest-data fra 12 casinoer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="clock" className="h-7 w-7 text-primary" />Tidstest-data fra 12 casinoer</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Vi har tidsregistreret hele processen fra landingsside til første spin på 12 danske licenserede casinoer – 4 for hver registreringsmetode. Alle tider er verificeret via skærmoptagelse:
           </p>
@@ -338,7 +335,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 3.5 MOBIL TIDSTEST */}
         <section className="mb-12" id="mobil-tidstest">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Smartphone className="h-7 w-7 text-primary" />Mobil tidstest-data</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />Mobil tidstest-data</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Over 65% af dansk online gambling sker på mobil. Vi gentog derfor hele tidstest-serien på mobil for at vurdere, om hastighedsforskellen opretholdes:
           </p>
@@ -388,7 +385,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 4. EV-MODEL FOR TIDSBESPARELSE */}
         <section className="mb-12" id="ev-model">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />EV-model: Tidsbesparelse over tid</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />EV-model: Tidsbesparelse over tid</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Registrering er en engangsbegivenhed per casino, men den akkumulerede tidsbesparelse over tid er signifikant – især når vi inkluderer den løbende tidsbesparelse ved hurtigere udbetalinger. Vores model beregner den totale tidsbesparelse baseret på to dimensioner: registreringstid og løbende udbetalingstid.
           </p>
@@ -441,7 +438,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 5. SCENARIEANALYSE */}
         <section className="mb-12" id="scenarier">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" />Hvornår er hvilken metode bedst?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" />Hvornår er hvilken metode bedst?</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Baseret på vores test-data har vi identificeret de ideelle brugerprofiler for hver registreringsmetode. Din optimale metode afhænger af dine prioriteter:
           </p>
@@ -497,7 +494,7 @@ const HurtigRegistreringGuide = () => {
                 <CardContent className="space-y-2">
                   {scenario.items.map((item) => (
                     <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                      <MenuIcon iconName="check-circle" className="h-4 w-4 mt-0.5 text-primary shrink-0" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -511,7 +508,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 5.5 DETALJERET PROCESSAMMENLIGNING */}
         <section className="mb-12" id="processammenligning">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><RefreshCw className="h-7 w-7 text-primary" />Detaljeret processammenligning – trin for trin</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />Detaljeret processammenligning – trin for trin</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             For at forstå tidsforskellene i dybden har vi dekomponeret hver registreringsmetode i individuelle trin med tilhørende tidsestimater:
           </p>
@@ -581,7 +578,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 6. UDBETALINGSSAMMENLIGNING */}
         <section className="mb-12" id="udbetalinger">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Udbetalingshastighedssammenligning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />Udbetalingshastighedssammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Udbetalingshastighed er ofte den mest undervurderede faktor ved valg af registreringsmetode. Vores test viser dramatiske forskelle:
           </p>
@@ -624,7 +621,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* 7. SIKKERHEDSSCORERING */}
         <section className="mb-12" id="sikkerhed">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Sikkerhedssammenligning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Sikkerhedssammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Vi har evalueret sikkerhedsaspekterne af alle tre registreringsmetoder på tværs af 8 dimensioner:
           </p>
@@ -672,7 +669,7 @@ const HurtigRegistreringGuide = () => {
 
         {/* CLUSTER NAVIGATION */}
         <section className="mb-12" id="relaterede-guides">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><FileText className="h-7 w-7 text-primary" />Relaterede guides</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />Relaterede guides</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               { to: "/casino-uden-konto", title: "Casino uden Konto – Hub", desc: "Komplet overblik over casino uden kontooprettelse" },

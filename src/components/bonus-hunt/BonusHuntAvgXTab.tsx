@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Users, Trophy, Crown } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 
 const GROUPS = [
@@ -136,7 +137,7 @@ export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onB
         <Card>
           <CardContent className="p-3 text-center">
             <p className="text-xs text-muted-foreground mb-1 flex items-center justify-center gap-1">
-              <Users className="h-3 w-3" /> Deltagere
+              <MenuIcon iconName="users" className="h-3 w-3" /> Deltagere
             </p>
             <p className="text-lg font-bold">{bets.length}</p>
           </CardContent>
@@ -166,7 +167,7 @@ export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onB
       {session?.winning_group && (
         <Card className="border-green-500/50 bg-green-500/5">
           <CardContent className="p-4 text-center">
-            <Trophy className="h-6 w-6 text-green-500 mx-auto mb-1" />
+            <MenuIcon iconName="trophy" className="h-6 w-6 text-green-500 mx-auto mb-1" />
             <p className="text-xs text-muted-foreground mb-1">Vindende Gruppe</p>
             <p className="text-3xl font-bold text-green-500">{session.winning_group}</p>
             <p className="text-sm text-muted-foreground mt-1">

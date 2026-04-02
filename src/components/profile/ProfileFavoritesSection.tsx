@@ -2,7 +2,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Heart, Gamepad2, Building2, Coins } from "lucide-react";
+import { Heart, Gamepad2, Building2, Coins } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface ProfileFavoritesSectionProps {
   formData: {
@@ -28,7 +29,7 @@ export function ProfileFavoritesSection({ formData, onChange }: ProfileFavorites
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Heart className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="heart" className="h-5 w-5 text-primary" />
           Favoritter
         </CardTitle>
         <CardDescription>
@@ -39,7 +40,7 @@ export function ProfileFavoritesSection({ formData, onChange }: ProfileFavorites
         {/* Favorite Slot */}
         <div className="space-y-2">
           <Label htmlFor="favorite_slot" className="flex items-center gap-2">
-            <Gamepad2 className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="gamepad2" className="h-4 w-4 text-muted-foreground" />
             Yndlings Slot
           </Label>
           <Input
@@ -54,7 +55,7 @@ export function ProfileFavoritesSection({ formData, onChange }: ProfileFavorites
         {/* Favorite Provider */}
         <div className="space-y-2">
           <Label htmlFor="favorite_provider" className="flex items-center gap-2">
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="building2" className="h-4 w-4 text-muted-foreground" />
             Yndlings Spiludbyder
           </Label>
           <Input
@@ -69,7 +70,7 @@ export function ProfileFavoritesSection({ formData, onChange }: ProfileFavorites
         {/* Favorite Casino */}
         <div className="space-y-2">
           <Label htmlFor="favorite_casino" className="flex items-center gap-2">
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="building2" className="h-4 w-4 text-muted-foreground" />
             Yndlings Casino
           </Label>
           <Input
@@ -84,7 +85,7 @@ export function ProfileFavoritesSection({ formData, onChange }: ProfileFavorites
         {/* Typical Bet Size */}
         <div className="space-y-2">
           <Label htmlFor="typical_bet_size" className="flex items-center gap-2">
-            <Coins className="h-4 w-4 text-muted-foreground" />
+            <MenuIcon iconName="coins" className="h-4 w-4 text-muted-foreground" />
             Typisk Indsats pr. Spin
           </Label>
           <Select

@@ -20,7 +20,8 @@ import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
-import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones, TrendingUp, BarChart3 } from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import casinostuenForside from "@/assets/screenshots/casinostuen-forside.webp";
@@ -52,7 +53,7 @@ const CasinostuenAnmeldelse = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />3.6 / 5 – Dansk Hygge</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />3.6 / 5 – Dansk Hygge</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Casinostuen Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af Casinostuen – den hyggelige danske casinoplatform med dansk licens og lokal atmosfære.</p>
         </div></div>
@@ -77,7 +78,7 @@ const CasinostuenAnmeldelse = () => {
 
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Casinostuen</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – Casinostuen</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100% op til 500 kr.</p></div>
@@ -132,9 +133,9 @@ const CasinostuenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Spiludvalget under lup</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spiludvalget er kurateret snarere end udtømmende. Med omkring 1.000+ spil har Casinostuen færre titler end giganterne, men dækker alle de populære kategorier. Det er et bevidst valg: hellere 1.000 gennemtestede, populære titler end 3.000 spil, hvor halvdelen er ukendte filler-titler fra obskure studier.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">~800 slots inkl. Starburst, Book of Dead, Sweet Bonanza, Gonzo's Quest og Big Bass Bonanza. Udbydererne er primært NetEnt, Play'n GO og Pragmatic Play. Mangler BTG Megaways og Nolimit City-titler.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> i digitale versioner. Udvalget er begrænset til standardvarianter – ingen niche-regler eller exotiske varianter.</p></CardContent></Card>
-            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground"><Link to="/live-casino" className={linkClass}>Live borde</Link> med basale roulette- og blackjack-borde. Udvalget er markant mindre end hos dedikerede live casino-platforme. Ingen game shows som Crazy Time eller Lightning Roulette.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">~800 slots inkl. Starburst, Book of Dead, Sweet Bonanza, Gonzo's Quest og Big Bass Bonanza. Udbydererne er primært NetEnt, Play'n GO og Pragmatic Play. Mangler BTG Megaways og Nolimit City-titler.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> i digitale versioner. Udvalget er begrænset til standardvarianter – ingen niche-regler eller exotiske varianter.</p></CardContent></Card>
+            <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Live Casino</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground"><Link to="/live-casino" className={linkClass}>Live borde</Link> med basale roulette- og blackjack-borde. Udvalget er markant mindre end hos dedikerede live casino-platforme. Ingen game shows som Crazy Time eller Lightning Roulette.</p></CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">RTP-niveauet på de tilgængelige spil ligger generelt i intervallet 95–97%, hvilket er standard. Book of Dead (96,21%), Starburst (96,08%) og Sweet Bonanza (96,48%) er alle til stede i deres standardversioner. Vi verificerede RTP-niveauerne under vores test og fandt ingen afvigelser fra de officielle tal – et positivt tegn, der indikerer, at Casinostuen ikke bruger reducerede RTP-versioner.</p>
           <p className="text-muted-foreground leading-relaxed">Den største mangel i spiludvalget er fraværet af nyere, innovative udbydere. <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link> – der alle er populære blandt danske spillere – er fraværende. For spillere, der følger med i de nyeste spiltrends, er det en mærkbar begrænsning. For casual spillere, der holder sig til klassikerne, er det derimod irrelevant.</p>
@@ -186,9 +187,9 @@ const CasinostuenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Kundeservice på dansk</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen tilbyder kundeservice udelukkende på dansk via live chat og e-mail. Det er en klar fordel for spillere, der foretrækker at kommunikere på modersmålet – mange internationale casinoer tilbyder kun delvist oversat support. Vi testede live chatten tre gange under forskellige tidspunkter:</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Tirsdag kl. 10:30</h3><p className="text-sm text-muted-foreground">Svartid: 45 sekunder. Venlig agent, løste spørgsmål om bonusvilkår præcist.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Lørdag kl. 21:15</h3><p className="text-sm text-muted-foreground">Svartid: 3 minutter og 20 sekunder. Agent var hjælpsom men tog længere tid.</p></div></div>
-            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Søndag kl. 23:45</h3><p className="text-sm text-muted-foreground">Ingen live chat tilgængelig. Sendte e-mail – svar modtaget mandag kl. 09:30.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Tirsdag kl. 10:30</h3><p className="text-sm text-muted-foreground">Svartid: 45 sekunder. Venlig agent, løste spørgsmål om bonusvilkår præcist.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Lørdag kl. 21:15</h3><p className="text-sm text-muted-foreground">Svartid: 3 minutter og 20 sekunder. Agent var hjælpsom men tog længere tid.</p></div></div>
+            <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="headphones" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Søndag kl. 23:45</h3><p className="text-sm text-muted-foreground">Ingen live chat tilgængelig. Sendte e-mail – svar modtaget mandag kl. 09:30.</p></div></div>
           </div>
           <p className="text-muted-foreground leading-relaxed">Svartiderne er acceptable i åbningstiden, men 24/7-support er ikke tilgængeligt. Det er en begrænsning for spillere, der spiller sent om aftenen eller natten. E-mail-support besvares typisk inden for 12–24 timer. Kvaliteten af svarene var generelt god – agenterne kendte produktet og kunne besvare specifikke spørgsmål om bonusvilkår og betalingsmetoder uden at eskalere til en supervisor.</p>
         </section>
@@ -258,7 +259,7 @@ const CasinostuenAnmeldelse = () => {
 
         {/* Niche-markedsanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Niche-casino-modellen – kan den overleve i 2026?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="bar-chart3" className="inline h-7 w-7 text-primary mr-2" />Niche-casino-modellen – kan den overleve i 2026?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen repræsenterer et interessant fænomen i det danske casino-landskab: den lokale niche-operatør. Mens markedet domineres af internationale giganter med millionbudgetter til markedsføring og tusindvis af spiltitler, vælger Casinostuen bevidst en anderledes strategi: fokus på et snævert segment med en kurateret oplevelse. Det er en strategi, der historisk har fungeret i detailhandlen (Irma vs. Netto) og restaurationsbranchen (den lokale brasserie vs. kæderestauranten) – men kan den fungere i online gambling?</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Data fra det danske marked tyder på, at niche-operatører opretholder en stabil men beskeden markedsandel. De tre største operatører (Danske Spil, bet365 og LeoVegas) kontrollerer tilsammen over 50% af det danske online casino-marked. De resterende 50% er fordelt mellem 30+ operatører, hvoraf mange – som Casinostuen – har markedsandele under 1%. Det er ikke en position, der genererer massive overskud, men den er bæredygtig, så længe operatørens omkostninger holdes tilsvarende lave.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuens styrke i denne kontekst er lave overhead-omkostninger. Platformen kræver ikke den samme teknologiske investering, markedsføringsbudgettering eller personalemæssige ressourcer som en global operatør. Med et fokuseret spiludvalg (1.000 titler vs. 2.000+) reduceres licensomkostningerne til spiludbydere markant. Med udelukkende dansk kundeservice undgås de multichannel-investeringer, som internationale platforme kræver. Det er en lean model, der kan være profitabel ved selv beskedne indtægtsstrømme.</p>
@@ -269,10 +270,10 @@ const CasinostuenAnmeldelse = () => {
 
         {/* Spiller-økonomi dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Spillerøkonomi – Casinostuen vs. internationale platforme</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Spillerøkonomi – Casinostuen vs. internationale platforme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En central overvejelse for den prisbevidste spiller er, om det koster mere at spille på en nicheplatform som Casinostuen sammenlignet med en stor international operatør. Svaret er nuanceret og afhænger af din spillerprofil.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />3-måneders EV-sammenligning: Casinostuen vs. LeoVegas</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />3-måneders EV-sammenligning: Casinostuen vs. LeoVegas</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Casinostuen (500 kr./måned omsætning × 3 mdr.)</p>
@@ -302,7 +303,7 @@ const CasinostuenAnmeldelse = () => {
 
         {/* Ansvarligt spil perspektiv */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><ShieldCheck className="inline h-7 w-7 text-primary mr-2" />Ansvarligt spil – passer Casinostuen til sårbare spillere?</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="shield-check" className="inline h-7 w-7 text-primary mr-2" />Ansvarligt spil – passer Casinostuen til sårbare spillere?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For nybegyndere og casual spillere er ansvarligt spil-værktøjer særligt vigtige – og det er præcis dette segment, Casinostuen henvender sig til. Platformen opfylder alle lovpålagte minimumskrav: ROFUS-tilslutning, MitID-verifikation, indbetalingsgrænser og selvudelukkelsesfunktionalitet. Men den mangler de proaktive værktøjer, som mere avancerede platforme tilbyder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Specifikt mangler Casinostuen: 1) Automatiserede session-timere, der påminder spillere om at holde pause efter en given tidsperiode, 2) Tab-alarmer, der notificerer spilleren, når et foruddefineret tabsbeløb er nået, 3) Realitets-checks, der viser spillerens nettoresultat under en session, og 4) AI-drevet adfærdsmonitorering, som platforme som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (Green Gaming) og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> (Journey towards zero) tilbyder.</p>
           <p className="text-muted-foreground leading-relaxed">For en platform, der eksplicit henvender sig til nybegyndere, er fraværet af disse proaktive værktøjer en mærkbar mangel. Nybegyndere er per definition det segment, der har mindst erfaring med at regulere sin egen spilleadfærd – og det er præcis her, proaktive værktøjer har størst effekt. Vores anbefaling til Casinostuen: implementér som minimum automatiserede session-timere og tab-alarmer. Det ville styrke platformens troværdighed markant og differentiere den positivt fra andre små operatører, der nøjes med lovens minimum.</p>
@@ -326,8 +327,8 @@ const CasinostuenAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Med en rating på 3.6/5 afspejler vores vurdering en platform, der gør det basale godt uden at skille sig markant ud. Spiludvalget er begrænset, designet er funktionelt men dateret, og udbetalingstiderne er gennemsnitlige. Men den danske identitet, den lave indgangsbarriere og de ærlige bonusvilkår gør Casinostuen til et solidt valg inden for sin niche. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["casinostuen"].scores} total={CASINO_SCORES["casinostuen"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

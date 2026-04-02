@@ -18,7 +18,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Crown, Layers } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Crown, Layers } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -61,7 +62,7 @@ const MegaMoolahGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Progressiv jackpot & RTP-dekonstruktion</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Progressiv jackpot & RTP-dekonstruktion</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Mega Moolah – Progressiv Jackpot-Analyse</h1>
             <p className="text-lg text-white/80">Guinness World Record-holderen for den største online jackpot: en matematisk dekonstruktion af det progressive netværk, der har skabt millionærer siden 2006.</p>
           </div>
@@ -75,7 +76,7 @@ const MegaMoolahGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Det Progressive Jackpot-Netværk: Sådan Fungerer Det</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="crown" className="h-5 w-5 text-primary" />Det Progressive Jackpot-Netværk: Sådan Fungerer Det</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah's fire-trins progressive jackpot-system er det mest berømte i online casino-verdenen. Hver spin bidrager med en procentdel af indsatsen til fire separate jackpot-puljer: Mini (typisk €10-100), Minor (€100-1.000), Major (€10.000-100.000) og Mega (starter ved €1.000.000, ingen øvre grænse). Bidraget estimeres til 8-12 % af hver indsats – og det er denne mekanisme, der forklarer den lave basis-<Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 88,12 %.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>'s progressive netværk forbinder hundredvis af casinoer worldwide. Hver gang en spiller spinder på Mega Moolah – uanset casino – bidrager indsatsen til den fælles jackpot-pulje. Med millioner af daglige spins vokser Mega-jackpotten hurtigt: typisk €50.000-100.000 pr. dag i perioder uden udbetaling. Denne netværkseffekt er grunden til, at Mega Moolah konsekvent tilbyder de største progressive jackpots i industrien.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-triggeren er random-baseret: efter ethvert spin (gevindende eller tabende) kan jackpot-hjulet aktiveres. Sandsynligheden for activation er proportional med indsatsstørrelsen – en €5-spin har fem gange større chance for at udløse hjulet end en €1-spin. Dog er ALLE indsatsniveauer kvalificerede, hvilket adskiller Mega Moolah fra nogle konkurrenter, der kræver max bet for jackpot-adgang.</p>
@@ -90,7 +91,7 @@ const MegaMoolahGuide = () => {
         />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Dekomposition</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Dekomposition</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Microgaming</strong></div>
@@ -107,7 +108,7 @@ const MegaMoolahGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Jackpot-Sandsynlighed og Forventet Udbetaling</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Jackpot-Sandsynlighed og Forventet Udbetaling</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den præcise sandsynlighed for at udløse Mega-jackpotten er ikke offentligt tilgængelig, men baseret på historiske data og matematisk modellering estimeres den til ca. 1:50.000.000 pr. spin ved minimum indsats. Ved højere indsatser forbedres oddsen proportionalt, men selv ved max bet forbliver sandsynligheden astronomi ekstremt lav – sammenlignelig med at vinde en mindre lottopulje.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Historisk analyse af Mega-jackpot-udbetalinger viser et gennemsnitligt beløb på ca. €5-8 millioner. Medianen er lavere (€3-5 millioner), da fordelingen er skæv mod sjældne, ekstremt store udbetalinger. Den gennemsnitlige tid mellem Mega-jackpots er 9-10 uger, men standardafvigelsen er enorm – der er perioder med jackpots hver 3-4 uge og tørke-perioder på 4+ måneder.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Et vigtigt koncept er "jackpot-EV-tærskel": det punkt, hvor jackpottens størrelse teoretisk gør det +EV at spille. Med en basis-RTP på 88,12 % og ca. 6-8 % jackpot-bidrag er break-even punktet ekstremt højt. I praksis er det aldrig rationelt at "jage" jackpotten baseret på dens aktuelle størrelse – der er ingen "due date" for progressive jackpots.</p>
@@ -117,7 +118,7 @@ const MegaMoolahGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Scenarie: Hvad Koster Jackpot-Drømmen?</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Scenarie: Hvad Koster Jackpot-Drømmen?</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 5 kr.</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -132,14 +133,14 @@ const MegaMoolahGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Risiko og Ansvarligt Spil ved Jackpot-Slots</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Risiko og Ansvarligt Spil ved Jackpot-Slots</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Progressive jackpot-slots som Mega Moolah udgør en unik risiko for problematisk spilleadfærd. Den "near-miss"-psykologi – tanken om at "næste spin kunne være millionen" – kan drive uansvarligt play langt mere effektivt end standard slots. Vi anbefaler et absolut dagligt tabsstop (f.eks. 200 kr.) og aldrig at jage tab med øget indsats.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Bankroll-kravet for Mega Moolah er paradoksalt: den medium volatilitet og høje house edge betyder, at din bankroll eroderer hurtigt og forudsigeligt. Minimum 200 spins (1.000 kr. ved 5 kr. indsats) giver en rimelig session, men forvent at tabe 100-150 kr. i gennemsnit. Husk: jackpot-potentialet ændrer ikke den daglige matematik.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Mega Moolah skal behandles som en lotterikupon – ikke som en indkomstkilde. Spil kun for penge, du har råd til at tabe, og sæt dine grænser FØR du starter sessionen.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Millionærmaskinen – Men Til Hvilken Pris?</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Millionærmaskinen – Men Til Hvilken Pris?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah er unik i slot-landskabet: den eneste slot, der realistisk kan gøre dig til millionær med et enkelt spin. Denne USP er ubestridelig og forklarer spillets vedvarende popularitet trods den lave base game value. For danske spillere, der drømmer stort og accepterer den høje pris for drømmen, er Mega Moolah et one-of-a-kind produkt.</p>
           <p className="text-muted-foreground leading-relaxed">Men for spillere, der søger optimal value pr. krone, er Mega Moolah objektivt et af de dårligste valg i markedet. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde slots med bedre base game-økonomi, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-oversigten for aktuelle tilbud.</p>
         </section>

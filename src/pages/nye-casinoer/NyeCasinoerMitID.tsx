@@ -20,7 +20,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, Sparkles, CheckCircle2, Smartphone, Zap, AlertTriangle, XCircle, Clock, Building2 } from "lucide-react";
+import { ShieldCheck, Sparkles, CheckCircle2, Smartphone, Zap, AlertTriangle, XCircle, Clock, Building2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -70,7 +71,7 @@ const NyeCasinoerMitID = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Smartphone className="mr-1.5 h-3.5 w-3.5" />MitID Verifikation</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="smartphone" className="mr-1.5 h-3.5 w-3.5" />MitID Verifikation</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer med MitID</h1>
           <p className="text-lg text-white/80">Opret konto på under 2 minutter med sikker MitID-verifikation hos de nyeste danske online casinoer.</p>
         </div></div>
@@ -110,7 +111,7 @@ const NyeCasinoerMitID = () => {
               { step: "6. Konto oprettet – klar til spil", desc: "Din konto er nu oprettet og verificeret. Du kan indbetale og spille med det samme – ingen yderligere dokumentation krævet. Vælg din foretrukne betalingsmetode og begynd at spille." },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Zap className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="zap" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.step}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -138,7 +139,7 @@ const NyeCasinoerMitID = () => {
           <div className="space-y-4">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Tier 1: Instant-registrering (under 60 sekunder)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Tier 1: Instant-registrering (under 60 sekunder)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Casinoer med Trustly Pay N Play-integration kombinerer MitID-verifikation og indbetaling i ét enkelt trin. Du klikker "Spil nu", godkender i MitID-appen, vælger indbetalingsbeløb via din bank, og din konto oprettes automatisk i baggrunden. Du lander direkte i casinoets lobby med penge på kontoen – klar til at spille.</p>
@@ -148,7 +149,7 @@ const NyeCasinoerMitID = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-primary/60">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><Clock className="h-5 w-5 text-primary" />Tier 2: Hurtig registrering (1-2 minutter)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="clock" className="h-5 w-5 text-primary" />Tier 2: Hurtig registrering (1-2 minutter)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Casinoer med direkte MitID-integration i registreringsflowet. Du klikker "Opret konto", verificerer via MitID, angiver e-mail og mobilnummer, og modtager en bekræftelses-SMS. Kontoen er klar, og du kan vælge betalingsmetode og indbetale separat.</p>
@@ -158,7 +159,7 @@ const NyeCasinoerMitID = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-muted-foreground/30">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><AlertTriangle className="h-5 w-5 text-muted-foreground" />Tier 3: Traditionel registrering (2-4 minutter)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-muted-foreground" />Tier 3: Traditionel registrering (2-4 minutter)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>Casinoer der stadig bruger en traditionel registreringsformular med 4-5 felter, efterfulgt af MitID-verifikation som separat trin. Typisk: udfyld navn, e-mail, adresse og mobilnummer manuelt → verificer med MitID → bekræft e-mail → log ind → indbetal. Ofte ser vi dette hos casinoer der bruger ældre white-label-platforme.</p>
@@ -246,7 +247,7 @@ const NyeCasinoerMitID = () => {
               { title: "Ingen gentagen verifikation", desc: "Når du har verificeret med MitID én gang, behøver du ikke gøre det igen ved fremtidige logins hos det samme casino. Din identitet er bekræftet permanent – ingen årlige re-verifikationer eller dokumentopdateringer." },
             ].map((b) => (
               <div key={b.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
+                <MenuIcon iconName="check-circle2" className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-semibold">{b.title}</h3>
                   <p className="text-sm text-muted-foreground">{b.desc}</p>
@@ -269,7 +270,7 @@ const NyeCasinoerMitID = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-border bg-card border-l-4 border-l-muted-foreground/30">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><XCircle className="h-5 w-5 text-muted-foreground" />NemID (udgået)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="x-circle" className="h-5 w-5 text-muted-foreground" />NemID (udgået)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• Fysisk nøglekort eller kodeviser påkrævet</p>
@@ -283,7 +284,7 @@ const NyeCasinoerMitID = () => {
             </Card>
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg"><CheckCircle2 className="h-5 w-5 text-primary" />MitID (nuværende)</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" />MitID (nuværende)</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>• App-baseret med push-notifikationer</p>
@@ -318,7 +319,7 @@ const NyeCasinoerMitID = () => {
               { title: "GDPR-compliance og dataminimering", desc: "MitID overholder fuldt ud GDPR og princippet om dataminimering. Det betyder, at kun de absolut nødvendige data deles med casinoet, og at dataene ikke lagres længere end nødvendigt. Du kan altid se en log over dine MitID-transaktioner i MitID-appen." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -352,7 +353,7 @@ const NyeCasinoerMitID = () => {
               { problem: "Kodeviser/chip registrerer ikke korrekt", solution: "Sørg for at kodeviseren har batteri (hold en knap nede i 3 sekunder for at tjekke). Indtast koden præcist – der skelnes mellem store og små bogstaver. Hvis kodeviseren er defekt, kontakt dit pengeinstitut for en ny, eller skift til MitID-appen via mitid.dk." },
             ].map((item) => (
               <div key={item.problem} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.problem}</h3>
                   <p className="text-sm text-muted-foreground">{item.solution}</p>
@@ -411,7 +412,7 @@ const NyeCasinoerMitID = () => {
               { title: "MitID med chip (fysisk kort)", desc: "Den tredje mulighed – et chipkort der fungerer med en USB-kortlæser. Primært brugt af personer der foretrækker fysiske enheder. Kræver en computer med USB-port – ikke velegnet til mobilregistrering." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="building2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -434,21 +435,21 @@ const NyeCasinoerMitID = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Data casinoet modtager</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-primary" /> Data casinoet modtager</h3>
               <div className="space-y-2">
                 {["Dit fulde navn (fornavn og efternavn)", "Din fødselsdato (til aldersverifikation)", "Din ROFUS-status (udelukket/ikke udelukket)", "En unik identifikator (til at matche dig med din konto)"].map((d) => (
                   <div key={d} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{d}</p>
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{d}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Data casinoet IKKE modtager</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Data casinoet IKKE modtager</h3>
               <div className="space-y-2">
                 {["Dit CPR-nummer", "Dine bankoplysninger eller kontosaldo", "Din adresse eller bopælskommune", "Dine sundhedsdata eller andre personfølsomme oplysninger", "Din MitID-kode eller biometriske data", "Din historik fra andre MitID-verifikationer"].map((d) => (
                   <div key={d} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{d}</p>
+                    <MenuIcon iconName="x-circle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{d}</p>
                   </div>
                 ))}
               </div>
@@ -485,7 +486,7 @@ const NyeCasinoerMitID = () => {
               { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "De hurtigste nye casinoer" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
               </Link>
             ))}
           </div>

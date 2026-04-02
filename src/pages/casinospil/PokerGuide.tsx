@@ -16,23 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Sparkles,
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Layers,
-  Zap,
-  Trophy,
-  Brain,
-  Users,
-  AlertTriangle,
-  ArrowRight,
-  Scale,
-  Shuffle,
-  Gamepad2,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import pokerHero from "@/assets/heroes/poker-hero.jpg";
 
@@ -177,7 +162,7 @@ const PokerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone guide
+              <MenuIcon iconName="brain" className="mr-1.5 h-3.5 w-3.5" /> Cornerstone guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Poker – Den Komplette Guide til Held, Matematik og Psykologi
@@ -233,7 +218,7 @@ const PokerGuide = () => {
         {/* ═══════════════ CLUSTER NAVIGATION GRID ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Sparkles className="h-8 w-8 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-8 w-8 text-primary" />
             Udforsk Alle Poker-Guides
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">

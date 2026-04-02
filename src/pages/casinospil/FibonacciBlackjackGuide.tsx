@@ -16,36 +16,8 @@ import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Calculator,
-  Flame,
-  Activity,
-  LineChart,
-  Sigma,
-  ArrowRight,
-  Repeat,
-  Infinity,
-} from "lucide-react";
+import { Timer, Activity, LineChart, ArrowRight, Repeat, Infinity } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/fibonacci-blackjack-hero.jpg";
 
@@ -141,7 +113,7 @@ const FibonacciBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Sekvensanalyse
+              <MenuIcon iconName="sigma" className="mr-1.5 h-3.5 w-3.5" /> Sekvensanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci-Systemet i Blackjack – Naturens Talrække Møder Casino-Matematikken
@@ -167,7 +139,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Fra Middelalderens Pisa til Dit Blackjack-Bord: Fibonacci-Talrækkens Rejse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -183,7 +155,7 @@ const FibonacciBlackjackGuide = () => {
           <Card className="mb-6 border-primary/30 bg-primary/5">
             <CardContent className="pt-6">
               <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                <Sigma className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="sigma" className="h-5 w-5 text-primary" />
                 Fibonacci-Sekvensen til Blackjack (med 50 kr. basisenhed)
               </h3>
               <div className="overflow-x-auto">
@@ -224,7 +196,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Systemmekanik: To-Trin-Reglen og Sekvensnavigation
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -353,7 +325,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Det Gyldne Snit vs. House Edge: Hvorfor Naturens Matematik Ikke Slår Casinoet
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -402,7 +374,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Recovery-Matematik: Hvor Mange Gevinster Behøver Du?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -426,7 +398,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Den Store Sammenligning: Fibonacci vs. Martingale vs. D'Alembert
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -466,7 +438,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Fibonacci-Varianter: Modificerede Sekvenser og Reversed Fibonacci
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -496,7 +468,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Fibonacci + Bordvalg: Hvilke Blackjack-Varianter Egner Sig Bedst?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -506,7 +478,7 @@ const FibonacciBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Bedst: <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>Amerikansk Blackjack</Link> (S17, DAS, 3:2)
                 </h3>
                 <p className="text-muted-foreground text-sm">
@@ -517,7 +489,7 @@ const FibonacciBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
                   Godt: <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link> (med bonusudbetalinger)
                 </h3>
                 <p className="text-muted-foreground text-sm">
@@ -528,7 +500,7 @@ const FibonacciBlackjackGuide = () => {
             <Card>
               <CardContent className="pt-6">
                 <h3 className="font-bold mb-2 flex items-center gap-2">
-                  <XCircle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="x-circle" className="h-5 w-5 text-destructive" />
                   Undgå: <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link> (1:1 BJ payout)
                 </h3>
                 <p className="text-muted-foreground text-sm">
@@ -546,7 +518,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             7 Ufravigelige Regler for Fibonacci i Blackjack
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -580,7 +552,7 @@ const FibonacciBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Konklusion: Fibonacci er Bedre end Martingale – Men Det Er Ikke Godt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

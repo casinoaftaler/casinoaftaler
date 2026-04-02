@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { CalendarDays, Newspaper } from "lucide-react";
+import { CalendarDays, Newspaper } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Maps money-page paths to news categories/tags for contextual matching.
@@ -204,7 +205,7 @@ export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
   return (
     <section className="my-10">
       <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
-        <Newspaper className="h-5 w-5 text-primary" />
+        <MenuIcon iconName="newspaper" className="h-5 w-5 text-primary" />
         Seneste opdateringer om {label}
       </h2>
       <p className="text-sm text-muted-foreground mb-4">
@@ -218,7 +219,7 @@ export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
             className="group rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-sm"
           >
             <span className="text-xs text-muted-foreground flex items-center gap-1 mb-2">
-              <CalendarDays className="h-3 w-3" />
+              <MenuIcon iconName="calendar-days" className="h-3 w-3" />
               {article.published_at &&
                 new Date(article.published_at).toLocaleDateString("da-DK", {
                   day: "numeric",

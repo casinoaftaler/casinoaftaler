@@ -16,30 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-  Award,
-  Shuffle,
-} from "lucide-react";
+import { Timer, Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/texas-holdem-hero.jpg";
 
@@ -130,7 +108,7 @@ const TexasHoldemGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Texas Hold'em guide
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Texas Hold'em guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Texas Hold'em – Den Komplette Guide til Verdens Mest Populære Pokerspil
@@ -156,7 +134,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Starthands-Rangering: De 20 Bedste Hænder i Texas Hold'em
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -166,7 +144,7 @@ const TexasHoldemGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Award className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="award" className="h-5 w-5 text-primary" />
                 Premium Tier (Top 5) – Raise fra alle positioner
               </CardTitle>
             </CardHeader>
@@ -196,7 +174,7 @@ const TexasHoldemGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                 Stærk Tier (6-12) – Raise fra mid/late position
               </CardTitle>
             </CardHeader>
@@ -250,7 +228,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Texas Hold'em Regler – Trin for Trin
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -258,7 +236,7 @@ const TexasHoldemGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Fase 1: Preflop
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -269,7 +247,7 @@ const TexasHoldemGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Fase 2: Flop
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -280,7 +258,7 @@ const TexasHoldemGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Fase 3: Turn
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -291,7 +269,7 @@ const TexasHoldemGuide = () => {
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Fase 4: River
           </h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -307,7 +285,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Award className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="award" className="h-7 w-7 text-primary" />
             Poker Håndrankering – Fra Royal Flush til High Card
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -356,7 +334,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Positionsspil – Den Skjulte Superkraft i Hold'em
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -367,7 +345,7 @@ const TexasHoldemGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-destructive" />
                   Tidlig Position (EP)
                 </CardTitle>
               </CardHeader>
@@ -378,7 +356,7 @@ const TexasHoldemGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Scale className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="scale" className="h-4 w-4 text-primary" />
                   Mid Position (MP)
                 </CardTitle>
               </CardHeader>
@@ -389,7 +367,7 @@ const TexasHoldemGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   Sen Position (LP)
                 </CardTitle>
               </CardHeader>
@@ -415,7 +393,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Pot Odds, Outs og Expected Value (EV)
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -430,7 +408,7 @@ const TexasHoldemGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                 Almindelige Draws og Deres Outs
               </CardTitle>
             </CardHeader>
@@ -478,7 +456,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Betting-Strategi: Sizing, Bluffs og Value Bets
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -509,7 +487,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Users className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="users" className="h-7 w-7 text-primary" />
             Turneringspoker vs. Cash Game – Strategiske Forskelle
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -520,34 +498,34 @@ const TexasHoldemGuide = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Coins className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="coins" className="h-4 w-4 text-primary" />
                   Cash Game
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Blinds er konstante</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Du kan købe ind igen når som helst</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Chips = direkte pengeværdi</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Fokus: maksimere EV pr. hånd</li>
-                  <li className="flex items-start gap-2"><CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Optimal strategi: chip EV (cEV)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Blinds er konstante</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Du kan købe ind igen når som helst</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Chips = direkte pengeværdi</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Fokus: maksimere EV pr. hånd</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="check-circle" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Optimal strategi: chip EV (cEV)</li>
                 </ul>
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <Award className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="award" className="h-4 w-4 text-primary" />
                   Turnering
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2"><Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Blinds stiger periodisk</li>
-                  <li className="flex items-start gap-2"><Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Elimination: du er ude, når chips er væk</li>
-                  <li className="flex items-start gap-2"><Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Chips ≠ pengeværdi (ICM)</li>
-                  <li className="flex items-start gap-2"><Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Fokus: overlevelse + chipaccumulation</li>
-                  <li className="flex items-start gap-2"><Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Optimal strategi: $EV (pengeværdi-EV)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Blinds stiger periodisk</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Elimination: du er ude, når chips er væk</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Chips ≠ pengeværdi (ICM)</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Fokus: overlevelse + chipaccumulation</li>
+                  <li className="flex items-start gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary mt-0.5 shrink-0" /> Optimal strategi: $EV (pengeværdi-EV)</li>
                 </ul>
               </CardContent>
             </Card>
@@ -566,7 +544,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-primary" />
             Online Hold'em vs. Live Poker i Danmark
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -610,7 +588,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Bankroll Management – Overlev Variansen
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -620,7 +598,7 @@ const TexasHoldemGuide = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                 Anbefalede Bankroll-Minimumskrav
               </CardTitle>
             </CardHeader>
@@ -658,7 +636,7 @@ const TexasHoldemGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Avancerede Koncepter: GTO, Exploitative Play og Range-Analyse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

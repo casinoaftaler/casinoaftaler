@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -108,7 +109,7 @@ const SweetBonanzaGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sweet Bonanza</h1>
             <p className="text-lg text-white/80">En matematisk dissektion af Pragmatic Plays mest ikoniske cluster-pays slot – fra RTP-varianter til multiplikator-EV.</p>
           </div>
@@ -153,7 +154,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk Profil og Grundlæggende Mekanik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk Profil og Grundlæggende Mekanik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -197,7 +198,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: RTP DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter: Den Skjulte Forskel Mellem Casinoer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP-Varianter: Den Skjulte Forskel Mellem Casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanza tilbydes i tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-konfigurationer, og forskellen er langt fra triviel. Standardversionen på 96,48 % har en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,52 %, men mange casinoer – især dem uden dansk licens – kører den reducerede version på 91,76 %, der har en house edge på 8,24 %. Det er mere end en fordobling af casinoets fordel.
           </p>
@@ -250,7 +251,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Volatilitet i Praksis: Hvad 500 Spins Rent Faktisk Ser Ud</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Volatilitet i Praksis: Hvad 500 Spins Rent Faktisk Ser Ud</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanza klassificeres som "høj volatilitet" af Pragmatic Play, men hvad betyder det i praksis for din bankroll? Volatilitet beskriver gevinstfordelingens spredning – hvor langt individuelle resultater afviger fra den gennemsnitlige RTP. Med Sweet Bonanzas matematiske model vil en typisk session på 500 spins se markant anderledes ud end det RTP'en antyder.
           </p>
@@ -283,7 +284,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: MAX WIN & HIT FREQUENCY ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Max Win-Potentiale og Hit Frequency Analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" /> Max Win-Potentiale og Hit Frequency Analyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanzas maksimale gevinst på 21.175x indsatsen placerer den i den absolutte top tier af Pragmatic Plays portfolio. Til sammenligning har Gates of Olympus "kun" 5.000x, og Big Bass Bonanza topper ved 2.100x. Men max win er et teoretisk loft – den reelle spørgsmål er: hvad er sandsynligheden for at nærme sig det, og hvad er de realistiske topgevinster?
           </p>
@@ -302,7 +303,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: FEATURE BREAKDOWN ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> Feature Breakdown: Multiplikatorer, Tumble og Free Spins</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Feature Breakdown: Multiplikatorer, Tumble og Free Spins</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanzas gevinstpotentiale bygger på samspillet mellem tre kernefeatures: Tumble-mekanikken, multiplikator-bomber og free spins-runden. Hver feature bidrager til den samlede RTP, men det er kombinationen af dem, der skaber de potentielt massive gevinster.
           </p>
@@ -330,7 +331,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: EV SCENARIE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Expected Value: Konkrete Beregningseksempler</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Expected Value: Konkrete Beregningseksempler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Lad os beregne den reelle Expected Value (EV) for forskellige spilscenarier med Sweet Bonanza. EV er det statistisk forventede resultat over et stort antal spins – det tal der beskriver, hvad du i gennemsnit kan forvente.
           </p>
@@ -386,7 +387,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: BONUS-COMPATIBILITY ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Bonus-Compatibility: Kan Sweet Bonanza Bruges til Wagering?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Bonus-Compatibility: Kan Sweet Bonanza Bruges til Wagering?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanzas egnethed til bonusomsætning afhænger af tre faktorer: RTP-versionen, bonustype og omsætningskrav. Her er den matematiske virkelighed:
           </p>
@@ -405,7 +406,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: SPILLERSEGMENTERING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Hvem Passer Sweet Bonanza Til? Spillerprofil-Analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Hvem Passer Sweet Bonanza Til? Spillerprofil-Analyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanza er ikke for alle. Spillets matematiske profil gør det ideelt for visse spillertyper og direkte uegnet for andre. Her er en ærlig vurdering baseret på volatilitet, session-varighed og bankroll-krav:
           </p>
@@ -440,7 +441,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Sammenligning: Sweet Bonanza vs. Gates of Olympus vs. Sugar Rush</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Sammenligning: Sweet Bonanza vs. Gates of Olympus vs. Sugar Rush</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Tre af Pragmatic Plays mest populære cluster-pays slots deler grundlæggende mekanikker, men har vigtige matematiske forskelle. Her er en detaljeret sammenligning:
           </p>
@@ -480,7 +481,7 @@ const SweetBonanzaGuide = () => {
 
         {/* ── SEKTION: RISIKOANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Risikoanalyse: Bankroll-Krav og Bust-Sandsynligheder</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Risikoanalyse: Bankroll-Krav og Bust-Sandsynligheder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sweet Bonanzas høje volatilitet skaber reelle risici, der skal kvantificeres, ikke ignoreres. Her er de matematiske realiteter for forskellige bankroll-scenarier:
           </p>

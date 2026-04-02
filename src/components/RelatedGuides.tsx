@@ -3,31 +3,8 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CasinoLatestNews } from "@/components/CasinoLatestNews";
-import {
-  Gift,
-  Sparkles,
-  CreditCard,
-  Target,
-  Zap,
-  Trophy,
-  BookOpen,
-  Tv,
-  ShieldCheck,
-  Shield,
-  Star,
-  Gamepad2,
-  Wallet,
-  Landmark,
-  Smartphone,
-  Globe,
-  BarChart3,
-  ShoppingCart,
-  TrendingUp,
-  RefreshCw,
-  Layers,
-  Brain,
-  Shuffle,
-} from "lucide-react";
+import { Shuffle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
@@ -1297,7 +1274,7 @@ export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(f
       <Separator className="my-10" />
       <section ref={ref} className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">
-          <BookOpen className="mr-2 inline h-7 w-7 text-primary" />
+          <MenuIcon iconName="book-open" className="mr-2 inline h-7 w-7 text-primary" />
           Relaterede Guides
         </h2>
         <p className="mb-6 text-muted-foreground leading-relaxed">

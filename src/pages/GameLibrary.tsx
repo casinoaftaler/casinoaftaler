@@ -17,7 +17,8 @@ import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboar
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { Button } from "@/components/ui/button";
-import { Gamepad2, Clock, Rocket } from "lucide-react";
+import { Rocket } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
@@ -287,7 +288,7 @@ function GameLibraryHero() {
       <div className="container relative z-10 py-8 md:py-12">
         <div className="mx-auto max-w-2xl text-center space-y-2.5">
           <div className="mx-auto mb-2 h-14 w-14 rounded-full bg-amber-500/15 backdrop-blur-sm border border-amber-500/20 flex items-center justify-center">
-            <Gamepad2 className="h-7 w-7 text-amber-400" />
+            <MenuIcon iconName="gamepad2" className="h-7 w-7 text-amber-400" />
           </div>
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl text-white">
             Spillehal
@@ -304,7 +305,7 @@ function GameLibraryHero() {
           </p>
           {/* Countdown badge with subtle pulse */}
           <div className="animate-countdown-pulse inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-sm">
-            <Clock className="h-4 w-4 text-amber-400" />
+            <MenuIcon iconName="clock" className="h-4 w-4 text-amber-400" />
             <span>Nye credits om</span>
             <span className="font-mono font-semibold text-amber-400 tabular-nums">{countdown}</span>
           </div>

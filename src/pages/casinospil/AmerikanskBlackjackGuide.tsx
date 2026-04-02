@@ -16,28 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target,
-  ShieldCheck,
-  BarChart3,
-  Sparkles,
-  Zap,
-  AlertTriangle,
-  TrendingUp,
-  Scale,
-  Eye,
-  Layers,
-  Clock,
-  Users,
-  CheckCircle,
-  XCircle,
-  Coins,
-  Brain,
-  Gamepad2,
-  BookOpen,
-  Timer,
-  Shield,
-} from "lucide-react";
+import { Timer } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/amerikansk-blackjack-hero.jpg";
 
@@ -133,7 +113,7 @@ const AmerikanskBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Hole card regler & strategi
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Hole card regler & strategi
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Amerikansk Blackjack – Hole Card, Strategi og Spiller-Edge
@@ -159,7 +139,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BookOpen className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="book-open" className="h-7 w-7 text-primary" />
             Min Test-Log: 500 Hænder på Amerikanske Borde
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -192,7 +172,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Hvad er Amerikansk Blackjack – Og Hvorfor Dominerer Den Globalt?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -226,7 +206,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Reglerne i Detaljer – Fra Dealing til Udbetaling
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -237,7 +217,7 @@ const AmerikanskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Target className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
                   Standard Regler (Optimalt Bord)
                 </CardTitle>
               </CardHeader>
@@ -257,7 +237,7 @@ const AmerikanskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Variationer der Øger House Edge
                 </CardTitle>
               </CardHeader>
@@ -297,7 +277,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             House Edge-Matematik – Tallene Bag Varianten
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -383,7 +363,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Komplet Basic Strategy for Amerikansk Blackjack (S17, 6-deck)
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -509,7 +489,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Hole Card vs. No Hole Card – Den Definerende Forskel
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -583,7 +563,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Zap className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="zap" className="h-7 w-7 text-primary" />
             Side Bets i Amerikansk Blackjack – Matematik vs. Underholdning
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -636,7 +616,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Korttælling i Amerikansk Blackjack – Virker det Online?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -666,7 +646,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Coins className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="coins" className="h-7 w-7 text-primary" />
             Bankroll Management for Aggressive Spillere
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -735,7 +715,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Live vs. RNG – Amerikansk Blackjack Online i 2026
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -746,7 +726,7 @@ const AmerikanskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   RNG Blackjack
                 </CardTitle>
               </CardHeader>
@@ -764,7 +744,7 @@ const AmerikanskBlackjackGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
                   Live Dealer Blackjack
                 </CardTitle>
               </CardHeader>
@@ -796,7 +776,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             De 10 Dyreste Fejl i Amerikansk Blackjack
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -912,7 +892,7 @@ const AmerikanskBlackjackGuide = () => {
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Hvilken Blackjack-Variant Passer til Dig?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -920,23 +900,23 @@ const AmerikanskBlackjackGuide = () => {
           </p>
           <ul className="space-y-3 mb-6 ml-4">
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <span><strong>Du vil have den laveste house edge:</strong> Amerikansk blackjack med S17, DAS, 3:2. Find den hos <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>.</span>
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <span><strong>Du vil forstå strategiens nuancer:</strong> Prøv <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk blackjack</Link> – ENHC-reglerne tvinger dig til dybere strategisk tænkning.</span>
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <span><strong>Du hader usikkerhed:</strong> <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link> eliminerer al gætteri – begge dealerkort er synlige.</span>
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <span><strong>Du vil have bonus og variation:</strong> <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link> tilbyder unikke bonusudbetalinger og innovative regler.</span>
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <span><strong>Du vil bruge et betting-system:</strong> Forstå hvorfor <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link> og <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci</Link> ikke ændrer house edge – men kan ændre din oplevelse.</span>
             </li>
           </ul>

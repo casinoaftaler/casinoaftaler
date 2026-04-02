@@ -18,7 +18,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Layers, Wand2 } from "lucide-react";
+import { Wand2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -49,7 +50,7 @@ const MadameDestinyMegawaysGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Megaways-analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Megaways-analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Madame Destiny Megaways – Ante Bet & Megaways-Analyse</h1>
             <p className="text-lg text-white/80">Pragmatic Play's mystiske spåkone med op til 200.704 ways to win: en matematisk analyse af Ante Bet-strategien, tumble-mekanik og den balancerede risk/reward-profil.</p>
           </div>
@@ -63,7 +64,7 @@ const MadameDestinyMegawaysGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Sammenligning med Andre Megaways-Slots</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Sammenligning med Andre Megaways-Slots</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -89,7 +90,7 @@ const MadameDestinyMegawaysGuide = () => {
         />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Analyse</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Analyse</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Pragmatic Play</strong></div>
@@ -116,7 +117,7 @@ const MadameDestinyMegawaysGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Free Spins og Tumble-Multiplikatorer</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Free Spins og Tumble-Multiplikatorer</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Free spins udløses ved 4+ scatter-symboler (krystalkugle): 4 scatters = 10 free spins, 5 scatters = 15, 6 scatters = 20. Under free spins er tumble-mekanikken aktiv med en voksende multiplikator: hver tumble-gevinst øger multiplikatoren med 1×. Multiplikatoren nulstilles IKKE mellem free spins – den akkumulerer over hele bonusrunden.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den akkumulerende multiplikator er spillets primære gevinstdriver. I en typisk bonusrunde (10 spins) kan multiplikatoren nå 5-15×, med exceptionelle runder, der rammer 25-40×. De sidste free spins – med høj multiplikator – er eksponentielt mere værdifulde end de første. Denne dynamik skaber en naturlig spændingskurve, der bygger mod et klimaks.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Gennemsnitlig bonusrunde-value estimeres til 30-60× indsatsen (uden Ante Bet-tillæg). Medianen er lavere (20-35×), fordi fordelingen er positivt skæv – sjældne runder med høje multiplikatorer trækker gennemsnittet op. Retrigger er muligt med 3+ scatters under free spins, hvilket giver 5 ekstra spins med bevaret multiplikator.</p>
@@ -124,7 +125,7 @@ const MadameDestinyMegawaysGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Beregning og Sessionsøkonomi</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Beregning og Sessionsøkonomi</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">EV-scenarie: 500 spins à 4 kr. (uden Ante Bet)</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -139,13 +140,13 @@ const MadameDestinyMegawaysGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll-Krav og Ansvarligt Spil</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Bankroll-Krav og Ansvarligt Spil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny MW kræver en bankroll på minimum 200-300 spins (800-1.200 kr. ved 4 kr. indsats). Med Ante Bet aktiveret stiger kravet til 250-375 spins pga. den 25 % højere spin-cost. Tabsstop anbefales ved 50 % af startkapitalen. Den medium-høje volatilitet giver rimelig god bankroll-stabilitet sammenlignet med aggressive Megaways-alternativer.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Ante Bet-funktionen kan friste til at spille hurtigere og for mere end planlagt – sæt dine grænser FØR du aktiverer Ante Bet og overhold dem uanset resultaterne. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde det rette Megaways-match, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Spåkonens Fornuftige Megaways-Valg</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Spåkonens Fornuftige Megaways-Valg</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny Megaways er den fornuftige spillers Megaways-slot. Den tilbyder den bedste RTP i sin klasse, en unik Ante Bet-strategi og en balanceret volatilitet, der giver spænding uden brutalitet. For danske spillere, der vil opleve Megaways-dynamikken med matematisk disciplin, er Madame Destiny MW et topvalg.</p>
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> eller sammenlign med andre <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler for at finde din ideelle match.</p>
         </section>

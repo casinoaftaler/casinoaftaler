@@ -16,7 +16,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Brain } from "lucide-react";
+import { Brain } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import crapsHero from "@/assets/heroes/craps-hero.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -107,7 +108,7 @@ const CrapsGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Matematikguide
+              <MenuIcon iconName="brain" className="mr-1.5 h-3.5 w-3.5" /> Matematikguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Craps – Sandsynligheder, House Edge og Matematisk Analyse

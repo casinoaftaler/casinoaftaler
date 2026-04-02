@@ -20,7 +20,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -95,7 +96,7 @@ const StarburstGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Klassiker-Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Klassiker-Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Starburst</h1>
             <p className="text-lg text-white/80">Er den mest kendte spillemaskine i verden stadig relevant? En ærlig, matematisk vurdering af NetEnts kronjuvel.</p>
           </div>
@@ -126,7 +127,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: SPILMEKANIK ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Spillets Mekanik: Simpelt Design, Skjult Matematik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Spillets Mekanik: Simpelt Design, Skjult Matematik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
@@ -173,7 +174,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: WILD RESPIN ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Starburst Wild: Den Eneste Funktion, der Tæller</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="flame" className="h-7 w-7 text-primary" /> Starburst Wild: Den Eneste Funktion, der Tæller</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst Wild er spillets kernemekanik og den eneste feature, der adskiller det fra en ren basisspil-slot. Når et wild-symbol (den regnbue-farvede stjerne) lander på hjul 2, 3 eller 4, udvider det sig til at dække hele hjulet og trigger et respin. Lander et nyt wild under respinnet, udvider det sig også, og du får endnu et respin. Maksimalt kan du få 3 expanding wilds (på hjul 2, 3 og 4 simultant) med 3 konsekutive respins.
           </p>
@@ -192,7 +193,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: RTP & HOUSE EDGE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starbursts faste RTP på 96,08 % giver en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,91 %. Det placerer den lidt under gennemsnittet for moderne slots, der typisk ligger på 96,20–96,50 %. Men i kontekst er forskellen minimal. Lad os sammenligne det forventede tab over en standardsession:
           </p>
@@ -242,7 +243,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: VOLATILITET DEEP DIVE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Volatilitet: Hvad Lav Varians Reelt Betyder for Din Bankroll</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitet: Hvad Lav Varians Reelt Betyder for Din Bankroll</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst klassificeres som lav volatilitet – men hvad betyder det i praksis? Volatilitet beskriver fordelingen af gevinster over tid. En lavvolatil slot som Starburst leverer hyppige, men små gevinster, mens en højvolatil slot som <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> leverer sjældne, men store gevinster. Begge kan have identisk RTP – det er fordelingen, der adskiller dem.
           </p>
@@ -261,7 +262,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: WAGERING ANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Wagering-Egnethed: EV-Analyse for Bonusspillere</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Wagering-Egnethed: EV-Analyse for Bonusspillere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst er en af de mest populære slots til at opfylde <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, og det er ikke uden grund. Dens kombination af lav volatilitet og acceptable RTP gør den til en forudsigelig wagering-maskine. Men er den faktisk det bedste valg? Lad os beregne det.
           </p>
@@ -318,7 +319,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: MAX WIN REALITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Max Win: 800x i Perspektiv</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" /> Max Win: 800x i Perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starbursts max win på 800x din indsats er ekstremt lavt efter moderne standarder. For at sætte det i perspektiv: med en indsats på 10 kr. er den højest mulige gevinst 8.000 kr. Sammenlign det med Sweet Bonanzas max win på 211.750 kr. ved samme indsats, eller Dead or Alives 111.111 kr. Det er forskellen mellem "en god dag" og "en livsændrende gevinst".
           </p>
@@ -334,7 +335,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Starburst vs. Moderne Lavvolatile Alternativer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Starburst vs. Moderne Lavvolatile Alternativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst er ikke det eneste lavvolatile valg i 2026. Adskillige nyere slots tilbyder lignende stabilitet med bedre RTP og mere dynamisk gameplay. Fire Joker fra <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> har en RTP på 96,15 % med et simpelt 3x3 grid og en multiplikator-bonus, der kan levere op til 800x. Dazzle Me fra NetEnt tilbyder 96,90 % RTP med free spins. Og Twin Spin (også NetEnt) kombinerer 96,56 % RTP med en unik synkroniseret hjulmekanik.
           </p>
@@ -350,7 +351,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: HVEM PASSER SPILLET TIL? ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Spillerprofiler: Hvem Bør – og Hvem Bør Ikke – Spille Starburst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Spillerprofiler: Hvem Bør – og Hvem Bør Ikke – Spille Starburst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst er ideel for tre specifikke spillertyper. For det første: absolute nybegyndere, der ønsker at forstå online slots uden store risici. Starbursts simpelhed (ingen bonus-buy, ingen free spins-trigger, ingen komplekse mekanikker) gør den perfekt som introduktion. For det andet: wagering-spillere, der prioriterer lav bust-risiko over maksimal EV. For det tredje: casual spillere med begrænset budget (under 200 kr.), der ønsker den længst mulige session for deres penge.
           </p>
@@ -366,7 +367,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Bankroll-Management og Risikoprofil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Bankroll-Management og Risikoprofil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starbursts lave volatilitet gør bankroll-management relativt simpelt. Et bankroll-til-indsats-forhold på 100:1 er tilstrækkeligt for de fleste sessioner. Med 500 kr. kan du spille 5 kr./spin og forvente ca. 100–120 spins, før din saldo er opbrugt i et worst-case scenario (2,5-percentil). Det er markant mere session-tid end en højvolatil slot, hvor 50–70 spins ved samme ratio er mere realistisk.
           </p>
@@ -382,7 +383,7 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: UDVIKLERKONTEKST ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Sparkles className="h-7 w-7 text-primary" /> NetEnts Designfilosofi og Starbursts Arv</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> NetEnts Designfilosofi og Starbursts Arv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Starburst repræsenterer en specifik æra i <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> produktudvikling – en tid, hvor simpelhed var en dyd, og spillerens opmærksomhedsspænd var længere. I 2012 var online slots stadig relativt nye for mange spillere, og et spil, der var let at forstå og hurtigt at spille, var præcis det, markedet efterspurgte. NetEnt ramte plet med et produkt, der kombinerede visuelt tiltalende grafik med ukompliceret gameplay.
           </p>

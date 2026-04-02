@@ -18,11 +18,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles, Target, BarChart3, AlertTriangle, DollarSign,
-  TrendingUp, Shield, Zap, Brain, Calculator, Activity,
-  Dices, Timer, Gauge, Crown, Scale, Flame, Layers, Users,
-} from "lucide-react";
+import { DollarSign, Activity, Dices, Timer, Gauge } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
@@ -128,7 +125,7 @@ const DreamCatcherGuide = () => {
         <QuickComparisonTable count={3} title="Bedste Casinoer til Dream Catcher" prioritySlugs={["swift-casino", "luna-casino", "campobet"]} />
         {/* ── H2 1 ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Dream Catcher – pioneren bag live game shows</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="crown" className="h-5 w-5 text-primary" />Hvad er Dream Catcher – pioneren bag live game shows</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catcher blev lanceret af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> i 2017 og var det allerførste live casino game show – en helt ny spillekategori, der kombinerede traditionel gambling med tv-underholdning. Konceptet er bevidst simpelt: et stort, vertikalt pengehjul med 54 segmenter drejes af en live vært, og spillerne satser på hvilket tal hjulet stopper på. Simpelheden er intentionel – Dream Catcher var designet til at tiltrække spillere, der normalt undgik bordspil og fandt dem intimiderende.
           </p>
@@ -152,14 +149,14 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 2: Segmentfordeling ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />Hjulets segmentfordeling – komplet matematisk breakdown</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />Hjulets segmentfordeling – komplet matematisk breakdown</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catchers hjul har 54 segmenter med en nøje kalibreret fordeling, der producerer en bestemt <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> og gevinstprofil. Hvert segment har præcis samme bredde, hvilket sikrer, at sandsynligheden for hvert udfald er direkte proportional med antallet af segmenter af den type. Denne transparens er en af Dream Catchers styrker sammenlignet med mere komplekse game shows:
           </p>
 
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" /> Dream Catcher – komplet segmentfordeling</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" /> Dream Catcher – komplet segmentfordeling</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
@@ -200,7 +197,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 3: Expected Value ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Expected Value – hvad koster Dream Catcher per time</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Expected Value – hvad koster Dream Catcher per time</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med en house edge, der spænder fra 3,42 % (bedste væddemål) til 9,43 % (dårligste væddemål), varierer den reelle timeomkostning dramatisk afhængig af dit væddemålsmønster. Her er en komplet EV-analyse:
           </p>
@@ -245,14 +242,14 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 4: Multiplikator-matematik ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Multiplikator-matematik – konsekutive hits og max gevinst</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Multiplikator-matematik – konsekutive hits og max gevinst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De to multiplikator-segmenter (2x og 7x) tilføjer Dream Catchers eneste element af ekstraordinær spænding. Når en multiplikator rammes, ganges alle aktive væddemål med 2 (eller 7), og hjulet spinner igen. Hvis endnu en multiplikator rammes, ganges yderligere – og processen gentages. Denne kæde-mekanik er det, der skaber Dream Catchers højeste gevinster og mest dramatiske øjeblikke.
           </p>
 
           <Card className="mb-6 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" /> Multiplikator-kæde sandsynligheder</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" /> Multiplikator-kæde sandsynligheder</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
@@ -372,7 +369,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 7: Psykologisk designanalyse ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Brain className="h-5 w-5 text-primary" />Spildesign og psykologi – hvorfor Dream Catcher virker</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="brain" className="h-5 w-5 text-primary" />Spildesign og psykologi – hvorfor Dream Catcher virker</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catchers succes skyldes ikke matematikken – den er faktisk dårligere end mange alternativer. Succesen skyldes et sofistikeret psykologisk design, der udnytter flere kognitive biases og adfærdsmønstre til at skabe engagement og forlænge spilletiden.
           </p>
@@ -392,7 +389,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 8: Hvem bør spille ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Users className="h-5 w-5 text-primary" />Hvem er Dream Catcher for – og hvem bør undgå det</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="users" className="h-5 w-5 text-primary" />Hvem er Dream Catcher for – og hvem bør undgå det</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catcher er ideelt for begyndere i live casino, der søger en simpel, visuel oplevelse med lav adgangsbarriere. Det kræver ingen strategi, reglerne forstås på 10 sekunder, og tempoet er behageligt (~70 spins/time). Det er også godt for sociale spillere, der nyder chat-funktionen og værternes interaktion, samt for spillere, der søger et relativt billigt underholdningsspil (120 kr./time ved tal-1-satning med 50 kr. indsats).
           </p>
@@ -406,7 +403,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 9: Bankroll management ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Scale className="h-5 w-5 text-primary" />Bankroll Management til Dream Catcher</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Bankroll Management til Dream Catcher</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catchers moderate volatilitet kræver en afbalanceret bankroll-tilgang. Vi anbefaler følgende model baseret på din foretrukne væddemålstype og ønskede spilletid:
           </p>
@@ -441,7 +438,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 10: Bedste casinoer ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Bedste danske casinoer med Dream Catcher</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Bedste danske casinoer med Dream Catcher</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catcher er tilgængeligt hos alle danske Evolution Gaming-casinoer med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link> fra Spillemyndigheden. Da spillet er identisk på tværs af operatører, handler valget om <Link to="/casino-bonus" className={linkClass}>bonus</Link>, udbetalingshastighed og brugeroplevelse. Vær opmærksom på, at live casino typisk kun bidrager 10 % til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> – spil Dream Catcher med egne midler, ikke bonuspenge.
           </p>
@@ -455,7 +452,7 @@ const DreamCatcherGuide = () => {
 
         {/* ── H2 11: Ansvarligt spil ── */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Ansvarligt spil med Dream Catcher</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Ansvarligt spil med Dream Catcher</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catchers simple format og hurtige spins kan føre til ukontrolleret spil. Den lave beslutningskompleksitet – du behøver ikke tænke, kun satse – gør det nemt at "bare tage ét spin mere" uden at bemærke, hvor mange spins der er gået. Det langsommere tempo (vs. online slots) giver en falsk følelse af kontrol over forbruget.
           </p>

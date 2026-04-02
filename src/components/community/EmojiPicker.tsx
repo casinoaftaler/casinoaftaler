@@ -5,7 +5,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Smile } from "lucide-react";
+import { Smile } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const EMOJI_CATEGORIES = [
   {
@@ -51,7 +52,7 @@ export function EmojiPicker({ onEmojiSelect, disabled }: EmojiPickerProps) {
           disabled={disabled}
           aria-label="Indsæt emoji"
         >
-          <Smile className="h-4 w-4" />
+          <MenuIcon iconName="smile" className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent 

@@ -28,24 +28,8 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import {
-  Star,
-  CreditCard,
-  Trophy,
-  Sparkles,
-  Gamepad2,
-  Zap,
-  Check,
-  X,
-  Globe,
-  Shield,
-  Smartphone,
-  Headphones,
-  Monitor,
-  TrendingUp,
-  Target,
-  BarChart3,
-} from "lucide-react";
+import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -150,7 +134,7 @@ const Bet365Anmeldelse = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Globe className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="globe" className="mr-1.5 h-3.5 w-3.5" />
               4.5 / 5 – Sportsbook-gigant med casino
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -173,7 +157,7 @@ const Bet365Anmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="zap" className="h-6 w-6 text-primary" />
                 Overblik – bet365 i tal
               </CardTitle>
             </CardHeader>
@@ -283,7 +267,7 @@ const Bet365Anmeldelse = () => {
         {/* Live Casino */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Sparkles className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="sparkles" className="inline h-7 w-7 text-primary mr-2" />
             Live casinoet – her leverer bet365
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -303,7 +287,7 @@ const Bet365Anmeldelse = () => {
         {/* Sportsbetting & Live Streaming */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Monitor className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="monitor" className="inline h-7 w-7 text-primary mr-2" />
             Sportsbetting og live streaming
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -322,7 +306,7 @@ const Bet365Anmeldelse = () => {
         {/* Mobiloplevelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Smartphone className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="smartphone" className="inline h-7 w-7 text-primary mr-2" />
             Mobiloplevelsen – effektiv, men tæt pakket
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -368,7 +352,7 @@ const Bet365Anmeldelse = () => {
               },
             ].map((m) => (
               <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold">{m.title}</h3>
@@ -393,7 +377,7 @@ const Bet365Anmeldelse = () => {
         {/* Kundeservice */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Headphones className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="headphones" className="inline h-7 w-7 text-primary mr-2" />
             Kundeservice – hurtig, men på engelsk
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -412,7 +396,7 @@ const Bet365Anmeldelse = () => {
         {/* Sikkerhed og licens */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
-            <Shield className="inline h-7 w-7 text-primary mr-2" />
+            <MenuIcon iconName="shield" className="inline h-7 w-7 text-primary mr-2" />
             Regulatorisk compliance og spillerbeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -503,7 +487,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Denise Coates & Corporate Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Denise Coates og bet365-imperiet – det private ejerskabs konsekvenser</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />Denise Coates og bet365-imperiet – det private ejerskabs konsekvenser</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at forstå bet365 i 2026 er det nødvendigt at forstå Denise Coates CBE – grundlæggeren, der har bygget verdens største online sportsbook fra en fysisk butik i Stoke-on-Trent. Coates lånte £15 millioner mod familiens kæde af bookmaker-butikker i 2000 for at lancere bet365.com. I dag har virksomheden en estimeret årlig omsætning over £8 mia. (ca. 75 mia. kr.) og over 5.000 ansatte globalt. Coates er konsekvent blevet kåret som Storbritanniens højest betalte CEO med en årlig kompensation, der har overskredet £300 mio. – et kontroversielt punkt, men et der afspejler den enorme værdi, hun har skabt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det private ejerskab under Coates-familien er en sjældenhed i den moderne gambling-branche, hvor børsnotering er normen. Flutter Entertainment (PokerStars), FDJ United (Unibet), Entain (bwin) og MGM Resorts (LeoVegas) er alle offentligt handlede med kvartalsrapporter, aktionærmøder og SEC/FCA-compliance. bet365 har ingen af disse forpligtelser. Det betyder to ting for den danske spiller:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Fordelen:</strong> Langsigtede beslutninger. bet365 behøver ikke tilfredsstille aktionærer med kvartalsvise væksttal. De kan investere i teknologi, infrastruktur og kundetilfredshed uden kortsigtet pres for at maksimere profit. Live streaming-investeringen er et perfekt eksempel: den koster hundredvis af millioner årligt og har ingen direkte ROI, men den differentierer platformen og opbygger loyalitet. En børsnoteret konkurrent ville have svært ved at retfærdiggøre den investering over for aktionærer.</p>
@@ -514,7 +498,7 @@ const Bet365Anmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Bonusmatematik: Expected Value på casino og sport</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Bonusmatematik: Expected Value på casino og sport</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere bet365's reelle værdi for danske spillere har vi beregnet Expected Value (EV) på tværs af casino-bonus, løbende kampagner og sportsvæddemål. Formlen er: <strong>EV = Bonusbeløb − (Total Omsætning × House Edge)</strong>.</p>
 
           <Card className="border-border bg-card mb-6">
@@ -578,7 +562,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Technology & Live Streaming Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Monitor className="h-7 w-7 text-primary" />Teknologiplatformen – skabt til millioner af samtidige brugere</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="monitor" className="h-7 w-7 text-primary" />Teknologiplatformen – skabt til millioner af samtidige brugere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">bet365's teknologiske infrastruktur er en af branchens mest imponerende – og den er usynlig for de fleste spillere, fordi den simpelthen fungerer. Platformen er bygget til at håndtere millioner af samtidige brugere under peak-events som Champions League-finaler, VM-kampe og Grand National. Ingen anden dansk-licenseret operatør har denne skala, og det mærkes i stabiliteten: i vores 30-dages testperiode oplevede vi nul nedetid og nul performance-degradering, selv under Super Bowl-weekenden.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alt er bygget internt. Odds-enginen beregner millioner af priser per minut baseret på real-time data fra sportsbegivenheder globalt. Betalingsinfrastrukturen håndterer indbetalinger og udbetalinger i 20+ valutaer med automatisk compliance-kontrol. Casino-platformen integrerer 2.500+ spil fra eksterne udbydere via en proprietær aggregator, der optimerer indlæsningstider og cacher populære titler. Risk management-systemet overvåger alle væddemål i realtid og justerer automatisk odds og limits baseret på exposure.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Live streaming-teknologien</strong> fortjener særlig omtale. bet365 investerer estimeret £200+ mio. årligt i streaming-rettigheder og infrastruktur – mere end mange traditionelle TV-selskaber. Dækningen inkluderer 100.000+ events årligt: fodbold fra Serie A, La Liga og Bundesliga, tennis fra ATP og WTA, basketball fra NBA og Euroliga, hestevæddeløb fra UK og Irland, og nichemarkeder som dart, snooker og bordtennis. Teknisk leveres streams med adaptiv bitrate, der automatisk justerer kvaliteten baseret på din internetforbindelse – HD på fiber, stabil SD på 4G.</p>
@@ -589,7 +573,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Spillertyper der bør vælge et alternativ</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" />Spillertyper der bør vælge et alternativ</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Pure casino-spillere:</strong> Hvis du aldrig vedder på sport og udelukkende spiller slots og live casino, er bet365 det forkerte startsted. Casinoet er godt men designet som et supplement – navigation, bonusser og marketing er sportsfokuseret. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (mobilcasino-specialist), <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> (bredeste katalog) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+ spil) giver en markant bedre rendyrket casino-oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Spillere der kræver dansk kundeservice:</strong> bet365's support foregår primært på engelsk. For spillere med begrænset engelskkundskab – eller som simpelthen foretrækker at kommunikere på dansk – er dette en reel barriere. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> tilbyder alle dansk support.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægere:</strong> bet365's casino-velkomstbonus er gennemsnitlig med en EV på ~+200 kr. Spillere der aktivt optimerer bonusværdi bør starte hos operatører med højere EV-bonusser (<Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> +510 kr., <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> +600 kr.) og evt. bruge bet365 som sekundær platform for sportsvæddemål.</p>
@@ -631,13 +615,13 @@ const Bet365Anmeldelse = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/top-10-casino-online">
-                <Trophy className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />
                 Se Top 10 Casinoer
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="flex-1">
               <Link to="/casino-anmeldelser">
-                <Star className="mr-2 h-5 w-5" />
+                <MenuIcon iconName="star" className="mr-2 h-5 w-5" />
                 Alle Casino Anmeldelser
               </Link>
             </Button>

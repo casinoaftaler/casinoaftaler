@@ -11,7 +11,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Trash2, Loader2, ImageOff, Check, AlertTriangle } from "lucide-react";
+import { Trash2, Loader2, ImageOff, Check } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -181,7 +182,7 @@ export function StorageCleanupSection() {
             {scanResult.unusedFilesCount > 0 && scanResult.dryRun && groupedByBucket && (
               <div className="space-y-3">
                 <h4 className="font-medium flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-amber-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-amber-500" />
                   Ubrugte billeder der kan slettes:
                 </h4>
                 {Object.entries(groupedByBucket).map(([bucket, files]) => (

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search } from "lucide-react";
+import { Search } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -176,7 +177,7 @@ export function SiteSearch() {
         className="h-9 w-9"
         aria-label="Søg (Ctrl+K)"
       >
-        <Search className="h-4 w-4" />
+        <MenuIcon iconName="search" className="h-4 w-4" />
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -194,7 +195,7 @@ export function SiteSearch() {
                     value={`${item.label} ${item.category}`}
                     onSelect={() => handleSelect(item.to)}
                   >
-                    <Search className="mr-2 h-3 w-3 text-muted-foreground" />
+                    <MenuIcon iconName="search" className="mr-2 h-3 w-3 text-muted-foreground" />
                     {item.label}
                   </CommandItem>
                 ))}

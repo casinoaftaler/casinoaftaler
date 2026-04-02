@@ -24,7 +24,8 @@ import {
   Target,
   Star,
   TrendingUp,
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 
@@ -114,7 +115,7 @@ const Spillemaskiner = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Slots guide & analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Slots guide & analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spillemaskiner 2026</h1>
             <p className="text-lg text-white/80">Din komplette guide til online slots – fra historiske rødder til fremtidens mekanikker.</p>
           </div>
@@ -167,14 +168,14 @@ const Spillemaskiner = () => {
 
           <div className="space-y-6">
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Klassiske 3-hjuls slots</h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><MenuIcon iconName="layers" className="h-5 w-5 text-primary" />Klassiske 3-hjuls slots</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Klassiske slots er trofaste mod den originale design med tre hjul og 1–5 gevinstlinjer. De bruger traditionelle symboler – frugter, klokker, BAR og syvtaller – og har sjældent avancerede bonusfunktioner. Styrken er simplicitet og gennemsigtighed: du kan hurtigt overskue gevinsttabellen og forstå præcis, hvad hvert spin kan give. RTP ligger typisk på 96–97 %, og volatiliteten er lav til medium. Klassiske slots appellerer til spillere, der foretrækker en ren, ukompliceret oplevelse uden distraherende animationer. De er også ideelle til at forstå grundlæggende spillemaskinkoncepter som gevinstlinjer, indsatsniveauer og symbolværdier.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Video slots</h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Video slots</h3>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 Video slots dominerer markedet med over 85 % af alle tilgængelige spilleautomater. De har typisk 5 hjul (nogle 6 eller flere), 20–243 faste gevinstlinjer og et rigt udvalg af bonusfunktioner. Temaerne spænder fra oldtidens Egypten til nordisk mytologi, fra gyserstemning til popkultur. Den visuelle kvalitet matcher moderne videospil med 3D-animationer, dynamisk lyd og filmiske intros.
               </p>
@@ -184,21 +185,21 @@ const Spillemaskiner = () => {
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Megaways-spillemaskiner</h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Megaways-spillemaskiner</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Megaways-mekanikken fra <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link> (2016) erstattte faste gevinstlinjer med et dynamisk system, hvor antallet af symboler pr. hjul ændres ved hvert spin – typisk 2–7 symboler på 6 hjul, op til 117.649 vinderkombinationer. Det revolutionære var, at gevinstpotentialet varierer dramatisk fra spin til spin: et spin med mange symboler pr. hjul giver tusindvis af gevinstmuligheder, mens et spin med få symboler giver markant færre. Megaways kombineres med cascading wins og stigende multiplikatorer under free spins, hvilket skaber en sneboldeffekt, hvor gevinster kan eskalere eksponentielt. Populære titler inkluderer Bonanza, Extra Chilli og Gates of Olympus. Volatiliteten er næsten altid høj.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Progressive jackpot-slots</h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Progressive jackpot-slots</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Progressive jackpots vokser med hver indsats fra spillere på tværs af alle tilknyttede casinoer i netværket. En lille procentdel af hver indsats (typisk 1–5 %) bidrager til jackpotpuljen, som kan nå tocifrede millionbeløb. Mega Moolah fra <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> holder rekorden med over 130 millioner kroner udbetalt til en enkelt heldig spiller. Kompromisen er lavere basis-RTP (88–92 %), da jackpotbidraget finansieres fra hver indsats. Mange progressive systemer har fire niveauer – Mega, Major, Minor, Mini – der giver forskellige gevinstklasser. Jackpotten udløses tilfældigt eller via bonusspil, og sandsynligheden er proportional med indsatsstørrelsen.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><Target className="h-5 w-5 text-primary" />Cluster pays og grid-slots</h3>
+              <h3 className="mb-2 text-xl font-semibold flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Cluster pays og grid-slots</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Cluster pays-spillemaskiner erstatter gevinstlinjer med et gruppesystem: gevinster dannes, når grupper af identiske symboler lander ved siden af hinanden (typisk minimum 5 sammenhængende symboler). Denne mekanik åbner for cascading wins, hvor vindende symboler fjernes og nye falder ned, og for multiplikatorer der stiger med hver kaskade. Grid-slots udvider konceptet med grids op til 8x8 eller større. Populære titler inkluderer Reactoonz (Play'n GO), Sugar Rush (Pragmatic Play) og Cluster Tumble (Relax Gaming). Cluster pays-slots har typisk medium til høj volatilitet og RTP mellem 95–97 %. De tilbyder en frisk og anderledes spiloplevelse, der bryder med den traditionelle hjul-og-linje-model.
               </p>
@@ -230,15 +231,15 @@ const Spillemaskiner = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Lav volatilitet</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />Lav volatilitet</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Gevinster på ~30–40 % af spins. Typisk 1–50x indsatsen. Ideel til lange sessioner med begrænset budget. Eksempel: Starburst (96,08 % RTP).</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Medium volatilitet</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />Medium volatilitet</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Balanceret frekvens og størrelse. Bonusrunder 1–2x pr. 100 spins. God allround-oplevelse. Eksempel: Gonzo's Quest (95,97 % RTP).</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Zap className="h-5 w-5 text-primary" />Høj volatilitet</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Høj volatilitet</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-muted-foreground">Sjældne, potentielt massive gevinster (1.000–50.000x+). Lange tørre perioder. Kræver stor bankroll. Eksempel: Mental (96,08 % RTP).</p></CardContent>
             </Card>
           </div>
@@ -440,7 +441,7 @@ const Spillemaskiner = () => {
               { name: "Big Time Gaming", devSlug: "big-time-gaming", hubSlug: "big-time-gaming", desc: "Opfinderne af Megaways-mekanikken. Bonanza, Extra Chilli og Danger High Voltage har defineret en hel genre. Licenserer Megaways-teknologien til andre udviklere." },
             ].map((p) => (
               <Card key={p.devSlug} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to={`/spiludviklere/${p.devSlug}`} className={linkClass}>{p.name}</Link></CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName="star" className="h-4 w-4 text-primary" /><Link to={`/spiludviklere/${p.devSlug}`} className={linkClass}>{p.name}</Link></CardTitle></CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">{p.desc}</p>
                   <div className="flex flex-wrap gap-2">
@@ -478,7 +479,7 @@ const Spillemaskiner = () => {
 
         {/* ── SEKTION 10: Regulering i Danmark ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Regulering, Sikkerhed og Ansvarligt Spil</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />Regulering, Sikkerhed og Ansvarligt Spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den danske spillelovgivning er blandt Europas strengeste og stiller omfattende krav til alle operatører, der tilbyder spilleautomater til danske spillere. Forståelsen af det regulatoriske landskab giver dig som spiller en vigtig tryghed – og redskaber til at beskytte dig selv.
           </p>
@@ -542,7 +543,7 @@ const Spillemaskiner = () => {
 
         {/* ── Mest populære slots lige nu ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> Mest Populære Slots Lige Nu</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Mest Populære Slots Lige Nu</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Disse fem spillemaskiner dominerer de danske casinoer i 2026 – en blanding af cluster-pays innovation, multiplikator-magi og progressiv jackpot-spænding:
           </p>
@@ -567,7 +568,7 @@ const Spillemaskiner = () => {
         {/* ── Slot Kategorier ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="layers" className="h-7 w-7 text-primary" />
             Slot Kategorier
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -575,15 +576,15 @@ const Spillemaskiner = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link to="/megaways-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
-              <span className="font-semibold text-foreground flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Megaways Slots</span>
+              <span className="font-semibold text-foreground flex items-center gap-2"><MenuIcon iconName="zap" className="h-4 w-4 text-primary" /> Megaways Slots</span>
               <span className="text-xs text-muted-foreground">Dynamiske hjul med op til 117.649 vinderkombinationer</span>
             </Link>
             <Link to="/jackpot-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
-              <span className="font-semibold text-foreground flex items-center gap-2"><Trophy className="h-4 w-4 text-primary" /> Jackpot Slots</span>
+              <span className="font-semibold text-foreground flex items-center gap-2"><MenuIcon iconName="trophy" className="h-4 w-4 text-primary" /> Jackpot Slots</span>
               <span className="text-xs text-muted-foreground">Progressive jackpots med milliongevinster på tværs af netværk</span>
             </Link>
             <Link to="/bonus-buy-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
-              <span className="font-semibold text-foreground flex items-center gap-2"><Star className="h-4 w-4 text-primary" /> Bonus Buy Slots</span>
+              <span className="font-semibold text-foreground flex items-center gap-2"><MenuIcon iconName="star" className="h-4 w-4 text-primary" /> Bonus Buy Slots</span>
               <span className="text-xs text-muted-foreground">Køb bonusrunden direkte – spring base game over</span>
             </Link>
           </div>

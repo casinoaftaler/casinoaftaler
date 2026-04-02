@@ -18,11 +18,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import {
-  Zap, Clock, CreditCard, ShieldCheck, Smartphone, CheckCircle2,
-  TrendingUp, Star, AlertTriangle, Users, BarChart3,
-  Timer, Wallet, BadgeCheck, ArrowRight, Eye, Lock, Scale, Banknote,
-} from "lucide-react";
+import { Timer, BadgeCheck, ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -116,7 +113,7 @@ const HurtigUdbetalingGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />
               Udbetalingsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -165,7 +162,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Hvad definerer hurtig udbetaling */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Clock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="clock" className="h-7 w-7 text-primary" />
             Hvad definerer et casino med hurtig udbetaling?
           </h2>
           <p className="text-muted-foreground mb-4">
@@ -194,7 +191,7 @@ const HurtigUdbetalingGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Wallet className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="wallet" className="h-5 w-5 text-primary" />
                   Betalingsmetodernes hastighed
                 </CardTitle>
               </CardHeader>
@@ -253,7 +250,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Betalingsmetoder sammenligning */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <CreditCard className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="credit-card" className="h-7 w-7 text-primary" />
             De hurtigste betalingsmetoder til udbetalinger
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -328,7 +325,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Detaljeret gennemgang af hver metode */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="eye" className="h-7 w-7 text-primary" />
             Detaljeret gennemgang af betalingsmetoder
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -378,7 +375,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Hvad forsinker udbetalinger */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             De 7 mest almindelige årsager til forsinkede udbetalinger
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -412,7 +409,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Hvorfor vælge hurtig udbetaling */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <TrendingUp className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
             Hvorfor er hurtige udbetalinger vigtige?
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -422,7 +419,7 @@ const HurtigUdbetalingGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" /> Sikkerhedssignal
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> Sikkerhedssignal
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -434,7 +431,7 @@ const HurtigUdbetalingGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CheckCircle2 className="h-5 w-5 text-primary" /> Ansvarligt spil
+                  <MenuIcon iconName="check-circle2" className="h-5 w-5 text-primary" /> Ansvarligt spil
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -463,7 +460,7 @@ const HurtigUdbetalingGuide = () => {
         {/* KYC og verifikation */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Lock className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="lock" className="h-7 w-7 text-primary" />
             KYC-verifikation: Nøglen til hurtige udbetalinger
           </h2>
           <p className="text-muted-foreground mb-4">
@@ -475,7 +472,7 @@ const HurtigUdbetalingGuide = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-3 flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Hvad verificeres automatisk via MitID</h3>
+                <h3 className="font-bold mb-3 flex items-center gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-green-500" /> Hvad verificeres automatisk via MitID</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Fulde navn og CPR-nummer</li>
                   <li>• Alder (18+ bekræftelse)</li>
@@ -487,7 +484,7 @@ const HurtigUdbetalingGuide = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
-                <h3 className="font-bold mb-3 flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-yellow-500" /> Hvornår kræves ekstra dokumentation</h3>
+                <h3 className="font-bold mb-3 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500" /> Hvornår kræves ekstra dokumentation</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Udbetalinger over 75.000 kr.</li>
                   <li>• Skift af betalingsmetode</li>
@@ -508,7 +505,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Udbetalingsgrænser og VIP */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Scale className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="scale" className="h-7 w-7 text-primary" />
             Udbetalingsgrænser og VIP-fordele
           </h2>
           <p className="text-muted-foreground mb-4">
@@ -552,7 +549,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Tips til hurtigere udbetalinger */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <Star className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="star" className="h-7 w-7 text-primary" />
             8 tips til hurtigere udbetalinger
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -560,14 +557,14 @@ const HurtigUdbetalingGuide = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { icon: <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Verificér din identitet tidligt", desc: "Gennemfør KYC-verifikation via MitID umiddelbart efter registrering. Det eliminerer den største forsinkelsesårsag og sikrer, at din første udbetaling behandles hurtigt. Upload også adressebevis proaktivt." },
-              { icon: <CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Vælg den rigtige betalingsmetode", desc: "Trustly og e-wallets er markant hurtigere end bankoverførsler. Indsæt via den metode, du også vil bruge til udbetalinger – de fleste casinoer kræver konsistens." },
-              { icon: <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Opfyld bonuskrav først", desc: "Sørg for at alle omsætningskrav er opfyldt inden du anmoder om udbetaling. Aktive bonusser kan forsinke eller annullere din udbetaling. Tjek din bonusstatus i kontosektionen." },
-              { icon: <Users className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Brug samme betalingsmetode", desc: "De fleste casinoer kræver, at du udbetaler via samme metode som du indsatte med. Skift af metode kan medføre ekstra verifikation og op til 48 timers forsinkelse." },
-              { icon: <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Undgå weekender for bankoverførsler", desc: "Bankoverførsler behandles kun på hverdage. Anmod om udbetaling tidligt mandag–torsdag for hurtigst mulig levering. E-wallets og Trustly er ikke påvirket." },
-              { icon: <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Tjek udbetalingsgrænser", desc: "Visse casinoer har daglige maksimumsgrænser. Store gevinster kan kræve flere udbetalinger over flere dage – VIP-status kan løfte disse grænser markant." },
-              { icon: <Smartphone className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Lav en testudbetaling", desc: "Foretag en lille testudbetaling kort efter registrering for at sikre, at alt fungerer korrekt. Herefter vil fremtidige udbetalinger typisk behandles hurtigere." },
-              { icon: <Banknote className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Hold kontaktoplysninger opdaterede", desc: "Sørg for, at din e-mail og telefonnummer er korrekte. Mange casinoer sender verifikationskoder via SMS ved udbetalinger, og forkerte kontaktoplysninger forsinker processen." },
+              { icon: <MenuIcon iconName="shield-check" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Verificér din identitet tidligt", desc: "Gennemfør KYC-verifikation via MitID umiddelbart efter registrering. Det eliminerer den største forsinkelsesårsag og sikrer, at din første udbetaling behandles hurtigt. Upload også adressebevis proaktivt." },
+              { icon: <MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Vælg den rigtige betalingsmetode", desc: "Trustly og e-wallets er markant hurtigere end bankoverførsler. Indsæt via den metode, du også vil bruge til udbetalinger – de fleste casinoer kræver konsistens." },
+              { icon: <MenuIcon iconName="alert-triangle" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Opfyld bonuskrav først", desc: "Sørg for at alle omsætningskrav er opfyldt inden du anmoder om udbetaling. Aktive bonusser kan forsinke eller annullere din udbetaling. Tjek din bonusstatus i kontosektionen." },
+              { icon: <MenuIcon iconName="users" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Brug samme betalingsmetode", desc: "De fleste casinoer kræver, at du udbetaler via samme metode som du indsatte med. Skift af metode kan medføre ekstra verifikation og op til 48 timers forsinkelse." },
+              { icon: <MenuIcon iconName="clock" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Undgå weekender for bankoverførsler", desc: "Bankoverførsler behandles kun på hverdage. Anmod om udbetaling tidligt mandag–torsdag for hurtigst mulig levering. E-wallets og Trustly er ikke påvirket." },
+              { icon: <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Tjek udbetalingsgrænser", desc: "Visse casinoer har daglige maksimumsgrænser. Store gevinster kan kræve flere udbetalinger over flere dage – VIP-status kan løfte disse grænser markant." },
+              { icon: <MenuIcon iconName="smartphone" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Lav en testudbetaling", desc: "Foretag en lille testudbetaling kort efter registrering for at sikre, at alt fungerer korrekt. Herefter vil fremtidige udbetalinger typisk behandles hurtigere." },
+              { icon: <MenuIcon iconName="banknote" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />, title: "Hold kontaktoplysninger opdaterede", desc: "Sørg for, at din e-mail og telefonnummer er korrekte. Mange casinoer sender verifikationskoder via SMS ved udbetalinger, og forkerte kontaktoplysninger forsinker processen." },
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
                 {tip.icon}
@@ -585,7 +582,7 @@ const HurtigUdbetalingGuide = () => {
         {/* Ansvarligt spil */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-7 w-7 text-primary" />
             Hurtige udbetalinger og ansvarligt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

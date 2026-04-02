@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award } from "lucide-react";
+import { Award } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
 import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
@@ -37,7 +38,7 @@ const PragmaticPlayGuide = () => (
           eager
         />
         <div className="flex items-start gap-3">
-            <Award className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+            <MenuIcon iconName="award" className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
             <div>
               <p className="mb-1 font-semibold">Officiel partner af Pragmatic Play</p>
               <p className="text-sm text-muted-foreground">

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Users, Gamepad2, Trophy } from "lucide-react";
+import { Users, Gamepad2, Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 /**
  * Static SEO block for community stats.

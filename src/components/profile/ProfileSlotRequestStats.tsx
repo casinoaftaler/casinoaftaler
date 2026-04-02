@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useMySlotRequests } from "@/hooks/useSlotRequests";
-import { Gamepad2, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 
 interface ProfileSlotRequestStatsProps {
@@ -34,7 +35,7 @@ export function ProfileSlotRequestStats({ className }: ProfileSlotRequestStatsPr
     <Card className={className}>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-lg">
-          <Gamepad2 className="h-5 w-5 text-primary" />
+          <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
           Slot Requests
         </CardTitle>
       </CardHeader>

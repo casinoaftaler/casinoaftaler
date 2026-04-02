@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Trophy, Crown, ChevronRight, Clock } from "lucide-react";
+import { ChevronRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
@@ -120,7 +121,7 @@ export function SidebarLeaderboard() {
       />
 
       <div className="flex items-center gap-2 mb-1">
-        <Trophy className="h-4 w-4 text-amber-400" />
+        <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-400" />
         <h3 className="text-sm font-bold text-foreground">Månedsturnering</h3>
       </div>
 
@@ -128,7 +129,7 @@ export function SidebarLeaderboard() {
       <div className="flex items-center justify-between mb-3">
         <p className="text-[11px] text-muted-foreground">Top 5 spillere</p>
         <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-mono">
-          <Clock className="h-3 w-3" />
+          <MenuIcon iconName="clock" className="h-3 w-3" />
           <span>{countdown.label}</span>
         </div>
       </div>

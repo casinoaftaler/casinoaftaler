@@ -21,9 +21,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import {
-  Sparkles, ShieldCheck, Target, Brain, BarChart3, Users, AlertTriangle, Timer, Zap, TrendingUp, DollarSign, Shield, Calculator, Heart, Eye, BookOpen,
-} from "lucide-react";
+import { Timer, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -132,7 +131,7 @@ const LiveCasinoStrategiGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Strategiguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -199,7 +198,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #2 – House edge-sammenligning ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             House edge-sammenligning: Alle live casino-spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -264,7 +263,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card border-l-4 border-l-green-500">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Target className="h-5 w-5 text-green-500" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-green-500" />
                   40x – Konservativ
                 </CardTitle>
               </CardHeader>
@@ -277,7 +276,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card border-l-4 border-l-yellow-500">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Target className="h-5 w-5 text-yellow-500" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-yellow-500" />
                   60x – Moderat
                 </CardTitle>
               </CardHeader>
@@ -290,7 +289,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card border-l-4 border-l-red-500">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Target className="h-5 w-5 text-red-500" />
+                  <MenuIcon iconName="target" className="h-5 w-5 text-red-500" />
                   80x – Aggressiv
                 </CardTitle>
               </CardHeader>
@@ -312,7 +311,7 @@ const LiveCasinoStrategiGuide = () => {
           <Card className="border-border bg-card">
             <CardContent className="pt-4">
               <h3 className="font-semibold mb-2 flex items-center gap-2">
-                <Calculator className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                 Bankroll-beregner: Hvad er din optimale indsats?
               </h3>
               <div className="text-sm text-muted-foreground space-y-1">
@@ -338,7 +337,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #4 – Betting-systemer analyse ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <AlertTriangle className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />
             Betting-systemer – hvorfor de alle taber
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -349,7 +348,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-red-500" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-red-500" />
                   Martingale-systemet – Fordoblingsstrategien
                 </CardTitle>
               </CardHeader>
@@ -369,7 +368,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-yellow-500" />
+                  <MenuIcon iconName="brain" className="h-5 w-5 text-yellow-500" />
                   D'Alembert-systemet – Den forsigtige progression
                 </CardTitle>
               </CardHeader>
@@ -389,7 +388,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-blue-500" />
+                  <MenuIcon iconName="zap" className="h-5 w-5 text-blue-500" />
                   Fibonacci-systemet – Matematisk illusion
                 </CardTitle>
               </CardHeader>
@@ -428,7 +427,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #5 – Spilvalg-strategi ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="target" className="h-7 w-7 text-primary" />
             Spilvalg-strategi: Hvilket spil passer din profil?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -519,7 +518,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
                   Tre grænser du SKAL sætte
                 </CardTitle>
               </CardHeader>
@@ -548,7 +547,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #7 – Bonusstrategi for live casino ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Sparkles className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />
             Bonusstrategi for live casino
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -590,7 +589,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #8 – EV-optimering og variansreduktion ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Calculator className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Avanceret: EV-optimering og variansreduktion
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -637,7 +636,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #9 – Psykologiske fælder ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Brain className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Psykologiske fælder i live casino
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -648,7 +647,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500" />
                   Gamblers Fallacy
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -660,7 +659,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-red-500" />
                   Tabsjagt (Loss Chasing)
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -672,7 +671,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500" />
                   Confirmation Bias
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -684,7 +683,7 @@ const LiveCasinoStrategiGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-4">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                  <MenuIcon iconName="alert-triangle" className="h-4 w-4 text-yellow-500" />
                   Near-Miss Effekten
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -704,7 +703,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #10 – Forventet tab per time tabeller ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Forventet tab pr. time – komplet reference
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -786,7 +785,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #11 – Hvornår skal du stoppe ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Shield className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="shield" className="h-7 w-7 text-primary" />
             Hvornår skal du stoppe – exit-strategier
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -826,7 +825,7 @@ const LiveCasinoStrategiGuide = () => {
         {/* ═══ H2 #12 – Ansvarligt spil ═══ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Heart className="h-7 w-7 text-primary" />
+            <MenuIcon iconName="heart" className="h-7 w-7 text-primary" />
             Ansvarligt spil – den vigtigste strategi
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

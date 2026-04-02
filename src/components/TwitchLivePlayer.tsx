@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { X, Minus, Plus, Eye, GripVertical, Volume2, VolumeX } from "lucide-react";
+import { X, Plus, GripVertical, VolumeX } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
@@ -179,7 +180,7 @@ export function TwitchLivePlayer() {
         <span className="text-sm font-medium text-foreground">LIVE</span>
         {streamInfo?.viewerCount !== undefined && (
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Eye className="h-3 w-3" />
+            <MenuIcon iconName="eye" className="h-3 w-3" />
             {streamInfo.viewerCount.toLocaleString()}
           </span>
         )}
@@ -239,7 +240,7 @@ export function TwitchLivePlayer() {
         <div className="flex items-center gap-1 shrink-0">
           {streamInfo?.viewerCount !== undefined && (
             <span className="flex items-center gap-1 text-xs text-muted-foreground mr-1">
-              <Eye className="h-3 w-3" />
+              <MenuIcon iconName="eye" className="h-3 w-3" />
               {streamInfo.viewerCount.toLocaleString()}
             </span>
           )}
@@ -253,7 +254,7 @@ export function TwitchLivePlayer() {
             {isMuted ? (
               <VolumeX className="h-3.5 w-3.5" />
             ) : (
-              <Volume2 className="h-3.5 w-3.5" />
+              <MenuIcon iconName="volume2" className="h-3.5 w-3.5" />
             )}
           </Button>
           <Button
@@ -263,7 +264,7 @@ export function TwitchLivePlayer() {
             onClick={handleMinimize}
             aria-label="Minimér afspiller"
           >
-            <Minus className="h-3.5 w-3.5" />
+            <MenuIcon iconName="minus" className="h-3.5 w-3.5" />
           </Button>
           <Button
             variant="ghost"

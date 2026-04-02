@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { SITE_URL } from "@/lib/seo";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 interface PopularSlot {
   slot_name: string;

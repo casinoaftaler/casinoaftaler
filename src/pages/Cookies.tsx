@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { Cookie, Settings, BarChart3, Share2, Shield, ToggleLeft, User, CalendarDays, BookOpen } from "lucide-react";
+import { Cookie, Settings, Share2, ToggleLeft } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -138,7 +139,7 @@ const Terms = () => {
             <Card className="border-border bg-card">
               <CardContent className="p-6">
                 <div className="mb-3 flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-foreground">Nødvendige cookies</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -160,7 +161,7 @@ const Terms = () => {
             <Card className="border-border bg-card">
               <CardContent className="p-6">
                 <div className="mb-3 flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   <h3 className="font-semibold text-foreground">Statistik cookies</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">

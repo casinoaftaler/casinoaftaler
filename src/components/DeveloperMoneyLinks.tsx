@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, BarChart3 } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 
 /**
@@ -77,7 +78,7 @@ export function DeveloperMoneyLinks({ providerName, providerSlug }: DeveloperMon
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Gift className="h-7 w-7 text-primary" />
+        <MenuIcon iconName="gift" className="h-7 w-7 text-primary" />
         Bonus & Casinoer med {providerName}
       </h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -109,7 +110,7 @@ export function DeveloperMoneyLinks({ providerName, providerSlug }: DeveloperMon
           to={`/spillemaskiner/${providerSlug}`}
           className="mt-4 flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
         >
-          <BarChart3 className="h-5 w-5 text-primary flex-shrink-0" />
+          <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="font-semibold">{providerName} Slot-katalog – Statistik & Data</p>
             <p className="text-sm text-muted-foreground leading-relaxed">

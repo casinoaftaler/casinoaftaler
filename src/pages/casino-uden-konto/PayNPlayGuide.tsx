@@ -16,11 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import {
-  Zap, Shield, Lock, Globe, Landmark, ArrowRight, CheckCircle, AlertTriangle,
-  Clock, CreditCard, Eye, RefreshCw, BarChart3, Server, FileText, Smartphone,
-  Users, Scale, TrendingUp, Ban,
-} from "lucide-react";
+import { ArrowRight, Server, Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const payNPlayFaqs: { question: string; answer: string | React.ReactNode }[] = [
@@ -141,7 +138,7 @@ const PayNPlayGuide = () => {
         <QuickComparisonTable count={3} title="Pay N Play – hurtigste casinoer" prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Hvad er Pay N Play?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" />Hvad er Pay N Play?</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Pay N Play er Trustly's flagskibsprodukt inden for open banking-baseret casinobetaling. Lanceret i 2018 var det den første løsning, der kombinerede identitetsverifikation, KYC-compliance og betalingsinitiering i en enkelt banktransaktion. Teknologien bygger på EU's PSD2-direktiv (Payment Services Directive 2), der giver regulerede tredjepartsudbydere som Trustly adgang til bankkonti via sikre API'er.
           </p>
@@ -161,7 +158,7 @@ const PayNPlayGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-5 w-5 text-primary" />
               Pay N Play i nøgletal (2026)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -191,7 +188,7 @@ const PayNPlayGuide = () => {
 
         {/* 2. TEKNISK FLOW-DIAGRAM */}
         <section className="mb-12" id="teknisk-flow">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><RefreshCw className="h-7 w-7 text-primary" />Teknisk flow – fra klik til spin</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />Teknisk flow – fra klik til spin</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Her er det komplette tekniske flow, der udfoldes, når en spiller initierer en Pay N Play-transaktion. Hvert trin er designet til at minimere latency og maksimere sikkerhed:</p>
           <div className="space-y-4 mb-6">
             {[
@@ -226,7 +223,7 @@ const PayNPlayGuide = () => {
 
         {/* 3. KOMPLET BANKMATRICE */}
         <section className="mb-12" id="bankmatrice">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Landmark className="h-7 w-7 text-primary" />Komplet bankkompatibilitetsmatrice</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />Komplet bankkompatibilitetsmatrice</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Herunder finder du den fulde liste over danske banker og deres kompatibilitet med Trustly Pay N Play pr. marts 2026. Data er verificeret via direkte test af vores team med reelle Pay N Play-transaktioner på 4 casinoer:
           </p>
@@ -293,14 +290,14 @@ const PayNPlayGuide = () => {
 
         {/* 4. PSD2 OG OPEN BANKING */}
         <section className="mb-12" id="psd2-open-banking">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><FileText className="h-7 w-7 text-primary" />PSD2 og open banking-grundlaget</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />PSD2 og open banking-grundlaget</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Pay N Play er muliggjort af EU's Payment Services Directive 2 (PSD2), der trådte i kraft i januar 2018. PSD2 forpligter banker til at åbne deres API'er for regulerede tredjepartsudbydere (Third Party Providers – TPP'er) som Trustly. Direktivet definerer to nøgletjenester, der tilsammen muliggør det komplette Pay N Play-flow:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base"><Eye className="h-5 w-5 text-primary" />AIS – Account Information Service</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName="eye" className="h-5 w-5 text-primary" />AIS – Account Information Service</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">Giver Trustly adgang til at læse kontohaverens identitetsoplysninger (navn, CPR, adresse) og kontosaldo. Kræver eksplicit samtykke fra spilleren via bankens autentificeringsflow (MitID). Bruges til KYC-verifikation og ROFUS-kontrol.</p>
@@ -309,7 +306,7 @@ const PayNPlayGuide = () => {
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-base"><CreditCard className="h-5 w-5 text-primary" />PIS – Payment Initiation Service</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />PIS – Payment Initiation Service</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">Giver Trustly adgang til at initiere en betaling fra spillerens konto til casinoets konto. Kræver eksplicit godkendelse via Strong Customer Authentication (SCA) – i Danmark implementeret via MitID. Betalingen er øjeblikkelig og irreversibel.</p>
@@ -326,7 +323,7 @@ const PayNPlayGuide = () => {
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Scale className="h-5 w-5 text-primary" />
+              <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
               Regulatorisk ramme – nøglelove og direktiver
             </h3>
             <div className="space-y-3">
@@ -354,7 +351,7 @@ const PayNPlayGuide = () => {
 
         {/* 5. SIKKERHEDSARKITEKTUR */}
         <section className="mb-12" id="sikkerhed">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" />Sikkerhedsarkitektur – lag for lag</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" />Sikkerhedsarkitektur – lag for lag</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Pay N Play's sikkerhedsmodel er opbygget i multiple lag for at beskytte spillerens data og midler. Hver komponent i kæden – fra spillerens browser til casinoets backend – er sikret uafhængigt:</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {[
@@ -386,7 +383,7 @@ const PayNPlayGuide = () => {
 
         {/* 6. TIDSTEST-DATA */}
         <section className="mb-12" id="tidstest">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Clock className="h-7 w-7 text-primary" />Tidstest: Registrering og udbetaling</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="clock" className="h-7 w-7 text-primary" />Tidstest: Registrering og udbetaling</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Vi har gennemført 40+ Pay N Play-transaktioner på 4 forskellige casinoer med 5 forskellige danske banker for at måle den reelle hastighed. Alle test er udført under kontrollerede forhold med stabil fiberforbindelse (500/500 Mbit/s) på desktop (Chrome 122) og mobil (Safari/Chrome):
           </p>
@@ -436,7 +433,7 @@ const PayNPlayGuide = () => {
 
         {/* 7. TRUSTLY VS. ANDRE OPEN BANKING-LØSNINGER */}
         <section className="mb-12" id="trustly-vs-alternativer">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" />Trustly vs. andre open banking-løsninger</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Trustly vs. andre open banking-løsninger</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Trustly er ikke den eneste open banking-udbyder på det europæiske marked. Her sammenligner vi de vigtigste alternativer og forklarer, hvorfor Pay N Play er den dominerende løsning i det nordiske casinomiljø:
           </p>
@@ -484,7 +481,7 @@ const PayNPlayGuide = () => {
 
         {/* 8. MOBILSPECIFIK SEKTION */}
         <section className="mb-12" id="mobil">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Smartphone className="h-7 w-7 text-primary" />Pay N Play på mobil – teknisk analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" />Pay N Play på mobil – teknisk analyse</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Mobilbrug udgør over 65% af al online gambling-trafik i Danmark (Spillemyndighedens årsrapport 2025). Pay N Play's mobiloplevelse er derfor kritisk for adoptionsraten. Her analyserer vi de tekniske aspekter af mobilflowet:
           </p>
@@ -512,7 +509,7 @@ const PayNPlayGuide = () => {
 
         {/* 9. FEJLHÅNDTERING OG EDGE CASES */}
         <section className="mb-12" id="fejlhaandtering">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" />Fejlhåndtering og edge cases</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" />Fejlhåndtering og edge cases</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
             Ingen teknologisk løsning er fejlfri. Her dokumenterer vi de mest almindelige fejlscenarier i Pay N Play-flowet og deres håndtering baseret på vores tests:
           </p>
@@ -558,7 +555,7 @@ const PayNPlayGuide = () => {
 
         {/* 11. FREMTIDEN FOR PAY N PLAY */}
         <section className="mb-12" id="fremtiden">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Fremtiden for Pay N Play i Danmark</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />Fremtiden for Pay N Play i Danmark</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Pay N Play-teknologien er under konstant udvikling. Her er de mest sandsynlige udviklingstendenser for det danske marked i 2026-2028 baseret på Trustly's offentlige roadmap og markedstendenser:
           </p>
@@ -581,7 +578,7 @@ const PayNPlayGuide = () => {
 
         {/* CLUSTER NAVIGATION */}
         <section className="mb-12" id="relaterede-guides">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><FileText className="h-7 w-7 text-primary" />Relaterede guides</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />Relaterede guides</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               { to: "/casino-uden-konto", title: "Casino uden Konto – Hub", desc: "Komplet overblik over casino uden kontooprettelse" },

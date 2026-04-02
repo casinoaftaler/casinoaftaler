@@ -19,7 +19,8 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Shield, Zap, BarChart3, Calculator, Flame, Scale, Users, AlertTriangle, Trophy } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -56,7 +57,7 @@ const EyeOfHorusGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Symbol upgrade & bonusprofil</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Symbol upgrade & bonusprofil</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Eye of Horus – Symbol Upgrade & Volatilitetsanalyse</h1>
             <p className="text-lg text-white/80">Merkur Gamings ikoniske landbaserede klassiker, nu online: en matematisk dekonstruktion af symbol upgrade-systemet og hvorfor denne 'Book of'-variant tilbyder det højeste max win i genren.</p>
           </div>
@@ -70,7 +71,7 @@ const EyeOfHorusGuide = () => {
         </div>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Fra Spillehal til Online: Eye of Horus' Rejse</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Fra Spillehal til Online: Eye of Horus' Rejse</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus har en unik oprindelse i online slot-verdenen. Mens de fleste online slots er designet digitalt fra bunden, blev Eye of Horus oprindeligt skabt af Merkur Gaming (en del af den tyske Gauselmann Group) til fysiske spilleautomater i europæiske spillehaller. Spillets mekanikker – expanding symbols, symbol upgrades og den egyptiske tematik – blev optimeret til den landbaserede oplevelse, hvor spillere interagerer fysisk med maskinen.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Blueprint Gaming overtog opgaven med at portere Eye of Horus til online-platformen, og resultatet er en af de mest autentiske landbaseret-til-online konverteringer i branchen. Den originale matematik er bevaret intakt, inklusive den unikke symbol upgrade-mekanik, som var revolutionerende, da den først blev introduceret i Merkurs fysiske automater i de tidlige 2010'ere.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne landbaserede arv giver Eye of Horus en særlig karakter, der adskiller den fra rent digitale slots. Interfacet er bevidst minimalistisk, lyddesignet er atmosfærisk men ikke overvældende, og gameplay-tempoet er lidt langsommere end moderne online-designede slots. For spillere, der kender Merkur-automater fra europæiske spillehaller, er Eye of Horus et nostalgisk gensyn med et velkendt matematisk fundament.</p>
@@ -84,7 +85,7 @@ const EyeOfHorusGuide = () => {
         </VideoContextBox>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Kernetal og Matematisk Fundament</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil: Kernetal og Matematisk Fundament</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Merkur / Blueprint</strong></div>
@@ -101,7 +102,7 @@ const EyeOfHorusGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" />Symbol Upgrade: Den Progressive Transformation</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Symbol Upgrade: Den Progressive Transformation</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Symbol upgrade er Eye of Horus' killer-feature og den primære grund til spillets 10.000× max win. Mekanikken fungerer således: ved hvert retrigger under free spins opgraderes alle lavbetalende symboler ét niveau. Første retrigger konverterer det laveste kortsymbol (10) til det næsthøjeste (J). Anden retrigger konverterer J til Q, osv. Efter tilstrækkeligt mange retriggers er alle kortsymboler transformeret til premium tematiske symboler.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne mekanik har en eksponentiel effekt på gevinstpotentialet. Med hvert upgrade-niveau stiger gennemsnitsgevinsten pr. spin under free spins markant, fordi de symboler, der hyppigst lander (kortsymboler), nu betaler som premium-symboler. I en bonusrunde med 3+ retriggers og fuldt opgraderede symboler er gevinster på 500-2.000× indsatsen realistiske.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Matematisk set er sandsynligheden for multiple retriggers lav men ikke negligerbar. Estimeret retrigger-sandsynlighed pr. free spin er 3-5 %, hvilket giver cirka 30-40 % chance for mindst ét retrigger i en 12-spin bonusrunde. To retriggers falder til cirka 10-15 %, og tre+ retriggers til under 5 %. Det er i disse sjældne multi-retrigger scenarier, at Eye of Horus' 10.000× potentiale realiseres.</p>
@@ -111,7 +112,7 @@ const EyeOfHorusGuide = () => {
         <InlineCasinoCards />
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />EV-Analyse: Eye of Horus i 'Book of'-Landskabet</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />EV-Analyse: Eye of Horus i 'Book of'-Landskabet</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">'Book of'-genren: Komparativ oversigt</h3>
             <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-center py-2">RTP</th><th className="text-center py-2">Max Win</th><th className="text-center py-2">Unik Mekanik</th></tr></thead>
@@ -127,13 +128,13 @@ const EyeOfHorusGuide = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><AlertTriangle className="h-5 w-5 text-primary" />Bankroll og Risikostyring</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Bankroll og Risikostyring</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus' høje volatilitet og retrigger-afhængighed kræver en bankroll på minimum 250-300 spins. Vi anbefaler et tabsstop på 50 % og et gevinststop på 300 % af startkapitalen. Den ekstra afhængighed af retriggers for store gevinster gør tålmodighed til en dyd – forlæng ikke sessioner i jagten på retriggers.</p>
           <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Eye of Horus et middelmådigt valg – den høje volatilitet skaber for store bankroll-udsving til stabil gennemspilning. Anvend i stedet lavere volatilitetsalternativer og brug Eye of Horus med din egen bankroll, hvor du kan absorbere variance. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Trophy className="h-5 w-5 text-primary" />Spillehal-Klassikeren Med Det Højeste Ceiling</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Spillehal-Klassikeren Med Det Højeste Ceiling</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus er en slot med sjæl. Dens landbaserede arv giver den en autenticitet, som rent digitale slots sjældent opnår, og symbol upgrade-mekanikken tilføjer en progressiv dimension, der belønner tålmodighed og retrigger-held. Med 10.000× max win er den 'Book of'-genrens mest lukrative titel – og en uomgængelig del af enhver seriøs slot-spillers repertoire.</p>
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der søger den autentiske spillehal-oplevelse med moderne convenience, er Eye of Horus det perfekte valg. Udforsk flere guides i vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link>.</p>
         </section>

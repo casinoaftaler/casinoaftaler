@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload, X, Loader2, Play, Pause, Volume2 } from "lucide-react";
+import { Upload, X, Loader2, Pause } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQueryClient } from "@tanstack/react-query";
 
 interface SlotSoundUploadProps {
@@ -124,7 +125,7 @@ export function SlotSoundUpload({
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2">
-        <Volume2 className="h-4 w-4 text-muted-foreground" />
+        <MenuIcon iconName="volume2" className="h-4 w-4 text-muted-foreground" />
         <Label>{label}</Label>
       </div>
       {description && (
@@ -142,7 +143,7 @@ export function SlotSoundUpload({
               {isPlaying ? (
                 <Pause className="h-4 w-4" />
               ) : (
-                <Play className="h-4 w-4" />
+                <MenuIcon iconName="play" className="h-4 w-4" />
               )}
               {isPlaying ? "Stop" : "Afspil"}
             </Button>

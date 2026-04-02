@@ -2,7 +2,8 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, MousePointerClick, TrendingUp, Loader2 } from "lucide-react";
+import { ChevronDown, MousePointerClick, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -200,7 +201,7 @@ export function ClickAnalyticsDashboard() {
                   <Card>
                     <CardContent className="pt-4">
                       <div className="flex items-center gap-2 text-muted-foreground mb-1">
-                        <TrendingUp className="h-4 w-4" />
+                        <MenuIcon iconName="trending-up" className="h-4 w-4" />
                         <span className="text-xs">Top Casino</span>
                       </div>
                       <p className="text-lg font-bold truncate">{stats.topCasino || "-"}</p>

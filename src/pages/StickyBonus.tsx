@@ -24,33 +24,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Sparkles,
-  ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  DollarSign,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Scale,
-  Calculator,
-  Ban,
-  BarChart3,
-  Percent,
-  Coins,
-  Users,
-  Check,
-  X,
-} from "lucide-react";
+import { DollarSign, Ban, Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -148,7 +123,7 @@ const StickyBonus = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Bonusmekanik & omsætningsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -242,7 +217,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Eksempel: 100% Sticky Bonus
                 </CardTitle>
               </CardHeader>
@@ -260,7 +235,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gift className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
                   Sticky Bonus med free spins
                 </CardTitle>
               </CardHeader>
@@ -278,7 +253,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Sammenblanding af midler
                 </CardTitle>
               </CardHeader>
@@ -326,19 +301,19 @@ const StickyBonus = () => {
               <CardContent>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span><strong>Større spillebudget:</strong> Ofte større bonusbeløb, der giver flere midler at spille for</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span><strong>Forlænget spilletid:</strong> Med et større budget kan du udforske flere spil</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span><strong>Større gevinstpotentiale:</strong> Flere midler at satse med kan øge chancerne</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
                     <span><strong>Lavere risiko per spin:</strong> Bonuspenge minimerer din egen økonomiske risiko</span>
                   </li>
                 </ul>
@@ -355,19 +330,19 @@ const StickyBonus = () => {
               <CardContent>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span><strong>Låst saldo:</strong> Ingen udbetaling mulig før omsætningskrav er opfyldt</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span><strong>Risiko for tab:</strong> Du kan miste både indbetaling og bonus, hvis kravene ikke nås</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span><strong>Tidspres:</strong> Omsætningskrav skal typisk opfyldes inden 60 dage</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     <span><strong>Gevinstloft:</strong> Mange bonusser har en maksimal gevinst fra bonusmidler</span>
                   </li>
                 </ul>
@@ -392,7 +367,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
                   Omsætningskrav (d+b)
                 </CardTitle>
               </CardHeader>
@@ -410,7 +385,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Tidsbegrænsning
                 </CardTitle>
               </CardHeader>
@@ -427,7 +402,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Indsatsgrænser
                 </CardTitle>
               </CardHeader>
@@ -443,7 +418,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   Maksimal gevinst
                 </CardTitle>
               </CardHeader>
@@ -459,7 +434,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilbidrag
                 </CardTitle>
               </CardHeader>
@@ -476,7 +451,7 @@ const StickyBonus = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <CreditCard className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="credit-card" className="h-5 w-5 text-primary" />
                   Minimumsindbetaling
                 </CardTitle>
               </CardHeader>
@@ -695,7 +670,7 @@ const StickyBonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 1: Standard 100% Sticky Bonus (10x d+b)
                 </CardTitle>
               </CardHeader>
@@ -715,7 +690,7 @@ const StickyBonus = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 2: Lavt omsætningskrav (5x d+b) – ComeOn/GetLucky niveau
                 </CardTitle>
               </CardHeader>
@@ -735,7 +710,7 @@ const StickyBonus = () => {
             <Card className="border-destructive/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   Scenarie 3: Worst case – Udenlandsk 50x bonus (til sammenligning)
                 </CardTitle>
               </CardHeader>

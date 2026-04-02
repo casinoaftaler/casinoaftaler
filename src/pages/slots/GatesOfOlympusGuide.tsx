@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy, Crown
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -104,7 +105,7 @@ const GatesOfOlympusGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" /> Feature-Mekanik Analyse</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="crown" className="mr-1.5 h-3.5 w-3.5" /> Feature-Mekanik Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Gates of Olympus</h1>
             <p className="text-lg text-white/80">En feature-mekanik-centreret analyse af Pragmatic Plays guddommeligt populære multiplikator-slot.</p>
           </div>
@@ -150,7 +151,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> Teknisk Specifikation og Grundmekanik</h2>
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> Teknisk Specifikation og Grundmekanik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6"><p className="text-sm text-muted-foreground">Udvikler</p><p className="text-xl font-bold"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link></p></CardContent></Card>
             <Card><CardContent className="pt-6"><p className="text-sm text-muted-foreground">RTP (Standard)</p><p className="text-xl font-bold">96,50 %</p></CardContent></Card>
@@ -176,7 +177,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: MULTIPLIKATOR-MATEMATIK ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Multiplikator-Matematik: Per-Spin vs. Akkumulerende</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Multiplikator-Matematik: Per-Spin vs. Akkumulerende</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Forskellen mellem Gates of Olympus' per-spin multiplikator og Sweet Bonanzas akkumulerende multiplikator er ikke bare kosmetisk – den ændrer fundamentalt gevinstfordelingens form.
           </p>
@@ -224,7 +225,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: RTP ANATOMY ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter og Deres Reelle Omkostning</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP-Varianter og Deres Reelle Omkostning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gates of Olympus fås i tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-varianter: 96,50 %, 95,51 % og 91,50 %. Ligesom med Sweet Bonanza er forskellen mellem den højeste og laveste variant dramatisk. Her er de konkrete tal:
           </p>
@@ -259,7 +260,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: EV SCENARIER ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Calculator className="h-7 w-7 text-primary" /> Expected Value: Tre Spilscenarier Beregnet</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Expected Value: Tre Spilscenarier Beregnet</h2>
 
           <h3 className="text-xl font-semibold mt-6 mb-3">Scenarie 1: Ren underholdningssession</h3>
           <Card className="mb-4">
@@ -299,7 +300,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: VOLATILITET I PRAKSIS ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Zap className="h-7 w-7 text-primary" /> Volatilitetsprofil: Det Binære Bonusmønster</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Det Binære Bonusmønster</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gates of Olympus' volatilitet er lidt højere end Sweet Bonanzas, primært pga. per-spin multiplikator-modellen. Hvor Sweet Bonanza "bygger" værdi gradvist over en bonusrunde, afhænger Gates of Olympus af ét eller to "perfect storms" – spins hvor store multiplikatorer og premium-symboler rammer samtidig.
           </p>
@@ -330,7 +331,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: BONUS COMPATIBILITY ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" /> Bonus-Compatibility og Strategisk Positionering</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Bonus-Compatibility og Strategisk Positionering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Gates of Olympus er en solid, men ikke optimal wagering-slot. Den befinder sig i et strategisk mellemfelt: bedre RTP end Book of Dead, men højere volatilitet – og dermed højere bust-risiko under omsætning. Her er den strategiske analyse:
           </p>
@@ -346,7 +347,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: SPILLERSEGMENTERING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Users className="h-7 w-7 text-primary" /> Målgruppe-Analyse: Hvem Er Gates of Olympus Til?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Målgruppe-Analyse: Hvem Er Gates of Olympus Til?</h2>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card>
               <CardContent className="pt-6">
@@ -377,7 +378,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" /> Head-to-Head: Gates of Olympus vs. Starlight Princess vs. Sweet Bonanza</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Head-to-Head: Gates of Olympus vs. Starlight Princess vs. Sweet Bonanza</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm">
               <thead>
@@ -412,7 +413,7 @@ const GatesOfOlympusGuide = () => {
 
         {/* ── SEKTION: RISIKOANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-primary" /> Risikostyring og Bankroll-Dimensionering</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Risikostyring og Bankroll-Dimensionering</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm">
               <thead>

@@ -16,7 +16,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Scale, Sparkles, CheckCircle2, XCircle, TrendingUp, ShieldCheck, Zap, Target, Users, BarChart3, Clock, Smartphone } from "lucide-react";
+import { Scale, Sparkles, CheckCircle2, XCircle, TrendingUp, ShieldCheck, Zap, Target, Users, BarChart3, Clock, Smartphone } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 
@@ -59,7 +60,7 @@ const NyeVsEtablerede = () => {
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><Scale className="mr-1.5 h-3.5 w-3.5" />Sammenligning</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="scale" className="mr-1.5 h-3.5 w-3.5" />Sammenligning</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer vs. Etablerede Casinoer</h1>
           <p className="text-lg text-white/80">En ærlig og datadrevet sammenligning af nye og etablerede casinoer. Hvad passer bedst til dig som dansk spiller?</p>
         </div></div>
@@ -185,37 +186,37 @@ const NyeVsEtablerede = () => {
 
           <div className="space-y-6">
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" /> 1. Bonusstruktur og reel værdi</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" /> 1. Bonusstruktur og reel værdi</h3>
               <p className="text-sm text-muted-foreground mb-3">Nye casinoer vinder tydeligt på bonusvilkår. Den gennemsnitlige velkomstbonus hos nye casinoer har 7x omsætning vs. 9x hos etablerede – en forskel der giver nye casinoer ca. 25% højere reel EV. Flere nye casinoer (GetLucky, ComeOn) tilbyder endda 5x omsætning, som er det halve af det lovmæssige loft. For en spiller der udnytter 3 nye casinoers velkomstbonusser, er den kumulative EV-fordel typisk 500–1.500 kr. sammenlignet med etablerede.</p>
               <p className="text-sm text-muted-foreground">Etablerede casinoer kompenserer med reload-bonusser og loyalitetsprogrammer, der kan give langsigtet værdi – men det kræver konsekvent spillevolumen over måneder.</p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><Clock className="h-5 w-5 text-primary" /> 2. Udbetalingshastighed</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="clock" className="h-5 w-5 text-primary" /> 2. Udbetalingshastighed</h3>
               <p className="text-sm text-muted-foreground mb-3">Nye casinoer er gennemsnitligt 3x hurtigere til Trustly-udbetalinger (2:45 vs. 8:30). Forskellen skyldes arkitektoniske valg: nye casinoer bruger event-drevne systemer med automatisk compliance, mens etablerede ofte har batch-baserede godkendelsesprocesser. Ved kort-udbetalinger er forskellen mindre markant (1,2 vs. 1,8 bankdage).</p>
               <p className="text-sm text-muted-foreground">Se vores detaljerede testdata på <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>nye casinoer med hurtig udbetaling</Link>.</p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><Sparkles className="h-5 w-5 text-primary" /> 3. Spiludvalg og kvalitet</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" /> 3. Spiludvalg og kvalitet</h3>
               <p className="text-sm text-muted-foreground mb-3">Etablerede casinoer vinder kvantitativt med 3x flere titler. Men kvaliteten pr. titel er sammenlignelig, og nye casinoer har en fordel i aktualitet – nye releases tilføjes typisk 1–2 uger hurtigere. Nye casinoer kuraterer bevidst og fokuserer på top-20% mest populære titler fra førende udbydere, hvilket faktisk kan give en bedre brugeroplevelse for de fleste spillere.</p>
               <p className="text-sm text-muted-foreground">For spillere der søger nichetitler, vintage-slots eller specifikke udbydere, vinder etablerede casinoer tydeligt.</p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><Smartphone className="h-5 w-5 text-primary" /> 4. Platform og teknologi</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" /> 4. Platform og teknologi</h3>
               <p className="text-sm text-muted-foreground mb-3">Nye casinoer vinder markant med 2x hurtigere mobil-loading (1,4 vs. 2,8 sek.) og mobile-first design. Etablerede casinoers platforme er ofte bygget til desktop og efterfølgende tilpasset mobil – det ses i navigation, filterfunktioner og generel responsivitet. Nye casinoer bruger moderne frameworks (React, Vue) vs. ældre jQuery-baserede platforme.</p>
               <p className="text-sm text-muted-foreground">Undtagelsen er store operatørgrupper (f.eks. Kindred, Betsson) der har investeret massivt i platformmodernisering og matcher nye casinoers tekniske niveau.</p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><Users className="h-5 w-5 text-primary" /> 5. Kundeservice</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="users" className="h-5 w-5 text-primary" /> 5. Kundeservice</h3>
               <p className="text-sm text-muted-foreground mb-3">Etablerede casinoer har en marginal fordel i svartid (2:10 vs. 3:20) og en tydeligere fordel i kompetence ved komplekse henvendelser. Etablerede support-teams har årelang erfaring med danske regler og edge cases. Nye casinoers support kan vakle ved atypiske spørgsmål om bonusinteraktioner, delvis omsætning eller tekniske fejl.</p>
               <p className="text-sm text-muted-foreground">Etablerede casinoer tilbyder desuden oftere telefonisk support – en kanal der stort set er fraværende hos nye operatører.</p>
             </div>
 
             <div className="rounded-lg border border-border bg-card p-5">
-              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><ShieldCheck className="h-5 w-5 text-primary" /> 6. Sikkerhed og tillid</h3>
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> 6. Sikkerhed og tillid</h3>
               <p className="text-sm text-muted-foreground mb-3">Sikkerhedsniveauet er identisk – begge kategorier kræver dansk licens med samme betingelser. Den eneste forskel er track record: etablerede casinoer har års dokumenteret pålidelig drift, mens nye casinoer endnu ikke har bevist sig over tid. I praksis kompenseres dette af Spillemyndighedens forstærkede tilsyn med nye operatører (18 måneders intensivt tilsyn).</p>
               <p className="text-sm text-muted-foreground">Vi betragter sikkerhed som uafgjort – dansk licens er dansk licens.</p>
             </div>
@@ -240,7 +241,7 @@ const NyeVsEtablerede = () => {
               { scenario: "Du har haft problemer med spilleadfærd", rec: "🤝 Fokus på ansvarligt spil", desc: "Begge kategorier tilbyder de lovpligtige ansvarligt spil-værktøjer. Nye casinoer har dog mere avancerede AI-baserede overvågningssystemer. Det vigtigste er at benytte ROFUS og sætte indbetalingsgrænser uanset casinotype." },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <Target className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="target" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.scenario}</h3>
                   <p className="text-sm font-medium text-primary mb-1">{item.rec}</p>
@@ -257,7 +258,7 @@ const NyeVsEtablerede = () => {
           <h2 className="mb-4 text-3xl font-bold">Fordele og ulemper – komplet oversigt</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" /> Nye casinoer – fordele</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2 text-lg"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" /> Nye casinoer – fordele</h3>
               <div className="space-y-2">
                 {[
                   "20–50% højere velkomstbonusser med lavere omsætning (5–10x)",
@@ -269,13 +270,13 @@ const NyeVsEtablerede = () => {
                   "Ingen legacy-systemer – moderne arkitektur hele vejen",
                 ].map((p) => (
                   <div key={p} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{p}</p>
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{p}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2 text-lg"><ShieldCheck className="h-5 w-5 text-primary" /> Etablerede casinoer – fordele</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2 text-lg"><MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" /> Etablerede casinoer – fordele</h3>
               <div className="space-y-2">
                 {[
                   "Dokumenteret track record med års pålidelig drift",
@@ -287,7 +288,7 @@ const NyeVsEtablerede = () => {
                   "Bredere live casino-dækning med flere leverandører",
                 ].map((p) => (
                   <div key={p} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{p}</p>
+                    <MenuIcon iconName="check-circle2" className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" /><p className="text-xs text-muted-foreground">{p}</p>
                   </div>
                 ))}
               </div>
@@ -296,7 +297,7 @@ const NyeVsEtablerede = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Nye casinoer – ulemper</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Nye casinoer – ulemper</h3>
               <div className="space-y-2">
                 {[
                   "Ingen track record at vurdere pålidelighed ud fra",
@@ -306,13 +307,13 @@ const NyeVsEtablerede = () => {
                   "Risiko for tekniske børnesygdomme ved lancering",
                 ].map((c) => (
                   <div key={c} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{c}</p>
+                    <MenuIcon iconName="x-circle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{c}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div>
-              <h3 className="font-semibold mb-3 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Etablerede casinoer – ulemper</h3>
+              <h3 className="font-semibold mb-3 flex items-center gap-2"><MenuIcon iconName="x-circle" className="h-4 w-4 text-destructive" /> Etablerede casinoer – ulemper</h3>
               <div className="space-y-2">
                 {[
                   "Højere omsætningskrav på bonusser (8–10x)",
@@ -322,7 +323,7 @@ const NyeVsEtablerede = () => {
                   "Rigidere systemer der er langsomme til at innovere",
                 ].map((c) => (
                   <div key={c} className="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
-                    <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{c}</p>
+                    <MenuIcon iconName="x-circle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" /><p className="text-xs text-muted-foreground">{c}</p>
                   </div>
                 ))}
               </div>
@@ -376,7 +377,7 @@ const NyeVsEtablerede = () => {
               { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
+                <MenuIcon iconName="sparkles" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold text-sm">{link.label}</h3><p className="text-xs text-muted-foreground">{link.desc}</p></div>
               </Link>
             ))}
           </div>

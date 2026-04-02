@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Trophy, Medal, Award, TrendingUp, Zap, Star, Clock, Users, Search, History } from "lucide-react";
+import { History } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -27,10 +28,10 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
 function getCategoryIcon(category: LeaderboardCategory) {
   switch (category) {
-    case "highest_x": return <Zap className="h-4 w-4" />;
-    case "highest_win": return <Star className="h-4 w-4" />;
+    case "highest_x": return <MenuIcon iconName="zap" className="h-4 w-4" />;
+    case "highest_win": return <MenuIcon iconName="star" className="h-4 w-4" />;
     case "total_points":
-    default: return <TrendingUp className="h-4 w-4" />;
+    default: return <MenuIcon iconName="trending-up" className="h-4 w-4" />;
   }
 }
 
@@ -45,18 +46,18 @@ function RankBadge({ rank }: { rank: number }) {
     <div className="relative flex items-center justify-center w-10 h-10">
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
       <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
-        <Trophy className="h-4 w-4 text-amber-900" />
+        <MenuIcon iconName="trophy" className="h-4 w-4 text-amber-900" />
       </div>
     </div>
   );
   if (rank === 2) return (
     <div className="w-8 h-8 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
-      <Medal className="h-4 w-4 text-gray-700" />
+      <MenuIcon iconName="medal" className="h-4 w-4 text-gray-700" />
     </div>
   );
   if (rank === 3) return (
     <div className="w-8 h-8 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
-      <Award className="h-4 w-4 text-amber-200" />
+      <MenuIcon iconName="award" className="h-4 w-4 text-amber-200" />
     </div>
   );
   return (
@@ -146,7 +147,7 @@ export function MonthlyLeaderboardCard() {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3 min-w-0">
             <div className="p-2 rounded-xl bg-amber-500/10 shrink-0">
-              <Trophy className="h-5 w-5 text-amber-400" />
+              <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-400" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
@@ -161,7 +162,7 @@ export function MonthlyLeaderboardCard() {
             </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
-            <Clock className="h-3.5 w-3.5" />
+            <MenuIcon iconName="clock" className="h-3.5 w-3.5" />
             <span>Aktiv nu – slutter 31. marts</span>
           </div>
         </div>
@@ -172,15 +173,15 @@ export function MonthlyLeaderboardCard() {
         <Tabs value={category} onValueChange={(v) => setCategory(v as LeaderboardCategory)}>
           <TabsList className="w-full grid grid-cols-3">
             <TabsTrigger value="total_points" className="text-xs gap-1">
-              <TrendingUp className="h-3 w-3" />
+              <MenuIcon iconName="trending-up" className="h-3 w-3" />
               Flest Point
             </TabsTrigger>
             <TabsTrigger value="highest_x" className="text-xs gap-1">
-              <Zap className="h-3 w-3" />
+              <MenuIcon iconName="zap" className="h-3 w-3" />
               Højeste X
             </TabsTrigger>
             <TabsTrigger value="highest_win" className="text-xs gap-1">
-              <Star className="h-3 w-3" />
+              <MenuIcon iconName="star" className="h-3 w-3" />
               Største Gevinst
             </TabsTrigger>
           </TabsList>
@@ -191,7 +192,7 @@ export function MonthlyLeaderboardCard() {
       <div className="px-4 py-3 md:px-5">
         {!user ? (
           <div className="text-center py-8">
-            <Trophy className="h-10 w-10 mx-auto mb-2 opacity-30 text-amber-400" />
+            <MenuIcon iconName="trophy" className="h-10 w-10 mx-auto mb-2 opacity-30 text-amber-400" />
             <p className="text-muted-foreground">Log ind for at se månedsturneringen</p>
           </div>
         ) : isLoading ? (
@@ -231,14 +232,14 @@ export function MonthlyLeaderboardCard() {
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="ghost" className="w-full mt-3 border border-border/50 text-xs text-muted-foreground hover:text-foreground" size="sm">
-                    <Users className="h-3.5 w-3.5 mr-1.5" />
+                    <MenuIcon iconName="users" className="h-3.5 w-3.5 mr-1.5" />
                     Vis alle {entries.length} spillere
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="max-w-lg">
                   <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
-                      <Trophy className="h-5 w-5 text-amber-400" />
+                      <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-400" />
                       Månedsturnering — {getCategoryLabel(category)}
                     </DialogTitle>
                   </DialogHeader>
@@ -287,7 +288,7 @@ export function MonthlyLeaderboardCard() {
           </>
         ) : (
           <div className="text-center py-8">
-            <Trophy className="h-10 w-10 mx-auto mb-2 opacity-30 text-amber-400" />
+            <MenuIcon iconName="trophy" className="h-10 w-10 mx-auto mb-2 opacity-30 text-amber-400" />
             <p className="text-muted-foreground">Ingen gevinster i denne kategori endnu</p>
             <p className="text-sm text-muted-foreground/70">Vær den første på ranglisten!</p>
           </div>

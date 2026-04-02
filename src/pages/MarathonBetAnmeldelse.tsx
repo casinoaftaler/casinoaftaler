@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, TrendingUp, Gamepad2, Smartphone, Headphones, Globe, BarChart3 } from "lucide-react";
+import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Check, X } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
@@ -30,7 +31,7 @@ const MarathonBetAnmeldelse = () => {
       <SEO title="MarathonBet Anmeldelse 2026 – Bedste Odds | Casinoaftaler" description="MarathonBet anmeldelse 2026: Branchens bedste odds og laveste marginer. Dansk licens, solid sportsbog og fokus på value-betting. Se vores test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
-          <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Value-Specialist</Badge>
+          <Badge variant="secondary" className="mb-4"><MenuIcon iconName="shield-check" className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Value-Specialist</Badge>
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">MarathonBet Anmeldelse 2026</h1>
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af MarathonBet – sportsbogen med branchens laveste marginer, tolerance for vindende spillere og et solidt casino-supplement.</p>
         </div></div>
@@ -43,7 +44,7 @@ const MarathonBetAnmeldelse = () => {
         {/* Hurtige Fakta */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – MarathonBet</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="zap" className="h-6 w-6 text-primary" />Hurtige Fakta – MarathonBet</CardTitle></CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Styrke</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Bedste odds</p></div>
@@ -142,7 +143,7 @@ const MarathonBetAnmeldelse = () => {
               { title: "Skrill / Neteller", desc: "E-wallet udbetalinger inden for 24 timer. Skrill har en intern gebyrstruktur – tjek vilkår.", speed: "⚡ Op til 24 timer" },
               { title: "Bankoverførsel", desc: "3-5 hverdage. Langsomt men pålideligt for større beløb.", speed: "🕐 3-5 hverdage" },
             ].map((m) => (
-              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><CreditCard className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
+              <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation kræves ved første udbetaling. I vores test blev vi bedt om at uploade ID-kopi (pas) og dokumentation for betalingsmetode (screenshot af Trustly-bekræftelse). Processen tog cirka 3 timer fra upload til godkendelse – langsommere end Betsson-gruppens automatiserede MitID-system, men inden for normen.</p>
@@ -182,7 +183,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge MarathonBet */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Hvem bør vælge en anden platform?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" />Hvem bør vælge en anden platform?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet er en specialistplatform, og det betyder, at den aktivt <em>ikke</em> er designet til flere spillertyper. Her er en ærlig vurdering af, hvem der bør kigge andre steder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dedikerede casino-spillere:</strong> Med kun 600+ spil og ingen Hacksaw/Nolimit City-titler kan MarathonBet ikke konkurrere med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+), <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> (2.200+) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>. Hvis casino er dit primære fokus, er MarathonBet det forkerte valg.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Underholdningsspillere:</strong> Hvis du søger en visuelt engagerende oplevelse med live-streaming, betting-communities og interaktive features, er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> langt bedre. MarathonBets interface er funktionelt og intet mere – det er designet til spillere, der vil placere væddemål, ikke dem der vil underholdes.</p>
@@ -228,7 +229,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Forretningsmodel dybdeanalyse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><BarChart3 className="inline h-7 w-7 text-primary mr-2" />Forretningsmodellen – hvorfor lave marginer er bæredygtigt</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="bar-chart3" className="inline h-7 w-7 text-primary mr-2" />Forretningsmodellen – hvorfor lave marginer er bæredygtigt</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets lave marginer rejser et naturligt spørgsmål: Hvordan kan en bookmaker overleve med halvdelen af branchens standardmargin? Svaret ligger i volumenøkonomi og operationel effektivitet. Mens de store bookmakers bruger 30-50% af deres bruttoindtjening på markedsføring, TV-reklamer og sponsorater, bruger MarathonBet praktisk talt ingenting. Ingen Premier League-sponsorater, ingen TV-kampagner, ingen influencer-partnerskaber. Den sparede markedsføringsomkostning overføres direkte til spillerne i form af bedre odds.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">En typisk storskala-bookmaker har følgende omkostningsstruktur: 40% marginer → 15% til markedsføring, 10% til drift, 5% til regulering og 10% i profit. MarathonBets struktur er radikalt anderledes: 15-20% marginer → 2% til markedsføring, 8% til drift, 5% til regulering – profit via volumen. Denne model er kun bæredygtig, hvis MarathonBet tiltrækker nok væddemålsvolumen fra kvalitetsbevidste bettors til at kompensere for den lavere margin per væddemål. Og det gør de – præcis fordi lave marginer tiltrækker de mest aktive og sofistikerede spillere i markedet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den vigtige implikation for spillere: MarathonBets model er <em>afhængig</em> af, at lave marginer opretholdes. Hvis de hæver marginerne til branchestandard, mister de deres kernekundebase og har ingen markedsføringsstyrke til at tiltrække nye. Det er en naturlig låsemekanisme, der beskytter spillerne: MarathonBet <em>kan</em> ikke hæve marginer uden at ødelægge sin egen forretningsmodel. Det er en sjælden situation i gambling-branchen, hvor spillerens interesse og operatørens interesse er strukturelt aligned.</p>
@@ -239,10 +240,10 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Årlig totaløkonomi */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><TrendingUp className="inline h-7 w-7 text-primary mr-2" />Helårsøkonomi – den komplette MarathonBet-spiller</h2>
+          <h2 className="mb-4 text-3xl font-bold"><MenuIcon iconName="trending-up" className="inline h-7 w-7 text-primary mr-2" />Helårsøkonomi – den komplette MarathonBet-spiller</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et komplet billede af MarathonBets værdi beregner vi den samlede årlige EV for tre spillerprofiler:</p>
           <Card className="border-border bg-card border-l-4 border-l-primary mb-6">
-            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><TrendingUp className="h-6 w-6 text-primary" />Årlig EV – MarathonBet vs. branchestandard</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><MenuIcon iconName="trending-up" className="h-6 w-6 text-primary" />Årlig EV – MarathonBet vs. branchestandard</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-border p-4">
                 <p className="font-semibold text-foreground mb-2">Casual bettor (100 væddemål/år × 200 kr.)</p>
@@ -297,8 +298,8 @@ const MarathonBetAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">Vores samlede vurdering er 3.8/5 – en score der afspejler platformens ekceptionelle odds-kvalitet modvægtet af det utidssvarende interface, begrænsede casino-udvalg og middelmådig kundeservice. For den rigtige spiller – den matematisk orienterede value-bettor – er MarathonBet uundværlig. For alle andre er det en sekundær konto, der bruges, når odds-forskellen er stor nok til at retfærdiggøre det mindre polerede interface. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["marathonbet"].scores} total={CASINO_SCORES["marathonbet"].total} />
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><Trophy className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
-            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/top-10-casino-online"><MenuIcon iconName="trophy" className="mr-2 h-5 w-5" />Se Top 10 Casinoer</Link></Button>
+            <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><MenuIcon iconName="star" className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
 

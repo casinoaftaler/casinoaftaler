@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Gift, Video } from "lucide-react";
+import { Video } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 import { useCommunityBonusSpins } from "@/hooks/useCommunityBonusSpins";
 import { ActivateBonusSpinsDialog } from "./ActivateBonusSpinsDialog";
@@ -31,7 +32,7 @@ export function ProfileCommunityBonusSection({ className }: ProfileCommunityBonu
       <Card className={className}>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Gift className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="gift" className="h-5 w-5 text-primary" />
             Bonus Credits (Community)
           </CardTitle>
         </CardHeader>

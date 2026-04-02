@@ -24,12 +24,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Link } from "react-router-dom";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  Sparkles, Clock, ShieldCheck, AlertTriangle, Star, RefreshCw,
-  Flame, Timer, CreditCard, RotateCcw, Award, CheckCircle2,
-  Users, Zap, Gift, Filter, ArrowRight, ChevronDown, Info,
-  Gamepad2, CalendarClock,
-} from "lucide-react";
+import { Timer, RotateCcw, ArrowRight, ChevronDown, CalendarClock } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { format, differenceInHours, differenceInMinutes } from "date-fns";
 import { da } from "date-fns/locale";
 
@@ -101,10 +97,10 @@ interface CampaignOffer {
 type FilterType = "all" | "new" | "existing" | "no_deposit";
 
 const filterConfig: { id: FilterType; label: string; icon: React.ReactNode }[] = [
-  { id: "all", label: "Alle Tilbud", icon: <Sparkles className="h-3.5 w-3.5" /> },
-  { id: "new", label: "Nye Spillere", icon: <Star className="h-3.5 w-3.5" /> },
-  { id: "existing", label: "Eksisterende", icon: <Users className="h-3.5 w-3.5" /> },
-  { id: "no_deposit", label: "Uden Indbetaling", icon: <Zap className="h-3.5 w-3.5" /> },
+  { id: "all", label: "Alle Tilbud", icon: <MenuIcon iconName="sparkles" className="h-3.5 w-3.5" /> },
+  { id: "new", label: "Nye Spillere", icon: <MenuIcon iconName="star" className="h-3.5 w-3.5" /> },
+  { id: "existing", label: "Eksisterende", icon: <MenuIcon iconName="users" className="h-3.5 w-3.5" /> },
+  { id: "no_deposit", label: "Uden Indbetaling", icon: <MenuIcon iconName="zap" className="h-3.5 w-3.5" /> },
 ];
 
 // ─── Hooks ───
@@ -179,14 +175,14 @@ function Countdown({ validUntil }: { validUntil: string }) {
 
 // ─── Badge config ───
 const offerTypeBadgeConfig: Record<string, { label: string; icon: React.ReactNode; className: string }> = {
-  no_deposit: { label: "Uden indbetaling", icon: <Zap className="h-3 w-3" />, className: "bg-green-500/20 text-green-400 border-green-500/30" },
-  welcome: { label: "Nye spillere", icon: <Star className="h-3 w-3" />, className: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
-  daily: { label: "Dagligt", icon: <RefreshCw className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-  existing: { label: "Eksisterende", icon: <Users className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-  weekly: { label: "Ugentligt", icon: <RefreshCw className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-  weekend: { label: "Weekend", icon: <Gift className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
-  vip: { label: "VIP", icon: <Award className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
-  other: { label: "Tilbud", icon: <Sparkles className="h-3 w-3" />, className: "bg-primary/20 text-primary border-primary/30" },
+  no_deposit: { label: "Uden indbetaling", icon: <MenuIcon iconName="zap" className="h-3 w-3" />, className: "bg-green-500/20 text-green-400 border-green-500/30" },
+  welcome: { label: "Nye spillere", icon: <MenuIcon iconName="star" className="h-3 w-3" />, className: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
+  daily: { label: "Dagligt", icon: <MenuIcon iconName="refresh-cw" className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  existing: { label: "Eksisterende", icon: <MenuIcon iconName="users" className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  weekly: { label: "Ugentligt", icon: <MenuIcon iconName="refresh-cw" className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
+  weekend: { label: "Weekend", icon: <MenuIcon iconName="gift" className="h-3 w-3" />, className: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
+  vip: { label: "VIP", icon: <MenuIcon iconName="award" className="h-3 w-3" />, className: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
+  other: { label: "Tilbud", icon: <MenuIcon iconName="sparkles" className="h-3 w-3" />, className: "bg-primary/20 text-primary border-primary/30" },
 };
 
 // ─── Helpers ───
@@ -349,10 +345,10 @@ const FreeSpinsIDag = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-3 animate-fade-in [animation-delay:300ms]">
               <Button size="lg" asChild className="fs-cta-glow font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.03] transition-all duration-250">
-                <a href="#free-spins-list"><Sparkles className="mr-2 h-5 w-5" />Se Alle Tilbud</a>
+                <a href="#free-spins-list"><MenuIcon iconName="sparkles" className="mr-2 h-5 w-5" />Se Alle Tilbud</a>
               </Button>
               <Button size="lg" variant="outline" asChild className="bg-white/10 border-white/25 text-white hover:bg-white/20 hover:scale-[1.03] transition-all duration-250 backdrop-blur-sm">
-                <a href="#free-spins-list"><Zap className="mr-2 h-5 w-5" />Uden Indbetaling</a>
+                <a href="#free-spins-list"><MenuIcon iconName="zap" className="mr-2 h-5 w-5" />Uden Indbetaling</a>
               </Button>
             </div>
           </div>
@@ -375,13 +371,13 @@ const FreeSpinsIDag = () => {
 
         {/* ─── Statistics ─── */}
         <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-          <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />
-          <StatCard icon={<Zap className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" revealed={statsRevealed} delay={100} />
-          <StatCard icon={<Users className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" revealed={statsRevealed} delay={200} />
+          <StatCard icon={<MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />
+          <StatCard icon={<MenuIcon iconName="zap" className="h-5 w-5 text-green-400" />} value={animatedNoDep} label="Uden indbetaling" revealed={statsRevealed} delay={100} />
+          <StatCard icon={<MenuIcon iconName="users" className="h-5 w-5 text-amber-400" />} value={animatedExisting} label="For eksisterende spillere" revealed={statsRevealed} delay={200} />
           <Card className={`text-center border-border/50 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-250 ${statsRevealed ? 'animate-fade-in [animation-delay:300ms]' : 'opacity-0'}`}>
             <CardContent className="pt-5 pb-4">
               <div className="flex items-center justify-center gap-1.5 mb-1">
-                <RefreshCw className="h-5 w-5 text-primary group-hover:animate-spin" style={{ animationDuration: '2s' }} />
+                <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary group-hover:animate-spin" />
                 <span className="text-lg font-bold text-primary">07:00</span>
               </div>
               <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
@@ -424,7 +420,7 @@ const FreeSpinsIDag = () => {
         ) : bestOffers.length === 0 ? (
           <div className="text-center py-16 px-4">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
-              <Clock className="h-10 w-10 text-muted-foreground" />
+              <MenuIcon iconName="clock" className="h-10 w-10 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-bold mb-3">
               {activeFilter === "all" ? "Ingen aktive free spins i dag" : `Ingen tilbud matcher filteret "${filterConfig.find(f => f.id === activeFilter)?.label}"`}
@@ -442,7 +438,7 @@ const FreeSpinsIDag = () => {
 
             <section className="mb-8 py-6 rounded-xl bg-muted/15">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <Filter className="h-5 w-5 text-primary" />
+                <MenuIcon iconName="filter" className="h-5 w-5 text-primary" />
                 {activeFilter === "all" ? "Alle Free Spins Tilbud" : filterConfig.find(f => f.id === activeFilter)?.label} ({displayOffers.length})
               </h2>
               <div className="grid gap-3 md:grid-cols-2">
@@ -468,7 +464,7 @@ const FreeSpinsIDag = () => {
         <div className="mt-4">
           <section className="mb-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
-              <Sparkles className="h-5 w-5 text-primary" />Aktuelle Free Spins fra danske casinoer
+              <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Aktuelle Free Spins fra danske casinoer
             </h2>
             <p className="text-sm leading-[1.75] text-muted-foreground">
               Verificeret oversigt over free spins hos danske casinoer. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Tilbuddene rangeres efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
@@ -477,19 +473,19 @@ const FreeSpinsIDag = () => {
 
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-              <ShieldCheck className="h-5 w-5 text-primary" />Sådan vælger du det bedste tilbud
+              <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />Sådan vælger du det bedste tilbud
             </h3>
             <ul className="grid gap-2.5 text-sm leading-[1.7] text-muted-foreground">
-              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Omsætningskrav</span> – under 10x er godt. Jo lavere, desto lettere at omsætte gevinster.</span></li>
-              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Spinværdi</span> – en free spin på 1 kr. slår 0,10 kr. Tjek den faktiske værdi.</span></li>
-              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Antal spins</span> – flere chancer, men tjek hvilke spil de gælder til.</span></li>
-              <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Tidsbegrænsning</span> – de fleste skal bruges inden for 7–30 dage.</span></li>
+              <li className="flex gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Omsætningskrav</span> – under 10x er godt. Jo lavere, desto lettere at omsætte gevinster.</span></li>
+              <li className="flex gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Spinværdi</span> – en free spin på 1 kr. slår 0,10 kr. Tjek den faktiske værdi.</span></li>
+              <li className="flex gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Antal spins</span> – flere chancer, men tjek hvilke spil de gælder til.</span></li>
+              <li className="flex gap-2"><MenuIcon iconName="check-circle2" className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /><span><span className="text-primary font-medium">Tidsbegrænsning</span> – de fleste skal bruges inden for 7–30 dage.</span></li>
             </ul>
           </section>
 
           <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-3">
-              <AlertTriangle className="h-5 w-5 text-primary" />Vigtigt at vide
+              <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Vigtigt at vide
             </h3>
             <p className="text-sm leading-[1.75] text-muted-foreground">
               Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Under dansk lovgivning er bonusser maks. 1.000 kr. med maks. 10x omsætningskrav, hvilket gør det ekstra vigtigt at sammenligne vilkårene grundigt. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
@@ -498,7 +494,7 @@ const FreeSpinsIDag = () => {
 
           <section className="mb-8">
             <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-              <Star className="h-5 w-5 text-primary" />Typer af free spins
+              <MenuIcon iconName="star" className="h-5 w-5 text-primary" />Typer af free spins
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
@@ -519,11 +515,11 @@ const FreeSpinsIDag = () => {
           </section>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-6">
-            <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
+            <span className="inline-flex items-center gap-1"><MenuIcon iconName="award" className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
             {displayedUpdateDate ? (
-              <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst verificeret: {displayedUpdateDate}</span>
+              <span className="inline-flex items-center gap-1"><MenuIcon iconName="refresh-cw" className="h-3.5 w-3.5 text-muted-foreground" /> Sidst verificeret: {displayedUpdateDate}</span>
             ) : (
-              <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Løbende verificeret</span>
+              <span className="inline-flex items-center gap-1"><MenuIcon iconName="refresh-cw" className="h-3.5 w-3.5 text-muted-foreground" /> Løbende verificeret</span>
             )}
           </div>
         </div>
@@ -602,11 +598,11 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
 
       <div className="absolute top-4 left-4 z-10 flex gap-2">
         <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-orange-500/30">
-          <Flame className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
+          <MenuIcon iconName="flame" className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
         </Badge>
         {freshnessLabel && (
           <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-xs px-2 py-1">
-            <ShieldCheck className="h-3 w-3 mr-1" /> {freshnessLabel}
+            <MenuIcon iconName="shield-check" className="h-3 w-3 mr-1" /> {freshnessLabel}
           </Badge>
         )}
       </div>
@@ -634,21 +630,21 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
           {/* Structured metadata tags */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-1.5 text-xs text-white/60">
             {offer.game_name && (
-              <span className="flex items-center gap-1"><Gamepad2 className="h-3 w-3" /> {offer.game_name}</span>
+              <span className="flex items-center gap-1"><MenuIcon iconName="gamepad2" className="h-3 w-3" /> {offer.game_name}</span>
             )}
             {capWagerDisplay(offer.wagering_requirement) && (
               <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {capWagerDisplay(offer.wagering_requirement)}</span>
             )}
             {!offer.requires_deposit ? (
-              <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
+              <span className="flex items-center gap-1 text-green-400 font-medium"><MenuIcon iconName="zap" className="h-3 w-3" /> Ingen indbetaling</span>
             ) : offer.min_deposit && (
-              <span className="flex items-center gap-1"><CreditCard className="h-3 w-3" /> Min. {offer.min_deposit}</span>
+              <span className="flex items-center gap-1"><MenuIcon iconName="credit-card" className="h-3 w-3" /> Min. {offer.min_deposit}</span>
             )}
             {eligibility && (
-              <span className="flex items-center gap-1"><Users className="h-3 w-3" /> {eligibility}</span>
+              <span className="flex items-center gap-1"><MenuIcon iconName="users" className="h-3 w-3" /> {eligibility}</span>
             )}
             {offer.spin_value && (
-              <span className="flex items-center gap-1"><Award className="h-3 w-3" /> {offer.spin_value}/spin</span>
+              <span className="flex items-center gap-1"><MenuIcon iconName="award" className="h-3 w-3" /> {offer.spin_value}/spin</span>
             )}
             {offer.expiry_date && (
               <span className="flex items-center gap-1"><CalendarClock className="h-3 w-3" /> <Countdown validUntil={offer.expiry_date} /></span>
@@ -665,13 +661,13 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
           {affiliateUrl ? (
             <a href={affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
               <Button variant="cta" size="lg" className="text-base group-hover:scale-105 transition-all duration-300">
-                <Sparkles className="h-4 w-4 mr-2" /> Få Free Spins <ArrowRight className="h-4 w-4 ml-1" />
+                <MenuIcon iconName="sparkles" className="h-4 w-4 mr-2" /> Få Free Spins <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </a>
           ) : (
             <Link to={`/casino-anmeldelser/${offer.casino_slug}`}>
               <Button variant="cta" size="lg" className="text-base group-hover:scale-105 transition-all duration-300">
-                <Sparkles className="h-4 w-4 mr-2" /> Se Tilbud <ArrowRight className="h-4 w-4 ml-1" />
+                <MenuIcon iconName="sparkles" className="h-4 w-4 mr-2" /> Se Tilbud <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
           )}
@@ -713,7 +709,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               {freshnessLabel && (
                 <TooltipProvider><Tooltip><TooltipTrigger>
                   <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
-                    <ShieldCheck className="h-2.5 w-2.5" /> {freshnessLabel}
+                    <MenuIcon iconName="shield-check" className="h-2.5 w-2.5" /> {freshnessLabel}
                   </span>
                 </TooltipTrigger><TooltipContent><p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p></TooltipContent></Tooltip></TooltipProvider>
               )}
@@ -740,7 +736,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
           )}
           {!offer.requires_deposit ? (
             <div className="flex items-center gap-1.5 text-green-400">
-              <Zap className="h-3 w-3 flex-shrink-0" />
+              <MenuIcon iconName="zap" className="h-3 w-3 flex-shrink-0" />
               <span className="font-medium">Ingen indbetaling</span>
             </div>
           ) : offer.min_deposit && (
@@ -795,11 +791,11 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
         <div className="flex items-center justify-between mt-1">
           <div className="flex items-center gap-2 text-[10px] text-muted-foreground/50">
             {offer.last_verified_at && (
-              <span className="flex items-center gap-0.5"><Clock className="h-2.5 w-2.5" /> {timeAgo(offer.last_verified_at)}</span>
+              <span className="flex items-center gap-0.5"><MenuIcon iconName="clock" className="h-2.5 w-2.5" /> {timeAgo(offer.last_verified_at)}</span>
             )}
             {offer.source_type === "direct" && (
               <TooltipProvider><Tooltip><TooltipTrigger>
-                <span className="flex items-center gap-0.5 text-green-500/60"><Info className="h-2.5 w-2.5" /> Direkte kilde</span>
+                <span className="flex items-center gap-0.5 text-green-500/60"><MenuIcon iconName="info" className="h-2.5 w-2.5" /> Direkte kilde</span>
               </TooltipTrigger><TooltipContent><p className="text-xs">Data hentet direkte fra casinoets hjemmeside</p></TooltipContent></Tooltip></TooltipProvider>
             )}
           </div>

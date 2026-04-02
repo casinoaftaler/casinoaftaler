@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
+import { CalendarDays, BookOpen, CheckCircle } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
 import { getRouteMetadata, formatLastmodDanish, getRouteFactChecker } from "@/lib/seoRoutes";
@@ -133,21 +134,21 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
           </div>
           {shouldShowDate && displayDate && (
             <div className="flex items-center gap-1.5">
-              <CalendarDays className="h-4 w-4" />
+              <MenuIcon iconName="calendar-days" className="h-4 w-4" />
               <span>
                 Opdateret: <span className="font-medium text-foreground">{displayDate}</span>
               </span>
             </div>
           )}
           <div className="flex items-center gap-1.5">
-            <BookOpen className="h-4 w-4" />
+            <MenuIcon iconName="book-open" className="h-4 w-4" />
             <span>
               Læsetid: <span className="font-medium text-foreground">{autoReadTime}</span>
             </span>
           </div>
           {showVerified && (
             <div className="flex items-center gap-1.5 opacity-85">
-              <CheckCircle className="h-3.5 w-3.5 text-primary" />
+              <MenuIcon iconName="check-circle" className="h-3.5 w-3.5 text-primary" />
               <span className="text-sm text-muted-foreground">Verificeret ekspertprofil</span>
             </div>
           )}
@@ -167,7 +168,7 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
                 variant="secondary"
                 className="gap-1 relative overflow-hidden border-emerald-600/40 text-emerald-700 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-950/40 dark:border-emerald-500/30 before:absolute before:inset-0 before:bg-emerald-500/20 dark:before:bg-emerald-500/15 before:translate-x-[-100%] before:animate-[factcheck-sweep_1.2s_ease-out_0.3s_forwards]"
               >
-                <CheckCircle className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                <MenuIcon iconName="check-circle" className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
                 Faktatjekket
               </Badge>
               <Link to={checkerInfo.link} className="flex items-center gap-1.5 group">

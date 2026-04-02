@@ -21,7 +21,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -105,7 +106,7 @@ const JamminJarsGuide = () => {
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & jar-multiplikatorer</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & jar-multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Jammin' Jars – Cluster Pays & Multiplikator-Analyse</h1>
             <p className="text-lg text-white/80">Push Gamings frugtbaserede cluster-slot med bevægelige jar-wilds: en matematisk analyse af multiplikator-stacking, 8×8 grid-dynamik og en af markedets højeste RTP-værdier.</p>
           </div>
@@ -121,7 +122,7 @@ const JamminJarsGuide = () => {
         {/* ── Experience First: Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             8×8 Grid og den Bevægelige Wild-Mekanik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -144,7 +145,7 @@ const JamminJarsGuide = () => {
         {/* ── RTP ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             RTP 96,83 %: En af Markedets Bedste
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -190,7 +191,7 @@ const JamminJarsGuide = () => {
         {/* ── Volatilitet ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Volatilitetsdynamik og Hit Frequency
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -220,7 +221,7 @@ const JamminJarsGuide = () => {
         {/* ── Free Spins ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Flame className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
             Free Spins: Akkumulerende Jar-Multiplikatorer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -240,7 +241,7 @@ const JamminJarsGuide = () => {
         {/* ── EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
             EV-Perspektiv og Underholdningsværdi
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -277,7 +278,7 @@ const JamminJarsGuide = () => {
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Bankroll-Strategi for Jammin' Jars
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -313,7 +314,7 @@ const JamminJarsGuide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Jammin' Jars vs. Reactoonz vs. Razor Shark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -350,7 +351,7 @@ const JamminJarsGuide = () => {
         {/* ── Udviklerkontekst ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
             Push Gaming: Studiets Filosofi og Track Record
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

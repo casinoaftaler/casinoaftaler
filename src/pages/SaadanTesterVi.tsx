@@ -12,21 +12,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import {
-  Shield,
-  Gamepad2,
-  Gift,
-  Scale,
-  CreditCard,
-  Headphones,
-  Smartphone,
-  CheckCircle2,
-  ClipboardList,
-  BarChart3,
-  Eye,
-  RefreshCw,
-  User,
-} from "lucide-react";
+import { ClipboardList } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -342,7 +329,7 @@ const SaadanTesterVi = () => {
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="p-6">
               <div className="flex items-start gap-3">
-                <Eye className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="eye" className="mt-1 h-6 w-6 flex-shrink-0 text-primary" />
                 <div>
                   <p className="mb-3 text-muted-foreground leading-relaxed">
                     Casinoaftaler.dk modtager kommission fra nogle casinoer via affiliate-aftaler. Dette er en del af vores forretningsmodel og gør det muligt for os at drive sitet og fortsætte med at producere uafhængigt indhold.
@@ -366,7 +353,7 @@ const SaadanTesterVi = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Opdateringspolitik</h2>
           <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-            <RefreshCw className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <MenuIcon iconName="refresh-cw" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Bonusser og vilkår i casino-branchen ændrer sig løbende. Derfor kontrollerer vi regelmæssigt alle vores anmeldelser og opdaterer dem, når casinoer ændrer betingelser, lancerer nye kampagner eller foretager væsentlige ændringer i deres platform.
@@ -386,7 +373,7 @@ const SaadanTesterVi = () => {
             <CardContent className="p-6">
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                  <User className="h-7 w-7 text-primary" />
+                  <MenuIcon iconName="user" className="h-7 w-7 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold">
@@ -422,21 +409,21 @@ const SaadanTesterVi = () => {
               to="/nye-casinoer"
               className="flex items-center gap-2 rounded-lg border border-border bg-card p-4 text-sm font-medium transition-colors hover:bg-muted"
             >
-              <Gamepad2 className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="gamepad2" className="h-4 w-4 text-primary" />
               Nye Casinoer
             </Link>
             <Link
               to="/casino-anmeldelser"
               className="flex items-center gap-2 rounded-lg border border-border bg-card p-4 text-sm font-medium transition-colors hover:bg-muted"
             >
-              <BarChart3 className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
               Casino Anmeldelser
             </Link>
             <Link
               to="/ansvarligt-spil"
               className="flex items-center gap-2 rounded-lg border border-border bg-card p-4 text-sm font-medium transition-colors hover:bg-muted"
             >
-              <Shield className="h-4 w-4 text-primary" />
+              <MenuIcon iconName="shield" className="h-4 w-4 text-primary" />
               Ansvarligt Spil
             </Link>
           </div>

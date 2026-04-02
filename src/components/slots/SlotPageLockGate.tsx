@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Lock, KeyRound, Loader2 } from "lucide-react";
+import { KeyRound, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -48,7 +49,7 @@ export function SlotPageLockGate({ backgroundImage, onVerify, error, isVerifying
           <div className="flex justify-center mb-6">
             <div className="relative">
               <div className="h-20 w-20 rounded-full bg-gradient-to-br from-amber-500/30 to-amber-600/20 flex items-center justify-center border-2 border-amber-500/50">
-                <Lock className="h-10 w-10 text-amber-500" />
+                <MenuIcon iconName="lock" className="h-10 w-10 text-amber-500" />
               </div>
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-full bg-amber-500/20 blur-xl -z-10" />

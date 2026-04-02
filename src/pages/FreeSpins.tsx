@@ -29,28 +29,8 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
 import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.webp";
-import {
-  Sparkles,
-  ShieldCheck,
-  HelpCircle,
-  User,
-  CalendarDays,
-  BookOpen,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Gamepad2,
-  Star,
-  Trophy,
-  RefreshCw,
-  Zap,
-  Lock,
-  TrendingUp,
-  Calculator,
-  Ban,
-} from "lucide-react";
+import { Ban } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -181,7 +161,7 @@ const FreeSpins = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" />
               Free spins guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -332,7 +312,7 @@ const FreeSpins = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   Omsætningskrav
                 </CardTitle>
               </CardHeader>
@@ -357,7 +337,7 @@ const FreeSpins = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
                   Spilbegrænsninger
                 </CardTitle>
               </CardHeader>
@@ -376,7 +356,7 @@ const FreeSpins = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Clock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="clock" className="h-5 w-5 text-primary" />
                   Tidsbegrænsninger
                 </CardTitle>
               </CardHeader>
@@ -394,7 +374,7 @@ const FreeSpins = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Lock className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="lock" className="h-5 w-5 text-primary" />
                   Gevinstlofter og maks. indsats
                 </CardTitle>
               </CardHeader>
@@ -562,7 +542,7 @@ const FreeSpins = () => {
           <Card className="border-border bg-card border-l-4 border-l-destructive">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <AlertTriangle className="h-6 w-6 text-destructive" />
+                <MenuIcon iconName="alert-triangle" className="h-6 w-6 text-destructive" />
                 Undgå disse faldgruber
               </CardTitle>
             </CardHeader>
@@ -576,7 +556,7 @@ const FreeSpins = () => {
                   "Spil altid på licenserede danske casinoer for at sikre fair behandling og regulering.",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
+                    <MenuIcon iconName="alert-triangle" className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" />
                     {item}
                   </li>
                 ))}
@@ -606,7 +586,7 @@ const FreeSpins = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   50 free spins á 2 kr. med 0x omsætning
                 </CardTitle>
               </CardHeader>
@@ -620,7 +600,7 @@ const FreeSpins = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   100 free spins á 1 kr. med 10x omsætning
                 </CardTitle>
               </CardHeader>
@@ -634,7 +614,7 @@ const FreeSpins = () => {
             <Card className="border-destructive/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-destructive" />
                   200 free spins á 0,50 kr. med 10x omsætning
                 </CardTitle>
               </CardHeader>
@@ -715,7 +695,7 @@ const FreeSpins = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-6 w-6 text-primary" />
+                <MenuIcon iconName="shield-check" className="h-6 w-6 text-primary" />
                 Spil ansvarligt
               </CardTitle>
             </CardHeader>
@@ -939,7 +919,7 @@ const FreeSpins = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -952,7 +932,7 @@ const FreeSpins = () => {
         <section className="mb-8">
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="flex items-center gap-4 p-6">
-              <Sparkles className="h-8 w-8 text-primary flex-shrink-0" />
+              <MenuIcon iconName="sparkles" className="h-8 w-8 text-primary flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-lg mb-1">Se dagens aktuelle free spins tilbud</h3>
                 <p className="text-sm text-muted-foreground mb-2">
@@ -968,7 +948,7 @@ const FreeSpins = () => {
 
         <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
           <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Læs vores anmeldelser af casinoer med free spins
           </h3>
           <p className="text-sm text-muted-foreground mb-3">
@@ -983,7 +963,7 @@ const FreeSpins = () => {
               { slug: "comeon", name: "ComeOn" },
             ].map((casino) => (
               <li key={casino.slug} className="flex items-center gap-2">
-                <Star className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+                <MenuIcon iconName="star" className="h-3.5 w-3.5 text-primary flex-shrink-0" />
                 <Link
                   to={`/casino-anmeldelser/${casino.slug}`}
                   className="text-sm text-primary hover:underline font-medium"

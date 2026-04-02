@@ -17,12 +17,8 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Target, ShieldCheck, BarChart3, Sparkles, Zap, AlertTriangle,
-  TrendingUp, Scale, Eye, Layers, Clock, Users, CheckCircle,
-  XCircle, Coins, Brain, Gamepad2, BookOpen, Calculator, Flame,
-  Activity, LineChart, ArrowRight, Repeat, Sigma,
-} from "lucide-react";
+import { Activity, LineChart, ArrowRight, Repeat } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/fibonacci-roulette-hero.jpg";
 
@@ -101,7 +97,7 @@ export default function FibonacciRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Talrække & simulering
+              <MenuIcon iconName="sigma" className="mr-1.5 h-3.5 w-3.5" /> Talrække & simulering
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci Roulette System 2026 – Den Gyldne Spiral på Casinobordet
@@ -125,7 +121,7 @@ export default function FibonacciRouletteGuide() {
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Fibonacci i roulette: Matematisk elegance møder casino-realitet
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -152,7 +148,7 @@ export default function FibonacciRouletteGuide() {
         {/* Sådan fungerer systemet */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Sådan fungerer Fibonacci-systemet i praksis
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -241,7 +237,7 @@ export default function FibonacciRouletteGuide() {
         {/* Matematikken */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Fibonacci-sekvensens matematik i roulette-kontekst
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -310,7 +306,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="bar-chart3" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Kortsigtet (500 spins)</p>
                 </div>
                 <ul className="text-sm text-muted-foreground space-y-1">
@@ -350,7 +346,7 @@ export default function FibonacciRouletteGuide() {
         {/* Fordele og ulemper */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Fordele og ulemper ved Fibonacci-systemet
           </h2>
 
@@ -358,7 +354,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2 text-primary">
-                  <CheckCircle className="h-4 w-4" /> Fordele
+                  <MenuIcon iconName="check-circle" className="h-4 w-4" /> Fordele
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -374,7 +370,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-destructive/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2 text-destructive">
-                  <XCircle className="h-4 w-4" /> Ulemper
+                  <MenuIcon iconName="x-circle" className="h-4 w-4" /> Ulemper
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -393,7 +389,7 @@ export default function FibonacciRouletteGuide() {
         {/* Strategiske variationer */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="layers" className="h-5 w-5 text-primary" />
             Fibonacci-variationer og optimeringsteknikker
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -435,7 +431,7 @@ export default function FibonacciRouletteGuide() {
         {/* Historisk kontekst */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
             Fibonacci-talrækkens historie: Fra middelalderens Pisa til moderne casinoer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -473,7 +469,7 @@ export default function FibonacciRouletteGuide() {
         {/* Risk of Ruin analyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
             Risk of Ruin (RoR): Fibonacci vs. Alle Andre Systemer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -525,7 +521,7 @@ export default function FibonacciRouletteGuide() {
         {/* Psykologisk analyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
             Psykologien bag Fibonacci: Hvorfor hjernen elsker den gyldne spiral
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -578,7 +574,7 @@ export default function FibonacciRouletteGuide() {
         {/* Live vs RNG */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Gamepad2 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
             Fibonacci i Live Roulette vs. RNG-Roulette: Hastighed og Implikationer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -626,7 +622,7 @@ export default function FibonacciRouletteGuide() {
         {/* Variant-performance */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Fibonacci på forskellige roulette-varianter: Hvad dataen viser
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -691,7 +687,7 @@ export default function FibonacciRouletteGuide() {
         {/* Avanceret: EV-beregning med bonus */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             Fibonacci og casinobonusser: EV-analyse for danske bonusvilkår
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -739,7 +735,7 @@ export default function FibonacciRouletteGuide() {
         {/* Praktiske tips */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield-check" className="h-5 w-5 text-primary" />
             Praktiske anbefalinger for danske spillere
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -750,7 +746,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Basisenhed: 25-50 kr.</p>
                 </div>
                 <p className="text-xs text-muted-foreground">Lav basisenhed giver flest mulige trin. 25 kr. basis = 14+ trin med 10.000 kr. max.</p>
@@ -759,7 +755,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Sessionslimit: 2.000 kr.</p>
                 </div>
                 <p className="text-xs text-muted-foreground">Maksimalt samlet tab per session. Stop uanset position i sekvensen.</p>
@@ -768,7 +764,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Cap: Step 8 (1.050 kr.)</p>
                 </div>
                 <p className="text-xs text-muted-foreground">Nulstil ved step 8. Acceptér tabet og start forfra med basisenheden.</p>
@@ -777,7 +773,7 @@ export default function FibonacciRouletteGuide() {
             <Card className="border-primary/20">
               <CardContent className="pt-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="h-4 w-4 text-primary" />
+                  <MenuIcon iconName="check-circle" className="h-4 w-4 text-primary" />
                   <p className="text-sm font-semibold text-foreground">Gevinstmål: +500 kr.</p>
                 </div>
                 <p className="text-xs text-muted-foreground">Stop når du er 500 kr. foran. At forlade bordet mens du vinder er den eneste "strategi" der virker.</p>
@@ -797,7 +793,7 @@ export default function FibonacciRouletteGuide() {
         {/* Konklusion */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-            <Eye className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="eye" className="h-5 w-5 text-primary" />
             Konklusion: Fibonacci – det mest elegante system der stadig taber
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

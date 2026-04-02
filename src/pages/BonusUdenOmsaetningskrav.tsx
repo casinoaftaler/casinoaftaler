@@ -14,35 +14,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sparkles,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Gift,
-  Clock,
-  Target,
-  Lock,
-  TrendingUp,
-  CreditCard,
-  Scale,
-  Ban,
-  BarChart3,
-  Percent,
-  Zap,
-  Eye,
-  Heart,
-  Users,
-  Calculator,
-  BookOpen,
-  Flame,
-  Trophy,
-  ArrowRight,
-  Gamepad2,
-  DollarSign,
-  Info,
-  RefreshCw,
-} from "lucide-react";
+import { Ban, ArrowRight, DollarSign } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
@@ -154,7 +127,7 @@ const BonusUdenOmsaetningskrav = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Zap className="mr-1.5 h-3.5 w-3.5" />
+              <MenuIcon iconName="zap" className="mr-1.5 h-3.5 w-3.5" />
               EV-Konverteringsanalyse – Februar 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -270,7 +243,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
                   Omsætningsfrie free spins
                 </CardTitle>
               </CardHeader>
@@ -304,7 +277,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <RefreshCw className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="refresh-cw" className="h-5 w-5 text-primary" />
                   Omsætningsfri cashback
                 </CardTitle>
               </CardHeader>
@@ -321,7 +294,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Trophy className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
                   VIP/Loyalitets-omsætningsfri bonus
                 </CardTitle>
               </CardHeader>
@@ -352,7 +325,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Calculator className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
                   Scenarie 1: Omsætningsfrie free spins – gennemsnitligt forløb
                 </CardTitle>
               </CardHeader>
@@ -374,7 +347,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <TrendingUp className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
                   Scenarie 2: Stort hit – gevinstloftet aktiveres
                 </CardTitle>
               </CardHeader>
@@ -396,7 +369,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
                   Scenarie 3: Bust – alle spins uden gevinst
                 </CardTitle>
               </CardHeader>
@@ -418,7 +391,7 @@ const BonusUdenOmsaetningskrav = () => {
             <Card className="border-primary/30 bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Scale className="h-5 w-5 text-primary" />
+                  <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
                   Scenarie 4: Direkte sammenligning – 200 kr. bonus
                 </CardTitle>
               </CardHeader>
@@ -635,7 +608,7 @@ const BonusUdenOmsaetningskrav = () => {
           </p>
           <div className="space-y-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <TrendingUp className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Eksponentiel vækst i omsætningsfrie tilbud</h3>
                 <p className="text-sm text-muted-foreground">
@@ -644,7 +617,7 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <BarChart3 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="bar-chart3" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Gevinstlofterne stiger</h3>
                 <p className="text-sm text-muted-foreground">
@@ -653,7 +626,7 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <Eye className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="eye" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Gennemsigtighed som konkurrenceparameter</h3>
                 <p className="text-sm text-muted-foreground">
@@ -662,7 +635,7 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-              <RefreshCw className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <MenuIcon iconName="refresh-cw" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold">Hybrid-modeller vokser frem</h3>
                 <p className="text-sm text-muted-foreground">
@@ -747,7 +720,7 @@ const BonusUdenOmsaetningskrav = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-primary/30 bg-accent/30 p-4"
               >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName="check-circle2" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

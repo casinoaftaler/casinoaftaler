@@ -21,7 +21,8 @@ import {
   useAddComment,
   useDeleteComment,
 } from "@/hooks/useCommunityClipComments";
-import { Heart, MessageCircle, Send, Trash2, User, Loader2, ExternalLink } from "lucide-react";
+import { Trash2, Loader2 } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { useAuth } from "@/hooks/useAuth";
@@ -121,7 +122,7 @@ export function CommunityClipDetail({
                   }
                 }}
               >
-                <ExternalLink className="h-12 w-12 pointer-events-none" />
+                <MenuIcon iconName="external-link" className="h-12 w-12 pointer-events-none" />
                 <p className="text-center text-sm pointer-events-none">
                   Klik for at åbne clip i ny fane
                 </p>
@@ -130,7 +131,7 @@ export function CommunityClipDetail({
                   className="gap-2 pointer-events-none"
                   tabIndex={-1}
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <MenuIcon iconName="external-link" className="h-4 w-4" />
                   Åbn Clip
                 </Button>
               </div>
@@ -171,7 +172,7 @@ export function CommunityClipDetail({
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={clip.submitter_avatar || undefined} />
                     <AvatarFallback>
-                      <User className="h-4 w-4" />
+                      <MenuIcon iconName="user" className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
                   <span className="text-sm font-medium">
@@ -190,17 +191,12 @@ export function CommunityClipDetail({
                     onClick={handleLike}
                     disabled={!user || toggleLike.isPending}
                   >
-                    <Heart
-                      className={cn(
-                        "h-4 w-4",
-                        clip.user_has_liked && "fill-current"
-                      )}
-                    />
+                    <MenuIcon iconName="heart" className="h-5 w-5" />
                     <span>{clip.likes_count}</span>
                   </Button>
 
                   <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                    <MessageCircle className="h-4 w-4" />
+                    <MenuIcon iconName="message-circle" className="h-4 w-4" />
                     <span>{comments?.length || 0}</span>
                   </div>
                 </div>
@@ -222,7 +218,7 @@ export function CommunityClipDetail({
                       <Avatar className="h-8 w-8 flex-shrink-0">
                         <AvatarImage src={c.commenter_avatar || undefined} />
                         <AvatarFallback>
-                          <User className="h-4 w-4" />
+                          <MenuIcon iconName="user" className="h-4 w-4" />
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
@@ -286,7 +282,7 @@ export function CommunityClipDetail({
                     {addComment.isPending ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
-                      <Send className="h-4 w-4" />
+                      <MenuIcon iconName="send" className="h-4 w-4" />
                     )}
                   </Button>
                 </div>

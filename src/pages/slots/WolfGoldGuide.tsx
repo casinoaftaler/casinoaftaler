@@ -23,7 +23,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Sparkles, TrendingUp, Target, Shield, Zap, BarChart3,
   Calculator, Flame, Scale, Users, AlertTriangle, Trophy
-} from "lucide-react";
+} from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -135,7 +136,7 @@ const WolfGoldGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Jackpot-mekanik</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Jackpot-mekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Wolf Gold – Jackpot-Mekanik & RTP-Analyse</h1>
             <p className="text-lg text-white/80">Pragmatic Play's mest ikoniske jackpot-slot: en teknisk gennemgang af Money Respin-systemet, Mega Symbol free spins og hvorfor Wolf Gold stadig definerer genren efter 9 år.</p>
           </div>
@@ -151,7 +152,7 @@ const WolfGoldGuide = () => {
         {/* ── Segment First: Hvem er spillet til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
             Hvem Er Wolf Gold Designet Til?
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -184,7 +185,7 @@ const WolfGoldGuide = () => {
         {/* ── Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
             Basespillets Struktur og Symboldynamik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -225,7 +226,7 @@ const WolfGoldGuide = () => {
         {/* ── Money Respin Jackpot ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
             Money Respin: Jackpot-Systemet Analyseret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -268,7 +269,7 @@ const WolfGoldGuide = () => {
         {/* ── Free Spins ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
             Free Spins med Mega Symbols: Den Skjulte Bonusmotor
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -288,7 +289,7 @@ const WolfGoldGuide = () => {
         {/* ── RTP & EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Calculator className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
             RTP-Fordeling og EV-Perspektiv
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -338,7 +339,7 @@ const WolfGoldGuide = () => {
         {/* ── Volatilitetsprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BarChart3 className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
             Volatilitetsklassificering og Session-Dynamik
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -368,7 +369,7 @@ const WolfGoldGuide = () => {
         {/* ── Bankroll ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="shield" className="h-5 w-5 text-primary" />
             Bankroll-Strategi for Wolf Gold
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -404,7 +405,7 @@ const WolfGoldGuide = () => {
         {/* ── Sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <Scale className="h-5 w-5 text-primary" />
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
             Wolf Gold vs. Big Bass Bonanza vs. Book of Dead
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">

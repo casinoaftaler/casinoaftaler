@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { SafeHelmet } from "@/lib/reactCompat";
-import { Play, Monitor, Video, MessageCircle, Calendar } from "lucide-react";
+import { Video } from "lucide-react"
+import { MenuIcon } from "@/components/MenuIcon";;
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.webp";
 import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.webp";
@@ -165,7 +166,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
                 )}
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-300" />
                 <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:shadow-primary/50 transition-all duration-200">
-                  <Play className="h-6 w-6 ml-0.5" />
+                  <MenuIcon iconName="play" className="h-6 w-6 ml-0.5" />
                 </div>
                 <span className="relative z-10 text-sm font-semibold text-white drop-shadow-md">Se streamen på Twitch</span>
                 <span className="relative z-10 text-xs text-white/80 drop-shadow-md">Klik for at indlæse video</span>
