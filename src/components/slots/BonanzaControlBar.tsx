@@ -48,6 +48,9 @@ interface BonanzaControlBarProps {
   tumbleCollisionPhase?: CollisionPhase;
   tumbleVisible?: boolean;
   tumbleHideMultiplier?: boolean;
+  bonusCumulativeMultiplier?: number;
+  bonusRunningMultiplier?: number;
+  bonusTumblePhase?: string;
 }
 
 export function BonanzaControlBar({
