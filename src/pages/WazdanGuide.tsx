@@ -32,6 +32,13 @@ const WazdanGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Denne innovation er ikke blot et marketinggimmick. Volatility Levels™ repræsenterer en fundamental nytænkning af forholdet mellem spiller og spilleautomat. I traditionelle slots fra <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> eller <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> er volatiliteten bagt ind i spillets DNA – en højvolatil slot som Gates of Olympus forbliver højvolatil uanset hvad. Wazdans tilgang demokratiserer denne parameter: den samme spilleautomat kan fungere som en rolig, lavvolatil underholdningsoplevelse for casual-spillere og som en adrenalinfyldt højrisiko-session for erfarne high-rollers. Matematisk opnås dette via tre separate paytables og hitfrekvens-konfigurationer der alle er certificeret af uafhængige testlaboratorier.
         </p>
+        <ReviewScreenshot
+          src={wazLogo}
+          alt="Wazdan officielt logo – sort W-ikon med tre trekanter og WAZDAN tekst"
+          caption="Wazdans logo med det karakteristiske tredobbelte trekant-design symboliserer studioets tre volatilitetsniveauer."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Wazdans portefølje omfatter over 200 titler – en imponerende mængde for et studio der først begyndte at opnå international distribution omkring 2016-2017. Denne produktivitet er muliggjort af en proprietær udviklingsplatform der standardiserer tekniske processer uden at begrænse kreativ frihed. Hvert spil i Wazdans katalog understøtter desuden en række avancerede features: Energy Saving Mode (reducerer batteriforbrug på mobile enheder med op til 40%), Ultra Lite Mode (minimerer dataudveksling for spillere med langsom internetforbindelse), Ultra Fast Mode (fjerner animationer for spillere der foretrækker hurtig gameplay) og Unique Gamble Feature (et interaktivt risikospil der erstatter den traditionelle rød/sort-gamble med en kartografisk multiplikator-mekanik).
         </p>
