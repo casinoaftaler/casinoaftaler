@@ -3,10 +3,11 @@
  * 
  * Categories match the methodology at /saadan-tester-vi-casinoer:
  *   Sikkerhed & Licens: 25%
- *   Spiludvalg:         20%
  *   Bonus & Vilkår:     20%
- *   Udbetaling:         15%
- *   Brugeroplevelse:    15%
+ *   Spiludvalg:         15%
+ *   Ind- og udbetaling: 15%
+ *   Mobiloplevelse:     15%
+ *   Kundeservice:       10%
  */
 
 export interface CategoryScores {

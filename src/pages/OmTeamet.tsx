@@ -284,7 +284,7 @@ const OmTeamet = () => {
 
       {/* ═══ FRA TWITCH TIL PLATFORM (Storytelling) ═══ */}
       <div className="container py-12 md:py-16">
-        <AuthorMetaBar author="ajse" readTime="98 Min." showFactCheck={true} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="18 Min." showFactCheck={true} showAffiliateDisclaimer={false} />
         <section className="mb-16">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
             <Tv className="h-7 w-7 text-primary" />
@@ -1019,6 +1019,12 @@ const OmTeamet = () => {
             <Link to="/forfatter/niklas">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Se Niklas – Finansøkonom
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/forfatter/frederik">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
+                Se Frederik – Streamer
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

@@ -103,11 +103,12 @@ const testProcess = [
 ];
 
 const scoringModel = [
-  { label: "Sikkerhed & Licens", pct: 30, color: "hsl(var(--primary))" },
-  { label: "Spiludvalg", pct: 20, color: "hsl(var(--chart-2))" },
-  { label: "Bonus & Vilkår", pct: 20, color: "hsl(var(--chart-3))" },
-  { label: "Udbetaling", pct: 15, color: "hsl(var(--chart-4))" },
-  { label: "Brugeroplevelse", pct: 15, color: "hsl(var(--chart-5))" },
+  { label: "Sikkerhed & Licens", pct: 25, color: "hsl(var(--primary))" },
+  { label: "Bonus & Vilkår", pct: 20, color: "hsl(var(--chart-2))" },
+  { label: "Spiludvalg", pct: 15, color: "hsl(var(--chart-3))" },
+  { label: "Ind- og udbetaling", pct: 15, color: "hsl(var(--chart-4))" },
+  { label: "Mobiloplevelse", pct: 15, color: "hsl(var(--chart-5))" },
+  { label: "Kundeservice", pct: 10, color: "hsl(var(--chart-1))" },
 ];
 
 const faqs = [
@@ -145,7 +146,7 @@ const faqs = [
     question: "Hvem er Jonas, og hvad er hans erfaring?",
     answer: (
       <>
-        Jonas er grundlæggeren af Casinoaftaler.dk og har over 4 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer. Læs mere på hans{" "}
+        Jonas er grundlæggeren af Casinoaftaler.dk og har over 5 års erfaring som casino-streamer på Twitch. Han tester personligt alle anmeldte casinoer. Læs mere på hans{" "}
         <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">
           forfatterprofil
         </Link>.
@@ -230,7 +231,7 @@ const SaadanTesterVi = () => {
             Alle anmeldelser bygger på praktisk erfaring. Vi opretter reelle konti, indbetaler egne midler og gennemfører hele spilleoplevelsen fra start til slut. Ingen anmeldelse skrives udelukkende på baggrund af pressematerialer eller markedsføringstekster.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bag testene står <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">Jonas</Link>, grundlæggeren af Casinoaftaler.dk, som har over 4 års erfaring som casino-streamer. Hans daglige erfaring med at spille live foran hundredvis af seere giver et unikt indblik i, hvad der fungerer i praksis – og hvad der ikke gør.
+            Bag testene står <Link to="/forfatter/jonas" className="text-primary underline hover:text-primary/80">Jonas</Link>, grundlæggeren af Casinoaftaler.dk, som har over 5 års erfaring som casino-streamer. Hans daglige erfaring med at spille live foran hundredvis af seere giver et unikt indblik i, hvad der fungerer i praksis – og hvad der ikke gør.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores mål er enkelt: at give dig den information, du har brug for, til at vælge det rigtige casino. Læs vores{" "}
@@ -306,7 +307,7 @@ const SaadanTesterVi = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vores vurderingsmodel</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Den samlede score for hvert casino beregnes ud fra en vægtet model med fem kategorier. Sikkerhed vejer tungest, fordi det er grundlaget for en tryg spilleoplevelse.
+            Den samlede score for hvert casino beregnes ud fra en vægtet model med seks kategorier. Sikkerhed vejer tungest, fordi det er grundlaget for en tryg spilleoplevelse.
           </p>
           <Card className="border-border bg-card">
             <CardContent className="p-6">

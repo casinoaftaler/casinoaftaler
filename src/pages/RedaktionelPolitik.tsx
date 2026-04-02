@@ -170,7 +170,7 @@ const RedaktionelPolitik = () => {
             (juridisk redaktør), der verificerer korrekthed. For teknisk indhold som RTP og spiludvalg 
             er det{" "}
             <Link to="/forfatter/kevin" className="text-primary underline hover:text-primary/80">Kevin</Link>{" "}
-            (casino-streamer & IT), der sikrer præcision.
+            (casino-streamer & spiludvikler), der sikrer præcision.
           </p>
         </section>
 
