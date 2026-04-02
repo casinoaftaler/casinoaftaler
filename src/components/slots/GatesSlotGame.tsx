@@ -38,8 +38,8 @@ import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar"
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
-const SYMBOL_WIDTH = 140;
-const SYMBOL_HEIGHT = 108;
+const DEFAULT_SYMBOL_WIDTH = 180;
+const DEFAULT_SYMBOL_HEIGHT = 140;
 const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
