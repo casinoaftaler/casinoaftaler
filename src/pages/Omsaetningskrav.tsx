@@ -394,7 +394,7 @@ const Omsaetningskrav = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -593,7 +593,7 @@ const Omsaetningskrav = () => {
               { title: "Breakeven-punkt", desc: "Bonussen har positiv EV så længe: Bonusbeløb > Total omsætning × House Edge. For 10x (d+b) med 2.000 kr. saldo kræves en RTP over 95% for positiv EV. Under 95% RTP er bonussen statistisk værdiløs.", iconName: "target" },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -728,7 +728,7 @@ const Omsaetningskrav = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -849,7 +849,7 @@ const Omsaetningskrav = () => {
                 key={item.title}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

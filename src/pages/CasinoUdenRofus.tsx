@@ -254,7 +254,7 @@ const CasinoUdenRofus = () => {
               <Card key={risk.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <risk.icon className="h-6 w-6 text-destructive" />
+                    <MenuIcon iconName={risk.iconName} className="h-6 w-6 text-destructive" />
                     <Badge variant="outline" className="text-xs">{risk.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{risk.title}</CardTitle>
@@ -473,7 +473,7 @@ const CasinoUdenRofus = () => {
               { iconName: "landmark", title: "EU-ramme", desc: "Danmark opererer inden for EU's ramme for online gambling-regulering, men spillelovgivning er primært et nationalt anliggende. EU-domstolen har gentagne gange bekræftet medlemsstaternes ret til at regulere gambling-markedet af hensyn til folkesundhed og offentlig orden." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -555,7 +555,7 @@ const CasinoUdenRofus = () => {
               { iconName: "shield", title: "Pårørenderådgivning", desc: "Er du pårørende til en person med spilleproblemer? StopSpillet tilbyder også rådgivning til familie og venner. Det kan være lige så belastende at være pårørende som at have problemet selv. Ring 70 22 28 25 – hjælpen gælder også dig." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

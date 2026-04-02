@@ -301,7 +301,7 @@ export default function ForfatterKevin() {
               >
                 <CardContent className="flex items-start gap-4 p-5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                    <item.icon className="h-5 w-5" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold mb-1">{item.label}</p>

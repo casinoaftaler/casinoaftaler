@@ -227,7 +227,7 @@ const SkrabespilGuide = () => {
               <Card key={type.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <type.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{type.title}</CardTitle>
@@ -352,7 +352,7 @@ const SkrabespilGuide = () => {
               { iconName: "heart", title: "8. Betragt skrabespil som underholdning", desc: "Med 3-15% house edge er skrabespil designet til at generere profit for casinoet over tid. Du vil statistisk tabe penge på lang sigt. Den korrekte tilgang er at betragte dit skrabespil-budget som en underholdningsudgift – ligesom en koncertbillet eller et restaurantbesøg. Nyd spændingen, men jagé aldrig tab." },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <tip.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={tip.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{tip.title}</h3>
                   <p className="text-sm text-muted-foreground">{tip.desc}</p>
@@ -422,7 +422,7 @@ const SkrabespilGuide = () => {
               { iconName: "check-circle2", title: "Grænseværktøjer og reality checks", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Reality checks – pop-up-beskeder om varighed og resultat – er særligt vigtige for skrabespil grundet det hurtige spilletempo." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -590,7 +590,7 @@ const SkrabespilGuide = () => {
               { iconName: "lock", title: "AI-drevet spillerbeskyttelse", desc: "Danske og europæiske regulatorer investerer i AI-systemer der identificerer problematisk spilleadfærd i realtid. Skrabespils hurtige tempo gør dem særligt relevante for tidlig intervention. Fremtidige platforme vil have integrerede AI-assistenter der proaktivt foreslår pauser og budgetjusteringer." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

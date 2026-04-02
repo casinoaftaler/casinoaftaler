@@ -456,7 +456,7 @@ const LudomaniGuide = () => {
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 shrink-0">
-                      <item.icon className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
@@ -661,7 +661,7 @@ const LudomaniGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     {item.title}
                   </CardTitle>
                 </CardHeader>
@@ -853,7 +853,7 @@ const LudomaniGuide = () => {
               <Card key={item.title} className="border-border bg-card">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <item.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />
                     <h3 className="font-semibold text-sm text-foreground">{item.title}</h3>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
@@ -980,7 +980,7 @@ const LudomaniGuide = () => {
               <Card key={resource.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <resource.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={resource.iconName} className="h-5 w-5 text-primary" />
                     {resource.title}
                   </CardTitle>
                 </CardHeader>

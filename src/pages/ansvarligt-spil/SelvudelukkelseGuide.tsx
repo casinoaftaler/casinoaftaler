@@ -388,7 +388,7 @@ const SelvudelukkelseGuide = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-base mb-1 flex items-center gap-2">
-                      <item.icon className="h-4 w-4 text-primary" />
+                      <MenuIcon iconName={item.iconName} className="h-4 w-4 text-primary" />
                       {item.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>

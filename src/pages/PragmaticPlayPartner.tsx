@@ -214,7 +214,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.label} className="border-border">
                 <CardContent className="flex flex-col items-center p-6 text-center">
-                  <item.icon className="mb-3 h-8 w-8 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-8 w-8 text-primary" />
                   <p className="font-semibold">{item.label}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -268,7 +268,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.year} className="border-border">
                 <CardContent className="flex flex-col items-center p-5 text-center">
-                  <item.icon className="mb-2 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-2 h-7 w-7 text-primary" />
                   <p className="text-lg font-bold text-primary">{item.year}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.event}</p>
                 </CardContent>
@@ -308,7 +308,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border">
                 <CardContent className="p-6">
-                  <item.icon className="mb-3 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-7 w-7 text-primary" />
                   <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -365,7 +365,7 @@ const PragmaticPlayPartner = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
-                <item.icon className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
                   <h3 className="mb-1 font-semibold">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
@@ -438,7 +438,7 @@ const PragmaticPlayPartner = () => {
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 rounded-xl border border-border bg-card p-5">
-                <item.icon className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
                   <h3 className="mb-1 font-semibold">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
@@ -694,7 +694,7 @@ const PragmaticPlayPartner = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border">
                 <CardContent className="p-6">
-                  <item.icon className="mb-3 h-7 w-7 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="mb-3 h-7 w-7 text-primary" />
                   <h3 className="mb-2 font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
@@ -879,7 +879,7 @@ const PragmaticPlayPartner = () => {
                   to={item.path}
                   className="group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 transition-all hover:border-primary/40 hover:shadow-sm"
                 >
-                  <item.icon className="h-5 w-5 shrink-0 text-primary" />
+                  <MenuIcon iconName={item.iconName} className="h-5 w-5 shrink-0 text-primary" />
                   <span className="font-medium group-hover:text-primary">{item.label}</span>
                   <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
                 </Link>

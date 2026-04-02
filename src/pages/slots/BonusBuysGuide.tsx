@@ -671,7 +671,7 @@ const BonusBuysGuide = () => {
               <Card key={item.title}>
                 <CardContent className="pt-4 pb-4">
                   <div className="flex items-start gap-3">
-                    <item.icon className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+                    <MenuIcon iconName={item.iconName} className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-sm">{item.title}</p>
                       <p className="text-sm text-muted-foreground">{item.desc}</p>

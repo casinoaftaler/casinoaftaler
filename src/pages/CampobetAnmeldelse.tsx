@@ -405,7 +405,7 @@ const CampobetAnmeldelse = () => {
               { iconName: "trending-up", title: "Akkumulator Boost + Foran med 2", desc: "Op til 100% ekstra på multibets. Automatisk udbetaling ved 2-0 føring.", badge: "Sport" },
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><item.icon className="h-5 w-5 text-primary" />{item.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />{item.title}</CardTitle></CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-2">{item.desc}</p>
                   <Badge variant="secondary" className="text-xs">{item.badge}</Badge>
@@ -438,7 +438,7 @@ const CampobetAnmeldelse = () => {
               { iconName: "globe", title: "Sportsbetting", desc: "~40 sportsgrene: fodbold, håndbold, tennis, basketball, ishockey, e-sport. Pre-match, live og Bet Builder." },
             ].map((cat) => (
               <Card key={cat.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><cat.icon className="h-5 w-5 text-primary" />{cat.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><MenuIcon iconName={cat.iconName} className="h-5 w-5 text-primary" />{cat.title}</CardTitle></CardHeader>
                 <CardContent><p className="text-sm text-muted-foreground">{cat.desc}</p></CardContent>
               </Card>
             ))}

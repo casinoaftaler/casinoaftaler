@@ -881,7 +881,7 @@ function AdminDashboard({ user, isAdmin, isModerator, signOut }: AdminDashboardP
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               }`}
             >
-              <item.icon className="h-4 w-4 shrink-0" />
+              <MenuIcon iconName={item.iconName} className="h-4 w-4 shrink-0" />
               {item.label}
             </button>
           ))}
@@ -930,7 +930,7 @@ function AdminDashboard({ user, isAdmin, isModerator, signOut }: AdminDashboardP
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
-                <item.icon className="h-4 w-4" />
+                <MenuIcon iconName={item.iconName} className="h-4 w-4" />
                 {item.label}
               </button>
             ))}

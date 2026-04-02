@@ -488,7 +488,7 @@ const HurtigRegistreringGuide = () => {
             ].map((scenario) => (
               <Card key={scenario.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base"><scenario.icon className="h-5 w-5 text-primary" />{scenario.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName={scenario.iconName} className="h-5 w-5 text-primary" />{scenario.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {scenario.items.map((item) => (

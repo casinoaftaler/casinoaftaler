@@ -107,7 +107,7 @@ const RedaktionelPolitik = () => {
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
                       {i + 1}
                     </div>
-                    <step.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={step.iconName} className="h-5 w-5 text-primary" />
                   </div>
                   <h3 className="mb-2 font-semibold">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>

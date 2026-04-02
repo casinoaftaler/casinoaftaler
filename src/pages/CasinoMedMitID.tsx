@@ -204,7 +204,7 @@ const CasinoMedMitID = () => {
               <Card key={item.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <item.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={item.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{item.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
@@ -335,7 +335,7 @@ const CasinoMedMitID = () => {
               { iconName: "settings", title: "Ret til begrænsning (GDPR art. 18)", desc: "Du kan bede casinoet om at begrænse behandlingen af dine data under specifikke omstændigheder, f.eks. hvis du bestrider nøjagtigheden af de opbevarede oplysninger." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -388,7 +388,7 @@ const CasinoMedMitID = () => {
               { iconName: "alert-triangle", title: "Identitetstyveri-risiko", desc: "Uden MitID's sikre verifikation er der øget risiko for at dine personoplysninger kompromitteres. Ulicenserede casinoer har ikke de samme krav til datasikkerhed og kryptering som danske operatører, og din data kan potentielt misbruges eller sælges til tredjepart." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-destructive/30 p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -515,7 +515,7 @@ const CasinoMedMitID = () => {
               { iconName: "heart", title: "Spillegrænser bundet til identitet", desc: "Fordi MitID sikrer entydig identifikation, kan indbetalingsgrænser og tabsgrænser håndhæves effektivt. En spiller der har sat en grænse på ét casino, kan ikke omgå den ved at oprette en konto under et andet navn – CPR-nummeret sikrer konsistens." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

@@ -119,7 +119,7 @@ const BedsteAppsGuide = () => {
               { title: "App Store-rating (10 %)", desc: "Gennemsnitlig bruger-rating i App Store/Google Play, antal anmeldelser og seneste opdateringsdato.", iconName: "star" },
             ].map((c) => (
               <Card key={c.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><c.icon className="h-4 w-4 text-primary" />{c.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><MenuIcon iconName={c.iconName} className="h-4 w-4 text-primary" />{c.title}</CardTitle></CardHeader>
                 <CardContent><p className="text-xs text-muted-foreground">{c.desc}</p></CardContent>
               </Card>
             ))}
@@ -719,7 +719,7 @@ const BedsteAppsGuide = () => {
               { title: "Blockchain & Transparens", desc: "Provably fair-teknologi baseret på blockchain kan give spillere mulighed for at verificere RNG-resultater uafhængigt. Selvom regulatorisk accept i Danmark er begrænset, eksperimenterer flere internationale operatører med hybrid-modeller.", iconName: "shield" },
             ].map((t) => (
               <Card key={t.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><t.icon className="h-4 w-4 text-primary" />{t.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><MenuIcon iconName={t.iconName} className="h-4 w-4 text-primary" />{t.title}</CardTitle></CardHeader>
                 <CardContent><p className="text-xs text-muted-foreground">{t.desc}</p></CardContent>
               </Card>
             ))}

@@ -564,7 +564,7 @@ const AndroidCasinoGuide = () => {
               { title: "Undgå 'Battery Saver' under spil", desc: "Battery Saver reducerer CPU/GPU-hastigheden markant. Deaktiver den under spilsessioner for at undgå hakken, især i live casino.", iconName: "zap" },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <tip.icon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                <MenuIcon iconName={tip.iconName} className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground">{tip.title}</h3>
                   <p className="text-xs text-muted-foreground">{tip.desc}</p>

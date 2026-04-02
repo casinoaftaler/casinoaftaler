@@ -277,7 +277,7 @@ const ResponsibleGaming = () => {
               <Card key={tip.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <tip.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={tip.iconName} className="h-5 w-5 text-primary" />
                     {tip.title}
                   </CardTitle>
                 </CardHeader>
@@ -391,7 +391,7 @@ const ResponsibleGaming = () => {
               <Card key={resource.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <resource.icon className="h-5 w-5 text-primary" />
+                    <MenuIcon iconName={resource.iconName} className="h-5 w-5 text-primary" />
                     {resource.title}
                   </CardTitle>
                 </CardHeader>

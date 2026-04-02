@@ -230,7 +230,7 @@ const PokerGuide = () => {
                 <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-lg group-hover:text-primary transition-colors">
-                      <spoke.icon className="h-5 w-5 text-primary" />
+                      <MenuIcon iconName={spoke.iconName} className="h-5 w-5 text-primary" />
                       {spoke.title}
                     </CardTitle>
                   </CardHeader>
@@ -522,7 +522,7 @@ const PokerGuide = () => {
               <Card key={err.title}>
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <err.icon className="h-5 w-5 text-destructive" />
+                    <MenuIcon iconName={err.iconName} className="h-5 w-5 text-destructive" />
                     {err.title}
                   </CardTitle>
                 </CardHeader>

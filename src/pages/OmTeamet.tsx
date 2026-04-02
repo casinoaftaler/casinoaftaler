@@ -309,7 +309,7 @@ const OmTeamet = () => {
                 key={point.text}
                 className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <point.icon className="h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={point.iconName} className="h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm font-medium">{point.text}</span>
               </div>
             ))}
@@ -457,7 +457,7 @@ const OmTeamet = () => {
             {stats.map((stat) => (
               <Card key={stat.label} className="border-border bg-card text-center">
                 <CardContent className="p-6">
-                  <stat.icon className="mx-auto mb-3 h-8 w-8 text-primary" />
+                  <MenuIcon iconName={stat.iconName} className="mx-auto mb-3 h-8 w-8 text-primary" />
                   <p className="text-3xl font-bold text-foreground md:text-4xl">{stat.value}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
                 </CardContent>
@@ -767,7 +767,7 @@ const OmTeamet = () => {
             {workMethods.map((method) => (
               <Card key={method.title} className="border-border bg-card">
                 <CardContent className="p-6">
-                  <method.icon className="mb-3 h-6 w-6 text-primary" />
+                  <MenuIcon iconName={method.iconName} className="mb-3 h-6 w-6 text-primary" />
                   <h3 className="mb-2 font-semibold">{method.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{method.desc}</p>
                 </CardContent>

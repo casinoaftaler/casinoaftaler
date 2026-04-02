@@ -281,7 +281,7 @@ const TabletCasinoGuide = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2"><item.icon className="h-4 w-4 text-primary" />{item.title}</CardTitle>
+                  <CardTitle className="text-sm flex items-center gap-2"><MenuIcon iconName={item.iconName} className="h-4 w-4 text-primary" />{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent><p className="text-xs text-muted-foreground">{item.desc}</p></CardContent>
               </Card>
@@ -599,7 +599,7 @@ const TabletCasinoGuide = () => {
               { title: "Visa/Mastercard (Alle tablets)", desc: "Safari AutoFill (iPad) og Chrome AutoFill (Android) udfylder kortdata automatisk. 3D Secure-verifikation via bankens app på smartphone eller SMS.", link: "/betalingsmetoder/visa-mastercard", iconName: "shield" },
             ].map((m) => (
               <Card key={m.title} className="border-border bg-card">
-                <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><m.icon className="h-4 w-4 text-primary" />{m.title}</CardTitle></CardHeader>
+                <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><MenuIcon iconName={m.iconName} className="h-4 w-4 text-primary" />{m.title}</CardTitle></CardHeader>
                 <CardContent className="space-y-2">
                   <p className="text-sm text-muted-foreground">{m.desc}</p>
                   <Link to={m.link} className="text-primary underline hover:text-primary/80 text-xs">Læs komplet guide →</Link>
@@ -791,7 +791,7 @@ const TabletCasinoGuide = () => {
               { title: "Tilslut ekstern tastatur til chat", desc: "Et Bluetooth-tastatur gør det nemt at kommunikere i live casino-chat. Magic Keyboard (iPad) eller Samsung Keyboard Cover anbefales.", iconName: "settings" },
             ].map((t) => (
               <div key={t.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
-                <t.icon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
+                <MenuIcon iconName={t.iconName} className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div><h3 className="font-semibold text-sm text-foreground">{t.title}</h3><p className="text-xs text-muted-foreground">{t.desc}</p></div>
               </div>
             ))}

@@ -217,7 +217,7 @@ const FordeleOgUlemperGuide = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base"><item.icon className="h-5 w-5 text-primary" />{item.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent><p className="text-sm text-muted-foreground leading-relaxed">{item.content}</p></CardContent>
               </Card>
@@ -279,7 +279,7 @@ const FordeleOgUlemperGuide = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base"><item.icon className="h-5 w-5 text-destructive" />{item.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName={item.iconName} className="h-5 w-5 text-destructive" />{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent><p className="text-sm text-muted-foreground leading-relaxed">{item.content}</p></CardContent>
               </Card>
@@ -498,7 +498,7 @@ const FordeleOgUlemperGuide = () => {
             ].map((item) => (
               <Card key={item.title} className="border-border bg-card">
                 <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-base"><item.icon className="h-5 w-5 text-primary" />{item.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-base"><MenuIcon iconName={item.iconName} className="h-5 w-5 text-primary" />{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-primary font-semibold mb-2">Anbefalet: {item.rec}</p>

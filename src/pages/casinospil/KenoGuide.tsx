@@ -227,7 +227,7 @@ const KenoGuide = () => {
               <Card key={type.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <type.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{type.title}</CardTitle>
@@ -355,7 +355,7 @@ const KenoGuide = () => {
               { iconName: "heart", title: "8. Spil for underholdning, ikke profit", desc: "Keno har en indbygget house edge på 4-12%. Over tid vil du statistisk set tabe penge. Betragt dit keno-budget som en underholdningsudgift – ligesom en biografbillet eller et restaurantbesøg. Hvis du oplever at keno bliver en kilde til stress eller finansiel bekymring, brug værktøjerne på vores side om ansvarligt spil." },
             ].map((tip) => (
               <div key={tip.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <tip.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={tip.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{tip.title}</h3>
                   <p className="text-sm text-muted-foreground">{tip.desc}</p>
@@ -428,7 +428,7 @@ const KenoGuide = () => {
               { iconName: "check-circle2", title: "Ansvarligt spil-værktøjer", desc: "Licenserede casinoer skal tilbyde grænse-værktøjer for indskud, tab og spilletid. Spillere skal kunne sætte daglige, ugentlige og månedlige grænser. Derudover kræves 'reality checks' – pop-up-beskeder der informerer spilleren om varighed og resultat af spillesessionen." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -605,7 +605,7 @@ const KenoGuide = () => {
               { iconName: "lock", title: "Forstærket spillerbeskyttelse med AI", desc: "Danske og europæiske regulatorer investerer i AI-drevne systemer der identificerer problematisk spilleadfærd i realtid. Kenos hurtige spillefrekvens gør det særligt relevant for tidlig intervention. Fremtidige keno-platforme vil sandsynligvis have integrerede AI-assistenter der proaktivt foreslår pauser og budget-justeringer." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>

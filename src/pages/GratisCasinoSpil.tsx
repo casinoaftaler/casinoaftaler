@@ -225,7 +225,7 @@ const GratisCasinoSpil = () => {
               <Card key={type.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <type.icon className="h-6 w-6 text-primary" />
+                    <MenuIcon iconName={type.iconName} className="h-6 w-6 text-primary" />
                     <Badge variant="outline" className="text-xs">{type.tag}</Badge>
                   </div>
                   <CardTitle className="text-lg">{type.title}</CardTitle>
@@ -302,7 +302,7 @@ const GratisCasinoSpil = () => {
               { iconName: "target", title: "Identificer dine foretrukne spiltyper", desc: "Er du en Megaways-spiller? Foretrækker du cluster pays eller traditionelle paylines? Liker du bonus buy eller organiske bonusrunder? Demotilstanden hjælper dig med at kortlægge din spillerprofil, før du bruger penge." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -535,7 +535,7 @@ const GratisCasinoSpil = () => {
               { iconName: "monitor", title: "Tablet / iPad", desc: "Optimal skærmstørrelse for demospil. Større visuel oplevelse med tablet-tilpasset layout.", path: "/mobil-casino/tablet" },
             ].map((device) => (
               <Link key={device.title} to={device.path} className="rounded-lg border border-border p-4 text-center transition-colors hover:border-primary/50">
-                <device.icon className="mx-auto h-8 w-8 text-primary mb-2" />
+                <MenuIcon iconName={device.iconName} className="mx-auto h-8 w-8 text-primary mb-2" />
                 <p className="font-semibold">{device.title}</p>
                 <p className="text-xs text-muted-foreground mt-1">{device.desc}</p>
               </Link>
@@ -602,7 +602,7 @@ const GratisCasinoSpil = () => {
               { iconName: "alert-triangle", title: "Fejl 5: At vælge casino baseret på demooplevelsen alene", desc: "Et casino med gode demospil er ikke nødvendigvis det bedste valg. Tjek også udbetalingshastighed, bonusvilkår, kundeservice og licensstatus. Se vores casino-anmeldelser for en helhedsvurdering." },
             ].map((item) => (
               <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border p-4">
-                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <MenuIcon iconName={item.iconName} className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.desc}</p>
