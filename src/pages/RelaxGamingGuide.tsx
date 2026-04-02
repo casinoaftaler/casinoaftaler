@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import relaxLogo from "@/assets/screenshots/relax-logo.webp";
+import relaxKatalog from "@/assets/screenshots/relax-katalog.webp";
+import relaxMoneytrainIntro from "@/assets/screenshots/relax-moneytrain-intro.webp";
+import relaxMoneytrainGameplay from "@/assets/screenshots/relax-moneytrain-gameplay.webp";
 
 const RelaxGamingGuide = () => (
   <ProviderPage
