@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import isoftbetFacts from "@/assets/screenshots/isoftbet-facts.webp";
+import isoftbetLogo from "@/assets/screenshots/isoftbet-logo.webp";
+import isoftbetKatalog from "@/assets/screenshots/isoftbet-katalog.webp";
+import isoftbetGameplay from "@/assets/screenshots/isoftbet-gameplay.webp";
 
 const ISoftBetGuide = () => (
   <ProviderPage
