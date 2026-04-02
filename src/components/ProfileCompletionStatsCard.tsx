@@ -131,10 +131,10 @@ export function ProfileCompletionOverview() {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard icon={Users} label="Totalt brugere" value={stats.totalUsers.toLocaleString("da-DK")} />
-          <StatCard icon={UserCheck} label="Profiler fuldført" value={stats.completedProfiles.toLocaleString("da-DK")} variant="success" />
-          <StatCard icon={UserX} label="Profiler ufuldstændige" value={stats.incompleteProfiles.toLocaleString("da-DK")} variant="warning" />
-          <StatCard icon={TrendingUp} label="Fuldførelsesrate" value={`${stats.completionRate.toFixed(1)}%`} />
+          <StatCard iconName="users" label="Totalt brugere" value={stats.totalUsers.toLocaleString("da-DK")} />
+          <StatCard iconName="user-check" label="Profiler fuldført" value={stats.completedProfiles.toLocaleString("da-DK")} variant="success" />
+          <StatCard iconName="user-x" label="Profiler ufuldstændige" value={stats.incompleteProfiles.toLocaleString("da-DK")} variant="warning" />
+          <StatCard iconName="trending-up" label="Fuldførelsesrate" value={`${stats.completionRate.toFixed(1)}%`} />
         </div>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
