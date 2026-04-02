@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import yggLogo from "@/assets/screenshots/ygg-logo.webp";
+import yggStats from "@/assets/screenshots/ygg-stats.webp";
+import yggCount from "@/assets/screenshots/ygg-count.webp";
+import yggKatalog from "@/assets/screenshots/ygg-katalog.webp";
+import yggGameplay from "@/assets/screenshots/ygg-gameplay.webp";
 
 const YggdrasilGuide = () => (
   <ProviderPage
