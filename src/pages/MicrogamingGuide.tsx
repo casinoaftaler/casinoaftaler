@@ -130,6 +130,11 @@ const MicrogamingGuide = () => (
     ]}
     licensesContent={
       <>
+        <ReviewScreenshot
+          src={mgUpcoming}
+          alt="Microgaming kommende spilutgivelser – Coming Soon oversigt med nye slots planlagt til april 2026"
+          caption="Microgamings kommende udgivelser – nye titler planlagt via deres globale studie-netværk."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Microgaming er licenseret af Isle of Man Gambling Supervision Commission (deres primære jurisdiktion siden grundlæggelsen i 1994), Malta Gaming Authority og UK Gambling Commission. Som medstifter af eCOGRA i 2003 har de været med til at definere de fairness-standarder hele branchen bruger. eCOGRA's etablering var et direkte svar på branchens legitimitetskrise i de tidlige 2000'ere, hvor flere online casinoer opererede uden regulering eller uafhængig testning.
         </p>
