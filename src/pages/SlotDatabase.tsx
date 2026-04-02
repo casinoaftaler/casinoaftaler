@@ -341,7 +341,7 @@ export default function SlotDatabase() {
           </div>
         )}
 
-        <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.470+ spillemaskiner testet på Twitch." />
+        <SnippetAnswer answer={`Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for ${slotCountLabel} spillemaskiner testet på Twitch.`} />
 
         
 
