@@ -81,7 +81,7 @@ const LiveBlackjackGuide = () => {
     headline: "Live Blackjack – Regler, Basisstrategi & House Edge Guide",
     description: "Komplet live blackjack guide 2026. Basisstrategi, house edge 0,5 %, card counting-analyse og bankroll management for danske spillere.",
     url: `${SITE_URL}/live-casino/blackjack`,
-    datePublished: "2026-02-18",
+    datePublished: "2026-02-26",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
