@@ -61,6 +61,11 @@ const RelaxGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Relax Gaming besidder en sjælden dobbeltposition i branchen der minder om Shopifys rolle i e-handel: de sælger egne produkter (spil), men tjener også på at distribuere andres via deres platform. Denne hybridmodel skaber en strategisk moat der er ekstremt svær at kopiere – det kræver samtidig succes som kreativt studio og teknologisk platform, to discipliner der sjældent kombineres. Forskellen til <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> er skarp: hvor Pragmatic fokuserer på volumen med 6-8 egne udgivelser/måned, udgiver Relax 3-4 nøje polerede egne titler månedligt og supplerer med 15-20 partnertitler via deres platform.
         </p>
+        <ReviewScreenshot
+          src={relaxKatalog}
+          alt="Relax Gaming spilkatalog på Campobet – Grillmaster Grizzly, Hellcatraz, Money Pot og flere populære titler"
+          caption="Relax Gamings brede katalog hos Campobet inkluderer egne titler og partnerstudios via deres aggregeringsplatform."
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Money Train-seriens strategiske værdi rækker ud over den individuelle spilleoplevelse. Respins-mekanikken med persistente multiplikatorer og symboltyper (Collector, Payer, Sniper, Shapeshifter) har inspireret en hel bølge af efterlignere – fra Pragmatic Plays Hold & Win til utallige indie-studios. Men originalen forbliver den mest velbalancerede: Money Train 3's matematiske model tillader 100.000x maks. gevinst med 96,10% RTP, hvilket er exceptionelt. Hitfrekvensen er lav (under 20%), men bonusrundens design belønner tålmodighed med potentielt massive vinderkaskader.
         </p>
