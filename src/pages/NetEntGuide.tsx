@@ -196,6 +196,7 @@ const NetEntGuide = () => (
           caption="NetEnts seneste releases – nye titler som Dead or Alive 3: Wanted og Godbreaker viser fortsat innovation."
           size="medium"
         />
+      </>
     }
     games={[
       { name: "Starburst", desc: "Det mest ikoniske online slot nogensinde – og der er gode grunde til det. Simpelt 5x3 layout med 10 gevinstlinjer, expanding wilds der dækker hele hjul og udløser re-spins, og en visuel æstetik der har ældet bedre end de fleste spil fra 2013. RTP: 96,08%. Hitfrekvens: ~23%. Maks. gevinst: 800x (80.000 DKK ved maks. indsats). Lav volatilitet gør Starburst til det ultimative omsætningsspil – bankrollet slides langsomt og forudsigeligt. Det er ikke spændende, men det er effektivt.", highlight: "Verdens mest spillede slot – 96,08% RTP" },
