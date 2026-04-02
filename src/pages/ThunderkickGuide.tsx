@@ -184,6 +184,12 @@ const ThunderkickGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Thunderkick er licenseret af Malta Gaming Authority (MGA) som primær jurisdiktion samt UK Gambling Commission for det britiske marked. For danske spillere er det afgørende at Thunderkick-spil er fuldt certificeret til det danske marked via Spillemyndigheden – de opfylder alle regulatoriske krav for fairness, RNG-integritet og spillerbeskyttelse, der gælder i Danmark.
         </p>
+        <ReviewScreenshot
+          src={tkGameplay}
+          alt="Beat the Beast: Griffin's Gold gameplay – 5x3 hjulopsætning med gylden griffin, fjer-symboler og armbrøst på blå stenbaggrund"
+          caption="Beat the Beast: Griffin's Gold – Thunderkicks mytologiske franchise med karakteristisk detaljeret kunsthåndværk og dansk DKK-interface."
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Alle Thunderkick-spil testes af uafhængige testlaboratorier (eCOGRA og BMM Testlabs) for at verificere RTP-nøjagtighed og RNG-randomhed. Studiets engagement i regulatorisk compliance afspejles i deres tilstedeværelse i 15+ regulerede jurisdiktioner, herunder Sverige (Spelinspektionen), Finland, og flere europæiske markeder.
         </p>
