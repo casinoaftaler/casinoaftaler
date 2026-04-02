@@ -30,6 +30,13 @@ const NolimitCityGuide = () => (
     technicalTitle="Patenterede Mekanikker: xWays, xNudge, xBomb og xSplit i Detaljer"
     introContent={
       <>
+        <ReviewScreenshot
+          src={nolimitLogo}
+          alt="Nolimit City officielt logo – svensk spiludvikler specialiseret i ultra-high-volatility slots"
+          caption="Nolimit Citys logo – studiets gule signaturfarve afspejler den aggressive brandidentitet."
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Nolimit City er en svensk spiludvikler grundlagt i Stockholm i 2013, med udviklingskontorer i Gurugram (Indien) og Cluj-Napoca (Rumænien) og hovedkontor i Sliema, Malta. Med en kompakt men intenst fokuseret portefølje på over 60 spilleautomater har de skabt en helt unik niche: ultra-high-volatility slots med kontroversielle temaer og patenterede mekanikker der ikke findes hos nogen konkurrent. I en branche domineret af tropical paradise-temaer og generiske ægyptiske slots, valgte Nolimit City bevidst at provokere – og det viste sig at være en genistreg.
         </p>
