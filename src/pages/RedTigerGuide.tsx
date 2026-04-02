@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import rtLogo from "@/assets/screenshots/rt-logo.webp";
+import rtKatalog from "@/assets/screenshots/rt-katalog.webp";
+import rtGameplay from "@/assets/screenshots/rt-gameplay.webp";
+import rtAwards from "@/assets/screenshots/rt-awards.webp";
+import rtGonzos from "@/assets/screenshots/rt-gonzos.webp";
 
 const RedTigerGuide = () => (
   <ProviderPage
