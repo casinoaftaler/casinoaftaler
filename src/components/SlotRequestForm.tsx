@@ -17,7 +17,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
   rejected: { label: "Afvist", variant: "destructive", icon: XCircle },
 };
 
-export function SlotRequestForm() {
+export function SlotRequestForm({ openedBonuses = 0 }: { openedBonuses?: number }) {
   const { user } = useAuth();
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
   const { data: queuePositions } = usePendingQueuePositions();
@@ -119,6 +119,53 @@ export function SlotRequestForm() {
         <Button asChild>
           <Link to="/auth">Log ind</Link>
         </Button>
+      </div>
+    );
+  }
+
+  if (openedBonuses >= 1) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center py-4 bg-muted/50 rounded-lg border border-border/50 p-4">
+          <XCircle className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
+          <p className="text-sm font-medium text-foreground mb-1">Requests er lukket</p>
+          <p className="text-xs text-muted-foreground">
+            Den første bonus er åbnet – requests lukkes automatisk når bonusåbningen begynder.
+          </p>
+        </div>
+
+        {/* Still show user's existing requests */}
+        {myRequests && myRequests.length > 0 && (
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium text-muted-foreground">Dine requests</h4>
+            <div className="space-y-2">
+              {(showAllRequests ? myRequests : myRequests.slice(0, 5)).map((req) => {
+                const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
+                const Icon = config.icon;
+                return (
+                  <div key={req.id} className="flex items-center justify-between rounded-lg border border-border p-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Icon className="h-4 w-4 text-muted-foreground" />
+                      <span className="font-medium">{req.slot_name}</span>
+                      <span className="text-muted-foreground">({req.provider})</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {req.credits_awarded > 0 && (
+                        <span className="text-xs text-primary font-medium">+{req.credits_awarded} credits</span>
+                      )}
+                      <Badge variant={config.variant}>{config.label}</Badge>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {myRequests.length > 5 && (
+              <Button variant="ghost" size="sm" className="w-full text-muted-foreground" onClick={() => setShowAllRequests(!showAllRequests)}>
+                {showAllRequests ? "Vis færre" : `Vis alle (${myRequests.length})`}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     );
   }
