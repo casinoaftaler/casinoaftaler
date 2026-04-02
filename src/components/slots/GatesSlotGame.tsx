@@ -984,7 +984,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               className="w-full pointer-events-none block drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               draggable={false}
             />
-            <div className="mt-[-30px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
+            <div className="mt-[-80px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
               <ChromaKeyVideo
                 src="/videos/gates-character.mp4"
                 width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
