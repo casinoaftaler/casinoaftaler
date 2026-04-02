@@ -1,61 +1,22 @@
 
 
-# Fix Book of Fedesvin & Rise of Fedesvin Mobile Layout
+# Fix Admin Panel Tab Persistence
 
 ## Problem
-Both games use a fixed 1200px layout with `transform: scale()` on mobile, which shrinks everything and leaves large dead space below the game. Fedesvin Bonanza instead uses native responsive sizing where symbols dynamically fill the viewport width.
+The admin panel stores the active tab in React state (`useState("")`), which resets to the default ("Indhold") on every re-render or navigation. When you switch to e.g. "Requests" and then navigate elsewhere and back, it always reverts.
 
-## Approach
-Mirror the Bonanza pattern: add `isMobile` prop to `SlotGame`, dynamically calculate symbol dimensions based on viewport width, and update both page files to use the same mobile wrapper as Bonanza.
+## Solution
+Persist the active tab in the URL using a query parameter (e.g. `?tab=requests`). This way the browser's back/forward and re-navigation preserves the tab.
 
-## Changes
+## Changes — `src/pages/Admin.tsx`
 
-### 1. `src/components/slots/SlotGame.tsx` — Add responsive mobile support
-- Add `isMobile` prop to `SlotGameProps`
-- Calculate `mobileSymbolSize` from viewport width: `Math.floor((viewportWidth - totalGaps - padding) / 5)` (5 reels)
-- Use mobile size for `SYMBOL_SIZE` when `isMobile` is true
-- Scale `SYMBOL_GAP` proportionally on mobile
-- Pass mobile dimensions down to `SlotReel`, `WinLines`, `SlotMachineFrame`, `SlotIdleEffects`, `SlotAmbientLight`
+1. **Read `tab` from URL on mount**: Use `useSearchParams()` to initialize `activeTab` from `?tab=...` instead of `""`.
 
-### 2. `src/components/slots/SlotReel.tsx` — Accept dynamic dimensions
-- Add optional `symbolHeight` and `symbolGap` props (currently uses hardcoded constants)
-- Use passed values when provided, fall back to existing constants
+2. **Sync tab changes to URL**: When `setActiveTab` is called, also update the search param via `setSearchParams({ tab: value })` (using `replace: true` to avoid polluting history).
 
-### 3. `src/components/slots/WinLines.tsx` — Accept dynamic dimensions
-- Already accepts `symbolSize` and `gap` props — no changes needed
+3. **Remove the initialization `useEffect`**: Replace the `useEffect` that sets `activeTab` on mount with direct initialization from URL params, falling back to the role-based default.
 
-### 4. `src/components/slots/SlotMachineFrame.tsx` — Compact frame on mobile
-- Add `isMobile` prop to reduce padding/frame size on small screens
+4. **Update sidebar click handler**: Ensure clicking a nav item calls both `setActiveTab` and updates the URL param.
 
-### 5. `src/pages/SlotMachine.tsx` — Update mobile wrapper
-- Replace `transform: scale()` mobile block with Bonanza-style native layout:
-  ```jsx
-  <div className="flex-1 flex flex-col overflow-hidden">
-    <div className="w-full px-1">
-      <SlotPageLayout sidePanel={null}>
-        <SlotGame isMobile />
-      </SlotPageLayout>
-    </div>
-  </div>
-  ```
-
-### 6. `src/pages/RiseOfFedesvin.tsx` — Same mobile wrapper update
-- Identical change as SlotMachine.tsx, passing `isMobile` and `gameId={GAME_ID}`
-
-### 7. `src/components/slots/BonanzaControlBar.tsx` — Already supports `isMobile`
-- No changes needed; `SlotGame` already uses this control bar
-
-## Technical Detail
-The key calculation (matching Bonanza's approach):
-```ts
-const mobileSymbolSize = useMemo(() => {
-  if (!isMobile) return 150;
-  const viewportWidth = window.innerWidth;
-  const totalGaps = 6 * mobileGap; // 5 reels + dividers
-  const framePadding = 56; // frame + inner padding
-  return Math.floor((viewportWidth - totalGaps - framePadding) / 5);
-}, [isMobile]);
-```
-
-This ensures the game fills the mobile viewport width natively — no CSS transform scaling, no dead space.
+This is a small, focused change — only the tab state management in `AdminDashboard` needs updating.
 
