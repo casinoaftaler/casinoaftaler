@@ -113,6 +113,7 @@ const ELKStudiosGuide = () => (
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Udviklingstid per spil</p><p className="text-lg font-bold">6-9 måneder</p><p className="text-xs text-muted-foreground">Dobbelt branchens gennemsnit på 3-4 mdr.</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Lyddesign</p><p className="text-lg font-bold">Original produktion</p><p className="text-xs text-muted-foreground">Professionelle musikstudier, ingen stock-lyd</p></CardContent></Card>
         <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Visuel standard</p><p className="text-lg font-bold">Cinematisk</p><p className="text-xs text-muted-foreground">Håndtegnede symboler, partikeleffekter</p></CardContent></Card>
+        </div>
       </div>
     }
     historyTitle="Fra Stockholm til Global Anerkendelse: ELK Studios' Rejse"
