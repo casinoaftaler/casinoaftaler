@@ -126,7 +126,7 @@ const NoStickyBonus = () => {
     headline: "No-Sticky Bonus – Matematisk Analyse & Komplet Guide 2026",
     description: "Dyb matematisk analyse af No-Sticky Bonusser på danske casinoer. Regneeksempler, strategi og sammenligning med alle andre bonustyper.",
     url: `${SITE_URL}/no-sticky-bonus`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-08-03",
     videoId: "WOowRz6hnH8",
   });
 

@@ -107,7 +107,7 @@ const Indskudsbonus = () => {
     headline: "Indskudsbonus – Komplet Guide til Matchbonusser 2026",
     description: "Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier.",
     url: `${SITE_URL}/indskudsbonus`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-06-22",
     videoId: "hMHHVA6vH0Y",
   });
 

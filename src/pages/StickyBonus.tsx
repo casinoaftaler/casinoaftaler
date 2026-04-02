@@ -114,7 +114,7 @@ const StickyBonus = () => {
     headline: "Sticky Bonus – Komplet Guide til Klæbende Bonusser 2026",
     description: "Alt om Sticky Bonusser hos danske casinoer. Forstå hvordan de fungerer, betingelser, fordele og ulemper.",
     url: `${SITE_URL}/sticky-bonus`,
-    datePublished: "2025-06-01",
+    datePublished: "2025-07-14",
     videoId: "yUAcefgYfkc",
   });
 
