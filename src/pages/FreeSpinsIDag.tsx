@@ -568,7 +568,7 @@ const FreeSpinsIDag = () => {
 };
 
 // ─── Stat Card ───
-function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNode; value: number; label: string; revealed: boolean; delay: number }) {
+function StatCard({ iconName, value, label, revealed, delay }: { icon: React.ReactNode; value: number; label: string; revealed: boolean; delay: number }) {
   return (
     <Card className={`text-center border-border/50 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1 ${revealed ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: `${delay}ms` }}>
       <CardContent className="pt-5 pb-4">
