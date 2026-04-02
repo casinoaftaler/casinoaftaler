@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pngLogo from "@/assets/screenshots/png-logo.webp";
+import pngKatalog from "@/assets/screenshots/png-katalog.webp";
+import pngFreespins from "@/assets/screenshots/png-freespins.webp";
+import pngGameplay from "@/assets/screenshots/png-gameplay.webp";
 
 const PlayNGoGuide = () => (
   <ProviderPage
@@ -23,6 +28,13 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er en grundlæggende forskel mellem udviklere der laver spil og udviklere der bygger universer. Play'n GO tilhører den anden kategori. Grundlagt i Örebro, Sverige i 2005 – før iPhone, før Instagram, før Twitch – har dette studio brugt to årtier på at perfektionere en tilgang til spiludvikling der prioriterer narrativ sammenhæng, franchise-building og spillerloyalitet over de kortsigtede gevinster ved trend-jagt og kopimaskine-taktik. I en branche domineret af udviklere der jager den næste virale mekanik, har Play'n GO valgt den modsatte vej: byg karakterer, fortæl historier, og lad spillerne vende tilbage fordi de vil vide hvad der sker næste gang.
         </p>
+        <ReviewScreenshot
+          src={pngLogo}
+          alt="Play'n GO officielt logo – svensk spiludvikler med 434 titler"
+          caption="Play'n GOs logo – 5x Slot Provider of the Year og skaberne af Book of Dead og Reactoonz."
+          size="compact"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Rich Wilde er casinobranchens svar på Indiana Jones. Ikke bare et karakter-symbol, men en gennemgående protagonist der optræder i en serie af eventyr-slots med unikke mekanikker men fælles narrativ identitet: Book of Dead (Egypten, expanding symbols, 96,21% RTP), Pearls of India (indisk mytologi), Shield of Athena (græsk gudelære), Tome of Madness (Lovecraftian horror med cascading wins). Hver titel er selvstændig med sin egen mekanik, men deler karakteruniverset – Rich Wilde som den gennemgående eventyrerfigur. Denne franchise-tænkning skaber en spillerloyalitet og genkendelse der er ekstremt sjælden i slot-branchen, hvor 99% af spil er enkeltstående titler uden narrativ forbindelse. Cat Wilde-spin-offs har udvidet universet yderligere med en kvindelig protagonist der udforsker sit eget eventyr-narrativ.
         </p>
@@ -65,6 +77,12 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Play'n GO er en af branchens sidste store udviklere der konsekvent ikke tilbyder Bonus Buy. I en branche hvor Pragmatic Play, Nolimit City, Hacksaw Gaming, <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> og næsten alle andre udviklere tilbyder feature purchase, er fravalget bemærkelsesværdigt og kommercielt modigt. Play'n GOs officielle position er at bonusrunden skal optjenes gennem naturligt gameplay – at den anticipation der bygges op over 100-200 basis-spins er en integral del af spiloplevelsen. De argumenterer at Bonus Buy trivialiserer bonusrunden og reducerer den til en transaktion snarere end en belønning.
         </p>
+        <ReviewScreenshot
+          src={pngFreespins}
+          alt="Book of Dead free spins-funktion med expanding symbols – Play'n GO"
+          caption="Book of Deads ikoniske Free Spins-bog: 3 scatter-symboler udløser 10 free spins med expanding symbol-mekanik."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Regulatorisk er Play'n GOs holdning fremtidssikret: flere jurisdiktioner overvejer at begrænse eller forbyde Bonus Buy. Storbritannien har allerede implementeret restriktioner på feature purchase i flere spilkategorier. Sverige diskuterer tilsvarende regulering. Spanien har begrænsninger under overvejelse. Play'n GO vil være upåvirket af sådanne reguleringer – deres spil er allerede compliant med de strengeste potentielle regler. Men kommercielt har fravalget en pris: spillere der ønsker øjeblikkelig adgang til bonusrunder vælger andre udviklere. Streamer-segmentet – en vigtig markedsføringskanal i moderne casinobranche – foretrækker Bonus Buy for content-produktion fordi det garanterer visuel action hvert 2-3 minut i stedet for 15-20 minutters basis-spil.
         </p>
@@ -119,9 +137,21 @@ const PlayNGoGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Play'n GOs portefølje er organiseret omkring franchises og tematiske familier snarere end mekaniske kategorier. Rich Wilde-serien, Reactoonz-universet, Olympus-trilogien og de standalone-titler der eksperimenterer med nye formater – hver gruppe har sin egen identitet, sin egen spillerbase og sin egen rolle i porteføljen. Det er en organisatorisk tilgang der minder mere om et filmstudio end et traditionelt spiludviklingsselskab.
         </p>
+        <ReviewScreenshot
+          src={pngKatalog}
+          alt="Play'n GO spilkatalog på CampoBet casino med 434 spilleautomater"
+          caption="Play'n GOs komplette katalog på CampoBet – 434 titler inkl. Honey Rush, Book of Dead og Reactoonz 100."
+          size="full"
+        />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Følgende seks titler repræsenterer bredden i Play'n GOs kreative vision – fra den ikoniske Book of Dead til grid-innovationen i Reactoonz og den mytologiske storytelling i Rise of Olympus. Alle med fast RTP der ikke kan ændres af operatører – en garanti der gør disse titler særligt velegnede til informerede spillere der vil have gennemsigtighed i deres spiloplevelse.
         </p>
+        <ReviewScreenshot
+          src={pngGameplay}
+          alt="Book of Dead gameplay – Rich Wilde egyptisk spilleautomat fra Play'n GO"
+          caption="Book of Dead gameplay med symboler som Anubis, farao og scarab – Play'n GOs mest ikoniske titel med 96,21% fast RTP."
+          size="full"
+        />
       </>
     }
     games={[
