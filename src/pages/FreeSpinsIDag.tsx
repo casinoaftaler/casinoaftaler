@@ -318,7 +318,7 @@ const FreeSpinsIDag = () => {
       <section
         className="relative overflow-hidden py-10 md:py-16 text-white"
         style={{
-          backgroundImage: "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 12%) 40%, hsl(210 80% 18%))",
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed',
         }}
       >
@@ -596,7 +596,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
   return (
     <div
       className="fs-featured-glow relative mb-10 rounded-2xl overflow-hidden group hover:-translate-y-1.5 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10"
-      style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 50% 18%), hsl(250 40% 14%) 50%, hsl(210 60% 18%))' }}
+      style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-primary/10 blur-[80px] pointer-events-none" />
 
