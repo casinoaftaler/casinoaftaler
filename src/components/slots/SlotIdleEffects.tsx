@@ -70,33 +70,36 @@ export const SlotIdleEffects = React.memo(function SlotIdleEffects({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Detect mobile for reduced particle work
+    const isMobile = window.innerWidth < 768;
+    const maxParticles = isMobile ? 8 : MAX_PARTICLES;
+    const spawnDelay = isMobile ? 800 : SPAWN_INTERVAL;
+
     let lastTime = performance.now();
+    let running = true;
 
     const draw = (now: number) => {
+      if (!running) return;
       const dt = now - lastTime;
       lastTime = now;
 
       ctx.clearRect(0, 0, width, height);
 
       if (isIdleRef.current) {
-        // Spawn new particles
-        if (now - lastSpawnRef.current > SPAWN_INTERVAL && particlesRef.current.length < MAX_PARTICLES) {
+        if (now - lastSpawnRef.current > spawnDelay && particlesRef.current.length < maxParticles) {
           particlesRef.current.push(spawnParticle());
           lastSpawnRef.current = now;
         }
       }
 
-      // Update & draw
       const alive: Particle[] = [];
       for (const p of particlesRef.current) {
         p.life += dt;
         p.x += p.vx;
         p.y += p.vy;
-        // Gentle horizontal sway
         p.x += Math.sin(p.life * 0.002 + p.y * 0.01) * 0.15;
 
         const lifeRatio = p.life / p.maxLife;
-        // Fade in first 20%, fade out last 30%
         if (lifeRatio < 0.2) {
           p.alpha = p.maxAlpha * (lifeRatio / 0.2);
         } else if (lifeRatio > 0.7) {
@@ -111,20 +114,30 @@ export const SlotIdleEffects = React.memo(function SlotIdleEffects({
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = `${p.color}${p.alpha})`;
           ctx.fill();
-          // Glow
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `${p.color}${p.alpha * 0.3})`;
-          ctx.fill();
+          // Skip glow on mobile to reduce overdraw
+          if (!isMobile) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = `${p.color}${p.alpha * 0.3})`;
+            ctx.fill();
+          }
         }
       }
       particlesRef.current = alive;
+
+      // Stop RAF when not idle and no particles remain
+      if (!isIdleRef.current && alive.length === 0) {
+        ctx.clearRect(0, 0, width, height);
+        rafRef.current = 0;
+        return;
+      }
 
       rafRef.current = requestAnimationFrame(draw);
     };
 
     rafRef.current = requestAnimationFrame(draw);
     return () => {
+      running = false;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [width, height, spawnParticle]);

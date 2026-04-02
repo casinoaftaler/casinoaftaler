@@ -318,6 +318,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const skipRef = useRef(false);
   const clickCountRef = useRef(0);
   const lightningIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isMobileRef = useRef(typeof window !== 'undefined' && window.innerWidth < 768);
 
   const finalMultiplier = bet > 0 ? winAmount / bet : 0;
   const finalTier = getTier(finalMultiplier);
