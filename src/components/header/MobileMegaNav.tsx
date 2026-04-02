@@ -178,7 +178,7 @@ function MobileSection({ label, iconName, sectionKey, expanded, onToggle, childr
 
 /* ─── Sub-section accordion ─── */
 function MobileSubSection({ label, iconName, expanded, onToggle, children }: {
-  label: string; icon: any; expanded: boolean; onToggle: () => void; children: React.ReactNode;
+  label: string; iconName: string; expanded: boolean; onToggle: () => void; children: React.ReactNode;
 }) {
   return (
     <>

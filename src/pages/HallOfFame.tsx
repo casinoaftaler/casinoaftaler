@@ -330,7 +330,7 @@ export default function HallOfFame() {
           <div className="grid gap-6 md:grid-cols-2">
             <LeaderboardSection
               title="Flest Point (All-Time)"
-              icon={Star}
+              iconName="star"
               entries={topPlayers}
               valueKey="total_winnings"
               valueLabel="point"
@@ -338,7 +338,7 @@ export default function HallOfFame() {
             />
             <LeaderboardSection
               title="Højeste Multiplikator (All-Time)"
-              icon={TrendingUp}
+              iconName="trending-up"
               entries={topMultipliers}
               valueKey="biggest_multiplier"
               valueLabel="x"

@@ -190,24 +190,24 @@ export function ProfileCompletionStatsCard() {
           {/* Stats Grid */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StatCard
-              icon={Users}
+              iconName="users"
               label="Totalt brugere"
               value={stats.totalUsers.toLocaleString("da-DK")}
             />
             <StatCard
-              icon={UserCheck}
+              iconName="user-check"
               label="Profiler fuldført"
               value={stats.completedProfiles.toLocaleString("da-DK")}
               variant="success"
             />
             <StatCard
-              icon={UserX}
+              iconName="user-x"
               label="Profiler ufuldstændige"
               value={stats.incompleteProfiles.toLocaleString("da-DK")}
               variant="warning"
             />
             <StatCard
-              icon={TrendingUp}
+              iconName="trending-up"
               label="Fuldførelsesrate"
               value={`${stats.completionRate.toFixed(1)}%`}
             />

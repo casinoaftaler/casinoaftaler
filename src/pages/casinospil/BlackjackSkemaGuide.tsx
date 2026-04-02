@@ -428,9 +428,9 @@ const BlackjackSkemaGuide = () => {
               Herunder finder du det fulde blackjack basic strategy skema opdelt i tre interaktive tabeller. Hold musen over et felt for at fremhæve alle felter med samme handling – det gør det nemmere at se mønstrene i strategien. Alle tabeller er baseret på standard 6-deck, S17, DAS, late surrender.
             </p>
 
-            <StrategyTable title="Hard Totals" icon={Target} rows={hardTotals} id="hard-totals" />
-            <StrategyTable title="Soft Totals (hænder med es)" icon={Sparkles} rows={softTotals} id="soft-totals" />
-            <StrategyTable title="Pairs (split-beslutninger)" icon={Layers} rows={pairTotals} id="pairs" />
+            <StrategyTable title="Hard Totals" iconName="target" rows={hardTotals} id="hard-totals" />
+            <StrategyTable title="Soft Totals (hænder med es)" iconName="sparkles" rows={softTotals} id="soft-totals" />
+            <StrategyTable title="Pairs (split-beslutninger)" iconName="layers" rows={pairTotals} id="pairs" />
           </section>
 
           {/* ── Farvekoder ── */}

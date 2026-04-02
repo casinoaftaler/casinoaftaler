@@ -41,6 +41,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown, Shield, Target, Database, Trophy, Link2, MessageSquare } from "lucide-react";
+import { MenuIcon } from "@/components/MenuIcon";
 import { LinkDensityMonitor } from "@/components/LinkDensityMonitor";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
