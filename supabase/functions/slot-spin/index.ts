@@ -1612,15 +1612,16 @@ Deno.serve(async (req) => {
         const newFreeSpins = isRetrigger ? bonusData.free_spins_remaining - 1 + GATES_FREE_SPINS_RETRIGGER : bonusData.free_spins_remaining - 1;
         const newTotalFreeSpins = isRetrigger ? bonusData.total_free_spins + GATES_FREE_SPINS_RETRIGGER : bonusData.total_free_spins;
         const newBonusWinnings = Number(bonusData.bonus_winnings) + gatesResult.totalWin;
+        const newCumulativeMultiplier = cumulativeMultiplier + gatesResult.totalMultiplier;
         await serviceClient.from("slot_bonus_state").update({
           free_spins_remaining: newFreeSpins, total_free_spins: newTotalFreeSpins,
-          bonus_winnings: newBonusWinnings, expanding_symbol_name: String(gatesResult.totalMultiplier),
+          bonus_winnings: newBonusWinnings, expanding_symbol_name: String(newCumulativeMultiplier),
           is_active: newFreeSpins > 0,
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
           // DEMO MODE: Skip leaderboard recording for Gates
         }
-        return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: gatesResult.totalMultiplier, betAmount: bet, isRetrigger } }),
+        return new Response(JSON.stringify({ success: true, result: gatesResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: newCumulativeMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
       }
 
