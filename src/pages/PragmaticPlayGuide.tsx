@@ -73,6 +73,12 @@ const PragmaticPlayGuide = () => (
     strategicAnalysis={
       <>
         <h3 className="text-xl font-bold mb-3 mt-2">Volumen-Strategien: Hvorfor 6-8 Spil Per Måned Fungerer</h3>
+        <ReviewScreenshot
+          src={ppGatesIntro}
+          alt="Gates of Olympus startskærm – Zeus-karakter, Scatter-symbol og 5.000x maks gevinst på spilleautomaten.dk"
+          caption="Gates of Olympus introscreen – Pragmatic Plays mest streamede titel med Zeus, Scatter-symboler og op til 5.000x gevinst."
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Pragmatic Plays release-kadence på 6-8 nye spilleautomater per måned er ikke blot imponerende – den er strategisk definerende. I casinobranchen er "shelf space" (lobbyplaceringer) en knap ressource: casinoer har begrænset plads i deres "nye spil"-sektioner, og udviklere der udgiver hyppigere, får mere eksponering. Ved at oversvømme markedet med spil sikrer Pragmatic sig konstant synlighed – et princip der minder om, hvad FMCG-giganter (Fast-Moving Consumer Goods) som Procter & Gamble gør med supermarkedshylder. Konsekvensen er at Pragmatic Play typisk optager 15-25% af "nye spil"-sektionen hos danske casinoer, sammenlignet med 3-5% for boutique-studier som <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link>.
         </p>
