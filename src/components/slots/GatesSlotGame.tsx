@@ -72,9 +72,11 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const SYMBOL_WIDTH = isMobile ? mobileSymbolWidth : DEFAULT_SYMBOL_WIDTH;
   const SYMBOL_HEIGHT = isMobile ? Math.floor(mobileSymbolWidth * 0.78) : DEFAULT_SYMBOL_HEIGHT;
 
+  const bombSymbolsMap = useMemo(() => {
     if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
     return new Map(bombSymbols.map(b => [b.value, b]));
   }, [bombSymbols]);
+
 
   const [bet, setBet] = useState(1);
   const [doubleChance, setDoubleChance] = useState(false);
