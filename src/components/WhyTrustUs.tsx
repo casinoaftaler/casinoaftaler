@@ -40,9 +40,9 @@ export function WhyTrustUs() {
   return (
     <section className="py-12 md:py-16">
       <div>
-        <div className="mb-10 text-left">
+        <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold mb-3">🛡️ Hvorfor stole på Casinoaftaler?</h2>
-          <p className="max-w-2xl text-muted-foreground">
+          <p className="max-w-2xl mx-auto text-muted-foreground">
             Vi er ikke endnu en affiliate-side med copy-paste bonuslister. Vores redaktion tester, beregner og verificerer – så du kan træffe informerede valg.
           </p>
         </div>
