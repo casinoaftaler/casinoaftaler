@@ -38,7 +38,7 @@ export default function SitemapSlots() {
     <>
       <SEO
         title="Sitemap: Casinospil"
-        description=`Komplet liste over alle ${SLOT_COUNT_LABEL} spillemaskiner på Casinoaftaler.dk med statistik, RTP og bonus hunt data.`
+        description={`Komplet liste over alle ${SLOT_COUNT_LABEL} spillemaskiner på Casinoaftaler.dk med statistik, RTP og bonus hunt data.`}
         noindex
       />
       <div className="container py-8">
