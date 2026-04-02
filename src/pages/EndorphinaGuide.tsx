@@ -56,6 +56,12 @@ const EndorphinaGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Endorphina markedsfører sig bevidst til det segment af spillere der forstår RTP, varians og matematiske modeller. Denne positionering begrænser deres massemarkedsappel men skaber en loyal kernebrugerskare med høj livstidsværdi. I casinodata ser dette typisk ud som lavere initial-adoption (færre spillere prøver Endorphina-spil sammenlignet med trending Pragmatic-titler) men højere retention (spillere der finder Endorphina, bliver der længere).
         </p>
+        <ReviewScreenshot
+          src={endorphinaStats}
+          alt="Endorphina nøgletal – 13+ år på markedet, 200+ spil, 180+ teammedlemmer, 22 branchepriser, 6000+ globale partnere"
+          caption="Endorphinas nøgletal: 13+ års erfaring, 200+ spil og 6.000+ operatørpartnerskaber globalt"
+          size="full"
+        />
         <h3 className="text-xl font-bold mt-8 mb-4">Tjekkisk Teknologikultur som Konkurrencefordel</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Prags teknologi-scene – hjemsted for virksomheder som Avast, JetBrains og Socialbakers – har skabt et talent-økosystem der kombinerer ingeniørmæssig stringens med kreativ ambition. Endorphina drager fordel af dette miljø: deres udviklere har typisk baggrund i software engineering snarere end gaming, hvilket resulterer i renere kode, bedre performance og mere robuste matematiske modeller. Denne kulturelle faktor er svær at kopiere for konkurrenter i Malta, Gibraltar eller Stockholm.
