@@ -1271,6 +1271,7 @@ export function SlotGame({ gameId = "book-of-fedesvin", isMobile = false }: Slot
               showBonusTrigger={showBonusTrigger}
               winAmount={winAmount}
               gameId={gameId}
+              isMobile={isMobile}
             />
           </div>
 
