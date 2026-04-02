@@ -90,6 +90,7 @@ export function LivePlayersAdminSection() {
   // Group by game
   const bookPlayers = sessions?.filter((s) => s.game_id === "book-of-fedesvin") ?? [];
   const risePlayers = sessions?.filter((s) => s.game_id === "rise-of-fedesvin") ?? [];
+  const bonanzaPlayers = sessions?.filter((s) => s.game_id === "fedesvin-bonanza") ?? [];
   const unknownPlayers = sessions?.filter((s) => !s.game_id) ?? [];
 
   return (
