@@ -39,14 +39,6 @@ const CATEGORY_ICON_MAP: Record<string, string> = {
   star: "star",
 };
 
-/* ─── Icon accent colors (matching mega menu) ─── */
-const ICON_COLORS = [
-  "bg-purple-500/15 text-purple-400",
-  "bg-blue-500/15 text-blue-400",
-  "bg-emerald-500/15 text-emerald-400",
-  "bg-amber-500/15 text-amber-400",
-  "bg-rose-500/15 text-rose-400",
-];
 
 function CategorySection({
   category,
