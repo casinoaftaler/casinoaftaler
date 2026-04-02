@@ -135,46 +135,72 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Also check if today's records already exist (to skip those users)
+    // Also check if today's records already exist
     const todaySpins = await batchIn<any>(
       "slot_spins", "user_id", userIds,
-      "user_id",
+      "user_id, spins_remaining",
       (q) => q.eq("date", today).eq("game_id", "shared"),
     );
 
-    const usersWithTodayRecord = new Set(todaySpins.map((s: any) => s.user_id));
+    const todaySpinMap = new Map<string, number>();
+    for (const s of todaySpins) {
+      todaySpinMap.set(s.user_id, s.spins_remaining);
+    }
 
     // Build upsert rows with top-up logic
-    const rows: Array<{ user_id: string; date: string; spins_remaining: number }> = [];
+    const newRows: Array<{ user_id: string; date: string; spins_remaining: number; game_id: string }> = [];
+    const updateRows: Array<{ user_id: string; addAmount: number; currentBalance: number }> = [];
     const logRows: Array<{ user_id: string; amount: number; source: string; note: string }> = [];
 
     for (const p of profiles) {
-      // Skip users who already have a record for today
-      if (usersWithTodayRecord.has(p.user_id)) continue;
-
       const isSubscriber = !!(p as any).twitch_badges?.is_subscriber;
       const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
       const cap = BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0);
       const previous = latestSpinMap.get(p.user_id);
+      const todayBalance = todaySpinMap.get(p.user_id);
 
+      if (todayBalance !== undefined) {
+        // User already has a row for today (e.g., from settle/bonus before cron ran)
+        // Check if they already received daily_cron today — skip if so
+        // We'll handle this via ignoreDuplicates on the log insert
+        if (todayBalance >= cap) {
+          // Already at or above cap — no top-up needed
+          logRows.push({
+            user_id: p.user_id,
+            amount: 0,
+            source: "daily_cron",
+            note: `Carry-over: ${todayBalance} credits beholdt (over daglig cap på ${cap})`,
+          });
+          continue;
+        }
+        // Top up to cap
+        const addAmount = cap - todayBalance;
+        updateRows.push({ user_id: p.user_id, addAmount, currentBalance: todayBalance });
+        logRows.push({
+          user_id: p.user_id,
+          amount: addAmount,
+          source: "daily_cron",
+          note: `Daglig top-up: +${addAmount} credits (fra ${todayBalance} til ${todayBalance + addAmount})`,
+        });
+        continue;
+      }
+
+      // No row for today — create one
       let startValue: number;
       let topUpAmount: number;
 
       if (previous === undefined) {
-        // New user or no history - give full cap
         startValue = cap;
         topUpAmount = cap;
       } else if (previous >= cap) {
-        // User has more than cap from gifts/rewards — carry over as-is, do NOT reduce
         startValue = previous;
         topUpAmount = 0;
       } else {
-        // User is below cap - top up to cap
         startValue = cap;
         topUpAmount = cap - previous;
       }
 
-      rows.push({
+      newRows.push({
         user_id: p.user_id,
         date: today,
         spins_remaining: startValue,
@@ -191,15 +217,31 @@ Deno.serve(async (req) => {
       });
     }
 
-    if (rows.length > 0) {
-      // Insert new records (ignoreDuplicates for safety)
+    // Insert new rows
+    if (newRows.length > 0) {
       const { error: upsertError } = await supabase
         .from("slot_spins")
-        .upsert(rows, { onConflict: "user_id,date,game_id", ignoreDuplicates: true });
+        .upsert(newRows, { onConflict: "user_id,date,game_id", ignoreDuplicates: true });
 
       if (upsertError) throw upsertError;
+    }
 
-      // Log the allocations
+    // Update existing rows that need top-up
+    for (const row of updateRows) {
+      const { error: updateError } = await supabase
+        .from("slot_spins")
+        .update({ spins_remaining: row.currentBalance + row.addAmount })
+        .eq("user_id", row.user_id)
+        .eq("date", today)
+        .eq("game_id", "shared");
+
+      if (updateError) {
+        console.error(`Failed to top-up user ${row.user_id}:`, updateError);
+      }
+    }
+
+    // Log the allocations
+    if (logRows.length > 0) {
       const { error: logError } = await supabase
         .from("credit_allocation_log")
         .insert(logRows);
@@ -209,8 +251,8 @@ Deno.serve(async (req) => {
       }
     }
 
-    const skipped = usersWithTodayRecord.size;
-    console.log(`Daily credit allocation complete: ${rows.length} users processed, ${skipped} skipped (already had today's record), date: ${today}`);
+    const skipped = logRows.filter(r => r.amount === 0).length;
+    console.log(`Daily credit allocation complete: ${newRows.length} new, ${updateRows.length} topped-up, ${skipped} carry-over, date: ${today}`);
 
     return new Response(
       JSON.stringify({
