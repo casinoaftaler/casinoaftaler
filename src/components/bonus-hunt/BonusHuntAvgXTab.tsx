@@ -101,16 +101,23 @@ export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onB
               key={g.letter}
               onClick={() => isOpen && userId && setSelectedGroup(g.letter)}
               className={`
-                flex flex-col items-center gap-0.5 p-2 rounded-lg border text-xs transition-all
-                ${isWinner ? 'ring-2 ring-green-500 bg-green-500/20' : ''}
-                ${isSelected ? 'ring-2 ring-primary' : ''}
+                relative flex flex-col items-center gap-0.5 p-2 rounded-lg border text-xs transition-all
+                ${isWinner ? 'ring-2 ring-green-500 bg-green-500/30 border-green-500 shadow-[0_0_12px_rgba(34,197,94,0.3)]' : ''}
+                ${isSelected && !isWinner ? 'ring-2 ring-primary' : ''}
                 ${g.color}
                 ${isOpen && userId ? 'cursor-pointer hover:scale-105' : 'cursor-default'}
               `}
             >
+              {isWinner && (
+                <Crown className="absolute -top-2.5 left-1/2 -translate-x-1/2 h-4 w-4 text-green-400 drop-shadow-lg" />
+              )}
               <span className="font-bold text-base">{g.letter}</span>
               <span className="opacity-70">{g.range}</span>
-              <span className="font-semibold">{pct}%</span>
+              {isWinner ? (
+                <span className="font-bold text-green-400 text-[10px] uppercase tracking-wider">Vinder</span>
+              ) : (
+                <span className="font-semibold">{pct}%</span>
+              )}
             </button>
           );
         })}
