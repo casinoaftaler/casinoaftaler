@@ -33,6 +33,7 @@ import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
 import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
 import { useGatesIntensity } from "@/hooks/useGatesIntensity";
 import gatesTitleArt from "@/assets/slots/gates/title-art.png";
+import { ChromaKeyVideo } from "./ChromaKeyVideo";
 
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
