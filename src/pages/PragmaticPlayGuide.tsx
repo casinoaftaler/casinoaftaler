@@ -5,6 +5,10 @@ import { Award } from "lucide-react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
 import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
+import ppLogo from "@/assets/screenshots/pp-logo.webp";
+import ppGatesIntro from "@/assets/screenshots/pp-gates-intro.webp";
+import ppGatesGameplay from "@/assets/screenshots/pp-gates-gameplay.webp";
+import ppSpilleregler from "@/assets/screenshots/pp-spilleregler.webp";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
