@@ -1,77 +1,61 @@
 
-# Audit: Erstat Lucide-ikoner med 3D WebP menu-ikoner sitewide
 
-## Oversigt
-En gennemgang af hele kodebasen viser **12+ offentligt synlige komponenter** der stadig bruger generiske Lucide SVG-ikoner, hvor de autentiske 3D WebP-billeder fra `MENU_ICON_MAP` burde bruges i stedet. Admin-paneler, UI-primitiver (checkboxes, dropdowns) og slot-spil gameplay-kontroller er **ikke** inkluderet — kun brugervendte indholdssektioner.
+# Fix Book of Fedesvin & Rise of Fedesvin Mobile Layout
 
-## Komponenter der skal opdateres
+## Problem
+Both games use a fixed 1200px layout with `transform: scale()` on mobile, which shrinks everything and leaves large dead space below the game. Fedesvin Bonanza instead uses native responsive sizing where symbols dynamically fill the viewport width.
 
-### 1. Footer.tsx (~40 Lucide-ikoner)
-Den største synder. Hver footer-link bruger Lucide-ikoner (`Star`, `Trophy`, `Gamepad2`, `CreditCard`, `Shield`, `Scale`, `FileText`, `Newspaper` osv.). Alle har direkte mappings i `MENU_ICON_MAP`.
+## Approach
+Mirror the Bonanza pattern: add `isMobile` prop to `SlotGame`, dynamically calculate symbol dimensions based on viewport width, and update both page files to use the same mobile wrapper as Bonanza.
 
-### 2. CommunityNav.tsx (8 ikoner)
-Bruger Lucide-komponenter (`Home`, `Gamepad2`, `Target`, `Trophy`, `Video`, `Crown`, `Gift`, `ShoppingBag`). Skal erstattes med `<img>` fra `MENU_ICON_MAP`.
+## Changes
 
-### 3. BonusHuntCommunityLinks.tsx (10 ikoner)
-Alle community-kort bruger Lucide (`Gamepad2`, `Trophy`, `Video`, `RotateCw`, `Gift`, `ShoppingBag`, `Archive`, `Database`, `Crown`, `BarChart3`).
+### 1. `src/components/slots/SlotGame.tsx` — Add responsive mobile support
+- Add `isMobile` prop to `SlotGameProps`
+- Calculate `mobileSymbolSize` from viewport width: `Math.floor((viewportWidth - totalGaps - padding) / 5)` (5 reels)
+- Use mobile size for `SYMBOL_SIZE` when `isMobile` is true
+- Scale `SYMBOL_GAP` proportionally on mobile
+- Pass mobile dimensions down to `SlotReel`, `WinLines`, `SlotMachineFrame`, `SlotIdleEffects`, `SlotAmbientLight`
 
-### 4. BonusHuntRelatedGuides.tsx (6 ikoner)
-Guide-kort med `TrendingUp`, `BookOpen`, `ShieldCheck`, `Gamepad2`, `CreditCard`, `Users`.
+### 2. `src/components/slots/SlotReel.tsx` — Accept dynamic dimensions
+- Add optional `symbolHeight` and `symbolGap` props (currently uses hardcoded constants)
+- Use passed values when provided, fall back to existing constants
 
-### 5. BonusHuntStatStrip.tsx (3 ikoner)
-Stat-kort med `Target`, `Film`, `BarChart3`.
+### 3. `src/components/slots/WinLines.tsx` — Accept dynamic dimensions
+- Already accepts `symbolSize` and `gap` props — no changes needed
 
-### 6. WhyTrustUs.tsx (5 ikoner)
-Trust-sektion med `ShieldCheck`, `BarChart3`, `Scale`, `Eye`, `Award`.
+### 4. `src/components/slots/SlotMachineFrame.tsx` — Compact frame on mobile
+- Add `isMobile` prop to reduce padding/frame size on small screens
 
-### 7. ReviewMoneyLinks.tsx (4-5 ikoner)
-Pills med `Trophy`, `Gift`, `Sparkles`, `Smartphone`.
+### 5. `src/pages/SlotMachine.tsx` — Update mobile wrapper
+- Replace `transform: scale()` mobile block with Bonanza-style native layout:
+  ```jsx
+  <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="w-full px-1">
+      <SlotPageLayout sidePanel={null}>
+        <SlotGame isMobile />
+      </SlotPageLayout>
+    </div>
+  </div>
+  ```
 
-### 8. CommunityPromoSection.tsx (3 ikoner)
-Bruger `Sparkles`, `Video`, `Trophy` i knapper.
+### 6. `src/pages/RiseOfFedesvin.tsx` — Same mobile wrapper update
+- Identical change as SlotMachine.tsx, passing `isMobile` and `gameId={GAME_ID}`
 
-### 9. NewsContextualCTA.tsx (6+ ikoner)
-Kontekstuelle CTA-links med `ShieldCheck`, `Sparkles`, `CreditCard`, `BarChart3`, `Landmark`, `Gift`.
+### 7. `src/components/slots/BonanzaControlBar.tsx` — Already supports `isMobile`
+- No changes needed; `SlotGame` already uses this control bar
 
-### 10. ContentSidebar.tsx (8+ ikoner)
-Sidebar-kategori-ikoner med `Crown`, `Sparkles`, `Gift`, `Dices`, `CreditCard`, `Gamepad2`, `Tv`, `Star`.
-
-### 11. TestMetodeSeoContent.tsx (12+ ikoner)
-Test-metode sektionen med `Shield`, `TrendingUp`, `Target`, `BarChart3`, `Zap`, `Scale`, `Eye`, `Database` osv.
-
-### 12. HomepageBottomSections.tsx (delvist allerede konverteret)
-`HomepageBonusHuntSection` bruger allerede `MenuIcon`, men `HomepageTrendsSection` bruger stadig `CheckCircle2`, og `HomepageSlotShowcase` bruger `Sparkles`.
-
-### 13. QuickFactsProviders.tsx
-Bruger `ShieldCheck`, `BarChart3` som Lucide.
-
-## Teknisk tilgang
-
-Opretter en genbrugelig `MenuIcon`-komponent (eller genbruger den eksisterende fra `HomepageBottomSections.tsx`) og importerer den i alle berørte filer. Mønsteret:
-
-```text
-// FØR:
-<Trophy className="h-4 w-4" />
-
-// EFTER:
-<MenuIcon iconName="trophy" alt="Trophy" className="h-4 w-4" />
+## Technical Detail
+The key calculation (matching Bonanza's approach):
+```ts
+const mobileSymbolSize = useMemo(() => {
+  if (!isMobile) return 150;
+  const viewportWidth = window.innerWidth;
+  const totalGaps = 6 * mobileGap; // 5 reels + dividers
+  const framePadding = 56; // frame + inner padding
+  return Math.floor((viewportWidth - totalGaps - framePadding) / 5);
+}, [isMobile]);
 ```
 
-For ikoner der ikke har en mapping (fx `Eye`, `Film`), beholdes Lucide som fallback, eller der tilføjes en fallback i `MenuIcon`-komponenten.
+This ensures the game fills the mobile viewport width natively — no CSS transform scaling, no dead space.
 
-### Fælles MenuIcon-komponent
-Flyttes til sin egen fil `src/components/MenuIcon.tsx` så alle komponenter kan importere den uden circular dependencies.
-
-## Scope-afgrænsning
-
-**Inkluderet**: Alle offentligt synlige sektioner (footer, navigation, promo-sektioner, guide-kort, sidebars, trust-sektioner, CTA-pills, stat-strips).
-
-**Ekskluderet**: 
-- Admin-paneler og dashboards
-- UI-primitiver (checkbox, dropdown, toast, calendar)
-- Slot-spil gameplay-kontroller (spin-knapper, bet-kontroller)
-- Social media SVG-ikoner (custom SVGs i footer)
-- Casino-anmeldelse sider (individuelle review-pages bruger ikoner i kontekst-specifik body-tekst)
-
-## Estimeret omfang
-~12-15 filer ændres. Ingen database- eller backendændringer.
