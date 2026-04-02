@@ -16,7 +16,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Timer, Shuffle, Lightbulb, ArrowRight, MessageSquare, Dices } from "lucide-react"
+import { ArrowRight, Dices, Lightbulb, Link, MessageSquare, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/poker-bedste-sider-hero.jpg";

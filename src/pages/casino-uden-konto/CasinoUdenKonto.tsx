@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { ArrowRight, Ban } from "lucide-react"
+import { Apple, ArrowRight, Badge, Ban, CreditCard, Eye, Landmark, Link, Lock, Play, Scale, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

@@ -21,7 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { type ReactNode } from "react";
-import { ChevronRight, Activity } from "lucide-react"
+import { Activity, Apple, Badge, Bitcoin, Calculator, ChevronRight, Globe, Link, Monitor, Play, ShieldCheck, Smartphone, Star, Trophy, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";

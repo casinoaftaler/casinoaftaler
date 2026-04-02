@@ -23,7 +23,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { BonanzaSlotGame } from "@/components/slots/BonanzaSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";

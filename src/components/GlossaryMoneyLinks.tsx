@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BarChart3, CreditCard, Database, Filter, Gift, Link, Play, Sparkles, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { LucideIcon } from "lucide-react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";

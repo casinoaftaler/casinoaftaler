@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Database, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 

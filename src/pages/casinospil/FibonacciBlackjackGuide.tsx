@@ -16,7 +16,7 @@ import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
 import { Badge } from "@/components/ui/badge";
-import { Timer, Activity, LineChart, ArrowRight, Repeat, Infinity } from "lucide-react"
+import { Activity, ArrowRight, Badge, Infinity, LineChart, Link, Repeat, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/fibonacci-blackjack-hero.jpg";

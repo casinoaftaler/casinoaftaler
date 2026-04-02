@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Ban, Gavel, FileWarning, Fingerprint, Timer, DollarSign } from "lucide-react"
+import { Badge, Ban, Banknote, BookOpen, Dog, DollarSign, Eye, FileWarning, Fingerprint, Gavel, Globe, Heart, Landmark, Link, Phone, Scale, Shield, Timer, Users, XCircle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

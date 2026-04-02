@@ -3,7 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
-import { FileCheck, Gavel, Ban } from "lucide-react"
+import { Badge, Ban, Eye, FileCheck, Gavel, Link, Lock, Phone, Shield } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

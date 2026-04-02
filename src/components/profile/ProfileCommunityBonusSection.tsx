@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Video } from "lucide-react"
+import { Info, Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CreditCoin } from "@/components/CreditCoin";
 import { useCommunityBonusSpins } from "@/hooks/useCommunityBonusSpins";

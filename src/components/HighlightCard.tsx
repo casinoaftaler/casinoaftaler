@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2 } from "lucide-react"
+import { Badge, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { supabase } from "@/integrations/supabase/client";
 import type { Highlight } from "@/hooks/useHighlights";

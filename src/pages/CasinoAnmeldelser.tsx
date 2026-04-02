@@ -23,7 +23,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState } from "react";
-import { Loader2 } from "lucide-react"
+import { Badge, Link, Loader2, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const reviewSlugs = [

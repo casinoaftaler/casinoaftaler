@@ -20,7 +20,7 @@ import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-sp
 import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { type ReactNode } from "react";
-import { Lightbulb, Cpu } from "lucide-react"
+import { Apple, Badge, Cpu, Database, Dog, Lightbulb, Link, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

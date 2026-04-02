@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SafeHelmet } from "@/lib/reactCompat";
 import { Button } from "@/components/ui/button";
-import { Award, BookOpen, ShieldCheck } from "lucide-react"
+import { Award, BookOpen, Link, ShieldCheck } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";

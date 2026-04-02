@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, CreditCard, Gift, Link, Sparkles, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 /**

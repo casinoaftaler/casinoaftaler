@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import ludomaniHero from "@/assets/heroes/ludomani-guide-hero.jpg";
-import { Gavel, ArrowRight, Activity, TrendingDown, UserX, HandHeart } from "lucide-react"
+import { Activity, ArrowRight, Badge, BarChart3, Brain, Clock, Dog, Gavel, Globe, HandHeart, Heart, Link, Lock, MessageCircle, Phone, Scale, Shield, TrendingDown, UserX, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

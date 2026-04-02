@@ -22,7 +22,7 @@ import { useSlotScale } from "@/hooks/useSlotScale";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 

@@ -12,7 +12,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Timer, ArrowRight, Fingerprint } from "lucide-react"
+import { AlertTriangle, ArrowRight, Badge, Banknote, BarChart3, CheckCircle2, Clock, CreditCard, Dog, Eye, Fingerprint, Gem, Link, Lock, Play, Smartphone, Timer, Wallet, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

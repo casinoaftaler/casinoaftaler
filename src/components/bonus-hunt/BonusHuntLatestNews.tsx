@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Newspaper } from "lucide-react"
+import { Link, Newspaper } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";

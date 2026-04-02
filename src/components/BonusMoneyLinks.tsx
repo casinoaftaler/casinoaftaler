@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Cpu } from "lucide-react"
+import { ArrowRight, Cpu, Database, Link, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 /**

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BarChart3, CreditCard, Database, Gift, Link, Sparkles, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 

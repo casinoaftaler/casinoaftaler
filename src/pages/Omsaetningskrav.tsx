@@ -26,7 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Ban } from "lucide-react"
+import { AlertTriangle, Badge, Ban, BarChart3, Calculator, CheckCircle2, Gamepad2, Link, Scale, ShieldCheck, Sparkles, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";

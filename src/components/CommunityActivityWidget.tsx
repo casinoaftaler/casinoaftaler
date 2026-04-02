@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Badge, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";

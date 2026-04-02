@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { ArrowRight, Server, Ban } from "lucide-react"
+import { Apple, ArrowRight, Badge, Ban, Eye, FileText, Link, Lock, Play, Server, Shield } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

@@ -3,7 +3,7 @@ import { SEO } from "@/components/SEO";
 import { ShopItemCard } from "@/components/ShopItemCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent } from "@/components/ui/card";
-import { LogIn, Loader2, Package } from "lucide-react"
+import { Badge, Link, Loader2, LogIn, Package } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useStreamElementsPoints } from "@/hooks/useStreamElementsPoints";
 import { useAuth } from "@/hooks/useAuth";

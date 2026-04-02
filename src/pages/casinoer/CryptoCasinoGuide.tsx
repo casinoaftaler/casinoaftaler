@@ -18,7 +18,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Bitcoin, Dog, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

@@ -3,7 +3,7 @@ import { useSlotChat, type ChatMessage } from "@/hooks/useSlotChat";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Trash2, X, Ban, ChevronLeft, Eraser } from "lucide-react"
+import { Ban, ChevronLeft, Eraser, MessageCircle, Trash2, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";

@@ -16,7 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
-import { Gavel, ArrowRight, Timer, Ban, UserX } from "lucide-react"
+import { ArrowRight, Badge, Ban, BarChart3, CheckCircle, Clock, FileText, Gavel, Globe, HelpCircle, Link, Lock, Phone, Scale, Shield, Smartphone, Timer, UserX, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

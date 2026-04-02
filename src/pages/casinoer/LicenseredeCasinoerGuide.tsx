@@ -17,7 +17,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { BadgeCheck, Gavel, Ban } from "lucide-react"
+import { Badge, BadgeCheck, Ban, Gavel, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

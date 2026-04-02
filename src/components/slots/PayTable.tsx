@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { BookOpen, Crown, Sparkles } from "lucide-react"
+import { BookOpen, Crown, Sparkles, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { getSymbolEmoji, RARITY_LABELS } from "@/lib/slotGameLogic";

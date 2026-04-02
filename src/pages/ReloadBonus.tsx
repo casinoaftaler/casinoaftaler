@@ -21,27 +21,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ShieldCheck,
-  TrendingUp,
-  Calculator,
-  AlertTriangle,
-  Clock,
-  Target,
-  Sparkles,
-  RefreshCw,
-  Calendar,
-  CheckCircle2,
-  Percent,
-  Wallet,
-  Zap,
-  BookOpen,
-  Gift,
-  Star,
-  Scale,
-  Coins,
-  BarChart3,
-} from "lucide-react"
+import { AlertTriangle, Badge, BarChart3, BookOpen, Calculator, Calendar, CheckCircle2, Clock, Coins, Gift, Link, Percent, RefreshCw, Scale, ShieldCheck, Sparkles, Star, Target, TrendingUp, Wallet, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 

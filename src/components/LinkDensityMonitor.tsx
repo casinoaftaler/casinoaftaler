@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link2, X } from "lucide-react"
+import { Badge, Link, Link2, Monitor, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { SITE_URL } from "@/lib/seo";

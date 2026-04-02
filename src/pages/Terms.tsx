@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { Ban, Gavel, ShieldAlert } from "lucide-react"
+import { Badge, Ban, Gavel, Link, Play, ShieldAlert } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

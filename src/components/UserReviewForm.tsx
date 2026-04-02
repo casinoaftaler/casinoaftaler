@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronRight, ChevronLeft, Check } from "lucide-react"
+import { Badge, Check, ChevronLeft, ChevronRight, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";

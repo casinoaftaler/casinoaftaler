@@ -15,7 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { useBonusHuntArchives, useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { formatLastmodDanish, getRouteLastmod } from "@/lib/seoRoutes";
-import { ArrowRight, Activity } from "lucide-react"
+import { Activity, ArrowRight, Badge, Database, Dog, Link, Play, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import {
   ChartContainer, ChartTooltip, ChartTooltipContent

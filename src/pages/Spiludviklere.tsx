@@ -41,7 +41,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.webp";
 import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
 import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.webp";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Badge, Club, Dog, Eye, Link, Play, Sun } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 /* ─────────────────────────────────────────────

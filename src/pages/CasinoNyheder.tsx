@@ -8,7 +8,7 @@ import { NewsHubSections } from "@/components/NewsHubSections";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Badge, ChevronLeft, ChevronRight, Filter, Link, Newspaper, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

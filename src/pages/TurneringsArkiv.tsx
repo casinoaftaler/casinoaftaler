@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { ArrowRight } from "lucide-react"
+import { Archive, ArrowRight, Badge, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { TurneringsArkivSeoContent } from "@/components/seo-content/TurneringsArkivSeoContent";

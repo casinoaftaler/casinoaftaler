@@ -11,7 +11,7 @@ import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DollarSign, ArrowRight, Dice1, Grid3X3 } from "lucide-react"
+import { AlertTriangle, ArrowRight, Badge, BarChart3, Calculator, CheckCircle2, Clock, Dice1, Dog, DollarSign, Flame, Gift, Grid3X3, Heart, Link, Lock, Monitor, Play, ShieldCheck, Sparkles, Star, Table, Target, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

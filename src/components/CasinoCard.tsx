@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, ChevronDown, RotateCcw } from "lucide-react"
+import { Badge, Check, ChevronDown, Info, Link, RotateCcw, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { optimizeStorageImage } from "@/lib/imageOptimization";

@@ -28,7 +28,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import { RotateCcw, Check, X, Activity, BadgeCheck, Timer, MessageSquare } from "lucide-react"
+import { Activity, Badge, BadgeCheck, Check, Gamepad2, Link, MessageSquare, Play, RotateCcw, ShoppingBag, Timer, TrendingUp, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";

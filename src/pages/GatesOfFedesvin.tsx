@@ -24,7 +24,7 @@ import { useSlotScale } from "@/hooks/useSlotScale";
 import { GatesSlotGame } from "@/components/slots/GatesSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";

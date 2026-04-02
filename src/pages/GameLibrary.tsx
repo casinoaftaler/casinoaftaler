@@ -17,7 +17,7 @@ import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboar
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { Button } from "@/components/ui/button";
-import { Rocket } from "lucide-react"
+import { Link, Rocket } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";

@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { SafeHelmet } from "@/lib/reactCompat";
-import { Video } from "lucide-react"
+import { Calendar, MessageCircle, Monitor, Video } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.webp";

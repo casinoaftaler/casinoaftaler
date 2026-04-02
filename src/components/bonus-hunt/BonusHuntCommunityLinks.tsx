@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MenuIcon } from "@/components/MenuIcon";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
+import { Database, Link } from "lucide-react";
 
 const COMMUNITY_LINKS = [
   { iconName: "gamepad-2", title: "Gratis Spillehal", description: "Spil gratis slots og optjen points uden risiko.", to: "/community/slots" },

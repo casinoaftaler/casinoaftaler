@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PointsBalanceCard } from "@/components/PointsBalanceCard";
 import { TwitchBadges } from "@/components/TwitchBadges";
-import { Gauge, ArrowLeft } from "lucide-react"
+import { ArrowLeft, Badge, Building2, Gamepad2, Gauge, Link, Play, Sparkles, TrendingUp, Trophy } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 

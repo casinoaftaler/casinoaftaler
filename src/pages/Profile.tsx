@@ -17,7 +17,7 @@ import { ProfileRewardsProgress } from "@/components/profile/ProfileRewardsProgr
 import { ProfileCommunityBonusSection } from "@/components/profile/ProfileCommunityBonusSection";
 import { ProfileSlotRequestStats } from "@/components/profile/ProfileSlotRequestStats";
 import { TwitchBadges } from "@/components/TwitchBadges";
-import { Loader2, Save } from "lucide-react"
+import { Gem, Loader2, Save } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 export default function Profile() {

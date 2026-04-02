@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Activity, ArrowRight, FileCheck, Loader2 } from "lucide-react"
+import { Activity, ArrowRight, Badge, FileCheck, Link, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

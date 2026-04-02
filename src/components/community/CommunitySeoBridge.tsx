@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BookOpen, CheckCircle2, Flame, Gamepad2, Gift, Link, PartyPopper, Scale, Star, Trophy, Tv, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Button } from "@/components/ui/button";
 import "@/styles/community-micro.css";

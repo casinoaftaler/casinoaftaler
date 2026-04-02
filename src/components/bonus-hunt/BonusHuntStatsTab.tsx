@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Unlock, Dice3, Rocket, Check, ArrowRight, TrendingDown } from "lucide-react"
+import { ArrowRight, Badge, BarChart3, Check, Dice3, Gift, Info, Link, Rocket, Scale, Target, TrendingDown, TrendingUp, Trophy, Unlock, Wallet } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";

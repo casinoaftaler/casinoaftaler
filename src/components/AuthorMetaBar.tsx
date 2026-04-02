@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CalendarDays, BookOpen, CheckCircle } from "lucide-react"
+import { Badge, BookOpen, CalendarDays, CheckCircle, Link, Table } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";

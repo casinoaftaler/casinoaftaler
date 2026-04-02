@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import { ClipboardList } from "lucide-react"
+import { Badge, CheckCircle2, ClipboardList, CreditCard, Gamepad2, Gift, Headphones, Link, Play, Scale, Smartphone } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";

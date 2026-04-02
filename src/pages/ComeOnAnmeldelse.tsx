@@ -28,7 +28,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { RotateCcw, Check, X } from "lucide-react"
+import { Check, Club, Link, Play, RotateCcw, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";

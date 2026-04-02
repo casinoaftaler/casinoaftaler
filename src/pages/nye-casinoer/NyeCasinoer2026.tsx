@@ -15,7 +15,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, ShieldCheck, Clock, TrendingUp, Smartphone, Trophy, CheckCircle2, XCircle, AlertTriangle, Zap, Calendar, BarChart3 } from "lucide-react"
+import { AlertTriangle, Badge, BarChart3, Calendar, CheckCircle2, Clock, Link, Play, ShieldCheck, Smartphone, Sparkles, TrendingUp, Trophy, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";

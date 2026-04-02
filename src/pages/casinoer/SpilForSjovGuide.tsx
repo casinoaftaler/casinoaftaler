@@ -21,7 +21,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { Sparkles, Star, AlertTriangle, Target, Heart, Smile, Gamepad2, Gift, BookOpen, Shield, Zap, Users } from "lucide-react"
+import { AlertTriangle, Badge, BookOpen, Fish, Gamepad2, Gift, Heart, Link, Play, Shield, Smile, Sparkles, Star, Target, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

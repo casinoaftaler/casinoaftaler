@@ -29,7 +29,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
-import { RotateCcw, Check, X, Activity } from "lucide-react"
+import { Activity, Badge, Check, Club, Link, Play, RotateCcw, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";

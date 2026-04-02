@@ -17,7 +17,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gavel } from "lucide-react"
+import { Gavel, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";

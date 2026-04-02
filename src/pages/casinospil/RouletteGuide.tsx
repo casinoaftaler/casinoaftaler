@@ -15,7 +15,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Dice1, ArrowRight } from "lucide-react"
+import { ArrowRight, Badge, Dice1, Link, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import rouletteHero from "@/assets/heroes/roulette-hero.jpg";

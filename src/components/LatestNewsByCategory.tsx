@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { CalendarDays, Newspaper } from "lucide-react"
+import { CalendarDays, Link, Newspaper } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 /**

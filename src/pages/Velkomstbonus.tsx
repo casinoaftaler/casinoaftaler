@@ -29,7 +29,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ListChecks } from "lucide-react"
+import { Badge, Calculator, Clock, CreditCard, Dog, Gamepad2, Gift, Link, ListChecks, Lock, Minus, ShieldCheck, Sparkles, Target, TrendingUp, Trophy, User, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";

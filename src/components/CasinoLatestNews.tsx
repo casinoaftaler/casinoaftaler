@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCasinoNewsByName } from "@/hooks/useCasinoNewsByName";

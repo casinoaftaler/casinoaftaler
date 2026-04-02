@@ -17,7 +17,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode, useState, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Shuffle, ArrowRight, TableIcon } from "lucide-react"
+import { ArrowRight, Badge, Layers, Link, Shuffle, Sparkles, TableIcon, Target } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 

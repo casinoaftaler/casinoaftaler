@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Trophy, Crown, Sparkles, Gamepad2, Gift, Users, Medal, Award } from "lucide-react"
+import { Award, Badge, Crown, Gamepad2, Gift, Medal, Sparkles, Trophy, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";

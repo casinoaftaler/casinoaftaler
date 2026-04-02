@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { LogIn } from "lucide-react"
+import { Info, Link, LogIn, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Link } from "react-router-dom";
 import { toast } from "sonner";

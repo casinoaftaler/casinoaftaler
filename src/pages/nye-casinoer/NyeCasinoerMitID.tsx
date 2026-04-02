@@ -20,7 +20,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, Sparkles, CheckCircle2, Smartphone, Zap, AlertTriangle, XCircle, Clock, Building2 } from "lucide-react"
+import { AlertTriangle, Building2, CheckCircle2, Clock, Link, Play, ShieldCheck, Smartphone, Sparkles, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";

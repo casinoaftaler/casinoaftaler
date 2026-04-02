@@ -13,7 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight } from "lucide-react"
+import { Apple, ArrowRight, Award, Badge, Banknote, CreditCard, Link, Wallet } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { ReactNode } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";

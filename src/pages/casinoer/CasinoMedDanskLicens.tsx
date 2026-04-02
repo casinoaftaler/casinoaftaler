@@ -15,26 +15,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  XCircle,
-  AlertTriangle,
-  Scale,
-  Landmark,
-  Globe,
-  Zap,
-  Target,
-  BarChart3,
-  CreditCard,
-  Users,
-  Lock,
-  FileText,
-  TrendingUp,
-  Award,
-  Smartphone,
-  Clock,
-} from "lucide-react"
+import { AlertTriangle, Apple, Award, Badge, BarChart3, CheckCircle2, Clock, CreditCard, FileText, Globe, Landmark, Link, Lock, Play, Scale, ShieldCheck, Smartphone, Target, TrendingUp, Users, XCircle, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import type { ReactNode } from "react";
 

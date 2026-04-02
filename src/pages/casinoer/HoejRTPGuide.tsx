@@ -20,7 +20,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
-import { BarChart3, TrendingUp, Target, ShieldCheck, CheckCircle2, Star, Gamepad2, AlertTriangle, Calculator, Percent, Layers, Eye, Zap, Award } from "lucide-react"
+import { AlertTriangle, Award, Badge, BarChart3, Calculator, CheckCircle2, Dog, Eye, Gamepad2, Layers, Link, Percent, Play, ShieldCheck, Star, Target, TrendingUp, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Star, RefreshCw } from "lucide-react"
+import { Link, RefreshCw, Star } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { seoRoutes } from "@/lib/seoRoutes";
 import { CASINO_SCORES } from "@/lib/reviewScoring";

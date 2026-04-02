@@ -25,7 +25,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import { DollarSign, ArrowRight, Ban } from "lucide-react"
+import { AlertTriangle, ArrowRight, Badge, Ban, BarChart3, BookOpen, Calculator, CheckCircle2, Clock, CreditCard, Crown, DollarSign, Eye, Flame, Gamepad2, Gift, Link, Lock, Percent, Play, RefreshCw, Sparkles, Star, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80";

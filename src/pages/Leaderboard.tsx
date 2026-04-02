@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, LogIn, Timer, ChevronRight } from "lucide-react"
+import { ArrowRight, Badge, BarChart3, ChevronRight, Link, LogIn, Play, Target, Timer, Trophy } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";

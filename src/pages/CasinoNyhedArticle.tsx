@@ -25,7 +25,7 @@ import {
   buildFaqSchema,
   SITE_URL,
 } from "@/lib/seo";
-import { Loader2 } from "lucide-react"
+import { Badge, Link, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";

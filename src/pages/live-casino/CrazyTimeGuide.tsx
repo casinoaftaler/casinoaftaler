@@ -18,7 +18,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DollarSign, Dices, Activity, Gauge, Timer } from "lucide-react"
+import { Activity, Badge, Dices, Dog, DollarSign, Gauge, Link, Table, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,

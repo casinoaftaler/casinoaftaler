@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import { Gavel, ArrowRight, Download, Settings, Bell, MonitorSmartphone } from "lucide-react"
+import { Apple, ArrowRight, Badge, Bell, Download, Gavel, Globe, Link, Lock, MonitorSmartphone, Play, Search, Settings, Shield, Smartphone } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 // ────────────────────────────────────────────────────────────────

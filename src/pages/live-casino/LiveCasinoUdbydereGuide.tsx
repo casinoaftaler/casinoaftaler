@@ -20,7 +20,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Timer, Building, Cpu } from "lucide-react"
+import { Badge, Building, Cpu, Link, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";

@@ -8,7 +8,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, FileCheck, Cpu, Lightbulb } from "lucide-react"
+import { ArrowRight, Badge, BarChart3, BookOpen, Clock, Cpu, Database, Dog, Eye, FileCheck, Flame, Gamepad2, Globe, HeartHandshake, Layers, Lightbulb, Link, Monitor, Play, Scale, Search, ShieldCheck, Sparkles, Star, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";

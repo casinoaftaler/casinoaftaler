@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Link } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";

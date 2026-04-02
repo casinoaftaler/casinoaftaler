@@ -15,7 +15,7 @@ import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Badge, BarChart3, ChevronLeft, ChevronRight, Database, Dog, Eye, Gamepad2, Link, Play, Search, Table, TrendingUp, Trophy } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";

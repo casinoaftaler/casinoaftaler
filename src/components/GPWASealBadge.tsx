@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck } from "lucide-react"
+import { Link, ShieldCheck } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 interface GPWASealBadgeProps {

@@ -21,7 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { DollarSign, Ban } from "lucide-react"
+import { AlertTriangle, Badge, Ban, Calculator, CheckCircle2, CreditCard, DollarSign, Gamepad2, Gift, Link, Minus, Percent, Scale, ShieldCheck, Sparkles, Target, User } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";

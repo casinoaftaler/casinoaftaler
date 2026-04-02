@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
 import { useScrollDepthBonus } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak } from "@/hooks/useMissionStreak";
-import { Check, ArrowDown, ArrowRight } from "lucide-react"
+import { ArrowDown, ArrowRight, Check, Flame, Link, Play, Scroll, Trophy, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 
 const MILESTONES = [

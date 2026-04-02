@@ -16,7 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { BadgeCheck, ChevronLeft, ChevronRight, Code } from "lucide-react"
+import { Badge, BadgeCheck, ChevronLeft, ChevronRight, Code, FileText, Gamepad2, Link, Tv, Users } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import kevinImage from "@/assets/kevin-forfatter.webp";
 

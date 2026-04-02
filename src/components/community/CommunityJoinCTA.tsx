@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Link } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import "@/styles/community-micro.css";
 
