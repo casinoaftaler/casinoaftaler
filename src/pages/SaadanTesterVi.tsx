@@ -307,7 +307,7 @@ const SaadanTesterVi = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vores vurderingsmodel</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Den samlede score for hvert casino beregnes ud fra en vægtet model med fem kategorier. Sikkerhed vejer tungest, fordi det er grundlaget for en tryg spilleoplevelse.
+            Den samlede score for hvert casino beregnes ud fra en vægtet model med seks kategorier. Sikkerhed vejer tungest, fordi det er grundlaget for en tryg spilleoplevelse.
           </p>
           <Card className="border-border bg-card">
             <CardContent className="p-6">
