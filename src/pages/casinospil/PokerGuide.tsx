@@ -4,6 +4,7 @@ import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -156,8 +157,8 @@ const PokerGuide = () => {
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
     datePublished: "2026-01-14",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
   return (
@@ -190,7 +191,9 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="137 Min." />
+        <AuthorMetaBar author="kevin" readTime="137 Min." />
+
+        <SnippetAnswer answer="Poker er det eneste casinospil hvor spillerens beslutninger har direkte indflydelse på resultatet mod andre spillere. De mest populære varianter i Danmark er Texas Hold'em og Omaha. Casino poker (Caribbean Stud, Three Card) spilles mod huset med faste house edges mellem 2 % og 5 %." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
@@ -648,7 +651,7 @@ const PokerGuide = () => {
 
         <FAQSection faqs={pokerFaqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

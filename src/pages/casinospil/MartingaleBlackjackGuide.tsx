@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -116,6 +117,8 @@ const MartingaleBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="99 Min." />
+
+        <SnippetAnswer answer="Martingale i blackjack fordobler indsatsen efter hvert tab. Systemet giver mange små sejre, men risikerer katastrofale tab ved tabsserier. Efter bare 7 tab i træk fra 50 kr. er indsatsen 6.400 kr. – ofte over bordmaksimum. House edge forbliver uændret uanset progressionssystemet." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

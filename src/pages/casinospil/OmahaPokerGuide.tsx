@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -126,8 +127,8 @@ const OmahaPokerGuide = () => {
     description: "Komplet dansk guide til Omaha poker: PLO-regler, starthands-rangering, Hi-Lo split, wraps og avanceret strategi for danske spillere.",
     url: `${SITE_URL}/casinospil/poker/omaha`,
     datePublished: "2026-04-28",
-    authorName: "Jonas",
-    authorUrl: `${SITE_URL}/forfatter/jonas`,
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
 
   return (
@@ -158,7 +159,9 @@ const OmahaPokerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="172 Min." />
+        <AuthorMetaBar author="kevin" readTime="172 Min." />
+
+        <SnippetAnswer answer="Omaha poker giver fire hole cards i stedet for to, men du skal bruge præcis to fra hånden og tre fra bordet. Pot-limit-strukturen (PLO) skaber større pots og mere action end Hold'em. Håndværdier løber tættere, og position samt nut-potentiale er afgørende strategiske faktorer." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Omaha poker med fire hole cards på grøn filt i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -789,7 +792,7 @@ const OmahaPokerGuide = () => {
         <LatestNewsByCategory pagePath="/casinospil/poker/omaha" />
         <RelatedGuides currentPath="/casinospil/poker/omaha" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

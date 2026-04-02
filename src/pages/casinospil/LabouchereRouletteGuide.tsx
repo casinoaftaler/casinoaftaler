@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -69,7 +70,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Labouchère Roulette System 2026 – Cancellation-Metoden Forklaret & Testet",
   description: "Dybdegående guide til Labouchère-systemet i roulette: cancellation-mekanismen, sekvensdesign, 10.000-spins Monte Carlo simulering og sammenligning med Martingale og Fibonacci.",
-  datePublished: "2026-04-25",
+  datePublished: "2026-04-02",
   url: `${SITE_URL}/casinospil/roulette/labouchere-roulette`,
   image: `${SITE_URL}/og/labouchere-roulette.jpg`,
 });
@@ -90,7 +91,7 @@ export default function LabouchereRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ListOrdered className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <ListOrdered className="mr-1.5 h-3.5 w-3.5" /> Cancellation-system
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Labouchère Roulette System 2026 – Cancellation-Metoden Analyseret
@@ -104,6 +105,8 @@ export default function LabouchereRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="123 Min." />
+
+        <SnippetAnswer answer="Labouchère-systemet (cancellation) i roulette bruger en brugerdefineret talrække. Indsatsen er summen af første og sidste tal; ved gevinst fjernes begge, ved tab tilføjes det tabte beløb. Systemet giver stor fleksibilitet, men kan eskalere hurtigt ved lange tabsserier og ændrer ikke house edge." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Labouchère roulette system med cancellation-sekvens på et casino-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

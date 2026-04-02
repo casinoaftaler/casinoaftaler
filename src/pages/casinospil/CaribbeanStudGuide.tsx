@@ -4,6 +4,7 @@ import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -69,7 +70,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Caribbean Stud Poker – Komplet Guide med Odds, Regler og Strategi (2026)",
   description: "Dybdegående guide til Caribbean Stud Poker for danske spillere. Lær optimal raise/fold-strategi, forstå progressiv jackpot-matematik og sammenlign udbetalingstabeller.",
-  datePublished: "2026-03-02",
+  datePublished: "2026-03-07",
   url: `${SITE_URL}/casinospil/poker/caribbean-stud`,
   image: `${SITE_URL}/og/caribbean-stud.jpg`,
 });
@@ -103,7 +104,9 @@ export default function CaribbeanStudGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="170 Min." />
+        <AuthorMetaBar author="kevin" readTime="170 Min." />
+
+        <SnippetAnswer answer="Caribbean Stud Poker spilles mod huset med fem kort og en progressiv jackpot-sideindsats. House edge er ca. 5,22 % på ante-indsatsen. Optimal strategi er simpel: raise med ethvert par eller bedre, og fold med mindre end ace-king. Jackpot-sideindsatsen har typisk en house edge over 25 %." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Caribbean Stud Poker bord med dealer og progressive jackpot display" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -639,7 +642,7 @@ export default function CaribbeanStudGuide() {
         <LatestNewsByCategory pagePath="/casinospil/poker/caribbean-stud" />
         <RelatedGuides currentPath="/casinospil/poker/caribbean-stud" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

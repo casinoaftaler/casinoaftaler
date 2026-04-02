@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -100,7 +101,7 @@ const Spanish21Guide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Bonusudbetaling-variant
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spanish 21 – Bonusregler, Strategi og Hvornår Varianten Giver Mening
@@ -114,6 +115,8 @@ const Spanish21Guide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="17 Min." />
+
+        <SnippetAnswer answer="Spanish 21 fjerner alle 10-kort fra kortspillet og kompenserer med bonusudbetalinger, late surrender, redouble og spillervenlige regler. House edge ligger på ca. 0,4 % med optimal strategi – lavere end standard blackjack hos mange borde. Strategien afviger markant fra klassisk basic strategy." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Spanish 21 bord med markerede bonusregler og blackjack-kort" width={1920} height={600} className="h-auto max-h-[400px] w-full object-cover" loading="eager" />

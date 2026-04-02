@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -80,7 +81,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Martingale Roulette System 2026 – Matematik, Simulering & Ærlig Test",
   description: "Dybdegående guide til Martingale-systemet i roulette: fordoblingsprincippet, eksponentiel risiko, 10.000-spins Monte Carlo simulering, bordgrænse-fælden og realistiske alternativer.",
-  datePublished: "2026-04-27",
+  datePublished: "2026-03-26",
   url: `${SITE_URL}/casinospil/roulette/martingale-roulette`,
   image: `${SITE_URL}/og/martingale-roulette.jpg`,
 });
@@ -101,7 +102,7 @@ export default function MartingaleRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Fordoblingsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale Roulette System 2026 – Fordoblingsprincippet Under Mikroskop
@@ -114,7 +115,9 @@ export default function MartingaleRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="159 Min." />
+        <AuthorMetaBar author="frederik" readTime="159 Min." />
+
+        <SnippetAnswer answer="Martingale i roulette fordobler indsatsen efter hvert tab på lige-chancer-indsatser. Sandsynligheden for en tabsserie på 7+ er ca. 1 ud af 100 sessioner. Systemet virker kortvarigt, men det matematiske forventede tab er identisk med flat betting: house edge ganger samlet indsats." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -821,7 +824,7 @@ export default function MartingaleRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/martingale-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -125,6 +126,8 @@ const OnlineLotteriGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="56 Min." />
+
+        <SnippetAnswer answer="Online lotteri i Danmark dækker Lotto, Eurojackpot, Vikinglotto og Keno. Gevinstchancen for Lotto-jackpotten er 1:8.145.060, mens Eurojackpot ligger på 1:139.838.160. RTP varierer typisk fra 45–65 %, hvilket gør lotteri til den spilleform med lavest tilbagebetaling. Alle gevinster under 200 kr. er skattefrie." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lotteriHero} alt="Matematisk analyse af lotteri-sandsynligheder" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

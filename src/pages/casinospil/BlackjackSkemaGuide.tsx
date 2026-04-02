@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import classicBlackjack from "@/assets/screenshots/classic-blackjack.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -591,6 +593,13 @@ const BlackjackSkemaGuide = () => {
               Læg mærke til det dramatiske skift ved dealer 7. Under 7 buster dealer i 35–43 % af tilfældene, hvilket gør det profitabelt at stande med relativt lave totaler (12–16) og lade dealeren buste. Over 7 falder bust-sandsynligheden drastisk, og du er tvunget til at forbedre din hånd – selv med risiko for at buste selv. Dette er den fundamentale mekanik bag skemaets hit/stand-grænse.
             </p>
           </section>
+
+          <ReviewScreenshot
+            src={classicBlackjack}
+            alt="Classic Blackjack-bord med basic strategy-beslutning om hit, stand eller double down"
+            caption="Classic Blackjack – her kan du afprøve basic strategy-skemaet i praksis med lave indsatser"
+            size="full"
+          />
 
           <Separator className="my-8" />
 

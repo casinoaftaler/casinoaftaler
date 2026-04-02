@@ -4,6 +4,7 @@ import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulett
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -138,6 +139,8 @@ export default function AmerikanskRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="133 Min." />
+
+        <SnippetAnswer answer="Amerikansk roulette har to nulfelter (0 og 00), hvilket giver en house edge på 5,26 % – næsten dobbelt så høj som europæisk roulette. Top line-indsatsen (0-00-1-2-3) har den højeste house edge på 7,89 %. For danske spillere er europæisk eller fransk roulette altid det bedre valg matematisk." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Amerikansk roulette-hjul med dobbelt-nul i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

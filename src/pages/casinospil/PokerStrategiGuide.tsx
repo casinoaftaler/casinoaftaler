@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -78,7 +79,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Poker Strategi 2026 – EV-modeller, Positionsspil & Bankroll Management",
   description: "Avanceret dansk poker strategi-guide. Lær positionsspil, pot odds, implied odds, GTO-koncepter og bankroll management.",
-  datePublished: "2026-04-29",
+  datePublished: "2026-03-23",
   url: `${SITE_URL}/casinospil/poker/poker-strategi`,
   image: `${SITE_URL}/og/poker-strategi.jpg`,
 });
@@ -112,7 +113,9 @@ export default function PokerStrategiGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="60 Min." />
+        <AuthorMetaBar author="kevin" readTime="60 Min." />
+
+        <SnippetAnswer answer="Avanceret poker-strategi handler om pot odds, implied odds, positionsspil og bluffing-frekvens. GTO (Game Theory Optimal) giver en uudnyttelig baseline, mens exploitativ strategi maksimerer profit mod specifikke spillertyper. Bankroll management kræver minimum 20-30 buy-ins for cash games." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Professionel poker-spiller analyserer hånd med matematiske overlays" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -598,7 +601,7 @@ export default function PokerStrategiGuide() {
         <LatestNewsByCategory pagePath="/casinospil/poker/poker-strategi" />
         <RelatedGuides currentPath="/casinospil/poker/poker-strategi" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

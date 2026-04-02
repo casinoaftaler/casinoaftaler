@@ -5,6 +5,7 @@ import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-rou
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -100,7 +101,7 @@ export default function FibonacciRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Talrække & simulering
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci Roulette System 2026 – Den Gyldne Spiral på Casinobordet
@@ -113,7 +114,9 @@ export default function FibonacciRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="136 Min." />
+        <AuthorMetaBar author="frederik" readTime="136 Min." />
+
+        <SnippetAnswer answer="Fibonacci i roulette bruger den berømte talrække (1-1-2-3-5-8-13...) på lige-chancer-indsatser. Progressionen er langsommere end Martingale, men risikoen vokser stadig eksponentielt over længere tabsserier. House edge på 2,70 % (europæisk) eller 1,35 % (fransk med La Partage) forbliver konstant." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fibonacci roulette system med den gyldne spiral over et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -812,7 +815,7 @@ export default function FibonacciRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/fibonacci-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

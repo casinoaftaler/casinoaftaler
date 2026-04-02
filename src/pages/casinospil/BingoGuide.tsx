@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilBingo from "@/assets/screenshots/danskespil-bingo.webp";
+import spilnuBingo from "@/assets/screenshots/spilnu-bingo.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -240,6 +243,13 @@ const BingoGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilBingo}
+          alt="Danske Spil bingo-lobby med 75-kugle og 90-kugle bingo-rum samt aktive jackpots"
+          caption="Danske Spil bingo – et af de mest populære bingo-rum hos danske casinoer med licens"
+          size="full"
+        />
+
         <Separator className="my-8" />
 
         {/* Varianter */}
@@ -435,6 +445,13 @@ const BingoGuide = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spilnuBingo}
+          alt="Spilnu bingo-rum med aktive spil, pladekøb og chat-funktion"
+          caption="Spilnu bingo – eksempel på et dansk bingo-rum med live chat og automatisk talmarkering"
+          size="full"
+        />
 
         <Separator className="my-8" />
 

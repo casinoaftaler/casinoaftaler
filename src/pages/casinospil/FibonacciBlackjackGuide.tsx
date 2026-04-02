@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -118,7 +119,7 @@ const FibonacciBlackjackGuide = () => {
     headline: "Fibonacci-Systemet i Blackjack 2026 – Sekvensen, Matematikken & Realiteten",
     description: "Komplet analyse af Fibonacci-indsatssystemet i blackjack: sekvensmeknik, 5.000-hånds simulering, sammenligning med Martingale og D'Alembert, og ærlige konklusioner.",
     url: `${SITE_URL}/casinospil/blackjack/fibonacci`,
-    datePublished: "2026-04-21",
+    datePublished: "2026-04-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -140,7 +141,7 @@ const FibonacciBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Sekvensanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci-Systemet i Blackjack – Naturens Talrække Møder Casino-Matematikken
@@ -154,6 +155,8 @@ const FibonacciBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="122 Min." />
+
+        <SnippetAnswer answer="Fibonacci-systemet i blackjack følger talrækken 1-1-2-3-5-8-13 og eskalerer langsommere end Martingale. Efter tab rykker du ét trin frem i sekvensen; efter gevinst to trin tilbage. Systemet giver mildere drawdowns, men ændrer ikke house edge eller det langsigtede forventede tab." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casino blackjack-bord med Fibonacci-spiralen og chipstakke arrangeret i talrækken" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -134,6 +135,8 @@ const RouletteGuide = () => {
       {/* ── BODY ── */}
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="143 Min." />
+
+        <SnippetAnswer answer="Roulette fås i tre hovedvarianter: europæisk (2,70 % house edge), fransk (1,35 % med La Partage) og amerikansk (5,26 %). Indsatstyper spænder fra lige chancer (rød/sort) til straight up (enkelt nummer). Ingen indsatsstrategi ændrer den matematiske house edge – kun bordvalg gør en forskel." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

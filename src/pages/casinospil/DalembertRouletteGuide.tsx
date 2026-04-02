@@ -5,6 +5,7 @@ import xxxtremeLightning from "@/assets/screenshots/xxxtreme-lightning-roulette-
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -65,7 +66,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "D'Alembert Roulette System 2026 – Matematik, Simulering & Ærlig Analyse",
   description: "D'Alembert i roulette: Lineær progression, equilibrium-teori, 10.000-spins simulering, sammenligning med Martingale og Fibonacci.",
-  datePublished: "2026-04-17",
+  datePublished: "2026-04-14",
   url: `${SITE_URL}/casinospil/roulette/dalembert-roulette`,
   image: `${SITE_URL}/og/dalembert-roulette.jpg`,
 });
@@ -86,7 +87,7 @@ export default function DalembertRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <Scale className="mr-1.5 h-3.5 w-3.5" /> Lineær progression
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert Roulette-Systemet – Den Konservative Progressions Ærlige Matematik
@@ -99,7 +100,9 @@ export default function DalembertRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="175 Min." />
+        <AuthorMetaBar author="frederik" readTime="175 Min." />
+
+        <SnippetAnswer answer="D'Alembert i roulette anvender lineær progression på lige-chancer-indsatser (rød/sort, lige/ulige). Indsatsen stiger med én enhed efter tab og falder med én efter gevinst. Systemet giver lavere variance end Martingale, men den matematiske house edge på 2,70 % (europæisk) forbliver uændret." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="D'Alembert progression illustreret med jævnt stigende chipstakke på roulette-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -656,7 +659,7 @@ export default function DalembertRouletteGuide() {
         <LatestNewsByCategory pagePath="/casinospil/roulette/dalembert-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="frederik" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -121,6 +122,8 @@ const CrapsGuide = () => {
       {/* ── BODY ── */}
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="81 Min." />
+
+        <SnippetAnswer answer="Craps tilbyder nogle af de bedste odds i casinoet. Pass line har en house edge på 1,41 %, og don't pass ligger på 1,36 %. Med odds-indsatser (ingen house edge) kan den samlede fordel reduceres til under 1 %. Prop bets og hardway-indsatser har derimod house edges på 9–16 % og bør undgås." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

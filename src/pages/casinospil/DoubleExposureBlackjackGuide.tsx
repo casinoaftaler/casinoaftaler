@@ -4,6 +4,7 @@ import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -135,7 +136,7 @@ const DoubleExposureBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Åbne kort-variant
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Double Exposure Blackjack – Fuld Information, Nye Regler
@@ -149,6 +150,8 @@ const DoubleExposureBlackjackGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="120 Min." />
+
+        <SnippetAnswer answer="I Double Exposure blackjack er begge dealerens kort synlige fra starten. Til gengæld betaler blackjack kun 1:1, og dealeren vinder de fleste ties. House edge ligger typisk på 0,6–0,8 % med tilpasset strategi. Spillet kræver en helt anderledes strategi end standard blackjack." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Double Exposure blackjack-bord med begge dealerkort synlige" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

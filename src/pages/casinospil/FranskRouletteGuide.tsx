@@ -4,6 +4,7 @@ import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-rou
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -64,7 +65,7 @@ const faqJsonLd = buildFaqSchema(faqs.map((f) => ({ question: f.question, answer
 const articleSchema = buildArticleSchema({
   headline: "Fransk Roulette 2026 – La Partage, 1,35% House Edge & Guide",
   description: "Komplet guide til fransk roulette: La Partage & En Prison regler, 1,35% house edge matematik, bordlayout, call bets og casino-anbefalinger for danske spillere.",
-  datePublished: "2026-04-23",
+  datePublished: "2026-04-05",
   url: `${SITE_URL}/casinospil/roulette/fransk-roulette`,
   image: `${SITE_URL}/og/fransk-roulette.jpg`,
 });
@@ -99,6 +100,8 @@ export default function FranskRouletteGuide() {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="69 Min." />
+
+        <SnippetAnswer answer="Fransk roulette med La Partage-reglen har den laveste house edge i roulette-familien: kun 1,35 % på lige-chancer-indsatser. Når kugler lander på nul, får du halvdelen af din lige-chancer-indsats tilbage. Det gør fransk roulette til den mest spillervenlige variant i enhver sammenligningen." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fransk roulette-bord med La Partage i elegant Monte Carlo-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
