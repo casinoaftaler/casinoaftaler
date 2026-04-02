@@ -30,7 +30,6 @@ Deno.serve(async (req) => {
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     // Check if this is a cron call (body contains "time" field from pg_cron)
-    // The function is fully idempotent so cron calls are safe without admin auth.
     let isCronCall = false;
     let body: any = {};
     try {
@@ -52,7 +51,6 @@ Deno.serve(async (req) => {
 
       const token = authHeader.replace("Bearer ", "");
 
-      // Allow service_role key OR admin user
       if (token !== serviceRoleKey) {
         const { data: { user }, error: authError } = await supabase.auth.getUser(token);
 
@@ -119,23 +117,18 @@ Deno.serve(async (req) => {
       return results;
     }
 
-    // Get the most recent spin record for each user (before today)
     const userIds = profiles.map((p) => p.user_id);
-    const latestSpins = await batchIn<any>(
-      "slot_spins", "user_id", userIds,
-      "user_id, spins_remaining, date",
-      (q) => q.lt("date", today).eq("game_id", "shared").order("date", { ascending: false }),
+
+    // Check which users already received daily_cron today (idempotency)
+    const todayLogs = await batchIn<any>(
+      "credit_allocation_log", "user_id", userIds,
+      "user_id, amount",
+      (q) => q.eq("source", "daily_cron").gte("created_at", today + "T00:00:00+02:00"),
     );
 
-    // Build a map of user_id -> most recent spins_remaining (before today)
-    const latestSpinMap = new Map<string, number>();
-    for (const spin of latestSpins) {
-      if (!latestSpinMap.has(spin.user_id)) {
-        latestSpinMap.set(spin.user_id, spin.spins_remaining);
-      }
-    }
+    const alreadyAllocatedSet = new Set<string>(todayLogs.map((l: any) => l.user_id));
 
-    // Also check if today's records already exist
+    // Check if today's slot_spins rows exist
     const todaySpins = await batchIn<any>(
       "slot_spins", "user_id", userIds,
       "user_id, spins_remaining",
@@ -147,74 +140,71 @@ Deno.serve(async (req) => {
       todaySpinMap.set(s.user_id, s.spins_remaining);
     }
 
-    // Build upsert rows with top-up logic
+    // Get previous day balance for carry-over (only for users without today's row)
+    const usersWithoutTodayRow = userIds.filter((id) => !todaySpinMap.has(id));
+    const latestSpins = usersWithoutTodayRow.length > 0
+      ? await batchIn<any>(
+          "slot_spins", "user_id", usersWithoutTodayRow,
+          "user_id, spins_remaining, date",
+          (q) => q.lt("date", today).eq("game_id", "shared").order("date", { ascending: false }),
+        )
+      : [];
+
+    const latestSpinMap = new Map<string, number>();
+    for (const spin of latestSpins) {
+      if (!latestSpinMap.has(spin.user_id)) {
+        latestSpinMap.set(spin.user_id, spin.spins_remaining);
+      }
+    }
+
+    // Build operations
     const newRows: Array<{ user_id: string; date: string; spins_remaining: number; game_id: string }> = [];
     const updateRows: Array<{ user_id: string; addAmount: number; currentBalance: number }> = [];
     const logRows: Array<{ user_id: string; amount: number; source: string; note: string }> = [];
+    let skipped = 0;
 
     for (const p of profiles) {
-      const isSubscriber = !!(p as any).twitch_badges?.is_subscriber;
-      const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-      const cap = BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0);
-      const previous = latestSpinMap.get(p.user_id);
-      const todayBalance = todaySpinMap.get(p.user_id);
-
-      if (todayBalance !== undefined) {
-        // User already has a row for today (e.g., from settle/bonus before cron ran)
-        // Check if they already received daily_cron today — skip if so
-        // We'll handle this via ignoreDuplicates on the log insert
-        if (todayBalance >= cap) {
-          // Already at or above cap — no top-up needed
-          logRows.push({
-            user_id: p.user_id,
-            amount: 0,
-            source: "daily_cron",
-            note: `Carry-over: ${todayBalance} credits beholdt (over daglig cap på ${cap})`,
-          });
-          continue;
-        }
-        // Top up to cap
-        const addAmount = cap - todayBalance;
-        updateRows.push({ user_id: p.user_id, addAmount, currentBalance: todayBalance });
-        logRows.push({
-          user_id: p.user_id,
-          amount: addAmount,
-          source: "daily_cron",
-          note: `Daglig top-up: +${addAmount} credits (fra ${todayBalance} til ${todayBalance + addAmount})`,
-        });
+      // Skip if already received daily_cron today
+      if (alreadyAllocatedSet.has(p.user_id)) {
+        skipped++;
         continue;
       }
 
-      // No row for today — create one
-      let startValue: number;
-      let topUpAmount: number;
+      const isSubscriber = !!(p as any).twitch_badges?.is_subscriber;
+      const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
+      const dailyAmount = BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0);
+      const todayBalance = todaySpinMap.get(p.user_id);
 
-      if (previous === undefined) {
-        startValue = cap;
-        topUpAmount = cap;
-      } else if (previous >= cap) {
-        startValue = previous;
-        topUpAmount = 0;
+      if (todayBalance !== undefined) {
+        // User already has a row for today (e.g., from missions before cron ran)
+        // ALWAYS add the full daily amount on top
+        updateRows.push({ user_id: p.user_id, addAmount: dailyAmount, currentBalance: todayBalance });
+        logRows.push({
+          user_id: p.user_id,
+          amount: dailyAmount,
+          source: "daily_cron",
+          note: `Daglig tildeling: +${dailyAmount} credits (fra ${todayBalance} til ${todayBalance + dailyAmount})`,
+        });
       } else {
-        startValue = cap;
-        topUpAmount = cap - previous;
+        // No row for today — create one with carry-over + daily amount
+        const previous = latestSpinMap.get(p.user_id) ?? 0;
+        const carryOver = Math.max(0, previous);
+        const startValue = carryOver + dailyAmount;
+
+        newRows.push({
+          user_id: p.user_id,
+          date: today,
+          spins_remaining: startValue,
+          game_id: "shared",
+        });
+
+        logRows.push({
+          user_id: p.user_id,
+          amount: dailyAmount,
+          source: "daily_cron",
+          note: `Daglig tildeling: +${dailyAmount} credits (carry-over: ${carryOver}, ny balance: ${startValue})`,
+        });
       }
-
-      newRows.push({
-        user_id: p.user_id,
-        date: today,
-        spins_remaining: startValue,
-        game_id: "shared",
-      });
-
-      logRows.push({
-        user_id: p.user_id,
-        amount: topUpAmount,
-        source: "daily_cron",
-        note: topUpAmount > 0
-          ? `Daglig top-up: +${topUpAmount} credits (fra ${previous ?? 0} til ${startValue})`
-          : `Carry-over: ${startValue} credits beholdt (over daglig cap på ${cap})`,
-      });
     }
 
     // Insert new rows
@@ -226,7 +216,7 @@ Deno.serve(async (req) => {
       if (upsertError) throw upsertError;
     }
 
-    // Update existing rows that need top-up
+    // Update existing rows — add daily amount on top
     for (const row of updateRows) {
       const { error: updateError } = await supabase
         .from("slot_spins")
@@ -236,7 +226,7 @@ Deno.serve(async (req) => {
         .eq("game_id", "shared");
 
       if (updateError) {
-        console.error(`Failed to top-up user ${row.user_id}:`, updateError);
+        console.error(`Failed to add daily credits for user ${row.user_id}:`, updateError);
       }
     }
 
@@ -251,14 +241,14 @@ Deno.serve(async (req) => {
       }
     }
 
-    const skipped = logRows.filter(r => r.amount === 0).length;
-    console.log(`Daily credit allocation complete: ${newRows.length} new, ${updateRows.length} topped-up, ${skipped} carry-over, date: ${today}`);
+    const totalProcessed = newRows.length + updateRows.length;
+    console.log(`Daily credit allocation complete: ${newRows.length} new, ${updateRows.length} topped-up, ${skipped} already allocated, date: ${today}`);
 
     return new Response(
       JSON.stringify({
         success: true,
         date: today,
-        usersProcessed: rows.length,
+        usersProcessed: totalProcessed,
         usersSkipped: skipped,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
