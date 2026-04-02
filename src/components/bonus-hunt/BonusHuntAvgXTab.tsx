@@ -164,12 +164,13 @@ export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onB
 
       {/* Winning group result */}
       {session?.winning_group && (
-        <Card className="border-green-500/50">
-          <CardContent className="p-3 text-center">
+        <Card className="border-green-500/50 bg-green-500/5">
+          <CardContent className="p-4 text-center">
+            <Trophy className="h-6 w-6 text-green-500 mx-auto mb-1" />
             <p className="text-xs text-muted-foreground mb-1">Vindende Gruppe</p>
-            <p className="text-2xl font-bold text-green-500">{session.winning_group}</p>
-            <p className="text-sm text-muted-foreground">
-              Average X: {session.average_x}x
+            <p className="text-3xl font-bold text-green-500">{session.winning_group}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Average X: <span className="font-semibold text-foreground">{session.average_x}x</span>
             </p>
           </CardContent>
         </Card>
