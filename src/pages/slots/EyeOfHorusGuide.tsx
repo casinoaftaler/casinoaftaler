@@ -13,12 +13,18 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Eye, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import eyeOfHorusHero from "@/assets/screenshots/eye-of-horus-hero-logo.webp";
+import eyeOfHorusGameplay from "@/assets/screenshots/eye-of-horus-gameplay-grid.webp";
+import eyeOfHorusPaylines from "@/assets/screenshots/eye-of-horus-paylines.webp";
+import eyeOfHorusSpilleregler from "@/assets/screenshots/eye-of-horus-spilleregler.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -72,7 +78,7 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Spillets popularitet i Danmark – særligt blandt erfarne casino-spillere – skyldes delvist denne autenticitet. Hvor mange moderne slots føles "designet af algoritmer", har Eye of Horus en håndbygget kvalitet, der afspejler Merkurs årtiers erfaring med spilleautomatdesign. Det er en slot, der respekterer sine spillere med gennemsigtig matematik og ren mekanik.</p>
         </section>
 
-        <YoutubeEmbed videoId="G8beL2DD1sI" title="Eye of Horus gennemgang – Symbol upgrade og RTP" description="Se en komplet gennemgang af Eye of Horus: symbol upgrade-mekanikken og expanding symbols forklaret i praksis." uploadDate="2026-03-07" duration="PT2M45S" />
+        <ReviewScreenshot src={eyeOfHorusHero} alt="Eye of Horus logo og titelbillede med egyptisk Horus-fugl og hieroglyffer" caption="Eye of Horus' ikoniske titelbillede – Merkur Gamings egyptiske klassiker." eager />
         <VideoContextBox heading="Her gennemgår vores streamer Eye of Horus i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser symbol upgrade-mekanikken, expanding symbols og retrigger-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
           <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og spiludviklerne bag spillet.
@@ -94,6 +100,8 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">RTP'en på 96,31 % placerer Eye of Horus solidt i genren: højere end Book of Dead (96,21 %), men lavere end <Link to="/casinospil/spillemaskiner/legacy-of-dead" className={linkClass}>Legacy of Dead</Link> (96,58 %). House edge på 3,69 % er gennemsnitligt for high-volatility slots. For en session med 500 spins à 10 kr. er det forventede tab 185 kr. – en rimelig "underholdningsomkostning" for en time-to-halvanden times spilletid.</p>
           <p className="text-muted-foreground leading-relaxed">Max win på 10.000× er genrens højeste – dobbelt så meget som Book of Dead (5.000×) og Legacy of Dead (5.000×). Denne højere max win kompenserer for den marginalt lavere RTP og gør Eye of Horus til det mest lukrative valg i "Book of"-genren for spillere, der prioriterer upside-potentiale over gennemsnitlig return.</p>
         </section>
+
+        <ReviewScreenshot src={eyeOfHorusGameplay} alt="Eye of Horus gameplay med 5x3 grid, Eye of Horus scatter-symboler og Anubis-symboler på hjulene" caption="Eye of Horus' 5×3 grid med scatter-symboler og tematiske premium-symboler synlige." />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Symbol Upgrade: Den Progressive Transformation</h2>
@@ -143,6 +151,8 @@ const EyeOfHorusGuide = () => {
             For danske spillere, der har erfaring fra spillehaller (Merkur-automater er udbredte i Tyskland og Østrig), er Eye of Horus en nostalgisk genkendelse. For spillere uden denne baggrund tilbyder den en anderledes oplevelse: mere tålmodig, mere progressiv og med en session-dynamik, der føles mere "analog" end moderne digitale slots. Det er en slot, der belønner dem, der giver den tid – ikke dem, der søger øjeblikkeligt adrenalin.
           </p>
         </section>
+
+        <ReviewScreenshot src={eyeOfHorusPaylines} alt="Eye of Horus gevinstlinjer – alle 10 paylines vist med røde markeringer på 5x3 griddet" caption="Eye of Horus' 10 faste gevinstlinjer visualiseret – bemærk de komplekse mønstre." />
 
         {/* ── Symbol Upgrade Mathematics ── */}
         <section className="mb-10">
@@ -200,6 +210,8 @@ const EyeOfHorusGuide = () => {
             Hvis du insisterer på at bruge Eye of Horus til wagering, anbefaler vi at sænke indsatsen markant (1-2 kr. pr. spin) for at give din bankroll en buffer mod de lange tørkeperioder mellem bonusrunder. Ved 1 kr./spin og en 1.000 kr. bonus med 10× omsætning har du 10.000 spins at omsætte – langt nok til at absorbere volatiliteten med rimelig sandsynlighed. Men den lavere indsats reducerer også max win-potentialet, hvilket eliminerer Eye of Horus' primære fordel.
           </p>
         </section>
+
+        <ReviewScreenshot src={eyeOfHorusSpilleregler} alt="Eye of Horus udbetalingsinformationer og spilleregler – scatter-gevinster, jackpot-odds og tekniske detaljer" caption="Udbetalingsinformationer og spilleregler direkte fra Eye of Horus – herunder jackpot-odds." />
 
         {/* ── Mobiloplevelse ── */}
         <section className="mb-10">
