@@ -103,7 +103,7 @@ const BigBassBonanzaGuide = () => {
     "@type": "HowTo",
     name: "Sådan spiller du Big Bass Bonanza",
     step: [
-      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,10 til 250 kr. pr. spin." },
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,50 til 100 kr. pr. spin." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og observer fisker- og pengesymboler på hjulene." },
       { "@type": "HowToStep", position: 3, name: "Aktivér Money Collect", text: "Land 3+ scatters for free spins, hvor fiskeren indsamler pengeværdier fra fiskesymboler." },
       { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Overfør dine gevinster til din bankkonto eller digitale tegnebog." },
