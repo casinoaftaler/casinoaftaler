@@ -65,7 +65,7 @@ const doa2Faqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er forskellen mellem Dead or Alive 1 og 2?",
-    answer: "Den originale Dead or Alive (2009) havde kun én free spins-mode med sticky wilds og en max win på 12.000x. Dead or Alive 2 (2019) tredoblede valgmulighederne med tre modes, opgraderede max win til 111.111x med multiplikator-wilds, og forbedrede grafikken markant. RTP er næsten identisk (96,82 % vs. 96,80 %). Den originale betragtes stadig som en klassiker, men opfølgeren er objektivt overlegen i alle målbare parametre.",
+    answer: "Den originale Dead or Alive (2009) havde kun én free spins-mode med sticky wilds og en max win på 12.000x. Dead or Alive 2 (2019) tredoblede valgmulighederne med tre modes, opgraderede max win til 111.111x med multiplikator-wilds, og forbedrede grafikken markant. RTP er identisk på begge (96,80 %). Den originale betragtes stadig som en klassiker, men opfølgeren er objektivt overlegen i alle målbare parametre.",
   },
 ];
 
