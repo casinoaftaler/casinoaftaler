@@ -213,6 +213,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           setBonusWinnings(Number(data.bonus_winnings) || 0);
           setBet(Number(data.bet_amount) || 1);
           setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
+          cumulativeMultiplierRef.current = Number(data.expanding_symbol_name) || 0;
           setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
           try {
             const savedWin = localStorage.getItem(`gates_win_${gameId}_${user.id}`);
