@@ -361,6 +361,86 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        <Separator className="my-10" />
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
+            Cluster Pays vs. Paylines: Et Mekanisk Paradigmeskift
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Jammin' Jars repræsenterer en fundamental anderledes tilgang til slot-gevinstberegning. Traditionelle payline-slots (som <Link to="/casinospil/spillemaskiner/wild-west-gold" className={linkClass}>Wild West Gold</Link> eller <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link>) kræver, at matchende symboler lander på forudbestemte linjer – typisk 20-40 stk. Cluster pays eliminerer linjekonceptet fuldstændigt: enhver gruppe af 5+ identiske symboler, der rører hinanden, er en gevinst.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Den matematiske konsekvens er markant. I et 8×8 grid med 64 positioner og 7 symboltyper er det gennemsnitlige antal forventede clusters pr. spin højere end antallet af payline-hits i et typisk 5×3 grid. Men individuelle cluster-gevinster er typisk lavere end tilsvarende payline-gevinster – kompensationen kommer fra antallet af clusters og cascade-systemet, der kan producere multiple gevinster fra et enkelt spin.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Cascade-systemet (tumble) er intimt forbundet med cluster pays: når en vindende cluster fjernes, falder symboler ovenfra ned og udfylder tomrummene. Denne mekanik kan skabe nye clusters fra de nyplacerede symboler, som igen fjernes og erstattes. En enkelt spin kan producere 3-8+ cascade-trin, og hvert trin øger jar-multiplikatorerne. Denne eksponentielle mekanik er det, der giver cluster pays-slots deres karakteristiske "chain reaction"-oplevelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der overvejer overgangen fra payline- til cluster-slots, er Jammin' Jars et ideelt startpunkt. Det 8×8 grid er visuelt tydeligt (clusters er lette at se), jar-wilds giver et forankringspunkt at følge, og cascade-animationerne er langsomme nok til, at spillere kan følge gevinstkæden. Mere avancerede cluster-slots som <Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link> tilføjer progressive funktioner, der kan føles overvældende for nye cluster-spillere.
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
+            Jammin' Jars 2 vs. Original: Detaljeret Sammenligning
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Push Gaming lancerede Jammin' Jars 2 i 2021 som en direkte opfølger. Opfølgeren tilføjer Giga Jar-funktionen (et 3×3 mega jar-symbol, der aktiveres under free spins), en valgmulighed mellem to free spins-modi (standard og Giga Jar mode), og et mere detaljeret visuelt design. Dog kommer disse tilføjelser med trade-offs, der gør valget mellem original og opfølger langt fra oplagt.
+          </p>
+          <Card className="border-border/50 bg-card/50 mb-4">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Jammin' Jars Original vs. Jammin' Jars 2</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border/50">
+                      <th className="text-left py-2 pr-4">Parameter</th>
+                      <th className="text-left py-2 pr-4">Original</th>
+                      <th className="text-left py-2">Jammin' Jars 2</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">RTP</td><td className="py-2 pr-4">96,83 %</td><td className="py-2">96,40 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Max Win</td><td className="py-2 pr-4">20.000×</td><td className="py-2">25.000×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Volatilitet</td><td className="py-2 pr-4">Høj</td><td className="py-2">Meget Høj</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Grid</td><td className="py-2 pr-4">8×8</td><td className="py-2">8×8</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Giga Jar</td><td className="py-2 pr-4">Nej</td><td className="py-2">Ja (3×3)</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">House Edge</td><td className="py-2 pr-4">3,17 %</td><td className="py-2">3,60 %</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Den vigtigste forskel er RTP: originalen's 96,83 % vs. opfølgerens 96,40 %. Over 1.000 spins á 10 kr. er forskellen 43 kr. i forventet tab – ikke dramatisk, men signifikant for langsigtede spillere. Til gengæld tilbyder JJ2 et højere max win-ceiling (25.000× vs. 20.000×) og Giga Jar-funktionen, der kan producere ekstraordinære gevinster, når den aktiveres med høje multiplikatorer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores anbefaling: den originale Jammin' Jars er det bedre valg for de fleste danske spillere. Den højere RTP, enklere mekanik og mere forudsigelige volatilitet gør den til en bedre value proposition. Jammin' Jars 2 er primært relevant for erfarne spillere, der specifikt søger den ekstra volatilitet og Giga Jar-funktionens explosion-potentiale – og som er villige til at betale for det med lavere RTP.
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />
+            Spilpsykologi: Jar-Bevægelsens Dopamin-Effekt
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Et af de mest fascinerende designelementer i Jammin' Jars er den bevægelige jar-mekanik og dens psykologiske effekt. Når et jar-symbol indgår i en vindende cluster og derefter bevæger sig til en tilfældig tilstødende position, skaber dette et element af "near-miss" og "just-might" anticipation, der er ekstremt engagerende.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Dopamin-responsen er dobbelt: først ved den initiale cluster-gevinst (belønning), derefter ved jar-bevægelsen (anticipation om næste cluster). Denne to-trins cyklus gentages ved hver cascade, hvilket skaber en vedvarende engagementskurve, der er fundamentalt anderledes end standard slots' "spin-wait-result" cyklus. Push Gaming har designet denne mekanik med bevidst opmærksomhed på kognitiv psykologi – jar-bevægelsen er LANGSOM nok til at skabe anticipation, men HURTIG nok til at undgå frustration.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            En potentiel faldgrube er "jar-chasing": tendensen til at fortsætte med at spille efter en bonusrunde med høje jar-multiplikatorer, motiveret af ønsket om at "genskabe" oplevelsen. Denne impuls er irrationel – hvert spin er uafhængigt, og den forrige bonusrundes multiplikatorer har nul indflydelse på fremtidige spins. Disciplineret bankroll-management er essentielt for at modstå denne kognitive bias.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der oplever tegn på problematisk spilleadfærd – inklusive jar-chasing, tabsjagt eller overskridelse af forudbestemte grænser – anbefaler vi at kontakte <Link to="/ansvarligt-spil/stopspillet" className={linkClass}>StopSpillet</Link> eller besøge vores <Link to="/ansvarligt-spil/hjaelpelinjer" className={linkClass}>hjælpelinjer</Link>-side. Push Gaming tilbyder også indbyggede responsible gambling-værktøjer i deres spilgrænseflader, inklusive session-timere og tab-grænser.
+          </p>
+        </section>
+
         <SlotDataLink slotSlug="jammin-jars" slotName="Jammin' Jars" />
         <SlotProviderLink slotSlug="jammin-jars" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/jammin-jars" />

@@ -151,6 +151,58 @@ const MadameDestinyMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> eller sammenlign med andre <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler for at finde din ideelle match.</p>
         </section>
 
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Megaways-Dynamik: Hvorfor Ways Varierer</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Et af de mest misforståede elementer i Megaways-slots er den variable ways-mekanik. I Madame Destiny MW viser hvert hjul mellem 2 og 7 symboler pr. spin – dette er IKKE kosmetisk, det er matematisk kritisk. Antallet af active ways pr. spin beregnes som produktet af synlige symboler: et spin med 7-7-7-7-7-7 giver 117.649 ways (plus den horisontale reel), mens et spin med 2-2-2-2-2-2 giver kun 64 ways.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den praktiske konsekvens er, at gevinster fra "høj-ways" spins er markant mere værdifulde end fra "lav-ways" spins. Når alle hjul viser 6-7 symboler, er sandsynligheden for cluster-matches dramatisk højere, og det er disse spins, der producerer de største enkeltgevinster. Pragmatic Play's RNG fordeler hjulhøjderne uafhængigt med en skævfordeling mod midten (4-5 symboler er mest hyppige, mens 2 og 7 symboler er sjældnere).</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins med den akkumulerende multiplikator er denne dynamik endnu vigtigere: et "high-ways" spin med en multiplikator på 15× kan levere en gevinst, der alene overstiger hele bonus-buy prisen. Det er denne interaktion mellem variable ways og voksende multiplikator, der skaber Madame Destiny MW's karakteristiske "crescendo"-oplevelse under bonusrunder – de tidlige spins med lave multiplikatorer og tilfældige ways er opvarmning, mens de sene spins med høje multiplikatorer og potentielt høje ways er payoff.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere fra payline-baserede slots kan overgangen til variable ways virke uforudsigelig. Nøglen er at fokusere på den samlede sessionslængde snarere end individuelle spins: over 300+ spins udjævnes variationen i ways-tildeling, og RTP'en konvergerer mod den annoncerede 96,56 %. I kortere sessioner kan ways-variansen skabe unaturligt gode eller dårlige stræk, der ikke bør overtolkes.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Tumble-Kæder: Den Cascadende Gevinstmotor</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Tumble-funktionen (også kaldet cascading wins) er en kernemekanik i alle Megaways-slots og fungerer som følger: når en gevinstkombination dannes, fjernes de vindende symboler fra griddet, og nye symboler falder ned ovenfra for at udfylde tomrummene. Hvis de nye symboler danner nye gevinstkombinationer, gentages processen – dette kan fortsætte i flere kæder, indtil ingen nye gevinster dannes.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">I base game er tumble-kæder en ren bonusfunktion: du får ekstra gevinster uden ekstra indsats. Den gennemsnitlige kædelængde er 1,3-1,5 (dvs. de fleste gevindende spins producerer 1-2 ekstra gevinster via tumble). Sjældne kæder kan nå 5-8+ trin, men sandsynligheden falder eksponentielt med hvert trin.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins er tumble-mekanikken transformativ, fordi multiplikatoren stiger med 1× for HVERT tumble-trin – ikke for hvert free spin. En enkelt free spin med en 6-trin tumble-kæde øger multiplikatoren med 6, mens et spin uden gevinst (0 tumbles) ikke øger den. Denne mekanik belønner "aktive" spins med mange små gevinster, fordi de driver multiplikatoren hurtigere op end sjældne store enkeltgevinster.</p>
+          <p className="text-muted-foreground leading-relaxed">Strategisk implikation: i bonusrunden er det faktisk bedre at lande mange små tumble-kæder tidligt (for at bygge multiplikatoren) efterfulgt af en stor gevinst sent (når multiplikatoren er høj). Denne omvendte dynamik – små gevinster er ønskelige tidligt, store gevinster er ønskelige sent – er unik for tumble-multiplikator-slots og giver Madame Destiny MW en interessant strategisk dimension, som spillere kan observere og forstå over tid.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Madame Destiny-Serien: Fra Original til Megaways</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s Madame Destiny-serie illustrerer, hvordan et succesfuldt slot-brand udvikles over tid. Den originale Madame Destiny (2019) var en simpel 5×3 slot med 10 paylines, medium volatilitet og 96,50 % RTP – en kompetent men umarkant titel i Pragmatic Play's portefølje. Megaways-opgraderingen (2021) transformerede den til et markant stærkere produkt.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">De væsentligste forbedringer i Megaways-versionen: (1) op til 200.704 ways vs. 10 paylines, (2) tumble-mekanik med akkumulerende multiplikator, (3) Ante Bet-funktionen for strategisk bonusjagt, og (4) marginalt højere RTP (96,56 % vs. 96,50 %). Disse tilføjelser transformerede Madame Destiny fra en gennemsnitlig slot til en af de mest tilgængelige Megaways-oplevelser på markedet.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Tematisk bevarer Megaways-versionen det mystiske spåkone-univers med krystalkugler, tarotkort og mystiske symboler. Pragmatic Play har forbedret den visuelle præsentation med mere detaljerede animationer og en atmosfærisk lyd-design, der forstærker det overnaturlige tema. Den tematiske sammenhæng mellem original og Megaways-version giver etablerede fans en genkendelig oplevelse i en forbedret mekanisk ramme.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der overvejer hvilken version de skal vælge: Megaways-versionen er objektivt den stærkere titel på alle parametre (bedre RTP, flere ways, stærkere bonusfunktion). Den originale Madame Destiny er kun relevant for spillere, der specifikt foretrækker simpel, lav-kompleksitets gameplay uden tumble-mekanik eller variable ways.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Sessionsplanlægning og Optimal Indsatsstrategi</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny MW's medium-høje volatilitet og tilgængelige RTP gør den til en af de mest "planlægningsvenlige" Megaways-slots. I modsætning til ultra-volatile titler som <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, kan Madame Destiny MW spilles med en moderat bankroll uden ekstremt høj bust-risiko.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Optimal sessionsplanlægning</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Strategi</th><th className="text-left py-2">Ante Bet</th><th className="text-left py-2">Budget (45 min)</th><th className="text-left py-2">Forventet bonusrunder</th><th className="text-left py-2">Bust-risiko</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Konservativ</td><td>Fra</td><td>800 kr. (2 kr./spin)</td><td>1-2</td><td>~10 %</td></tr>
+                  <tr className="border-b"><td className="py-2">Balanced</td><td>Til</td><td>1.200 kr. (2,50 kr./spin)</td><td>2-4</td><td>~18 %</td></tr>
+                  <tr><td className="py-2">Aggressiv</td><td>Til</td><td>2.000 kr. (5 kr./spin)</td><td>3-5</td><td>~25 %</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den "balanced" strategi med Ante Bet aktiveret og moderat indsats giver den bedste oplevelse for de fleste spillere: tilstrækkelig bonusfrekvens til at opleve Megaways-dynamikken i fuldt flor, uden at bankrollen eroderer for hurtigt. Det ekstra 25 % indsatstillæg fra Ante Bet kompenseres af den fordoblade bonusfrekvens – over en session er den samlede cost omtrent identisk med at spille uden Ante Bet i længere tid.</p>
+          <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Madame Destiny MW et fremragende valg. Den høje RTP (96,56 %) og moderate volatilitet giver en estimeret bust-risiko på kun 10-15 % ved 10× omsætningskrav – markant lavere end de fleste Megaways-alternativer. Med Ante Bet aktiveret kan gennemspilning fuldføres hurtigere, men husk at den 25 % højere spin-cost akkumulerer over mange spins. Anbefaling: aktiver Ante Bet i de første 50 % af gennemspilningen, deaktivér derefter for stabil afslutning.</p>
+        </section>
+
         <SlotDataLink slotSlug="madame-destiny-megaways" slotName="Madame Destiny Megaways" />
         <SlotProviderLink slotSlug="madame-destiny-megaways" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/madame-destiny-megaways" />

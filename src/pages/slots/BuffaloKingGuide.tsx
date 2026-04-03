@@ -125,6 +125,72 @@ const BuffaloKingGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der forstår og accepterer ekstremt høj volatilitet, er Buffalo King en spændende tilføjelse til slot-repertoiret. Men den bør behandles med respekt – og med en disciplineret bankroll-strategi. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Symbolhierarki og Paytable-Dekonstruktion</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings symbolsystem er opbygget omkring et nordamerikansk prærie-tema med fire premium-dyresymboler og fire lavværdi-kortsymboler. Buffalen er det højest betalende symbol, fulgt af ørnen, ulven og elgen. Hierarkiet er designet med en usædvanlig stor forskel mellem top- og bundsymboler – buffalen betaler ca. 10× mere end kortsymbolerne for 6-of-a-kind, hvilket forstærker den "alt eller intet"-dynamik, der definerer spillets oplevelse.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Symbolværdi-tabel (6-of-a-kind ved 2 kr. indsats, 4.096 ways)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Symbol</th><th className="text-left py-2">6× (base)</th><th className="text-left py-2">6× med 5×5× stacking</th><th className="text-left py-2">Relativ frekvens</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Buffel (Premium 1)</td><td>50× (100 kr.)</td><td>1.250× (2.500 kr.)</td><td>Sjælden</td></tr>
+                  <tr className="border-b"><td className="py-2">Ørn (Premium 2)</td><td>25× (50 kr.)</td><td>625× (1.250 kr.)</td><td>Lav</td></tr>
+                  <tr className="border-b"><td className="py-2">Ulv (Premium 3)</td><td>15× (30 kr.)</td><td>375× (750 kr.)</td><td>Moderat-lav</td></tr>
+                  <tr className="border-b"><td className="py-2">Elg (Premium 4)</td><td>10× (20 kr.)</td><td>250× (500 kr.)</td><td>Moderat</td></tr>
+                  <tr><td className="py-2">Kortsymboler (A-9)</td><td>2-5× (4-10 kr.)</td><td>50-125× (100-250 kr.)</td><td>Hyppig</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Tabellen illustrerer den eksplosive effekt af multiplikator-stacking: et buffel-6-of-a-kind, der normalt betaler 50× (100 kr.), kan med to 5× multiplikatorer betale 1.250× (2.500 kr.) fra en ENKELT gevinstlinje. Med 4.096 aktive ways og potentielt hundredvis af samtidige gevinster kan den samlede udbetaling fra et enkelt free spin nå astronomiske niveauer. Det er denne multiplikative matematik, der producerer max win-potentialet på 93.750×.</p>
+          <p className="text-muted-foreground leading-relaxed">Wild-symbolet erstatter alle symboler undtagen scatter og lander kun på hjul 2, 3, 4 og 5. Under free spins kan wilds modtage multiplikatorer, der fungerer som en ekstra multiplikator-kilde ud over de symboler, der allerede har multiplikatorer. Denne dobbeltkilde af multiplikatorer (wilds + regulære symboler) er en mekanik, der sjældent ses i andre slots og bidrager til Buffalo Kings unikke gevinstprofil.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> All Ways-Mekanikken: 4.096 Gevinstmuligheder Forklaret</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo King bruger en "All Ways" gevinstmekanik (4.096 ways to win) i stedet for traditionelle paylines. I dette system betaler symboler, der matcher fra venstre mod højre på tilstødende hjul, uanset lodret position. Med et 6×4 grid er det totale antal mulige kombinationer 4⁶ = 4.096 per spin. Denne mekanik giver markant flere gevinstmuligheder end standard 20-40 payline-slots.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den praktiske konsekvens er, at individuelle gevinstbeløb pr. "way" er lavere end tilsvarende payline-gevinster. Hvor en 25-payline slot betaler 50× for 5-of-a-kind, betaler Buffalo King typisk 0,5-2× pr. way. Men med 4.096 aktive ways kan hundredvis af ways ramme på samme spin, hvilket kompenserer for de lavere individuelle beløb. Denne "volumen over amplitude"-approach favoriserer spillere, der forstår, at de store gevinster kommer fra MANGE samtidige small-medium hits, ikke fra en enkelt stor linje.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins med multiplikator-stacking forstærkes denne dynamik enormt. En enkelt spin med 200+ aktive ways, hvor flere har multiplikatorer, kan producere en samlet gevinst, der langt overstiger, hvad en traditionel payline-slot ville levere. Det er denne interaktion mellem volumetrisk gevinstberegning og multiplikator-stacking, der gør Buffalo King til en af markedets mest volatile slots.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der er vant til payline-baserede slots, kan overgangen til All Ways være forvirrende. Det vigtigste at forstå er: kig på den SAMLEDE gevinst pr. spin, ikke individuelle linjegevinster. Et spin, der viser "50 ways × 0,5×" = 25× samlet er lige så profitabelt som en enkelt 25× linjegevinst – det fordeles bare over flere individuelle hits.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Den Store Scatter-Gevinst: 100 Free Spins-Drømmen</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings mest unikke feature er muligheden for at lande 6 scatters og modtage 100 free spins – en bonus af en størrelse, der er praktisk talt uhørt i moderne slots. De fleste slots giver 8-20 free spins; Buffalo Kings 100-spins scenarie repræsenterer en bonusrunde, der alene kan vare 15-20 minutter og potentielt transformere en session fra tab til massiv gevinst.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Free Spins-tildeling efter scatters</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Scatters</th><th className="text-left py-2">Free Spins</th><th className="text-left py-2">Est. gennemsnitlig value</th><th className="text-left py-2">Sandsynlighed</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">3 scatters</td><td>8 spins</td><td>30-60×</td><td>~1/200</td></tr>
+                  <tr className="border-b"><td className="py-2">4 scatters</td><td>15 spins</td><td>80-150×</td><td>~1/1.500</td></tr>
+                  <tr className="border-b"><td className="py-2">5 scatters</td><td>25 spins</td><td>200-400×</td><td>~1/15.000</td></tr>
+                  <tr><td className="py-2">6 scatters</td><td>100 spins</td><td>1.000-5.000×</td><td>~1/200.000</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sandsynligheden for 6 scatters er astronomisk lav (~1/200.000 spins), men det er netop dette scenarie, der driver den teoretiske max win. Med 100 free spins og aktive multiplikatorer er den samlede akkumulerede gevinstpotentiale praktisk talt ubegrænset inden for spillets 93.750× cap. For de fleste spillere er 3-scatter triggeren (8 spins) den realistiske oplevelse – og selv denne kan levere meningsfulde gevinster med heldig multiplikator-stacking.</p>
+          <p className="text-muted-foreground leading-relaxed">Et vigtigt perspektiv: fordi 100-spins scenariet er så sjældent, bør det aldrig være din "strategi" at jage det. Buffalo King bør spilles med forventningen om 8-spins bonusrunder (typisk 30-60× return), med 4-5 scatter-triggere som positive overraskelser. At jage de sjældne, store scenarier er en opskrift på frustration og potentielt problematisk spilleadfærd.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Buffalo-Genren: Markedets Mest Populære Slot-Tema</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">"Buffalo"-slots er en af de mest profitable og reproducerede genrer i hele casino-industrien – en tradition, der startede med Aristocrats Buffalo (2006) på landbaserede casinoer i Las Vegas og har siden spredt sig til online-verdenen med titler som Buffalo King, Buffalo Rising Megaways og Buffalo Blitz. Genren er karakteriseret af nordamerikanske dyresymboler, store grid-formater og aggressiv volatilitet.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s Buffalo King er den mest spillede online buffalo-slot og har cementeret studiets position i denne lukrative niche. Spillets design låner bevidst fra den landbaserede tradition – det store 6×4 grid, dyresymbolerne og den "big hit or bust"-volatilitet er alle elementer, der resonerer med spillere, der har erfaring fra fysiske casinoer. Denne "cross-over appeal" er en vigtig faktor i Buffalo Kings vedvarende popularitet.</p>
+          <p className="text-muted-foreground leading-relaxed">For danske spillere, der ønsker at udforske buffalo-genren yderligere, er der flere alternativer: Blueprint's Buffalo Rising Megaways tilbyder Megaways-mekanik med op til 117.649 ways, mens Playtech's Buffalo Blitz fokuserer på 4.096 ways med mere moderate multiplikatorer. Ingen af disse matcher dog Buffalo Kings kombination af høj RTP (96,06 %), ekstremt gevinstpotentiale (93.750×) og den velpolerede Pragmatic Play-præsentation. Udforsk <Link to="/casinospil/spillemaskiner" className={linkClass}>hele vores spillemaskinekatalog</Link> for flere anbefalinger.</p>
+        </section>
+
         <SlotDataLink slotSlug="buffalo-king" slotName="Buffalo King" />
         <SlotProviderLink slotSlug="buffalo-king" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/buffalo-king" />

@@ -145,6 +145,73 @@ const MegaMoolahGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Men for spillere, der søger optimal value pr. krone, er Mega Moolah objektivt et af de dårligste valg i markedet. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde slots med bedre base game-økonomi, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-oversigten for aktuelle tilbud.</p>
         </section>
 
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Historiske Jackpot-Udbetalinger: Data og Mønstre</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah har udløst over 100 Mega-jackpots siden lanceringen i 2006. En analyse af de historiske data afslører interessante mønstre, selvom det er vigtigt at understrege, at jackpot-triggeren er fuldstændig tilfældig – fortidige mønstre giver INGEN forudsigelsesværdi for fremtidige udbetalinger.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Notable Mega Moolah Mega-jackpots</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">År</th><th className="text-left py-2">Beløb (EUR)</th><th className="text-left py-2">Indsats</th><th className="text-left py-2">Tid siden forrige</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">2018</td><td>€19.430.723</td><td>€0,75</td><td>15 uger</td></tr>
+                  <tr className="border-b"><td className="py-2">2015</td><td>€17.879.645</td><td>€0,25</td><td>12 uger</td></tr>
+                  <tr className="border-b"><td className="py-2">2021</td><td>€15.253.000</td><td>€2,00</td><td>8 uger</td></tr>
+                  <tr className="border-b"><td className="py-2">2019</td><td>€13.328.000</td><td>€1,50</td><td>6 uger</td></tr>
+                  <tr><td className="py-2">2023</td><td>€11.876.000</td><td>€5,00</td><td>11 uger</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Et bemærkelsesværdigt mønster: flere af de største jackpots er vundet med relativt lave indsatser (€0,25-0,75). Dette bekræfter, at selvom højere indsats øger trigger-sandsynligheden proportionalt, er det IKKE nødvendigt at spille max bet for at vinde Mega-jackpotten. Det er en vigtig distinktion fra visse andre progressive systemer, der kræver max bet-kvalifikation.</p>
+          <p className="text-muted-foreground leading-relaxed">Gennemsnitlig tid mellem Mega-jackpots er ca. 9-10 uger, men standardafvigelsen er enorm (3-20+ uger). Jackpotten har en "seed value" på €1.000.000 – den starter aldrig under dette beløb. Gennemsnitlig udbetalingsbeløb ligger på €5-8 millioner, men fordelingen er skæv: de fleste jackpots falder i €2-5 millioner intervallet, med sjældne outliers over €15 millioner. Disse outliers repræsenterer perioder, hvor jackpotten har vokset usædvanligt længe uden at blive udløst.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Mega Moolah vs. Andre Progressive Jackpots</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah er ikke den eneste progressive jackpot-slot på markedet, men den er den mest kendte. Konkurrenterne inkluderer Mega Fortune (NetEnt), <Link to="/casinospil/spillemaskiner/divine-fortune" className={linkClass}>Divine Fortune</Link> (NetEnt), Hall of Gods (NetEnt) og Arabian Nights (NetEnt). En sammenligning af base game-kvalitet og jackpot-profil afslører markante forskelle:</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Progressive jackpot-slots sammenligning</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-left py-2">Basis-RTP</th><th className="text-left py-2">Jackpot-type</th><th className="text-left py-2">Gns. jackpot</th><th className="text-left py-2">Base game kvalitet</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Mega Moolah</td><td>88,12 %</td><td>Globalt netværk</td><td>€5-8M</td><td>Svag</td></tr>
+                  <tr className="border-b"><td className="py-2">Mega Fortune</td><td>96,60 %</td><td>Netværk</td><td>€2-5M</td><td>God</td></tr>
+                  <tr className="border-b"><td className="py-2">Divine Fortune</td><td>96,59 %</td><td>Lokal/pool</td><td>€50-200K</td><td>Fremragende</td></tr>
+                  <tr><td className="py-2">Hall of Gods</td><td>95,30 %</td><td>Netværk</td><td>€3-7M</td><td>Moderat</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sammenligningen er tydelig: Mega Moolah har den dårligste base game (88,12 % RTP) men de største gennemsnitlige jackpots. Mega Fortune tilbyder markant bedre base game-økonomi med moderat jackpot-størrelse. <Link to="/casinospil/spillemaskiner/divine-fortune" className={linkClass}>Divine Fortune</Link> er det mest balancerede valg med fremragende base game OG lokal jackpot-mulighed – den anbefales til spillere, der ønsker jackpot-spænding uden at ofre base game-value.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der specifikt jager multimillion-jackpots, er Mega Moolah stadig den ubestridte nr. 1 – ingen konkurrent matcher dens globale netværkseffekt og gennemsnitlige jackpot-størrelse. Men for spillere, der ønsker en mere balanceret spilleoplevelse med rimelig jackpot-mulighed, er Mega Fortune eller Divine Fortune objektivt bedre valg.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Free Spins-Mekanikken: Base Game's Eneste Lyspunkt</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah's free spins-runde udløses af 3+ scatter-symboler (abe) og tildeler 15 free spins med en fast 3× multiplikator på ALLE gevinster. Scatter-frekvensen estimeres til ca. 1/150-200 spins – relativt gennemsnitligt for en 5×3 slot. Retrigger er muligt med yderligere 3+ scatters under bonusrunden, med samme 15-spins belønning.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den faste 3× multiplikator er den eneste mekanisme, der løfter Mega Moolah's base game over det basale. Med 25 paylines og 15 spins producerer en gennemsnitlig bonusrunde estimeret 15-30× indsatsen – modest sammenlignet med de fleste moderne slots (typisk 30-100×). Den 3× multiplikator tredobler effektivt alle gevinster, men den underliggende paytable er så konservativ, at selv tredobbelte gevinster sjældent er imponerende.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">EV-perspektiv på free spins: med en trigger-frekvens på ~1/175 og gennemsnitlig bonusvalue på ~20× bidrager free spins med ca. 0,114× pr. spin til den samlede RTP – eller ca. 11,4 procentpoint af den totale 88,12 % RTP. De resterende ~76,7 % kommer fra base game-gevinster. Denne fordeling er usædvanligt base-game-tung sammenlignet med moderne høj-volatilitets slots, der typisk allokerer 30-40 % af RTP til bonusrunder.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der har oplevet moderne bonusrunder med akkumulerende multiplikatorer, progressive funktioner og multiple triggere, kan Mega Moolah's free spins føles antikverede. Det er de også – designet er fra 2006 og er aldrig blevet opdateret. Men de tjener deres formål: at holde spillere engagerede mellem de sjældne jackpot-trigger-øjeblikke, der er den egentlige grund til at spille Mega Moolah.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Microgaming's Progressive Netværk: Teknisk Indsigt</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>'s progressive jackpot-netværk er det ældste og mest velafprøvede i online casino-industrien. Netværket forbinder hundredvis af casinoer globalt og muliggør de astronomiske jackpot-beløb ved at samle bidrag fra millioner af daglige spins. Den tekniske arkitektur er bygget på et centralt jackpot-system, der kommunikerer med individuelle casino-servere i realtid.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-bidraget fungerer som følger: af hver indsats allokeres ca. 8-12 % til de fire jackpot-puljer. Fordelingen er: Mega (~2-3 %), Major (~1-2 %), Minor (~2-3 %) og Mini (~2-3 %). De præcise procenter er ikke offentligt tilgængelige og kan variere. Disse bidrag er den direkte årsag til den lave basis-RTP – spillere finansierer bogstaveligt jackpot-puljerne med deres indsatser.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">En vigtig teknisk detalje: jackpot-triggermekanismen er serverside og uafhængig af spillets RNG. Det betyder, at jackpotten KAN falde på ethvert spin, uanset om det er et gevindende eller tabende spin i base game. Denne uafhængighed er verificeret af uafhængige auditorer og sikrer, at jackpotten ikke kan "manipuleres" af spilserveren. Microgaming's system er certificeret af eCOGRA og gennemgår regelmæssige sikkerhedsaudits.</p>
+          <p className="text-muted-foreground leading-relaxed">Netværkseffekten er Mega Moolah's ultimative konkurrencefordel: fordi alle casinoer bidrager til den samme pulje, vokser jackpotten hurtigere end lokale eller semi-lokale progressive systemer. En lokal jackpot-slot som <Link to="/casinospil/spillemaskiner/divine-fortune" className={linkClass}>Divine Fortune</Link> modtager bidrag fra ét casino ad gangen, hvilket begrænser væksten til €50.000-200.000 typisk. Mega Moolah's globale pulje kan vokse med €50.000-100.000 pr. DAG – en skala, der er praktisk umulig at replikere uden et globalt netværk.</p>
+        </section>
+
         <SlotDataLink slotSlug="mega-moolah" slotName="Mega Moolah" />
         <SlotProviderLink slotSlug="mega-moolah" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/mega-moolah" />
