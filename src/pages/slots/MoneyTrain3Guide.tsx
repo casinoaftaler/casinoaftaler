@@ -360,6 +360,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             De høje ruin-sandsynligheder understreger, at Money Train 3 kun bør spilles med penge, du er fuldt forberedt på at miste. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-principper er særligt kritiske her. Sæt absolutte tab-grænser før du starter, og overhold dem uden undtagelse. Den emotionelle tiltration af lange tabsrækker i ekstremt volatile slots er veldokumenteret og kan lede til uhensigtsmæssig adfærd.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Spilleregler}
+            alt="Money Train 3 officielle spilleregler med RTP 94,00% og gevinstloft på 100.000x indsatsen"
+            caption="Spillereglerne bekræfter 5 kolonner, 4 rækker, 40 betalingslinjer og et gevinstloft på 100.000× indsatsen. Bemærk: Den viste RTP på 94,00 % er den reducerede version – tjek altid din konfiguration."
+            size="medium"
+          />
         </section>
 
         {/* ── Sammenligning ── */}
