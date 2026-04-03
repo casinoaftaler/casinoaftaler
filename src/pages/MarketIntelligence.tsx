@@ -6,7 +6,6 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
-import GuideHeroImage from "@/components/GuideHeroImage";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +24,6 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { getRouteLastmod } from "@/lib/seoRoutes";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
-const heroAlt = "Markedsindsigt for danske casinoer med verificerede licenssignaler, compliance-data og bonusanalyse";
 
 const faqs = [
   {
