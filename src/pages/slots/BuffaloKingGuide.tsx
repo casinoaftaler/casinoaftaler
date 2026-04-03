@@ -61,10 +61,6 @@ const BuffaloKingGuide = () => {
         </div>
        </section>
 
-       <div className="container mb-8">
-         <ReviewScreenshot src={buffalokingLogo} alt="Buffalo King spillemaskinens logo og artwork fra Pragmatic Play med det nordamerikanske prærie-tema" caption="Buffalo King – Pragmatic Play's populære prærie-slot med 93.750× max win" size="medium" eager />
-       </div>
-
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
         <section className="mb-10">
