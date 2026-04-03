@@ -86,7 +86,8 @@ const FireJokerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="7 min" />
+        <AuthorMetaBar author="kevin" readTime="14 min" />
+        <SnippetAnswer answer="Fire Joker er en klassisk 3×3 slot fra Play'n GO med 96,15 % RTP, lav-medium volatilitet og 800× max win. To bonusfunktioner – Respin of Fire (automatisk respin ved 2/3 matchende hjul) og Wheel of Multipliers (2-10× ved fuld skærm) – gør den til et ideelt valg for begyndere og bonusgennemspilning." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Fire Joker spillemaskine" loading="eager" />
         </div>
