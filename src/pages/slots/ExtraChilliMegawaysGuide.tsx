@@ -93,7 +93,7 @@ const ExtraChilliMegawaysGuide = () => {
             alt="Extra Chilli Megaways spildetaljer – RTP 96,82 %"
             caption="Spildetaljer: RTP bekræftet til 96,82 %. Maks. gevinst er listet som 'Ukendt' af operatøren – potentialet er dog enormt pga. den ubegrænsede multiplikator."
             size="medium"
-            loading="eager"
+            eager
           />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">96,82 % RTP placerer Extra Chilli i den absolutte elite – kun en håndfuld slots overgår denne value. <strong>Bemærk:</strong> operatøren lister maks. gevinst som "Ukendt", fordi den ubegrænsede multiplikator under free spins teoretisk tillader ekstremt høje gevinster. Brancheestimater peger på ca. 20.000×+, men BTG har ikke officielt specificeret et cap. Den kvalificerer naturligvis til vores <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-spillemaskiner</Link> liste.</p>
