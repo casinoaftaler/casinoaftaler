@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.webp";
+
 import heroImage from "@/assets/heroes/jammin-jars-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
