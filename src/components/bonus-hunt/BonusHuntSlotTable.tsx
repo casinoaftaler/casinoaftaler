@@ -232,15 +232,9 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                   </td>
                   <td className="px-3 py-2 text-xs text-muted-foreground hidden sm:table-cell">
                     {(() => {
-                      const slotLower = slot.slot.toLowerCase();
-                      let requester = requesterMap?.get(slotLower);
+                      let requester = requesterMap?.get(slot.slot.toLowerCase());
                       if (!requester && requesterMap) {
-                        for (const [key, val] of requesterMap) {
-                          if (slotLower.includes(key) || key.includes(slotLower)) {
-                            requester = val;
-                            break;
-                          }
-                        }
+                        requester = findBestRequesterMatch(slot.slot, requesterMap);
                       }
                       if (!requester) return null;
                       const displayName = requester.displayName;
