@@ -8,7 +8,7 @@ import { useBroadcastChat } from "@/hooks/useBroadcastChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
-import chatBubbleIcon from "@/assets/icons/chat-bubble-3d.png";
+
 
 export function SupportChatWidget() {
   const { user } = useAuth();
