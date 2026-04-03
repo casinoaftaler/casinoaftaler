@@ -11,12 +11,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import screenshotGameplay from "@/assets/screenshots/divine-fortune-gameplay.webp";
+import screenshotRegler from "@/assets/screenshots/divine-fortune-regler.webp";
+import screenshotFreeSpins from "@/assets/screenshots/divine-fortune-free-spins.webp";
+import screenshotJackpot from "@/assets/screenshots/divine-fortune-jackpot.webp";
+import screenshotFranchise from "@/assets/screenshots/divine-fortune-franchise.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -83,6 +90,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortune opererer på et standard 5×3 grid med 20 faste gevinstlinjer. Wild-symbolerne har en unik "Falling Wilds"-mekanik: de falder én position ned for hvert spin og forbliver på griddet, indtil de falder ud i bunden. Denne mekanik skaber en bro mellem base game og bonusfunktioner, da wilds kan persistere over flere spins og generere uventede gevinstkombinationer.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency i base game er estimeret til 30-35 %, hvilket er højere end de fleste high-volatility slots men lavere end ultra-lav volatilitets-titler som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>. Falling Wilds bidrager med ekstra 5-8 % effektiv hit frequency, da persisterende wilds skaber gevinster over multiple spins. Den samlede effektive gevinstrate er altså tættere på 38-43 %.</p>
           <p className="text-muted-foreground leading-relaxed">Jackpot-bidraget til RTP estimeres til cirka 3-5 % af den samlede 96,59 %. Det betyder at base game + free spins RTP er cirka 91-93 % – stadig acceptabelt, men det understreger at jackpot-chancen er en integreret del af spillets matematiske værdi. Spillere, der aldrig rammer jackpot-spillet, vil opleve en lavere effektiv RTP end den angivne 96,59 %.</p>
+          <ReviewScreenshot
+            src={screenshotGameplay}
+            alt="Divine Fortune Black gameplay – 5×3 grid med Medusa, løve, tyr og tre progressive jackpots: Minor 50, Mega 5.000 og Major 500"
+            caption="Divine Fortune Black – den nyeste variant i franchisen. Bemærk de tre progressive jackpots øverst: Minor (50 kr.), Mega (5.000 kr.) og Major (500 kr.) ved 2 kr. indsats."
+            eager
+          />
         </section>
 
         <section className="mb-10">
@@ -91,6 +104,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild on Wild-funktionen tilføjer et yderligere lag: hvis et nyt wild-symbol lander oven på et allerede eksisterende Falling Wild, ekspanderer det til at dække hele hjulet (3 positioner). Dette skaber en 3-position wild kolonne, som dramatisk øger gevinstpotentialet for det pågældende spin. Wild on Wild-sandsynligheden er lav (estimeret 1-2 % af spins med aktive Falling Wilds), men når det sker, er gevinsterne typisk 20-50× indsatsen.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Fra et matematisk perspektiv bidrager Falling Wilds med estimeret 12-15 % af spillets samlede return. Uden denne mekanik ville Divine Fortunes base game-RTP falde til cirka 78-81 % – langt under acceptabel standard. Falling Wilds er altså ikke et gimmick, men en matematisk nødvendighed for at opretholde RTP'en inden for rammerne af et jackpot-system, der absorberer 3-5 % af hver indsats.</p>
           <p className="text-muted-foreground leading-relaxed">Den strategiske implikation er, at Falling Wilds giver Divine Fortune en mere jævn gevinstfordeling end typiske jackpot-slots. Hvor Mega Moolah-typer har ekstrem volatilitet (enten jackpot eller ingenting), leverer Divine Fortune regelmæssige mellemstore gevinster via Falling Wilds, som holder bankrollen stabil mellem jackpot-forsøg. Denne egenskab gør den velegnet til længere sessioner.</p>
+          <ReviewScreenshot
+            src={screenshotRegler}
+            alt="Divine Fortune Black spilleregler – 5 tromler, 3 rækker, 20 indsatslinjer, Cash Prize-indsamling, Re-Spins og Expanding Symbols"
+            caption="Spillereglerne for Divine Fortune Black bekræfter 5×3 grid med 20 faste indsatslinjer, Cash Prize-indsamling, Re-Spins og Expanding Symbols-funktion."
+            size="medium"
+          />
         </section>
 
         <InlineCasinoCards />
@@ -123,6 +142,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">I jackpot-segmentet konkurrerer Divine Fortune primært med Mega Moolah (Microgaming), Hall of Gods (NetEnt) og Mega Fortune (NetEnt). Divine Fortunes fordel er entydig: den højeste RTP (96,59 % vs. 88-94 % for konkurrenterne) og den laveste volatilitet. Ulempen er en mindre jackpot – Mega Moolah har leveret jackpots på over 100 mio. kr., mens Divine Fortune typisk holder sig under 1 mio. kr.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">For den rationelle spiller er valget klart: Divine Fortunes kombination af fair RTP og realistisk jackpot-potentiale giver den bedste EV. De multi-million jackpot-slots er matematisk straffende – du betaler en massiv RTP-reduktion for en infinitesimal chance for en kæmpe jackpot. Divine Fortune tilbyder en mere proportional risiko-reward balance.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med non-jackpot slots som <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link> (som har en fixed Money Respin-jackpot) tilbyder Divine Fortune en ægte progressiv mekanik med ubegrænset potentiale. Wolf Golds Mega Jackpot er fast (typisk 1.000× indsatsen), mens Divine Fortunes vokser over tid. For spillere, der specifikt søger jackpot-spænding med fair matematik, er Divine Fortune det overlegne valg.</p>
+          <ReviewScreenshot
+            src={screenshotJackpot}
+            alt="Divine Fortune Cash Prize og Jackpot-indsamling – Cash Prize-symboler med værdier fra 1x til 20x og tre jackpots: Minor, Major og Mega"
+            caption="Cash Prize-symboler med værdier fra 1× til 20× indsatsen. De tre Jackpot-symboler (Minor, Major, Mega) kan lande på tromle 2-4 i hovedspillet og overalt i Fortune Spins."
+            size="medium"
+          />
         </section>
 
         {/* ── NetEnt's Jackpot-Arkitektur ── */}
@@ -157,6 +182,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Fra et strategisk perspektiv er det vigtigt at forstå, at free spins i Divine Fortune primært er en RTP-stabilisator – de bidrager med estimeret 15-20 % af spillets samlede tilbagebetaling. Den primære appeal forbliver jackpot-mekanikken, men free spins sikrer, at sessioner mellem jackpot-forsøg ikke føles tomme. Denne dobbelte bonusstruktur (free spins + jackpot game) er en af grundene til, at Divine Fortune har en mere tilfredsstillende session-dynamik end rent jackpot-fokuserede titler.
           </p>
+          <ReviewScreenshot
+            src={screenshotFreeSpins}
+            alt="Divine Fortune free spins regler – 3 scatters giver 5 Divine Spins, 4 scatters giver 8, og 5 scatters giver 12"
+            caption="Free Spins-oversigt: 3 Scatter-symboler = 5 Divine Spins, 4 = 8, 5 = 12. Spilleren vælger mellem Divine Spins og Fortune Spins."
+            size="medium"
+          />
         </section>
 
         {/* ── Wagering med jackpot-slots ── */}
@@ -200,7 +231,12 @@ const DivineFortuneGuide = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Den Faireste Jackpot-Slot i Markedet</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortune er et sjældent eksempel på en jackpot-slot, der ikke kræver massive kompromiser på RTP. Med 96,59 % return, medium volatilitet og en progressiv Mega Jackpot er det den mest balancerede jackpot-titel i markedet – og vores top-anbefaling for spillere, der ønsker jackpot-spænding uden at betale en urimelig matematisk pris.</p>
-          <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
+          <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. Franchisen er i dag udvidet med Divine Fortune Black og Divine Fortune Megaways – begge med moderniseret gameplay og den samme progressive jackpot-mekanik. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune-serien det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
+          <ReviewScreenshot
+            src={screenshotFranchise}
+            alt="Divine Fortune franchise-oversigt – Divine Fortune Black og Divine Fortune Megaways tilgængelige på dansk casino"
+            caption="Divine Fortune-franchisen omfatter i dag både Divine Fortune Black (ny) og Divine Fortune Megaways, begge tilgængelige på danske casinoer."
+          />
         </section>
 
         <SlotDataLink slotSlug="divine-fortune" slotName="Divine Fortune" />
