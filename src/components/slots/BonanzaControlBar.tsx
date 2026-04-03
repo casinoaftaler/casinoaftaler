@@ -417,7 +417,7 @@ export function BonanzaControlBar({
                 )}
                 style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
               >
-                {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><MenuIcon iconName="rotate-cw" className="h-3.5 w-3.5 text-white" />Autoplay</>)}
+                {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><RotateCw className="h-3.5 w-3.5 text-white" />Autoplay</>)}
               </button>
             )}
           />

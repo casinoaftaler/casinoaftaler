@@ -165,7 +165,7 @@ export function GatesControlBar({
           onClick={() => onBetChange(getPrevBet(bet, minBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
-          <MenuIcon iconName="minus" className="h-3.5 w-3.5" />
+          <Minus className="h-3.5 w-3.5" />
         </button>
         <span className="w-8 text-center font-bold text-lg tabular-nums text-pink-100">
           {bet}
