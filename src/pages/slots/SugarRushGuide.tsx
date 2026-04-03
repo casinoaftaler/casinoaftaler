@@ -49,7 +49,7 @@ const SugarRushGuide = () => {
       <SEO title="Sugar Rush – Cluster Pays & Multiplikator-Analyse" description="Komplet analyse af Sugar Rush: akkumulerende multiplikatorer, cluster pays mekanik, RTP 96,50 % og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(310 65% 28%), hsl(280 55% 22%) 40%, hsl(330 70% 30%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="grid-3x3" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & positionsmultiplikatorer</Badge>

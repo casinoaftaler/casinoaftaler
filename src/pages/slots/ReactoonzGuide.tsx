@@ -102,7 +102,7 @@ const ReactoonzGuide = () => {
         description="Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(270 60% 30%), hsl(290 50% 25%) 40%, hsl(250 65% 28%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="atom" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>

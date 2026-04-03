@@ -94,7 +94,7 @@ const TheDogHouseGuide = () => {
         description="Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(30 70% 28%), hsl(20 60% 22%) 40%, hsl(45 75% 30%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="dog" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>

@@ -53,7 +53,7 @@ const JokerStrikeGuide = () => {
         jsonLd={[articleSchema, faqJsonLd]}
       />
 
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(40 80% 25%), hsl(30 70% 20%) 40%, hsl(20 60% 18%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="gauge" className="mr-1.5 h-3.5 w-3.5" /> Markedets højeste RTP</Badge>
