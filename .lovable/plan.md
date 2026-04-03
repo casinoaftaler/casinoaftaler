@@ -1,31 +1,43 @@
 
 
-# Plan: Show Orb Reaction Video on Spins with Orbs
+# Plan: Fix Orb Flickering, Scatter Glow, and Win Highlight in Gates of Fedesvin
 
-## Summary
-Replace the idle looping character video with a one-shot reaction video whenever orbs (multiplier bombs) appear on the grid. The reaction video plays once using the same chroma key WebGL effect, same position, and same dimensions. When no orbs are present, the idle video continues looping as usual.
+## Problems Identified
+
+1. **Orb (bomb) flickering on wins**: When a win occurs, bomb symbols flicker because the `cellAnim` state transitions cause the bomb render condition to fail momentarily — the bomb rendering block excludes many states (`removing`, `exploding`, etc.) but doesn't account for `winning` properly, causing re-renders that flash the symbol.
+
+2. **Scatter glow around box, not image**: The `gates-scatter-trigger-pulse`, `gates-scatter-tease`, and `gates-scatter-tease-intense` classes are applied to the **container div** (which is a rectangle), so `box-shadow` glows around the box. Need to move these to the `<img>` element and use `drop-shadow` filter (like Bonanza does).
+
+3. **Win highlight around box, not image**: `gates-win-highlight` and `gates-gold-highlight` are applied to the container div. The animation uses `filter: drop-shadow(...)` but also `box-shadow` in bonus mode. Need to apply the glow on the `<img>` element instead (matching Bonanza's `bonanza-candy-highlight-img` pattern).
 
 ## Changes
 
-### 1. Copy uploaded video to project
-- Copy `user-uploads://hf_20260403_100822_de065929-5f60-4b3f-b9e1-8e12cbd523f4.mp4` to `public/videos/gates-character-orbs.mp4`
+### 1. `src/components/slots/GatesColumn.tsx` — Move highlight/scatter classes to `<img>`
 
-### 2. Update `ChromaKeyVideo` component to support one-shot playback
-- Add optional `loop` prop (default `true` for backward compat)
-- Add optional `playTrigger` prop (a counter/key that triggers replay from start)
-- When `playTrigger` changes, reset video to start and play once (no loop)
-- When video ends in non-loop mode, keep showing last frame (or hide canvas)
+- Remove `gates-win-highlight`, `gates-gold-highlight`, `gates-scatter-trigger-pulse`, `gates-scatter-tease`, `gates-scatter-tease-intense` from the container div
+- Add these as classes on the `<img>` element instead (same pattern as Bonanza's `bonanza-candy-highlight-img` and `scatterAnimClass`)
+- Keep container div clean with just layout and drop/fill animations
+- For bomb symbols: also apply win highlight to the bomb `<img>` when winning
 
-### 3. Update `GatesSlotGame.tsx`
-- Add state: `orbVideoTrigger` (number, incremented when orbs detected)
-- Add state: `showOrbVideo` (boolean, true while orb video should play)
-- In `processTumbleSteps`, when `multiplierBombs` are found on any step, set `showOrbVideo = true` and increment `orbVideoTrigger`
-- When orb video ends, set `showOrbVideo = false`
-- Conditionally render: when `showOrbVideo` is true, render `ChromaKeyVideo` with `src="/videos/gates-character-orbs.mp4"` and `loop={false}`. Otherwise render the existing idle loop video.
-- Both videos use identical position/size/className props
+### 2. `src/styles/gates-animations.css` — Convert box-based glow to filter-based
 
-### Technical Details
-- The `ChromaKeyVideo` component needs a small `onEnded` callback prop so the parent knows when the one-shot video finishes
-- The trigger detection happens at the start of the bomb blow-up sequence (line ~397) — set `showOrbVideo = true` before the bomb animation loop begins
-- After the video ends (via `onEnded`), revert to idle video
+- Update `gates-win-highlight` keyframes: remove `box-shadow`, use only `filter: drop-shadow(...)` (alpha-aware glow around actual symbol shape)
+- Update `gates-gold-highlight` similarly
+- Remove the `::after` pseudo-element from `gates-scatter-trigger-pulse` (it draws a rectangular ring)
+- Ensure scatter pulse uses `filter: drop-shadow(...)` only
+
+### 3. `src/styles/gates-intensity.css` — Fix scatter tease animations
+
+- Remove `box-shadow` from `gates-scatter-tease-glow` and `gates-scatter-tease-glow-intense` keyframes
+- Use only `filter: drop-shadow(...)` for alpha-aware glow
+
+### 4. `src/styles/gates-bonus-intensity.css` — Fix bonus win highlight
+
+- Remove `box-shadow` from `[data-bonus="true"] .gates-win-highlight` override
+- Use `filter` only
+
+## Technical Notes
+
+- The key insight from Bonanza: glow classes go on the `<img>` element, not the container div. `drop-shadow()` CSS filter respects alpha channels, while `box-shadow` always draws around the bounding box.
+- Bomb flickering is caused by state transitions — ensuring bombs stay visible during `winning` state by not hiding them.
 
