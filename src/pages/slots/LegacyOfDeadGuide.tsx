@@ -38,7 +38,7 @@ const legacyOfDeadFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er RTP'en på Legacy of Dead?",
-    answer: "Legacy of Dead har en RTP på 96,58 %, hvilket er højere end Book of Dead (96,21 %). House edge er 3,42 %, som placerer den i det øvre interval for high-volatility slots. RTP'en er fast hos Play'n GO og varierer ikke mellem casinoer. Denne højere RTP kombineret med det progressive expanding symbol-system gør Legacy of Dead til et matematisk attraktivt alternativ til sin forgænger.",
+    answer: "Legacy of Dead har en gennemsnitlig RTP på 94,51 %, hvilket er lavere end Book of Dead (96,21 %). House edge er 5,49 %. Bemærk at RTP'en er 'achieved through participation' ifølge Play'n GO – den faktiske RTP afhænger af spillerens adfærd (f.eks. brug af gamble-funktionen). Det progressive expanding symbol-system giver dog Legacy of Dead et unikt gevinstpotentiale, der kan kompensere for den lavere basis-RTP i forlængede bonusrunder.",
   },
   {
     question: "Hvad er max win i Legacy of Dead?",
@@ -60,13 +60,13 @@ const legacyOfDeadFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Legacy of Dead god til bonusgennemspilning?",
     answer: (
       <>
-        Nej, Legacy of Dead er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonusgennemspilning</Link> på grund af dens høje volatilitet. Selvom RTP'en er fair (96,58 %), vil de lange tørkeperioder mellem bonusrunder gøre det svært at gennemspille omsætningskrav konsistent. For bonusgennemspilning anbefaler vi lavere volatilitetsalternativer som Fire Joker eller Starburst.
+        Nej, Legacy of Dead er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonusgennemspilning</Link> på grund af dens høje volatilitet og lave RTP (94,51 %). De lange tørkeperioder mellem bonusrunder gør det svært at gennemspille omsætningskrav konsistent. For bonusgennemspilning anbefaler vi lavere volatilitetsalternativer som Fire Joker eller Starburst.
       </>
     ),
   },
   {
     question: "Kan man købe bonusrunden i Legacy of Dead?",
-    answer: "Nej, Legacy of Dead har ikke en Bonus Buy-funktion. Free spins skal triggers organisk ved at lande 3+ scatter-symboler (Pharaoh's Tomb). Gennemsnitlig triggerfrekvens er cirka 1 pr. 180-220 spins. Fraværet af Bonus Buy gør spillet mere tålmodigheds-krævende end moderne alternativer, men sikrer også at RTP'en ikke påvirkes af en Bonus Buy-mekanisme.",
+    answer: "Nej, Legacy of Dead har ikke en Bonus Buy-funktion. Free spins skal triggers organisk ved at lande 3+ scatter-symboler (Pharaoh's Tomb), som giver 8 free spins. Gennemsnitlig triggerfrekvens er cirka 1 pr. 180-220 spins. Fraværet af Bonus Buy gør spillet mere tålmodigheds-krævende end moderne alternativer, men sikrer også at RTP'en ikke påvirkes af en Bonus Buy-mekanisme.",
   },
   {
     question: "Hvad er volatiliteten i Legacy of Dead?",
@@ -78,7 +78,7 @@ const LegacyOfDeadGuide = () => {
   const faqJsonLd = buildFaqSchema(legacyOfDeadFaqs);
   const articleSchema = buildArticleSchema({
     headline: "Legacy of Dead – Progressiv Expanding Symbol-Analyse",
-    description: "Dybdegående analyse af Legacy of Dead: progressivt expanding symbol-system, sammenligning med Book of Dead, RTP 96,58 % og EV-beregninger.",
+    description: "Dybdegående analyse af Legacy of Dead: progressivt expanding symbol-system, sammenligning med Book of Dead, RTP 94,51 % og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`,
     datePublished: "2026-04-05",
     authorName: "Jonas",
@@ -95,7 +95,7 @@ const LegacyOfDeadGuide = () => {
     <>
       <SEO
         title="Legacy of Dead – Expanding Symbols & RTP"
-        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 96,58 %, sammenligning med Book of Dead og EV-beregninger."
+        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 94,51 %, sammenligning med Book of Dead og EV-beregninger."
         jsonLd={[faqJsonLd, articleSchema, videoJsonLd]}
       />
 
@@ -158,21 +158,21 @@ const LegacyOfDeadGuide = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                 <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Play'n GO</strong></div>
                 <div><span className="text-muted-foreground">Udgivelsesår:</span><br /><strong>2020</strong></div>
-                <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,58 %</strong></div>
+                <div><span className="text-muted-foreground">RTP:</span><br /><strong>94,51 %</strong></div>
                 <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Høj (4/5)</strong></div>
                 <div><span className="text-muted-foreground">Max Win:</span><br /><strong>5.000× indsats</strong></div>
                 <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (10 linjer)</strong></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,10 kr.</strong></div>
                 <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>1.000 kr.</strong></div>
-                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,42 %</strong></div>
+                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>5,49 %</strong></div>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Legacy of Dead opererer på et standard 5×3 grid med 10 faste gevinstlinjer – identisk med Book of Dead. Scatter-symbolet (Pharaoh's Tomb) fungerer både som scatter og wild, en dual-funktion der er kendetegnende for "Book of"-genren. Tre eller flere scatters trigger free spins (10 stk.), med mulighed for retrigger ved yderligere 3+ scatters.
+            Legacy of Dead opererer på et standard 5×3 grid med 10 faste gevinstlinjer – identisk med Book of Dead. Scatter-symbolet (Pharaoh's Tomb) fungerer både som scatter og wild, en dual-funktion der er kendetegnende for "Book of"-genren. Tre eller flere scatters trigger free spins (8 stk.), med mulighed for retrigger ved yderligere 3+ scatters, der giver yderligere 8 free spins.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>'en på 96,58 % er en væsentlig forbedring over Book of Dead's 96,21 %. Denne 0,37 procentpoint-forskel lyder beskeden, men over 10.000 spins à 10 kr. repræsenterer det en forventet besparelse på 370 kr. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> på 3,42 % placerer Legacy of Dead i det absolutte topkvartil for high-<Link to="/ordbog/volatilitet" className={linkClass}>volatility</Link> slots – bedre end de fleste konkurrenter i "Book of"-genren.
+            <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>'en på 94,51 % er lavere end Book of Dead's 96,21 %. Denne forskel er væsentlig: over 10.000 spins à 10 kr. repræsenterer det et ekstra forventet tab på 1.700 kr. sammenlignet med Book of Dead. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> på 5,49 % er høj for en moderne slot og placerer Legacy of Dead i den dyrere ende af "Book of"-genren. Bemærk at Play'n GO angiver, at RTP'en er "achieved through participation", hvilket indebærer at gamble-funktionen kan påvirke den effektive RTP.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Bonusrundens estimerede triggerfrekvens er cirka 1 pr. 180-220 spins – marginalt lavere end Book of Dead (1 pr. 150-200). Denne lidt lavere frekvens kompenseres af det progressive expanding symbol-systems højere gennemsnitlige bonus-udbetaling, især i runder med retriggers. Den forventede gennemsnitlige bonusrunde-gevinst er estimeret til 70-100× indsatsen for runder uden retrigger, stigende til 150-300× for runder med 1-2 retriggers.
@@ -233,9 +233,9 @@ const LegacyOfDeadGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">96,58 %</td><td className="text-center">96,21 %</td></tr>
-                    <tr className="border-b"><td className="py-2">Forventet tab</td><td className="text-center">-342 kr.</td><td className="text-center">-379 kr.</td></tr>
-                    <tr className="border-b"><td className="py-2">EV-forskel</td><td className="text-center" colSpan={2}>+37 kr. til Legacy</td></tr>
+                    <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">94,51 %</td><td className="text-center">96,21 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Forventet tab</td><td className="text-center">-549 kr.</td><td className="text-center">-379 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">EV-forskel</td><td className="text-center" colSpan={2}>-170 kr. til Legacy (dyrere)</td></tr>
                     <tr><td className="py-2">Bonus-gennemsnit</td><td className="text-center">85-110×</td><td className="text-center">70-90×</td></tr>
                   </tbody>
                 </table>
@@ -246,7 +246,7 @@ const LegacyOfDeadGuide = () => {
             Den reelle forskel ligger i bonusrundens gevinstfordeling. Book of Dead's bonusrunder har en relativt snæver gevinstspredning (de fleste runder leverer 20-80× indsatsen). Legacy of Dead's progressive system skaber en bredere fordeling med en "fat tail" – de fleste runder leverer 15-60× (lidt lavere end Book of Dead), men runder med retriggers kan eksplodere til 200-500×. Denne asymmetri er tiltrækkende for spillere, der værdsætter upside-potentiale.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Konklusion: For spillere, der planlægger sessioner på 500+ spins, er Legacy of Dead det objektivt bedre valg baseret på RTP. For korte sessions eller spillere, der foretrækker en mere forudsigelig bonusrunde, er Book of Dead stadig et gyldigt alternativ. Valget handler ultimativt om præference for konsistens (Book of Dead) vs. progressivt potentiale (Legacy of Dead).
+            Konklusion: Fra et rent EV-perspektiv er Book of Dead det billigere valg med sin højere RTP (96,21 % vs. 94,51 %). Legacy of Dead's appel ligger i det progressive expanding symbol-system, der kan levere exceptionelle bonusrunder med retriggers. Valget handler om præference for lavere house edge (Book of Dead) vs. progressivt upside-potentiale (Legacy of Dead).
           </p>
         </section>
 
@@ -341,7 +341,7 @@ const LegacyOfDeadGuide = () => {
             Retrigger-Matematik: Sandsynligheder og Kumulativt Potentiale
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Retriggers er nøglen til Legacy of Dead's maksimale gevinstpotentiale. Hvert retrigger tilføjer ikke blot 10 ekstra free spins, men også et nyt expanding symbol – en mekanik, der gør lange bonusrunder eksponentielt mere værdifulde. Lad os modellere sandsynlighederne:
+            Retriggers er nøglen til Legacy of Dead's maksimale gevinstpotentiale. Hvert retrigger tilføjer ikke blot 8 ekstra free spins, men også et nyt expanding symbol – en mekanik, der gør lange bonusrunder eksponentielt mere værdifulde. Lad os modellere sandsynlighederne:
           </p>
 
           <Card className="mb-6">
@@ -376,7 +376,7 @@ const LegacyOfDeadGuide = () => {
             I praksis vil ca. 70 % af dine bonusrunder have 0 retriggers og resultere i beskedne gevinster (50-80× indsatsen). De resterende 30 % vil have mindst 1 retrigger og levere markant bedre resultater. Det er denne 30 %-andel, der driver størstedelen af Legacy of Dead's "big win"-momenter og giver spillere den spænding, der fastholder dem ved spillet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot 10 ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead matematisk overlegen i scenarier med retriggers.
+            For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead's bonusrunder potentielt mere værdifulde end Book of Dead's, trods den lavere basis-RTP.
           </p>
           <ReviewScreenshot
             src={legacyOfDeadCasinoLobby}
@@ -413,7 +413,7 @@ const LegacyOfDeadGuide = () => {
             Legacy of Dead er primært designet til erfarne slot-spillere, der allerede kender og elsker Book of Dead-formlen, men ønsker en evolution med højere ceiling. Det progressive expanding symbol-system tilføjer et strategisk lag – retriggers er ikke blot "gratis spins", men en meningsfuld eskalering af gevinstpotentialet, som gør lange bonusrunder til de mest spændende øjeblikke.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Spillet appellerer også til matematisk orienterede spillere, der værdsætter den højere RTP (96,58 % vs. 96,21 %) og det asymmetriske gevinstpotentiale. Hvis du planlægger længere sessioner og har en bankroll, der kan absorbere volatiliteten, er Legacy of Dead det objektivt bedre valg fra et EV-perspektiv.
+            Spillet appellerer også til matematisk orienterede spillere, der værdsætter det asymmetriske gevinstpotentiale fra det progressive system. Bemærk dog, at RTP'en (94,51 %) er lavere end Book of Dead's (96,21 %), så fra et rent EV-perspektiv er Book of Dead det billigere valg. Legacy of Dead's appel ligger i det progressive expanding symbol-system, der kan levere exceptionelle bonusrunder ved retriggers.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Spillet er IKKE velegnet til nye spillere (for komplekst at forstå det progressive system), spillere med lav risikotolerance (høj volatilitet) eller bonus-spillere (svært at gennemspille). For disse segmenter anbefaler vi henholdsvis <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>, <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> eller <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link>.
@@ -427,10 +427,10 @@ const LegacyOfDeadGuide = () => {
             Opfølgeren Der Overgår Originalen
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Legacy of Dead er et sjældent eksempel på en opfølger, der matematisk set er overlegen i forhold til originalen. Den højere RTP, det progressive expanding symbol-system og den bevarede enkelthed gør den til vores anbefaling for spillere i "Book of"-genren. Play'n GO har formået at evolve en proven formel uden at kompromittere dens kerneappel.
+            Legacy of Dead tilbyder en unik mekanik i "Book of"-genren med sit progressive expanding symbol-system. Selvom RTP'en (94,51 %) er lavere end Book of Dead's (96,21 %), kompenserer det kumulative expanding symbol-system med potentielt mere eksplosive bonusrunder ved retriggers. Play'n GO har formået at evolve en proven formel med en mekanik, der belønner tålmodighed.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Med en RTP på 96,58 %, max win på 5.000× og en unik progressiv mekanik er Legacy of Dead et must-try for enhver seriøs slot-spiller. Udforsk vores komplette <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> for at finde det perfekte match til din spillestil.
+            Med max win på 5.000× og en unik progressiv mekanik er Legacy of Dead et interessant alternativ for erfarne slot-spillere, der accepterer den højere house edge (5,49 %) mod potentialet for exceptionelle bonusrunder. Udforsk vores komplette <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> for at finde det perfekte match til din spillestil.
           </p>
         </section>
 
