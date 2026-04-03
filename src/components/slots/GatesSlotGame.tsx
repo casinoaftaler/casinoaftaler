@@ -1089,6 +1089,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   isBonusActiveRef.current = false;
                   setBonusAutoSpinPending(false);
                   setCumulativeMultiplier(0);
+                  cumulativeMultiplierRef.current = 0;
                   setRunningMultiplier(0);
                   setBonusWinnings(0);
                   setRunningWin(0);
