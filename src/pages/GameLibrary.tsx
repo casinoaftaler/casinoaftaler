@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -18,6 +18,7 @@ import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget"
 import { Button } from "@/components/ui/button";
 import { Rocket } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
@@ -238,10 +239,29 @@ function useCreditCountdown() {
 
 function GameLibraryHero() {
   const countdown = useCreditCountdown();
+  const heroRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (heroRef.current) {
+        const offset = window.scrollY * 0.15;
+        heroRef.current.style.transform = `translateY(${Math.min(offset, 30)}px) scale(1.05)`;
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="relative overflow-hidden text-white">
       {/* Hero background with parallax */}
+      <img
+        ref={heroRef}
+        src={spillehalHero}
+        alt="Spillehal hero baggrund"
+        className="absolute inset-0 w-full h-full object-cover hero-parallax scale-105"
+        aria-hidden="true"
+      />
       {/* Gradient overlay */}
       <div
         className="absolute inset-0"

@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import ludomaniHero from "@/assets/heroes/ludomani-guide-hero.jpg";
 import { Activity, ArrowRight, Dog, Gavel, HandHeart, MessageCircle, TrendingDown, UserX } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -170,6 +171,16 @@ const LudomaniGuide = () => {
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>
 
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={ludomaniHero}
+            alt="Ludomani guide – illustration af hjernens belønningssystem og spilleafhængighed med hjælpende hånd"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER LUDOMANI?

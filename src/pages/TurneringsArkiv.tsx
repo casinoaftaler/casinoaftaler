@@ -15,6 +15,8 @@ import { TurneringsArkivSeoContent } from "@/components/seo-content/TurneringsAr
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
+import turneringsArkivHero from "@/assets/turneringsarkiv-hero.jpg";
+
 const CATEGORY_LABELS: Record<string, { label: string; game: string; metric: string }> = {
   points: { label: "Flest Point", game: "Fedesvin Bonanza", metric: "point" },
   multiplier: { label: "Højeste X", game: "Book of Fedesvin", metric: "x" },
@@ -87,6 +89,12 @@ export default function TurneringsArkiv() {
 
       {/* TYPE C: Full-width hero with background image overlay */}
       <section className="relative overflow-hidden py-16 text-white md:py-24">
+        <img
+          src={turneringsArkivHero}
+          alt="Turneringsarkiv med vindere og leaderboards fra månedlige community-turneringer"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
         <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">

@@ -6,7 +6,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { GlossaryMoneyLinks } from "@/components/GlossaryMoneyLinks";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { getTermBySlug, glossaryTerms } from "@/data/glossaryTerms";
-
+import { getGlossaryHero } from "@/data/glossaryHeroImages";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -47,7 +47,7 @@ const OrdbogTerm = () => {
 
   if (!term) return <Navigate to="/ordbog" replace />;
 
-  
+  const heroImage = getGlossaryHero(term.slug);
 
   const relatedTermData = term.relatedTerms
     .map((s) => glossaryTerms.find((t) => t.slug === s))
@@ -81,7 +81,7 @@ const OrdbogTerm = () => {
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))`,
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -111,6 +111,16 @@ const OrdbogTerm = () => {
           Tilbage til Casino Ordbog
         </Link>
 
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={heroImage}
+            alt={`${term.title} – casino ordbog begreb illustreret`}
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
 
         <div
           className="prose prose-lg max-w-none dark:prose-invert mb-10 prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:underline"
