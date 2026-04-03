@@ -13,12 +13,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import screenshotGameplay from "@/assets/screenshots/big-bass-bonanza-gameplay.webp";
+import screenshotPaytable from "@/assets/screenshots/big-bass-bonanza-paytable.webp";
+import screenshotRtpRegler from "@/assets/screenshots/big-bass-bonanza-rtp-regler.webp";
+import screenshotFranchise from "@/assets/screenshots/big-bass-bonanza-franchise-oversigt.webp";
+import screenshotSpildetaljer from "@/assets/screenshots/big-bass-bonanza-1000-spildetaljer.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
