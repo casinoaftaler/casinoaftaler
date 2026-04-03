@@ -233,9 +233,9 @@ const LegacyOfDeadGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">96,58 %</td><td className="text-center">96,21 %</td></tr>
-                    <tr className="border-b"><td className="py-2">Forventet tab</td><td className="text-center">-342 kr.</td><td className="text-center">-379 kr.</td></tr>
-                    <tr className="border-b"><td className="py-2">EV-forskel</td><td className="text-center" colSpan={2}>+37 kr. til Legacy</td></tr>
+                    <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">94,51 %</td><td className="text-center">96,21 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Forventet tab</td><td className="text-center">-549 kr.</td><td className="text-center">-379 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">EV-forskel</td><td className="text-center" colSpan={2}>-170 kr. til Legacy (dyrere)</td></tr>
                     <tr><td className="py-2">Bonus-gennemsnit</td><td className="text-center">85-110×</td><td className="text-center">70-90×</td></tr>
                   </tbody>
                 </table>
