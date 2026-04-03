@@ -118,6 +118,14 @@ const GonzosQuestGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="20 min" />
+        <ReviewScreenshot
+          src={gonzosQuestHeroBanner}
+          alt="Gonzo's Quest officielt banner med Gonzo-karakteren og maya-templet i baggrunden"
+          caption="Gonzo's Quest: NetEnts ikoniske Avalanche-slot fra 2011 med den legendariske opdagelsesrejsende Gonzo."
+          eager
+          size="full"
+        />
+
         {/* ── ÅBNINGSVINKEL: SAMMENLIGNING MED MODERNE SLOTS ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Faderen til Tumble: Gonzo's Quest i en Post-Sweet Bonanza Verden</h2>
