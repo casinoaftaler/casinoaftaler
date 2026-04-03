@@ -76,6 +76,13 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Tumble/cascade-mekanikken interagerer synergistisk med cluster pays: efter en cluster-gevinst fjernes de involverede symboler, og nye falder ned. Nye clusters kan dannes fra de faldende symboler, og processen gentages. Over gennemsnittet producerer hvert vindende spin ca. 1,5-2,5 cascading-trin. Under free spins, hvor multiplikatorer akkumuleres pr. cascade, kan en enkelt "chain" af 4-5 cascading wins producere eksplosive resultater.</p>
         </section>
 
+        <ReviewScreenshot
+          src={sugarRushGameplay}
+          alt="Sugar Rush gameplay på 7×7 grid med farverige slik-symboler, køb gratis spins-knap og Danske Spil interface"
+          caption="Sugar Rush's 7×7 cluster pays-grid i aktion på Danske Spil. Bemærk de distinkte farvekoder på hvert symboltype – en vigtig UX-detalje for overskuelighed."
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* ── AKKUMULERENDE MULTIPLIKATORER ── */}
