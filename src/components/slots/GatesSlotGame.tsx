@@ -274,6 +274,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setTotalFreeSpins(bs.totalFreeSpins);
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
+      cumulativeMultiplierRef.current = 0;
       pendingBonusStateRef.current = null;
       if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
         if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
