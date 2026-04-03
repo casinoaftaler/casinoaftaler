@@ -105,14 +105,7 @@ export default function BonusHuntArkiv() {
                 ))}
               </div>
             </div>
-            <div className="hidden md:block">
-              <img
-                src={bonusHuntArkivHero}
-                alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
-                className="w-full h-auto rounded-xl object-cover max-h-[360px] shadow-2xl"
-                loading="eager"
-              />
-            </div>
+
           </div>
         </div>
       </section>

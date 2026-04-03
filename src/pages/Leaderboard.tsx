@@ -460,14 +460,7 @@ export default function Leaderboard() {
       <section
         className="relative overflow-hidden text-white"
       >
-        <div className="absolute inset-0">
-          <img
-            src={turneringerHero}
-            alt="Slot turneringer med præmier – trofæ, mønter og spilleautomater"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))' }} />
-        </div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }} />
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">

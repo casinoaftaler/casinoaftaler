@@ -254,13 +254,6 @@ function GameLibraryHero() {
   return (
     <section className="relative overflow-hidden text-white">
       {/* Hero background with parallax */}
-      <img
-        ref={heroRef}
-        src={spillehalHero}
-        alt="Spillehal hero baggrund"
-        className="absolute inset-0 w-full h-full object-cover hero-parallax scale-105"
-        aria-hidden="true"
-      />
       {/* Gradient overlay */}
       <div
         className="absolute inset-0"
