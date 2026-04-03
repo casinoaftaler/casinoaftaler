@@ -6,6 +6,7 @@ interface ChromaKeyVideoProps {
   height: number;
   className?: string;
   loop?: boolean;
+  playbackRate?: number;
   playTrigger?: number;
   onEnded?: () => void;
 }
