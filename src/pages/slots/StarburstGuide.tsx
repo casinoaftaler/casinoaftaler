@@ -192,11 +192,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             En vigtig observation: fordi wilds kun kan lande på hjul 2, 3 og 4 (aldrig hjul 1 og 5), er det umuligt at dække alle 5 hjul med wilds. Dette begrænser den maximale gevinstkombination og er grunden til, at max win "kun" er 500x. Det er et bevidst designvalg fra NetEnt for at holde variansen kontrolleret.
           </p>
+          <ReviewScreenshot
+            src={starburstPaylines}
+            alt="Starburst alle 10 gevinstlinjer visualiseret med lyserøde markeringer på et 5x3 grid"
+            caption="Alle 10 gevinstlinjer i Starburst. Med Win Both Ways tælles disse i begge retninger – effektivt 20 vindende kombinationsmuligheder."
+            size="compact"
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: RTP & HOUSE EDGE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
