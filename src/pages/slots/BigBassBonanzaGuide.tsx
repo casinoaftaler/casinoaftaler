@@ -269,8 +269,8 @@ const BigBassBonanzaGuide = () => {
 
           <ReviewScreenshot
             src={screenshotRtpRegler}
-            alt="Big Bass Bonanza spilleregler side 3 – RTP 94,02 %, volatilitet 5/5, mindste indsats 0,50 kr og højeste indsats 100 kr"
-            caption="Spillereglerne bekræfter RTP 94,02 % hos Danske Spil, volatilitet 5/5, samt indsatsgrænser fra 0,50 kr. til 100 kr."
+            alt="Big Bass Bonanza spilleregler side 3 – RTP 94,02 %, volatilitet 4/5, mindste indsats 0,50 kr og højeste indsats 100 kr"
+            caption="Spillereglerne bekræfter RTP 94,02 % hos Danske Spil, volatilitet 4/5, samt indsatsgrænser fra 0,50 kr. til 100 kr."
           />
         </section>
 
