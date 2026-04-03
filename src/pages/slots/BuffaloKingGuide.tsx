@@ -83,7 +83,7 @@ const BuffaloKingGuide = () => {
               <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Ekstremt Høj (5/5)</strong></div>
               <div><span className="text-muted-foreground">Max Win:</span><br /><strong>93.750×</strong></div>
               <div><span className="text-muted-foreground">Grid:</span><br /><strong>6×4 (4.096 ways)</strong></div>
-              <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,94 %</strong></div>
+              <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,94-5,45 %</strong></div>
             </div>
           </CardContent></Card>
 
