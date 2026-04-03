@@ -163,6 +163,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     };
 
     video.playbackRate = playbackRate;
+    video.load();
     video.addEventListener("play", startProcessing);
     video.addEventListener("ended", handleEnded);
     video.play().catch(() => {});
@@ -172,7 +173,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       video.removeEventListener("ended", handleEnded);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [processFrame, onEnded]);
+  }, [processFrame, onEnded, playbackRate, src]);
 
   // Handle playTrigger changes — restart video from beginning
   useEffect(() => {
@@ -182,7 +183,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     video.playbackRate = playbackRate;
     video.currentTime = 0;
     video.play().catch(() => {});
-  }, [playTrigger]);
+  }, [playTrigger, playbackRate, src]);
 
   return (
     <div
