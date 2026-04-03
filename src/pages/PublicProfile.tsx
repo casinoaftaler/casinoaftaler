@@ -170,6 +170,7 @@ export default function PublicProfile() {
   const { data: profile, isLoading, error } = usePublicProfile(username);
   const { data: pointsData, isLoading: pointsLoading } = useUserPoints(profile?.user_id);
   const { data: badgesData, isLoading: badgesLoading } = useTwitchBadges(profile?.user_id);
+  const { data: slotStats } = useUserSlotRequestStats(profile?.user_id);
 
   if (isLoading) {
     return <LoadingSkeleton />;
