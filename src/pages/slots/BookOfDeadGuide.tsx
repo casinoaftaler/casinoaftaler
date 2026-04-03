@@ -233,6 +233,12 @@ const BookOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For wagering-formål er denne fordeling ideel: den lavere afhængighed af bonusrunder reducerer variansen, hvilket betyder, at din bankroll svinger mindre voldsomt under omsætning. Du har en mere forudsigelig nedtrapning mod den forventede RTP, hvilket gør det lettere at budgettere og vurdere, om du kan gennemføre et givet <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={screenshotSpildetaljer}
+            alt="Book of Dead spildetaljer på Danske Spil – udbyder PlayNGo, minimum indsats 1 kr, tilbagebetaling 94,25 % og volatilitetsmåler høj"
+            caption="Spildetaljer hos Danske Spil: Play'n GO som udbyder, RTP 94,25 % (operatør-specifik reduceret version) og høj volatilitet."
+          />
         </section>
 
         <Separator className="my-10" />
