@@ -47,10 +47,10 @@ const theDogHouseFaqs: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: "Kan man købe bonusrunden i The Dog House?",
+    question: "Hvordan udløses free spins i The Dog House?",
     answer: (
       <>
-        Ja, The Dog House tilbyder Bonus Buy til 60× indsatsen. Den gennemsnitlige free spins-gevinst er ca. 50-70× indsatsen, hvilket giver en marginal positiv EV for Bonus Buy over et stort antal forsøg. Funktionen er populær blandt spillere, der ønsker direkte adgang til sticky wilds-mekanikken. Bemærk at Bonus Buy muligvis ikke er tilgængelig på alle danske casinoer. Læs mere om <Link to="/casino-bonus" className={linkClass}>bonustyper</Link>.
+        Free spins udløses af 3 scatter-symboler (paw prints) på hjul 1, 3 og 5. Derefter præsenteres et bonushjul med 9 individuelle hjul, der hver tildeler 1, 2 eller 3 free spins – i alt mellem 9 og 27 free spins. Under bonusrunden er alle wilds sticky med tilfældige 2× eller 3× multiplikatorer. Genudløsning er mulig ved 3 nye scattere, som udløser et nyt hjulspil med yderligere spins.
       </>
     ),
   },
