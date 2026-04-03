@@ -132,6 +132,14 @@ const LegacyOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={legacyOfDeadFreeSpinsIntro}
+          alt="Legacy of Dead Free Spins intro-skærm med expanding symbols-forklaring og scatter-trigger krav"
+          caption="Intro-skærmen der forklarer Free Spins-mekanikken: 3+ scatters trigger free spins med op til 9 expanding symbols."
+          eager
+          size="full"
+        />
+
         <YoutubeEmbed videoId="Ss2ZRXT0jCI" title="Legacy of Dead gennemgang – Progressiv expanding symbol" description="Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system forklaret i praksis." uploadDate="2026-03-07" duration="PT1M41S" />
         <VideoContextBox heading="Her gennemgår vores streamer Legacy of Dead i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser det progressive expanding symbol-system, retrigger-mekanikken og forskellen til Book of Dead. Videoen er en del af vores dybdegående indhold om{" "}
