@@ -215,16 +215,16 @@ const TheDogHouseGuide = () => {
             Free Spins-Dynamik og Genudløsning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The Dog House's <Link to="/free-spins" className={linkClass}>free spins</Link> udløses af 3 scatter-symboler (kun hjul 1, 3 og 5) og giver et valg mellem to modi: standard free spins (9 spins med sticky wilds) eller raining wilds (9 spins med tilfældige wilds pr. spin, men ikke sticky). Standard-moden er den matematisk interessante for denne analyse.
+            The Dog House's <Link to="/free-spins" className={linkClass}>free spins</Link> udløses af 3 scatter-symboler (paw prints) på hjul 1, 3 og 5. I stedet for et fast antal free spins præsenteres spilleren for et unikt bonushjul-system: 9 individuelle hjul spinner, og hvert hjul tildeler enten 1, 2 eller 3 free spins. Det samlede antal free spins varierer derfor fra minimum 9 til maksimum 27 – en mekanik der i sig selv tilføjer et spændingsmoment, allerede inden bonusrunden begynder.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Under standard free spins er hvert wild der lander permanent for runden. Med 9 spins og 3 wild-egnede positioner pr. spin (hjul 2, 3 og 4) er der teoretisk 27 muligheder for wilds – men kun 9 af de 15 total positioner kan bære wilds (hjul 2-4, række 1-3). Den gennemsnitlige free spins-runde producerer typisk 3-5 sticky wilds, hvilket giver en moderat multiplikator-effekt.
+            Under free spins er hvert wild der lander permanent for runden – de "klæber" fast som sticky wilds. Med wilds begrænset til hjul 2, 3 og 4 kan op til 9 positioner (3 hjul × 3 rækker) fyldes med sticky wilds. Den gennemsnitlige free spins-runde producerer typisk 3-5 sticky wilds, men med et højt antal tildelte spins (20+) kan et fuldt grid af wilds opnås.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Genudløsning er mulig med 3 ekstra scattere under free spins, som tildeler yderligere 9 spins. Sandsynligheden for genudløsning er estimeret til ~8-12 % pr. free spins-runde. Genudløsning er særligt værdifuld fordi alle eksisterende sticky wilds forbliver, og nye wilds akkumuleres ovenpå – dette er typisk dér, de virkelig store gevinster (1.000×+) opstår.
+            Genudløsning er mulig med 3 ekstra scattere under free spins, som udløser et nyt hjulspil med yderligere spins. Genudløsning er særligt værdifuld fordi alle eksisterende sticky wilds forbliver, og nye wilds akkumuleres ovenpå – dette er typisk dér, de virkelig store gevinster (1.000×+) opstår. Sandsynligheden for genudløsning er estimeret til ~8-12 % pr. free spins-runde.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bonus Buy til 60× indsatsen giver direkte adgang til free spins. Den gennemsnitlige free spins-gevinst er ca. 50-70× indsatsen, hvilket gør Bonus Buy marginalt positiv EV over et stort sample. For spillere med begrænset tid eller utålmodighed er det en legitim strategi – men husk, at individuelle free spins-runder varierer enormt: fra 5× til 6.750× indsatsen.
+            Bemærk at den originale The Dog House IKKE har en Bonus Buy-funktion – dette er en feature der kun findes i nyere varianter som The Dog House Megaways. Free spins skal altid udløses naturligt via 3 scattere i base game, med en estimeret triggerfrekvens på ca. 1 pr. 180-250 spins.
           </p>
         </section>
 
