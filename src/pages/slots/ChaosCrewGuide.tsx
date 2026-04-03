@@ -18,6 +18,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Play, Scale, Sparkles, TrendingUp, Trophy, Users, Zap, Puzzle, Palette, Target, Dices, BookOpen } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import chaoscrewGameplay from "@/assets/screenshots/chaoscrewGameplay.webp";
+import chaoscrewFunktioner from "@/assets/screenshots/chaoscrewFunktioner.webp";
+import chaoscrewBonuskob from "@/assets/screenshots/chaoscrewBonuskob.webp";
+import chaoscrewPaylines from "@/assets/screenshots/chaoscrewPaylines.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
