@@ -186,7 +186,7 @@ const ExtraChilliMegawaysGuide = () => {
           src={screenshotIntro}
           alt="Extra Chilli Megaways introskærm med Free Spins, Gamble og Win Reactions"
           caption="Spillets introskærm: Free Spins med Unlimited Win Multiplier, Free Spins Gamble op til 24 spins og Win Reactions (tumble/cascade-mekanik)."
-          size="large"
+          size="full"
         />
 
         <section className="mb-12">
