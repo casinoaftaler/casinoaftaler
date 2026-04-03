@@ -30,15 +30,20 @@ const FRAGMENT_SHADER = `
     float g = color.g;
     float r = color.r;
     float b = color.b;
-    // Hard key
-    if (g > 0.314 && g > r * 1.4 && g > b * 1.4) {
+    float maxRB = max(r, b);
+    float greenDominance = g - maxRB;
+    // Hard key — aggressive removal of green-dominant pixels
+    if (greenDominance > 0.05 && g > 0.15) {
       discard;
     }
-    // Soft edge
+    // Soft edge — fade out green fringe
     float alpha = 1.0;
-    if (g > 0.235 && g > r * 1.2 && g > b * 1.2) {
-      alpha = 0.5;
+    if (greenDominance > 0.02 && g > 0.10) {
+      alpha = smoothstep(0.05, 0.02, greenDominance);
     }
+    // Despill — remove green tint from edge pixels
+    float despill = max(0.0, g - maxRB * 0.8);
+    color.g = g - despill * 0.6;
     gl_FragColor = vec4(color.rgb, color.a * alpha);
   }
 `;
