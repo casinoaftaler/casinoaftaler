@@ -18,7 +18,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import legacyOfDeadFreeSpinsIntro from "@/assets/screenshots/legacy-of-dead-free-spins-intro.webp";
+import legacyOfDeadGameplayGrid from "@/assets/screenshots/legacy-of-dead-gameplay-grid.webp";
+import legacyOfDeadSpilleregler from "@/assets/screenshots/legacy-of-dead-spilleregler.webp";
+import legacyOfDeadCasinoLobby from "@/assets/screenshots/legacy-of-dead-casino-lobby.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -127,6 +132,14 @@ const LegacyOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={legacyOfDeadFreeSpinsIntro}
+          alt="Legacy of Dead Free Spins intro-skærm med expanding symbols-forklaring og scatter-trigger krav"
+          caption="Intro-skærmen der forklarer Free Spins-mekanikken: 3+ scatters trigger free spins med op til 9 expanding symbols."
+          eager
+          size="full"
+        />
+
         <YoutubeEmbed videoId="Ss2ZRXT0jCI" title="Legacy of Dead gennemgang – Progressiv expanding symbol" description="Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system forklaret i praksis." uploadDate="2026-03-07" duration="PT1M41S" />
         <VideoContextBox heading="Her gennemgår vores streamer Legacy of Dead i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser det progressive expanding symbol-system, retrigger-mekanikken og forskellen til Book of Dead. Videoen er en del af vores dybdegående indhold om{" "}
@@ -164,6 +177,12 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Bonusrundens estimerede triggerfrekvens er cirka 1 pr. 180-220 spins – marginalt lavere end Book of Dead (1 pr. 150-200). Denne lidt lavere frekvens kompenseres af det progressive expanding symbol-systems højere gennemsnitlige bonus-udbetaling, især i runder med retriggers. Den forventede gennemsnitlige bonusrunde-gevinst er estimeret til 70-100× indsatsen for runder uden retrigger, stigende til 150-300× for runder med 1-2 retriggers.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadGameplayGrid}
+            alt="Legacy of Dead gameplay med 5x3 grid, egyptiske symboler inkl. Farao, Anubis, Horus og Pharaoh's Tomb scatter"
+            caption="Basisspillet med 10 gevinstlinjer, premium-symboler (Farao, Anubis, Horus) og Pharaoh's Tomb scatter/wild-symbol."
+            size="full"
+          />
         </section>
 
         {/* ── Progressivt expanding symbol ── */}
@@ -184,9 +203,13 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             I det teoretiske bedste scenarie (9 samtidige expanding symbols) ville enhvert symbol på griddet ekspandere til at fylde hele sit hjul. Sandsynligheden for dette er astronomisk lav – det kræver 8 retriggers i træk, hver med 3-5 % sandsynlighed. Men selve muligheden for denne kaskade er, hvad der giver Legacy of Dead dens unikke appel og matematiske dybde.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadSpilleregler}
+            alt="Legacy of Dead officielle spilleregler: Game Rules med expanding symbol-forklaring, retrigger-regler og RTP 94,51 %"
+            caption="De officielle spilleregler med detaljeret forklaring af expanding symbols, retrigger-mekanik og gamble-funktion."
+            size="full"
+          />
         </section>
-
-        <InlineCasinoCards />
 
         {/* ── EV-analyse ── */}
         <section className="mb-10">
@@ -355,6 +378,12 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot 10 ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead matematisk overlegen i scenarier med retriggers.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadCasinoLobby}
+            alt="Legacy of Dead i online casino-lobby med søgefunktion og populære spillemaskiner"
+            caption="Legacy of Dead tilgængelig i casino-lobbyen – spillet findes hos alle større danske licenserede casinoer."
+            size="medium"
+          />
         </section>
 
         {/* ── Mobiloplevelse ── */}
