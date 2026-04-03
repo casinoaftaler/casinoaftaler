@@ -403,6 +403,11 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Money Train 3 skiller sig ud med sin Bonus Buy-funktion og det komplekse modifier-system. <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> tilbyder en renere, mere direkte volatilitetsoplevelse, mens <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> kombinerer den højeste max win med den laveste hit frequency. Valget afhænger af, om du foretrækker modifier-kompleksitet (Money Train 3), mystery-symboler (Razor Shark), eller klassisk free spins-mekanik (Dead or Alive 2).
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Paylines}
+            alt="Money Train 3 alle 40 udbetalingslinjer visualiseret med gule markeringer på et 4x5 grid"
+            caption="Alle 40 faste udbetalingslinjer i Money Train 3. Gevinstlinjerne dækker et bredt spektrum af mønstre på det 4×5 grid."
+          />
         </section>
 
         {/* ── Hvem passer det til? ── */}
