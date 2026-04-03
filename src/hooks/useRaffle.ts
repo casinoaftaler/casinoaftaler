@@ -42,7 +42,7 @@ export function useRaffleEntries(raffleId: string | undefined) {
       if (userIds.length === 0) return [];
 
       const { data: profiles } = await supabase
-        .from("profiles")
+        .from("profiles_leaderboard")
         .select("user_id, display_name, avatar_url")
         .in("user_id", userIds);
 
@@ -105,7 +105,7 @@ export function useRecentRaffleWinners() {
       let profileMap = new Map<string, { user_id: string; display_name: string | null; avatar_url: string | null }>();
       if (winnerIds.length > 0) {
         const { data: profiles } = await supabase
-          .from("profiles")
+          .from("profiles_leaderboard")
           .select("user_id, display_name, avatar_url")
           .in("user_id", winnerIds);
 
