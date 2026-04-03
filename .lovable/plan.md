@@ -1,33 +1,80 @@
+## Plan: Screenshots til Buffalo King Guide
+
+### Uploaded screenshots → sektions-mapping
 
 
-# Plan: 5% Chance of Orbs Instead of Scatters in Base Game
+| #   | Screenshot | Indhold                                                      | Målsektion                                                                                                       | Size   | Loading |
+| --- | ---------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- | ------ | ------- |
+| 1   | `_181414`  | Buffalo King logo/banner artwork                             | **Ikke brugt** – dekorativt banner, ikke et autentisk UI-screenshot (Bare brug det alligevel, det er deres logo) | &nbsp; | &nbsp;  |
+| 2   | `_161148`  | Spilleautomaten.dk: RTP, max gevinst, indsats, gevinstlinjer | **Teknisk Profil og Volatilitetsanalyse** (efter Card)                                                           | medium | eager   |
+| 3   | `_161200`  | Gameplay med x5 multiplikatorer på alle hjul                 | **Multiplikator-Stacking** (efter første afsnit)                                                                 | full   | lazy    |
+| 4   | `_161213`  | Base game med bonus-symbol og "Køb Gratis Spins"             | **Free Spins: Op til 100 Gratis Spins** (efter første afsnit)                                                    | full   | lazy    |
+| 5   | `_161232`  | Spilleregler side 1: paytable + 4096 ways forklaring         | **Symbolhierarki og Paytable-Dekonstruktion** (efter tabel)                                                      | full   | lazy    |
+| 6   | `_161238`  | Spilleregler side 2: Wild, Bonus, free spins regler          | **Den Store Scatter-Gevinst** (efter free spins-tabel)                                                           | medium | lazy    |
 
-## Summary
-In the Gates of Fedesvin base game, add a 5% chance that the spin replaces all scatter possibilities with multiplier orbs instead. On any given base spin, it's either scatters OR orbs — never both.
 
-## How It Works
-1. At the start of `generateGatesGrid`, when `isBonusSpin === false`, roll a 5% chance
-2. If the roll hits: treat the spin as an "orb spin" — exclude scatters entirely from the symbol pool, and place orbs using `GATES_MULTIPLIER_CHANCE_BASE` (same as bonus orb placement logic, but using the base game chance)
-3. If the roll misses: normal base game (scatters can appear, no orbs) — current behavior
+### Fravalg
 
-## Changes
+- Banner-billedet (`_181414`) bruges IKKE – det er promotional artwork, ikke et autentisk UI-screenshot. Det bryder med E-E-A-T strategien. (Er du sikker på det? altså jeg har fundet et billede af det på google og taget et screenshot.)
 
-### 1. `supabase/functions/slot-spin/index.ts` — `generateGatesGrid()`
-- Add a `const orbsInsteadOfScatters = !isBonusSpin && (await prng.next()) < 0.05` check at the top
-- When `orbsInsteadOfScatters` is true:
-  - Use `nonScatterSymbols` exclusively (no scatters can land)
-  - Apply the same bomb placement logic currently used in bonus (1 bomb max per column, using `GATES_MULTIPLIER_CHANCE_BASE` rate and scatter symbol weight for orb frequency)
-- When false: current behavior (scatters possible, no bombs in base)
+### Tekniske trin
 
-### 2. `supabase/functions/slot-spin/index.ts` — `applyGatesTumble()` fill logic
-- Currently, tumble fills only add bombs in bonus. When the initial spin was an "orb spin", tumble fills should also be able to add orbs
-- Pass an `orbMode` flag through the spin flow so tumble fills know to include orbs and exclude scatters
+1. **Konvertér 5 screenshots til WebP** via ffmpeg (q82, <150KB target)
+2. **Kopiér til** `src/assets/screenshots/` med beskrivende filnavne:
+  - `buffalokingRtpData.webp`
+  - `buffalokingMultiplikatorStacking.webp`
+  - `buffalokingBaseGameBonus.webp`
+  - `buffalokingPaytableSymboler.webp`
+  - `buffalokingFreeSpinsRegler.webp`
+3. **Importér** i BuffaloKingGuide.tsx og tilføj `ReviewScreenshot` med unikke alt-tekster
+4. **Placering** med min. 15 linjers kode-gab mellem hver
 
-### 3. `processGatesSpin()` — Pass orb mode context
-- The orb mode flag needs to flow from grid generation through the tumble loop so `applyGatesTumble` knows whether to place orbs in refill
+### Placeringsrækkefølge i guiden
 
-### Technical Detail
-- The 5% is hardcoded for now (can be made admin-configurable later)
-- Orb weights use the same `GATES_MULTIPLIER_VALUES` / `GATES_MULTIPLIER_WEIGHTS` as bonus
-- Scatter weight is used as the probability basis for orb placement to keep frequency balanced
+```text
+Hero
+AuthorMetaBar
+H2: Multiplikator-Stacking
+  → afsnit 1
+  → ★ Screenshot 3 (gameplay x5 multiplikatorer) — full, lazy
+  → afsnit 2-4
 
+H2: Teknisk Profil
+  → Card (teknisk data)
+  → ★ Screenshot 2 (RTP-data fra spilleautomaten) — medium, eager
+  → afsnit 1-2
+
+H2: Free Spins
+  → afsnit 1
+  → ★ Screenshot 4 (base game med bonus) — full, lazy
+  → afsnit 2-3
+
+InlineCasinoCards
+
+H2: EV-Beregning
+  (ingen screenshot – variation)
+
+H2: Risikoprofil
+  (ingen screenshot – variation)
+
+H2: Prærie-Slotten
+  (ingen screenshot)
+
+H2: Symbolhierarki
+  → tabel
+  → ★ Screenshot 5 (paytable spilleregler) — full, lazy
+  → afsnit 1-2
+
+H2: All Ways-Mekanikken
+  (ingen screenshot – variation)
+
+H2: Den Store Scatter-Gevinst
+  → free spins-tabel
+  → ★ Screenshot 6 (Wild/Bonus regler) — medium, lazy
+  → afsnit 1-2
+```
+
+### Filer der ændres
+
+- **5 nye assets** i `src/assets/screenshots/`
+- **1 fil redigeres**: `src/pages/slots/BuffaloKingGuide.tsx` (imports + 5× ReviewScreenshot)
