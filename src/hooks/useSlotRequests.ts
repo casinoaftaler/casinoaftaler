@@ -473,3 +473,35 @@ export function useUpdateSlotRequestStatus() {
     },
   });
 }
+
+// ── Public slot request stats for any user ──
+
+export interface UserSlotRequestStats {
+  bonusHits: number;
+  noBonus: number;
+  total: number;
+  pending: number;
+  hitRate: number;
+}
+
+export function useUserSlotRequestStats(userId: string | undefined) {
+  return useQuery({
+    queryKey: ["user-slot-request-stats", userId],
+    queryFn: async (): Promise<UserSlotRequestStats> => {
+      const { data, error } = await supabase.rpc("get_user_slot_request_stats", {
+        target_user_id: userId!,
+      });
+      if (error) throw error;
+      const raw = data as { bonus_hits: number; no_bonus: number; total: number; pending: number };
+      const resolved = raw.bonus_hits + raw.no_bonus;
+      return {
+        bonusHits: raw.bonus_hits,
+        noBonus: raw.no_bonus,
+        total: raw.total,
+        pending: raw.pending,
+        hitRate: resolved > 0 ? (raw.bonus_hits / resolved) * 100 : 0,
+      };
+    },
+    enabled: !!userId,
+  });
+}

@@ -3,6 +3,8 @@ import { SEO } from "@/components/SEO";
 import { usePublicProfile } from "@/hooks/usePublicProfile";
 import { useUserPoints } from "@/hooks/useUserPoints";
 import { useTwitchBadges } from "@/hooks/useTwitchBadges";
+import { useUserSlotRequestStats } from "@/hooks/useSlotRequests";
+import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
