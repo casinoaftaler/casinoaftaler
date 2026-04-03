@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrvegasSpilleautomater from "@/assets/screenshots/mrvegas-spilleautomater.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/dead-or-alive-2-hero.jpg";
@@ -150,12 +148,6 @@ const DeadOrAlive2Guide = () => {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
-        <ReviewScreenshot
-          src={mrvegasSpilleautomater}
-          alt="Spilleautomater-lobby med high volatility slots – Dead or Alive 2 er kendt for ekstrem varians"
-          caption="Dead or Alive 2 er en af de mest populære high volatility slots og findes hos de fleste danske casinoer."
-          size="full"
-        />
               <p className="text-xl font-bold"><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/big-bass-bonanza-hero.jpg";
@@ -145,12 +143,6 @@ const BigBassBonanzaGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={casinostuenSpillemaskiner}
-          alt="Spillemaskiner-lobby med filtreringsmuligheder – Big Bass Bonanza findes i de fleste danske casinoers udvalg"
-          caption="En typisk spillemaskiner-lobby med søge- og filterfunktioner til at finde spil som Big Bass Bonanza."
-          size="full"
-        />
 
         <YoutubeEmbed
           videoId="Hguc2V01ouQ"

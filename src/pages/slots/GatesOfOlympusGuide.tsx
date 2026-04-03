@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import unibetFiltre from "@/assets/screenshots/unibet-filtre.webp";
 import heroImage from "@/assets/heroes/gates-of-olympus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -129,12 +127,6 @@ const GatesOfOlympusGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={unibetFiltre}
-          alt="Unibets slot-filtre med søgning og kategorisering af spillemaskiner som Gates of Olympus"
-          caption="Unibets filtreringssystem – brug filtre til hurtigt at finde Gates of Olympus blandt hundredvis af slots"
-          size="full"
-        />
 
         <YoutubeEmbed videoId="uUZOHtTgFW4" title="Gates of Olympus gennemgang – Multiplikator-mekanik" description="Se en komplet gennemgang af Gates of Olympus: multiplikator-systemet og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT2M51S" />
         <VideoContextBox heading="Her gennemgår vores streamer Gates of Olympus i praksis">

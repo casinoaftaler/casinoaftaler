@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import ekspektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/wolf-gold-hero.jpg";
@@ -163,12 +161,6 @@ const WolfGoldGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={ekspektSpillemaskiner}
-          alt="Spillemaskiner-udvalg med Pragmatic Play-slots – Wolf Gold er en af udbyderens mest ikoniske titler"
-          caption="Wolf Gold fra Pragmatic Play er bredt tilgængelig hos danske licenserede casinoer."
-          size="full"
-        />
 
         <YoutubeEmbed videoId="wk34dIvTJ-c" title="Wolf Gold gennemgang – Money Respin og jackpot" description="Se en komplet gennemgang af Wolf Gold: Money Respin-funktionen og jackpot-strukturen forklaret i praksis." uploadDate="2026-03-07" duration="PT0M59S" />
         <VideoContextBox heading="Her gennemgår vores streamer Wolf Gold i praksis">

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/mega-moolah-hero.jpg";
@@ -83,12 +81,6 @@ const MegaMoolahGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Når jackpot-hjulet er aktiveret, spinder spilleren et sekundært hjul med segmenter for de fire jackpot-niveauer. Mega-segmentet er det mindste (estimeret 1-2 % af hjulet), mens Mini-segmentet optager den største andel (ca. 50-60 %). Statistisk set udløses Mega-jackpotten gennemsnitligt hver 8-12 uge, men den faktiske frekvens varierer enormt – den kan falde efter få dage eller forblive uberørt i måneder.</p>
         </section>
 
-        <ReviewScreenshot
-          src={mrgreenJackpots}
-          alt="Progressive jackpot-sektion med Mega Moolah – verdens mest berømte jackpot-spillemaskine"
-          caption="Mega Moolah er kronen i enhver jackpot-sektion og har udløst nogle af casinohistoriens største gevinster."
-          size="full"
-        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Dekomposition</h2>

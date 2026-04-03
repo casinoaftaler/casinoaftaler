@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/divine-fortune-hero.jpg";
@@ -71,12 +69,6 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Divine Fortune blev udgivet i 2017 og har siden da vundet adskillige branchepriser, herunder EGR Game of the Year. Spillets vedvarende popularitet – særligt i Skandinavien – skyldes den sjældne kombination af fair RTP, tilgængelig volatilitet og ægte jackpot-potentiale. Det er den slot, der beviser, at jackpot-spænding og matematisk fairness ikke behøver at være modstridende.</p>
         </section>
 
-        <ReviewScreenshot
-          src={mrgreenJackpots}
-          alt="Jackpot-sektion med progressive slots – Divine Fortune er en af de mest populære jackpot-spillemaskiner"
-          caption="Divine Fortune er fast inventar i jackpot-sektionen hos de fleste danske casinoer."
-          size="full"
-        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Teknisk Profil og Kernetal</h2>
