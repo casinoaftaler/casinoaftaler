@@ -290,11 +290,23 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   // Process tumble steps — Bonanza-style with sequential bomb blow-up
   const processTumbleSteps = useCallback(async (steps: any[]) => {
     let winningStepCount = 0;
+    let prevBombPositions = new Set<number>();
 
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
       if (i === 0) await new Promise(r => setTimeout(r, 200));
+
+      // Check for new orbs: on step 0 any bomb triggers, on later steps only newly appeared bombs
+      const currentBombPositions = new Set<number>((step.multiplierBombs || []).map((b: any) => b.position));
+      const hasNewBombs = i === 0
+        ? currentBombPositions.size > 0
+        : [...currentBombPositions].some(pos => !prevBombPositions.has(pos));
+      if (hasNewBombs) {
+        setShowOrbVideo(true);
+        setOrbVideoTrigger(prev => prev + 1);
+      }
+      prevBombPositions = currentBombPositions;
 
       const hasWins = step.wins.length > 0;
 
@@ -394,8 +406,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         await new Promise(r => setTimeout(r, 300));
       }
     }
-
-    // Orb video is now triggered before processTumbleSteps is called
 
     // Sequential bomb blow-up AFTER all tumbles
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
