@@ -73,7 +73,7 @@ const DeadOrAlive2Guide = () => {
   const faqJsonLd = buildFaqSchema(doa2Faqs);
   const articleSchema = buildArticleSchema({
     headline: "Dead or Alive 2 – 111.111x Max Win, Volatilitet & Strategi",
-    description: "Ultimativ analyse af NetEnts Dead or Alive 2: RTP 96,82 %, tre free spins-modes, max win 111.111x og strategisk valg af bonusrunde.",
+    description: "Ultimativ analyse af NetEnts Dead or Alive 2: RTP 96,80 %, tre free spins-modes, max win 111.111x og strategisk valg af bonusrunde.",
     url: `${SITE_URL}/casinospil/spillemaskiner/dead-or-alive-2`,
     datePublished: "2026-01-09",
     authorName: "Jonas",
@@ -209,15 +209,15 @@ const DeadOrAlive2Guide = () => {
 
         {/* ── SEKTION: RTP ANALYSE ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> 96,82 % RTP: Hvad Det Betyder i Kontekst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> 96,80 % RTP: Hvad Det Betyder i Kontekst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dead or Alive 2's RTP på 96,82 % er en af de bedste i branchen – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er kun 3,18 %. Over 1.000 spins á 10 kr. er det forventede tab 318 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
+            Dead or Alive 2's RTP på 96,80 % er en af de bedste i branchen – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er kun 3,20 %. Over 1.000 spins á 10 kr. er det forventede tab 320 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men RTP er en langsigtet statistik, og Dead or Alive 2's ekstreme volatilitet (især i High Noon mode) betyder, at korte sessioner kan afvige voldsomt fra forventningen. Over 200 spins kan din oplevede RTP variere fra 0 % (total bust) til 1.000 %+ (massiv bonusgevinst). Det er først over 50.000+ spins, at den teoretiske RTP konsistent materialiserer sig.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Med det danske 10x omsætningskrav og en 1.000 kr. bonus er det forventede tab: 10.000 × 0,0318 = 318 kr. – en fremragende EV på +682 kr. Bust-risikoen er dog stadig en faktor: med High Noon Saloon er der ca. 15–20 % chance for at gå bust ved 10x wagering. Med Train Heist er det ca. 8–10 %. Valget af mode har altså enorm praktisk betydning.
+            Med det danske 10x omsætningskrav og en 1.000 kr. bonus er det forventede tab: 10.000 × 0,0318 = 318 kr. – en fremragende EV på +680 kr. Bust-risikoen er dog stadig en faktor: med High Noon Saloon er der ca. 15–20 % chance for at gå bust ved 10x wagering. Med Train Heist er det ca. 8–10 %. Valget af mode har altså enorm praktisk betydning.
           </p>
         </section>
 
@@ -257,7 +257,7 @@ const DeadOrAlive2Guide = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">96,82 %</td><td className="py-2 text-right">96,70 %</td><td className="py-2 text-right">96,21 %</td></tr>
+                <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">96,80 %</td><td className="py-2 text-right">96,70 %</td><td className="py-2 text-right">96,21 %</td></tr>
                 <tr className="border-b"><td className="py-2">Max Win</td><td className="py-2 text-right">111.111x</td><td className="py-2 text-right">50.000x</td><td className="py-2 text-right">5.000x</td></tr>
                 <tr className="border-b"><td className="py-2">Volatilitet</td><td className="py-2 text-right">5/5</td><td className="py-2 text-right">4,5/5</td><td className="py-2 text-right">4/5</td></tr>
                 <tr className="border-b"><td className="py-2">Bonusvalg</td><td className="py-2 text-right">3 modes</td><td className="py-2 text-right">Ingen</td><td className="py-2 text-right">Expanding symbol</td></tr>
@@ -302,7 +302,7 @@ const DeadOrAlive2Guide = () => {
             Det design­mæssige geni bag Dead or Alive 2 er tre­lagsstrukturen. Hvor det originale spil kun tilbød én bonusmodus (og dermed én risikoprofil), giver opfølgeren tre fundamentalt forskellige oplevelser. Denne designbeslutning adresserer en udfordring, som de fleste high-volatility slots har: de tiltaler kun et smalt segment af ekstremt risikovillige spillere. Med Train Heist åbner Dead or Alive 2 op for moderate spillere, der aldrig ville have berørt det originale spils ekstremer – uden at kompromittere High Noon Saloon for de hardcore-entusiaster, der søger maksimal risiko.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            NetEnts valg af faste RTP-konfigurationer (ingen variable versioner) er en bevidst differentieringsstrategi. Mens konkurrenter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> tilbyder operatører 2-3 RTP-varianter – med den laveste ofte 2-4 procentpoint under standard – garanterer NetEnt, at spillere altid modtager den fulde 96,82 % RTP. For danske spillere er dette en væsentlig fordel: du behøver ikke bekymre dig om, at dit foretrukne casino kører en reduceret version af spillet.
+            NetEnts valg af faste RTP-konfigurationer (ingen variable versioner) er en bevidst differentieringsstrategi. Mens konkurrenter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> tilbyder operatører 2-3 RTP-varianter – med den laveste ofte 2-4 procentpoint under standard – garanterer NetEnt, at spillere altid modtager den fulde 96,80 % RTP. For danske spillere er dette en væsentlig fordel: du behøver ikke bekymre dig om, at dit foretrukne casino kører en reduceret version af spillet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Den visuelle opgradering fra DOA1 til DOA2 er betydelig men tro mod originalens æstetik. NetEnt har bevaret den gritty, sepia-tonede western-atmosfære men tilføjet moderne shader-effekter, partikelanimationer og en markant forbedret lyddesign. High Noon Saloon-modens klokkeslag og stigende spændingsmusik er særligt effektive – de forstærker den emotionelle intensitet af sticky wild-landinger og multiplicative gevinster på en måde, der den originale slots teknologi ikke tillod.
@@ -348,7 +348,7 @@ const DeadOrAlive2Guide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Wagering-Effektivitet: Train Heist som Gennemspilningsværktøj</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dead or Alive 2 i Train Heist-modus er en underapprecieret wagering-kandidat. Med 96,82 % RTP (fast, ingen variable versioner), lavere volatilitet end High Noon, og en stigende multiplikator-mekanik (1×→2×→4×→8×→16×), leverer Train Heist en mere forudsigelig gennemspilningsoplevelse end de fleste high-volatility alternativer. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det statistiske forventede tab kun 318 kr. – en EV på +682 kr.
+            Dead or Alive 2 i Train Heist-modus er en underapprecieret wagering-kandidat. Med 96,80 % RTP (fast, ingen variable versioner), lavere volatilitet end High Noon, og en stigende multiplikator-mekanik (1×→2×→4×→8×→16×), leverer Train Heist en mere forudsigelig gennemspilningsoplevelse end de fleste high-volatility alternativer. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det statistiske forventede tab kun 320 kr. – en EV på +680 kr.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nøglen til Train Heist som wagering-værktøj er den lavere bust-risiko: estimeret 8-10 % for 10× wagering med standard bankroll. Sammenlign dette med High Noon Saloon (15-20 % bust-risiko) eller ekstremt volatile alternativer som <Link to="/casinospil/spillemaskiner/money-train-3" className={linkClass}>Money Train 3</Link> (20-35 % bust-risiko). Train Heist giver altså den højeste sandsynlighed for at realisere bonusværdien fuldstændigt.
@@ -380,7 +380,7 @@ const DeadOrAlive2Guide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Westernens Ultimative Showdown: Er Risikoen Værd?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dead or Alive 2 er et mesterværk i slot-design. Ingen andre spil tilbyder den samme kombination af ekstrem risiko, spiller-kontrol (tre bonusmodes), og matematisk elegance. Med 96,82 % RTP er det fair, med 111.111x max win er det potentielt livsændrende, og med Train Heist er det tilgængeligt for de fleste spillere.
+            Dead or Alive 2 er et mesterværk i slot-design. Ingen andre spil tilbyder den samme kombination af ekstrem risiko, spiller-kontrol (tre bonusmodes), og matematisk elegance. Med 96,80 % RTP er det fair, med 111.111x max win er det potentielt livsændrende, og med Train Heist er det tilgængeligt for de fleste spillere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men lad os være ærlige: for 95 % af spillere vil Dead or Alive 2 resultere i tab. Det er et spil, der belønner de tålmodige, de disciplinerede, og de heldige. Hvis du spiller for underholdning og kan acceptere dette, er der få bedre oplevelser i online slots. Hvis du spiller for profit, er der mere fordelagtige alternativer.
