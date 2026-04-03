@@ -12,12 +12,17 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap, Clock, Hammer, Compass, LineChart } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+
+import thunderstruckIntro from "@/assets/screenshots/thunderstruck-ii-intro.webp";
+import thunderstruckGameplay from "@/assets/screenshots/thunderstruck-ii-gameplay.webp";
+import thunderstruck243ways from "@/assets/screenshots/thunderstruck-ii-243ways.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -65,6 +70,13 @@ const ThunderstruckIIGuide = () => {
         <AuthorMetaBar author="frederik" readTime="22 min" />
 
         <SnippetAnswer answer="Thunderstruck II er en 243 ways-slot fra Microgaming med 96,65 % RTP og 8.000× max win. Spillets kernefeature er Great Hall of Spins – fire progressive bonusniveauer (Valkyrie, Loki, Odin, Thor) der forbedres med hver trigger. Den medium volatilitet giver en balanceret oplevelse, der belønner langsigtede spillere med konsistente gevinster." />
+        <ReviewScreenshot
+          src={thunderstruckIntro}
+          alt="Thunderstruck II intro-skærm med Wildstorm Feature, 8000x max win og Great Hall of Spins med fire bonusniveauer: Valkyrie, Loki, Odin og Thor"
+          caption="Intro-skærmen præsenterer Thunderstruck II's to kernefeatures: Wildstorm (venstre) med fulde wild-reels, og Great Hall of Spins (højre) med fire progressive bonusniveauer navngivet efter nordiske guder."
+          eager
+        />
+
         {/* ── MÅLGRUPPE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="compass" className="h-6 w-6 text-primary" /> Hvem Er Thunderstruck II For?</h2>
@@ -101,6 +113,12 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">96,65 % RTP placerer den i kategorien <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-spillemaskiner</Link>. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> på 3,35 % er lavere end de fleste <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler (typisk 3,5-4 %) og markant bedre end ældre IGT-slots (4-6 %). Over 1.000 spins à 4 kr. (4.000 kr.) er det forventede tab 134 kr. – en af de laveste cost-pr-session i slot-markedet.</p>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 30-33 % – blandt de højeste for 243 ways-slots. Cirka et af tre spins producerer en gevinst, selvom de fleste base game-gevinster er små (0,5-2× indsatsen). Meningsfulde gevinster (5×+) forekommer i ca. 4-6 % af spins – hyppigere end for high-volatility slots, der typisk ligger på 2-3 %. Denne hyppighed giver en jævnere bankroll-kurve og en mere forudsigelig spiloplevelse.</p>
+
+          <ReviewScreenshot
+            src={thunderstruckGameplay}
+            alt="Thunderstruck II gameplay med 5x3 grid, nordiske gudesymboler (Odin, Valkyrie), Bonus-hammer scatter og 243 ways-to-win markering"
+            caption="Thunderstruck II's 5×3 grid i aktion. Bemærk de tematiske symboler – Odin, Valkyrie og Thor's hammer (Bonus) – samt 243 ways-markøren i venstre side."
+          />
 
           <p className="text-muted-foreground leading-relaxed">RTP-fordelingen estimeres til ca. 65-70 % base game og 25-30 % bonus, med de resterende 5-8 % allokeret til Wildstorm-funktionen. Denne fordeling er mere balanceret end high-volatility slots (typisk 50-55 % base game), hvilket reflekterer den medium volatilitet: base game bærer en større andel af den samlede return, og bonusrunder er vigtige men ikke altafgørende for sessionens resultat.</p>
         </section>
@@ -162,6 +180,13 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Trigger-frekvens for mindst 1 wild reel estimeres til ca. 1/50-80 spins – en rimelig hyppighed, der sikrer, at de fleste sessioner oplever mindst 2-3 Wildstorm-events. Sandsynligheden for 2+ wild reels er markant lavere (estimeret 1/300-500), og for alle 5 hjul ekstremt sjælden (estimeret 1/50.000+). Selv med et enkelt wild reel bidrager funktionen med en gennemsnitlig ekstra gevinst på 2-5× indsatsen.</p>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Wildstorm's RTP-contribution estimeres til ca. 5-8 % af spillets samlede 96,65 % RTP. Over 1.000 spins bidrager Wildstorm-events med ca. 200-320 kr. i ekstra return (ved 4 kr. indsats) – en meningsfuld del af den samlede spiloplevelse. Funktionen tjener en dobbelt rolle: matematisk bidrager den med value, og psykologisk bryder den base game's rutine med pludselige, visuelt imponerende wild-eksplosioner.</p>
+
+          <ReviewScreenshot
+            src={thunderstruck243ways}
+            alt="Thunderstruck II 243 ways-to-win forklaring: symboler skal lande på tilstødende hjul fra venstre for at tælle som gevinst"
+            caption="243 ways-systemet visualiseret: symboler skal lande på mindst 3 tilstødende hjul fra venstre. Kun den højeste gevinst pr. 'way' udbetales."
+            size="medium"
+          />
 
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link>'s Wild Desire er Wildstorm lidt sjældnere men potentielt mere værdifuld pr. trigger. Begge funktioner tjener den samme designhensigt – at holde base game interessant mellem bonustriggers – men Thunderstruck II's tematiske integration (Thors lynhammer) giver Wildstorm en mere cinematic flair end Wild Desire's mere subtile visuelle effekt.</p>
         </section>
