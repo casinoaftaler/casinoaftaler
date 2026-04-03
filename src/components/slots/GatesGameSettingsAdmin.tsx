@@ -87,6 +87,8 @@ export function GatesGameSettingsAdmin() {
         { key: "gates_scatter_retrigger", value: String(s.scatterRetrigger) },
         { key: "gates_free_spins_initial", value: String(s.freeSpinsInitial) },
         { key: "gates_free_spins_retrigger", value: String(s.freeSpinsRetrigger) },
+        { key: "gates_multiplier_values", value: s.multiplierValues },
+        { key: "gates_multiplier_weights", value: s.multiplierWeights },
       ];
       for (const u of updates) {
         const { error } = await supabase
