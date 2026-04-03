@@ -154,12 +154,6 @@ const ImmortalRomanceGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Progressionskrav i praksis: med ~115 spins pr. trigger kræves ca. 460 spins for at nå Troy (trigger 5), ca. 1.150 spins for Michael (trigger 10), og ca. 1.725 spins for Sarah (trigger 15). Ved 4 kr. indsats svarer dette til ca. 6.900 kr. for at nå Sarah-niveauet fra scratch – en betydelig investering, der kun anbefales for spillere med en klar bankroll-strategi og en forståelse af progressionens langsigtet value.</p>
         </section>
 
-        <ReviewScreenshot
-          src={videoslotsForside}
-          alt="Casino-forside med Microgaming-slots – Immortal Romance er en af Microgamings mest populære titler"
-          caption="Immortal Romance er en Microgaming-klassiker og findes hos casinoer med et bredt Microgaming-udvalg."
-          size="full"
-        />
 
         {/* ── WILD DESIRE ── */}
         <section className="mb-12">
