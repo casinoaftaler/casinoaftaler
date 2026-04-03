@@ -12,12 +12,17 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap, Clock, Hammer, Compass, LineChart } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+
+import thunderstruckIntro from "@/assets/screenshots/thunderstruck-ii-intro.webp";
+import thunderstruckGameplay from "@/assets/screenshots/thunderstruck-ii-gameplay.webp";
+import thunderstruck243ways from "@/assets/screenshots/thunderstruck-ii-243ways.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
