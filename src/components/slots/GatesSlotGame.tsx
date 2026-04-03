@@ -841,6 +841,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
+        // Trigger orb video immediately before animations start
+        const anyStepHasBombs = result.tumbleSteps.some((s: any) => s.multiplierBombs?.length > 0);
+        if (anyStepHasBombs) {
+          setShowOrbVideo(true);
+          setOrbVideoTrigger(prev => prev + 1);
+        }
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
         setWinAmount(totalWin);
