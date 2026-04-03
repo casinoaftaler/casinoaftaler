@@ -121,12 +121,6 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={betiniaBonusbuyLobby}
-          alt="Bonus buy-lobby med Megaways-slots – Bonanza var den første Megaways-spillemaskine"
-          caption="Bonus buy-sektionen viser slots med feature-køb – Bonanza er en af de originale Megaways-titler."
-          size="full"
-        />
 
         {/* ── Teknisk profil ── */}
         <section className="mb-10">

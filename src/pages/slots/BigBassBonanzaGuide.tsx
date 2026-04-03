@@ -143,12 +143,6 @@ const BigBassBonanzaGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={casinostuenSpillemaskiner}
-          alt="Spillemaskiner-lobby med filtreringsmuligheder – Big Bass Bonanza findes i de fleste danske casinoers udvalg"
-          caption="En typisk spillemaskiner-lobby med søge- og filterfunktioner til at finde spil som Big Bass Bonanza."
-          size="full"
-        />
 
         <YoutubeEmbed
           videoId="Hguc2V01ouQ"
