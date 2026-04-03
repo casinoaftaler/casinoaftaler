@@ -95,7 +95,7 @@ const LegacyOfDeadGuide = () => {
     <>
       <SEO
         title="Legacy of Dead – Expanding Symbols & RTP"
-        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 96,58 %, sammenligning med Book of Dead og EV-beregninger."
+        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 94,51 %, sammenligning med Book of Dead og EV-beregninger."
         jsonLd={[faqJsonLd, articleSchema, videoJsonLd]}
       />
 
