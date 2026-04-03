@@ -143,6 +143,13 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseIntroScreen}
+          alt="The Dog House intro-skærm med sticky wild hundehuse med 3x multiplikatorer og 6.750x max win visning"
+          caption="Intro-skærmen præsenterer The Dog House's kernefeature: sticky wilds i form af hundehuse med multiplikatorer op til 3× og en max win på 6.750× indsatsen."
+          eager
+        />
+
         <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
         <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser sticky wild-mekanikken, multiplikator-stacking og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
