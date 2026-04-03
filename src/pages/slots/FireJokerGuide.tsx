@@ -12,12 +12,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import fireJokerHero from "@/assets/screenshots/fire-joker-hero-logo.webp";
+import fireJokerGameplay from "@/assets/screenshots/fire-joker-gameplay-grid.webp";
+import fireJokerMultiplikator from "@/assets/screenshots/fire-joker-multiplikatorhjul.webp";
+import fireJokerBetalingstabel from "@/assets/screenshots/fire-joker-betalingstabel.webp";
+import fireJokerRtp from "@/assets/screenshots/fire-joker-spilleautomaten-rtp.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -107,6 +114,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerHero} alt="Fire Joker titelbillede med joker-karakter omgivet af flammer og gyldne ringe" caption="Fire Jokers ikoniske titelbillede – Play'n GO's klassiske frugtmaskine med moderne twist." eager />
+
         {/* ── Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -127,6 +136,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerGameplay} alt="Fire Joker 3x3 gameplay-grid med joker-symboler, frugter og X-symboler på hjulene" caption="Fire Jokers kompakte 3×3 grid med Joker wild-symboler og klassiske frugtsymboler." />
+
         {/* ── Respin of Fire ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -146,6 +157,8 @@ const FireJokerGuide = () => {
             Fra et EV-perspektiv bidrager Respin of Fire med estimeret 8-12 % af spillets samlede return. Uden denne funktion ville Fire Jokers RTP falde til cirka 84-88 % – langt under markedsstandarden. Funktionen er altså ikke et gimmick, men en matematisk nødvendighed for at opnå den angivne 96,15 % RTP inden for rammerne af et så simpelt grundspil.
           </p>
         </section>
+
+        <ReviewScreenshot src={fireJokerMultiplikator} alt="Fire Joker Multiplikatorhjul med 2x, 3x, 4x, 5x og 10x sektorer – vind op til 800x din indsats" caption="Wheel of Multipliers: Multiplikatorhjulet med op til 10× – aktiveres ved fuld skærm." />
 
         <InlineCasinoCards />
 
@@ -168,6 +181,8 @@ const FireJokerGuide = () => {
             Max win-scenariet kræver en full screen med stjernen (80× base) × 10× multiplikator = 800× indsatsen. Med den estimerede sandsynlighed for dette specifikke scenarie (fuld skærm med det bedste symbol OG 10× multiplikator) er vi nede i intervallet 1 i 50.000-100.000 spins. Det er sjældent, men markant mere realistisk end max win i high-volatility slots – et point der ofte overses i sammenligninger.
           </p>
         </section>
+
+        <ReviewScreenshot src={fireJokerBetalingstabel} alt="Fire Joker betalingstabel med alle symbolers gevinstværdier – Joker wild 80x, 777 25x, stjerne 20x, BAR 15x og frugtsymboler" caption="Fire Jokers betalingstabel: Joker (wild) betaler 80×, mens frugtsymboler betaler 2-7×." />
 
         {/* ── RTP & EV ── */}
         <section className="mb-10">
@@ -225,6 +240,8 @@ const FireJokerGuide = () => {
             For spillere, der vægter enkelhed og forudsigelighed, er Fire Joker den overlegne choice i Play'n GO's portefølje. For dem, der ønsker mere spænding med bevaret enkelhed, er Book of Dead et naturligt næste skridt – stadig relativt simpelt, men med markant højere volatilitet og gevinstpotentiale. Vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> kan hjælpe dig med at finde det rette match.
           </p>
         </section>
+
+        <ReviewScreenshot src={fireJokerRtp} alt="Fire Joker RTP 94,23% vist på spilleautomaten.dk med popularitetsvurdering og top vindere" caption="Fire Jokers RTP og popularitetsdata som vist hos en dansk operatør – bemærk den lavere RTP-konfiguration." />
 
         {/* ── Risiko og ansvarligt spil ── */}
         <section className="mb-10">
