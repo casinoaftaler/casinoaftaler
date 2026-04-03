@@ -97,7 +97,7 @@ export function BonanzaControlBar({
 
   const renderSpinContent = () => {
     if (isSpinning) {
-      return <MenuIcon iconName="rotate-cw" className="h-8 w-8 sm:h-10 sm:w-10 text-white animate-spin" />;
+      return <RotateCw className="h-8 w-8 sm:h-10 sm:w-10 text-white animate-spin" />;
     }
     if (!canSpinNow && !bonusState.isActive) {
       return <span className="text-[9px] sm:text-[10px] text-white/80 text-center leading-tight font-bold">INGEN<br />SPINS</span>;
