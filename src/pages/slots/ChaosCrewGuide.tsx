@@ -180,7 +180,7 @@ const ChaosCrewGuide = () => {
         {/* ── BONUS BUY ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-6 w-6 text-primary" /> Bonus Buy: Er Det Matematisk Fordelagtigt?</h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew tilbyder to bonus buy-muligheder, der lader spillere springe base game over og gå direkte til free spins. Standard bonus buy koster 60× indsatsen og giver en standard free spins-runde. Enhanced bonus buy koster 80× indsatsen og garanterer et minimum antal wild-symboler på griddet ved rundens start.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew tilbyder én bonus buy-mulighed til 129× indsatsen (f.eks. 516 kr. ved en indsats på 4 kr.), der giver direkte adgang til free spins-runden. Bonus buy-RTP'en er 95,92 % – lidt lavere end base game's 96,50 %, hvilket betyder en marginalt højere house edge ved køb.</p>
 
           <ReviewScreenshot src={chaoscrewBonuskob} alt="Chaos Crew bonuskøb-menu med indsatsvalg på 4 kr. og Gratis Spins til 516 kr. med Volatilitet Ekstrem markering" caption="Chaos Crew's bonus buy: Gratis Spins kan købes direkte med ekstrem volatilitet markeret" size="medium" />
 
