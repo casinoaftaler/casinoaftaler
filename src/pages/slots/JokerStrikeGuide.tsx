@@ -206,6 +206,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den lave volatilitet forstærker denne fordel. High-volatility slots kan have lige så høj RTP (f.eks. <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> med 96,86 %), men den høje varians betyder, at sandsynligheden for total bankroll-kollaps under gennemspilning er markant. En enkelt uheldig session med <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> kan udslette hele bonussen, selvom den langsigtede RTP er acceptabel. Joker Strike's lave varians giver en nærmest lineær bankroll-progression mod omsætningskravet – færre overraskelser, mere kontrol.</p>
 
           <p className="text-muted-foreground leading-relaxed">Optimal gennemspilningsstrategi med Joker Strike: Brug Hi Roller Level 1 (30× pr. 10 spins). Sæt basisindsatsen til det beløb, der maksimerer omsætningen pr. session uden at overskride spillets eventuelle indsatsgrænser. Undgå at blande Joker Strike med high-volatility slots under gennemspilning – konsistens er nøglen. Monitor din bankroll og stop, hvis du opnår dit target (bonus + minimum profit).</p>
+          <ReviewScreenshot
+            src={jokerStrikeRtpData}
+            alt="Joker Strike tekniske data: RTP 96,46 %, maksimal gevinst 12,11 DKK, mindste indsats 0,10 DKK, maksimal indsats 1,00 DKK, 9 gevinstlinjer"
+            caption="Tekniske spildata for Joker Strike: RTP, indsatsgrænser og gevinstlinjer fra spilleautomaten.dk."
+            size="full"
+          />
         </section>
 
         {/* ── EV BEREGNING ── */}
