@@ -285,6 +285,13 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHousePaytable}
+          alt="The Dog House paytable med alle symboler, udbetalingsværdier og wild-multiplikator regler for 2x og 3x"
+          caption="Gevinsttabellen viser symbolhierarkiet og wild-reglerne: wild-symbolet (hundehuset) erstatter alle undtagen scatter, kun på hjul 2-4, med tilfældig 2× eller 3× multiplikator."
+          size="medium"
+        />
+
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
