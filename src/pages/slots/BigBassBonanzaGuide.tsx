@@ -176,7 +176,7 @@ const BigBassBonanzaGuide = () => {
             </CardContent></Card>
              <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
-              <p className="text-xl font-bold">Høj (5/5)</p>
+              <p className="text-xl font-bold">Høj (4/5)</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Max Win</p>
