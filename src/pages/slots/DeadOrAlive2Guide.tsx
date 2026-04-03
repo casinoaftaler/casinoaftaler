@@ -120,7 +120,7 @@ const DeadOrAlive2Guide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="19 min" />
-        <SnippetAnswer answer="Dead or Alive 2 er en ekstremt volatil slot (5/5) fra NetEnt med 96,82 % RTP og 111.111× max win – et af de højeste i branchen. Spillets unikke feature er valget mellem tre free spins-modes: Train Heist (sikker, 2.000× max), Old Saloon (moderat, 40.500× max) og High Noon Saloon (ekstrem, 111.111× max med multiplicative sticky wilds)." />
+        <SnippetAnswer answer="Dead or Alive 2 er en ekstremt volatil slot (5/5) fra NetEnt med 96,80 % RTP og 111.111× max win – et af de højeste i branchen. Spillets unikke feature er valget mellem tre free spins-modes: Train Heist (sikker, 2.000× max), Old Saloon (moderat, 40.500× max) og High Noon Saloon (ekstrem, 111.111× max med multiplicative sticky wilds)." />
         {/* ── ÅBNINGSVINKEL: MAX WIN FOKUS ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">111.111x: Anatomien af den Største Gevinst i Online Slots</h2>
