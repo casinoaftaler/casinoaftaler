@@ -18,7 +18,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import legacyOfDeadFreeSpinsIntro from "@/assets/screenshots/legacy-of-dead-free-spins-intro.webp";
+import legacyOfDeadGameplayGrid from "@/assets/screenshots/legacy-of-dead-gameplay-grid.webp";
+import legacyOfDeadSpilleregler from "@/assets/screenshots/legacy-of-dead-spilleregler.webp";
+import legacyOfDeadCasinoLobby from "@/assets/screenshots/legacy-of-dead-casino-lobby.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
