@@ -5,6 +5,67 @@ import { useAuth } from "@/hooks/useAuth";
 import { getTodayDanish } from "@/lib/danishDate";
 import { toast } from "sonner";
 
+// ── Fuzzy slot-name matching utilities ──
+
+const ROMAN_MAP: [RegExp, string][] = [
+  [/\biv\b/g, '4'],
+  [/\biii\b/g, '3'],
+  [/\bii\b/g, '2'],
+  [/\bvi\b/g, '6'],
+  [/\bv\b/g, '5'],
+];
+
+export function normalizeForMatch(name: string): string {
+  let n = name.toLowerCase().trim();
+  // strip apostrophes / quotes
+  n = n.replace(/[''`"]/g, '');
+  // roman numerals → digits (order matters: iv before ii)
+  for (const [re, digit] of ROMAN_MAP) {
+    n = n.replace(re, digit);
+  }
+  // collapse whitespace & strip non-alphanumeric (keep æøå)
+  n = n.replace(/[^a-z0-9æøå ]/g, ' ').replace(/\s+/g, ' ').trim();
+  return n;
+}
+
+export function slotNameSimilarity(a: string, b: string): number {
+  if (a === b) return 1;
+  // containment check
+  if (a.length >= 4 && b.includes(a)) return 0.85;
+  if (b.length >= 4 && a.includes(b)) return 0.85;
+  // Jaccard on word tokens
+  const wordsA = new Set(a.split(' ').filter(Boolean));
+  const wordsB = new Set(b.split(' ').filter(Boolean));
+  let intersection = 0;
+  for (const w of wordsA) if (wordsB.has(w)) intersection++;
+  const union = new Set([...wordsA, ...wordsB]).size;
+  return union === 0 ? 0 : intersection / union;
+}
+
+export function findBestRequesterMatch(
+  huntSlotName: string,
+  requesterMap: Map<string, SlotRequesterInfo>,
+): SlotRequesterInfo | undefined {
+  const normHunt = normalizeForMatch(huntSlotName);
+
+  // 1. exact normalized match
+  for (const [reqName, info] of requesterMap) {
+    if (normalizeForMatch(reqName) === normHunt) return info;
+  }
+
+  // 2. best similarity above threshold
+  let best: SlotRequesterInfo | undefined;
+  let bestScore = 0;
+  for (const [reqName, info] of requesterMap) {
+    const score = slotNameSimilarity(normHunt, normalizeForMatch(reqName));
+    if (score > bestScore) {
+      bestScore = score;
+      best = info;
+    }
+  }
+  return bestScore >= 0.5 ? best : undefined;
+}
+
 export interface SlotRequest {
   id: string;
   user_id: string;
