@@ -6,7 +6,6 @@ export function useActiveRaffle() {
   return useQuery({
     queryKey: ["active-raffle"],
     queryFn: async () => {
-      // First ensure there's an active raffle
       await supabase.rpc("ensure_active_raffle");
 
       const { data, error } = await supabase
@@ -39,7 +38,6 @@ export function useRaffleEntries(raffleId: string | undefined) {
 
       if (error) throw error;
 
-      // Fetch profiles for entries
       const userIds = data.map((e) => e.user_id);
       if (userIds.length === 0) return [];
 
@@ -94,28 +92,31 @@ export function useRecentRaffleWinners() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("raffles")
-        .select("id, prize_credits, ends_at, winner_id")
+        .select("id, prize_credits, starts_at, ends_at, winner_id, status")
         .eq("status", "completed")
-        .not("winner_id", "is", null)
         .order("ends_at", { ascending: false })
-        .limit(10);
+        .limit(20);
 
       if (error) throw error;
       if (!data || data.length === 0) return [];
 
-      const winnerIds = [...new Set(data.map((r) => r.winner_id!))];
-      const { data: profiles } = await supabase
-        .from("profiles")
-        .select("user_id, display_name, avatar_url")
-        .in("user_id", winnerIds);
+      const winnerIds = [...new Set(data.filter((r) => r.winner_id).map((r) => r.winner_id!))];
+      
+      let profileMap = new Map<string, { user_id: string; display_name: string | null; avatar_url: string | null }>();
+      if (winnerIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, display_name, avatar_url")
+          .in("user_id", winnerIds);
 
-      const profileMap = new Map(
-        (profiles ?? []).map((p) => [p.user_id, p])
-      );
+        profileMap = new Map(
+          (profiles ?? []).map((p) => [p.user_id, p])
+        );
+      }
 
       return data.map((raffle) => ({
         ...raffle,
-        winner_profile: profileMap.get(raffle.winner_id!) ?? null,
+        winner_profile: raffle.winner_id ? profileMap.get(raffle.winner_id) ?? null : null,
       }));
     },
     staleTime: 30_000,
