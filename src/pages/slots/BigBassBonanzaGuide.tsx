@@ -228,7 +228,13 @@ const BigBassBonanzaGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Den skæve fordeling er tydelig: de bedste 10 % af bonusrunder (med mange fisk + 50x-værdier + flere fisker-landinger) kan nå 500–1.000x, mens de dårligste 20 % udbetaler under 15x. Variansen inden for bonusrunden er høj, men ikke ekstrem sammenlignet med multiplikator-baserede slots som Razor Shark.
           </p>
-        </section>
+         </section>
+
+        <ReviewScreenshot
+          src={screenshotPaytable}
+          alt="Big Bass Bonanza paytable – symbolværdier for fisker, fisk, guldsmed, fiskekasse og kortværdier samt wild og scatter forklaring"
+          caption="Komplet paytable: Fiskeren (wild) erstatter alle symboler undtagen scatter og vises kun under free spins. Scatter-symbolet vises på alle hjul."
+        />
 
         <Separator className="my-10" />
 
