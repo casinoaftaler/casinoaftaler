@@ -378,6 +378,12 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot 10 ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead matematisk overlegen i scenarier med retriggers.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadCasinoLobby}
+            alt="Legacy of Dead i online casino-lobby med søgefunktion og populære spillemaskiner"
+            caption="Legacy of Dead tilgængelig i casino-lobbyen – spillet findes hos alle større danske licenserede casinoer."
+            size="medium"
+          />
         </section>
 
         {/* ── Mobiloplevelse ── */}
