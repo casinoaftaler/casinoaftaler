@@ -225,6 +225,12 @@ const GonzosQuestGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Under Free Falls er effekten tredoblet. En 15x multiplikator på 4+ consecutive cascades er ekstraordinært kraftfuld. Kombineret med premium-symboler kan dette generere gevinster på 500–1.000x indsatsen i en enkelt cascade-kæde. Det er denne sjældne, men kraftige interaktion, der definerer Gonzo's Quests bedste øjeblikke.
           </p>
+          <ReviewScreenshot
+            src={gonzosQuestGameplayGrid}
+            alt="Gonzo's Quest gameplay med 5x3 grid, maya-stensymboler, 20 gevinstlinjer og multiplikator-display øverst til højre"
+            caption="Basisspillet med 20 gevinstlinjer og multiplikator-displayet (x1 → x2 → x3 → x5) synligt øverst."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
