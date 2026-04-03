@@ -158,6 +158,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerMultiplikator} alt="Fire Joker Multiplikatorhjul med 2x, 3x, 4x, 5x og 10x sektorer – vind op til 800x din indsats" caption="Wheel of Multipliers: Multiplikatorhjulet med op til 10× – aktiveres ved fuld skærm." />
+
         <InlineCasinoCards />
 
         {/* ── Wheel of Multipliers ── */}
