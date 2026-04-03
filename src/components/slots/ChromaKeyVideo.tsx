@@ -95,6 +95,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   height,
   className,
   loop = true,
+  playbackRate = 1,
   playTrigger,
   onEnded,
 }: ChromaKeyVideoProps) {
