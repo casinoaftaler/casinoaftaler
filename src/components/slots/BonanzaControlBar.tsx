@@ -134,7 +134,7 @@ export function BonanzaControlBar({
         </div>
       );
     }
-    return <MenuIcon iconName="rotate-cw" className="h-8 w-8 sm:h-10 sm:w-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />;
+    return <RotateCw className="h-8 w-8 sm:h-10 sm:w-10 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />;
   };
 
   /* shared label style */
