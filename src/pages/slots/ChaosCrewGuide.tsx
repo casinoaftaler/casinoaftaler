@@ -131,7 +131,7 @@ const ChaosCrewGuide = () => {
               <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,50 %</strong></div>
               <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Ekstrem (5/5)</strong></div>
               <div><span className="text-muted-foreground">Max Win:</span><br /><strong>10.000×</strong></div>
-              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×5 (cluster pays)</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (15 linjer)</strong></div>
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,50 %</strong></div>
               <div><span className="text-muted-foreground">Hit Frequency:</span><br /><strong>~20-25 %</strong></div>
               <div><span className="text-muted-foreground">Bonus Trigger:</span><br /><strong>~1/200-280 spins</strong></div>
