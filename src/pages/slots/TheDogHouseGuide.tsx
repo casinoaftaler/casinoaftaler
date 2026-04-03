@@ -354,7 +354,7 @@ const TheDogHouseGuide = () => {
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Max Win</td><td className="py-2 pr-4">6.750×</td><td className="py-2 pr-4">21.100×</td><td className="py-2">5.000×</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Volatilitet</td><td className="py-2 pr-4">Høj</td><td className="py-2 pr-4">Høj</td><td className="py-2">Høj</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Mekanik</td><td className="py-2 pr-4">Sticky Wilds</td><td className="py-2 pr-4">Tumble/Scatter</td><td className="py-2">Tumble/Multiplier</td></tr>
-                    <tr><td className="py-2 pr-4 font-medium">Bonus Buy</td><td className="py-2 pr-4">60×</td><td className="py-2 pr-4">100×</td><td className="py-2">100×</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium">Bonus Buy</td><td className="py-2 pr-4">Nej</td><td className="py-2 pr-4">100×</td><td className="py-2">100×</td></tr>
                   </tbody>
                 </table>
               </div>
