@@ -121,7 +121,7 @@ export function BonanzaControlBar({
     if (isAutoSpinning) {
       return (
         <div className="flex flex-col items-center">
-          <MenuIcon iconName="rotate-cw" className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+          <RotateCw className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           <span className="text-[7px] uppercase text-white/60 -mt-0.5 tracking-wider">AUTO</span>
         </div>
       );
