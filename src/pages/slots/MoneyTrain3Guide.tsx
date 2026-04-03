@@ -253,6 +253,11 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Basespillets hit frequency på ~18 % er bemærkelsesværdigt lav. Det betyder, at mere end 4 ud af 5 spins producerer ingen gevinst overhovedet. Til gengæld er de gevinster, der forekommer, typisk mere substantielle end i lavere volatilitetsslots. Denne "feast or famine"-dynamik er det definerende kendetegn ved Money Train 3's gameplay.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3GameplayGrid}
+            alt="Money Train 3 gameplay med 4x5 grid, karakter-symboler i farvede rammer og KØB-bonus knap synlig"
+            caption="Basespillets 4×5 grid med 40 faste gevinstlinjer. Bemærk 'KØB'-knappen nederst til venstre for direkte bonus-adgang (80× indsats)."
+          />
         </section>
 
         {/* ── EV ── */}
