@@ -395,12 +395,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       }
     }
 
-    // Show orb reaction video if ANY step had bombs (regardless of wins)
-    const anyStepHasBombs = steps.some((s: any) => s.multiplierBombs?.length > 0);
-    if (anyStepHasBombs) {
-      setShowOrbVideo(true);
-      setOrbVideoTrigger(prev => prev + 1);
-    }
+    // Orb video is now triggered before processTumbleSteps is called
 
     // Sequential bomb blow-up AFTER all tumbles
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
