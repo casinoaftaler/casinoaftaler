@@ -178,6 +178,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Fra et strategisk perspektiv er det vigtigt at forstå, at free spins i Divine Fortune primært er en RTP-stabilisator – de bidrager med estimeret 15-20 % af spillets samlede tilbagebetaling. Den primære appeal forbliver jackpot-mekanikken, men free spins sikrer, at sessioner mellem jackpot-forsøg ikke føles tomme. Denne dobbelte bonusstruktur (free spins + jackpot game) er en af grundene til, at Divine Fortune har en mere tilfredsstillende session-dynamik end rent jackpot-fokuserede titler.
           </p>
+          <ReviewScreenshot
+            src={screenshotFreeSpins}
+            alt="Divine Fortune free spins regler – 3 scatters giver 5 Divine Spins, 4 scatters giver 8, og 5 scatters giver 12"
+            caption="Free Spins-oversigt: 3 Scatter-symboler = 5 Divine Spins, 4 = 8, 5 = 12. Spilleren vælger mellem Divine Spins og Fortune Spins."
+            size="medium"
+          />
         </section>
 
         {/* ── Wagering med jackpot-slots ── */}
