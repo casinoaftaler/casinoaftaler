@@ -11,12 +11,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import buffalokingLogo from "@/assets/screenshots/buffalokingLogo.webp";
+import buffalokingMultiplikatorStacking from "@/assets/screenshots/buffalokingMultiplikatorStacking.webp";
+import buffalokingRtpData from "@/assets/screenshots/buffalokingRtpData.webp";
+import buffalokingBaseGameBonus from "@/assets/screenshots/buffalokingBaseGameBonus.webp";
+import buffalokingPaytableSymboler from "@/assets/screenshots/buffalokingPaytableSymboler.webp";
+import buffalokingFreeSpinsRegler from "@/assets/screenshots/buffalokingFreeSpinsRegler.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -52,13 +59,20 @@ const BuffaloKingGuide = () => {
             <p className="text-lg text-white/80">Pragmatic Play's vildeste multiplikator-slot: en matematisk dekonstruktion af 93.750× max win-potentialet og den stacking-mekanik, der gør Buffalo King til en af markedets mest volatile titler.</p>
           </div>
         </div>
-      </section>
+       </section>
+
+       <div className="container mb-8">
+         <ReviewScreenshot src={buffalokingLogo} alt="Buffalo King spillemaskinens logo og artwork fra Pragmatic Play med det nordamerikanske prærie-tema" caption="Buffalo King – Pragmatic Play's populære prærie-slot med 93.750× max win" size="medium" eager />
+       </div>
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Multiplikator-Stacking: Mekanikken Bag 93.750× Max Win</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings definerende mekanik er multiplikator-stacking under free spins. Under bonusrunden tildeles tilfældige multiplikatorer (2×, 3× eller 5×) til individuelle gevinstsymboler. Når flere symboler med multiplikatorer indgår i samme gevinstlinje, ganges multiplikatorerne SAMMEN – ikke adderes. Denne multiplikativ mekanik er nøglen til spillets ekstreme gevinstpotentiale.</p>
+
+          <ReviewScreenshot src={buffalokingMultiplikatorStacking} alt="Buffalo King gameplay screenshot med x5 multiplikatorer synlige på alle hjul under free spins-bonusrunden" caption="Multiplikator-stacking i aktion: x5 multiplikatorer på flere hjul under Buffalo Kings free spins" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Forestil dig en gevinstlinje med 6 matchende symboler, hvor tre har multiplikatorer: 5× × 3× × 5× = 75×. Denne 75× multiplikator ganges derefter med symbol-grundgevinsten og indsatsen. Med premium-symbolet (buffalen) og 6-of-a-kind er base-gevinsten allerede betydelig – ganget med 75× kan en enkelt linje levere tusindvis af gange indsatsen.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har designet Buffalo King specifikt til at appellere til spillere, der jager store enkelt-gevinster. Det 6×4 grid med 4.096 gevinstmuligheder (All Ways) sikrer, at der er mange potentielle gevinstlinjer, mens multiplikator-stacking giver hver linje potentiale for ekstreme forstørrelser. Resultatet er en slot med en gevinstfordeling, der er ekstremt skævvredet mod sjældne, store hændelser.</p>
           <p className="text-muted-foreground leading-relaxed">Den matematiske realitet er dog nøgtern: gennemsnitlig multiplikatorværdi under free spins er estimeret til kun 1,3-1,5× (fordi de fleste symboler IKKE får tildelt multiplikatorer). De exceptionelle stacking-øjeblikke, der driver max win-potentialet, forekommer med ekstremt lav frekvens. Buffalo King er et klassisk eksempel på en slot, hvor markedsføringens max win-tal (93.750×) afspejler et statistisk yderpunkt, ikke en realistisk forventning.</p>
@@ -76,6 +90,9 @@ const BuffaloKingGuide = () => {
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,94 %</strong></div>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={buffalokingRtpData} alt="Buffalo King tekniske data fra Spilleautomaten.dk med RTP 96,06 procent, max gevinst 93.750x, indsatsområde og gevinstlinjer" caption="Verificeret data: Buffalo Kings RTP, max win og tekniske specifikationer" size="medium" eager />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings 96,06 % <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> er gennemsnitligt for Pragmatic Play-titler, men kontekstualiseret mod den ekstremt høje <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link> fortæller det en vigtig historie: en stor andel af RTP'en er koncentreret i sjældne, store gevinsthændelser. Base game-RTP'en (ekskl. free spins) estimeres til kun 55-65 % – markant lavere end de fleste slots – hvilket forklarer den aggressive bankroll-drain mellem bonusrunder.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency i base game er estimeret til 20-25 % – lavere end gennemsnittet for All Ways-slots. De fleste base game-gevinster er små (under 1× indsatsen), og meningsfulde gevinster (over 5×) forekommer kun i 2-3 % af spins. Buffalo King er bygget til bonusrunden – base game er primært en transportmekanisme til free spins.</p>
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens er cirka 1 pr. 200-300 spins for minimum 3 scatters. Dog er det muligt at lande 4, 5 eller endda 6 scatters for dramatisk flere free spins (op til 100 free spins ved 6 scatters). Den forventede gennemsnitlige bonusrunde (ved 3 scatters / 8 free spins) leverer estimeret 30-60× indsatsen – men dette gennemsnit maskerer en enorm varians.</p>
@@ -84,6 +101,9 @@ const BuffaloKingGuide = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Free Spins: Op til 100 Gratis Spins med Multiplikatorer</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings free spins-system er exceptionelt generøst i antal: 3 scatters giver 8, 4 giver 15, 5 giver 25, og 6 scatters giver hele 100 free spins. Retrigger er muligt ved at lande yderligere 3+ scatters under bonusrunden, med samme belønningsstruktur. Den teoretiske mulighed for 6-scatter retrigger under en allerede aktiv 100-spin runde er vanvittigt sjælden, men repræsenterer Buffalo Kings absolutte ceiling.</p>
+
+          <ReviewScreenshot src={buffalokingBaseGameBonus} alt="Buffalo King base game med synlige bonus-scatter-symboler og Køb Gratis Spins knappen aktiveret i brugergrænsefladen" caption="Buffalo Kings base game med bonus-symboler og mulighed for at købe free spins direkte" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Under free spins tildeles multiplikatorer tilfældigt til gevinstsymboler. Sandsynligheden for at et givet symbol modtager en multiplikator er estimeret til 15-20 %. Multiplikatorfordelingen er: 2× (50 %), 3× (35 %), 5× (15 %). Den forventede gennemsnitlige multiplikator pr. tildelt symbol er altså cirka 2,65×.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Stacking-mekanikken multiplicerer disse værdier: to multiplikatorer på samme linje (f.eks. 3× og 5×) giver 15×. Tre multiplikatorer (f.eks. 5× × 5× × 3×) giver 75×. Sandsynligheden for tre+ multiplikatorer på samme linje er ekstremt lav, men med 4.096 aktive gevinstmuligheder er der mange "muligheder" pr. spin, hvilket øger den samlede sandsynlighed for mindst ét stacking-hit.</p>
           <p className="text-muted-foreground leading-relaxed">For et EV-perspektiv: den gennemsnitlige free spins-runde (8 spins) leverer estimeret 30-60× indsatsen. Med 25-100 free spins (4-6 scatters) stiger dette til 100-500× i gennemsnit. Max win-scenariet (93.750×) kræver en perfekt storm af 100 free spins, fuldt stakket grid med premium-symboler, og multiple 5× multiplikatorer på alle aktive linjer – en begivenhed med astronomisk lav sandsynlighed.</p>
@@ -139,6 +159,9 @@ const BuffaloKingGuide = () => {
               </table>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={buffalokingPaytableSymboler} alt="Buffalo King spilleregler og paytable side der viser alle symbolværdier og 4096 ways to win gevinstberegning" caption="Buffalo Kings officielle paytable: symbolværdier og 4.096 gevinstmuligheder forklaret" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Tabellen illustrerer den eksplosive effekt af multiplikator-stacking: et buffel-6-of-a-kind, der normalt betaler 50× (100 kr.), kan med to 5× multiplikatorer betale 1.250× (2.500 kr.) fra en ENKELT gevinstlinje. Med 4.096 aktive ways og potentielt hundredvis af samtidige gevinster kan den samlede udbetaling fra et enkelt free spin nå astronomiske niveauer. Det er denne multiplikative matematik, der producerer max win-potentialet på 93.750×.</p>
           <p className="text-muted-foreground leading-relaxed">Wild-symbolet erstatter alle symboler undtagen scatter og lander kun på hjul 2, 3, 4 og 5. Under free spins kan wilds modtage multiplikatorer, der fungerer som en ekstra multiplikator-kilde ud over de symboler, der allerede har multiplikatorer. Denne dobbeltkilde af multiplikatorer (wilds + regulære symboler) er en mekanik, der sjældent ses i andre slots og bidrager til Buffalo Kings unikke gevinstprofil.</p>
         </section>
@@ -172,6 +195,9 @@ const BuffaloKingGuide = () => {
               </table>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={buffalokingFreeSpinsRegler} alt="Buffalo King spilleregler side 2 med Wild-symbol funktioner, Bonus scatter-regler og free spins tildelingsstruktur" caption="Wild- og scatter-regler: Buffalo Kings komplette free spins-mekanik forklaret" size="medium" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Sandsynligheden for 6 scatters er astronomisk lav (~1/200.000 spins), men det er netop dette scenarie, der driver den teoretiske max win. Med 100 free spins og aktive multiplikatorer er den samlede akkumulerede gevinstpotentiale praktisk talt ubegrænset inden for spillets 93.750× cap. For de fleste spillere er 3-scatter triggeren (8 spins) den realistiske oplevelse – og selv denne kan levere meningsfulde gevinster med heldig multiplikator-stacking.</p>
           <p className="text-muted-foreground leading-relaxed">Et vigtigt perspektiv: fordi 100-spins scenariet er så sjældent, bør det aldrig være din "strategi" at jage det. Buffalo King bør spilles med forventningen om 8-spins bonusrunder (typisk 30-60× return), med 4-5 scatter-triggere som positive overraskelser. At jage de sjældne, store scenarier er en opskrift på frustration og potentielt problematisk spilleadfærd.</p>
         </section>
