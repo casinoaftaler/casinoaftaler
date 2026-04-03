@@ -121,14 +121,6 @@ export default function BonusHuntArkiv() {
         <AuthorMetaBar author="kevin" readTime="25 min" />
 
         {/* Mobile hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl md:hidden">
-          <img
-            src={bonusHuntArkivHero}
-            alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
-            className="w-full h-auto object-cover max-h-[300px]"
-            loading="eager"
-          />
-        </div>
 
         {/* Illustrative stream screenshot */}
         <figure className="rounded-xl overflow-hidden border border-border/50 mb-8">

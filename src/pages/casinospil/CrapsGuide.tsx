@@ -124,14 +124,6 @@ const CrapsGuide = () => {
 
         <SnippetAnswer answer="Craps tilbyder nogle af de bedste odds i casinoet. Pass line har en house edge på 1,41 %, og don't pass ligger på 1,36 %. Med odds-indsatser (ingen house edge) kan den samlede fordel reduceres til under 1 %. Prop bets og hardway-indsatser har derimod house edges på 9–16 % og bør undgås." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={crapsHero}
-            alt="Craps-bord med terninger og chips set fra analytisk perspektiv"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ═══════════════ 1 – MATEMATISK FORKLARING ═══════════════ */}
         <section className="mb-12">

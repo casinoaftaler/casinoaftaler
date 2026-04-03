@@ -180,7 +180,6 @@ export default function MarketIntelligence() {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="14 min" />
-        <GuideHeroImage src={marketIntelligenceHero} alt={heroAlt} />
 
         {isLoading ? (
           <Card className="border-border bg-card/80">

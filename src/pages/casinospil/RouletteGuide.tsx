@@ -124,16 +124,6 @@ const RouletteGuide = () => {
 
         <SnippetAnswer answer="Roulette fås i tre hovedvarianter: europæisk (2,70 % house edge), fransk (1,35 % med La Partage) og amerikansk (5,26 %). Indsatstyper spænder fra lige chancer (rød/sort) til straight up (enkelt nummer). Ingen indsatsstrategi ændrer den matematiske house edge – kun bordvalg gør en forskel." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={rouletteHero}
-            alt="Roulettehjul i et live casino-miljø med grønne feltmarkeringer"
-            width={1920}
-            height={600}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ═══════════════ 1 – ROULETTE FORKLARET PÅ 2 MINUTTER ═══════════════ */}
         <section className="mb-12">

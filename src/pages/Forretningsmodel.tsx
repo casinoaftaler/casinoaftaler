@@ -75,16 +75,6 @@ const Forretningsmodel = () => {
       <div className="container py-10 md:py-14">
         <AuthorMetaBar author="ajse" readTime="8 min" showAffiliateDisclaimer={false} />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={forretningsmodelHero}
-            alt="Forretningsmodel og transparens hos Casinoaftaler.dk"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* Hvad er affiliate-marketing */}
         <section className="mb-12">

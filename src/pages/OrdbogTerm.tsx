@@ -111,16 +111,6 @@ const OrdbogTerm = () => {
           Tilbage til Casino Ordbog
         </Link>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={heroImage}
-            alt={`${term.title} – casino ordbog begreb illustreret`}
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         <div
           className="prose prose-lg max-w-none dark:prose-invert mb-10 prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:underline"

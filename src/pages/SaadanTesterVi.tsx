@@ -198,14 +198,6 @@ const SaadanTesterVi = () => {
           <GPWASealBadge variant="inline" microcopy="GPWA-godkendt testmetode" showTrustLink />
         </div>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={testMetodeHero}
-            alt="Casinoaftaler testmetode – systematisk evaluering af online casinoer"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* 1. Introduktion */}
         <section className="mb-12">

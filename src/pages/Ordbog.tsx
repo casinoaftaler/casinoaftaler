@@ -67,7 +67,7 @@ const Ordbog = () => {
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${ordbogHero})`,
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% ), hsl(210 80% 30% ))`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -91,16 +91,6 @@ const Ordbog = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="44 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={ordbogHero}
-            alt="Casino ordbog – opslagsbog med terninger, chips og spillekort på et mørkt bord med lilla og teal belysning"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         <div className="relative mb-8">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

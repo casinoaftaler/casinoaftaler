@@ -167,16 +167,6 @@ const StopSpilletGuide = () => {
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={stopspilletHero}
-            alt="StopSpillet rådgivningsguide – telefon med beskyttelsesskjold symboliserer gratis hjælp til spilleafhængige"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER STOPSPILLET?

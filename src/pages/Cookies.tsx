@@ -88,14 +88,6 @@ const Terms = () => {
         <AuthorMetaBar author="redaktionen" readTime="4 Min." showAffiliateDisclaimer={false} />
 
         {/* Hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={cookiesHero}
-            alt="Cookiepolitik og digital tracking"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* Section 1 */}
         <section className="mb-12">
