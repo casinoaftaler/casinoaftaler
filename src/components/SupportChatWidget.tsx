@@ -8,6 +8,7 @@ import { useBroadcastChat } from "@/hooks/useBroadcastChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
+import chatBubbleIcon from "@/assets/icons/chat-bubble-3d.png";
 
 export function SupportChatWidget() {
   const { user } = useAuth();
@@ -310,14 +311,23 @@ export function SupportChatWidget() {
       {/* Floating Button */}
       <button
         onClick={isOpen ? handleClose : handleOpen}
-        className="fixed bottom-4 right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
+        className={cn(
+          "fixed bottom-4 right-4 z-[60] transition-all duration-200 hover:scale-110",
+          isOpen
+            ? "h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl flex items-center justify-center"
+            : "h-16 w-16 flex items-center justify-center"
+        )}
         aria-label="Support chat"
       >
         {isOpen ? (
           <X className="h-6 w-6" />
         ) : (
           <>
-            <MenuIcon iconName="message-circle" className="h-6 w-6" />
+            <img
+              src={chatBubbleIcon}
+              alt="Chat"
+              className="h-16 w-16 drop-shadow-lg"
+            />
             {(unreadCount > 0 || broadcast) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
                 {unreadCount > 0 ? unreadCount : "!"}
