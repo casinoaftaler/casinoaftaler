@@ -60,7 +60,7 @@ const legacyOfDeadFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Legacy of Dead god til bonusgennemspilning?",
     answer: (
       <>
-        Nej, Legacy of Dead er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonusgennemspilning</Link> på grund af dens høje volatilitet. Selvom RTP'en er fair (96,58 %), vil de lange tørkeperioder mellem bonusrunder gøre det svært at gennemspille omsætningskrav konsistent. For bonusgennemspilning anbefaler vi lavere volatilitetsalternativer som Fire Joker eller Starburst.
+        Nej, Legacy of Dead er IKKE velegnet til <Link to="/casino-bonus" className={linkClass}>bonusgennemspilning</Link> på grund af dens høje volatilitet og lave RTP (94,51 %). De lange tørkeperioder mellem bonusrunder gør det svært at gennemspille omsætningskrav konsistent. For bonusgennemspilning anbefaler vi lavere volatilitetsalternativer som Fire Joker eller Starburst.
       </>
     ),
   },
