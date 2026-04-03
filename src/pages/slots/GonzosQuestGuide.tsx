@@ -266,6 +266,12 @@ const GonzosQuestGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             EV-bidraget fra Free Fall: med gennemsnitlig udbetaling ca. 80x og trigger 1:200 spins, bidrager bonusrunden med ca. 0,40x pr. spin – ca. 42 % af den samlede RTP. De resterende 58 % leveres af basisspillet. Denne mere jævne fordeling (sammenlignet med f.eks. Razor Sharks 30/70-fordeling) gør Gonzo's Quest mere tilgivende under basisspillet.
           </p>
+          <ReviewScreenshot
+            src={gonzosQuestSpilleregler}
+            alt="Gonzo's Quest spilleregler: How to Play-menu med Game Basics, Avalanche Feature, Wild Symbols, Free Falls og Paytable-sektioner"
+            caption="Den indbyggede spilleguide med forklaring af Avalanche-mekanikken, gevinstlinjer og symbolværdier."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
