@@ -362,6 +362,11 @@ const DeadOrAlive2Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Den praktiske implikation for spillere: High Noon Saloon's gennemsnitlige bonusrunde returnerer ca. 80-120× indsatsen – markant lavere end det max win-tal der dominerer markedsføringsmaterialet. Mediangevinsten er endnu lavere (~50-70×), fordi fordelingen er ekstremt højreskæv. For at opnå en meningsfuldt stor gevinst (1.000×+) i High Noon kræves typisk 4+ sticky wilds med mindst to 3×-multiplikatorer – et scenarie der forekommer i ca. 5-8 % af bonusrunder. Denne sandsynlighed er lav men ikke astronomisk, og det er præcis dét, der gør Dead or Alive 2 så fascinerende for risiko-tolerante spillere.
           </p>
+          <ReviewScreenshot
+            src={screenshotTrainHeistRegler}
+            alt="Dead or Alive 2 spilleregler for Train Heist Free Spins – multiplikator starter på x1 og stiger til x16 med +5 ekstra spins"
+            caption="Spillereglerne for Train Heist Free Spins: multiplikatoren starter på x1, øges med hvert Wild-symbol, og ved x16 tildeles 5 ekstra free spins."
+          />
         </section>
 
         <Separator className="my-10" />
