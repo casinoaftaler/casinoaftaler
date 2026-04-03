@@ -297,19 +297,7 @@
 
 .gates-scatter-trigger-pulse {
   animation: gates-scatter-trigger-pulse-symbol 0.75s ease-in-out 2;
-  position: relative;
   z-index: 10;
-  overflow: visible !important;
-}
-
-.gates-scatter-trigger-pulse::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 12px;
-  border: 2px solid rgba(168, 85, 247, 0.7);
-  animation: gates-scatter-trigger-pulse-ring 0.75s ease-out 2;
-  pointer-events: none;
 }
 
 /* Multiplier total counter bump */
