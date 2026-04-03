@@ -341,7 +341,7 @@ const LegacyOfDeadGuide = () => {
             Retrigger-Matematik: Sandsynligheder og Kumulativt Potentiale
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Retriggers er nøglen til Legacy of Dead's maksimale gevinstpotentiale. Hvert retrigger tilføjer ikke blot 10 ekstra free spins, men også et nyt expanding symbol – en mekanik, der gør lange bonusrunder eksponentielt mere værdifulde. Lad os modellere sandsynlighederne:
+            Retriggers er nøglen til Legacy of Dead's maksimale gevinstpotentiale. Hvert retrigger tilføjer ikke blot 8 ekstra free spins, men også et nyt expanding symbol – en mekanik, der gør lange bonusrunder eksponentielt mere værdifulde. Lad os modellere sandsynlighederne:
           </p>
 
           <Card className="mb-6">
