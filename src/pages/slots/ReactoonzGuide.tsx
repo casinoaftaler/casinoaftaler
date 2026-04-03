@@ -242,8 +242,14 @@ const ReactoonzGuide = () => {
             Det overordnede Quantum-system fungerer som en fire-trins meter: Fluctometer opsamler energi fra vindende symboler, og når den fyldes, aktiveres næste trin. Den fulde progression kulminerer i Gargantoon – spillets ultimative funktion, der placerer et massivt 3×3 wild på griddet, som derefter fragmenterer til 2×2 og 1×1 wilds i successive cascades.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Gargantoon er matematisk sjælden – den udløses typisk én gang pr. 300-500 spins – men bidrager med en disproportionalt stor andel af spillets samlede gevinstpotentiale. Vores beregning viser, at Gargantoon-funktionen alene står for cirka 25-35 % af Reactoonz' teoretiske tilbagebetalingsrate, hvilket understreger dens centrale rolle i spillets matematiske struktur.
+             Gargantoon er matematisk sjælden – den udløses typisk én gang pr. 300-500 spins – men bidrager med en disproportionalt stor andel af spillets samlede gevinstpotentiale. Vores beregning viser, at Gargantoon-funktionen alene står for cirka 25-35 % af Reactoonz' teoretiske tilbagebetalingsrate, hvilket understreger dens centrale rolle i spillets matematiske struktur.
           </p>
+          <ReviewScreenshot
+            src={reactoonzGargantoon}
+            alt="Reactoonz Gargantoon-feature forklaring med 3x3 wild-symbol der fragmenterer til 2x2 og individuelle wilds"
+            caption="Gargantoon-funktionen i detaljer: monsteret starter som 3×3 wild, bryder op i to 2×2 wilds og derefter ni individuelle wilds – alt i én kæde."
+            size="medium"
+          />
         </section>
 
         {/* ── RTP & House Edge ── */}
