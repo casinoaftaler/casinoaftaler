@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Minus, Plus, RotateCw } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
