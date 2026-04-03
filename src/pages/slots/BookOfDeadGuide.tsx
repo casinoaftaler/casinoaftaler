@@ -13,12 +13,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, BookOpen, Calculator, Dog, Flame, Gem, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import screenshotGameplay from "@/assets/screenshots/book-of-dead-gameplay.webp";
+import screenshotPaytable from "@/assets/screenshots/book-of-dead-paytable.webp";
+import screenshotFreeSpins from "@/assets/screenshots/book-of-dead-free-spins.webp";
+import screenshotSpildetaljer from "@/assets/screenshots/book-of-dead-spildetaljer.webp";
+import screenshotIntro from "@/assets/screenshots/book-of-dead-intro.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
