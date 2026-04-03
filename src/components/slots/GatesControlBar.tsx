@@ -93,7 +93,7 @@ export function GatesControlBar({
     if (isAutoSpinning) {
       return (
         <div className="flex flex-col items-center">
-          <MenuIcon iconName="rotate-cw" className="h-6 w-6 text-white" />
+          <RotateCw className="h-6 w-6 text-white" />
           <span className="text-[7px] uppercase text-white/70 -mt-0.5">AUTO</span>
         </div>
       );
