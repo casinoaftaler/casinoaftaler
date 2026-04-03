@@ -177,6 +177,12 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Bonusrundens estimerede triggerfrekvens er cirka 1 pr. 180-220 spins – marginalt lavere end Book of Dead (1 pr. 150-200). Denne lidt lavere frekvens kompenseres af det progressive expanding symbol-systems højere gennemsnitlige bonus-udbetaling, især i runder med retriggers. Den forventede gennemsnitlige bonusrunde-gevinst er estimeret til 70-100× indsatsen for runder uden retrigger, stigende til 150-300× for runder med 1-2 retriggers.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadGameplayGrid}
+            alt="Legacy of Dead gameplay med 5x3 grid, egyptiske symboler inkl. Farao, Anubis, Horus og Pharaoh's Tomb scatter"
+            caption="Basisspillet med 10 gevinstlinjer, premium-symboler (Farao, Anubis, Horus) og Pharaoh's Tomb scatter/wild-symbol."
+            size="full"
+          />
         </section>
 
         {/* ── Progressivt expanding symbol ── */}
