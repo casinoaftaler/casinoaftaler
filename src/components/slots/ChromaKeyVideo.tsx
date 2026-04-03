@@ -179,6 +179,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     if (playTrigger === undefined || playTrigger === 0) return;
     const video = videoRef.current;
     if (!video) return;
+    video.playbackRate = playbackRate;
     video.currentTime = 0;
     video.play().catch(() => {});
   }, [playTrigger]);
