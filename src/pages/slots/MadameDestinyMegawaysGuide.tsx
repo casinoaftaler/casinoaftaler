@@ -113,7 +113,7 @@ const MadameDestinyMegawaysGuide = () => {
               <div><span className="text-muted-foreground">Grid:</span><br /><strong>6 hjul, 2-8 rækker</strong></div>
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,44 %</strong></div>
               <div><span className="text-muted-foreground">Max Ways:</span><br /><strong>200.704</strong></div>
-              <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>2,50 kr.</strong></div>
+              <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>1 kr.</strong></div>
               <div><span className="text-muted-foreground">Bonus Buy:</span><br /><strong>100× indsats</strong></div>
             </div>
           </CardContent></Card>
