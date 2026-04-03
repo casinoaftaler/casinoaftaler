@@ -194,8 +194,13 @@ const ReactoonzGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Et kritisk aspekt ved cluster-mekanikken er, at gevinstpotentialet skalerer eksponentielt med cluster-størrelsen. En 15-symbol cluster giver ikke blot 3× mere end en 5-symbol cluster – den kan give 40× mere. Dette skaber den karakteristiske Reactoonz-oplevelse, hvor de fleste spins giver beskedne gevinster, men sjældne massive clusters kan transformere en session.
+             Et kritisk aspekt ved cluster-mekanikken er, at gevinstpotentialet skalerer eksponentielt med cluster-størrelsen. En 15-symbol cluster giver ikke blot 3× mere end en 5-symbol cluster – den kan give 40× mere. Dette skaber den karakteristiske Reactoonz-oplevelse, hvor de fleste spins giver beskedne gevinster, men sjældne massive clusters kan transformere en session.
           </p>
+          <ReviewScreenshot
+            src={reactoonzGameplayGrid}
+            alt="Reactoonz 7x7 gameplay-grid med farverige monstersymboler, Gargantoon i glaskolbe og indsatskontroller i dansk valuta"
+            caption="Det fulde 7×7 grid med alle symboltyper synlige. Bemærk Gargantoon i glaskolben til højre og Fluctometer-baren til venstre, der tracker Quantum-progression."
+          />
         </section>
 
         {/* ── Quantum-Systemet ── */}
