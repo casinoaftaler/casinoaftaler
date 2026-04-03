@@ -178,6 +178,12 @@ const MoneyTrain3Guide = () => {
           <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link>.
         </VideoContextBox>
 
+        <ReviewScreenshot
+          src={moneyTrain3CasinoSearch}
+          alt="Money Train 3 fundet via søgning i et dansk online casino med Relax Gaming som udbyder"
+          caption="Money Train 3 er tilgængelig på de fleste danske licenserede casinoer – her fundet via casinoets søgefunktion."
+        />
+
         <InlineCasinoCards />
 
         {/* ── RTP & Variabel Konfiguration ── */}
