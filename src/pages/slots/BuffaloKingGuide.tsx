@@ -159,6 +159,9 @@ const BuffaloKingGuide = () => {
               </table>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={buffalokingPaytableSymboler} alt="Buffalo King spilleregler og paytable side der viser alle symbolværdier og 4096 ways to win gevinstberegning" caption="Buffalo Kings officielle paytable: symbolværdier og 4.096 gevinstmuligheder forklaret" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Tabellen illustrerer den eksplosive effekt af multiplikator-stacking: et buffel-6-of-a-kind, der normalt betaler 50× (100 kr.), kan med to 5× multiplikatorer betale 1.250× (2.500 kr.) fra en ENKELT gevinstlinje. Med 4.096 aktive ways og potentielt hundredvis af samtidige gevinster kan den samlede udbetaling fra et enkelt free spin nå astronomiske niveauer. Det er denne multiplikative matematik, der producerer max win-potentialet på 93.750×.</p>
           <p className="text-muted-foreground leading-relaxed">Wild-symbolet erstatter alle symboler undtagen scatter og lander kun på hjul 2, 3, 4 og 5. Under free spins kan wilds modtage multiplikatorer, der fungerer som en ekstra multiplikator-kilde ud over de symboler, der allerede har multiplikatorer. Denne dobbeltkilde af multiplikatorer (wilds + regulære symboler) er en mekanik, der sjældent ses i andre slots og bidrager til Buffalo Kings unikke gevinstprofil.</p>
         </section>
