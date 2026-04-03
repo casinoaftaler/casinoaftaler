@@ -146,6 +146,96 @@ const CleopatraGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Cleopatras tilgængelige design og høje hit frequency kan skabe en illusion af konsistente gevinster, men den matematiske realitet er, at hvert spin har negativ EV. Sæt dine grænser før du starter, og overhold dem uanset resultaterne.</p>
         </section>
 
+        {/* ── IGT's Designfilosofi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />IGT's Designfilosofi: Las Vegas-Arven i Hver Spin</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            IGT (International Game Technology) er en af verdens ældste og mest indflydelsesrige spiludviklere. Grundlagt i 1975 i Reno, Nevada, har IGT formet slot-industrien gennem årtier med ikoniske titler som Wheel of Fortune, Double Diamond og netop Cleopatra. Virksomheden kontrollerer et enormt patentbibliotek og har pioneret mange af de mekanikker, som moderne slots bygger videre på.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Cleopatras designfilosofi afspejler IGT's Las Vegas-rødder. I landbaserede casinoer er spillerretention – evnen til at holde spillere ved maskinen – den vigtigste metrik. IGT optimerer derfor for session-længde snarere end viral "big win"-potentiale. Resultatet er slots med høj hit frequency, moderat volatilitet og frekvente bonusrunder: præcis den profil, der holder spillere engagerede uden at destruere deres bankroll for hurtigt.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Denne filosofi står i direkte kontrast til den "clip-first"-tilgang, som dominerer moderne online slot-design. Udviklere som Nolimit City og <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> designer bevidst for ekstreme volatilitetsniveauer og virale "big win"-øjeblikke, der genererer engagement på sociale medier. IGT's tilgang er mere konservativ men arguereligt mere bæredygtig: en Cleopatra-spiller har en mere forudsigelig og potentielt mere tilfredsstillende oplevelse over tid.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For danske spillere er denne designfilosofi relevant, fordi den påvirker session-dynamikken fundamentalt. En 30-minutters session med Cleopatra føles markant anderledes end 30 minutter med <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>. Cleopatra leverer en jævn strøm af små gevinster med periodiske bonusrunder, mens Wanted leverer lange tørkeperioder afbrudt af potentielt massive gevinster. Ingen tilgang er objektivt "bedre" – de appellerer til fundamentalt forskellige spillerpræferencer.
+          </p>
+        </section>
+
+        {/* ── 3× Multiplikator Deep Dive ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />3× Multiplikatorens Matematik: Fast vs. Variabel</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Cleopatras faste 3× free spins-multiplikator fortjener en dybere analyse, fordi den repræsenterer en fundamentalt anderledes tilgang end moderne variable multiplikatorer. I Cleopatra er enhver gevinst under free spins præcis tredoblet – ingen undtagelser, ingen variation. Denne forudsigelighed reducerer bonusrundens varians markant og giver en mere konsistent bonusrunde-oplevelse.
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">3× fast vs. variabel multiplikator: Bonusrunde-sammenligning</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Metrik</th>
+                      <th className="py-2 text-right font-semibold">Cleopatra (3× fast)</th>
+                      <th className="py-2 text-right font-semibold">Sweet Bonanza (variabel)</th>
+                      <th className="py-2 text-right font-semibold">Gates of Olympus (variabel)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2">Gennemsnitlig bonus</td><td className="py-2 text-right">25-40×</td><td className="py-2 text-right">30-80×</td><td className="py-2 text-right">30-100×</td></tr>
+                    <tr className="border-b"><td className="py-2">Median bonus</td><td className="py-2 text-right">20-30×</td><td className="py-2 text-right">15-25×</td><td className="py-2 text-right">12-20×</td></tr>
+                    <tr className="border-b"><td className="py-2">Bonus varians</td><td className="py-2 text-right">Lav</td><td className="py-2 text-right">Høj</td><td className="py-2 text-right">Meget høj</td></tr>
+                    <tr><td className="py-2">P(bonus {'>'} 100×)</td><td className="py-2 text-right">~5 %</td><td className="py-2 text-right">~15 %</td><td className="py-2 text-right">~20 %</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Tabellen afslører en vigtig nuance: Cleopatras gennemsnitlige bonusrunde er lavere end moderne variable-multiplikator slots, men MEDIANEN er højere. Det skyldes, at variable multiplikatorer skaber en skæv fordeling, hvor mange runder giver lave gevinster, og sjældne runder giver ekstreme gevinster. Cleopatras faste 3× giver en mere symmetrisk fordeling, hvor de fleste runder leverer "fair" resultater.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For spillere, der foretrækker konsistens over eksplosivitet, er Cleopatras 3× en direkte fordel. Du vil sjældnere opleve den frustration, der følger med en bonusrunde, der kun betaler 5-10× (common i variable-multiplikator slots). Omvendt vil du aldrig opleve de 1.000×+ bonusrunder, der gør moderne slots virale. Det er et bevidst trade-off, der afspejler IGT's prioritering af session-tilfredshed.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Et yderligere aspekt er retrigger-effekten. Da Cleopatra tillader ubegrænsede retriggers (3+ scatters giver 15 ekstra spins), og hver retrigger beholder den faste 3× multiplikator, kan lange bonusrunder med multiple retriggers akkumulere massive gevinster. En bonusrunde med 2 retriggers (45 spins × 3× multiplikator) kan realistisk levere 100-300× indsatsen – Cleopatras vej til store gevinster uden variable multiplikatorer.
+          </p>
+        </section>
+
+        {/* ── Wagering med Cleopatra ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Wagering-Analyse: Hvorfor Cleopatra IKKE Er Til Bonusspil</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Cleopatras 95,02 % RTP gør den til et af de dårligste valg til <Link to="/omsaetningskrav" className={linkClass}>bonusomsætning</Link> i vores slot-katalog. Lad os kvantificere: for en 1.000 kr. bonus med 10× omsætning er det forventede tab 498 kr. – næsten halvdelen af bonusværdien. Til sammenligning er det forventede tab med <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (96,71 % RTP) kun 329 kr.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Forskellen på 169 kr. i forventet tab mellem Cleopatra og Big Bass Bonanza er ikke triviel – det svarer til 16,9 % af den originale bonus. Over 10 bonusbrug repræsenterer det 1.690 kr. i tabt værdi. For spillere, der regelmæssigt bruger casinobonusser, er det afgørende at vælge de højest-RTP slots til omsætning, uanset personlige præferencer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den eneste situation, hvor Cleopatra kan forsvares til wagering, er hvis den tilbyder en "safe harbor" mod volatilitets-bust. Cleopatras medium volatilitet og høje hit frequency giver en lavere bust-risiko (~15 %) end high-volatility alternativer (~25-35 %). For spillere, der prioriterer gennemførelsessandsynlighed over forventet restbeløb, kan Cleopatra være acceptable – men vi anbefaler stadig højere-RTP slots som det primære valg.
+          </p>
+        </section>
+
+        {/* ── Spilpsykologi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="users" className="h-5 w-5 text-primary" />Spilpsykologi: Hvorfor Cleopatra Stadig Fascinerer</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Cleopatras vedvarende popularitet – mere end 20 år efter den originale lancering – kan ikke forklares alene med matematik. IGT har skabt en spiloplevelse, der udnytter flere psykologiske principper, der er lige så effektive i dag som i 2005.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Det første princip er "tematisk immersion". Det egyptiske tema er universelt genkendeligt og bærer konnotationer af mystik, rigdom og opdagelse. Cleopatra-symbolet som wild – dronningen der "erstatter" alle andre symboler – forstærker fantasien om royal magt og kontrol. Denne tematiske ramme gør selv små gevinster mere tilfredsstillende, fordi de opleves som "skatte" snarere end abstrakte tal.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Det andet princip er "auditory conditioning". Cleopatras ikoniske lydeffekt ved gevinster – den distinktive "Cleopatra!"-voiceover – er blevet et auditivt varemærke, der øjeblikkeligt associeres med gevinstøjeblikke. Denne konditionering er så stærk, at mange spillere rapporterer at høre lyden mentalt, selv når de ikke spiller. Det er et klassisk eksempel på Pavloviansk betingning i spilindustrien.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det tredje princip er "comfort food"-effekten. For spillere, der er overvældede af moderne slots' kompleksitet (cluster pays, cascades, tumble-multiplikatorer, bonus buy), tilbyder Cleopatra en enkel, forudsigelig oplevelse. 5×3 grid, 20 paylines, 3× free spins – det er det. Ingen hidden mekanikker, ingen surprise-triggers, ingen information overload. Denne enkelhed er en bevidst styrke, ikke en svaghed, og appellerer til et segment, der vokser i takt med at slot-markedet bliver stadig mere komplekst.
+          </p>
+        </section>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Dronningen af Egypten – Stadig Relevant?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatra er et monument i slot-historien. For danske spillere, der søger en stabil, underholdende spiloplevelse med egyptisk tema, forbliver den et solidt valg – trods den lavere RTP. Den høje hit frequency, simple mekanik og nostalgiske charme tilbyder noget, som moderne high-volatility slots ikke kan matche: forudsigelighed og tilgængelighed.</p>

@@ -250,6 +250,136 @@ const LegacyOfDeadGuide = () => {
           </p>
         </section>
 
+        {/* ── Book of-genren: Historisk kontekst ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
+            "Book of"-Genren: Fra Novomatic til Play'n GO's Dominans
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Legacy of Dead tilhører en af slotindustriens mest ikoniske genrer: "Book of"-spillene. Genren stammer fra Novomatics Book of Ra, der blev lanceret i landbaserede casinoer i 2005 og hurtigt blev en af de mest populære slots i Europa. Den grundlæggende mekanik – scatters der fungerer som wilds, free spins med et tilfældigt expanding symbol – var revolutionerende i sin simplicitet og elegance.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> adopterede og perfektionerede denne formel med <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> i 2016. Hvor Book of Ra var begrænset af sin land-baserede arv (lavere RTP, simplere grafik), var Book of Dead designet fra bunden til online-markedet med høj RTP (96,21 %), moderne HTML5-teknologi og et æstetisk poleret egyptisk tema. Book of Dead blev den definitive online-version af "Book of"-formlen og genererede milliarder i omsætning.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Legacy of Dead repræsenterer den næste evolution: bevarelsen af alt, hvad der fungerer (dual scatter/wild, 10-linje layout, expanding symbols), med tilføjelsen af et progressivt lag, der belønner de mest tålmodige spillere. Det er en raffineret designfilosofi: i stedet for at tilføje kompleksitet (som Megaways eller cluster pays), tilføjer Play'n GO dybde inden for den eksisterende mekaniske ramme.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Denne evolutionære tilgang har vist sig at være kommercielt succesfuld. Legacy of Dead konsekvent rangerer blandt de 50 mest spillede slots hos danske online casinoer, og dens popularitet er vedvarende – ikke flyktig som mange "hype"-slots, der topper i en måned og derefter falder. Det skyldes, at genren har en loyal fanbase, der værdsætter mekanisk renhed over innovation for innovationens skyld.
+          </p>
+        </section>
+
+        {/* ── Symbolhierarki og EV-analyse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
+            Symbolhierarki og EV-Bidrag under Expanding Symbols
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Effektiviteten af Legacy of Dead's expanding symbol-system afhænger fundamentalt af, HVILKET symbol der vælges. Ikke alle expanding symbols er skabt lige – premium-symboler med højere udbetalinger giver dramatisk bedre bonusrunder end lavværdi-symboler. Lad os kvantificere denne forskel:
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Expanding symbol EV-analyse (estimeret)</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Symbol</th>
+                      <th className="py-2 text-right font-semibold">5-på-linje</th>
+                      <th className="py-2 text-right font-semibold">Fuldt hjul-værdi</th>
+                      <th className="py-2 text-right font-semibold">Gennemsnitlig bonusrunde</th>
+                      <th className="py-2 text-right font-semibold">Bedste 5 %-runde</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/30"><td className="py-2 font-medium text-foreground">Farao (Premium)</td><td className="py-2 text-right">50×</td><td className="py-2 text-right">500×</td><td className="py-2 text-right">120-180×</td><td className="py-2 text-right">800-2.000×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 font-medium text-foreground">Anubis</td><td className="py-2 text-right">20×</td><td className="py-2 text-right">200×</td><td className="py-2 text-right">80-120×</td><td className="py-2 text-right">400-1.000×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 font-medium text-foreground">Horus</td><td className="py-2 text-right">15×</td><td className="py-2 text-right">150×</td><td className="py-2 text-right">60-90×</td><td className="py-2 text-right">300-750×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2">A/K</td><td className="py-2 text-right">4-5×</td><td className="py-2 text-right">40-50×</td><td className="py-2 text-right">25-40×</td><td className="py-2 text-right">100-250×</td></tr>
+                    <tr><td className="py-2">10/J/Q</td><td className="py-2 text-right">2-3×</td><td className="py-2 text-right">20-30×</td><td className="py-2 text-right">15-25×</td><td className="py-2 text-right">60-150×</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Forskellen er dramatisk: en bonusrunde med Farao som expanding symbol gennemsnitligt udbetaler 5-8× mere end en runde med 10/J/Q. Denne varians i expanding symbol-kvalitet er den primære kilde til Legacy of Dead's bonusrunde-volatilitet. Du kan lande 5 bonusrunder i træk med lavværdi-symbols og opleve skuffende resultater, for derefter at lande én Farao-runde, der overstiger alle de tidligere runder tilsammen.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Det progressive system forstærker denne dynamik: med 2+ expanding symbols stiger sandsynligheden for, at mindst ét af dem er et premium-symbol. Ved 3 samtidige expanding symbols er sandsynligheden for at have mindst ét premium-symbol ca. 65-70 % (afhængigt af symbolets vægt i udvælgelsesalgoritmen). Dette er endnu en matematisk fordel ved Legacy of Dead's progressive mekanik over Book of Dead's single-symbol system.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der ønsker at maksimere deres expected value i Legacy of Dead, er den vigtigste indsigt, at bonusrundens kvalitet i høj grad er forudbestemt af det tilfældigt valgte expanding symbol. Det er ikke noget, du kan kontrollere – men det er noget, du bør forstå, fordi det forklarer, hvorfor to tilsyneladende identiske bonusrunder (samme antal spins, samme antal retriggers) kan have vidt forskellige resultater.
+          </p>
+        </section>
+
+        {/* ── Retrigger-matematik ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
+            Retrigger-Matematik: Sandsynligheder og Kumulativt Potentiale
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Retriggers er nøglen til Legacy of Dead's maksimale gevinstpotentiale. Hvert retrigger tilføjer ikke blot 10 ekstra free spins, men også et nyt expanding symbol – en mekanik, der gør lange bonusrunder eksponentielt mere værdifulde. Lad os modellere sandsynlighederne:
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Retrigger-sandsynligheder (estimeret)</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Retriggers</th>
+                      <th className="py-2 text-right font-semibold">Expanding symbols</th>
+                      <th className="py-2 text-right font-semibold">Sandsynlighed</th>
+                      <th className="py-2 text-right font-semibold">Estimeret bonus-EV</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/30"><td className="py-2">0 (basis)</td><td className="py-2 text-right">1</td><td className="py-2 text-right">~65-70 %</td><td className="py-2 text-right">50-80×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2">1</td><td className="py-2 text-right">2</td><td className="py-2 text-right">~20-25 %</td><td className="py-2 text-right">120-200×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2">2</td><td className="py-2 text-right">3</td><td className="py-2 text-right">~5-8 %</td><td className="py-2 text-right">250-500×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2">3</td><td className="py-2 text-right">4</td><td className="py-2 text-right">~1-2 %</td><td className="py-2 text-right">500-1.500×</td></tr>
+                    <tr><td className="py-2">4+</td><td className="py-2 text-right">5+</td><td className="py-2 text-right">{'<'} 0,5 %</td><td className="py-2 text-right">1.000-5.000×</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Tabellen viser den eksponentielle gevinsteskalering ved multiple retriggers. Fra 1 til 3 retriggers stiger den gennemsnitlige bonus-EV med en faktor 5-10×. Denne "gevinstaccelerator" er Legacy of Dead's største matematiske innovation: den belønner held (retriggers) med disproportionalt store gevinster, fordi hvert nyt expanding symbol multiplicerer gevinstpotentialet for alle efterfølgende spins.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            I praksis vil ca. 70 % af dine bonusrunder have 0 retriggers og resultere i beskedne gevinster (50-80× indsatsen). De resterende 30 % vil have mindst 1 retrigger og levere markant bedre resultater. Det er denne 30 %-andel, der driver størstedelen af Legacy of Dead's "big win"-momenter og giver spillere den spænding, der fastholder dem ved spillet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot 10 ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead matematisk overlegen i scenarier med retriggers.
+          </p>
+        </section>
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
+            Mobiloptimering og Teknisk Performance
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Legacy of Dead er udviklet i HTML5 og fuldt optimeret til <Link to="/mobil-casino" className={linkClass}>mobilspil</Link>. Play'n GO's teknologiplatform er blandt de mest effektive i industrien: spillets 5×3 grid skalerer rent til portrætformat, og alle animationer (expanding symbol-udvidelser, scatter-triggere, retrigger-sekvenser) kører smooth på moderne enheder. Indlæsningstiden er under 3 sekunder på 4G-forbindelser.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            En bemærkelsesværdig detalje er, hvordan det progressive expanding symbol-system oversættes til mobiloplevelsen. Under bonusrunder med multiple expanding symbols viser spillet tydeligt alle aktive expanding symbols i en sidebar/overlay, så spilleren altid har overblik over sine akkumulerede fordele. Denne UI-beslutning er afgørende for spiloplevelsen, fordi den visuelle bekræftelse af "jeg har samlet 3 expanding symbols" er en del af den psykologiske tilfredsstillelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Touch-interaktionen er responsiv og intuitiv. Spin-knappen er centralt placeret og stor nok til komfortabel interaktion, mens indsatsindstillingerne er tilgængelige via swipe-gestures. Play'n GO har også implementeret hurtigspil-funktioner (turbo spin, skip animationer), der er særligt nyttige på mobil, hvor spillere ofte spiller i korte sessions.
+          </p>
+        </section>
+
         {/* ── Hvem passer det til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

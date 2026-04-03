@@ -133,6 +133,94 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning er Eye of Horus et middelmådigt valg – den høje volatilitet skaber for store bankroll-udsving til stabil gennemspilning. Anvend i stedet lavere volatilitetsalternativer og brug Eye of Horus med din egen bankroll, hvor du kan absorbere variance. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.</p>
         </section>
 
+        {/* ── Merkur Gaming: Studiekontekst ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Merkur Gaming og Gauselmann Group: Spillehal-Arven</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For at forstå Eye of Horus' unikke karakter er det nødvendigt at kende Merkur Gaming og den tyske Gauselmann Group. Grundlagt i 1957 af Paul Gauselmann, er gruppen en af Europas største spillevirksomheder med over 14.000 medarbejdere og en årlig omsætning på mere end 3 mia. euro. Merkur Gaming er gruppens spiludviklingsafdeling, ansvarlig for tusindvis af spilleautomater i tyske, østrigske og skandinaviske spillehaller.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Merkurs designfilosofi er fundamentalt anderledes end rent digitale spiludviklere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> eller Nolimit City. Hvor disse studier designer for "clip-ability" (virale big win-øjeblikke), designer Merkur for session-tilfredshed. Spillehallens økonomi kræver, at spillere forbliver engagerede over længere perioder – og det opnås bedst med høj hit frequency, moderate volatilitet og progressive mekanikker som symbol upgrade, der belønner vedvarende spil.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Denne arv afspejles direkte i Eye of Horus. Spillets 12 free spins (vs. typisk 10 i online-designede slots), den høje retrigger-sandsynlighed og den progressive symbol upgrade-mekanik er alle optimeret til spillehallens krav om engagement over tid. Når Blueprint Gaming porterede spillet til online, bevarede de denne filosofi – hvilket giver Eye of Horus en distinkt "feel", der adskiller den fra rene online-produkter.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For danske spillere, der har erfaring fra spillehaller (Merkur-automater er udbredte i Tyskland og Østrig), er Eye of Horus en nostalgisk genkendelse. For spillere uden denne baggrund tilbyder den en anderledes oplevelse: mere tålmodig, mere progressiv og med en session-dynamik, der føles mere "analog" end moderne digitale slots. Det er en slot, der belønner dem, der giver den tid – ikke dem, der søger øjeblikkeligt adrenalin.
+          </p>
+        </section>
+
+        {/* ── Symbol Upgrade Mathematics ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Symbol Upgrade Matematikken: Hvad Koster En Retrigger?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Symbol upgrade-mekanikken er Eye of Horus' matematiske kerne, og dens effekt kan kvantificeres præcist. Ved start af free spins er symbolfordelingen standard: 5 lavbetalende kortsymboler (10, J, Q, K, A) og 3-4 tematiske premium-symboler. Hvert retrigger opgraderer det laveste aktive kortsymbol til det næsthøjeste, hvilket effektivt reducerer antallet af lavbetalende symboler med 1.
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Symbol upgrade progression (estimeret EV-effekt)</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Retriggers</th>
+                      <th className="py-2 text-right font-semibold">Opgraderede symboler</th>
+                      <th className="py-2 text-right font-semibold">Gennemsnitlig spin-EV</th>
+                      <th className="py-2 text-right font-semibold">EV-stigning vs. basis</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2">0 (basis)</td><td className="py-2 text-right">0</td><td className="py-2 text-right">3-5× / spin</td><td className="py-2 text-right">—</td></tr>
+                    <tr className="border-b"><td className="py-2">1</td><td className="py-2 text-right">1 (10→J)</td><td className="py-2 text-right">4-7× / spin</td><td className="py-2 text-right">+30-40 %</td></tr>
+                    <tr className="border-b"><td className="py-2">2</td><td className="py-2 text-right">2 (J→Q)</td><td className="py-2 text-right">6-10× / spin</td><td className="py-2 text-right">+80-120 %</td></tr>
+                    <tr className="border-b"><td className="py-2">3</td><td className="py-2 text-right">3 (Q→K)</td><td className="py-2 text-right">10-18× / spin</td><td className="py-2 text-right">+200-300 %</td></tr>
+                    <tr><td className="py-2">4+</td><td className="py-2 text-right">4+ (K→A→tema)</td><td className="py-2 text-right">20-40× / spin</td><td className="py-2 text-right">+500 %+</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Tabellen illustrerer den eksponentielle gevinststigning ved successive retriggers. Bemærk, at EV-stigningen pr. retrigger accelererer: fra +30-40 % for den første til +200 %+ for den tredje. Grunden er, at de første upgrades kun påvirker de lavest-betalende symboler (minimal EV-effekt), mens senere upgrades konverterer mellembetalende symboler til premium-niveauer (massiv EV-effekt).
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Denne ikke-lineære eskalering er nøglen til Eye of Horus' 10.000× max win. Ved 4+ retriggers er griddet domineret af premium-symboler, og den expanding symbol-mekanik (som opererer parallel med symbol upgrade) kan producere fulde hjul med det højest-betalende symbol. I dette scenarie er en single free spin potentielt værd 100-500× indsatsen – en dynamik, der er unik for Eye of Horus blandt "Book of"-genrens titler.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der sammenligner Eye of Horus med <Link to="/casinospil/spillemaskiner/legacy-of-dead" className={linkClass}>Legacy of Dead</Link>: begge slots har progressive mekanikker, der belønner retriggers, men de opererer på fundamentalt forskellige matematiske akser. Legacy of Dead multiplicerer antallet af expanding symbols (horisontal eskalering), mens Eye of Horus multiplicerer symbolernes basisværdier (vertikal eskalering). Resultatet er, at Eye of Horus' max win (10.000×) er højere, men den gennemsnitlige bonusrunde (uden retrigger) er lavere.
+          </p>
+        </section>
+
+        {/* ── Wagering-analyse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Wagering-Perspektiv: Eye of Horus og Bonusomsætning</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Med en RTP på 96,31 % er Eye of Horus matematisk acceptabel til <Link to="/omsaetningskrav" className={linkClass}>bonusomsætning</Link>, men den høje volatilitet gør den risikabel. Det forventede tab for en 1.000 kr. bonus med 10× omsætning er 369 kr. – dårligere end <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (329 kr.) men bedre end <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link> (399 kr.). Bust-risikoen er den kritiske faktor: estimeret 30-35 %, hvilket er i den høje ende.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Den strategiske anbefaling er klar: brug IKKE Eye of Horus som din primære wagering-slot. Dens styrke er upside-potentialet (10.000× max win), men dette potentiale er irrelevant for wagering, hvor målet er at bevare bankrollen, ikke at maksimere den. For wagering er lavere volatilitetsalternativer som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> eller Starburst langt mere egnede.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Hvis du insisterer på at bruge Eye of Horus til wagering, anbefaler vi at sænke indsatsen markant (1-2 kr. pr. spin) for at give din bankroll en buffer mod de lange tørkeperioder mellem bonusrunder. Ved 1 kr./spin og en 1.000 kr. bonus med 10× omsætning har du 10.000 spins at omsætte – langt nok til at absorbere volatiliteten med rimelig sandsynlighed. Men den lavere indsats reducerer også max win-potentialet, hvilket eliminerer Eye of Horus' primære fordel.
+          </p>
+        </section>
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Mobiloptimering og Spilkvalitet</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Eye of Horus' overgang fra landbaseret til online til <Link to="/mobil-casino" className={linkClass}>mobil</Link> har været bemærkelsesværdigt vellykket. Blueprint Gaming's HTML5-implementation bevarer det originale designsprog fra Merkurs fysiske automater, men tilpasser interface-elementerne til touchskærme. Det 5×3 grid skalerer rent til portrætformat, og symbol upgrade-indikatoren (der viser aktuelle upgrade-niveauer under free spins) er tydeligt synlig selv på mindre skærme.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            En bemærkelsesværdig designbeslutning er bevarelsen af Merkurs karakteristiske lyddesign. De autentiske spillehal-lyde (møntklirren, mekanisk klik) er bevaret i online-versionen og bidrager til den nostalgiske atmosfære. For spillere, der kender Merkur-automater fra fysiske spillehaller, er lyddesignet en øjeblikkelig genkendelse – en detalje, der viser Blueprint Gaming's respekt for kildematerialet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Indlæsningstiden er under 3 sekunder på 4G-forbindelser, og spillet kører stabilt på enheder med iOS 14+ og Android 10+. Turbo spin og autoplay er tilgængelige i jurisdiktioner, hvor det er tilladt, hvilket gør Eye of Horus velegnet til hurtige mobilsessioner. For danske spillere, der ønsker den autentiske spillehal-oplevelse i lommen, er Eye of Horus den mest troværdige digitale reproduktion af en Merkur-klassiker.
+          </p>
+        </section>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Spillehal-Klassikeren Med Det Højeste Ceiling</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus er en slot med sjæl. Dens landbaserede arv giver den en autenticitet, som rent digitale slots sjældent opnår, og symbol upgrade-mekanikken tilføjer en progressiv dimension, der belønner tålmodighed og retrigger-held. Med 10.000× max win er den 'Book of'-genrens mest lukrative titel – og en uomgængelig del af enhver seriøs slot-spillers repertoire.</p>
