@@ -125,6 +125,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Hver bonusrunde starter med 3 respins. Hvert nyt symbol, der lander, nulstiller tælleren til 3. Symbolerne bærer enten en fast værdi (1×-100× indsats) eller en af syv special modifiers, der kan multiplicere, kopiere eller transformere eksisterende symboler. Denne mekanik skaber et progressivt system, hvor længere bonusrunder eksponentielt øger gevinstpotentialet.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3IntroScreen}
+            alt="Money Train 3 intro-skærm med Respin Feature og Money Cart Bonus Round samt 100.000x max win visning"
+            caption="Intro-skærmen præsenterer Money Train 3's to kernefeatures: Respin Feature (venstre) og Money Cart Bonus Round (højre) med op til 100.000× indsatsen."
+            eager
+          />
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-3">Special Modifiers i Money Cart</h3>
