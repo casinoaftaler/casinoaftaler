@@ -47,7 +47,7 @@ const OrdbogTerm = () => {
 
   if (!term) return <Navigate to="/ordbog" replace />;
 
-  const heroImage = getGlossaryHero(term.slug);
+  
 
   const relatedTermData = term.relatedTerms
     .map((s) => glossaryTerms.find((t) => t.slug === s))
