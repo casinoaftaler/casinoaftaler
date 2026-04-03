@@ -174,9 +174,9 @@ const BigBassBonanzaGuide = () => {
               <p className="text-sm text-muted-foreground">RTP (Standard)</p>
               <p className="text-xl font-bold">96,71 %</p>
             </CardContent></Card>
-            <Card><CardContent className="pt-6">
+             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
-              <p className="text-xl font-bold">Høj (3,5/5)</p>
+              <p className="text-xl font-bold">Høj (5/5)</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Max Win</p>
