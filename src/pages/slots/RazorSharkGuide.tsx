@@ -9,6 +9,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
@@ -107,7 +108,8 @@ const RazorSharkGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="164 Min." />
+        <AuthorMetaBar author="jonas" readTime="18 min" />
+        <SnippetAnswer answer="Razor Shark er en meget høj volatilitet slot (4,5/5) fra Push Gaming med 96,70 % RTP og et max win-potentiale på 50.000×. Mystery Stacks er kernemekanikken: under free spins kan mystery-symboler afsløre multiplikatorer op til 2.500×, der akkumuleres progressivt for potentielt massive gevinster." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" loading="eager" />
         </div>
