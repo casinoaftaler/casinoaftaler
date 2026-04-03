@@ -79,7 +79,7 @@ const BuffaloKingGuide = () => {
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
               <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Pragmatic Play</strong></div>
-              <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,06 %</strong></div>
+              <div><span className="text-muted-foreground">RTP:</span><br /><strong>94,55-96,06 %</strong></div>
               <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Ekstremt Høj (5/5)</strong></div>
               <div><span className="text-muted-foreground">Max Win:</span><br /><strong>93.750×</strong></div>
               <div><span className="text-muted-foreground">Grid:</span><br /><strong>6×4 (4.096 ways)</strong></div>
