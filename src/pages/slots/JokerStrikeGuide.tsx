@@ -18,6 +18,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Scale, Sparkles, Star, TrendingUp, Trophy, Users, Zap, CircleDollarSign, Gauge, ShieldCheck, Wrench, Lightbulb } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import jokerStrikeHeroLogo from "@/assets/screenshots/joker-strike-hero-logo.webp";
+import jokerStrikeHiRoller from "@/assets/screenshots/joker-strike-hi-roller.webp";
+import jokerStrikeGameplayGrid from "@/assets/screenshots/joker-strike-gameplay-grid.webp";
+import jokerStrikeRtpData from "@/assets/screenshots/joker-strike-rtp-data.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
