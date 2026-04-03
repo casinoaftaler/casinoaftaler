@@ -5,6 +5,9 @@ interface ChromaKeyVideoProps {
   width: number;
   height: number;
   className?: string;
+  loop?: boolean;
+  playTrigger?: number;
+  onEnded?: () => void;
 }
 
 const VERTEX_SHADER = `
