@@ -108,7 +108,7 @@ export function GatesControlBar({
     }
     return (
       <div className="flex flex-col items-center">
-        <MenuIcon iconName="rotate-cw" className="h-7 w-7 text-white" />
+        <RotateCw className="h-7 w-7 text-white" />
         <span className="text-[9px] font-bold text-white tracking-wide">SPIN</span>
       </div>
     );
