@@ -5,6 +5,9 @@ interface ChromaKeyVideoProps {
   width: number;
   height: number;
   className?: string;
+  loop?: boolean;
+  playTrigger?: number;
+  onEnded?: () => void;
 }
 
 const VERTEX_SHADER = `
@@ -90,6 +93,9 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   width,
   height,
   className,
+  loop = true,
+  playTrigger,
+  onEnded,
 }: ChromaKeyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -150,14 +156,29 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       rafRef.current = requestAnimationFrame(processFrame);
     };
 
+    const handleEnded = () => {
+      onEnded?.();
+    };
+
     video.addEventListener("play", startProcessing);
+    video.addEventListener("ended", handleEnded);
     video.play().catch(() => {});
 
     return () => {
       video.removeEventListener("play", startProcessing);
+      video.removeEventListener("ended", handleEnded);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [processFrame]);
+  }, [processFrame, onEnded]);
+
+  // Handle playTrigger changes — restart video from beginning
+  useEffect(() => {
+    if (playTrigger === undefined || playTrigger === 0) return;
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }, [playTrigger]);
 
   return (
     <div
@@ -173,7 +194,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       <video
         ref={videoRef}
         src={src}
-        loop
+        loop={loop}
         muted
         playsInline
         autoPlay

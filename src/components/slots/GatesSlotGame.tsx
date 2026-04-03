@@ -117,6 +117,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [collisionPhase, setCollisionPhase] = useState<CollisionPhase>('idle');
   const [tumbleBarVisible, setTumbleBarVisible] = useState(false);
   const [flyingMultipliers, setFlyingMultipliers] = useState<FlyingMultiplier[]>([]);
+  const [showOrbVideo, setShowOrbVideo] = useState(false);
+  const [orbVideoTrigger, setOrbVideoTrigger] = useState(0);
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   // Bonus state
@@ -396,6 +398,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     // Sequential bomb blow-up AFTER all tumbles
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
+      setShowOrbVideo(true);
+      setOrbVideoTrigger(prev => prev + 1);
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a: any, b: any) => a.position - b.position);
       const explodedPositions = new Map<number, CellAnimState>();
 
@@ -1000,12 +1004,24 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               draggable={false}
             />
             <div className="mt-[-250px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
-              <ChromaKeyVideo
-                src="/videos/gates-character.mp4"
-                width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
-                height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
-                className=""
-              />
+              {showOrbVideo ? (
+                <ChromaKeyVideo
+                  src="/videos/gates-character-orbs.mp4"
+                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                  className=""
+                  loop={false}
+                  playTrigger={orbVideoTrigger}
+                  onEnded={() => setShowOrbVideo(false)}
+                />
+              ) : (
+                <ChromaKeyVideo
+                  src="/videos/gates-character.mp4"
+                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                  className=""
+                />
+              )}
             </div>
           </div>
           {/* Main game grid */}
