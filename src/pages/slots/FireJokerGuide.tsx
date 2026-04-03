@@ -182,6 +182,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerBetalingstabel} alt="Fire Joker betalingstabel med alle symbolers gevinstværdier – Joker wild 80x, 777 25x, stjerne 20x, BAR 15x og frugtsymboler" caption="Fire Jokers betalingstabel: Joker (wild) betaler 80×, mens frugtsymboler betaler 2-7×." />
+
         {/* ── RTP & EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
