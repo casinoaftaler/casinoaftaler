@@ -148,6 +148,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
 
+  // Keep cumulativeMultiplierRef in sync
+  useEffect(() => { cumulativeMultiplierRef.current = cumulativeMultiplier; }, [cumulativeMultiplier]);
+
   // Persist winAmount to localStorage when bonus is active
   const bonusWinKey = `gates_win_${gameId}_${user?.id}`;
   const setWinAmount = useCallback((val: number | ((prev: number) => number)) => {
