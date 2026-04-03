@@ -3,6 +3,8 @@ import { SEO } from "@/components/SEO";
 import { usePublicProfile } from "@/hooks/usePublicProfile";
 import { useUserPoints } from "@/hooks/useUserPoints";
 import { useTwitchBadges } from "@/hooks/useTwitchBadges";
+import { useUserSlotRequestStats } from "@/hooks/useSlotRequests";
+import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -168,6 +170,7 @@ export default function PublicProfile() {
   const { data: profile, isLoading, error } = usePublicProfile(username);
   const { data: pointsData, isLoading: pointsLoading } = useUserPoints(profile?.user_id);
   const { data: badgesData, isLoading: badgesLoading } = useTwitchBadges(profile?.user_id);
+  const { data: slotStats } = useUserSlotRequestStats(profile?.user_id);
 
   if (isLoading) {
     return <LoadingSkeleton />;
@@ -181,6 +184,7 @@ export default function PublicProfile() {
   const hasFavorites = profile.favorite_slot || profile.favorite_provider || profile.favorite_casino;
   const hasPlayStyle = (profile.play_styles && profile.play_styles.length > 0) || profile.preferred_game_type || profile.volatility_preference;
   const hasPoints = pointsData && pointsData.total_winnings > 0;
+  const hasSlotStats = slotStats && (slotStats.bonusHits > 0 || slotStats.noBonus > 0);
 
   const displayName = profile.display_name || username || "Ukendt";
 
@@ -268,6 +272,44 @@ export default function PublicProfile() {
           isLoading={pointsLoading}
           variant="hero"
         />
+
+        {/* Slot Request Stats Section */}
+        {hasSlotStats && slotStats && (
+          <section>
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <MenuIcon iconName="gamepad2" className="h-5 w-5 text-primary" />
+              Slot Requests
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <StatCard
+                iconName="check-circle"
+                label="Bonus Hit"
+                value={slotStats.bonusHits}
+                accentColor="green"
+              />
+              <StatCard
+                iconName="x-circle"
+                label="Ingen Bonus"
+                value={slotStats.noBonus}
+                accentColor="primary"
+              />
+              <Card className="bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/30 backdrop-blur-sm">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 rounded-lg bg-background/50 text-purple-400">
+                      <MenuIcon iconName="percent" className="h-5 w-5 sm:h-6 sm:w-6" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm text-muted-foreground">Hit Rate</p>
+                      <p className="text-lg sm:text-2xl font-bold">{slotStats.hitRate.toFixed(1)}%</p>
+                      <Progress value={slotStats.hitRate} className="mt-2 h-2" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+        )}
 
         {/* Stats Section */}
         {hasStats && (
