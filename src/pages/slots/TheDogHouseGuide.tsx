@@ -385,6 +385,13 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseSpilleregler}
+          alt="The Dog House spilleregler side 3 med 20 paylines visualisering, RTP 95,51% og volatilitetsindikator på 5/5"
+          caption="Side 3/6 af spillereglerne bekræfter 20 udbetalingslinjer, volatilitet 5/5 og den teoretiske RTP på 95,51 % (denne konfiguration). Verificér altid RTP i spillets info-sektion."
+          size="medium"
+        />
+
         {/* ── Pragmatic Play Sticky Wild-Mekanik i Kontekst ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
