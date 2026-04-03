@@ -131,12 +131,6 @@ const SweetBonanzaGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={expektSpillemaskiner}
-          alt="Expekts spillemaskin-sektion med populære titler som Sweet Bonanza og filtreringsmuligheder"
-          caption="Expekts spilleautomater – Sweet Bonanza er typisk fremhævet blandt de mest populære slots"
-          size="full"
-        />
 
         <YoutubeEmbed videoId="vai9EyLLpfU" title="Sweet Bonanza gennemgang – Tumble-mekanik og RTP" description="Se en komplet gennemgang af Sweet Bonanza: tumble-mekanikken, multiplikatorer og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M30S" />
         <VideoContextBox heading="Her gennemgår vores streamer Sweet Bonanza i praksis">
