@@ -238,6 +238,71 @@ const WantedDeadOrAWildGuide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── Hacksaw Gaming som Studie ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> Hacksaw Gaming: Studiets Filosofi og Designsprog</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> blev grundlagt i 2018 og har på kort tid etableret sig som et af de mest innovative studier i slot-industrien. Deres designsprog er umiskendeligt: stærke tematiske identiteter, ekstremt høj volatilitet, og mekaniske innovationer, der adskiller dem fra mainstream-udviklere. Wanted Dead or a Wild er kronjuvelen i denne portfolio – den titel, der definerede Hacksaws brandidentitet og beviste, at et lille studie kunne konkurrere med giganter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Hacksaws designfilosofi adskiller sig fundamentalt fra Pragmatic Plays volumen-tilgang. Hvor Pragmatic udgiver 4-6 nye titler månedligt med variationer over velkendte skabeloner, udgiver Hacksaw færre titler med markant mere mekanisk originalitet. Wanted er et perfekt eksempel: versus-duel-mekanikken eksisterede ikke i slot-industrien før dette spil. Det var en bevidst risiko – en helt ny mekanik uden forudgående markedsvalidering – men det betalte sig spektakulært, da Wanted hurtigt blev en af de mest spillede high-volatility slots globalt.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Et underapprecieret aspekt af Hacksaws design er deres lyddesign. Wanted's western-soundtrack er ikke blot stemningsskabende – det er funktionelt integreret i gameplay. Duel-sekvenserne har unikke lydeffekter, der signalerer hvem der "vinder" (og dermed hvilken wild der forbliver). Wild-akkumulation under free spins har accelererende perkussion, der bygger spænding. Og den endelige gevinstopsummering har en dramatisk crescendo, der forstærker den emotionelle impact af store gevinster. Denne audio-visuelle synergi er en af grundene til, at Wanted føles så meget mere engagerende end matematisk tilsvarende slots fra andre studier.</p>
+          <p className="text-muted-foreground leading-relaxed">For det danske marked er Hacksaw Gaming blevet et stadig vigtigere studie. Danske operatører har været hurtige til at adoptere Hacksaws portefølje, og Wanted er tilgængelig hos alle større danske licenserede casinoer. Studiet har også tilpasset sig danske regulatoriske krav, herunder Spillemyndighedens specifikke krav til bonus buy-funktioner og RTP-gennemsigtighed. For danske spillere, der søger den mest innovative slot-oplevelse, er Hacksaws portefølje – med Wanted som flagskib – det oplagte sted at starte.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Bonus Buy Tier Analyse ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Bonus Buy Tier-Analyse: Matematisk Breakdown af Alle Tre Niveauer</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild tilbyder tre distinkte Bonus Buy-niveauer, der repræsenterer fundamentalt forskellige risiko/belønning-profiler. Den 80× standard Bonus Buy giver 10 free spins med normal wild-frekvens – dette er den mest forudsigelige option og den med lavest forventet varians. Gennemsnitlig return er ca. 75-90× (negativt EV på ~10-15 %), men variansen er moderat: ca. 40 % af købene returnerer mindst indsatsen, og ca. 15 % returnerer 200×+.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den 100× Bonus Buy tilføjer garanterede duel-sekvenser, hvilket øger den gennemsnitlige wild-akkumulation markant. Gennemsnitlig return stiger til ca. 90-100× (tæt på breakeven EV), men variansen øges tilsvarende: ca. 35 % breakeven-rate, men ca. 20 % chance for 250×+. Denne tier er matematisk den mest "fair" – den tilbyder den bedste EV pr. invested unit, hvilket gør den til det rationelle standardvalg for spillere, der bruger Bonus Buy regelmæssigt.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den 250× premium Bonus Buy er Wanted's mest polariserende feature. Den garanterer en "enhanced" bonusrunde med multiple dueller og øget wild-frekvens. Gennemsnitlig return er ca. 200-230× (negativt EV på ~8-20 %), men med den højeste varians af alle tiers: ca. 25 % breakeven-rate, men ca. 10 % chance for 1.000×+ og ca. 2-3 % chance for 5.000×+. Denne tier er designet til jackpot-jagere og streamere – spillere, der bevidst accepterer negativt EV i bytte for ekstraordinært gevinstpotentiale.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Bonus Buy Tier</th><th className="text-right py-2">Pris</th><th className="text-right py-2">Gns. return</th><th className="text-right py-2">Breakeven %</th><th className="text-right py-2">1.000×+ chance</th></tr></thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b"><td className="py-2 font-medium">Standard</td><td className="text-right">80×</td><td className="text-right">~85×</td><td className="text-right">~40 %</td><td className="text-right">~5 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Med dueller</td><td className="text-right">100×</td><td className="text-right">~95×</td><td className="text-right">~35 %</td><td className="text-right">~8 %</td></tr>
+                  <tr><td className="py-2 font-medium">Premium</td><td className="text-right">250×</td><td className="text-right">~215×</td><td className="text-right">~25 %</td><td className="text-right">~10 %</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground leading-relaxed">Strategisk anbefaling: for gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Wanted generelt et dårligt valg pga. den ekstreme volatilitet. Hvis du alligevel vælger det, er 100×-tieren det mest fordelagtige valg pga. den bedste EV. For ren underholdning med jackpot-potentiale er 250×-tieren det mest spændende valg – men kun med penge, du har absolut ingen forventning om at se igen. Aldrig brug 250×-tieren under wagering.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Duel-Mekanik i Detaljer ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Versus-Duel-Mekanikken: Detaljeret Teknisk Analyse</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wanted's versus-duel er en unik mekanik, der ikke eksisterer i nogen anden slot. Under free spins kan to wilds "mødes" på tilstødende positioner og trigge en duel-sekvens. Duellen er visuelt dramatisk – de to outlaws trækker deres våben, og en animation bestemmer vinderen – men det underliggende system er simpelt: RNG bestemmer vinderen med 50/50 sandsynlighed, og vinderens wild forbliver på sin position mens taberens wild fjernes.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den strategiske implikation er subtil men vigtig: dueller reducerer antallet af aktive wilds men konsoliderer dem på færre positioner. I et scenarie med mange wilds spredt over griddet kan dueller faktisk være fordelagtige, fordi de "rydder" lavværdi-positioner og efterlader wilds på mere optimale placeringer. Det er dog vigtigt at forstå, at spilleren ikke har nogen kontrol over dette – det er en rent stokastisk proces med et narrativt overlay.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den psykologiske effekt af duel-mekanikken er markant. Spillere oplever hver duel som en mini-event inden for bonusrunden – en sekundær gambling-oplevelse oven i den primære. Denne "gambling-i-gambling"-struktur er ekstremt engagerende men også potentielt vanedannende. Hacksaw Gaming har effektivt skabt to lag af spænding: det overordnede bonusrundeudkomme OG de individuelle duel-resultater. Denne dobbeltlagede spændingsstruktur er en af de primære årsager til Wanted's ekstraordinære popularitet blandt streamere og entusiastiske spillere.</p>
+          <p className="text-muted-foreground leading-relaxed">Et teknisk detail, der fortjener opmærksomhed: duel-triggering kræver, at to wilds lander på specifikke tilstødende positioner (horisontalt eller vertikalt). Dette betyder, at duel-frekvensen er direkte proportional med wild-densiteten – jo flere wilds der er aktive, desto højere sandsynlighed for at nye wilds lander tilstødende. Denne positive feedback-loop skaber en accelererende dynamik, hvor bonusrunder med mange tidlige wilds har progressivt stigende duel-frekvens, hvilket igen genererer mere wild-aktivitet. Det er denne selvforstærkende mekanik, der driver Wanted's mest eksplosive gevinster.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Mobile Gaming ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Mobiloplevelse: Wanted på Små Skærme</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild er fuldt optimeret til <Link to="/mobil-casino" className={linkClass}>mobil casino</Link>-spil. Hacksaw Gaming har prioriteret mobil-performance fra starten, og Wanted kører flydende på de fleste moderne smartphones. Det 5×5 grid skalerer godt til mobilskærme i portrættilstand, og duel-animationerne er skaleret til at fungere visuelt imponerende selv på 5,5" skærme.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">En bemærkelsesværdig UX-detalje er Bonus Buy-interfacet på mobil: de tre tiers præsenteres som store, tydelige knapper med priserne fremhævet, hvilket gør det nemt at vælge den rigtige tier selv med en enkelt hånd. Duel-sekvenserne er forkortet marginalt på mobil (ca. 20 % hurtigere animation) for at respektere mobilspilleres typisk kortere sessions – en subtil men velovervejet designbeslutning.</p>
+          <p className="text-muted-foreground leading-relaxed">Dataforbruget er moderat for en moderne slot: ca. 15-25 MB pr. 100 spins afhængigt af bonusaktivitet. For spillere med begrænset mobildata anbefaler vi at downloade spillet via casino-appens offline-caching, eller at spille på WiFi. Load-tiden er ca. 3-5 sekunder på 4G-forbindelser – markant hurtigere end grafiktunge Megaways-slots men langsommere end simple klassikere som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Wagering Analyse ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Gennemspilning og Wagering: Hvorfor Wanted er et Dårligt Valg</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Lad os være direkte: Wanted Dead or a Wild er et af de værste valg til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonuspenge</Link>. Ikke fordi RTP'en er lav (96,38 % er acceptabel), men fordi den ekstremt høje volatilitet skaber en uacceptabel bust-risiko under wagering. Ved 10× omsætningskrav med en typisk 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er bust-risikoen estimeret til 25-35 % – det vil sige, at ca. 1 ud af 3 gennemspilningsforsøg vil resultere i total tab af bonusværdien.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sammenlign dette med lavere volatilitetsalternativer: <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (5-8 % bust-risiko), <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (3-5 % bust-risiko), eller <Link to="/casinospil/spillemaskiner/gonzos-quest" className={linkClass}>Gonzo's Quest</Link> (8-12 % bust-risiko). Den matematiske konklusion er klar: under wagering bør du ALTID vælge den lavest mulige volatilitet ved acceptabel RTP. Wanted's 96,38 % RTP giver en forventet nettogevinst på +638 kr. ved 10× wagering – men denne forventning er kun relevant, hvis du ikke buster, og 25-35 % bust-risiko gør den forventede EV efter bust-justering markant lavere.</p>
+          <p className="text-muted-foreground leading-relaxed">Den eneste situation, hvor Wanted kan retfærdiggøres under wagering, er med et ekstremt stort startbudget (3.000+ kr. udover bonusbeløbet) kombineret med meget lave indsatser. Men selv i dette scenarie er det rationelt suboptimalt sammenlignet med en lav-volatilitets slot med tilsvarende RTP. Moral: spil Wanted for underholdning, ikke for wagering. Gem dine bonuspenge til slots, der er designet til stabil gennemspilning.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── KONKLUSION ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" /> Hacksaws Signaturtitel: Vores Endelige Dom</h2>
