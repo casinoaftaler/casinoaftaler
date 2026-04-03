@@ -218,11 +218,16 @@ async function getGatesRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean,
   return symbols[symbols.length - 1];
 }
 
-async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
+async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1, orbMode: boolean = false): Promise<string[][]> {
   await prng.pregenerate(100);
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
   const grid: string[][] = [];
+
+  // In orbMode (base game orb spin): use nonScatter pool and place bombs like bonus
+  const effectiveSymbols = orbMode ? nonScatterSymbols : symbols;
+  const canPlaceBombs = isBonusSpin || orbMode;
+  const bombChance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
 
   for (let col = 0; col < GATES_COLS; col++) {
     const column: string[] = [];
@@ -230,14 +235,14 @@ async function generateGatesGrid(symbols: SlotSymbol[], isBonusSpin: boolean, pr
     let hasBomb = false;
 
     for (let row = 0; row < GATES_ROWS; row++) {
-      // In bonus: chance to place a multiplier bomb (max 1 per reel)
-      if (isBonusSpin && !hasBomb && (await prng.next()) < GATES_MULTIPLIER_CHANCE_BONUS) {
+      // Chance to place a multiplier bomb (max 1 per reel) — bonus or orbMode
+      if (canPlaceBombs && !hasBomb && (await prng.next()) < bombChance) {
         const bombVal = await pickGatesBombValue(prng);
         column.push(`bomb_${bombVal}x`);
         hasBomb = true;
         continue;
       }
-      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng, scatterWeightMultiplier);
+      let sym = await getGatesRandomSymbol(effectiveSymbols, isBonusSpin, prng, scatterWeightMultiplier);
       if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
         sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
       }
