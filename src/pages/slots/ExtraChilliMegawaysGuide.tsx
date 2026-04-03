@@ -127,7 +127,7 @@ const ExtraChilliMegawaysGuide = () => {
             src={screenshotGamble}
             alt="Extra Chilli free spins gamble-hjul med 12, 16, 20 og 24 trin"
             caption="Free Spins Gamble-hjulet: spilleren har 8 spins og gambler mod 12. Stigen til venstre viser hele ruten op til 24 spins. 'Collect' beholder de nuværende 8 spins."
-            size="large"
+            size="full"
           />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Strategisk anbefaling: gamble kun ét trin fra 8 til 12 spins (50 % chance, +50 % flere spins). Den marginale EV-gevinst fra yderligere gambles retfærdiggør sjældent den kumulative tabsrisiko, medmindre din bankroll er meget stor. For konservative spillere: acceptér altid 8 spins og undgå gamble. RTP'en er identisk uanset valg – gamble ændrer kun variansen, ikke den forventede return.</p>
