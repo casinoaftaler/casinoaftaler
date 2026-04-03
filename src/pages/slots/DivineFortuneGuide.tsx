@@ -92,6 +92,14 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Jackpot-bidraget til RTP estimeres til cirka 3-5 % af den samlede 96,59 %. Det betyder at base game + free spins RTP er cirka 91-93 % – stadig acceptabelt, men det understreger at jackpot-chancen er en integreret del af spillets matematiske værdi. Spillere, der aldrig rammer jackpot-spillet, vil opleve en lavere effektiv RTP end den angivne 96,59 %.</p>
         </section>
 
+          <ReviewScreenshot
+            src={screenshotGameplay}
+            alt="Divine Fortune Black gameplay – 5×3 grid med Medusa, løve, tyr og tre progressive jackpots: Minor 50, Mega 5.000 og Major 500"
+            caption="Divine Fortune Black – den nyeste variant i franchisen. Bemærk de tre progressive jackpots øverst: Minor (50 kr.), Mega (5.000 kr.) og Major (500 kr.) ved 2 kr. indsats."
+            eager
+          />
+        </section>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Falling Wilds og Wild on Wild-Mekanikken</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Falling Wilds er Divine Fortunes mest distinktive base game-funktion. Når et wild-symbol lander på griddet, forbliver det aktivt og falder én position ned ved hvert efterfølgende spin. Det fortsætter med at falde, indtil det når bunden af griddet og forsvinder. Under denne proces kan det generere nye gevinstkombinationer ved hvert spin – effektivt fungerende som en "gratis" multipel-spin bonus.</p>
