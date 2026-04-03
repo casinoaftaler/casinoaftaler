@@ -12,8 +12,6 @@ const MobilePayGuide = () => {
       seoTitle="MobilePay Casino 2026 – Betal på 10 Sekunder"
       seoDescription="Dybdegående analyse af MobilePay på danske casinoer: dansk regulering, Vipps-fusionen, vores test på tre casinoer, bonusregler, beløbsgrænser og sammenligning med Trustly."
       name="MobilePay"
-      heroImage={mobilePayHero}
-      heroImageAlt="MobilePay betalingsmetode på danske casinoer"
       heroSubtitle="Danmarks mest brugte betalingsapp med over 4,5 millioner brugere – vi har testet MobilePay på tre danske casinoer og dokumenterer alt fra regulering til realtidshastighed."
       introTitle="Spillemyndighedens Godkendelsessystem og MobilePays Rolle i Dansk Casino-Infrastruktur"
       introContent={

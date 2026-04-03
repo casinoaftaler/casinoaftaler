@@ -3,8 +3,6 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoA: ComparisonCasino = {
@@ -151,8 +149,6 @@ export default function DanskeSpilVsSpilnu() {
       path="/casino-anmeldelser/danske-spil-vs-spilnu"
       datePublished="2026-05-10"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af Danske Spil Casino og Spilnu – to danske casinoer i Danske Spil-koncernen"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

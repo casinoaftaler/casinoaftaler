@@ -9,8 +9,6 @@ const VisaMastercardGuide = () => {
       seoTitle="Visa & Mastercard Casino 2026 – Kortbetaling Guide"
       seoDescription="Visa og Mastercard på danske casinoer: 3D Secure, øjeblikkelige indbetalinger, gebyrer, bonusregler og de bedste kortbetalings-casinoer i Danmark."
       name="Visa / Mastercard"
-      heroImage={visaMastercardHero}
-      heroImageAlt="Visa og Mastercard kortbetaling på danske casinoer"
       heroSubtitle="Visa og Mastercard er verdens mest udbredte betalingskort og accepteres hos praktisk talt alle danske online casinoer. Øjeblikkelige indbetalinger med 3D Secure-sikkerhed."
       introTitle="Kortbetaling i Casinobranchen – Universel Accept, Men Er Det det Bedste Valg?"
       introContent={

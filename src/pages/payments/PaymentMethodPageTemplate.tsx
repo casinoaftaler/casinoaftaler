@@ -47,8 +47,6 @@ interface PaymentMethodPageProps {
   seoDescription: string;
   name: string;
   heroSubtitle: string;
-  heroImage?: string;
-  heroImageAlt?: string;
   introTitle: string;
   introContent: ReactNode;
   whatIsTitle: string;
@@ -125,8 +123,6 @@ export function PaymentMethodPage({
   seoDescription,
   name,
   heroSubtitle,
-  heroImage,
-  heroImageAlt,
   introTitle,
   introContent,
   whatIsTitle,

@@ -8,8 +8,6 @@ const SkrillGuide = () => {
       seoTitle="Skrill Casino 2026 – VIP, Gebyrer & Alternativer"
       seoDescription="Dybdegående analyse af Skrill: VIP-programmet dissekeret, praktisk test på danske casinoer, bonusbegrænsninger, gebyrstruktur og sammenligning med PayPal og Trustly."
       name="Skrill"
-      heroImage={skrillHero}
-      heroImageAlt="Skrill e-wallet betalingsmetode på danske casinoer"
       heroSubtitle="Skrills VIP-program lover lavere gebyrer og hurtigere udbetalinger – men er det pengene værd? Vi analyserer den reelle værdi for danske casinospillere."
       introTitle="VIP-Programmet Dissekeret – Er Skrills Loyalitetsfordele Reelle eller Marketing?"
       introContent={

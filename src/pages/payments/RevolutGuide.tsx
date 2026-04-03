@@ -9,8 +9,6 @@ const RevolutGuide = () => {
       seoTitle="Revolut Casino 2026 – Digital Bank til Casino?"
       seoDescription="Revolut på danske casinoer: Digital bank med øjeblikkelige overførsler, valutaveksling, budgetværktøjer og de bedste Revolut-casinoer i Danmark."
       name="Revolut"
-      heroImage={revolutHero}
-      heroImageAlt="Revolut digital bank betalingsmetode på danske casinoer"
       heroSubtitle="Revolut er en moderne digital bank med øjeblikkelige overførsler, gratis valutaveksling og avancerede budgetværktøjer – perfekt til danske casinospillere der ønsker fuld kontrol."
       introTitle="Revolut på Danske Casinoer – Neobanken der Giver Dig Magten"
       introContent={

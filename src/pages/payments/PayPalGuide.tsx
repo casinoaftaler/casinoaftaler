@@ -12,8 +12,6 @@ const PayPalGuide = () => {
       seoTitle="PayPal Casino 2026 – E-Wallet med Køberbeskyttelse"
       seoDescription="Dybdegående analyse af PayPal på danske casinoer: e-wallet-sammenligning, bonusbegrænsninger, vores praktiske test, køberbeskyttelse og regulatorisk kontekst."
       name="PayPal"
-      heroImage={paypalHero}
-      heroImageAlt="PayPal betalingsmetode på danske casinoer"
       heroSubtitle="Verdens mest kendte e-wallet med 430 millioner brugere – men er PayPal det rette valg for danske casinospillere? Vi tester og analyserer fordelene, faldgruberne og alternativerne."
       introTitle="E-Wallet-Landskabet i 2026 – Hvor Passer PayPal Ind Blandt Skrill, Neteller og MobilePay?"
       introContent={

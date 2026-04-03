@@ -10,8 +10,6 @@ const TrustlyGuide = () => {
       seoTitle="Trustly Casino 2026 – Hurtig Ind- & Udbetaling"
       seoDescription="Dybdegående teknisk analyse af Trustly: open banking under PSD2, Pay N Play dissekeret, vores test på fire casinoer, MitID-integration og sammenligning med Zimpler og MobilePay."
       name="Trustly"
-      heroImage={trustlyHero}
-      heroImageAlt="Trustly open banking betalingsmetode på danske casinoer"
       heroSubtitle="Den tekniske bro mellem din bank og casinoet – vi dissekerer PSD2-rammen, tester Pay N Play og dokumenterer, hvorfor Trustly dominerer danske casino-udbetalinger."
       introTitle="Open Banking Forklaret – PSD2, API-Forbindelser og den Direkte Bankvej"
       introContent={

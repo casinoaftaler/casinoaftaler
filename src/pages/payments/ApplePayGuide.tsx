@@ -11,8 +11,6 @@ const ApplePayGuide = () => {
       seoTitle="Apple Pay Casino 2026 – Face ID & Instant Betaling"
       seoDescription="Dybdegående analyse af Apple Pay på danske casinoer: tokenisering, Face ID-sikkerhed, vores praktiske test, bonusregler, regulatorisk kontekst og sammenligning med MobilePay og Trustly."
       name="Apple Pay"
-      heroImage={applePayHero}
-      heroImageAlt="Apple Pay betalingsmetode på danske casinoer"
       heroSubtitle="Tokeniseret kortbetaling via Face ID eller Touch ID – vi har testet Apple Pay på fire danske casinoer og dokumenterer alt fra indbetalingstid til bonuskvalificering."
       introTitle="Tre Sekunder fra Face ID til Spillekonto – Apple Pay i den Danske Casino-Virkelighed"
       introContent={
