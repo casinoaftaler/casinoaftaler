@@ -238,18 +238,6 @@ function useCreditCountdown() {
 
 function GameLibraryHero() {
   const countdown = useCreditCountdown();
-  const heroRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    function handleScroll() {
-      if (heroRef.current) {
-        const offset = window.scrollY * 0.15;
-        heroRef.current.style.transform = `translateY(${Math.min(offset, 30)}px) scale(1.05)`;
-      }
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <section className="relative overflow-hidden text-white">
