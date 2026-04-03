@@ -156,6 +156,95 @@ const WildWestGoldGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre high-value titler fra <Link to="/casinospil" className={linkClass}>Pragmatic Play</Link> og andre topudviklere.</p>
         </section>
 
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Symbolhierarkiet: Hvad Driver Gevinsterne?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold bruger et klassisk Pragmatic Play-symbolhierarki med fire premium-symboler og fire lavværdi-symboler. Premium-symbolerne er tematiske karakterer: en cowboy (højeste), en sheriff, en kvindelig outlaw og en mystisk revolvermand. Lavværdi-symbolerne er standardkort (A, K, Q, J) i western-inspireret typografi.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Symbolværdi-tabel (5-of-a-kind ved 4 kr. indsats)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Symbol</th><th className="text-left py-2">5× værdi</th><th className="text-left py-2">4× værdi</th><th className="text-left py-2">3× værdi</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Cowboy (Premium 1)</td><td>50× (200 kr.)</td><td>10× (40 kr.)</td><td>3× (12 kr.)</td></tr>
+                  <tr className="border-b"><td className="py-2">Sheriff (Premium 2)</td><td>25× (100 kr.)</td><td>5× (20 kr.)</td><td>1,5× (6 kr.)</td></tr>
+                  <tr className="border-b"><td className="py-2">Kvinde (Premium 3)</td><td>12,5× (50 kr.)</td><td>3× (12 kr.)</td><td>0,75× (3 kr.)</td></tr>
+                  <tr className="border-b"><td className="py-2">Revolvermand (Premium 4)</td><td>7,5× (30 kr.)</td><td>2× (8 kr.)</td><td>0,5× (2 kr.)</td></tr>
+                  <tr><td className="py-2">Kortsymboler (A-J)</td><td>2,5-5× (10-20 kr.)</td><td>0,5-1,5×</td><td>0,15-0,35×</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cowboyen er det afgørende symbol – en 5-of-a-kind med en 5× sticky wild-multiplikator leverer 250× (1.000 kr. ved 4 kr. indsats) fra en enkelt gevinstlinje. Med 40 aktive paylines og multiple sticky wilds med multiplikatorer kan adskillige sådanne gevinster forekomme simultant under en enkelt free spin. Det er denne kombination af høje symbolværdier, 40 paylines og multiplikator-stacking, der producerer Wild West Gold's karakteristiske "big hit"-øjeblikke.</p>
+          <p className="text-muted-foreground leading-relaxed">Scatter-symbolet (sheriff-stjernen) er det mest værdifulde enkeltsymbol i spillet, da det udløser free spins-funktionen. Scatters kan kun lande på hjul 1, 3 og 5 – en standard konfiguration, der sikrer, at triggeren kræver symboler spredt over hele griddet. Denne placering er ikke tilfældig: den tvinger spillere til at observere alle hjul, ikke kun centrum.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Pragmatic Play's Sticky Wild-Evolution</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold er en central brik i <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s udvikling af sticky wild-mekanikken – en progression, der startede med The Dog House (2019) og fortsatte gennem Wild West Gold (2020), The Dog House Megaways (2021) og talrige andre variationer. Forståelse af denne evolutionslinje giver indsigt i, hvorfor Wild West Gold fortsat er relevant trods nyere alternativer.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">The Dog House introducerede grundformlen: wilds med tilfældige multiplikatorer, der forbliver sticky under free spins. Wild West Gold forfinnede denne formel med tre kritiske forbedringer: (1) udvidelse til et 5×4 grid med 40 paylines (dobbelt så mange som The Dog House), (2) tilføjelse af 5× multiplikator-mulighed (The Dog House havde kun 2× og 3×), og (3) en mere aggressiv gevinstfordeling, der skubber mere RTP-andel til bonusrunden.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Efterfølgere som The Dog House Megaways (2021) og Cleocatra (2023) har tilføjet Megaways-mekanik og nye tematiske elementer, men ingen har fundamentalt ændret den matematiske kerne, som Wild West Gold perfektionerede. Pragmatic Play's interne data viser, at spillere konsekvent vender tilbage til den originale sticky wild-formular, hvilket forklarer, hvorfor Wild West Gold stadig er en af studioets top-10 mest spillede titler tre år efter lanceringen.</p>
+          <p className="text-muted-foreground leading-relaxed">For spillere, der allerede kender og elsker <Link to="/casinospil/spillemaskiner/the-dog-house" className={linkClass}>The Dog House</Link>, er Wild West Gold den naturlige "næste skridt" – bedre grafik, flere paylines og marginalt højere gevinstpotentiale. For dem, der foretrækker endnu mere volatilitet, peger vi mod <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>, Hacksaw Gamings ultimate sticky wild-implementering med op til 12.500× max win og duel-mekanik.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Sessionsplanlægning: Optimale Rammer</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">En effektiv Wild West Gold-session kræver realistisk planlægning baseret på spillets matematiske profil. Med en bonustrigger-frekvens på ca. 1/200 spins og en gennemsnitlig bonusvalue på 35× indsatsen, er den forventede sessionsstruktur: 180-220 spins base game → 1 bonusrunde → gentag. Ved 4 kr./spin og ~10 sekunder pr. spin tager dette ca. 30-35 minutter.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Sessionsplanlægning: Wild West Gold ved 4 kr./spin</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Session-type</th><th className="text-left py-2">Spins</th><th className="text-left py-2">Budget</th><th className="text-left py-2">Forventet bonusrunder</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">Kort session (20 min)</td><td>~120</td><td>480 kr.</td><td>0-1</td></tr>
+                  <tr className="border-b"><td className="py-2">Standard session (45 min)</td><td>~270</td><td>1.080 kr.</td><td>1-2</td></tr>
+                  <tr className="border-b"><td className="py-2">Udvidet session (90 min)</td><td>~540</td><td>2.160 kr.</td><td>2-3</td></tr>
+                  <tr><td className="py-2">Marathon (2+ timer)</td><td>700+</td><td>2.800+ kr.</td><td>3-4+</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Standard-sessionen (45 min / ~270 spins) giver den bedste balance mellem bonusoplevelser og bankroll-management. Med 1-2 forventede bonusrunder har du en rimelig chance for at opleve spillets kernefeature uden at overstrække dit budget. Det forventede nettotab er ca. 38 kr. (270 × 4 kr. × 3,49 %), men det realistiske interval spænder fra -800 kr. til +3.000 kr.</p>
+          <p className="text-muted-foreground leading-relaxed">Vigtig observation: Wild West Gold's "slow build"-dynamik under free spins skaber en psykologisk peak-effekt. De første 3-4 free spins producerer typisk minimale gevinster, mens de sidste 4-5 spins – med akkumulerede sticky wilds – leverer de store hits. Denne struktur belønner tålmodighed og gør det vigtigt at lade bonusrunden spille ud, selvom de første spins virker skuffende.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Spilpsykologi: Akkumulering og Forventningskurven</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Wild West Gold's sticky wild-mekanik udnytter en af de mest potente psykologiske drivere i slot-design: den visuelle akkumulering af potentiale. Når en sticky wild lander under free spins, forbliver den synligt på griddet – spilleren kan bogstaveligt se sit gevinstpotentiale vokse. Denne synlighed skaber en progressiv spændingskurve, der kulminerer ved de sidste free spins, hvor alle akkumulerede wilds bidrager til gevinsten.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Denne mekanik adskiller sig fundamentalt fra "instant gratification"-slots som <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link>, hvor gevinster er umiddelbare og uafhængige. Wild West Gold belønner observation og tålmodighed: spillere, der forstår og nyder opbygningsfasen, får en mere tilfredsstillende oplevelse end dem, der kun fokuserer på det endelige tal. Pragmatic Play's designfilosofi er tydelig – de bygger spænding over tid, ikke i et enkelt øjeblik.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">En potentiel faldgrube ved denne design er den kognitive bias kaldet "sunk cost fallacy": efter at have akkumuleret 2-3 sticky wilds kan spillere føle, at de "skal" continue for at "udnytte" de akkumulerede wilds – selv hvis det kræver at overskride deres forudbestemte budget. Det er vigtigt at huske, at sticky wilds kun er aktive under den igangværende bonusrunde og har ingen effekt på fremtidige spins.</p>
+          <p className="text-muted-foreground leading-relaxed">Derudover kan den "near-miss"-effekt, der opstår, når et tredje scatter næsten lander under base game, drive fortsættelse af spil ud over de planlagte rammer. Disciplineret bankroll-management er essentielt – sæt altid dit budget FØR sessionen og overhold det, uanset hvor tæt du er på at udløse bonus. For support ved problematisk spilleadfærd, kontakt <Link to="/ansvarligt-spil/stopspillet" className={linkClass}>StopSpillet</Link> eller besøg vores <Link to="/ansvarligt-spil/hjaelpelinjer" className={linkClass}>hjælpelinjer</Link>.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Wagering-Analyse: Wild West Gold til Bonusgennemspilning</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Med en RTP på 96,51 % er Wild West Gold en acceptabel – men ikke optimal – slot til <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning. Det forventede tab under gennemspilning afhænger af omsætningskravet og indsatsstørrelsen. Herunder analyserer vi tre typiske danske bonusscenarier:</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <h3 className="font-semibold mb-3">Wagering-EV: Wild West Gold (RTP 96,51 %)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Bonus</th><th className="text-left py-2">Omsætningskrav</th><th className="text-left py-2">Total omsætning</th><th className="text-left py-2">Forventet tab</th><th className="text-left py-2">Netto-EV</th></tr></thead>
+                <tbody>
+                  <tr className="border-b"><td className="py-2 font-medium">1.000 kr. (10×)</td><td>10×</td><td>10.000 kr.</td><td>349 kr.</td><td className="text-green-600 font-medium">+651 kr.</td></tr>
+                  <tr className="border-b"><td className="py-2">500 kr. (20×)</td><td>20×</td><td>10.000 kr.</td><td>349 kr.</td><td className="text-green-600 font-medium">+151 kr.</td></tr>
+                  <tr><td className="py-2">200 kr. (30×)</td><td>30×</td><td>6.000 kr.</td><td>209 kr.</td><td className="text-red-600 font-medium">-9 kr.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Ved det danske standardkrav på 10× er Wild West Gold klart positiv EV (+651 kr. netto). Ved 20× omsætningskrav er den stadig positiv men marginal. Ved 30× er den næsten break-even og anbefales ikke – vælg i stedet en højere RTP-slot som <Link to="/casinospil/spillemaskiner/extra-chilli-megaways" className={linkClass}>Extra Chilli Megaways</Link> (96,82 %).</p>
+          <p className="text-muted-foreground leading-relaxed">Den primære risiko ved Wild West Gold til gennemspilning er bust-risikoen: sandsynligheden for at tabe hele bankrollen (bonus + indbetaling) FØR gennemspilning er fuldført. Med den høje volatilitet estimeres bust-risikoen til 15-25 % ved 10× omsætning og 30-40 % ved 20× omsætning – markant højere end lavvolatile alternativer som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (5-10 % bust-risiko). Spillere med lav risikotolerance bør vælge stabileere alternativer.</p>
+        </section>
+
         <SlotDataLink slotSlug="wild-west-gold" slotName="Wild West Gold" />
         <SlotProviderLink slotSlug="wild-west-gold" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/wild-west-gold" />
