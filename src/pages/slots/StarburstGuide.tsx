@@ -244,11 +244,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Starbursts lave volatilitet kompenserer dog delvist for den lidt lavere RTP i wagering-scenarier. Fordi gevinstfrekvensen er høj og variansen lav, er risikoen for at gå bust (tabe hele saldoen) under wagering lavere end på en høj-volatilitets slot med samme RTP. I praksis betyder det, at din faktiske chance for at fuldføre omsætningskravene kan være højere med Starburst end med en teknisk set bedre RTP-slot med høj volatilitet.
           </p>
+          <ReviewScreenshot
+            src={starburstPaytable}
+            alt="Starburst udbetalingstabel med BAR-symbol (2.500 for 5), 7-taller (1.200 for 5) og seks ædelsten-symboler med gevinstværdier"
+            caption="Udbetalingstabellen ved 100 coins indsats: BAR er det højest betalende symbol (2.500 for 5 ens), efterfulgt af 7-tallet (1.200) og de fire ædelstene."
+            size="compact"
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: VOLATILITET DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitet: Hvad Lav Varians Reelt Betyder for Din Bankroll</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
