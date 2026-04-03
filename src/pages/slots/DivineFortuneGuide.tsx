@@ -11,12 +11,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import screenshotGameplay from "@/assets/screenshots/divine-fortune-gameplay.webp";
+import screenshotRegler from "@/assets/screenshots/divine-fortune-regler.webp";
+import screenshotFreeSpins from "@/assets/screenshots/divine-fortune-free-spins.webp";
+import screenshotJackpot from "@/assets/screenshots/divine-fortune-jackpot.webp";
+import screenshotFranchise from "@/assets/screenshots/divine-fortune-franchise.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
