@@ -11,12 +11,18 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import starburstGameplay from "@/assets/screenshots/starburst-gameplay.webp";
+import starburstPaylines from "@/assets/screenshots/starburst-paylines.webp";
+import starburstPaytable from "@/assets/screenshots/starburst-paytable.webp";
+import starburstCasinoLobby from "@/assets/screenshots/starburst-casino-lobby.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -112,11 +118,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
           </p>
+          <ReviewScreenshot
+            src={starburstGameplay}
+            alt="Starburst spilleautomat 5x3 grid med ædelsten-symboler, BAR og 7-taller i rumtema med 10 gevinstlinjer synlige"
+            caption="Starbursts ikoniske 5×3 grid med rumtema. Bemærk gevinstlinjerne (1-10) i begge sider – Win Both Ways-systemet beregner gevinster i begge retninger."
+            eager
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: SPILMEKANIK ── */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Spillets Mekanik: Simpelt Design, Skjult Matematik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
@@ -159,6 +167,12 @@ const StarburstGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={starburstCasinoLobby}
+          alt="Starburst-serien fundet via søgning i online casino lobby med Starburst, Starburst XXXtreme og Starburst Galaxy synlige"
+          caption="Starburst-familien i et dansk casino: originalen, XXXtreme-versionen og den nye Galaxy-variant – alle tilgængelige via casinoets søgefunktion."
+        />
+
         <InlineCasinoCards title="Spil Starburst hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
@@ -178,11 +192,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             En vigtig observation: fordi wilds kun kan lande på hjul 2, 3 og 4 (aldrig hjul 1 og 5), er det umuligt at dække alle 5 hjul med wilds. Dette begrænser den maximale gevinstkombination og er grunden til, at max win "kun" er 500x. Det er et bevidst designvalg fra NetEnt for at holde variansen kontrolleret.
           </p>
+          <ReviewScreenshot
+            src={starburstPaylines}
+            alt="Starburst alle 10 gevinstlinjer visualiseret med lyserøde markeringer på et 5x3 grid"
+            caption="Alle 10 gevinstlinjer i Starburst. Med Win Both Ways tælles disse i begge retninger – effektivt 20 vindende kombinationsmuligheder."
+            size="compact"
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: RTP & HOUSE EDGE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -228,11 +244,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Starbursts lave volatilitet kompenserer dog delvist for den lidt lavere RTP i wagering-scenarier. Fordi gevinstfrekvensen er høj og variansen lav, er risikoen for at gå bust (tabe hele saldoen) under wagering lavere end på en høj-volatilitets slot med samme RTP. I praksis betyder det, at din faktiske chance for at fuldføre omsætningskravene kan være højere med Starburst end med en teknisk set bedre RTP-slot med høj volatilitet.
           </p>
+          <ReviewScreenshot
+            src={starburstPaytable}
+            alt="Starburst udbetalingstabel med BAR-symbol (2.500 for 5), 7-taller (1.200 for 5) og seks ædelsten-symboler med gevinstværdier"
+            caption="Udbetalingstabellen ved 100 coins indsats: BAR er det højest betalende symbol (2.500 for 5 ens), efterfulgt af 7-tallet (1.200) og de fire ædelstene."
+            size="compact"
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: VOLATILITET DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitet: Hvad Lav Varians Reelt Betyder for Din Bankroll</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
