@@ -19,7 +19,13 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+
+import dogHouseIntroScreen from "@/assets/screenshots/dog-house-intro-screen.webp";
+import dogHouseGameplay from "@/assets/screenshots/dog-house-gameplay.webp";
+import dogHousePaytable from "@/assets/screenshots/dog-house-paytable.webp";
+import dogHouseSpilleregler from "@/assets/screenshots/dog-house-spilleregler.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -137,6 +143,13 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseIntroScreen}
+          alt="The Dog House intro-skærm med sticky wild hundehuse med 3x multiplikatorer og 6.750x max win visning"
+          caption="Intro-skærmen præsenterer The Dog House's kernefeature: sticky wilds i form af hundehuse med multiplikatorer op til 3× og en max win på 6.750× indsatsen."
+          eager
+        />
+
         <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
         <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser sticky wild-mekanikken, multiplikator-stacking og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
@@ -188,6 +201,12 @@ const TheDogHouseGuide = () => {
             Denne multiplikator-stacking er dét, der giver The Dog House sin karakteristiske gevinstprofil: de fleste free spins-runder producerer beskedne gevinster (5-20× indsats), men runder med gunstig wild-placement og 3×-multiplikatorer kan eksplodere til 500-2.000× indsatsen. Denne asymmetri er essensen af den høje volatilitet.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={dogHouseGameplay}
+          alt="The Dog House 5x3 gameplay grid med hunde-symboler, knogler, halsbånd og kortsymboler på dansk casino"
+          caption="The Dog House's 5×3 grid i aktion. Premium-symbolerne er fire hunderacer med distinkte designs, mens lavbetalende symboler er standard kortsymboler (A, K, Q, J, 10)."
+        />
 
         {/* ── Free Spins-analyse ── */}
         <section className="mb-10">
@@ -265,6 +284,13 @@ const TheDogHouseGuide = () => {
             For spillere, der overvejer The Dog House vs. alternative sticky wild-slots, er det værd at bemærke, at The Dog House's multiplikator-range (2×-3× pr. wild) er relativt konservativ. Nyere varianter som The Dog House Megaways tilbyder bredere multiplikator-ranges, men med tilsvarende højere volatilitet. Den originale The Dog House forbliver det mest balancerede valg i serien.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={dogHousePaytable}
+          alt="The Dog House paytable med alle symboler, udbetalingsværdier og wild-multiplikator regler for 2x og 3x"
+          caption="Gevinsttabellen viser symbolhierarkiet og wild-reglerne: wild-symbolet (hundehuset) erstatter alle undtagen scatter, kun på hjul 2-4, med tilfældig 2× eller 3× multiplikator."
+          size="medium"
+        />
 
         {/* ── Risikoprofil ── */}
         <section className="mb-10">
@@ -358,6 +384,13 @@ const TheDogHouseGuide = () => {
             For danske spillere, der overvejer hvilken variant de skal spille, er vores anbefaling klar: start med den originale The Dog House for at forstå den grundlæggende sticky wild-mekanik. Hvis du ønsker mere action og er komfortabel med højere volatilitet, avancér til Megaways-versionen. Dog or Alive er kun for erfarne spillere med stor bankroll og en klar forståelse af ekstremt høj varians. Uanset valget er det vigtigt at verificere RTP-konfigurationen i spillets hjælpemenu, da alle tre varianter tilbydes i multiple RTP-versioner.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={dogHouseSpilleregler}
+          alt="The Dog House spilleregler side 3 med 20 paylines visualisering, RTP 95,51% og volatilitetsindikator på 5/5"
+          caption="Side 3/6 af spillereglerne bekræfter 20 udbetalingslinjer, volatilitet 5/5 og den teoretiske RTP på 95,51 % (denne konfiguration). Verificér altid RTP i spillets info-sektion."
+          size="medium"
+        />
 
         {/* ── Pragmatic Play Sticky Wild-Mekanik i Kontekst ── */}
         <section className="mb-10">
