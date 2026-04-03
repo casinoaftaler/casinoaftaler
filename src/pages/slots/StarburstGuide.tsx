@@ -167,6 +167,12 @@ const StarburstGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={starburstCasinoLobby}
+          alt="Starburst-serien fundet via søgning i online casino lobby med Starburst, Starburst XXXtreme og Starburst Galaxy synlige"
+          caption="Starburst-familien i et dansk casino: originalen, XXXtreme-versionen og den nye Galaxy-variant – alle tilgængelige via casinoets søgefunktion."
+        />
+
         <InlineCasinoCards title="Spil Starburst hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
