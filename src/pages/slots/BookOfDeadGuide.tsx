@@ -13,12 +13,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, BookOpen, Calculator, Dog, Flame, Gem, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import screenshotGameplay from "@/assets/screenshots/book-of-dead-gameplay.webp";
+import screenshotPaytable from "@/assets/screenshots/book-of-dead-paytable.webp";
+import screenshotFreeSpins from "@/assets/screenshots/book-of-dead-free-spins.webp";
+import screenshotSpildetaljer from "@/assets/screenshots/book-of-dead-spildetaljer.webp";
+import screenshotIntro from "@/assets/screenshots/book-of-dead-intro.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -157,6 +164,13 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotGameplay}
+          alt="Book of Dead gameplay på Danske Spil – 5x3 grid med Rich Wilde, Anubis, farao og kortværdier i egyptisk tempel-tema"
+          caption="Book of Deads klassiske 5x3 grid med 10 gevinstlinjer. Bemærk de detaljerede egyptiske symboler: Rich Wilde, Anubis, farao-maske og de guldbelagte kortværdier."
+          eager
+        />
+
         <InlineCasinoCards title="Spil Book of Dead hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
@@ -199,13 +213,19 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotPaytable}
+          alt="Book of Dead paytable – Rich Wilde 5000 mønter for 5-of-a-kind, Osiris 2000, Anubis og Horus 750, samt 10 gevinstlinjer"
+          caption="Paytable: Rich Wilde betaler 5.000 mønter for 5-of-a-kind, Osiris 2.000, og Anubis/Horus hver 750. Alle gevinster ganges med indsatsen pr. linje."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: RTP DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> RTP-Anatomi: Hvor Kommer de 96,21 % Fra?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Book of Deads samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,21 % fordeles mellem basisspillet og bonusrunden. Baseret på matematisk analyse bidrager basisspillet med ca. 60–65 % af den samlede RTP (ca. 57,7–62,5 procentpoint), mens free spins bidrager med ca. 35–40 % (ca. 33,7–38,5 procentpoint). Gamble-featuren er RTP-neutral (50/50 double-or-nothing).
+            Book of Deads samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,21 % (standard) fordeles mellem basisspillet og bonusrunden. <strong>Bemærk:</strong> mange danske operatører kører en reduceret RTP-version – hos Danske Spil er RTP'en kun 94,25 %, hvilket øger house edge til 5,75 %. Verificér altid den aktuelle RTP i spillets info-sektion. Baseret på matematisk analyse bidrager basisspillet med ca. 60–65 % af den samlede RTP, mens free spins bidrager med ca. 35–40 %. Gamble-featuren er RTP-neutral (50/50 double-or-nothing).
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne fordeling er markant anderledes end cluster-pays slots som <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, hvor basisspillet kun bidrager med 55–60 % af RTP. Book of Deads højere basisspil-andel betyder, at du oplever mere konsistent flow i det daglige spil – du taber langsommere mellem bonusrunder, og bonusrunderne er relativt set mindre afgørende for den samlede oplevelse.
@@ -213,6 +233,12 @@ const BookOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For wagering-formål er denne fordeling ideel: den lavere afhængighed af bonusrunder reducerer variansen, hvilket betyder, at din bankroll svinger mindre voldsomt under omsætning. Du har en mere forudsigelig nedtrapning mod den forventede RTP, hvilket gør det lettere at budgettere og vurdere, om du kan gennemføre et givet <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={screenshotSpildetaljer}
+            alt="Book of Dead spildetaljer på Danske Spil – udbyder PlayNGo, minimum indsats 1 kr, tilbagebetaling 94,25 % og volatilitetsmåler høj"
+            caption="Spildetaljer hos Danske Spil: Play'n GO som udbyder, RTP 94,25 % (operatør-specifik reduceret version) og høj volatilitet."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -290,6 +316,12 @@ const BookOfDeadGuide = () => {
             Sammenlignet med Sweet Bonanzas −60 % til +300 % spænd er Book of Deads udfaldsspænd snævrere. Det skyldes den lavere volatilitet og det mere generøse basisspil. For spillere, der foretrækker mere forudsigelige sessioner uden de ekstreme svingninger, er Book of Dead det bedre valg. Det er netop denne egenskab, der gør den til den foretrukne wagering-slot.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotFreeSpins}
+          alt="Book of Dead free spins regler – 3 scatter-bøger giver 10 free spins, expanding symbol-mekanik og max win 250.000 mønter"
+          caption="Free spins-reglerne: 3+ scatter-bøger udløser 10 free spins med et tilfældigt expanding symbol. Scatter betaler x5=200, x4=20, x3=2 gange total indsats."
+        />
 
         <Separator className="my-10" />
 
@@ -375,6 +407,12 @@ const BookOfDeadGuide = () => {
             Book of Ra Deluxe fra Novomatic er det dårligste valg med 95,10 % RTP – en house edge på 4,90 % vs. Book of Deads 3,79 %. Over 1.000 spins á 10 kr. koster den ekstra 1,11 procentpoint dig 111 kr. mere. Medmindre du har nostalgisk tilknytning til den originale Book of Ra, er der ingen matematisk grund til at foretrække den.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotIntro}
+          alt="Book of Dead intro-skærm – Free Spins forklaring med scatter-bøger og expanding symbol Rich Wilde i aktion"
+          caption="Intro-skærmen forklarer kernemekkanikken: 3+ Grav-scatters giver 10 free spins med et tilfældigt expanding symbol, der dækker hele hjulet."
+        />
 
         <Separator className="my-10" />
 
