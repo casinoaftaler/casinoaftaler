@@ -13,12 +13,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import screenshotGameplay from "@/assets/screenshots/big-bass-bonanza-gameplay.webp";
+import screenshotPaytable from "@/assets/screenshots/big-bass-bonanza-paytable.webp";
+import screenshotRtpRegler from "@/assets/screenshots/big-bass-bonanza-rtp-regler.webp";
+import screenshotFranchise from "@/assets/screenshots/big-bass-bonanza-franchise-oversigt.webp";
+import screenshotSpildetaljer from "@/assets/screenshots/big-bass-bonanza-1000-spildetaljer.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -27,7 +34,7 @@ const bigBassFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Big Bass Bonanza RTP?",
     answer: (
       <>
-        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. Det er afgørende at spille standardversionen – forskellen til 91,60 %-varianten svarer til en ekstra house edge på 5,11 procentpoint. Verificér altid RTP'en i spillets info-menu eller spil hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, der typisk kører standardversionen.
+        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. I praksis kører mange danske operatører dog en reduceret version – hos Danske Spil er RTP'en fx kun 94,02 %. Verificér altid RTP'en i spillets info-menu (side 3/6) eller spil hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, der typisk kører en højere version.
       </>
     ),
   },
@@ -96,7 +103,7 @@ const BigBassBonanzaGuide = () => {
     "@type": "HowTo",
     name: "Sådan spiller du Big Bass Bonanza",
     step: [
-      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,10 til 250 kr. pr. spin." },
+      { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,50 til 100 kr. pr. spin." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og observer fisker- og pengesymboler på hjulene." },
       { "@type": "HowToStep", position: 3, name: "Aktivér Money Collect", text: "Land 3+ scatters for free spins, hvor fiskeren indsamler pengeværdier fra fiskesymboler." },
       { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Overfør dine gevinster til din bankkonto eller digitale tegnebog." },
@@ -167,9 +174,9 @@ const BigBassBonanzaGuide = () => {
               <p className="text-sm text-muted-foreground">RTP (Standard)</p>
               <p className="text-xl font-bold">96,71 %</p>
             </CardContent></Card>
-            <Card><CardContent className="pt-6">
+             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
-              <p className="text-xl font-bold">Høj (3,5/5)</p>
+              <p className="text-xl font-bold">Høj (5/5)</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Max Win</p>
@@ -193,7 +200,14 @@ const BigBassBonanzaGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             En vigtig teknisk detalje: fisk-pengesymboler kan faktisk lande i basisspillet, men de har ingen funktion uden for free spins. De er rent visuelle i basisspillet – en designbeslutning, der bygger anticipation og holder spillerens opmærksomhed fokuseret på muligheden for at trigge bonusrunden.
           </p>
-        </section>
+         </section>
+
+        <ReviewScreenshot
+          src={screenshotGameplay}
+          alt="Big Bass Bonanza gameplay på Danske Spil – 5x3 grid med fiskesymboler, guldsmed og kortværdier i undervandstema"
+          caption="Big Bass Bonanzas 5x3 grid med 10 faste gevinstlinjer. Bemærk de detaljerede temasymbolar: fiskekasser, guldsmede og klassiske kortværdier."
+          eager
+        />
 
         <InlineCasinoCards title="Spil Big Bass Bonanza hos disse casinoer" count={6} />
 
@@ -214,7 +228,13 @@ const BigBassBonanzaGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Den skæve fordeling er tydelig: de bedste 10 % af bonusrunder (med mange fisk + 50x-værdier + flere fisker-landinger) kan nå 500–1.000x, mens de dårligste 20 % udbetaler under 15x. Variansen inden for bonusrunden er høj, men ikke ekstrem sammenlignet med multiplikator-baserede slots som Razor Shark.
           </p>
-        </section>
+         </section>
+
+        <ReviewScreenshot
+          src={screenshotPaytable}
+          alt="Big Bass Bonanza paytable – symbolværdier for fisker, fisk, guldsmed, fiskekasse og kortværdier samt wild og scatter forklaring"
+          caption="Komplet paytable: Fiskeren (wild) erstatter alle symboler undtagen scatter og vises kun under free spins. Scatter-symbolet vises på alle hjul."
+        />
 
         <Separator className="my-10" />
 
@@ -245,16 +265,22 @@ const BigBassBonanzaGuide = () => {
 
           <p className="text-muted-foreground leading-relaxed">
             Forskellen er dramatisk: over 2.000 spins koster den laveste RTP-variant 1.022 kr. mere end standardversionen. Det er ikke en marginal forskel – det er en fundamental ændring af spillets økonomi. Spil kun Big Bass Bonanza på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, og verificér RTP i info-menuen.
-          </p>
+           </p>
+
+          <ReviewScreenshot
+            src={screenshotRtpRegler}
+            alt="Big Bass Bonanza spilleregler side 3 – RTP 94,02 %, volatilitet 5/5, mindste indsats 0,50 kr og højeste indsats 100 kr"
+            caption="Spillereglerne bekræfter RTP 94,02 % hos Danske Spil, volatilitet 5/5, samt indsatsgrænser fra 0,50 kr. til 100 kr."
+          />
         </section>
 
         <Separator className="my-10" />
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Mellem Sweet Bonanza og Starburst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Maksimalt Udsving</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Big Bass Bonanza klassificeres som høj volatilitet, men i praksis er den mere moderat end Ultra-højvolatile slots som Razor Shark eller Dead or Alive 2. Med en estimeret standardafvigelse på ca. 8x indsatsen pr. spin placerer den sig i den nedre del af "høj volatilitet"-spektret – snarere 3,5/5 end 4,5/5.
+            Big Bass Bonanza klassificeres som høj volatilitet med den maksimale rating på 5/5 – bekræftet direkte i spillets regelside. Det placerer den på niveau med slots som <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> i volatilitetsskalaen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne moderate volatilitet afspejles i gevinstfordelingen: bonusrunder er mere konsistente end i ultra-volatile slots, men med et lavere gevinstloft (2.100x). Over 100 spins á 10 kr. kan din saldo typisk svinge inden for ±500 kr. – mere end Starburst (±200 kr.) men langt mindre end Razor Shark (±1.500 kr.).
@@ -320,20 +346,32 @@ const BigBassBonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotFranchise}
+          alt="Big Bass Bonanza franchise-oversigt på Danske Spil – 12+ varianter inkl. Bigger Bass, Megaways, Splash og Keeping it Reel"
+          caption="Søgning på 'Big Bass Bonanza' hos Danske Spil viser 172 resultater – Pragmatic Play har lanceret en massiv franchise med talrige varianter."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Risikovurdering og Bankroll-Perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Big Bass Bonanza er en moderat risiko-slot. Med en volatilitet på 3,5/5 er den mere tilgivende end ultra-volatile alternativer, men stadig risikabel nok til at kræve respekt for bankroll-management. Den estimerede bust-risiko for en 200-spins session (100:1 ratio) er ca. 20 % – lavere end de 35–40 % du ser hos Razor Shark.
+            Big Bass Bonanza er en højrisiko-slot med volatilitet på 5/5. Den kræver solid bankroll-management og tålmodighed. Den estimerede bust-risiko for en 200-spins session (100:1 ratio) er ca. 30–35 % – på niveau med andre 5/5-volatilitet slots.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er Big Bass Bonanza et moderat valg. Spillets tema (fiskeri) og moderate volatilitet gør det mindre intenst end ultra-volatile slots, men det er stadig et underholdningsprodukt med negativ EV. Sæt altid et budget, og husk, at den gennemsnitlige spiller taber over tid – uanset hvor mange fisk de fanger.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefalede session: 200–300 spins med en bankroll-ratio på 200:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
+            Vores anbefalede session: 300–400 spins med en bankroll-ratio på 250:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={screenshotSpildetaljer}
+            alt="Big Bass Bonanza 1000 spildetaljer på Danske Spil – udbyder Pragmatic, minimum indsats 1 kr, tilbagebetaling 94,51 % og volatilitetsmåler"
+            caption="Spildetaljer for Big Bass Bonanza 1000-varianten: Pragmatic Play som udbyder, RTP 94,51 % og volatilitetsmåler, der viser høj varians."
+          />
         </section>
 
         <Separator className="my-10" />
