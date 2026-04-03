@@ -350,6 +350,63 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        {/* ── BTG's Megaways-Licens og Industriel Påvirkning ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
+            Megaways-Licensen: Hvordan BTG Forandrede Hele Slot-Industrien
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Big Time Gamings beslutning om at licensere Megaways-teknologien til konkurrerende studier var en af de mest transformative forretningsbeslutninger i online slot-historien. I stedet for at beholde mekanikken som en eksklusiv fordel, solgte BTG licenser til <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, Red Tiger og talrige andre udviklere. Resultatet var en eksplosion af Megaways-titler – fra Gonzo's Quest Megaways til Buffalo Rising Megaways – der cementerede Megaways som en industristandard.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For spillere har denne licensstrategi været overvejende positiv. Konkurrencen mellem Megaways-titler har drevet innovation: nyere Megaways-slots tilbyder højere max wins, mere kreative bonusfunktioner, og bedre visuel kvalitet end den originale Bonanza. Men BTG's originale implementering – med den ubegrænsede progressiv multiplier under free spins – forbliver den matematisk mest elegante. Mange licenserede Megaways-titler bruger alternative multiplikator-systemer (tilfældige, per-spin reset, eller capped), som ikke replikerer Bonanzas unikke sneboldeffekt.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            I en dansk kontekst er Megaways-formatet et af de mest populære hos danske licenserede operatører. Spillemyndighedens regulatoriske ramme tillader Megaways-slots uden begrænsninger, og danske casinoer tilbyder typisk 50-100+ forskellige Megaways-titler. For danske spillere, der er nye til Megaways, er Bonanza stadig den bedste indgangsvinkel: den introducerer kernekoncepterne (variabelt grid, cascading wins, progressiv multiplier) i den mest tilgængelige form, uden de sekundære bonusfunktioner, der komplicerer mange nyere titler.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Et bemærkelsesværdigt aspekt er BTG's position efter Evolution Gamings opkøb i 2021. Som en del af Evolution-gruppen har BTG fået adgang til markant større distributionsnetværk og markedsføringsbudgetter, men studiets output er forblevet relativt beskedent sammenlignet med volumenproducenter som Pragmatic Play. BTG udgiver typisk 4-6 titler årligt – hver med unikke mekaniske innovationer – og Bonanza forbliver studiets mest spillede titel over 8 år efter lanceringen. Denne vedholdenhed er i sig selv et testamente til spillets tidløse designkvalitet.
+          </p>
+        </section>
+
+        {/* ── Wagering Analyse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
+            Wagering med Bonanza: Megaways-Varians Under Gennemspilning
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Med en RTP på 96,00 % er Bonanza Megaways et gennemsnitligt wagering-valg. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> med en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det forventede tab 400 kr. – en EV på +600 kr. Sammenlign med <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (+671 kr. EV) og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> (+670 kr. EV) – Bonanza ligger 70-71 kr. efter de bedste alternativer, hvilket er signifikant over flere wagering-cykler.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Den mere bekymrende faktor er Bonanzas høje volatilitet (4/5), der skaber en bust-risiko på ca. 18-25 % under standard wagering. Dette er højere end de fleste mainstream wagering-valg, og det skyldes Bonanzas ujævne gevinstfordeling: lange tørkeperioder (150-300 spins uden bonusrunde) er almindelige og kan erodere bankrollen hurtigt. Fraværet af Bonus Buy forstærker dette problem: du kan ikke "købe dig ud" af en tørkeperiode, og din session er helt afhængig af organiske bonustriggere.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Strategisk wagering-anbefaling: Bonanza er IKKE et optimalt wagering-valg. Den lavere RTP (sammenlignet med Big Bass og Razor Shark) kombineret med den høje bust-risiko gør den til et suboptimalt valg for spillere, der prioriterer bonusrealisering. Brug Bonanza til underholdning og vælg et andet spil til wagering – <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>, <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link>, eller Big Bass Bonanza er alle bedre wagering-værktøjer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En undtagelse: hvis dit casino tilbyder den fulde 96,00 % RTP-konfiguration OG du har en stor bankroll (3.000+ kr. inkl. bonus), er Bonanza et acceptabelt wagering-valg med en bust-risiko under 10 %. Men med begrænsede budgetter bør du altid vælge lavere volatilitet – det er den mest effektive måde at beskytte din bonusværdi.
+          </p>
+        </section>
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
+            Bonanza på Mobilen: 117.649 Gevinstmuligheder i Din Hånd
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Bonanzas variable Megaways-grid præsenterer en unik mobil-UX udfordring: antallet af synlige symboler ændres dynamisk ved hvert spin, fra 64 til 117.649 gevinstmuligheder. BTG's HTML5-engine håndterer denne dynamik kompetent på <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>, med automatisk skalering af symbolstørrelser baseret på det aktuelle hjul-layout. Når alle hjul viser 7 symboler (maximum), er de individuelle symboler små men stadig identificerbare takket være distinkt farvekodning.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Det vandrette ekstrahjul øverst er elegant implementeret på mobil: det vises som en smal stribe over hovedgriddet, med scatter-symbolerne tydeligt fremhævet. Cascade-animationerne er optimeret til touch med moderat hastighed – ikke for hurtige til at du mister overblikket, men hurtige nok til at opretholde spilflow. Under free spins vises multiplikator-tælleren prominent i øverste hjørne, så du altid kan se din aktuelle progressiv multiplier.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Performance-mæssigt er Bonanza gennemsnitlig for en Megaways-slot: load-tid ca. 4-6 sekunder på 4G, dataforbrug ca. 20-25 MB pr. 100 spins. Det dynamiske grid kræver mere processorkraft end statiske grids, og ældre enheder (3+ år) kan opleve lejlighedsvise frame drops under intensive cascade-sekvenser. For den bedste mobiloplevelse anbefaler vi en enhed fra 2023 eller nyere.
+          </p>
+        </section>
+
         {/* ── Konklusion ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

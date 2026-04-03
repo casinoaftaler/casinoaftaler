@@ -428,12 +428,65 @@ const GatesOfOlympusGuide = () => {
               </tbody>
             </table>
           </div>
-
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bust-risikoen er lidt højere end Sweet Bonanza ved same bankroll-ratio, hvilket afspejler Gates of Olympus' marginalt højere volatilitet. Vi anbefaler minimum 200:1 ratio for en meningsfuld session og 300:1 for konservative spillere. Med 100:1 ratio har du næsten 1 ud af 3 chance for at gå bust – det er uacceptabelt for de fleste.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Specielt for Gates of Olympus: undgå at bruge bonus buy med begrænset budget. Et enkelt bonus buy koster 1.000 kr. (100x á 10 kr.) – det er 50 % af en 2.000 kr. bankroll. Hvis bonusrunden giver under 50x (hvilket sker i over halvdelen af tilfældene), har du halveret dit budget med ét klik. Bonus buy er et luksusgode for store bankrolls, ikke et værktøj for budgetspillere. Husk altid at praktisere <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: PRAGMATIC PLAYS OLYMPUS-FRANCHISE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Olympus-Franchisen: Gates of Olympus 1000, Starlight Princess og Beyond</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har udnyttet Gates of Olympus' succes til at skabe en komplet franchise. Gates of Olympus 1000 er den mest bemærkelsesværdige variant: den hæver multiplikator-ceiling fra 500× til 1.000× og max win fra 5.000× til 15.000×. Effekten er en markant højere volatilitet med mere polariserede bonusrunder – de fleste runder giver mindre, men de sjældne "perfekte" runder kan producere dramatisk højere gevinster.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Starlight Princess er funktionelt en "reskin" af Gates of Olympus med anime-æstetik. Mekanikken er identisk – per-spin multiplikator-nulstilling, samme tumble-system, samme RTP (96,50 %). Valget mellem de to er rent æstetisk, men det er værd at bemærke, at Starlight Princess typisk tiltrækker et yngre, mere mobil-fokuseret spillersegment, mens Gates of Olympus' mytologiske tema appellerer bredere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For det danske marked er Gates of Olympus den mest udbredte variant – tilgængelig hos alle større licenserede operatører. Gates of Olympus 1000 er også bredt tilgængelig men ofte med reduceret RTP-konfiguration (95,51 % i stedet for 96,50 %), hvilket er en vigtig distinktion. Spillere, der overvejer 1000-varianten, bør altid verificere RTP'en, da forskellen mellem 96,50 % og 95,51 % repræsenterer en signifikant ændring i house edge (1 procentpoint = ca. 100 kr. ekstra tab pr. 10.000 kr. indsat).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Pragmatic Plays franchise-strategi med Gates of Olympus ligner deres tilgang til Big Bass Bonanza: en kernetitel, der definerer en mekanik, efterfulgt af progressive varianter med højere volatilitet og gevinstpotentiale. Denne systematiske tilgang til produktudvikling er en af grundene til Pragmatic Plays dominans i det moderne slot-marked – og for spillere betyder det et bredt udvalg af relaterede titler, der deler en fælles mekanisk DNA.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: WAGERING ANALYSE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Wagering-Strategi: Gates of Olympus og Bonusomsætning</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gates of Olympus er en acceptabel wagering-kandidat med caveats. Med 96,50 % RTP og 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er det forventede tab 350 kr. for en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> – en netto EV på +650 kr. Dette placerer den i midterfeltet: bedre end <Link to="/casinospil/spillemaskiner/gonzos-quest" className={linkClass}>Gonzo's Quest</Link> (403 kr. tab) og <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (379 kr. tab), men dårligere end <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (329 kr. tab) og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> (330 kr. tab).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den høje volatilitet skaber en bust-risiko på ca. 15-20 % ved standard bankroll under wagering – markant højere end lav-volatilitet alternativer. For wagering anbefaler vi at UNDGÅ Bonus Buy og spille udelukkende base game med konstante, lave indsatser. Bonus Buy under wagering er irrationelt: det dramatisk øger bust-risikoen uden at ændre den forventede RTP, og et enkelt mislykket Bonus Buy kan koste 50 % af din wagering-bankroll.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et ofte overset wagering-aspekt er Ante Bet-funktionen. Gates of Olympus tilbyder en "Ante Bet" (25 % ekstra indsats) der fordobler sandsynligheden for scatter-symboler og dermed bonustriggere. Under wagering er Ante Bet en interessant trade-off: den øger din indsats pr. spin med 25 %, men den forventede bonusfrekvens stiger med ~100 %. Matematisk er Ante Bet tæt på EV-neutral (den er designet til at opretholde den samme RTP), men den reducerer variansen marginalt fordi den giver hyppigere bonusrunder – og under wagering er lavere varians altid fordelagtig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Strategisk wagering-anbefaling: brug Ante Bet under wagering for den marginalt lavere varians, undgå Bonus Buy fuldstændigt, og vælg en indsats der giver minimum 300 spins med din samlede bankroll. For spillere med minimal bankroll er <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> eller <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> sikrere valg; for spillere med 2.500+ kr. i total bankroll (inkl. bonus) er Gates of Olympus et forsvarligt wagering-valg.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: MOBILOPLEVELSE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Gates of Olympus på Mobilen: Zeus i Lommen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gates of Olympus' 6×5 grid er veloptimeret til <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>. Pragmatic Plays HTML5-engine skalerer symbolerne intelligent baseret på skærmstørrelse, og de distinkte farvekodede ædelstene er identificerbare selv på 5,5" skærme. Zeus' lynmultiplikator-animationer er visuelt imponerende på mobil – særligt 100×+ multiplikatorer, der fylder hele skærmen med et dramatisk lyn-effekt.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tumble-animationerne er forkortet ca. 25 % på mobil sammenlignet med desktop for at respektere mobilspilleres typisk kortere sessions. Auto-spin-funktionen er velimplementeret med tydelige stop-betingelser (tab-grænse, gevinst-grænse, bonustrigger), hvilket gør den velegnet til hands-free wagering-sessions. Dataforbruget er moderat (15-20 MB pr. 100 spins) med en load-tid på ca. 3-5 sekunder over 4G.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En vigtig mobil-UX detalje: Bonus Buy-knappen er tydeligt placeret men kræver en bekræftelsesdialog for at forhindre utilsigtede køb – en kritisk sikkerhedsfunktion, der beskytter mod "fat finger"-fejl på touchscreens. Pragmatic Play har generelt en af de bedste mobile slot-implementeringer i industrien, og Gates of Olympus er ingen undtagelse. For danske spillere, der primært spiller på smartphones, er det en af de mest anbefalelsesværdige titler.
           </p>
         </section>
 

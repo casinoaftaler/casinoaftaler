@@ -303,6 +303,90 @@ const GonzosQuestGuide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── SEKTION: NETENT'S HISTORISKE BETYDNING ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> NetEnts Designarv: Hvordan Gonzo Ændrede Online Slots</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede Gonzo's Quest i januar 2011 – et tidspunkt, hvor online slots primært var 2D-produkter med statiske hjul og simpel animation. Gonzo's Quest var en revolution på tre fronter: (1) 3D-karakter-animation med Gonzo som en liveagtig figur ved siden af hjulene, der reagerer på gevinster og tab. (2) Avalanche-mekanikken, der erstattede traditionelle spinnende hjul med faldende stenblokke. (3) Progressive multiplikatorer, der belønnede cascade-kæder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gonzo som karakter var lige så banebrydende som mekanikken. Han var en af de første slot-maskotter med "personality" – han hopper af glæde ved store gevinster, falder sammen ved tab, og danser ved bonustriggere. Denne karakter-animation var inspireret af videospilindustrien, og den satte en ny standard for slot-underholdning. I dag er Gonzo en af de mest genkendelige figurer i online gambling – sammenlignelig med Angry Birds i mobilspilsverdenen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            NetEnts designbeslutning om at erstatte spinnende hjul med faldende blokke var mere end kosmetisk – den ændrede fundamentalt spillerens perception af mekanikken. Traditionelle hjul har en "slot machine"-følelse, der minder om mekaniske automater. Faldende blokke føles mere som et puzzlespil, hvilket tiltrak et nyt spillersegment, der ikke identificerede sig med klassisk gambling-æstetik. Denne designinnovation er direkte ansvarlig for den massive popularitet af cascade/tumble-mekanikken, der nu bruges i størstedelen af nye slot-udgivelser.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For det danske marked har Gonzo's Quest en særlig kulturel betydning. Den var en af de første "premium"-slots, der blev bredt tilgængelig hos danske licenserede operatører efter licenssystemets indførelse i 2012. Mange danske spillere, der i dag nyder moderne cascade-slots som <Link to="/casinospil/spillemaskiner/sugar-rush" className={linkClass}>Sugar Rush</Link> eller <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, startede deres online slot-rejse med Gonzo's Quest – en kulturel påvirkning, der er svær at overvurdere.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: GONZO'S QUEST VS. MEGAWAYS ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Original vs. Megaways: Hvilken Gonzo Skal Du Vælge?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            NetEnt/Red Tiger lancerede Gonzo's Quest Megaways i 2020 – en moderniseret version med op til 117.649 gevinstmuligheder og et markant højere max win (21.000×). For danske spillere rejser dette et naturligt spørgsmål: er den originale Gonzo's Quest stadig relevant, eller er Megaways-versionen objektivt bedre?
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead><tr className="border-b"><th className="py-2 text-left font-semibold">Parameter</th><th className="py-2 text-right font-semibold">Original</th><th className="py-2 text-right font-semibold">Megaways</th></tr></thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">95,97 %</td><td className="py-2 text-right">96,00 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Max Win</td><td className="py-2 text-right">2.500×</td><td className="py-2 text-right">21.000×</td></tr>
+                    <tr className="border-b"><td className="py-2">Volatilitet</td><td className="py-2 text-right">Medium-Høj</td><td className="py-2 text-right">Meget Høj</td></tr>
+                    <tr className="border-b"><td className="py-2">Bonus Buy</td><td className="py-2 text-right">Nej</td><td className="py-2 text-right">Ja (100×)</td></tr>
+                    <tr className="border-b"><td className="py-2">Gevinstlinjer</td><td className="py-2 text-right">20 faste</td><td className="py-2 text-right">Op til 117.649</td></tr>
+                    <tr><td className="py-2">Multiplikatorer</td><td className="py-2 text-right">1-5× / 3-15×</td><td className="py-2 text-right">Ubegrænset</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Megaways-versionen er objektivt stærkere på de fleste målbare parametre: højere max win, marginalt bedre RTP, Bonus Buy-funktion, og ubegrænsede multiplikatorer. Men den originale har én kritisk fordel: den deterministiske multiplikator-sekvens (1→2→3→5 / 3→6→9→15) skaber en unik spændingskurve, der føles fundamentalt anderledes end Megaways' mere "kaotiske" cascade-flow.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores anbefaling: vælg Megaways-versionen, hvis du søger det højeste gevinstpotentiale og foretrækker moderne volatilitet. Vælg originalen, hvis du værdsætter den klassiske Avalanche-oplevelse med forudsigelige multiplikator-trin og moderat volatilitet. For wagering er originalen marginalt bedre pga. den lavere volatilitet (lavere bust-risiko), men RTP-forskellen er negligibel. For casual spillere med begrænsede budgetter er originalens lavere volatilitet en reel fordel.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: WAGERING ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Wagering-Analyse: Gonzo som Gennemspilningsværktøj</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gonzo's Quests 95,97 % RTP er under branchens gennemsnit, hvilket gør den til et suboptimalt men stadig positivt wagering-valg. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> med en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det forventede tab 403 kr. – en EV på +597 kr. Sammenlign med <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (+671 kr. EV) og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> (+670 kr. EV). Forskellen er ca. 70-75 kr. pr. wagering-cyklus – signifikant over tid, men acceptabelt for enkelte sessioner.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gonzo's Quests medium-høje volatilitet giver en bust-risiko på ca. 12-15 % under wagering – et godt mellempunkt. Den er sikrere end high-volatility alternativer som <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link> (25-35 %) men mere risikabel end lav-volatilitet valg som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (5-8 %). For spillere, der ønsker en moderat risikoprofil under wagering med tilstrækkeligt underholdningsværdi, er Gonzo's Quest et forsvarligt valg.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Fraværet af Bonus Buy er en fordel under wagering, fordi det eliminerer fristelsen til store enkelt-indsatser. Med Gonzo's Quest er du tvunget til disciplineret base game-spil med konstante indsatser – præcis den tilgang, der minimerer bust-risikoen. Strategisk anbefaling: vælg en indsats, der giver minimum 400 spins med din samlede bankroll, og acceptér at det vil tage 1-2 timer at gennemføre wagering.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: MOBILOPLEVELSE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Gonzo på Mobilen: 3D-Eventyr i Lommen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Gonzo's Quests 5×3 grid skalerer godt til <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>, og NetEnts HTML5-implementering er optimeret til touch-interaktion. Gonzo's karakter-animationer er forenklet marginalt på mobil for at sikre smooth performance, men den essentielle oplevelse – hans reaktioner, dansen ved gevinster – er bevaret. Maya-symbolerne er tydelige med god farvekodning, og Avalanche-animationerne (faldende stenblokke) er visuelt tilfredsstillende selv på mindre skærme.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Performance-mæssigt er Gonzo's Quest en af de mest optimerede slots på markedet. Trods 3D-karakteren og cascade-animationerne kører spillet flydende selv på ældre smartphones (2+ år). Load-tiden er ca. 3-4 sekunder på 4G, og dataforbruget er lavt (10-15 MB pr. 100 spins). NetEnts engine håndterer det 5×3 grid kompetent, og der er ingen kendte performance-issues på nogen moderne platform.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En subtil mobil-UX fordel: Gonzo's Quests simpelhed (ingen Bonus Buy, ingen Ante Bet, ingen sekundære funktioner) gør den til en af de mest mobile-venlige slots overhovedet. Der er ingen risiko for utilsigtede køb, ingen komplekse menuer, og indsatsændringen kræver kun ét tryk. For spillere, der ønsker en problemfri mobiloplevelse med solid gameplay, er Gonzo's Quest et topvalg.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── SEKTION: HVEM PASSER SPILLET TIL ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Den Perfekte Spiller: Hvem Nyder Gonzo's Quest Mest?</h2>
