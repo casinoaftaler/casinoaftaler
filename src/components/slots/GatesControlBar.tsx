@@ -101,7 +101,7 @@ export function GatesControlBar({
     if (bonusState.isActive) {
       return (
         <div className="flex flex-col items-center">
-          <MenuIcon iconName="rotate-cw" className="h-6 w-6 text-white" />
+          <RotateCw className="h-6 w-6 text-white" />
           <span className="text-[8px] font-bold text-white">FREE</span>
         </div>
       );
