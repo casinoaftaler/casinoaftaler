@@ -70,6 +70,14 @@ const JokerStrikeGuide = () => {
         <AuthorMetaBar author="jonas" readTime="19 min" />
 
         <SnippetAnswer answer="Joker Strike er en 5×3 slot fra Quickspin med den højeste tilgængelige RTP i markedet: 98,11 % med Hi Roller-funktionen aktiveret (96,60 % standard). Hi Roller koster 30× indsatsen for 10 spins med forbedret symbolfordeling. Max win er 456× – lavt men bevidst, da spillet er designet til konsistens og optimal gennemspilning, ikke store gevinster." />
+        <ReviewScreenshot
+          src={jokerStrikeHeroLogo}
+          alt="Joker Strike officielt logo med jokerfigur, klokke og stjerne fra Quickspin"
+          caption="Joker Strike: Quickspins matematiske mesterværk med markedets højeste RTP (98,11 % med Hi Roller)."
+          eager
+          size="medium"
+        />
+
         {/* ── HI ROLLER DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="circle-dollar-sign" className="h-6 w-6 text-primary" /> Hi Roller: Premium-Tilstandens Komplette Anatomi</h2>
