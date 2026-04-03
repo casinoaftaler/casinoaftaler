@@ -126,7 +126,7 @@ const BigBassBonanzaGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="167 Min." />
+        <AuthorMetaBar author="kevin" readTime="22 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Big Bass Bonanza spillemaskine" loading="eager" />
         </div>
