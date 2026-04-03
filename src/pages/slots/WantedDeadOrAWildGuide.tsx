@@ -110,7 +110,7 @@ const WantedDeadOrAWildGuide = () => {
               <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,38 %</strong></div>
               <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Ekstremt Høj (5/5)</strong></div>
               <div><span className="text-muted-foreground">Max Win:</span><br /><strong>12.500×</strong></div>
-              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×4 (20 paylines)</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×5 (paylines)</strong></div>
               <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,20 kr.</strong></div>
               <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>1.000 kr.</strong></div>
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,62 %</strong></div>
