@@ -151,6 +151,8 @@ const EyeOfHorusGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={eyeOfHorusPaylines} alt="Eye of Horus gevinstlinjer – alle 10 paylines vist med røde markeringer på 5x3 griddet" caption="Eye of Horus' 10 faste gevinstlinjer visualiseret – bemærk de komplekse mønstre." />
+
         {/* ── Symbol Upgrade Mathematics ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Symbol Upgrade Matematikken: Hvad Koster En Retrigger?</h2>
