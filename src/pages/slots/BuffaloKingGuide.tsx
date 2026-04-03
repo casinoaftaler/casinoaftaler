@@ -96,7 +96,7 @@ const BuffaloKingGuide = () => {
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Free Spins: Op til 100 Gratis Spins med Multiplikatorer</h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings free spins-system er exceptionelt generøst i antal: 3 scatters giver 8, 4 giver 15, 5 giver 25, og 6 scatters giver hele 100 free spins. Retrigger er muligt ved at lande yderligere 3+ scatters under bonusrunden, med samme belønningsstruktur. Den teoretiske mulighed for 6-scatter retrigger under en allerede aktiv 100-spin runde er vanvittigt sjælden, men repræsenterer Buffalo Kings absolutte ceiling.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings free spins-system er exceptionelt generøst i antal: 3 scatters giver 8, 4 giver 15, 5 giver 25, og 6 scatters giver hele 100 free spins. Under bonusrunden er retrigger-kravet lavere: blot 2+ scatters udløser ekstra free spins (2 scatters = 5, 3 = 8, 4 = 15, 5 = 25, 6 = 100). Denne lavere retrigger-tærskel gør forlængede bonusrunder mere sandsynlige end i de fleste konkurrerende slots.</p>
 
           <ReviewScreenshot src={buffalokingBaseGameBonus} alt="Buffalo King base game med synlige bonus-scatter-symboler og Køb Gratis Spins knappen aktiveret i brugergrænsefladen" caption="Buffalo Kings base game med bonus-symboler og mulighed for at købe free spins direkte" size="full" />
 
