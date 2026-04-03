@@ -264,7 +264,7 @@ const TheDogHouseGuide = () => {
             RTP-fordelingen mellem basespil og bonus er estimeret til ca. 55 % basespil og 45 % free spins. Denne fordeling er mere bonus-tung end Wolf Gold (60/20/15) men mere balanceret end rent bonus-drevne slots som <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> (~35/65). For spilleren betyder dette, at basespillet holder dig i live, mens free spins leverer de afgørende gevinstmoments.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Sammenlignet med Bonus Buy-prisen på 60× er den gennemsnitlige free spins-værdi på ~50-70× interessant. Over 100 Bonus Buy-forsøg (6.000× samlet indsats) ville du statistisk få ~5.000-7.000× tilbage, svarende til en RTP på ~83-117 %. Det brede interval understreger den høje varians – selv Bonus Buy-strategien kræver et stort sample for at konvergere mod gennemsnittet.
+            Da The Dog House ikke har Bonus Buy, er den eneste vej til bonusrunden naturlig triggering via scattere. Over en session på 300 spins kan du statistisk forvente 1-2 bonusrunder, med en gennemsnitlig free spins-gevinst på ca. 50-70× indsatsen. Den variable hjulspil-mekanik (9-27 spins) tilføjer dog ekstra varians: en runde med 27 spins har markant højere gevinst-ceiling end en med kun 9.
           </p>
         </section>
 
