@@ -181,6 +181,13 @@ const ThunderstruckIIGuide = () => {
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Wildstorm's RTP-contribution estimeres til ca. 5-8 % af spillets samlede 96,65 % RTP. Over 1.000 spins bidrager Wildstorm-events med ca. 200-320 kr. i ekstra return (ved 4 kr. indsats) – en meningsfuld del af den samlede spiloplevelse. Funktionen tjener en dobbelt rolle: matematisk bidrager den med value, og psykologisk bryder den base game's rutine med pludselige, visuelt imponerende wild-eksplosioner.</p>
 
+          <ReviewScreenshot
+            src={thunderstruck243ways}
+            alt="Thunderstruck II 243 ways-to-win forklaring: symboler skal lande på tilstødende hjul fra venstre for at tælle som gevinst"
+            caption="243 ways-systemet visualiseret: symboler skal lande på mindst 3 tilstødende hjul fra venstre. Kun den højeste gevinst pr. 'way' udbetales."
+            size="medium"
+          />
+
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link>'s Wild Desire er Wildstorm lidt sjældnere men potentielt mere værdifuld pr. trigger. Begge funktioner tjener den samme designhensigt – at holde base game interessant mellem bonustriggers – men Thunderstruck II's tematiske integration (Thors lynhammer) giver Wildstorm en mere cinematic flair end Wild Desire's mere subtile visuelle effekt.</p>
         </section>
 
