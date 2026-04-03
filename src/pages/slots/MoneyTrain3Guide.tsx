@@ -14,12 +14,20 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import moneyTrain3IntroScreen from "@/assets/screenshots/money-train-3-intro-screen.webp";
+import moneyTrain3GameplayGrid from "@/assets/screenshots/money-train-3-gameplay-grid.webp";
+import moneyTrain3Paylines from "@/assets/screenshots/money-train-3-paylines.webp";
+import moneyTrain3Spilleregler from "@/assets/screenshots/money-train-3-spilleregler.webp";
+import moneyTrain3Paytable from "@/assets/screenshots/money-train-3-paytable.webp";
+import moneyTrain3CasinoSearch from "@/assets/screenshots/money-train-3-casino-search.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
