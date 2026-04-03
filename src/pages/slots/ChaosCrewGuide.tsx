@@ -174,7 +174,7 @@ const ChaosCrewGuide = () => {
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Retrigger er muligt med 3+ scatters under free spins for yderligere 4-6 ekstra spins. Sandsynligheden estimeres til ca. 5-8 % pr. runde – sjældent men markant, da ekstra spins med et allerede wild-fyldt grid kan producere enorme gevinster. Retrigger er desuden den primære vej til runder med 6+ sticky wilds, da de ekstra spins giver flere chancer for wild-landinger.</p>
 
-          <p className="text-muted-foreground leading-relaxed">Max win-scenariet (10.000×) kræver en perfekt storm: et grid tæt pakket med 8+ sticky wilds (blanding af Cranky med 3× og Sketchy med 5× multiplikatorer), kombineret med et stort gevinstcluster af premium-symboler, der rører multiple wilds. Sandsynligheden estimeres til ca. 1 pr. 200.000-500.000 spins – sjældent men markant mere opnåeligt end ultra-volatile slots med 100.000×+ ceiling. Det er et "realistisk" max win i den forstand, at det faktisk forekommer i spillerberetninger med rimelig regelmæssighed.</p>
+          <p className="text-muted-foreground leading-relaxed">Max win-scenariet (10.000×) kræver en perfekt storm: et grid tæt pakket med 8+ sticky wilds (blanding af Cranky med 3× og Sketchy med 5× multiplikatorer), kombineret med store gevinstkombinationer af premium-symboler på multiple linjer, der rører multiple wilds. Sandsynligheden estimeres til ca. 1 pr. 200.000-500.000 spins – sjældent men markant mere opnåeligt end ultra-volatile slots med 100.000×+ ceiling. Det er et "realistisk" max win i den forstand, at det faktisk forekommer i spillerberetninger med rimelig regelmæssighed.</p>
         </section>
 
         {/* ── BONUS BUY ── */}
