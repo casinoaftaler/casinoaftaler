@@ -16,7 +16,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import gonzosQuestDemoLauncher from "@/assets/screenshots/gonzos-quest-demo-launcher.webp";
+import gonzosQuestGameplayGrid from "@/assets/screenshots/gonzos-quest-gameplay-grid.webp";
+import gonzosQuestSpilleregler from "@/assets/screenshots/gonzos-quest-spilleregler.webp";
+import gonzosQuestHeroBanner from "@/assets/screenshots/gonzos-quest-hero-banner.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
