@@ -158,13 +158,13 @@ const LegacyOfDeadGuide = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                 <div><span className="text-muted-foreground">Udvikler:</span><br /><strong>Play'n GO</strong></div>
                 <div><span className="text-muted-foreground">Udgivelsesår:</span><br /><strong>2020</strong></div>
-                <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,58 %</strong></div>
+                <div><span className="text-muted-foreground">RTP:</span><br /><strong>94,51 %</strong></div>
                 <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Høj (4/5)</strong></div>
                 <div><span className="text-muted-foreground">Max Win:</span><br /><strong>5.000× indsats</strong></div>
                 <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×3 (10 linjer)</strong></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,10 kr.</strong></div>
                 <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>1.000 kr.</strong></div>
-                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,42 %</strong></div>
+                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>5,49 %</strong></div>
               </div>
             </CardContent>
           </Card>
