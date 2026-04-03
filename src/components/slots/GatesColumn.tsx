@@ -113,7 +113,12 @@ export const GatesColumn = React.memo(function GatesColumn({
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
-                  <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" draggable={false} />
+                  <div className={cn(
+                    "w-full h-full",
+                    shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-blue"
+                  )}>
+                    <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" draggable={false} />
+                  </div>
                 ) : (
                   <span className="text-2xl font-bold text-blue-200">{symbol.name.charAt(0)}</span>
                 )}
