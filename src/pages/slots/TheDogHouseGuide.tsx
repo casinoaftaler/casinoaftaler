@@ -103,7 +103,7 @@ const TheDogHouseGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="dog" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
-            <p className="text-lg text-white/80">Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.</p>
+            <p className="text-lg text-white/80">Pragmatic Play's elskede sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og det innovative bonushjul-system.</p>
           </div>
         </div>
       </section>
