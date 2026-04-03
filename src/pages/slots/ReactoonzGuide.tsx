@@ -14,12 +14,18 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import reactoonzIntroScreen from "@/assets/screenshots/reactoonz-intro-screen.webp";
+import reactoonzGameplayGrid from "@/assets/screenshots/reactoonz-gameplay-grid.webp";
+import reactoonzGargantoon from "@/assets/screenshots/reactoonz-gargantoon.webp";
+import reactoonzCasinoSearch from "@/assets/screenshots/reactoonz-casino-search.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -128,6 +134,12 @@ const ReactoonzGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Play'n GO's filosofi bag Reactoonz afspejler en bredere trend: at gøre slots mere interaktive og belønne spillerengagement over tid. Dette princip er synligt i hele deres portefølje, fra <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link>'s expanding symbols til Reactoonz' Quantum-meters. Forskellen er, at Reactoonz tilføjer et lag af progression, der giver spilleren en følelse af kontrol – selv om det matematiske resultat stadig er bestemt af RNG.
           </p>
+          <ReviewScreenshot
+            src={reactoonzIntroScreen}
+            alt="Reactoonz intro-skærm med Gargantoon-monster og alle ni symboltyper vist sammen med forklaring af wild-mekanik"
+            caption="Intro-skærmen forklarer Gargantoon: et 3×3 wild-symbol, der fragmenterer til mindre wilds og kan drive spillets største gevinster."
+            eager
+          />
         </section>
 
         <YoutubeEmbed videoId="ybFWBECwKbo" title="Reactoonz gennemgang – Cluster pays og Quantum-features" description="Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken og Quantum-features forklaret i praksis." uploadDate="2026-03-07" duration="PT0M57S" />
@@ -136,6 +148,12 @@ const ReactoonzGuide = () => {
           <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
           <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
         </VideoContextBox>
+
+        <ReviewScreenshot
+          src={reactoonzCasinoSearch}
+          alt="Reactoonz-serien fundet via søgning i dansk online casino med Reactoonz, Reactoonz 2 og Reactoonz 100 synlige"
+          caption="Reactoonz-serien er tilgængelig på de fleste danske casinoer – her ses originalen sammen med Reactoonz 2 og den nye Reactoonz 100."
+        />
 
         <InlineCasinoCards />
 
@@ -176,8 +194,13 @@ const ReactoonzGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Et kritisk aspekt ved cluster-mekanikken er, at gevinstpotentialet skalerer eksponentielt med cluster-størrelsen. En 15-symbol cluster giver ikke blot 3× mere end en 5-symbol cluster – den kan give 40× mere. Dette skaber den karakteristiske Reactoonz-oplevelse, hvor de fleste spins giver beskedne gevinster, men sjældne massive clusters kan transformere en session.
+             Et kritisk aspekt ved cluster-mekanikken er, at gevinstpotentialet skalerer eksponentielt med cluster-størrelsen. En 15-symbol cluster giver ikke blot 3× mere end en 5-symbol cluster – den kan give 40× mere. Dette skaber den karakteristiske Reactoonz-oplevelse, hvor de fleste spins giver beskedne gevinster, men sjældne massive clusters kan transformere en session.
           </p>
+          <ReviewScreenshot
+            src={reactoonzGameplayGrid}
+            alt="Reactoonz 7x7 gameplay-grid med farverige monstersymboler, Gargantoon i glaskolbe og indsatskontroller i dansk valuta"
+            caption="Det fulde 7×7 grid med alle symboltyper synlige. Bemærk Gargantoon i glaskolben til højre og Fluctometer-baren til venstre, der tracker Quantum-progression."
+          />
         </section>
 
         {/* ── Quantum-Systemet ── */}
@@ -219,8 +242,14 @@ const ReactoonzGuide = () => {
             Det overordnede Quantum-system fungerer som en fire-trins meter: Fluctometer opsamler energi fra vindende symboler, og når den fyldes, aktiveres næste trin. Den fulde progression kulminerer i Gargantoon – spillets ultimative funktion, der placerer et massivt 3×3 wild på griddet, som derefter fragmenterer til 2×2 og 1×1 wilds i successive cascades.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Gargantoon er matematisk sjælden – den udløses typisk én gang pr. 300-500 spins – men bidrager med en disproportionalt stor andel af spillets samlede gevinstpotentiale. Vores beregning viser, at Gargantoon-funktionen alene står for cirka 25-35 % af Reactoonz' teoretiske tilbagebetalingsrate, hvilket understreger dens centrale rolle i spillets matematiske struktur.
+             Gargantoon er matematisk sjælden – den udløses typisk én gang pr. 300-500 spins – men bidrager med en disproportionalt stor andel af spillets samlede gevinstpotentiale. Vores beregning viser, at Gargantoon-funktionen alene står for cirka 25-35 % af Reactoonz' teoretiske tilbagebetalingsrate, hvilket understreger dens centrale rolle i spillets matematiske struktur.
           </p>
+          <ReviewScreenshot
+            src={reactoonzGargantoon}
+            alt="Reactoonz Gargantoon-feature forklaring med 3x3 wild-symbol der fragmenterer til 2x2 og individuelle wilds"
+            caption="Gargantoon-funktionen i detaljer: monsteret starter som 3×3 wild, bryder op i to 2×2 wilds og derefter ni individuelle wilds – alt i én kæde."
+            size="medium"
+          />
         </section>
 
         {/* ── RTP & House Edge ── */}
