@@ -154,6 +154,19 @@
   transition: filter 0.2s ease-out;
 }
 
+.slot-cell-idle-hover-alpha-blue {
+  transition: transform 0.2s ease-out;
+}
+
+.slot-cell-idle-hover-alpha-blue:hover {
+  transform: scale(1.05);
+}
+
+.slot-cell-idle-hover-alpha-blue:hover img {
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
+  transition: filter 0.2s ease-out;
+}
+
 /* Cell-based pink hover (Book/Rise use cell glow, kept for backwards compat) */
 .slot-cell-idle-hover-pink:hover::before {
   box-shadow: 0 0 12px rgba(236, 72, 153, 0.3), inset 0 0 8px rgba(236, 72, 153, 0.1);

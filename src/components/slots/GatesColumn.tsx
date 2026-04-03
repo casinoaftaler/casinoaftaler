@@ -4,6 +4,7 @@ import { GATES_ROWS } from "@/lib/gatesGameLogic";
 import { isBombSymbol, getBombValue } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
+import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import { BombFractureExplosion } from "./BombFractureExplosion";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.webp";
 
@@ -52,6 +53,8 @@ export const GatesColumn = React.memo(function GatesColumn({
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
+  const isColumnIdle = spinState === 'idle' && tumblePhase === 'idle' && !isBonusActive;
+  const shimmeringCells = useIdleShimmer(GATES_ROWS, isColumnIdle);
 
   return (
     <div
