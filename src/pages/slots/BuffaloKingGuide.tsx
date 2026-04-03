@@ -87,7 +87,7 @@ const BuffaloKingGuide = () => {
             </div>
           </CardContent></Card>
 
-          <ReviewScreenshot src={buffalokingRtpData} alt="Buffalo King tekniske data fra Spilleautomaten.dk med RTP 96,06 procent, max gevinst 93.750x, indsatsområde og gevinstlinjer" caption="Verificeret data: Buffalo Kings RTP, max win og tekniske specifikationer" size="medium" eager />
+          <ReviewScreenshot src={buffalokingRtpData} alt="Buffalo King tekniske data fra Spilleautomaten.dk med RTP 94,55-96,06 procent, max gevinst 93.750x, indsatsområde og gevinstlinjer" caption="Verificeret data: Buffalo Kings RTP (94,55-96,06 %), max win og tekniske specifikationer" size="medium" eager />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings 96,06 % <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> er gennemsnitligt for Pragmatic Play-titler, men kontekstualiseret mod den ekstremt høje <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link> fortæller det en vigtig historie: en stor andel af RTP'en er koncentreret i sjældne, store gevinsthændelser. Base game-RTP'en (ekskl. free spins) estimeres til kun 55-65 % – markant lavere end de fleste slots – hvilket forklarer den aggressive bankroll-drain mellem bonusrunder.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency i base game er estimeret til 20-25 % – lavere end gennemsnittet for All Ways-slots. De fleste base game-gevinster er små (under 1× indsatsen), og meningsfulde gevinster (over 5×) forekommer kun i 2-3 % af spins. Buffalo King er bygget til bonusrunden – base game er primært en transportmekanisme til free spins.</p>
