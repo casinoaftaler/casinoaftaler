@@ -4,6 +4,7 @@ import { GATES_ROWS } from "@/lib/gatesGameLogic";
 import { isBombSymbol, getBombValue } from "@/lib/gatesGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
+import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import { BombFractureExplosion } from "./BombFractureExplosion";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.webp";
 
@@ -52,6 +53,8 @@ export const GatesColumn = React.memo(function GatesColumn({
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
+  const isColumnIdle = spinState === 'idle' && tumblePhase === 'idle' && !isBonusActive;
+  const shimmeringCells = useIdleShimmer(GATES_ROWS, isColumnIdle);
 
   return (
     <div
@@ -80,6 +83,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             className={cn(
               "relative rounded-lg overflow-visible",
               "bg-transparent",
+              isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover-alpha-blue",
               isWinning && "gates-win-highlight",
               isLanding && "gates-column-stop-impact",
               applyDropOff && "gates-drop-off",
@@ -109,7 +113,12 @@ export const GatesColumn = React.memo(function GatesColumn({
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
-                  <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" draggable={false} />
+                  <div className={cn(
+                    "w-full h-full",
+                    shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-blue"
+                  )}>
+                    <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" draggable={false} />
+                  </div>
                 ) : (
                   <span className="text-2xl font-bold text-blue-200">{symbol.name.charAt(0)}</span>
                 )}

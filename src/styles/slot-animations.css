@@ -73,6 +73,17 @@
   );
 }
 
+.slot-idle-shimmer-blue::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(59, 130, 246, 0.12) 45%,
+    rgba(96, 165, 250, 0.22) 50%,
+    rgba(59, 130, 246, 0.12) 55%,
+    transparent 70%
+  );
+}
+
 /* === Ambient light drift for slot frame === */
 @keyframes ambient-drift {
   0% { --ambient-x: 25%; --ambient-y: 20%; }
@@ -140,6 +151,19 @@
 
 .slot-cell-idle-hover-alpha:hover img {
   filter: brightness(1.1) drop-shadow(0 0 10px rgba(236, 72, 153, 0.4)) drop-shadow(0 0 20px rgba(236, 72, 153, 0.2));
+  transition: filter 0.2s ease-out;
+}
+
+.slot-cell-idle-hover-alpha-blue {
+  transition: transform 0.2s ease-out;
+}
+
+.slot-cell-idle-hover-alpha-blue:hover {
+  transform: scale(1.05);
+}
+
+.slot-cell-idle-hover-alpha-blue:hover img {
+  filter: brightness(1.1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
   transition: filter 0.2s ease-out;
 }
 
