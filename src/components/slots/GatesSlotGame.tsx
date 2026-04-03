@@ -117,6 +117,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [collisionPhase, setCollisionPhase] = useState<CollisionPhase>('idle');
   const [tumbleBarVisible, setTumbleBarVisible] = useState(false);
   const [flyingMultipliers, setFlyingMultipliers] = useState<FlyingMultiplier[]>([]);
+  const [showOrbVideo, setShowOrbVideo] = useState(false);
+  const [orbVideoTrigger, setOrbVideoTrigger] = useState(0);
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   // Bonus state
