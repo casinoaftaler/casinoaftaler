@@ -106,6 +106,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild on Wild-funktionen tilføjer et yderligere lag: hvis et nyt wild-symbol lander oven på et allerede eksisterende Falling Wild, ekspanderer det til at dække hele hjulet (3 positioner). Dette skaber en 3-position wild kolonne, som dramatisk øger gevinstpotentialet for det pågældende spin. Wild on Wild-sandsynligheden er lav (estimeret 1-2 % af spins med aktive Falling Wilds), men når det sker, er gevinsterne typisk 20-50× indsatsen.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Fra et matematisk perspektiv bidrager Falling Wilds med estimeret 12-15 % af spillets samlede return. Uden denne mekanik ville Divine Fortunes base game-RTP falde til cirka 78-81 % – langt under acceptabel standard. Falling Wilds er altså ikke et gimmick, men en matematisk nødvendighed for at opretholde RTP'en inden for rammerne af et jackpot-system, der absorberer 3-5 % af hver indsats.</p>
           <p className="text-muted-foreground leading-relaxed">Den strategiske implikation er, at Falling Wilds giver Divine Fortune en mere jævn gevinstfordeling end typiske jackpot-slots. Hvor Mega Moolah-typer har ekstrem volatilitet (enten jackpot eller ingenting), leverer Divine Fortune regelmæssige mellemstore gevinster via Falling Wilds, som holder bankrollen stabil mellem jackpot-forsøg. Denne egenskab gør den velegnet til længere sessioner.</p>
+          <ReviewScreenshot
+            src={screenshotRegler}
+            alt="Divine Fortune Black spilleregler – 5 tromler, 3 rækker, 20 indsatslinjer, Cash Prize-indsamling, Re-Spins og Expanding Symbols"
+            caption="Spillereglerne for Divine Fortune Black bekræfter 5×3 grid med 20 faste indsatslinjer, Cash Prize-indsamling, Re-Spins og Expanding Symbols-funktion."
+            size="medium"
+          />
         </section>
 
         <InlineCasinoCards />
