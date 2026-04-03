@@ -436,6 +436,125 @@ const WolfGoldGuide = () => {
           </p>
         </section>
 
+        {/* ── Pragmatic Plays Jackpot-Filosofi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="flame" className="h-5 w-5 text-primary" />
+            Pragmatic Plays Jackpot-Design: Fast vs. Progressiv
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Wolf Gold repræsenterer <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Plays</Link> bevidste valg om faste jackpots frem for progressive pools – en designfilosofi, der har dybe matematiske konsekvenser. I progressive systemer (som Mega Moolah fra <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>) bidrager en procentdel af hver indsats til en voksende jackpot-pool. Dette skaber spænding, men har en fundamental ulempe: RTP'en varierer dynamisk med poolens størrelse, og en stor del af den samlede tilbagebetaling er koncentreret i en astronomisk usandsynlig hovedgevinst.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Wolf Gold's faste jackpot-system eliminerer denne usikkerhed. Mega Jackpot er altid 1.000× din indsats – uanset om du spiller for 1 kr. eller 100 kr. Denne proportionalitet giver en konstant RTP og en forudsigelig matematisk profil. For den gennemsnitlige spiller er faste jackpots objektivt bedre: du betaler ikke en "jackpot-skat" i form af reduceret RTP for at finansiere en pool, du næsten garanteret aldrig vinder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Pragmatic Play har dog tilføjet et element af progressiv spænding: moon-symbolernes visuelle fremgang mod at fylde alle 15 positioner skaber en fornemmelse af kumulativ opbygning, selvom selve jackpot-værdien er fast. Det er et psykologisk design-trick, der giver spillerne den progressive "jagt"-følelse uden de matematiske ulemper ved en reel progressiv pool.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For det danske marked, hvor <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> ofte er 10x, er Wolf Gold's faste jackpot-struktur en fordel. Progressive jackpot-gevinster er typisk undtaget fra bonusomsætning hos de fleste operatører, men Wolf Gold's faste multiplikatorer behandles som normale gevinster og tæller fuldt mod omsætningskrav. Det gør Wolf Gold til en mere praktisk wagering-slot end progressive alternativer.
+          </p>
+        </section>
+
+        {/* ── Stacked Wilds Deep Dive ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
+            Stacked Wilds: Den Oversete Gevinstmotor
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Mens Money Respin får mest opmærksomhed, er Wolf Gold's stacked wilds den primære driver af basespillets RTP-bidrag. Ulve-symbolet (wild) optræder kun på hjul 2, 3 og 4 og kan dække alle tre positioner på et hjul. Når et fuldt stacked wild hjul kombineres med matchende symboler på tilstødende hjul, multipliceres gevinsten med antallet af aktive linjer, der krydser det pågældende arrangement.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Lad os kvantificere effekten: med 25 aktive linjer og et fuldt stacked wild på hjul 3 kan op til 25 separate linjegevinster krydse det pågældende hjul. Hvis hjul 1 og 2 (eller hjul 4 og 5) har matchende premium-symboler, kan et enkelt spin med stacked wilds producere kumulative gevinster på 40-80× indsatsen. Det er dette potentiale, der holder basespillet engagerende og forhindrer de lange, gevinstfrie perioder, der plager mange jackpot-orienterede slots.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Sandsynligheden for et fuldt stacked wild hjul er estimeret til ca. 3-5 % pr. spin pr. hjul. Med tre mulige wild-hjul (2, 3 og 4) er den samlede sandsynlighed for at se mindst ét fuldt stacked wild pr. spin ca. 9-14 %. Det er en relativt høj frekvens, der bidrager til Wolf Gold's tilgængelige følelse: spilleren ser regelmæssigt wilds, der dækker hele hjul, og de medfølgende gevinster holder bankrollen i bevægelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Sammenlignet med andre stacked wild-slots er Wolf Gold's implementation moderat. <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> fra Microgaming har lignende stacked wilds, men med 243 ways-to-win i stedet for 25 linjer, hvilket giver højere multiplikationseffekt. Omvendt er Wolf Gold's stacked wilds mere konsistente: de optræder hyppigere, men med lavere individual impact. Det er endnu et eksempel på Wolf Gold's designfilosofi om konsistens fremfor ekstreme udsving.
+          </p>
+        </section>
+
+        {/* ── Wagering-strategi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
+            Wagering-Analyse: Wolf Gold som Bonusomsætningsslot
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Med en RTP på 96,01 % og medium-høj volatilitet er Wolf Gold en acceptabel – men ikke optimal – kandidat til <Link to="/casino-bonus" className={linkClass}>bonusomsætning</Link>. Det forventede tab pr. omsætningscyklus afhænger af bonusstørrelsen og omsætningskravet. For det typiske danske scenarie (1.000 kr. bonus, 10× omsætning) er det forventede tab 399 kr., hvilket efterlader en gennemsnitlig restværdi på 601 kr.
+          </p>
+
+          <Card className="border-border/50 bg-card/50 mb-4">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Wagering-simulation: 10.000 kr. samlet indsats</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border/50">
+                      <th className="text-left py-2 pr-4">Metric</th>
+                      <th className="text-left py-2 pr-4">Wolf Gold</th>
+                      <th className="text-left py-2 pr-4">Sweet Bonanza</th>
+                      <th className="text-left py-2">Big Bass Bonanza</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">RTP</td><td className="py-2 pr-4">96,01 %</td><td className="py-2 pr-4">96,48 %</td><td className="py-2">96,71 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Forventet tab</td><td className="py-2 pr-4">399 kr.</td><td className="py-2 pr-4">352 kr.</td><td className="py-2">329 kr.</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Bust-risiko</td><td className="py-2 pr-4">~22 %</td><td className="py-2 pr-4">~28 %</td><td className="py-2">~25 %</td></tr>
+                    <tr><td className="py-2 pr-4">Median restbeløb</td><td className="py-2 pr-4">~650 kr.</td><td className="py-2 pr-4">~580 kr.</td><td className="py-2">~700 kr.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Wolf Gold's lavere volatilitet sammenlignet med Sweet Bonanza giver en lavere bust-risiko (22 % vs. 28 %), selvom det forventede tab er højere på grund af den lavere RTP. For risiko-averse spillere, der prioriterer gennemførelsessandsynlighed over forventet restbeløb, er Wolf Gold faktisk det bedre valg – du har større chance for at gennemføre wagering-kravet, selvom du i gennemsnit ender med lidt mindre.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den strategiske anbefaling er klar: brug Wolf Gold til wagering, hvis du har en moderat bonusstørrelse (500-1.500 kr.) og ønsker en stabil omsætningsoplevelse. For større bonusser (2.000+ kr.) er <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> med sin højere RTP det bedre valg, trods den lidt højere volatilitet. Uanset valg bør du altid spille hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> med verificeret RTP.
+          </p>
+        </section>
+
+        {/* ── Spilpsykologisk analyse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="moon" className="h-5 w-5 text-primary" />
+            Spilpsykologi: Hvorfor Moon-Symboler Skaber Afhængighed
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Wolf Gold's vedvarende popularitet – næsten et årti efter lanceringen – kan delvist forklares med flere psykologiske designprincipper, der er dybt integreret i spillets oplevelse. Det første og mest markante er "collection"-effekten: når moon-symboler begynder at fylde griddet under Money Respin, oplever spilleren en kumulativ opbygning mod Mega Jackpot. Hvert nyt moon-symbol bringer spilleren visuelt tættere på det ultimative mål (15/15 positioner), hvilket skaber en intens "just one more"-følelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det andet princip er "endowment effect": moon-symboler, der allerede er på plads, opleves som "sikrede" gevinster. Spilleren føler, at de "ejer" de symboler, der er låst – selvom de endnu ikke er udbetalt. Hvert nyt spin under Money Respin bliver dermed en mulighed for at "tilføje" til noget, man allerede har, snarere end at gamble om noget usikkert. Denne reframing reducerer den psykologiske smerte ved spins, der ikke producerer nye moon-symboler.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det tredje aspekt er den elegante måde, Money Respin håndterer "afslutning". Når tælleren rammer 0 uden nye moon-symboler, slutter runden. Men den visuelle display af alle indsamlede moon-symboler med deres respektive værdier – efterfulgt af en summering – skaber et "belønningsmoment", selv i runder med beskedne gevinster. Spilleren ser aldrig bare "du vandt 30×" – de ser en detaljeret optælling af alle individuelle symboler, hvilket forstærker følelsen af at have opnået noget komplekst.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Som altid gælder det, at bevidsthed om disse mekanismer er det bedste forsvar mod overdreven spilleadfærd. Wolf Gold er underholdning – ikke en indtægtskilde. Sæt altid grænser, og tag pauser. Læs mere om <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> i vores dedikerede guide.
+          </p>
+        </section>
+
+        {/* ── Wolf Gold i 2026 ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />
+            Wolf Gold i 2026: Klassiker eller Relikvie?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            At vurdere Wolf Gold's relevans i 2026 kræver en ærlig sammenligning med den moderne konkurrence. Grafisk er Wolf Gold overhalet af næsten alle nyere titler – dens 2D-symboler og simple animationer føles daterede ved siden af 3D-renderede spil som <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> eller <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>. Lyddesignet er funktionelt men uinspireret sammenlignet med moderne atmosfærisk scoring.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Men matematisk holder Wolf Gold stadig. RTP'en på 96,01 % er fair (om end ikke best-in-class), og den faste jackpot-struktur er tidløs – den bliver hverken bedre eller dårligere med alderen. Money Respin-mekanikken er stadig engagerende og har inspireret talrige efterfølgere. For spillere, der vurderer en slot på dens matematiske fundamenter frem for dens visuelle polering, er Wolf Gold stadig et solidt valg.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores dom: Wolf Gold er en klassiker, ikke en relikvie. Den fortjener sin plads i ethvert casinos spiludvalg og i enhver spillers repertoire. Men for nye spillere, der opdager jackpot-slots for første gang, ville vi anbefale at starte med en nyere titel for en mere repræsentativ moderne oplevelse, og derefter vende tilbage til Wolf Gold for at opleve den slot, der startede det hele. Udforsk vores komplette <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde dit næste favorit-spil.
+          </p>
+        </section>
+
         <SlotDataLink slotSlug="wolf-gold" slotName="Wolf Gold" />
         <SlotProviderLink slotSlug="wolf-gold" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/wolf-gold" />

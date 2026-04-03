@@ -351,6 +351,153 @@ const BigBassBonanzaGuide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── SEKTION: PRAGMATIC PLAY MONEY COLLECT EVOLUTION ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="flame" className="h-7 w-7 text-primary" /> Pragmatic Plays Money Collect-Revolution: Fra Lightning Link til Big Bass</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at forstå Big Bass Bonanzas kulturelle og tekniske betydning er det nødvendigt at undersøge den bredere historie bag "collect"-mekanikker i slotindustrien. Konceptet med symboler, der bærer pengeværdier og indsamles af et særligt trigger-symbol, stammer fra Aristocrats Lightning Link-serie, der blev lanceret i landbaserede casinoer i 2014. Lightning Link introducerede "Hold & Spin"-mekanikken, hvor pengesymboler låses på plads, og spilleren modtager respins for at tilføje flere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> tog denne idé og rekonfigurerede den fundamentalt. I stedet for en statisk Hold & Spin-fase, hvor symboler låses efter trigger, introducerede de en dynamisk "collect"-mekanik, der opererer under free spins. Fisk-symbolerne lander frit under hvert spin, men udbetales kun, når fiskeren (collector) lander på hjul 5. Denne simple ændring transformerede mekanikken fra en passiv venteproces til en aktiv, spændingsmættet jagt: hvert spin under free spins har potentialet for en øjeblikkelig, stor udbetaling.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den matematiske elegance i Pragmatic Plays tilgang er, at collect-mekanikken bevarer variansen fra Lightning Link, men pakker den ind i en mere engagerende narrativ ramme. I Lightning Link er trigger-øjeblikket selve aktiveringen af Hold & Spin. I Big Bass Bonanza er trigger-øjeblikket hvert eneste spin under free spins, fordi fiskeren kan lande når som helst. Resultatet er en konstant spændingskurve i stedet for en enkelt klimaktisk begivenhed.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Denne innovation har haft vidtrækkende konsekvenser for hele online slot-industrien. Efter Big Bass Bonanzas succes lancerede næsten alle større udviklere deres egne "collect"-varianter: NetEnt med Cash-O-Matic, <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> med Wanted Dead or a Wild's collect-lignende Duel-mekanik, og endda Pragmatic Play selv med varianter som Floating Dragon og Bigger Bass Bonanza. Money Collect er nu en etableret genre på linje med Megaways og cluster pays.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: FISKESYMBOL EV DEEP DIVE ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Fiskesymbolernes EV-Hierarki: En Matematisk Dekonstruktion</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Fiskesymbolerne i Big Bass Bonanza er ikke ligevægtede – de følger en skæv sandsynlighedsfordeling, der favoriserer lavere værdier. Forståelsen af denne fordeling er afgørende for at vurdere spillets reelle gevinstpotentiale og ikke lade sig blænde af de sjældne 50x-fisk.
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="py-2 text-left font-semibold">Fiskværdi</th>
+                  <th className="py-2 text-right font-semibold">Estimeret sandsynlighed</th>
+                  <th className="py-2 text-right font-semibold">EV-bidrag pr. fisk</th>
+                  <th className="py-2 text-right font-semibold">Andel af fisk-EV</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="py-2">2x</td><td className="py-2 text-right">~30 %</td><td className="py-2 text-right">0,60x</td><td className="py-2 text-right">6,8 %</td></tr>
+                <tr className="border-b"><td className="py-2">3x</td><td className="py-2 text-right">~20 %</td><td className="py-2 text-right">0,60x</td><td className="py-2 text-right">6,8 %</td></tr>
+                <tr className="border-b"><td className="py-2">5x</td><td className="py-2 text-right">~18 %</td><td className="py-2 text-right">0,90x</td><td className="py-2 text-right">10,2 %</td></tr>
+                <tr className="border-b"><td className="py-2">8x</td><td className="py-2 text-right">~12 %</td><td className="py-2 text-right">0,96x</td><td className="py-2 text-right">10,9 %</td></tr>
+                <tr className="border-b"><td className="py-2">10x</td><td className="py-2 text-right">~8 %</td><td className="py-2 text-right">0,80x</td><td className="py-2 text-right">9,1 %</td></tr>
+                <tr className="border-b"><td className="py-2">15x</td><td className="py-2 text-right">~5 %</td><td className="py-2 text-right">0,75x</td><td className="py-2 text-right">8,5 %</td></tr>
+                <tr className="border-b"><td className="py-2">20x</td><td className="py-2 text-right">~3,5 %</td><td className="py-2 text-right">0,70x</td><td className="py-2 text-right">7,9 %</td></tr>
+                <tr className="border-b"><td className="py-2">25x</td><td className="py-2 text-right">~2 %</td><td className="py-2 text-right">0,50x</td><td className="py-2 text-right">5,7 %</td></tr>
+                <tr className="border-b"><td className="py-2">30x</td><td className="py-2 text-right">~1 %</td><td className="py-2 text-right">0,30x</td><td className="py-2 text-right">3,4 %</td></tr>
+                <tr className="border-b"><td className="py-2">50x</td><td className="py-2 text-right">~0,5 %</td><td className="py-2 text-right">0,25x</td><td className="py-2 text-right">2,8 %</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tabellen afslører en kritisk indsigt: de laveste fiskeværdier (2x og 3x) udgør tilsammen ~50 % af alle fisk, men bidrager med kun ~13,6 % af den samlede fisk-EV. Omvendt bidrager de sjældne 25x-50x fisk med ~12 % af EV'en, selvom de udgør under 4 % af forekomsterne. Det er denne "fat tail"-fordeling, der skaber Big Bass Bonanzas karakteristiske session-dynamik: de fleste bonusrunder føles moderate, men lejlighedsvis lander en 50x-fisk, der transformerer en gennemsnitlig runde til en stor gevinst.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den gennemsnitlige fiskværdi er ca. 8,8x indsatsen – men medianen er kun 5x. Denne forskel mellem gennemsnit og median er et klassisk tegn på en højre-skæv fordeling (positiv skewness), som er typisk for gambling-produkter. I praksis betyder det, at "den typiske fisk" er mindre end gennemsnittet antyder, og at gennemsnittet trækkes op af sjældne, høje værdier.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere er den praktiske konsekvens klar: forvent ikke 50x-fisk i hver bonusrunde. Over 10 bonusrunder med gennemsnitligt 15 fisk pr. runde (150 fisk totalt) kan du forvente ca. 0,75 stk. 50x-fisk – altså i gennemsnit én stor fisk pr. 13-14 bonusrunder. Det er denne matematik, der gør store Money Collect-gevinster til mindeværdige begivenheder snarere end hverdagsforekomster.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: WAGERING MED BIG BASS ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Wagering-Analyse: Big Bass Bonanza som Omsætningsslot</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med en RTP på 96,71 % er Big Bass Bonanza en af de bedre kandidater til <Link to="/omsaetningskrav" className={linkClass}>bonusomsætning</Link> – bedre end Starburst (96,08 %) og marginalt bedre end Book of Dead (96,21 %). Men RTP er kun halvdelen af historien: volatilitetsprofilen er lige så vigtig for wagering-effektivitet.
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold mb-3">Wagering-scenarie: 1.000 kr. bonus med 10x omsætningskrav</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Parameter</th>
+                      <th className="py-2 text-right font-semibold">Big Bass (96,71 %)</th>
+                      <th className="py-2 text-right font-semibold">Starburst (96,08 %)</th>
+                      <th className="py-2 text-right font-semibold">Book of Dead (96,21 %)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2">Samlet indsats</td><td className="py-2 text-right">10.000 kr.</td><td className="py-2 text-right">10.000 kr.</td><td className="py-2 text-right">10.000 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Forventet tab</td><td className="py-2 text-right">329 kr.</td><td className="py-2 text-right">392 kr.</td><td className="py-2 text-right">379 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Forventet restbeløb</td><td className="py-2 text-right">671 kr.</td><td className="py-2 text-right">608 kr.</td><td className="py-2 text-right">621 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Bust-risiko (0 kr.)</td><td className="py-2 text-right">~25 %</td><td className="py-2 text-right">~15 %</td><td className="py-2 text-right">~35 %</td></tr>
+                    <tr className="border-b"><td className="py-2">P(restbeløb {'>'} 1.000 kr.)</td><td className="py-2 text-right">~35 %</td><td className="py-2 text-right">~30 %</td><td className="py-2 text-right">~30 %</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Big Bass Bonanza har den laveste forventede tab af de tre, men den moderate volatilitet placerer bust-risikoen mellem Starburst (lav volatilitet, lav bust-risiko) og Book of Dead (høj volatilitet, høj bust-risiko). Det er denne "sweet spot"-positionering, der gør Big Bass Bonanza til en stærk wagering-kandidat: du bevarer en realistisk chance for profit (~35 %) med en acceptabel bust-risiko (~25 %).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En vigtig caveat: bust-risiko-estimaterne forudsætter, at du spiller standardversionen med 96,71 % RTP. Hvis casinoet kører den reducerede 91,60 %-version, stiger bust-risikoen dramatisk til ca. 55 %, og det forventede tab øger til 840 kr. – hvilket gør bonusomsætning næsten umulig. Verificér ALTID RTP-versionen i spillets info-menu, inden du bruger bonuspenge på Big Bass Bonanza.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For danske spillere med det typiske 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Big Bass Bonanza et af de bedste valg i Pragmatic Play-kataloget. Den eneste slot fra samme udvikler, der er matematisk overlegen til wagering, er Sweet Bonanza med 96,48 % – men Sweet Bonanzas højere volatilitet øger bust-risikoen til ~30 %. Big Bass Bonanza tilbyder den bedste kombination af lav house edge og moderat risiko.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: SPILPSYKOLOGI ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Spilpsykologi: Hvorfor Money Collect Føles Så Belønende</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Big Bass Bonanzas vedvarende popularitet kan ikke forklares alene med matematik. Pragmatic Play har designet et spil, der udnytter flere velkendte psykologiske principper til at skabe en exceptionelt engagerende oplevelse – selv i perioder med lave gevinster.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det første princip er "near miss"-effekten. Under free spins kan fiskesymboler med høje værdier lande på skærmen uden at en fisker indsamler dem. Spilleren ser bogstaveligt de penge, der "gik tabt", fordi fiskeren ikke landede på hjul 5 i det pågældende spin. Denne visuelle feedback skaber en følelse af "næsten-gevinst", der holder engagementet oppe og motiverer til fortsat spil. Forskning i gambling-psykologi har konsekvent vist, at near misses aktiverer de samme belønningscentre i hjernen som faktiske gevinster.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det andet princip er "accumulation bias". Fiskesymboler, der lander i basisspillet (hvor de er inaktive), fungerer som en visuel "optælling" af potentielle gevinster. Spilleren ser konstant pengeværdier på hjulene, hvilket forstærker følelsen af, at en stor gevinst er lige om hjørnet – selvom basispillets fisk rent faktisk er dekorative. Denne subtile designbeslutning holder spillerens opmærksomhed og anticipation på et vedvarende højt niveau.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det tredje princip er "variable ratio reinforcement" – den mest effektive forstærkningsplan i behavioristisk psykologi. Money Collect-gevinster er uforudsigelige i både tidspunkt og størrelse: fiskeren kan lande på ethvert spin, og antallet + værdien af fiskene varierer enormt. Denne dobbelte uforudsigelighed skaber den stærkeste form for engageret adfærd, fordi hjernen aldrig kan forudsige det næste belønningsøjeblik.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Endelig spiller "loss aversion" en rolle i bonusrundens design. Fisk-symboler, der allerede er synlige på skærmen, opleves psykologisk som "egne" – selvom de endnu ikke er indsamlet. Når fiskeren lander og indsamler dem, opleves det som at "redde" sine penge snarere end at vinde nye. Denne reframing fra "gevinst" til "redning" er psykologisk kraftfuld og bidrager til den tilfredsstillelse, der kendetegner Money Collect-øjeblikke. Som <Link to="/ansvarligt-spil" className={linkClass}>ansvarlig spiller</Link> er det vigtigt at være bevidst om disse designprincipper.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── SEKTION: MOBIL OPTIMERING ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Mobiloplevelse og Teknisk Performance</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Big Bass Bonanza er bygget i HTML5 og optimeret til mobil fra starten – en designfilosofi, der er standard hos <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>. Spillets 5x3 grid skalerer naturligt til portrætformat, og touchinteraktionen er responsiv. Alle animationer (fiskerens indsamlingsbevægelse, fiskenes "splash"-effekt) kører glat på moderne smartphones med 60 fps.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            En teknisk detalje, der ofte overses, er spillets indlæsningstid. Big Bass Bonanza er relativt letvægts i forhold til nyere Pragmatic Play-titler: den mangler de komplekse partikeleffekter og 3D-elementer, der ses i spil som Gates of Olympus. Resultatet er hurtigere indlæsning og lavere batteriforbrug – en praktisk fordel for mobilspillere med ældre enheder eller begrænset dataforbrug.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For <Link to="/mobil-casino" className={linkClass}>mobilcasino</Link>-spillere er Big Bass Bonanza et fremragende valg netop på grund af denne tekniske effektivitet. Den simple grafik og det intuitive gameplay oversætter perfekt til touchskærme, og Money Collect-mekanikken er lige så tilfredsstillende på en 6-tommer skærm som på en desktop-monitor. Spillet understøtter også autoplay-funktionen, der er tilgængelig i jurisdiktioner, hvor det er tilladt.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── SEKTION: HVEM PASSER SPILLET TIL ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Målgruppen: Hvem Bider på Krogen?</h2>
