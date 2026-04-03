@@ -114,6 +114,12 @@ const ThunderstruckIIGuide = () => {
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 30-33 % – blandt de højeste for 243 ways-slots. Cirka et af tre spins producerer en gevinst, selvom de fleste base game-gevinster er små (0,5-2× indsatsen). Meningsfulde gevinster (5×+) forekommer i ca. 4-6 % af spins – hyppigere end for high-volatility slots, der typisk ligger på 2-3 %. Denne hyppighed giver en jævnere bankroll-kurve og en mere forudsigelig spiloplevelse.</p>
 
+          <ReviewScreenshot
+            src={thunderstruckGameplay}
+            alt="Thunderstruck II gameplay med 5x3 grid, nordiske gudesymboler (Odin, Valkyrie), Bonus-hammer scatter og 243 ways-to-win markering"
+            caption="Thunderstruck II's 5×3 grid i aktion. Bemærk de tematiske symboler – Odin, Valkyrie og Thor's hammer (Bonus) – samt 243 ways-markøren i venstre side."
+          />
+
           <p className="text-muted-foreground leading-relaxed">RTP-fordelingen estimeres til ca. 65-70 % base game og 25-30 % bonus, med de resterende 5-8 % allokeret til Wildstorm-funktionen. Denne fordeling er mere balanceret end high-volatility slots (typisk 50-55 % base game), hvilket reflekterer den medium volatilitet: base game bærer en større andel af den samlede return, og bonusrunder er vigtige men ikke altafgørende for sessionens resultat.</p>
         </section>
 
