@@ -71,6 +71,14 @@ const WantedDeadOrAWildGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="21 min" />
         <SnippetAnswer answer="Wanted Dead or a Wild er en ekstremt volatil slot (5/5) fra Hacksaw Gaming med 96,38 % RTP, 12.500× max win og en unik Duel at Dawn-bonusrunde, hvor versus-symboler duellerer og efterlader sticky wilds med multiplicative multiplikatorer. Tre bonus buy-niveauer (80×, 200×, 400×) giver direkte adgang til bonusen." />
+
+        <ReviewScreenshot
+          src={wantedGameplay}
+          alt="Wanted Dead or a Wild gameplay med 5x5 grid, western-tematiske symboler (whiskey, pengesække, kranium), Køb Bonus-knap og dansk casino-interface"
+          caption="Wanted Dead or a Wild's 5×5 grid i aktion med det karakteristiske western-tema. Bemærk 'Køb Bonus'-knappen nederst til venstre og de distinkte premium-symboler: whiskey-flasker, pengesække og kranium-scatters."
+          eager
+        />
+
         {/* ── HACKSAW GAMING'S DESIGNFILOSOFI ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> Hacksaw Gaming's Approach til Ekstremt Design</h2>
