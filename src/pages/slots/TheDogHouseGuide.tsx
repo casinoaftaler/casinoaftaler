@@ -202,6 +202,12 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseGameplay}
+          alt="The Dog House 5x3 gameplay grid med hunde-symboler, knogler, halsbånd og kortsymboler på dansk casino"
+          caption="The Dog House's 5×3 grid i aktion. Premium-symbolerne er fire hunderacer med distinkte designs, mens lavbetalende symboler er standard kortsymboler (A, K, Q, J, 10)."
+        />
+
         {/* ── Free Spins-analyse ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
