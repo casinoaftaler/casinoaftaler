@@ -210,7 +210,7 @@ const MoneyTrain3Guide = () => {
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Standard</td><td className="py-2 pr-4">96,10 %</td><td className="py-2 pr-4">3,90 %</td><td className="py-2">390 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Reduceret</td><td className="py-2 pr-4">94,10 %</td><td className="py-2 pr-4">5,90 %</td><td className="py-2">590 kr.</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Reduceret</td><td className="py-2 pr-4">94,00 %</td><td className="py-2 pr-4">6,00 %</td><td className="py-2">600 kr.</td></tr>
                     <tr><td className="py-2 pr-4">Lav</td><td className="py-2 pr-4">92,10 %</td><td className="py-2 pr-4">7,90 %</td><td className="py-2">790 kr.</td></tr>
                   </tbody>
                 </table>
