@@ -244,6 +244,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Sugar Rush har også påvirket Pragmatic Plays efterfølgende udgivelser. Sugar Rush 1000 (med 1000× multiplikator-ceiling) og Sugar Rush Xmas (sæsonvariant) demonstrerer, at Pragmatic Play betragter cluster pays som en strategisk vækstplatform. For danske spillere betyder dette flere og bedre cluster pays-muligheder fremover – og Sugar Rush er det fundament, som hele denne nye genre-gren er bygget på.</p>
         </section>
 
+        <ReviewScreenshot
+          src={sugarRushCasinoSearch}
+          alt="Casino søgeresultater for Sugar Rush med Sugar Rush 1000, Sugar Rush Super Scatter, Sugar Rush Xmas og Sweet Rush Bonanza varianter"
+          caption="Sugar Rush-familien i casinoets søgefunktion: originalen, 1000-varianten, Super Scatter, Xmas-edition og Sweet Rush Bonanza – Pragmatic Play's voksende cluster pays-portefølje."
+        />
+
         <Separator className="my-10" />
 
         {/* ── Multiplikator Deep Dive ── */}
