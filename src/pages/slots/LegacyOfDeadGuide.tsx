@@ -203,9 +203,13 @@ const LegacyOfDeadGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             I det teoretiske bedste scenarie (9 samtidige expanding symbols) ville enhvert symbol på griddet ekspandere til at fylde hele sit hjul. Sandsynligheden for dette er astronomisk lav – det kræver 8 retriggers i træk, hver med 3-5 % sandsynlighed. Men selve muligheden for denne kaskade er, hvad der giver Legacy of Dead dens unikke appel og matematiske dybde.
           </p>
+          <ReviewScreenshot
+            src={legacyOfDeadSpilleregler}
+            alt="Legacy of Dead officielle spilleregler: Game Rules med expanding symbol-forklaring, retrigger-regler og RTP 94,51 %"
+            caption="De officielle spilleregler med detaljeret forklaring af expanding symbols, retrigger-mekanik og gamble-funktion."
+            size="full"
+          />
         </section>
-
-        <InlineCasinoCards />
 
         {/* ── EV-analyse ── */}
         <section className="mb-10">
