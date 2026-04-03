@@ -18,6 +18,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Scale, Sparkles, Star, TrendingUp, Trophy, Users, Zap, CircleDollarSign, Gauge, ShieldCheck, Wrench, Lightbulb } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import jokerStrikeHeroLogo from "@/assets/screenshots/joker-strike-hero-logo.webp";
+import jokerStrikeHiRoller from "@/assets/screenshots/joker-strike-hi-roller.webp";
+import jokerStrikeGameplayGrid from "@/assets/screenshots/joker-strike-gameplay-grid.webp";
+import jokerStrikeRtpData from "@/assets/screenshots/joker-strike-rtp-data.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -65,6 +70,14 @@ const JokerStrikeGuide = () => {
         <AuthorMetaBar author="jonas" readTime="19 min" />
 
         <SnippetAnswer answer="Joker Strike er en 5×3 slot fra Quickspin med den højeste tilgængelige RTP i markedet: 98,11 % med Hi Roller-funktionen aktiveret (96,60 % standard). Hi Roller koster 30× indsatsen for 10 spins med forbedret symbolfordeling. Max win er 456× – lavt men bevidst, da spillet er designet til konsistens og optimal gennemspilning, ikke store gevinster." />
+        <ReviewScreenshot
+          src={jokerStrikeHeroLogo}
+          alt="Joker Strike officielt logo med jokerfigur, klokke og stjerne fra Quickspin"
+          caption="Joker Strike: Quickspins matematiske mesterværk med markedets højeste RTP (98,11 % med Hi Roller)."
+          eager
+          size="medium"
+        />
+
         {/* ── HI ROLLER DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="circle-dollar-sign" className="h-6 w-6 text-primary" /> Hi Roller: Premium-Tilstandens Komplette Anatomi</h2>
@@ -102,6 +115,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">En vigtig nuance: Hi Roller ændrer ikke spillets grundlæggende mekanik eller payouts. De samme symboler, de samme gevinstlinjer, og de samme gevinstbeløb gælder – det eneste, der ændres, er symbolfrekvenserne. Fjernelsen af lavværdi-symboler øger sandsynligheden for, at premium-symboler og wilds lander, hvilket mekanisk producerer hyppigere og større gevinster. Det er en elegant matematisk løsning, der ikke kræver nye features eller komplekse bonusrunder.</p>
 
           <p className="text-muted-foreground leading-relaxed">Tilgængelighed er en kritisk faktor. Hi Roller er ikke universelt tilgængelig – nogle casinoer deaktiverer funktionen, og visse regulatoriske rammer kan begrænse den. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er Hi Roller typisk tilgængelig, men tjek altid inden du baserer din strategi på funktionen. Uden Hi Roller falder Joker Strike's RTP til 96,60 % – stadig god, men ikke exceptionel nok til at adskille den fra hundredvis af andre slots i samme RTP-range.</p>
+          <ReviewScreenshot
+            src={jokerStrikeHiRoller}
+            alt="Joker Strike Hi Roller-funktion med tre niveauer: 200, 300 og 500 credits samt Joker Strike-gevinst med fuld skærm af jokere"
+            caption="Hi Roller-funktionens tre niveauer (200, 300, 500) og Joker Strike-gevinsten med fuld skærm af jokersymboler."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -154,6 +173,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild Wheel-bonussen er Joker Strike's eneste bonus-feature og erstatter traditionelle free spins. Ved landing af wilds i base game kan et hjul aktiveres med mulighed for at vinde ekstra wilds, multiplikatorer eller direkte kontantpræmier. Trigger-frekvens estimeres til ca. 1/50-80 spins. Gennemsnitlig Wild Wheel-value er 5-20× indsatsen – beskeden men konsistent med spillets lavvolatile profil.</p>
 
           <p className="text-muted-foreground leading-relaxed">Fraværet af en traditionel free spins-runde er et bevidst designvalg fra Quickspin. Free spins-bonusser introducerer typisk varians (store gevinster men også mange "busts"), hvilket ville modsige Joker Strike's filosofi om konsistens. I stedet er Hi Roller den primære value-driver – en permanent forbedring af base game fremfor en sjælden, høj-varians bonus-event. Denne strukturelle beslutning er central for at forstå, hvad Joker Strike er – og hvad den bevidst IKKE er.</p>
+          <ReviewScreenshot
+            src={jokerStrikeGameplayGrid}
+            alt="Joker Strike gameplay med 5x3 grid, Wild-symbol, 7-taller, stjerner, klokker og kortsymboler i farverige blokke"
+            caption="Basisspillet med 10 gevinstlinjer, Wild-symbol synligt på øverste række og Hi Roller-knappen i nederste højre hjørne."
+            size="full"
+          />
         </section>
 
         <InlineCasinoCards />
@@ -181,6 +206,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den lave volatilitet forstærker denne fordel. High-volatility slots kan have lige så høj RTP (f.eks. <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> med 96,86 %), men den høje varians betyder, at sandsynligheden for total bankroll-kollaps under gennemspilning er markant. En enkelt uheldig session med <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> kan udslette hele bonussen, selvom den langsigtede RTP er acceptabel. Joker Strike's lave varians giver en nærmest lineær bankroll-progression mod omsætningskravet – færre overraskelser, mere kontrol.</p>
 
           <p className="text-muted-foreground leading-relaxed">Optimal gennemspilningsstrategi med Joker Strike: Brug Hi Roller Level 1 (30× pr. 10 spins). Sæt basisindsatsen til det beløb, der maksimerer omsætningen pr. session uden at overskride spillets eventuelle indsatsgrænser. Undgå at blande Joker Strike med high-volatility slots under gennemspilning – konsistens er nøglen. Monitor din bankroll og stop, hvis du opnår dit target (bonus + minimum profit).</p>
+          <ReviewScreenshot
+            src={jokerStrikeRtpData}
+            alt="Joker Strike tekniske data: RTP 96,46 %, maksimal gevinst 12,11 DKK, mindste indsats 0,10 DKK, maksimal indsats 1,00 DKK, 9 gevinstlinjer"
+            caption="Tekniske spildata for Joker Strike: RTP, indsatsgrænser og gevinstlinjer fra spilleautomaten.dk."
+            size="full"
+          />
         </section>
 
         {/* ── EV BEREGNING ── */}
