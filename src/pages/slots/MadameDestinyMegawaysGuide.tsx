@@ -238,8 +238,8 @@ const MadameDestinyMegawaysGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Strategi</th><th className="text-left py-2">Ante Bet</th><th className="text-left py-2">Budget (45 min)</th><th className="text-left py-2">Forventet bonusrunder</th><th className="text-left py-2">Bust-risiko</th></tr></thead>
                 <tbody>
-                  <tr className="border-b"><td className="py-2 font-medium">Konservativ</td><td>Fra</td><td>800 kr. (2,50 kr./spin)</td><td>1-2</td><td>~12 %</td></tr>
-                  <tr className="border-b"><td className="py-2">Balanced</td><td>Til</td><td>1.200 kr. (2,50 kr./spin)</td><td>2-4</td><td>~20 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Konservativ</td><td>Fra</td><td>400 kr. (1 kr./spin)</td><td>1-2</td><td>~12 %</td></tr>
+                  <tr className="border-b"><td className="py-2">Balanced</td><td>Til</td><td>500 kr. (1 kr./spin)</td><td>2-4</td><td>~20 %</td></tr>
                   <tr><td className="py-2">Aggressiv</td><td>Til</td><td>2.000 kr. (5 kr./spin)</td><td>3-5</td><td>~28 %</td></tr>
                 </tbody>
               </table>
