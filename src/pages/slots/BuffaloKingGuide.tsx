@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
-import buffalokingLogo from "@/assets/screenshots/buffalokingLogo.webp";
+
 import buffalokingMultiplikatorStacking from "@/assets/screenshots/buffalokingMultiplikatorStacking.webp";
 import buffalokingRtpData from "@/assets/screenshots/buffalokingRtpData.webp";
 import buffalokingBaseGameBonus from "@/assets/screenshots/buffalokingBaseGameBonus.webp";
@@ -60,10 +60,6 @@ const BuffaloKingGuide = () => {
           </div>
         </div>
        </section>
-
-       <div className="container mb-8">
-         <ReviewScreenshot src={buffalokingLogo} alt="Buffalo King spillemaskinens logo og artwork fra Pragmatic Play med det nordamerikanske prærie-tema" caption="Buffalo King – Pragmatic Play's populære prærie-slot med 93.750× max win" size="medium" eager />
-       </div>
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
