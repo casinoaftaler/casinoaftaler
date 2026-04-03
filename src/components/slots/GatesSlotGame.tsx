@@ -125,6 +125,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [totalFreeSpins, setTotalFreeSpins] = useState(0);
   const [bonusWinnings, setBonusWinnings] = useState(0);
   const [cumulativeMultiplier, setCumulativeMultiplier] = useState(0);
+  const cumulativeMultiplierRef = useRef(0);
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
   const [showBonusComplete, setShowBonusComplete] = useState(false);
   const [showRetrigger, setShowRetrigger] = useState(false);
@@ -146,6 +147,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const freeSpinsRemainingRef = useRef(0);
   const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
+
+  // Keep cumulativeMultiplierRef in sync
+  useEffect(() => { cumulativeMultiplierRef.current = cumulativeMultiplier; }, [cumulativeMultiplier]);
 
   // Persist winAmount to localStorage when bonus is active
   const bonusWinKey = `gates_win_${gameId}_${user?.id}`;
@@ -209,6 +213,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           setBonusWinnings(Number(data.bonus_winnings) || 0);
           setBet(Number(data.bet_amount) || 1);
           setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
+          cumulativeMultiplierRef.current = Number(data.expanding_symbol_name) || 0;
           setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
           try {
             const savedWin = localStorage.getItem(`gates_win_${gameId}_${user.id}`);
@@ -270,6 +275,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setTotalFreeSpins(bs.totalFreeSpins);
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
+      cumulativeMultiplierRef.current = 0;
       pendingBonusStateRef.current = null;
       if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
         if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
@@ -485,7 +491,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setTumblePhase('spinning');
     if (!isBonusSpin) setWinAmount(0);
     setRunningWin(0);
-    setRunningMultiplier(isBonusSpin ? cumulativeMultiplier : 0);
+    setRunningMultiplier(isBonusSpin ? cumulativeMultiplierRef.current : 0);
     if (isBonusSpin) {
       setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
       freeSpinsRemainingRef.current = Math.max(0, freeSpinsRemainingRef.current - 1);
@@ -629,6 +635,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                       setTotalFreeSpins(bs.totalFreeSpins);
                       setBonusWinnings(bs.bonusWinnings || 0);
                       setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                      cumulativeMultiplierRef.current = bs.cumulativeMultiplier || 0;
                       setRunningMultiplier(bs.cumulativeMultiplier || 0);
                     }, 1500);
                     return;
@@ -643,6 +650,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                cumulativeMultiplierRef.current = bs.cumulativeMultiplier || 0;
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
               } else {
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
@@ -650,6 +658,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                cumulativeMultiplierRef.current = bs.cumulativeMultiplier || 0;
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
                 if (bs.freeSpinsRemaining <= 0) {
                   setScreenShake('intense');
@@ -1081,6 +1090,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   isBonusActiveRef.current = false;
                   setBonusAutoSpinPending(false);
                   setCumulativeMultiplier(0);
+                  cumulativeMultiplierRef.current = 0;
                   setRunningMultiplier(0);
                   setBonusWinnings(0);
                   setRunningWin(0);
