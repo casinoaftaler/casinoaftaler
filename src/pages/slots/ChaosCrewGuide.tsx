@@ -265,6 +265,8 @@ const ChaosCrewGuide = () => {
             </div>
           </CardContent></Card>
 
+          <ReviewScreenshot src={chaoscrewPaylines} alt="Chaos Crew spilleregler med 15 gevinstlinjer visualiseret på 5x5 grid samt bonuskøb-regler og RTP på 95,92 procent ved køb af gratis spins" caption="Gevinstlinjer og bonuskøb-regler: Chaos Crew's komplette spillemekanik forklaret" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">I cluster pays-kategorien tilbyder Chaos Crew en unik position: det har det bedste max win/volatilitet-forhold. <Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link> har højere max win (20.000×) og bedre RTP (96,83 %), men opererer på et 8×8 grid med en anderledes mekanik (walking wilds). <Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link> har stort set identisk RTP men lavere max win og en mere kompleks bonus-struktur med Gargantoon-mekanikken.</p>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew's differentiator er den dual-wild mekanik, som ingen andre cluster pays-slots tilbyder. Mens Jammin' Jars og Reactoonz har kraftige wild-systemer, er ingen af dem baseret på to fundamentalt forskellige wild-typer med kontrasterende risk/reward-profiler. Denne mekaniske unikhed gør Chaos Crew til et genuint supplement til enhver cluster pays-portfolio – ikke bare en variation over et velkendt tema.</p>
