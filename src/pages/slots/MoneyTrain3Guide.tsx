@@ -36,7 +36,7 @@ const moneyTrain3Faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Money Train 3 RTP, og er der flere versioner?",
     answer: (
       <>
-        Money Train 3 fås i tre RTP-konfigurationer: 96,10 % (standard), 94,10 % og 92,10 %. Det er casinooperatøren, der vælger konfigurationen. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er standard-versionen typisk den aktive. House edge varierer fra 3,90 % til 7,90 % afhængigt af versionen – en forskel, der over 1.000 spins á 10 kr. udgør 400 kr. i ekstra tab på den laveste RTP. Tjek altid spillets infomenu for den aktuelle RTP.
+        Money Train 3 fås i tre RTP-konfigurationer: 96,10 % (standard), 94,00 % og 92,10 %. Det er casinooperatøren, der vælger konfigurationen. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er standard-versionen typisk den aktive. House edge varierer fra 3,90 % til 7,90 % afhængigt af versionen – en forskel, der over 1.000 spins á 10 kr. udgør 400 kr. i ekstra tab på den laveste RTP. Tjek altid spillets infomenu for den aktuelle RTP.
       </>
     ),
   },
@@ -210,7 +210,7 @@ const MoneyTrain3Guide = () => {
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Standard</td><td className="py-2 pr-4">96,10 %</td><td className="py-2 pr-4">3,90 %</td><td className="py-2">390 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Reduceret</td><td className="py-2 pr-4">94,10 %</td><td className="py-2 pr-4">5,90 %</td><td className="py-2">590 kr.</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Reduceret</td><td className="py-2 pr-4">94,00 %</td><td className="py-2 pr-4">6,00 %</td><td className="py-2">600 kr.</td></tr>
                     <tr><td className="py-2 pr-4">Lav</td><td className="py-2 pr-4">92,10 %</td><td className="py-2 pr-4">7,90 %</td><td className="py-2">790 kr.</td></tr>
                   </tbody>
                 </table>
