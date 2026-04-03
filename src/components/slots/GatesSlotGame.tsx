@@ -125,6 +125,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [totalFreeSpins, setTotalFreeSpins] = useState(0);
   const [bonusWinnings, setBonusWinnings] = useState(0);
   const [cumulativeMultiplier, setCumulativeMultiplier] = useState(0);
+  const cumulativeMultiplierRef = useRef(0);
   const [showBonusTrigger, setShowBonusTrigger] = useState(false);
   const [showBonusComplete, setShowBonusComplete] = useState(false);
   const [showRetrigger, setShowRetrigger] = useState(false);
