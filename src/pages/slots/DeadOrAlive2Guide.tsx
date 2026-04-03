@@ -91,7 +91,7 @@ const DeadOrAlive2Guide = () => {
     name: "Sådan spiller du Dead or Alive 2",
     pageUrl: `${SITE_URL}/casinospil/spillemaskiner/dead-or-alive-2`,
     steps: [
-      { name: "Vælg indsats", text: "Indstil din indsats fra 0,09 til 180 kr. pr. spin med 9 faste gevinstlinjer." },
+      { name: "Vælg indsats", text: "Indstil din indsats fra 0,90 til 180 kr. pr. spin med 9 faste gevinstlinjer." },
       { name: "Spin hjulene", text: "Tryk spin og observer Wild West-symbolerne på det 5×3 grid." },
       { name: "Aktivér Free Spins", text: "Land 3+ scatter-symboler for at vælge mellem Train Heist, Old Saloon eller High Noon Saloon." },
       { name: "Vælg bonusmode", text: "Vælg din risikoprofil: lav (Train Heist), medium (Old Saloon) eller ekstrem (High Noon Saloon)." },
