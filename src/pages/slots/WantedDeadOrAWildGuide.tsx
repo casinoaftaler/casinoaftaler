@@ -266,7 +266,7 @@ const WantedDeadOrAWildGuide = () => {
               </table>
             </div>
           </CardContent></Card>
-          <p className="text-muted-foreground leading-relaxed">Strategisk anbefaling: for gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Wanted generelt et dårligt valg pga. den ekstreme volatilitet. Hvis du alligevel vælger det, er 100×-tieren det mest fordelagtige valg pga. den bedste EV. For ren underholdning med jackpot-potentiale er 250×-tieren det mest spændende valg – men kun med penge, du har absolut ingen forventning om at se igen. Aldrig brug 250×-tieren under wagering.</p>
+          <p className="text-muted-foreground leading-relaxed">Strategisk anbefaling: for gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Wanted generelt et dårligt valg pga. den ekstreme volatilitet. Hvis du alligevel vælger det, er 200×-tieren (Duel ved Daggry) det mest fordelagtige valg pga. den bedste EV. For ren underholdning med jackpot-potentiale er 400×-tieren det mest spændende valg – men kun med penge, du har absolut ingen forventning om at se igen. Aldrig brug 400×-tieren under wagering.</p>
         </section>
 
         <Separator className="my-10" />
