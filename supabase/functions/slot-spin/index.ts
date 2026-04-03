@@ -127,6 +127,7 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
       "gates_min_match", "gates_scatter_trigger", "gates_scatter_retrigger",
       "gates_free_spins_initial", "gates_free_spins_retrigger",
       "gates_max_bet", "gates_reel_dup_2_chance", "gates_reel_dup_3_chance",
+      "gates_multiplier_values", "gates_multiplier_weights",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
