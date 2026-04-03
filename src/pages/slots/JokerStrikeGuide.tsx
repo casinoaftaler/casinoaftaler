@@ -173,6 +173,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Wild Wheel-bonussen er Joker Strike's eneste bonus-feature og erstatter traditionelle free spins. Ved landing af wilds i base game kan et hjul aktiveres med mulighed for at vinde ekstra wilds, multiplikatorer eller direkte kontantpræmier. Trigger-frekvens estimeres til ca. 1/50-80 spins. Gennemsnitlig Wild Wheel-value er 5-20× indsatsen – beskeden men konsistent med spillets lavvolatile profil.</p>
 
           <p className="text-muted-foreground leading-relaxed">Fraværet af en traditionel free spins-runde er et bevidst designvalg fra Quickspin. Free spins-bonusser introducerer typisk varians (store gevinster men også mange "busts"), hvilket ville modsige Joker Strike's filosofi om konsistens. I stedet er Hi Roller den primære value-driver – en permanent forbedring af base game fremfor en sjælden, høj-varians bonus-event. Denne strukturelle beslutning er central for at forstå, hvad Joker Strike er – og hvad den bevidst IKKE er.</p>
+          <ReviewScreenshot
+            src={jokerStrikeGameplayGrid}
+            alt="Joker Strike gameplay med 5x3 grid, Wild-symbol, 7-taller, stjerner, klokker og kortsymboler i farverige blokke"
+            caption="Basisspillet med 10 gevinstlinjer, Wild-symbol synligt på øverste række og Hi Roller-knappen i nederste højre hjørne."
+            size="full"
+          />
         </section>
 
         <InlineCasinoCards />
