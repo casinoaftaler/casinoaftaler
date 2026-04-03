@@ -24,8 +24,6 @@
 /* Gravity drop for existing symbols shifting down */
 @keyframes tumble-shift-down {
   0% { transform: translateY(0); }
-  70% { transform: translateY(var(--shift-distance)); }
-  85% { transform: translateY(calc(var(--shift-distance) - 6px)); }
   100% { transform: translateY(var(--shift-distance)); }
 }
 
