@@ -259,9 +259,9 @@ const WantedDeadOrAWildGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Bonus Buy Tier</th><th className="text-right py-2">Pris</th><th className="text-right py-2">Gns. return</th><th className="text-right py-2">Breakeven %</th><th className="text-right py-2">1.000×+ chance</th></tr></thead>
                 <tbody className="text-muted-foreground">
-                  <tr className="border-b"><td className="py-2 font-medium">Standard</td><td className="text-right">80×</td><td className="text-right">~85×</td><td className="text-right">~40 %</td><td className="text-right">~5 %</td></tr>
-                  <tr className="border-b"><td className="py-2 font-medium">Med dueller</td><td className="text-right">100×</td><td className="text-right">~95×</td><td className="text-right">~35 %</td><td className="text-right">~8 %</td></tr>
-                  <tr><td className="py-2 font-medium">Premium</td><td className="text-right">250×</td><td className="text-right">~215×</td><td className="text-right">~25 %</td><td className="text-right">~10 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Det Store Togrøveri</td><td className="text-right">80×</td><td className="text-right">~75×</td><td className="text-right">~40 %</td><td className="text-right">~5 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Duel ved Daggry</td><td className="text-right">200×</td><td className="text-right">~190×</td><td className="text-right">~35 %</td><td className="text-right">~8 %</td></tr>
+                  <tr><td className="py-2 font-medium">Død Mands Hånd</td><td className="text-right">400×</td><td className="text-right">~380×</td><td className="text-right">~25 %</td><td className="text-right">~10 %</td></tr>
                 </tbody>
               </table>
             </div>
