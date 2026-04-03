@@ -6,7 +6,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { GlossaryMoneyLinks } from "@/components/GlossaryMoneyLinks";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { getTermBySlug, glossaryTerms } from "@/data/glossaryTerms";
-import { getGlossaryHero } from "@/data/glossaryHeroImages";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight } from "lucide-react";
