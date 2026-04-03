@@ -298,6 +298,74 @@ const DeadOrAlive2Guide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── NetEnt's Design-Arv ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> NetEnt's Design-Arv: Fra Dead or Alive 1 til 2</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede den originale Dead or Alive i 2009 – et spil, der på mange måder definerede hele "sticky wild"-genren i online slots. Det originale spils enkle præmis – sticky wilds under free spins i et western-tema – var revolutionerende for sin tid og etablerede en mekanik, som hundredvis af konkurrerende titler senere har adopteret. Dead or Alive 2 (2019) er en bevidst evolution, ikke en revolution: den bevarer kernemekanikken men multiplicerer valg­mulig­hederne og forstørrer gevinstpotentialet eksponentielt.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det design­mæssige geni bag Dead or Alive 2 er tre­lagsstrukturen. Hvor det originale spil kun tilbød én bonusmodus (og dermed én risikoprofil), giver opfølgeren tre fundamentalt forskellige oplevelser. Denne designbeslutning adresserer en udfordring, som de fleste high-volatility slots har: de tiltaler kun et smalt segment af ekstremt risikovillige spillere. Med Train Heist åbner Dead or Alive 2 op for moderate spillere, der aldrig ville have berørt det originale spils ekstremer – uden at kompromittere High Noon Saloon for de hardcore-entusiaster, der søger maksimal risiko.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            NetEnts valg af faste RTP-konfigurationer (ingen variable versioner) er en bevidst differentieringsstrategi. Mens konkurrenter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> tilbyder operatører 2-3 RTP-varianter – med den laveste ofte 2-4 procentpoint under standard – garanterer NetEnt, at spillere altid modtager den fulde 96,82 % RTP. For danske spillere er dette en væsentlig fordel: du behøver ikke bekymre dig om, at dit foretrukne casino kører en reduceret version af spillet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den visuelle opgradering fra DOA1 til DOA2 er betydelig men tro mod originalens æstetik. NetEnt har bevaret den gritty, sepia-tonede western-atmosfære men tilføjet moderne shader-effekter, partikelanimationer og en markant forbedret lyddesign. High Noon Saloon-modens klokkeslag og stigende spændingsmusik er særligt effektive – de forstærker den emotionelle intensitet af sticky wild-landinger og multiplicative gevinster på en måde, der den originale slots teknologi ikke tillod.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Sticky Wild Matematik i Dybden ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Sticky Wild-Matematik: Eksponentiel Multiplikation Forklaret</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2's High Noon Saloon-modus har den mest aggressive multiplikator-stacking i hele slot-branchen. Hvert sticky wild tildeles en tilfældig multiplikator: enten 2× eller 3× (med ~50/50 fordeling). Når multiple wilds indgår i samme gevinstlinje, multipliceres multiplikatorerne – ikke adderes. Dette er den matematiske nøgle til 111.111× max win.
+          </p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Wilds i linje</th><th className="text-right py-2">Min. mult. (2×+2×...)</th><th className="text-right py-2">Max mult. (3×+3×...)</th><th className="text-right py-2">Gennemsnit</th></tr></thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b"><td className="py-2">1 wild</td><td className="text-right">2×</td><td className="text-right">3×</td><td className="text-right">2,5×</td></tr>
+                  <tr className="border-b"><td className="py-2">2 wilds</td><td className="text-right">4×</td><td className="text-right">9×</td><td className="text-right">6,25×</td></tr>
+                  <tr className="border-b"><td className="py-2">3 wilds</td><td className="text-right">8×</td><td className="text-right">27×</td><td className="text-right">15,63×</td></tr>
+                  <tr className="border-b"><td className="py-2">4 wilds</td><td className="text-right">16×</td><td className="text-right">81×</td><td className="text-right">39,06×</td></tr>
+                  <tr><td className="py-2">5 wilds (fuld linje)</td><td className="text-right">32×</td><td className="text-right">243×</td><td className="text-right">97,66×</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Tabellen illustrerer den eksponentielle natur af multiplikator-stacking. Med 5 wilds med 3× multiplikatorer er den samlede multiplikator 243× – anvendt på den allerede høje gevinstværdi af en fuld wild-linje. Det er denne mekanik, der muliggør 111.111× max win: 9 gevinstlinjer × 243× multiplikator × base-gevinstværdi = et astronomisk tal, der kun begrænses af spillets cap.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I praksis er fuld-skærm sticky wilds i High Noon Saloon estimeret til at forekomme i ca. 1 ud af 50.000-100.000 bonusrunder. Med 12 free spins pr. runde og en wild-landingsfrekvens på ca. 15-20 % pr. spin, er den gennemsnitlige bonusrunde i High Noon kun 2-3 wilds – langt fra de 5 fuld-linje wilds, der kræves for max win. Det er derfor vigtigt at forstå, at 111.111× er et teoretisk ceiling, ikke et realistisk forventeligt resultat.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den praktiske implikation for spillere: High Noon Saloon's gennemsnitlige bonusrunde returnerer ca. 80-120× indsatsen – markant lavere end det max win-tal der dominerer markedsføringsmaterialet. Mediangevinsten er endnu lavere (~50-70×), fordi fordelingen er ekstremt højreskæv. For at opnå en meningsfuldt stor gevinst (1.000×+) i High Noon kræves typisk 4+ sticky wilds med mindst to 3×-multiplikatorer – et scenarie der forekommer i ca. 5-8 % af bonusrunder. Denne sandsynlighed er lav men ikke astronomisk, og det er præcis dét, der gør Dead or Alive 2 så fascinerende for risiko-tolerante spillere.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Wagering og Bonusstrategi ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Wagering-Effektivitet: Train Heist som Gennemspilningsværktøj</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Dead or Alive 2 i Train Heist-modus er en underapprecieret wagering-kandidat. Med 96,82 % RTP (fast, ingen variable versioner), lavere volatilitet end High Noon, og en stigende multiplikator-mekanik (1×→2×→4×→8×→16×), leverer Train Heist en mere forudsigelig gennemspilningsoplevelse end de fleste high-volatility alternativer. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det statistiske forventede tab kun 318 kr. – en EV på +682 kr.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Nøglen til Train Heist som wagering-værktøj er den lavere bust-risiko: estimeret 8-10 % for 10× wagering med standard bankroll. Sammenlign dette med High Noon Saloon (15-20 % bust-risiko) eller ekstremt volatile alternativer som <Link to="/casinospil/spillemaskiner/money-train-3" className={linkClass}>Money Train 3</Link> (20-35 % bust-risiko). Train Heist giver altså den højeste sandsynlighed for at realisere bonusværdien fuldstændigt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Strategisk wagering-anbefaling: vælg ALTID Train Heist under wagering. Fordi alle tre modi deler den samme RTP, er den eneste forskel volatiliteten – og under wagering er lav volatilitet objektivt bedre, fordi det reducerer bust-risikoen uden at ændre den forventede return. At vælge High Noon under wagering er en irrationel beslutning, der øger risikoen for at miste hele bonusværdien. Gem High Noon til sessions med rene echtgeld-indsatser, hvor bust-risikoen ikke eliminerer en bonusfordel.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── SEKTION: RISIKOPROFIL ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Ansvarligt Spil: Særlige Forholdsregler for Ekstremer</h2>
