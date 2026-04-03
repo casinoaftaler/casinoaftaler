@@ -613,6 +613,7 @@ const App = () => (
                 <Route path="/community/turneringer/arkiv" element={<TurneringsArkiv />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
+                <Route path="/community/raffle" element={<Suspense fallback={null}><Raffle /></Suspense>} />
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
                 <Route path="/slot-database" element={<SlotDatabase />} />
