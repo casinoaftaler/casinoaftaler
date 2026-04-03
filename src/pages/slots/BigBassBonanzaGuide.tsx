@@ -34,7 +34,7 @@ const bigBassFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Big Bass Bonanza RTP?",
     answer: (
       <>
-        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. Det er afgørende at spille standardversionen – forskellen til 91,60 %-varianten svarer til en ekstra house edge på 5,11 procentpoint. Verificér altid RTP'en i spillets info-menu eller spil hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, der typisk kører standardversionen.
+        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. I praksis kører mange danske operatører dog en reduceret version – hos Danske Spil er RTP'en fx kun 94,02 %. Verificér altid RTP'en i spillets info-menu (side 3/6) eller spil hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, der typisk kører en højere version.
       </>
     ),
   },
