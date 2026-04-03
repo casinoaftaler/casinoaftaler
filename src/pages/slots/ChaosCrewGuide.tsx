@@ -18,6 +18,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Layers, Play, Scale, Sparkles, TrendingUp, Trophy, Users, Zap, Puzzle, Palette, Target, Dices, BookOpen } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import chaoscrewGameplay from "@/assets/screenshots/chaoscrewGameplay.webp";
+import chaoscrewFunktioner from "@/assets/screenshots/chaoscrewFunktioner.webp";
+import chaoscrewBonuskob from "@/assets/screenshots/chaoscrewBonuskob.webp";
+import chaoscrewPaylines from "@/assets/screenshots/chaoscrewPaylines.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -73,6 +78,9 @@ const ChaosCrewGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-6 w-6 text-primary" /> Cluster Pays: Hvad Det Betyder for Din Gevinst</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cluster pays er en gevinstmekanik, der erstatter traditionelle paylines med krav om grupper af identiske symboler. I Chaos Crew's 5×5 grid skal mindst 5 ens symboler røre hinanden horisontalt eller vertikalt (ikke diagonalt) for at danne en gevinstcluster. Denne mekanik giver en fundamentalt anderledes gevinststruktur end standard 5×3 payline-slots: der er ingen faste gevinstlinjer, og de største gevinster kommer fra store, sammenhængende clustre, der fylder en betydelig del af griddet.</p>
+
+          <ReviewScreenshot src={chaoscrewGameplay} alt="Chaos Crew 5x5 gameplay grid med alle symboltyper synlige inklusiv kraniet, hjernen, møllen og smiley-symbolerne på det punk-inspirerede spillebræt" caption="Chaos Crew's 5×5 grid i base game med det karakteristiske punk-graffiti design" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Den matematiske implikation af cluster pays er tvedelt. På den ene side er hit frequency lavere end standard slots – estimeret til 20-25 % for Chaos Crew mod 25-35 % for typiske payline-slots. Det kræver 5+ sammenhængende symboler at danne en gevinst, hvilket er sværere end 3+ symboler på en payline. På den anden side kan gevinsterne være proportionalt større: et cluster af 15+ symboler med multiplikator-wilds kan producere udbetalinger, der ville kræve en full-screen win på en traditionel slot.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Tumble-funktionen (også kaldet cascading wins) kompenserer delvist for den lavere hit frequency. Når et gevindende cluster dannes, fjernes de gevindende symboler, og nye symboler falder ned fra oven for at udfylde de tomme pladser. Denne kaskadeeffekt kan producere multiple gevinster fra et enkelt spin. Den gennemsnitlige tumble-kæde i Chaos Crew estimeres til 1,3-1,6 pr. gevindende spin – lavere end <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>'s 1,5-2,0, men tilstrækkeligt til at skabe meningsfulde tillægsgevinster.</p>
           <p className="text-muted-foreground leading-relaxed">En kritisk detalje, som mange spillere overser: i cluster pays-systemer er symbolernes relative position afgørende. To identiske symboler, der kun rører diagonalt, tæller IKKE som del af samme cluster. Denne regel begrænser den maksimale clusterstørrelse og skaber en dynamik, hvor vertikale og horisontale kolonner af symboler er mere værdifulde end diagonale mønstre. At forstå denne rumlighed er afgørende for at evaluere potentialet i et givent spin – selvom du naturligvis ikke kan påvirke udfaldet.</p>
@@ -148,6 +156,8 @@ const ChaosCrewGuide = () => {
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-6 w-6 text-primary" /> Free Spins: Sticky Wilds og Multiplikator-Akkumulering</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Free spins udløses ved landing af 3+ scatter-symboler (det stiliserede punk-skull): 3 scatters giver 8 free spins, 4 scatters giver 12 free spins. Trigger-frekvens estimeres til ca. 1 pr. 200-280 spins – moderat for en high-volatility slot og markant hyppigere end ultra-volatile titler som Dead or Alive 2 (1/400+). Under free spins er alle wilds (Cranky og Sketchy) sticky, og tumble-funktionen forbliver aktiv.</p>
 
+          <ReviewScreenshot src={chaoscrewFunktioner} alt="Chaos Crew funktionsoversigt med Gratis Spins op til 10.000x gevinst og Wild-multiplikatorer op til 5x pr. symbol vist side om side" caption="Chaos Crew's to hovedfunktioner: Gratis Spins med 10.000× potentiale og Wild-multiplikatorer op til 5×" size="full" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Den sticky wild-mekanik er motoren bag Chaos Crew's bonus-potentiale. Hver Cranky eller Sketchy wild, der lander under free spins, forbliver på sin position for resten af runden. Da wilds også fungerer som cluster-connectorer (de substituerer ethvert regulært symbol), akkumulerer de ikke kun multiplikator-value – de øger også sandsynligheden for, at gevinstclustre dannes ved at binde ellers adskilte symbolgrupper sammen.</p>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">Gennemsnitlig bonusrunde-value estimeres til 30-60× indsatsen, med en median på 20-35×. Denne forskel mellem gennemsnit og median er vigtig: den fortæller os, at fordelingen er positivt skæv – sjældne, ekstremt profitable runder trækker gennemsnittet op, mens de fleste runder (medianen) producerer mere moderate resultater. For spilleren betyder det, at "normale" bonusrunder ofte føles skuffende sammenlignet med forventningen.</p>
@@ -171,6 +181,8 @@ const ChaosCrewGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-6 w-6 text-primary" /> Bonus Buy: Er Det Matematisk Fordelagtigt?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew tilbyder to bonus buy-muligheder, der lader spillere springe base game over og gå direkte til free spins. Standard bonus buy koster 60× indsatsen og giver en standard free spins-runde. Enhanced bonus buy koster 80× indsatsen og garanterer et minimum antal wild-symboler på griddet ved rundens start.</p>
+
+          <ReviewScreenshot src={chaoscrewBonuskob} alt="Chaos Crew bonuskøb-menu med indsatsvalg på 4 kr. og Gratis Spins til 516 kr. med Volatilitet Ekstrem markering" caption="Chaos Crew's bonus buy: Gratis Spins kan købes direkte med ekstrem volatilitet markeret" size="medium" />
 
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">Bonus Buy Cost-Benefit Analyse</h3>
@@ -252,6 +264,8 @@ const ChaosCrewGuide = () => {
               </table>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={chaoscrewPaylines} alt="Chaos Crew spilleregler med 15 gevinstlinjer visualiseret på 5x5 grid samt bonuskøb-regler og RTP på 95,92 procent ved køb af gratis spins" caption="Gevinstlinjer og bonuskøb-regler: Chaos Crew's komplette spillemekanik forklaret" size="full" />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">I cluster pays-kategorien tilbyder Chaos Crew en unik position: det har det bedste max win/volatilitet-forhold. <Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link> har højere max win (20.000×) og bedre RTP (96,83 %), men opererer på et 8×8 grid med en anderledes mekanik (walking wilds). <Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link> har stort set identisk RTP men lavere max win og en mere kompleks bonus-struktur med Gargantoon-mekanikken.</p>
 
