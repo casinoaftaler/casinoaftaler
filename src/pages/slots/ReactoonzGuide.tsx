@@ -14,12 +14,18 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import reactoonzIntroScreen from "@/assets/screenshots/reactoonz-intro-screen.webp";
+import reactoonzGameplayGrid from "@/assets/screenshots/reactoonz-gameplay-grid.webp";
+import reactoonzGargantoon from "@/assets/screenshots/reactoonz-gargantoon.webp";
+import reactoonzCasinoSearch from "@/assets/screenshots/reactoonz-casino-search.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
