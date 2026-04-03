@@ -265,7 +265,13 @@ const BigBassBonanzaGuide = () => {
 
           <p className="text-muted-foreground leading-relaxed">
             Forskellen er dramatisk: over 2.000 spins koster den laveste RTP-variant 1.022 kr. mere end standardversionen. Det er ikke en marginal forskel – det er en fundamental ændring af spillets økonomi. Spil kun Big Bass Bonanza på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, og verificér RTP i info-menuen.
-          </p>
+           </p>
+
+          <ReviewScreenshot
+            src={screenshotRtpRegler}
+            alt="Big Bass Bonanza spilleregler side 3 – RTP 94,02 %, volatilitet 5/5, mindste indsats 0,50 kr og højeste indsats 100 kr"
+            caption="Spillereglerne bekræfter RTP 94,02 % hos Danske Spil, volatilitet 5/5, samt indsatsgrænser fra 0,50 kr. til 100 kr."
+          />
         </section>
 
         <Separator className="my-10" />
