@@ -49,7 +49,7 @@ const BuffaloKingGuide = () => {
 
   return (
     <>
-      <SEO title="Buffalo King – Multiplikator & Max Win-Analyse" description="Buffalo King analyse: Multiplikator-stacking, 93.750× max win og RTP 96,06 %. Se EV-beregninger og volatilitetsdata for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Buffalo King – Multiplikator & Max Win-Analyse" description="Buffalo King analyse: Multiplikator-stacking, 93.750× max win og RTP 94,55-96,06 %. Se EV-beregninger og volatilitetsdata for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
