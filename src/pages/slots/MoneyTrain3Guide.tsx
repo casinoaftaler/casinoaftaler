@@ -318,6 +318,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Spillet tilbyder tre bonus-niveauer: Money Cart (3 bonus-symboler), Money Cart+ (6 bonus-symboler), og Money Cart++ (9 bonus-symboler). Hvert niveau starter med progressivt højere base-multiplikatorer på symbolerne. Money Cart++ er astronomisk sjælden, men starter typisk med multiplikatorer, der allerede overstiger 100× indsatsen, før bonusrunden overhovedet begynder.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Paytable}
+            alt="Money Train 3 udbetalingstabel med fire premium karakter-symboler og fire kortsymboler med gevinstværdier"
+            caption="Udbetalingstabellen ved 10 kr. indsats: Premium-symboler (rød, guld, grøn, blå) betaler op til 200 kr. for 5 ens, mens kortsymboler (spar, hjerter, klør, ruder) betaler op til 50 kr."
+            size="medium"
+          />
         </section>
 
         {/* ── Risikoprofil ── */}
