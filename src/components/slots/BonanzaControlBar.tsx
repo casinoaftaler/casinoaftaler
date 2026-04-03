@@ -164,7 +164,7 @@ export function BonanzaControlBar({
             onClick={() => onBetChange(getPrevBet(bet, minBet))}
             disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
           >
-            <MenuIcon iconName="minus" className="h-6 w-6 text-white" />
+            <Minus className="h-6 w-6 text-white" />
           </button>
 
           {/* Spin + Autoplay */}
