@@ -1,80 +1,49 @@
-## Plan: Screenshots til Buffalo King Guide
-
-### Uploaded screenshots → sektions-mapping
 
 
-| #   | Screenshot | Indhold                                                      | Målsektion                                                                                                       | Size   | Loading |
-| --- | ---------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- | ------ | ------- |
-| 1   | `_181414`  | Buffalo King logo/banner artwork                             | **Ikke brugt** – dekorativt banner, ikke et autentisk UI-screenshot (Bare brug det alligevel, det er deres logo) | &nbsp; | &nbsp;  |
-| 2   | `_161148`  | Spilleautomaten.dk: RTP, max gevinst, indsats, gevinstlinjer | **Teknisk Profil og Volatilitetsanalyse** (efter Card)                                                           | medium | eager   |
-| 3   | `_161200`  | Gameplay med x5 multiplikatorer på alle hjul                 | **Multiplikator-Stacking** (efter første afsnit)                                                                 | full   | lazy    |
-| 4   | `_161213`  | Base game med bonus-symbol og "Køb Gratis Spins"             | **Free Spins: Op til 100 Gratis Spins** (efter første afsnit)                                                    | full   | lazy    |
-| 5   | `_161232`  | Spilleregler side 1: paytable + 4096 ways forklaring         | **Symbolhierarki og Paytable-Dekonstruktion** (efter tabel)                                                      | full   | lazy    |
-| 6   | `_161238`  | Spilleregler side 2: Wild, Bonus, free spins regler          | **Den Store Scatter-Gevinst** (efter free spins-tabel)                                                           | medium | lazy    |
+## Problem
 
+When a user requests a custom slot (not yet in the database), the `slot_name` they type in `slot_requests` may not exactly match the slot name that appears in the bonus hunt API data. The current matching logic:
 
-### Fravalg
+1. **`useBonusHuntSlotRequesters`** builds a map keyed by `slot_name.toLowerCase()` from `slot_requests`
+2. **`BonusHuntSlotTable`** tries exact match first, then falls back to simple substring (`includes`) matching
 
-- Banner-billedet (`_181414`) bruges IKKE – det er promotional artwork, ikke et autentisk UI-screenshot. Det bryder med E-E-A-T strategien. (Er du sikker på det? altså jeg har fundet et billede af det på google og taget et screenshot.)
+This fails for cases like:
+- User requests "Chaos Crew 2" but API shows "Chaos Crew II"
+- User requests "big bass" but API shows "Big Bass Bonanza"
+- Typos or slight naming variations in custom slots
 
-### Tekniske trin
+## Solution
 
-1. **Konvertér 5 screenshots til WebP** via ffmpeg (q82, <150KB target)
-2. **Kopiér til** `src/assets/screenshots/` med beskrivende filnavne:
-  - `buffalokingRtpData.webp`
-  - `buffalokingMultiplikatorStacking.webp`
-  - `buffalokingBaseGameBonus.webp`
-  - `buffalokingPaytableSymboler.webp`
-  - `buffalokingFreeSpinsRegler.webp`
-3. **Importér** i BuffaloKingGuide.tsx og tilføj `ReviewScreenshot` med unikke alt-tekster
-4. **Placering** med min. 15 linjers kode-gab mellem hver
+Improve the fuzzy matching in `useBonusHuntSlotRequesters` and the table's requester lookup to use normalized similarity scoring instead of simple substring matching.
 
-### Placeringsrækkefølge i guiden
+### Changes
+
+**File: `src/hooks/useSlotRequests.ts`** — `useBonusHuntSlotRequesters`
+
+Add a helper function that normalizes slot names (strips punctuation, common suffixes, roman numerals → digits) and computes a similarity score. Export this for reuse in the table component.
 
 ```text
-Hero
-AuthorMetaBar
-H2: Multiplikator-Stacking
-  → afsnit 1
-  → ★ Screenshot 3 (gameplay x5 multiplikatorer) — full, lazy
-  → afsnit 2-4
-
-H2: Teknisk Profil
-  → Card (teknisk data)
-  → ★ Screenshot 2 (RTP-data fra spilleautomaten) — medium, eager
-  → afsnit 1-2
-
-H2: Free Spins
-  → afsnit 1
-  → ★ Screenshot 4 (base game med bonus) — full, lazy
-  → afsnit 2-3
-
-InlineCasinoCards
-
-H2: EV-Beregning
-  (ingen screenshot – variation)
-
-H2: Risikoprofil
-  (ingen screenshot – variation)
-
-H2: Prærie-Slotten
-  (ingen screenshot)
-
-H2: Symbolhierarki
-  → tabel
-  → ★ Screenshot 5 (paytable spilleregler) — full, lazy
-  → afsnit 1-2
-
-H2: All Ways-Mekanikken
-  (ingen screenshot – variation)
-
-H2: Den Store Scatter-Gevinst
-  → free spins-tabel
-  → ★ Screenshot 6 (Wild/Bonus regler) — medium, lazy
-  → afsnit 1-2
+normalize("Chaos Crew II")  → "chaos crew 2"
+normalize("Big Bass Bonanza") → "big bass bonanza"
+normalize("sweet bonanza 1000x") → "sweet bonanza 1000x"
 ```
 
-### Filer der ændres
+**File: `src/components/bonus-hunt/BonusHuntSlotTable.tsx`** — Requester cell
 
-- **5 nye assets** i `src/assets/screenshots/`
-- **1 fil redigeres**: `src/pages/slots/BuffaloKingGuide.tsx` (imports + 5× ReviewScreenshot)
+Replace the naive `includes` fallback with a proper best-match finder:
+1. Normalize both the hunt slot name and all request slot names
+2. Check exact normalized match first
+3. Fall back to: longest common substring ratio ≥ 0.6, or one name fully contained in the other
+4. Pick the best match above threshold
+
+### Technical details
+
+- Add a `normalizeForMatch(name: string): string` utility that lowercases, strips `'`, converts roman numerals (II→2, III→3, IV→4), removes trailing "x" multipliers, and trims whitespace/punctuation
+- Add a `slotNameSimilarity(a: string, b: string): number` function (0-1) using normalized word overlap (Jaccard on word tokens + substring containment bonus)
+- Threshold: ≥ 0.5 similarity to count as a match, pick highest scorer
+- Both functions go in a shared util or inline in `useSlotRequests.ts`
+
+### Files to edit
+- `src/hooks/useSlotRequests.ts` — add normalize + similarity helpers, improve map building
+- `src/components/bonus-hunt/BonusHuntSlotTable.tsx` — use improved matching in requester cell
+
