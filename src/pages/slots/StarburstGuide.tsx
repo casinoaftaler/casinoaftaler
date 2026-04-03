@@ -118,11 +118,13 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
           </p>
+          <ReviewScreenshot
+            src={starburstGameplay}
+            alt="Starburst spilleautomat 5x3 grid med ædelsten-symboler, BAR og 7-taller i rumtema med 10 gevinstlinjer synlige"
+            caption="Starbursts ikoniske 5×3 grid med rumtema. Bemærk gevinstlinjerne (1-10) i begge sider – Win Both Ways-systemet beregner gevinster i begge retninger."
+            eager
+          />
         </section>
-
-        <Separator className="my-10" />
-
-        {/* ── SEKTION: SPILMEKANIK ── */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Spillets Mekanik: Simpelt Design, Skjult Matematik</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
