@@ -427,10 +427,10 @@ const LegacyOfDeadGuide = () => {
             Opfølgeren Der Overgår Originalen
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Legacy of Dead er et sjældent eksempel på en opfølger, der matematisk set er overlegen i forhold til originalen. Den højere RTP, det progressive expanding symbol-system og den bevarede enkelthed gør den til vores anbefaling for spillere i "Book of"-genren. Play'n GO har formået at evolve en proven formel uden at kompromittere dens kerneappel.
+            Legacy of Dead tilbyder en unik mekanik i "Book of"-genren med sit progressive expanding symbol-system. Selvom RTP'en (94,51 %) er lavere end Book of Dead's (96,21 %), kompenserer det kumulative expanding symbol-system med potentielt mere eksplosive bonusrunder ved retriggers. Play'n GO har formået at evolve en proven formel med en mekanik, der belønner tålmodighed.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Med en RTP på 96,58 %, max win på 5.000× og en unik progressiv mekanik er Legacy of Dead et must-try for enhver seriøs slot-spiller. Udforsk vores komplette <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> for at finde det perfekte match til din spillestil.
+            Med max win på 5.000× og en unik progressiv mekanik er Legacy of Dead et interessant alternativ for erfarne slot-spillere, der accepterer den højere house edge (5,49 %) mod potentialet for exceptionelle bonusrunder. Udforsk vores komplette <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link> for at finde det perfekte match til din spillestil.
           </p>
         </section>
 
