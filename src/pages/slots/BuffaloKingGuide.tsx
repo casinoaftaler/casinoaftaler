@@ -195,6 +195,9 @@ const BuffaloKingGuide = () => {
               </table>
             </div>
           </CardContent></Card>
+
+          <ReviewScreenshot src={buffalokingFreeSpinsRegler} alt="Buffalo King spilleregler side 2 med Wild-symbol funktioner, Bonus scatter-regler og free spins tildelingsstruktur" caption="Wild- og scatter-regler: Buffalo Kings komplette free spins-mekanik forklaret" size="medium" />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Sandsynligheden for 6 scatters er astronomisk lav (~1/200.000 spins), men det er netop dette scenarie, der driver den teoretiske max win. Med 100 free spins og aktive multiplikatorer er den samlede akkumulerede gevinstpotentiale praktisk talt ubegrænset inden for spillets 93.750× cap. For de fleste spillere er 3-scatter triggeren (8 spins) den realistiske oplevelse – og selv denne kan levere meningsfulde gevinster med heldig multiplikator-stacking.</p>
           <p className="text-muted-foreground leading-relaxed">Et vigtigt perspektiv: fordi 100-spins scenariet er så sjældent, bør det aldrig være din "strategi" at jage det. Buffalo King bør spilles med forventningen om 8-spins bonusrunder (typisk 30-60× return), med 4-5 scatter-triggere som positive overraskelser. At jage de sjældne, store scenarier er en opskrift på frustration og potentielt problematisk spilleadfærd.</p>
         </section>
