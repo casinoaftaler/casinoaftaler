@@ -1,25 +1,31 @@
 
 
-# Plan: Revert Slot Control Bars to Lucide Icons
+# Plan: Show Orb Reaction Video on Spins with Orbs
 
-## Problem
-During the 3D WebP icon migration, the slot game control bars (BonanzaControlBar, GatesControlBar, AutoSpinPopover) had their functional UI icons (`rotate-cw`, `minus`) replaced with `MenuIcon` (3D WebP). These are small UI controls that should use crisp Lucide SVG icons, not 3D images.
+## Summary
+Replace the idle looping character video with a one-shot reaction video whenever orbs (multiplier bombs) appear on the grid. The reaction video plays once using the same chroma key WebGL effect, same position, and same dimensions. When no orbs are present, the idle video continues looping as usual.
 
 ## Changes
 
-### 1. `src/components/slots/BonanzaControlBar.tsx`
-- Replace all `<MenuIcon iconName="rotate-cw" .../>` with `<RotateCw .../>` from Lucide (7 occurrences)
-- Replace all `<MenuIcon iconName="minus" .../>` with `<Minus .../>` from Lucide (2 occurrences)
-- Add `RotateCw` to the Lucide import, remove unused `MenuIcon` import
+### 1. Copy uploaded video to project
+- Copy `user-uploads://hf_20260403_100822_de065929-5f60-4b3f-b9e1-8e12cbd523f4.mp4` to `public/videos/gates-character-orbs.mp4`
 
-### 2. `src/components/slots/GatesControlBar.tsx`
-- Replace all `<MenuIcon iconName="rotate-cw" .../>` with `<RotateCw .../>` (5 occurrences)
-- Replace `<MenuIcon iconName="minus" .../>` with `<Minus .../>` (1 occurrence)
-- Add `RotateCw, Minus` to Lucide import, remove unused `MenuIcon` import
+### 2. Update `ChromaKeyVideo` component to support one-shot playback
+- Add optional `loop` prop (default `true` for backward compat)
+- Add optional `playTrigger` prop (a counter/key that triggers replay from start)
+- When `playTrigger` changes, reset video to start and play once (no loop)
+- When video ends in non-loop mode, keep showing last frame (or hide canvas)
 
-### 3. `src/components/slots/AutoSpinPopover.tsx`
-- Replace `<MenuIcon iconName="rotate-cw" .../>` with `<RotateCw .../>` (1 occurrence)
-- Update imports accordingly
+### 3. Update `GatesSlotGame.tsx`
+- Add state: `orbVideoTrigger` (number, incremented when orbs detected)
+- Add state: `showOrbVideo` (boolean, true while orb video should play)
+- In `processTumbleSteps`, when `multiplierBombs` are found on any step, set `showOrbVideo = true` and increment `orbVideoTrigger`
+- When orb video ends, set `showOrbVideo = false`
+- Conditionally render: when `showOrbVideo` is true, render `ChromaKeyVideo` with `src="/videos/gates-character-orbs.mp4"` and `loop={false}`. Otherwise render the existing idle loop video.
+- Both videos use identical position/size/className props
 
-Total: ~13 replacements across 3 files.
+### Technical Details
+- The `ChromaKeyVideo` component needs a small `onEnded` callback prop so the parent knows when the one-shot video finishes
+- The trigger detection happens at the start of the bomb blow-up sequence (line ~397) — set `showOrbVideo = true` before the bomb animation loop begins
+- After the video ends (via `onEnded`), revert to idle video
 
