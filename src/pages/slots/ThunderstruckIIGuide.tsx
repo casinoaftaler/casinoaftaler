@@ -70,6 +70,13 @@ const ThunderstruckIIGuide = () => {
         <AuthorMetaBar author="frederik" readTime="22 min" />
 
         <SnippetAnswer answer="Thunderstruck II er en 243 ways-slot fra Microgaming med 96,65 % RTP og 8.000× max win. Spillets kernefeature er Great Hall of Spins – fire progressive bonusniveauer (Valkyrie, Loki, Odin, Thor) der forbedres med hver trigger. Den medium volatilitet giver en balanceret oplevelse, der belønner langsigtede spillere med konsistente gevinster." />
+        <ReviewScreenshot
+          src={thunderstruckIntro}
+          alt="Thunderstruck II intro-skærm med Wildstorm Feature, 8000x max win og Great Hall of Spins med fire bonusniveauer: Valkyrie, Loki, Odin og Thor"
+          caption="Intro-skærmen præsenterer Thunderstruck II's to kernefeatures: Wildstorm (venstre) med fulde wild-reels, og Great Hall of Spins (højre) med fire progressive bonusniveauer navngivet efter nordiske guder."
+          eager
+        />
+
         {/* ── MÅLGRUPPE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="compass" className="h-6 w-6 text-primary" /> Hvem Er Thunderstruck II For?</h2>
