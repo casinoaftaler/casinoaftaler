@@ -12,12 +12,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+
+import fireJokerHero from "@/assets/screenshots/fire-joker-hero-logo.webp";
+import fireJokerGameplay from "@/assets/screenshots/fire-joker-gameplay-grid.webp";
+import fireJokerMultiplikator from "@/assets/screenshots/fire-joker-multiplikatorhjul.webp";
+import fireJokerBetalingstabel from "@/assets/screenshots/fire-joker-betalingstabel.webp";
+import fireJokerRtp from "@/assets/screenshots/fire-joker-spilleautomaten-rtp.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
