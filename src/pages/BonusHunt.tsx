@@ -66,8 +66,9 @@ export default function BonusHunt() {
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
-  const { data: archivedSession } = useBonusHuntSessionByHuntNumber(huntIdOverride);
-  const effectiveSessionId = huntIdOverride ? archivedSession?.id : session?.id;
+  const { data: archivedSessionData } = useBonusHuntSessionByHuntNumber(huntIdOverride ?? (isArchived ? currentHuntNumber : undefined));
+  const archivedSession = archivedSessionData ?? session;
+  const effectiveSessionId = (isArchived || huntIdOverride) ? archivedSession?.id : session?.id;
 
   // Only fetch bet data when the relevant tab is active
   const shouldFetchGtw = activeTab === 'gtw';
