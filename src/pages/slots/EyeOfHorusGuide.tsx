@@ -210,6 +210,8 @@ const EyeOfHorusGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={eyeOfHorusSpilleregler} alt="Eye of Horus udbetalingsinformationer og spilleregler – scatter-gevinster, jackpot-odds og tekniske detaljer" caption="Udbetalingsinformationer og spilleregler direkte fra Eye of Horus – herunder jackpot-odds." />
+
         {/* ── Mobiloplevelse ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />Mobiloptimering og Spilkvalitet</h2>
