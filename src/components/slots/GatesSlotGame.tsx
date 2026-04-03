@@ -656,6 +656,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
                 setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                cumulativeMultiplierRef.current = bs.cumulativeMultiplier || 0;
                 setRunningMultiplier(bs.cumulativeMultiplier || 0);
                 if (bs.freeSpinsRemaining <= 0) {
                   setScreenShake('intense');
