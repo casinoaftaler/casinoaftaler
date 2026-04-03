@@ -408,6 +408,12 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotIntro}
+          alt="Book of Dead intro-skærm – Free Spins forklaring med scatter-bøger og expanding symbol Rich Wilde i aktion"
+          caption="Intro-skærmen forklarer kernemekkanikken: 3+ Grav-scatters giver 10 free spins med et tilfældigt expanding symbol, der dækker hele hjulet."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: RISIKOANALYSE ── */}
