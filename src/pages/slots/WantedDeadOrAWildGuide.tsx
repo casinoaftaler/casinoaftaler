@@ -135,6 +135,11 @@ const WantedDeadOrAWildGuide = () => {
         <Separator className="my-10" />
 
         {/* ── BONUS BUY TIERS ── */}
+        <ReviewScreenshot
+          src={wantedBonusBuy}
+          alt="Wanted Dead or a Wild bonuskøb-menu med tre niveauer: Det Store Togrøveri (1.600 kr), Duel ved Daggry (4.000 kr) og Død Mands Hånd (8.000 kr) ved 20 kr indsats"
+          caption="Bonus Buy-menuen med tre tiers: Det Store Togrøveri (80×, medium volatilitet), Duel ved Daggry (200×, meget høj) og Død Mands Hånd (400×, ekstrem). Priserne skalerer med indsatsen – her vist ved 20 kr."
+        />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shopping-cart" className="h-7 w-7 text-primary" /> Tre Bonus Buy-Niveauer: Matematik og Risikoprofil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild er en af de få slots, der tilbyder multiple bonus buy-tiers – tre distinkte prisniveauer, hver med sin egen risiko/belønnings-profil. Denne feature giver spilleren et sjældent niveau af kontrol over risikoeksponering, men det kræver forståelse af, hvad du rent faktisk køber ved hvert prisniveau.</p>
