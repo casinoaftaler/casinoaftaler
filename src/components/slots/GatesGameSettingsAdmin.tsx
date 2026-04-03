@@ -67,6 +67,8 @@ export function GatesGameSettingsAdmin() {
         scatterRetrigger: parseInt(map.gates_scatter_retrigger || String(DEFAULTS.scatterRetrigger), 10),
         freeSpinsInitial: parseInt(map.gates_free_spins_initial || String(DEFAULTS.freeSpinsInitial), 10),
         freeSpinsRetrigger: parseInt(map.gates_free_spins_retrigger || String(DEFAULTS.freeSpinsRetrigger), 10),
+        multiplierValues: map.gates_multiplier_values || DEFAULTS.multiplierValues,
+        multiplierWeights: map.gates_multiplier_weights || DEFAULTS.multiplierWeights,
       } as GatesSettings;
     },
   });
