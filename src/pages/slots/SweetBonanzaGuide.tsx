@@ -508,7 +508,7 @@ const SweetBonanzaGuide = () => {
               </thead>
               <tbody>
                 <tr className="border-b"><td className="py-2">RTP</td><td className="py-2 text-right">96,48–96,51 %</td><td className="py-2 text-right">94,50 %</td><td className="py-2 text-right">96,50 %</td></tr>
-                <tr className="border-b"><td className="py-2">Volatilitet</td><td className="py-2 text-right">5/5</td><td className="py-2 text-right">5/5</td><td className="py-2 text-right">Høj</td></tr>
+                <tr className="border-b"><td className="py-2">Volatilitet</td><td className="py-2 text-right">3,5/5</td><td className="py-2 text-right">5/5</td><td className="py-2 text-right">Høj</td></tr>
                 <tr className="border-b"><td className="py-2">Max Win</td><td className="py-2 text-right">21.100×</td><td className="py-2 text-right">5.000×</td><td className="py-2 text-right">5.000×</td></tr>
                 <tr className="border-b"><td className="py-2">Grid</td><td className="py-2 text-right">6×5</td><td className="py-2 text-right">6×5</td><td className="py-2 text-right">7×7</td></tr>
                 <tr className="border-b"><td className="py-2">Min. cluster</td><td className="py-2 text-right">8 symboler</td><td className="py-2 text-right">8 symboler</td><td className="py-2 text-right">5 symboler</td></tr>
