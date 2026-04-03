@@ -317,6 +317,12 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotFreeSpins}
+          alt="Book of Dead free spins regler – 3 scatter-bøger giver 10 free spins, expanding symbol-mekanik og max win 250.000 mønter"
+          caption="Free spins-reglerne: 3+ scatter-bøger udløser 10 free spins med et tilfældigt expanding symbol. Scatter betaler x5=200, x4=20, x3=2 gange total indsats."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: BONUS COMPATIBILITY ── */}
