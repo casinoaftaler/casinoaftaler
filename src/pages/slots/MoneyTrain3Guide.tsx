@@ -14,12 +14,20 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Flame, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+
+import moneyTrain3IntroScreen from "@/assets/screenshots/money-train-3-intro-screen.webp";
+import moneyTrain3GameplayGrid from "@/assets/screenshots/money-train-3-gameplay-grid.webp";
+import moneyTrain3Paylines from "@/assets/screenshots/money-train-3-paylines.webp";
+import moneyTrain3Spilleregler from "@/assets/screenshots/money-train-3-spilleregler.webp";
+import moneyTrain3Paytable from "@/assets/screenshots/money-train-3-paytable.webp";
+import moneyTrain3CasinoSearch from "@/assets/screenshots/money-train-3-casino-search.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -117,6 +125,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Hver bonusrunde starter med 3 respins. Hvert nyt symbol, der lander, nulstiller tælleren til 3. Symbolerne bærer enten en fast værdi (1×-100× indsats) eller en af syv special modifiers, der kan multiplicere, kopiere eller transformere eksisterende symboler. Denne mekanik skaber et progressivt system, hvor længere bonusrunder eksponentielt øger gevinstpotentialet.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3IntroScreen}
+            alt="Money Train 3 intro-skærm med Respin Feature og Money Cart Bonus Round samt 100.000x max win visning"
+            caption="Intro-skærmen præsenterer Money Train 3's to kernefeatures: Respin Feature (venstre) og Money Cart Bonus Round (højre) med op til 100.000× indsatsen."
+            eager
+          />
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-3">Special Modifiers i Money Cart</h3>
@@ -163,6 +177,12 @@ const MoneyTrain3Guide = () => {
           <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
           <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link>.
         </VideoContextBox>
+
+        <ReviewScreenshot
+          src={moneyTrain3CasinoSearch}
+          alt="Money Train 3 fundet via søgning i et dansk online casino med Relax Gaming som udbyder"
+          caption="Money Train 3 er tilgængelig på de fleste danske licenserede casinoer – her fundet via casinoets søgefunktion."
+        />
 
         <InlineCasinoCards />
 
@@ -233,6 +253,11 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Basespillets hit frequency på ~18 % er bemærkelsesværdigt lav. Det betyder, at mere end 4 ud af 5 spins producerer ingen gevinst overhovedet. Til gengæld er de gevinster, der forekommer, typisk mere substantielle end i lavere volatilitetsslots. Denne "feast or famine"-dynamik er det definerende kendetegn ved Money Train 3's gameplay.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3GameplayGrid}
+            alt="Money Train 3 gameplay med 4x5 grid, karakter-symboler i farvede rammer og KØB-bonus knap synlig"
+            caption="Basespillets 4×5 grid med 40 faste gevinstlinjer. Bemærk 'KØB'-knappen nederst til venstre for direkte bonus-adgang (80× indsats)."
+          />
         </section>
 
         {/* ── EV ── */}
@@ -293,6 +318,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Spillet tilbyder tre bonus-niveauer: Money Cart (3 bonus-symboler), Money Cart+ (6 bonus-symboler), og Money Cart++ (9 bonus-symboler). Hvert niveau starter med progressivt højere base-multiplikatorer på symbolerne. Money Cart++ er astronomisk sjælden, men starter typisk med multiplikatorer, der allerede overstiger 100× indsatsen, før bonusrunden overhovedet begynder.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Paytable}
+            alt="Money Train 3 udbetalingstabel med fire premium karakter-symboler og fire kortsymboler med gevinstværdier"
+            caption="Udbetalingstabellen ved 10 kr. indsats: Premium-symboler (rød, guld, grøn, blå) betaler op til 200 kr. for 5 ens, mens kortsymboler (spar, hjerter, klør, ruder) betaler op til 50 kr."
+            size="medium"
+          />
         </section>
 
         {/* ── Risikoprofil ── */}
@@ -329,6 +360,12 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             De høje ruin-sandsynligheder understreger, at Money Train 3 kun bør spilles med penge, du er fuldt forberedt på at miste. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-principper er særligt kritiske her. Sæt absolutte tab-grænser før du starter, og overhold dem uden undtagelse. Den emotionelle tiltration af lange tabsrækker i ekstremt volatile slots er veldokumenteret og kan lede til uhensigtsmæssig adfærd.
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Spilleregler}
+            alt="Money Train 3 officielle spilleregler med RTP 94,00% og gevinstloft på 100.000x indsatsen"
+            caption="Spillereglerne bekræfter 5 kolonner, 4 rækker, 40 betalingslinjer og et gevinstloft på 100.000× indsatsen. Bemærk: Den viste RTP på 94,00 % er den reducerede version – tjek altid din konfiguration."
+            size="medium"
+          />
         </section>
 
         {/* ── Sammenligning ── */}
@@ -366,6 +403,11 @@ const MoneyTrain3Guide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Money Train 3 skiller sig ud med sin Bonus Buy-funktion og det komplekse modifier-system. <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> tilbyder en renere, mere direkte volatilitetsoplevelse, mens <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> kombinerer den højeste max win med den laveste hit frequency. Valget afhænger af, om du foretrækker modifier-kompleksitet (Money Train 3), mystery-symboler (Razor Shark), eller klassisk free spins-mekanik (Dead or Alive 2).
           </p>
+          <ReviewScreenshot
+            src={moneyTrain3Paylines}
+            alt="Money Train 3 alle 40 udbetalingslinjer visualiseret med gule markeringer på et 4x5 grid"
+            caption="Alle 40 faste udbetalingslinjer i Money Train 3. Gevinstlinjerne dækker et bredt spektrum af mønstre på det 4×5 grid."
+          />
         </section>
 
         {/* ── Hvem passer det til? ── */}
