@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
 import { Gavel, HelpCircle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { Link } from "react-router-dom";
@@ -166,6 +167,11 @@ const ResponsibleGaming = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="169 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
+
         {/* Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
