@@ -187,9 +187,9 @@ const ChaosCrewGuide = () => {
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">Bonus Buy Cost-Benefit Analyse</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between border-b pb-2"><span className="text-muted-foreground">Standard Buy (60×):</span><strong>Gennemsnitlig return: ~58-62× → EV: ca. -2× til +2×</strong></div>
-              <div className="flex justify-between border-b pb-2"><span className="text-muted-foreground">Enhanced Buy (80×):</span><strong>Gennemsnitlig return: ~78-82× → EV: ca. -2× til +2×</strong></div>
-              <div className="flex justify-between"><span className="text-muted-foreground">Naturlig trigger (~230 spins):</span><strong>Gennemsnitlig cost: ~230× → return: 30-60× + base game hits</strong></div>
+              <div className="flex justify-between border-b pb-2"><span className="text-muted-foreground">Bonus Buy (129×):</span><strong>RTP: 95,92 % → EV: -5,24× pr. køb</strong></div>
+              <div className="flex justify-between border-b pb-2"><span className="text-muted-foreground">Base Game RTP:</span><strong>96,50 % → marginalt bedre EV over tid</strong></div>
+              <div className="flex justify-between"><span className="text-muted-foreground">Naturlig trigger (~230 spins):</span><strong>Gennemsnitlig cost: ~230× → return inkl. base game hits</strong></div>
             </div>
           </CardContent></Card>
 
