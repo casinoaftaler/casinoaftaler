@@ -171,6 +171,27 @@ export function GatesGameSettingsAdmin() {
               Sandsynlighed pr. celle for en multiplier orb i free spins.
             </p>
           </div>
+          {/* Multiplier Values & Weights */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Multiplier Værdier</Label>
+              <Input
+                value={form.multiplierValues}
+                onChange={(e) => setForm({ ...form, multiplierValues: e.target.value })}
+                placeholder="2,3,5,10,15,25,50,100"
+              />
+              <p className="text-xs text-muted-foreground">Kommasepareret liste af orb-værdier</p>
+            </div>
+            <div className="space-y-2">
+              <Label>Multiplier Vægte</Label>
+              <Input
+                value={form.multiplierWeights}
+                onChange={(e) => setForm({ ...form, multiplierWeights: e.target.value })}
+                placeholder="30,25,20,12,6,3,2,1"
+              />
+              <p className="text-xs text-muted-foreground">Vægte svarende til hver værdi (højere = hyppigere)</p>
+            </div>
+          </div>
         </div>
 
         {/* Match & Scatter Settings */}
