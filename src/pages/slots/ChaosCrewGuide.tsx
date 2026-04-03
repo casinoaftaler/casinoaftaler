@@ -55,7 +55,7 @@ const ChaosCrewGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="puzzle" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & dual wilds</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="puzzle" className="mr-1.5 h-3.5 w-3.5" /> 15 paylines & dual wilds</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Chaos Crew – Dual Wild & Multiplikator-Analyse</h1>
             <p className="text-lg text-white/80">Hacksaw Gaming's punk-anarkister Cranky og Sketchy: en matematisk analyse af den innovative dual-wild mekanik, sticky multiplikatorer og det kontrollerede kaos, der driver 10.000× max win.</p>
           </div>
