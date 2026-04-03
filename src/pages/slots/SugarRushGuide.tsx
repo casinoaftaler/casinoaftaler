@@ -125,6 +125,13 @@ const SugarRushGuide = () => {
 
         <InlineCasinoCards />
 
+        <ReviewScreenshot
+          src={sugarRushPaytable}
+          alt="Sugar Rush paytable med alle 8 slik-symboler, udbetalingsværdier for 5-15+ klynger og scatter-symbol forklaring"
+          caption="Spillereglerne viser den fulde gevinsttabel: fra premium-symboler (bolsje, hjerte) til lav-betalende gummibamser. Minimum 5 forbundne symboler kræves for en klynge-gevinst."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ── POSITIONS-HEAT MAP ── */}
