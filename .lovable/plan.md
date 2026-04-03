@@ -1,49 +1,53 @@
 
 
-## Problem
+## Plan: Add Slot Request Stats to Public Profiles
 
-When a user requests a custom slot (not yet in the database), the `slot_name` they type in `slot_requests` may not exactly match the slot name that appears in the bonus hunt API data. The current matching logic:
+### What we're building
+Show each user's Bonus Hunt slot request stats (Bonus Hits, No Bonus, Hit Rate %) on their public profile page, so visitors can see how "lucky" a user is.
 
-1. **`useBonusHuntSlotRequesters`** builds a map keyed by `slot_name.toLowerCase()` from `slot_requests`
-2. **`BonusHuntSlotTable`** tries exact match first, then falls back to simple substring (`includes`) matching
+### Approach
 
-This fails for cases like:
-- User requests "Chaos Crew 2" but API shows "Chaos Crew II"
-- User requests "big bass" but API shows "Big Bass Bonanza"
-- Typos or slight naming variations in custom slots
+**1. New hook: `useUserSlotRequestStats`**
+- Create a query in `src/hooks/useSlotRequests.ts` that fetches slot request stats for any user by `user_id`
+- The `slot_requests` table already has an RLS policy allowing anyone to view `bonus_hit` requests, but we also need `no_bonus` for hit rate calculation
+- We'll need a **new RLS policy** to allow public SELECT on `no_bonus` status requests too (or create a DB function that returns aggregated counts securely)
 
-## Solution
+**2. Database migration**
+- Add a **security definer function** `get_user_slot_request_stats(target_user_id uuid)` that returns `bonus_hits`, `no_bonus`, `total_resolved`, `hit_rate` without exposing raw request data
+- This avoids needing to open up RLS further — the function runs with elevated privileges and only returns aggregate numbers
 
-Improve the fuzzy matching in `useBonusHuntSlotRequesters` and the table's requester lookup to use normalized similarity scoring instead of simple substring matching.
-
-### Changes
-
-**File: `src/hooks/useSlotRequests.ts`** — `useBonusHuntSlotRequesters`
-
-Add a helper function that normalizes slot names (strips punctuation, common suffixes, roman numerals → digits) and computes a similarity score. Export this for reuse in the table component.
-
-```text
-normalize("Chaos Crew II")  → "chaos crew 2"
-normalize("Big Bass Bonanza") → "big bass bonanza"
-normalize("sweet bonanza 1000x") → "sweet bonanza 1000x"
+```sql
+CREATE OR REPLACE FUNCTION public.get_user_slot_request_stats(target_user_id uuid)
+RETURNS jsonb
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT jsonb_build_object(
+    'bonus_hits', COUNT(*) FILTER (WHERE status = 'bonus_hit'),
+    'no_bonus', COUNT(*) FILTER (WHERE status = 'no_bonus'),
+    'total', COUNT(*),
+    'pending', COUNT(*) FILTER (WHERE status = 'pending')
+  )
+  FROM public.slot_requests
+  WHERE user_id = target_user_id
+$$;
 ```
 
-**File: `src/components/bonus-hunt/BonusHuntSlotTable.tsx`** — Requester cell
+**3. New hook: `useUserSlotRequestStats(userId)`**
+- File: `src/hooks/useSlotRequests.ts`
+- Calls `supabase.rpc('get_user_slot_request_stats', { target_user_id: userId })`
+- Returns `{ bonusHits, noBonus, hitRate, total }`
 
-Replace the naive `includes` fallback with a proper best-match finder:
-1. Normalize both the hunt slot name and all request slot names
-2. Check exact normalized match first
-3. Fall back to: longest common substring ratio ≥ 0.6, or one name fully contained in the other
-4. Pick the best match above threshold
+**4. Public Profile UI update**
+- File: `src/pages/PublicProfile.tsx`
+- Add a new "Slot Requests" section between Points and Stats sections
+- Show 3 StatCards: Bonus Hits (green), Ingen Bonus (muted), Hit Rate % (with progress bar)
+- Only render section if user has any resolved requests
 
-### Technical details
-
-- Add a `normalizeForMatch(name: string): string` utility that lowercases, strips `'`, converts roman numerals (II→2, III→3, IV→4), removes trailing "x" multipliers, and trims whitespace/punctuation
-- Add a `slotNameSimilarity(a: string, b: string): number` function (0-1) using normalized word overlap (Jaccard on word tokens + substring containment bonus)
-- Threshold: ≥ 0.5 similarity to count as a match, pick highest scorer
-- Both functions go in a shared util or inline in `useSlotRequests.ts`
-
-### Files to edit
-- `src/hooks/useSlotRequests.ts` — add normalize + similarity helpers, improve map building
-- `src/components/bonus-hunt/BonusHuntSlotTable.tsx` — use improved matching in requester cell
+### Files changed
+- **1 migration** — `get_user_slot_request_stats` function
+- **`src/hooks/useSlotRequests.ts`** — add `useUserSlotRequestStats` hook
+- **`src/pages/PublicProfile.tsx`** — add slot request stats section
 
