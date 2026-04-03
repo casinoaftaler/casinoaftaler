@@ -211,6 +211,12 @@ const DeadOrAlive2Guide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Old Saloon</strong> er mellemvejen med sticky wilds, der forbliver på hjulene resten af bonusrunden. Hvert wild har en fast 2x multiplikator. Max win er 40.500x. Gennemsnitlig bonusudbetaling: ca. 100–150x. Bust-risiko: ~30 %. Ideel til: spillere, der ønsker god balance mellem risiko og potentiale.
           </p>
+          <ReviewScreenshot
+            src={screenshotHighNoon}
+            alt="Dead or Alive 2 High Noon Saloon bonus-mode – sticky wilds med x2 og x3 multiplikatorer og +5 ekstra free spins"
+            caption="High Noon Saloon-moden med x2 og x3 sticky wilds. Når multiplikatorerne ganges sammen (fx 3×3×3×3×3 = 243×), muliggøres max win på 111.111×."
+            size="medium"
+          />
           <p className="text-muted-foreground leading-relaxed">
             <strong>High Noon Saloon</strong> er ekstremmoden: sticky wilds med tilfældige 2x ELLER 3x multiplikatorer, der MULTIPLERER med hinanden. Med 5 wilds med 3x multiplikatorer: 3×3×3×3×3 = 243x multiplikator på alle gevinster. Max win: 111.111x. Gennemsnitlig bonus: ca. 80–120x (skæv fordeling). Bust-risiko: ~45 %. Ideel til: erfarne spillere med tilstrækkeligt budget, der accepterer høj risiko.
           </p>
