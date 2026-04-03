@@ -9,6 +9,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -114,7 +115,8 @@ const DeadOrAlive2Guide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="152 Min." />
+        <AuthorMetaBar author="jonas" readTime="19 min" />
+        <SnippetAnswer answer="Dead or Alive 2 er en ekstremt volatil slot (5/5) fra NetEnt med 96,82 % RTP og 111.111× max win – et af de højeste i branchen. Spillets unikke feature er valget mellem tre free spins-modes: Train Heist (sikker, 2.000× max), Old Saloon (moderat, 40.500× max) og High Noon Saloon (ekstrem, 111.111× max med multiplicative sticky wilds)." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
         </div>
