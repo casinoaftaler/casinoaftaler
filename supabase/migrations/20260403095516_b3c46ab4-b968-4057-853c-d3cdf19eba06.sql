@@ -1,0 +1,4 @@
+UPDATE slot_symbols SET image_url = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-symbols/gates-crown-red.png', name = 'Crown' WHERE id = '44ef03e4-acc2-435d-88d1-561cf46c84c5';
+UPDATE slot_symbols SET image_url = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-symbols/gates-ring-pink.png', name = 'Pink Ring' WHERE id = '497cfb8a-12fb-47c5-a4d0-125d33ad0097';
+UPDATE slot_symbols SET image_url = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-symbols/gates-hourglass-green.png' WHERE id = 'caef3585-635b-4037-91b1-b8e29adac095';
+UPDATE slot_symbols SET image_url = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-symbols/gates-chalice-blue.png' WHERE id = 'fc85f4af-a01b-43a0-be5e-59f734337e1d';
