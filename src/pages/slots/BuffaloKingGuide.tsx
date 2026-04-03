@@ -59,7 +59,11 @@ const BuffaloKingGuide = () => {
             <p className="text-lg text-white/80">Pragmatic Play's vildeste multiplikator-slot: en matematisk dekonstruktion af 93.750× max win-potentialet og den stacking-mekanik, der gør Buffalo King til en af markedets mest volatile titler.</p>
           </div>
         </div>
-      </section>
+       </section>
+
+       <div className="container mb-8">
+         <ReviewScreenshot src={buffalokingLogo} alt="Buffalo King spillemaskinens logo og artwork fra Pragmatic Play med det nordamerikanske prærie-tema" caption="Buffalo King – Pragmatic Play's populære prærie-slot med 93.750× max win" size="medium" eager />
+       </div>
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
