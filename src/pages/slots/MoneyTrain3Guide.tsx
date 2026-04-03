@@ -94,7 +94,7 @@ const MoneyTrain3Guide = () => {
         description="Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(0 65% 25%), hsl(350 55% 20%) 40%, hsl(15 70% 28%))" }}>
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="train" className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
@@ -388,6 +388,66 @@ const MoneyTrain3Guide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Hvis du er ny til online slots, anbefaler vi at starte med lavere volatilitetsalternativer som <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> eller <Link to="/casinospil/spillemaskiner/gonzos-quest" className={linkClass}>Gonzo's Quest</Link> for at opbygge erfaring og forståelse for slot-mekanikker, før du udsætter din bankroll for Money Train 3's ekstreme udsving.
+          </p>
+        </section>
+
+        {/* ── Money Train-Serien: Evolutionen ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
+            Money Train-Serien: Fra 1 til 3 – En Matematisk Evolution
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link> lancerede den originale Money Train i 2019, Money Train 2 i 2020, og Money Train 3 i 2022. Serien repræsenterer en progressiv eskalering i både kompleksitet og gevinstpotentiale: Money Train 1 havde 20.000× max win, Money Train 2 hævede det til 50.000×, og Money Train 3 tredobler til 100.000×. Denne eskalering er ikke blot marketing – den afspejler fundamentale ændringer i den matematiske model og modifier-systemet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Den mest markante evolution fra MT2 til MT3 er grid-udvidelsen under bonusrunden: fra 5×4 (20 positioner) til 4×7 (28 positioner). Denne 40 % forøgelse i tilgængelige positioner øger den teoretiske maksimale symbolakkumulering dramatisk og er den primære tekniske årsag til den fordobling af max win fra 50.000× til 100.000×. Flere positioner betyder flere potentielle modifier-interaktioner, hvilket skaber en mere kompleks men også mere variabel gevinstdistribution.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Modifier-systemet har også gennemgået en væsentlig evolution. Money Train 2 introducerede Persistent Payer og Collector – to modifiers, der i kombination kunne skabe eksponentielle værdistigninger. Money Train 3 tilføjer Necromancer (genopliver fjernede symboler), Shapeshifter (transformerer sig pr. respin), og Tommy Gun (burst-tilføjelse af værdi). Disse nye modifiers øger den kombinatoriske kompleksitet markant: der er nu syv mulige modifier-typer, der kan interagere i hundredvis af unikke kombinationer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere, der har erfaring med Money Train 2, tilbyder MT3 en subtilt anderledes oplevelse: bonusrunderne er typisk længere (pga. flere positioner og Necromancer-genoplivninger), modifier-interaktionerne er mere uforudsigelige (pga. Shapeshifter), og de potentielle value-bursts er mere dramatiske (pga. Tommy Gun og det højere ceiling). RTP'en er marginalt lavere (96,10 % vs. 96,40 % for MT2), hvilket er den pris, spilleren betaler for det højere gevinstpotentiale. For de fleste spillere er denne trade-off acceptabel, men det er værd at bemærke for den matematisk bevidste spiller.
+          </p>
+        </section>
+
+        {/* ── Modifier-Synergi Analyse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
+            Modifier-Synergi: De Mest Eksplosive Kombinationer
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det er modifier-synergien – ikke individuelle modifiers – der driver Money Train 3's mest ekstreme gevinster. Visse kombinationer af modifiers interagerer multiplicativt snarere end additivt, og det er forståelsen af disse synergipar, der adskiller informerede spillere fra dem, der blot jagter bonusrunder blindt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Persistent Payer + Collector:</strong> Den mest konsistente høj-værdi kombination. En Persistent Payer med 10× betaler 10× ved hvert respin, og en Collector absorberer alle synlige værdier. Over 5 respins akkumulerer Collectoren potentielt 50× alene fra Persistent Payeren – plus alle andre symbolers værdier. I en lang bonusrunde med 10+ respins kan denne kombination generere 200-500× isoleret.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Sniper + højværdi-grid:</strong> Sniperen fordobler 3-8 tilfældige symbolers værdi. Hvis Sniperen lander sent i bonusrunden – når griddet allerede er fyldt med akkumulerede høj-værdi symboler – kan fordoblingen producere en pludselig value-eksplosion. En Sniper der rammer 5 symboler med gennemsnitsværdi 20× tilføjer 100× i et enkelt respin.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Necromancer + alle:</strong> Necromancerens evne til at genoplive fjernede symboler er unik for MT3 og forlænger bonusrunder dramatisk. I det bedste scenarie genopliver Necromanceren 5-10 symboler, der giver yderligere 3 respins (fordi tælleren nulstilles), og i løbet af de nye respins lander flere modifiers, der interagerer med de genoplivede symboler. Denne kaskadeeffekt er sjælden men kan drive bonusrunder, der varer 20-30+ respins i stedet for de typiske 5-8.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den "hellige gral"-kombination er Persistent Payer + Collector + Necromancer + Sniper i samme bonusrunde. Sandsynligheden for alle fire modifiers i én runde er ekstremt lav (estimeret under 0,5 %), men når det sker, er det disse runder der producerer 5.000-100.000× gevinster. Forståelsen af denne modifier-synergi giver ikke spilleren kontrol over udfaldet (det er stadig RNG), men det giver indsigt i, hvorfor visse bonusrunder eksploderer – og hvorfor de fleste ikke gør.
+          </p>
+        </section>
+
+        {/* ── Streamer-Kultur og Popularitet ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
+            Streamer-Kulturens Påvirkning og Money Train 3's Popularitet
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Money Train 3 er en af de mest streamede slots på Twitch og YouTube – og det er ingen tilfældighed. Relax Gaming har designet spillet med bevidste "streamer-venlige" elementer: den progressive modifier-opbygning skaber narrativ spænding over bonusrunden, eksplosive modifier-kombinationer producerer "clip-worthy" øjeblikke, og den ekstreme max win (100.000×) genererer organisk viralitet, når store gevinster rammes live.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Denne streamer-optimering har dog en skyggeside for den gennemsnitlige spiller: de virale clips der cirkulerer online repræsenterer de absolutte yderpunkter af gevinstdistributionen – typisk 0,01-0,1 % af alle bonusrunder. Spillere, der vælger Money Train 3 baseret på streamer-clips, har en urealistisk forventning til den gennemsnitlige oplevelse, som er markant mere beskeden: de fleste bonusrunder returnerer 30-80× indsatsen, og mange sessions producerer ingen bonusrunde overhovedet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi opfordrer alle spillere til at se streamer-indhold som underholdning – ikke som en repræsentativ demonstration af spillets typiske oplevelse. Money Train 3 er et exceptionelt veldesignet spil med en fair RTP (standard-versionen), men den ekstreme volatilitet betyder, at den gennemsnitlige spiller vil opleve primært tab afbrudt af sjældne, potentielt store gevinster. Denne realitet bør informere din bankroll-strategi og forventningssætning, uanset hvad du har set på Twitch.
           </p>
         </section>
 

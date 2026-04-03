@@ -76,8 +76,8 @@ const FireJokerGuide = () => {
         description="Komplet analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
-        <div className="container py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Klassisk slot & respin-mekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Fire Joker – Klassisk Slot-Mekanik & Multiplier-Analyse</h1>
@@ -246,6 +246,118 @@ const FireJokerGuide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vi anbefaler altid at sætte et tidsbudget (f.eks. 30 minutter) og et tabsstop (f.eks. 200 kr.) før sessionen starter. Fire Jokers forudsigelige profil gør det nemt at planlægge sessioner med <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer – en fordel, som high-volatility slots ikke tilbyder i samme grad.
+          </p>
+        </section>
+
+        {/* ── Play'n GO's Klassiker-Filosofi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="palette" className="h-5 w-5 text-primary" />
+            Play'n GO's Klassiker-Filosofi: Hvorfor Simpelt Fungerer
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> har med Fire Joker demonstreret en designfilosofi, der stod i skarp kontrast til den dominerende trend i 2016-æraen: at tilføje flere hjul, flere funktioner og mere kompleksitet. Mens konkurrenter som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> udfoldede visuelt spektakulære 3D-slots, valgte Play'n GO bevidst at vende tilbage til rødderne med et spil, der hyldede den klassiske spillemaskines elegance.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Denne filosofi er ikke blot nostalgisk – den er fundamentalt matematisk fordelagtig for spilleren. Et 3×3 grid med 5 linjer har en naturligt høj hit frequency, fordi antallet af mulige symbolkombinationer er dramatisk lavere end i et 5×3 grid med 20+ linjer. Hvor et 5-hjuls slot kræver specifikke symbolkombinationer på forudbestemte positioner, kræver Fire Joker kun 3 matchende symboler langs en af 5 simple linjer. Denne matematiske simpelhed er direkte ansvarlig for den 35-40 % hit frequency, der gør Fire Joker så tilgængelig.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Play'n GO har anvendt samme filosofi i flere af deres klassiske titler – men Fire Joker forbliver det mest raffinerede udtryk. Det skyldes den dobbelte bonus-struktur: Respin of Fire fungerer som en passiv, automatisk RTP-booster (8-12 % af total return), mens Wheel of Multipliers tilføjer det nødvendige "excitement moment" uden at komplicere grundspillet. Denne balance mellem konstant micro-belønning og sjælden macro-belønning er den psykologiske nøgle til Fire Jokers vedvarende popularitet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er værd at bemærke, at Fire Joker er et af de få spil i Play'n GO's portefølje, hvor RTP'en er fast (96,15 %) uden variable konfigurationer. Mange nyere udgivelser fra konkurrerende studier tilbyder operatører 2-3 RTP-versioner, der kan sænke spillerens return med op til 4 procentpoint. Fire Jokers faste RTP er en forbrugerbeskyttelse, som danske spillere bør værdsætte – og en grund til at foretrække den over tilsyneladende lignende klassikere med skjult RTP-reduktion.
+          </p>
+        </section>
+
+        {/* ── Historisk kontekst ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="book-open" className="h-5 w-5 text-primary" />
+            Historisk Kontekst: Fire Joker i den Danske Slot-Kanon
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Joker har en unik position i den danske online casino-kultur. Siden lanceringen i 2016 har den konsekvent rangeret blandt de 10 mest spillede titler hos danske licenserede operatører – en bedrift, der er bemærkelsesværdig i en branche, hvor nye udgivelser konstant konkurrerer om opmærksomhed. Dens levetid overstiger langt de fleste moderne slots, der typisk har en popularitetscyklus på 6-18 måneder.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Grunden til denne vedholdenhed er multifaktoriel: (1) Spillets simplicitet gør det ideelt til nye spillere, der konstant strømmer ind i markedet. (2) Den lave volatilitet gør det til et foretrukket valg for bonusgennemspilning – et permanent behov i casinoindustrien. (3) Den tematiske tidløshed – joker-temaet er universelt genkendeligt og aldrer ikke visuelt. (4) Play'n GO's aggressive distributionsstrategi sikrer, at Fire Joker er tilgængelig hos næsten alle danske operatører.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            I en dansk kontekst er Fire Joker også relevant for regulatoriske årsager. <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> har implementeret strenge krav til gennemsigtighed og spilansvar, og Fire Jokers simple mekanik gør den til et ideelt eksempel på en "ansvarlig" slot: lav volatilitet, ingen aggressive bonus buy-funktioner, og en gennemskuelig gevinststruktur, der ikke narrer spilleren til at overvurdere sine chancer. Det er et spil, der leverer præcis hvad det lover.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For sammenligning er det interessant, at Fire Jokers tematiske "lillebror" i Play'n GO's portefølje – <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> – også har opnået ikonstatus i Danmark, men af den modsatte grund: høj volatilitet og expanderende symboler. Tilsammen dækker Fire Joker og Book of Dead hele det danske spillerspektrum, fra den forsigtige til den risikovillige. Det er en bevidst produktstrategisk positionering fra Play'n GO's side, der reflekterer en dyb forståelse af det danske marked.
+          </p>
+        </section>
+
+        {/* ── Matematisk dyb-dyk: Symbolværdi og EV-bidrag ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
+            Symbolværdi-Hierarki og EV-Bidrag pr. Symbol
+          </h2>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead><tr className="border-b"><th className="text-left py-2">Symbol</th><th className="text-right py-2">3-of-a-kind</th><th className="text-right py-2">Est. frekvens</th><th className="text-right py-2">EV-bidrag</th></tr></thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 font-medium">Stjerne (7'er)</td><td className="text-right">80×</td><td className="text-right">~0,3 %</td><td className="text-right">~24 %</td></tr>
+                    <tr className="border-b"><td className="py-2">BAR</td><td className="text-right">40×</td><td className="text-right">~0,5 %</td><td className="text-right">~20 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Klokke</td><td className="text-right">20×</td><td className="text-right">~0,8 %</td><td className="text-right">~16 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Kirsebær</td><td className="text-right">10×</td><td className="text-right">~1,2 %</td><td className="text-right">~12 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Citron</td><td className="text-right">6×</td><td className="text-right">~1,5 %</td><td className="text-right">~9 %</td></tr>
+                    <tr className="border-b"><td className="py-2">Drue</td><td className="text-right">4×</td><td className="text-right">~2,0 %</td><td className="text-right">~8 %</td></tr>
+                    <tr><td className="py-2">Joker (Wild)</td><td className="text-right">N/A</td><td className="text-right">~3-5 %</td><td className="text-right">~11 %</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Tabellen ovenfor estimerer hvert symbols bidrag til den samlede RTP. Bemærk at Stjernen – det sjældneste symbol – bidrager med den største andel af RTP'en (ca. 24 %), fordi den har den højeste enkeltvinding pr. forekomst. Omvendt bidrager Druen hyppigere men med lavere individuel værdi. Denne inverse fordeling er typisk for alle slots og er central for at forstå, hvordan RTP fordeles: sjældne symboler bærer uforholdsmæssigt stor betydning.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Joker-symbolet (wilden) er atypisk i denne analyse, fordi det ikke producerer gevinster i sig selv men substituerer andre symboler. Dets EV-bidrag (ca. 11 %) reflekterer den marginale gevinstforøgelse fra hver wild-substitution. I praksis er en Joker mest værdifuld, når den substituerer Stjernen eller BAR – en wild-substitueret Stjerne-linje betaler 80× mod kun 4× for en wild-substitueret Drue-linje.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Denne analyse har en praktisk implikation: de fleste af dine base game-gevinster vil være små (Drue og Citron-kombinationer), mens sjældne Stjerne- og BAR-kombinationer leverer de substantielle gevinster. Respin of Fire øger sandsynligheden for at konvertere "næsten-gevinster" med alle symboltyper ligeligt, men den marginale værdi af et succesfuldt respin er markant højere for premium-symboler. Det er denne dynamik, der gør Fire Joker matematisk elegant: hvert spin har multiple lag af gevinstmuligheder med vidt forskellige værdier.
+          </p>
+        </section>
+
+        {/* ── Mobile Gaming & UX ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
+            Mobiloplevelse og UX-Design
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Jokers 3×3 grid-format gør den til en af de mest mobile-venlige slots på markedet. Hvor 5×3 og 6×5 grid-slots kræver zoomning eller sidescrolling på mindre skærme, fylder Fire Jokers kompakte layout naturligt en mobilskærm i portrættilstand. Symbolerne er store, tydelige og lette at identificere – selv på ældre smartphones med lavere opløsning.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Play'n GO's HTML5-implementering er optimeret til touch: spin-knappen er stor og centralt placeret, indsatsændringer kræver kun ét tryk, og Wheel of Multipliers-animationen er skaleret til at fungere visuelt imponerende selv på en 5,5" skærm. Respin of Fire-animationen – det tredje hjul, der spinner mens de to andre holder – er en af de mest tilfredsstillende visuelle oplevelser i mobilslots, fordi den simple mekanik oversættes perfekt til den lille skærm.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En bemærkelsesværdig UX-detalje er Fire Jokers load-tid: fordi det 3×3 grid kræver markant færre grafiske assets end moderne megaways-slots, indlæser spillet typisk 2-3 gange hurtigere. For spillere med langsomme mobilforbindelser er dette en reel fordel. Play'n GO har konsekvent prioriteret performance over visuel kompleksitet i deres klassiske titler, og Fire Joker er det stærkeste eksempel på denne designprioritering.
+          </p>
+        </section>
+
+        {/* ── Gennemspilningsguide ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
+            Gennemspilningsguide: Fire Joker som Wagering-Værktøj
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Fire Jokers kombination af 96,15 % RTP, lav volatilitet og høj hit frequency gør den til et af de mest effektive valg til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonuspenge</Link>. Med Danmarks lovmæssige 10× omsætningskrav og en typisk 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræves 10.000 kr. i samlet indsats. Det statistiske forventede tab under gennemspilningen er: 10.000 × 3,85 % = 385 kr. – hvilket giver en forventet nettogevinst på +615 kr.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Sammenlignet med high-volatility alternativer er Fire Jokers bust-risiko under gennemspilning ekstremt lav – estimeret til kun 5-8 % for standard 10× wagering med en 1.000 kr. bonus. Til sammenligning er bust-risikoen for <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> i High Noon Saloon mode ca. 15-20 % for samme scenarie. Denne sikkerhedsmargin gør Fire Joker til det risikoaverse valg for spillere, der prioriterer bonus-realisering over potentielle mega-gevinster.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Optimal wagering-strategi med Fire Joker: (1) Vælg en indsats, der giver minimum 300 spins med din samlede bankroll (bonus + indskud). (2) Spil med konstant indsats – aldrig variér baseret på session-resultat. (3) Forvent at gennemspilningen tager 1-2 timer ved standardhastighed. (4) Acceptér at den forventede return er ~96 % af den indsatte sum – en positiv EV, men ikke en garanti for gevinst i den individuelle session.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En vigtig advarsel: nogle casinoer begrænser klassiske slots til en reduceret gennemspilningsprocent (f.eks. kun 50 % tæller mod wagering i stedet for 100 %). Verificér altid bonusvilkårene før du begynder gennemspilning. En 50 % gennemspilningsrate fordobler effektivt det krævede spillevolumen, hvilket halverer den forventede EV og øger bust-risikoen tilsvarende. I sådanne tilfælde kan en videoslot med fuld gennemspilning og tilsvarende RTP være det bedre valg.
           </p>
         </section>
 

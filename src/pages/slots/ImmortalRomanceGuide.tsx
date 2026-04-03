@@ -54,8 +54,8 @@ const ImmortalRomanceGuide = () => {
         jsonLd={[articleSchema, faqJsonLd]}
       />
 
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
-        <div className="container py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="heart" className="mr-1.5 h-3.5 w-3.5" /> Narrativ mekanik & progressiv bonus</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Immortal Romance – Chamber of Spins & EV-Analyse</h1>
