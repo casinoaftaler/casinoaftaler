@@ -231,7 +231,12 @@ const DivineFortuneGuide = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trophy" className="h-5 w-5 text-primary" />Den Faireste Jackpot-Slot i Markedet</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortune er et sjældent eksempel på en jackpot-slot, der ikke kræver massive kompromiser på RTP. Med 96,59 % return, medium volatilitet og en progressiv Mega Jackpot er det den mest balancerede jackpot-titel i markedet – og vores top-anbefaling for spillere, der ønsker jackpot-spænding uden at betale en urimelig matematisk pris.</p>
-          <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
+          <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. Franchisen er i dag udvidet med Divine Fortune Black og Divine Fortune Megaways – begge med moderniseret gameplay og den samme progressive jackpot-mekanik. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune-serien det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
+          <ReviewScreenshot
+            src={screenshotFranchise}
+            alt="Divine Fortune franchise-oversigt – Divine Fortune Black og Divine Fortune Megaways tilgængelige på dansk casino"
+            caption="Divine Fortune-franchisen omfatter i dag både Divine Fortune Black (ny) og Divine Fortune Megaways, begge tilgængelige på danske casinoer."
+          />
         </section>
 
         <SlotDataLink slotSlug="divine-fortune" slotName="Divine Fortune" />
