@@ -94,6 +94,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Visuelt præsenteres multiplikatorerne som farvede cirkler under hver position, der intensiveres i farve og størrelse, jo højere multiplikatoren er. Denne visuelle feedback er elegant designet og giver spilleren en umiddelbar forståelse af, hvilke positioner der har højest potentiale. Det er en af de mest intuitive multiplikator-præsentationer i moderne slot-design – en subtil men vigtig UX-detalje, der øger engagement uden at komplicere mekanikken.</p>
         </section>
 
+        <ReviewScreenshot
+          src={sugarRushMultipliers}
+          alt="Sugar Rush multiplikator-grid med akkumulerede x2 til x128 multiplikatorer på alle 49 positioner og volatilitetsindikator"
+          caption="Multiplikator-systemet visualiseret: hvert felt har sin egen akkumulerende multiplikator fra x2 til x128. Bemærk den asymmetriske fordeling – centerceller akkumulerer typisk hurtigere."
+        />
+
         <Separator className="my-10" />
 
         {/* ── TEKNISK PROFIL ── */}
