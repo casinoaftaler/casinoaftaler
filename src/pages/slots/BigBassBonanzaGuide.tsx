@@ -278,9 +278,9 @@ const BigBassBonanzaGuide = () => {
 
         {/* ── SEKTION: VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Mellem Sweet Bonanza og Starburst</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Volatilitetsprofil: Maksimalt Udsving</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Big Bass Bonanza klassificeres som høj volatilitet, men i praksis er den mere moderat end Ultra-højvolatile slots som Razor Shark eller Dead or Alive 2. Med en estimeret standardafvigelse på ca. 8x indsatsen pr. spin placerer den sig i den nedre del af "høj volatilitet"-spektret – snarere 3,5/5 end 4,5/5.
+            Big Bass Bonanza klassificeres som høj volatilitet med den maksimale rating på 5/5 – bekræftet direkte i spillets regelside. Det placerer den på niveau med slots som <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> i volatilitetsskalaen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne moderate volatilitet afspejles i gevinstfordelingen: bonusrunder er mere konsistente end i ultra-volatile slots, men med et lavere gevinstloft (2.100x). Over 100 spins á 10 kr. kan din saldo typisk svinge inden for ±500 kr. – mere end Starburst (±200 kr.) men langt mindre end Razor Shark (±1.500 kr.).
