@@ -14,11 +14,16 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { MenuIcon } from "@/components/MenuIcon";
+
+import wantedGameplay from "@/assets/screenshots/wanted-gameplay.webp";
+import wantedBonusBuy from "@/assets/screenshots/wanted-bonus-buy.webp";
+import wantedCasinoSearch from "@/assets/screenshots/wanted-casino-search.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -29,7 +34,7 @@ const wantedFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Wanted Dead or a Wild en ekstremt volatil slot?", answer: (<>Ja, Wanted Dead or a Wild har ekstremt høj volatilitet (5/5). Base game kan producere lange tørke-perioder på 200+ spins uden signifikant gevinst. De fleste bonusrunder leverer modest return. Det er de sjældne, eksplosive bonusrunder med multiple duel-wilds og høje multiplikatorer, der driver spillets samlede RTP. Sammenlign med <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> for et lignende risikoprofil.</>)},
   { question: "Hvem har udviklet Wanted Dead or a Wild?", answer: (<><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> lancerede Wanted Dead or a Wild i 2021. Det er en af Hacksaw Gamings mest populære titler og har etableret studiet som en seriøs konkurrent til Pragmatic Play og NetEnt i high-volatility segmentet. Studiet er kendt for matematisk aggressive designs.</>) },
   { question: "Er Wanted Dead or a Wild god til bonusgennemspilning?", answer: (<>Med stort forbehold. RTP'en (96,38 %) er acceptabel, men den ekstremt høje volatilitet gør <Link to="/casino-bonus" className={linkClass}>bonus</Link>-gennemspilning uforudsigelig. Du kan tabe hele bankrollen eller komme ud med 50×+ profit. For stabil gennemspilning anbefaler vi lavere volatilitet som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> eller <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link>.</>)},
-  { question: "Hvad koster bonus buy i Wanted Dead or a Wild?", answer: "Wanted Dead or a Wild tilbyder tre bonus buy-niveauer: Standard Free Spins (100× indsatsen) med tilfældigt bonus-start, The Great Train Robbery (150× indsatsen) med garanteret forbedret start, og Duel at Dawn (250× indsatsen) med den mest aggressive start-konfiguration. Jo højere prisen, desto højere er den forventede gennemsnitlige bonus-gevinst." },
+  { question: "Hvad koster bonus buy i Wanted Dead or a Wild?", answer: "Wanted Dead or a Wild tilbyder tre bonus buy-niveauer: Det Store Togrøveri (80× indsatsen, medium volatilitet), Duel ved Daggry (200× indsatsen, meget høj volatilitet) og Død Mands Hånd (400× indsatsen, ekstrem volatilitet). Jo højere prisen, desto højere er den forventede gennemsnitlige bonus-gevinst og volatiliteten." },
   { question: "Hvordan adskiller Wanted sig fra Wild West Gold?", answer: (<><Link to="/casinospil/spillemaskiner/wild-west-gold" className={linkClass}>Wild West Gold</Link> fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har identisk max win (12.500×) men lavere volatilitet (4/5 vs. 5/5) og en fundamentalt anderledes bonusmekanik med money collect-symboler. Wanted's versus-duel-system er mere innovativt men også mere uforudsigeligt. Wild West Gold er det mere konservative valg i western-temaet.</>)},
   { question: "Kan man spille Wanted Dead or a Wild på mobil?", answer: "Ja, Wanted Dead or a Wild er fuldt optimeret til mobilspil med HTML5-teknologi. Grid-layoutet (5×4) skalerer godt til portrættilstand, og alle funktioner – inklusiv bonus buy og Duel at Dawn-animationer – fungerer identisk på mobil og desktop. Touch-kontroller er intuitive med en-tryk spin og swipe-adgang til indstillinger." },
 ];
@@ -65,14 +70,22 @@ const WantedDeadOrAWildGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="21 min" />
-        <SnippetAnswer answer="Wanted Dead or a Wild er en ekstremt volatil slot (5/5) fra Hacksaw Gaming med 96,38 % RTP, 12.500× max win og en unik Duel at Dawn-bonusrunde, hvor versus-symboler duellerer og efterlader sticky wilds med multiplicative multiplikatorer. Tre bonus buy-niveauer (100×, 150×, 250×) giver direkte adgang til bonusen." />
+        <SnippetAnswer answer="Wanted Dead or a Wild er en ekstremt volatil slot (5/5) fra Hacksaw Gaming med 96,38 % RTP, 12.500× max win og en unik Duel at Dawn-bonusrunde, hvor versus-symboler duellerer og efterlader sticky wilds med multiplicative multiplikatorer. Tre bonus buy-niveauer (80×, 200×, 400×) giver direkte adgang til bonusen." />
+
+        <ReviewScreenshot
+          src={wantedGameplay}
+          alt="Wanted Dead or a Wild gameplay med 5x5 grid, western-tematiske symboler (whiskey, pengesække, kranium), Køb Bonus-knap og dansk casino-interface"
+          caption="Wanted Dead or a Wild's 5×5 grid i aktion med det karakteristiske western-tema. Bemærk 'Køb Bonus'-knappen nederst til venstre og de distinkte premium-symboler: whiskey-flasker, pengesække og kranium-scatters."
+          eager
+        />
+
         {/* ── HACKSAW GAMING'S DESIGNFILOSOFI ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> Hacksaw Gaming's Approach til Ekstremt Design</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> har opbygget deres identitet på ét simpelt princip: matematisk aggression. Hvor konkurrenter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> balancerer bred appeal med moderat risiko, satser Hacksaw bevidst på den mest risikovillige spillerprofil. Wanted Dead or a Wild er kulminationen af denne filosofi – et spil designet fra bunden til at polarisere. Du enten elsker den adrenalinpumpende volatilitet, eller du finder den fuldstændig uacceptabel. Der er ingen middelvej.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hacksaws designteam har i interviews forklaret, at Wanted blev udviklet som et svar på spillernes efterspørgsel efter "streamer-slots" – spil, der producerer spektakulære øjeblikke egnet til Twitch og YouTube. Den versus-duel-mekanik blev specifikt valgt, fordi den skaber en narrativ spænding, der er visuelt engagerende for tilskuere: to karakterer duellerer, og udfaldet afgør om bonusrunden eksploderer eller fizzler. Denne designtilgang – at optimere for visuel drama frem for ren matematisk effektivitet – er central for at forstå Wanted's appel.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Sammenlignet med Hacksaws andre titler (Chaos Crew, IteroConnect, Dork Unit) placerer Wanted sig i den øverste ende af volatilitetsskalaen. <Link to="/casinospil/spillemaskiner/chaos-crew" className={linkClass}>Chaos Crew</Link> har lignende mekanikker men med 2/3 af volatiliteten; IteroConnect er eksperimentel men mere balanceret. Wanted er det mest ufiltrerede udtryk for Hacksaws filosofi: store gevinstmuligheder, til gengæld betaler du med ekstremt lange tørkeperioder og en base game, der dræner bankroll hurtigt.</p>
-          <p className="text-muted-foreground leading-relaxed">Et kritisk designvalg er Wanted's multiple bonus buy-tiers. Hvor de fleste slots tilbyder én enkelt bonus buy-pris, giver Wanted tre niveauer (100×, 150×, 250×), der lader spilleren vælge sin egen risikoeksponering inden for bonusrunden. Dette er Hacksaws mest sofistikerede mekaniske innovation – ikke en ny feature, men et nyt lag af spillerautonomi i risikostyring. Vi analyserer hvert tier i detaljer nedenfor.</p>
+          <p className="text-muted-foreground leading-relaxed">Et kritisk designvalg er Wanted's multiple bonus buy-tiers. Hvor de fleste slots tilbyder én enkelt bonus buy-pris, giver Wanted tre niveauer (80×, 200×, 400×), der lader spilleren vælge sin egen risikoeksponering inden for bonusrunden. Dette er Hacksaws mest sofistikerede mekaniske innovation – ikke en ny feature, men et nyt lag af spillerautonomi i risikostyring. Vi analyserer hvert tier i detaljer nedenfor.</p>
         </section>
 
         <Separator className="my-10" />
@@ -105,7 +118,7 @@ const WantedDeadOrAWildGuide = () => {
               <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,38 %</strong></div>
               <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Ekstremt Høj (5/5)</strong></div>
               <div><span className="text-muted-foreground">Max Win:</span><br /><strong>12.500×</strong></div>
-              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×4 (20 paylines)</strong></div>
+              <div><span className="text-muted-foreground">Grid:</span><br /><strong>5×5 (paylines)</strong></div>
               <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,20 kr.</strong></div>
               <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>1.000 kr.</strong></div>
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,62 %</strong></div>
@@ -122,6 +135,11 @@ const WantedDeadOrAWildGuide = () => {
         <Separator className="my-10" />
 
         {/* ── BONUS BUY TIERS ── */}
+        <ReviewScreenshot
+          src={wantedBonusBuy}
+          alt="Wanted Dead or a Wild bonuskøb-menu med tre niveauer: Det Store Togrøveri (1.600 kr), Duel ved Daggry (4.000 kr) og Død Mands Hånd (8.000 kr) ved 20 kr indsats"
+          caption="Bonus Buy-menuen med tre tiers: Det Store Togrøveri (80×, medium volatilitet), Duel ved Daggry (200×, meget høj) og Død Mands Hånd (400×, ekstrem). Priserne skalerer med indsatsen – her vist ved 20 kr."
+        />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shopping-cart" className="h-7 w-7 text-primary" /> Tre Bonus Buy-Niveauer: Matematik og Risikoprofil</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild er en af de få slots, der tilbyder multiple bonus buy-tiers – tre distinkte prisniveauer, hver med sin egen risiko/belønnings-profil. Denne feature giver spilleren et sjældent niveau af kontrol over risikoeksponering, men det kræver forståelse af, hvad du rent faktisk køber ved hvert prisniveau.</p>
@@ -130,17 +148,17 @@ const WantedDeadOrAWildGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Tier</th><th className="text-right py-2">Pris</th><th className="text-right py-2">Est. Avg. Return</th><th className="text-right py-2">Volatilitet</th></tr></thead>
                 <tbody className="text-muted-foreground">
-                  <tr className="border-b"><td className="py-2 font-medium">Standard Free Spins</td><td className="text-right">100×</td><td className="text-right">~95-100×</td><td className="text-right">Høj</td></tr>
-                  <tr className="border-b"><td className="py-2 font-medium">The Great Train Robbery</td><td className="text-right">150×</td><td className="text-right">~145-155×</td><td className="text-right">Meget Høj</td></tr>
-                  <tr><td className="py-2 font-medium">Duel at Dawn</td><td className="text-right">250×</td><td className="text-right">~240-260×</td><td className="text-right">Ekstrem</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Det Store Togrøveri</td><td className="text-right">80×</td><td className="text-right">~75-85×</td><td className="text-right">Medium</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Duel ved Daggry</td><td className="text-right">200×</td><td className="text-right">~190-210×</td><td className="text-right">Meget Høj</td></tr>
+                  <tr><td className="py-2 font-medium">Død Mands Hånd</td><td className="text-right">400×</td><td className="text-right">~380-420×</td><td className="text-right">Ekstrem</td></tr>
                 </tbody>
               </table>
             </div>
           </CardContent></Card>
-          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>Standard Free Spins (100×)</strong> giver en standard bonusrunde med tilfældig konfiguration. Den estimerede gennemsnitlige return er kalibreret tæt på prisen (96-100×), hvilket giver den laveste volatilitet af de tre tiers. For spillere, der vil opleve bonusrunden uden overdreven risiko, er dette det sikreste valg. Dog er sandsynligheden for at ramme 1.000×+ lavere end i de dyrere tiers.</p>
-          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>The Great Train Robbery (150×)</strong> starter bonusrunden med en forbedret konfiguration – typisk med 1-2 forhåndsplacerede versus-symboler eller en garanteret tidlig duel. Denne head start øger sandsynligheden for high-tier outcomes markant. Estimeret har denne tier 30-40 % højere sandsynlighed for at nå 500×+ sammenlignet med Standard-tieren. For den risikovillige spiller er dette ofte det optimale valg: den bedste balance mellem pris og forbedret potentiale.</p>
-          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>Duel at Dawn (250×)</strong> er den mest aggressive tier – og den mest polariserende. Den starter med den mest favorable konfiguration, inklusive garanterede versus-symboler og potentielt forhøjede multiplikator-sandsynligheder. Forventet return matcher prisen (RTP-neutral), men volatiliteten er absurd: majoriteten af 250× køb returnerer under 200×, mens de sjældne eksplosioner kan nå 5.000-12.500×. Denne tier er udelukkende for spillere med stor bankroll og høj risikotolerance.</p>
-          <p className="text-muted-foreground leading-relaxed">Vores anbefaling: For de fleste spillere er "The Great Train Robbery" (150×) det bedste valg. Den tilbyder den mest attraktive risiko/belønnings-ratio med en meningsfuld forbedring over Standard-tieren uden den ekstreme pris og volatilitet fra Duel at Dawn. Duel at Dawn (250×) bør kun overvejes af spillere med en sessions-bankroll på minimum 5.000 kr. og fuldstændig accept af at tabe hele indskuddet. Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv anbefaler vi at vælge det laveste tier, der stadig giver dig den ønskede oplevelse.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>Det Store Togrøveri (80×)</strong> giver en standard bonusrunde med tilfældig konfiguration. Den estimerede gennemsnitlige return er kalibreret tæt på prisen (~75-85×), hvilket giver den laveste volatilitet af de tre tiers. For spillere, der vil opleve bonusrunden uden overdreven risiko, er dette det sikreste valg. Dog er sandsynligheden for at ramme 1.000×+ lavere end i de dyrere tiers.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>Duel ved Daggry (200×)</strong> starter bonusrunden med en forbedret konfiguration – typisk med 1-2 forhåndsplacerede versus-symboler eller en garanteret tidlig duel. Denne head start øger sandsynligheden for high-tier outcomes markant. Estimeret har denne tier 30-40 % højere sandsynlighed for at nå 500×+ sammenlignet med Det Store Togrøveri. For den risikovillige spiller er dette ofte det optimale valg: den bedste balance mellem pris og forbedret potentiale.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><strong>Død Mands Hånd (400×)</strong> er den mest aggressive tier – og den mest polariserende. Den starter med den mest favorable konfiguration, inklusive garanterede versus-symboler og potentielt forhøjede multiplikator-sandsynligheder. Forventet return matcher prisen (RTP-neutral), men volatiliteten er absurd: majoriteten af 400× køb returnerer under 300×, mens de sjældne eksplosioner kan nå 5.000-12.500×. Denne tier er udelukkende for spillere med stor bankroll og høj risikotolerance.</p>
+          <p className="text-muted-foreground leading-relaxed">Vores anbefaling: For de fleste spillere er "Duel ved Daggry" (200×) det bedste valg. Den tilbyder den mest attraktive risiko/belønnings-ratio med en meningsfuld forbedring over Det Store Togrøveri uden den ekstreme pris og volatilitet fra Død Mands Hånd. Død Mands Hånd (400×) bør kun overvejes af spillere med en sessions-bankroll på minimum 10.000 kr. og fuldstændig accept af at tabe hele indskuddet. Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv anbefaler vi at vælge det laveste tier, der stadig giver dig den ønskede oplevelse.</p>
         </section>
 
         <Separator className="my-10" />
@@ -206,7 +224,7 @@ const WantedDeadOrAWildGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-right py-2">RTP</th><th className="text-right py-2">Max Win</th><th className="text-right py-2">Volatilitet</th><th className="text-right py-2">Bonus Buy</th></tr></thead>
                 <tbody className="text-muted-foreground">
-                  <tr className="border-b"><td className="py-2 font-medium">Wanted Dead or a Wild</td><td className="text-right">96,38 %</td><td className="text-right">12.500×</td><td className="text-right">5/5</td><td className="text-right">100-250×</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Wanted Dead or a Wild</td><td className="text-right">96,38 %</td><td className="text-right">12.500×</td><td className="text-right">5/5</td><td className="text-right">80-400×</td></tr>
                   <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link></td><td className="text-right">96,82 %</td><td className="text-right">111.111×</td><td className="text-right">5/5</td><td className="text-right">Nej</td></tr>
                   <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link></td><td className="text-right">96,70 %</td><td className="text-right">50.000×</td><td className="text-right">4,5/5</td><td className="text-right">Nej</td></tr>
                   <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/chaos-crew" className={linkClass}>Chaos Crew</Link></td><td className="text-right">96,35 %</td><td className="text-right">10.000×</td><td className="text-right">4/5</td><td className="text-right">80×</td></tr>
@@ -238,6 +256,13 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> blev grundlagt i 2018 og har på kort tid etableret sig som et af de mest innovative studier i slot-industrien. Deres designsprog er umiskendeligt: stærke tematiske identiteter, ekstremt høj volatilitet, og mekaniske innovationer, der adskiller dem fra mainstream-udviklere. Wanted Dead or a Wild er kronjuvelen i denne portfolio – den titel, der definerede Hacksaws brandidentitet og beviste, at et lille studie kunne konkurrere med giganter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hacksaws designfilosofi adskiller sig fundamentalt fra Pragmatic Plays volumen-tilgang. Hvor Pragmatic udgiver 4-6 nye titler månedligt med variationer over velkendte skabeloner, udgiver Hacksaw færre titler med markant mere mekanisk originalitet. Wanted er et perfekt eksempel: versus-duel-mekanikken eksisterede ikke i slot-industrien før dette spil. Det var en bevidst risiko – en helt ny mekanik uden forudgående markedsvalidering – men det betalte sig spektakulært, da Wanted hurtigt blev en af de mest spillede high-volatility slots globalt.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Et underapprecieret aspekt af Hacksaws design er deres lyddesign. Wanted's western-soundtrack er ikke blot stemningsskabende – det er funktionelt integreret i gameplay. Duel-sekvenserne har unikke lydeffekter, der signalerer hvem der "vinder" (og dermed hvilken wild der forbliver). Wild-akkumulation under free spins har accelererende perkussion, der bygger spænding. Og den endelige gevinstopsummering har en dramatisk crescendo, der forstærker den emotionelle impact af store gevinster. Denne audio-visuelle synergi er en af grundene til, at Wanted føles så meget mere engagerende end matematisk tilsvarende slots fra andre studier.</p>
+
+          <ReviewScreenshot
+            src={wantedCasinoSearch}
+            alt="Wanted Dead or a Wild på Spilleautomaten.dk med RTP 94,55%, mindste indsats 2 DKK og maksimal indsats 40 DKK"
+            caption="Wanted Dead or a Wild som vist hos Spilleautomaten.dk. Bemærk den reducerede RTP på 94,55 % – markant lavere end den officielle 96,38 %. Verificér altid RTP'en i spillets hjælpemenu, da operatører kan anvende lavere RTP-versioner."
+          />
+
           <p className="text-muted-foreground leading-relaxed">For det danske marked er Hacksaw Gaming blevet et stadig vigtigere studie. Danske operatører har været hurtige til at adoptere Hacksaws portefølje, og Wanted er tilgængelig hos alle større danske licenserede casinoer. Studiet har også tilpasset sig danske regulatoriske krav, herunder Spillemyndighedens specifikke krav til bonus buy-funktioner og RTP-gennemsigtighed. For danske spillere, der søger den mest innovative slot-oplevelse, er Hacksaws portefølje – med Wanted som flagskib – det oplagte sted at starte.</p>
         </section>
 
@@ -247,21 +272,21 @@ const WantedDeadOrAWildGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Bonus Buy Tier-Analyse: Matematisk Breakdown af Alle Tre Niveauer</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Wanted Dead or a Wild tilbyder tre distinkte Bonus Buy-niveauer, der repræsenterer fundamentalt forskellige risiko/belønning-profiler. Den 80× standard Bonus Buy giver 10 free spins med normal wild-frekvens – dette er den mest forudsigelige option og den med lavest forventet varians. Gennemsnitlig return er ca. 75-90× (negativt EV på ~10-15 %), men variansen er moderat: ca. 40 % af købene returnerer mindst indsatsen, og ca. 15 % returnerer 200×+.</p>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Den 100× Bonus Buy tilføjer garanterede duel-sekvenser, hvilket øger den gennemsnitlige wild-akkumulation markant. Gennemsnitlig return stiger til ca. 90-100× (tæt på breakeven EV), men variansen øges tilsvarende: ca. 35 % breakeven-rate, men ca. 20 % chance for 250×+. Denne tier er matematisk den mest "fair" – den tilbyder den bedste EV pr. invested unit, hvilket gør den til det rationelle standardvalg for spillere, der bruger Bonus Buy regelmæssigt.</p>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Den 250× premium Bonus Buy er Wanted's mest polariserende feature. Den garanterer en "enhanced" bonusrunde med multiple dueller og øget wild-frekvens. Gennemsnitlig return er ca. 200-230× (negativt EV på ~8-20 %), men med den højeste varians af alle tiers: ca. 25 % breakeven-rate, men ca. 10 % chance for 1.000×+ og ca. 2-3 % chance for 5.000×+. Denne tier er designet til jackpot-jagere og streamere – spillere, der bevidst accepterer negativt EV i bytte for ekstraordinært gevinstpotentiale.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den 200× Bonus Buy (Duel ved Daggry) tilføjer garanterede duel-sekvenser, hvilket øger den gennemsnitlige wild-akkumulation markant. Gennemsnitlig return stiger til ca. 180-210× (tæt på breakeven EV), men variansen øges tilsvarende: ca. 35 % breakeven-rate, men ca. 20 % chance for 500×+. Denne tier er matematisk den mest "fair" – den tilbyder den bedste EV pr. invested unit, hvilket gør den til det rationelle standardvalg for spillere, der bruger Bonus Buy regelmæssigt.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den 400× premium Bonus Buy (Død Mands Hånd) er Wanted's mest polariserende feature. Den garanterer en "enhanced" bonusrunde med multiple dueller og øget wild-frekvens. Gennemsnitlig return er ca. 350-400× (negativt EV på ~5-12 %), men med den højeste varians af alle tiers: ca. 25 % breakeven-rate, men ca. 10 % chance for 1.000×+ og ca. 2-3 % chance for 5.000×+. Denne tier er designet til jackpot-jagere og streamere – spillere, der bevidst accepterer negativt EV i bytte for ekstraordinært gevinstpotentiale.</p>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Bonus Buy Tier</th><th className="text-right py-2">Pris</th><th className="text-right py-2">Gns. return</th><th className="text-right py-2">Breakeven %</th><th className="text-right py-2">1.000×+ chance</th></tr></thead>
                 <tbody className="text-muted-foreground">
-                  <tr className="border-b"><td className="py-2 font-medium">Standard</td><td className="text-right">80×</td><td className="text-right">~85×</td><td className="text-right">~40 %</td><td className="text-right">~5 %</td></tr>
-                  <tr className="border-b"><td className="py-2 font-medium">Med dueller</td><td className="text-right">100×</td><td className="text-right">~95×</td><td className="text-right">~35 %</td><td className="text-right">~8 %</td></tr>
-                  <tr><td className="py-2 font-medium">Premium</td><td className="text-right">250×</td><td className="text-right">~215×</td><td className="text-right">~25 %</td><td className="text-right">~10 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Det Store Togrøveri</td><td className="text-right">80×</td><td className="text-right">~75×</td><td className="text-right">~40 %</td><td className="text-right">~5 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Duel ved Daggry</td><td className="text-right">200×</td><td className="text-right">~190×</td><td className="text-right">~35 %</td><td className="text-right">~8 %</td></tr>
+                  <tr><td className="py-2 font-medium">Død Mands Hånd</td><td className="text-right">400×</td><td className="text-right">~380×</td><td className="text-right">~25 %</td><td className="text-right">~10 %</td></tr>
                 </tbody>
               </table>
             </div>
           </CardContent></Card>
-          <p className="text-muted-foreground leading-relaxed">Strategisk anbefaling: for gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Wanted generelt et dårligt valg pga. den ekstreme volatilitet. Hvis du alligevel vælger det, er 100×-tieren det mest fordelagtige valg pga. den bedste EV. For ren underholdning med jackpot-potentiale er 250×-tieren det mest spændende valg – men kun med penge, du har absolut ingen forventning om at se igen. Aldrig brug 250×-tieren under wagering.</p>
+          <p className="text-muted-foreground leading-relaxed">Strategisk anbefaling: for gennemspilning af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> er Wanted generelt et dårligt valg pga. den ekstreme volatilitet. Hvis du alligevel vælger det, er 200×-tieren (Duel ved Daggry) det mest fordelagtige valg pga. den bedste EV. For ren underholdning med jackpot-potentiale er 400×-tieren det mest spændende valg – men kun med penge, du har absolut ingen forventning om at se igen. Aldrig brug 400×-tieren under wagering.</p>
         </section>
 
         <Separator className="my-10" />
