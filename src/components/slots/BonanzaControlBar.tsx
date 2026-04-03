@@ -1,5 +1,4 @@
-import { Minus, Plus, Square } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { Minus, Plus, RotateCw, Square } from "lucide-react";
 import { getNextBet, getPrevBet } from "@/lib/betSteps";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
