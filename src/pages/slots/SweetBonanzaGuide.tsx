@@ -53,7 +53,7 @@ const sweetBonanzaFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Sweet Bonanza bedre end Gates of Olympus?",
     answer: (
       <>
-        De to spil fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> deler mange mekanikker (tumble, multiplikatorer, 6×5 grid), men har vigtige forskelle. Sweet Bonanza har et markant højere max win (21.100× vs. 5.000×) og en volatilitet på 5/5, mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> har en mere koncentreret multiplikatorstruktur med orbs op til 500×. Begge har Ante Bet-funktion med x25-multiplikator.
+        De to spil fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> deler mange mekanikker (tumble, multiplikatorer, 6×5 grid), men har vigtige forskelle. Sweet Bonanza har et markant højere max win (21.100× vs. 5.000×) og en volatilitet på 3,5/5, mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> har en mere koncentreret multiplikatorstruktur med orbs op til 500×. Begge har Ante Bet-funktion med x25-multiplikator.
       </>
     ),
   },
@@ -70,8 +70,8 @@ const sweetBonanzaFaqs: { question: string; answer: ReactNode }[] = [
 const SweetBonanzaGuide = () => {
   const faqJsonLd = buildFaqSchema(sweetBonanzaFaqs);
   const articleSchema = buildArticleSchema({
-    headline: "Sweet Bonanza – RTP, Volatilitet 5/5 & Matematisk Analyse",
-    description: "Dybdegående analyse af Sweet Bonanza: RTP 96,48-96,51 %, volatilitet 5/5, 21.100× max win, Ante Bet-strategi og multiplikator-matematik.",
+    headline: "Sweet Bonanza – RTP, Volatilitet 3,5/5 & Matematisk Analyse",
+    description: "Dybdegående analyse af Sweet Bonanza: RTP 96,48-96,51 %, volatilitet 3,5/5, 21.100× max win, Ante Bet-strategi og multiplikator-matematik.",
     url: `${SITE_URL}/casinospil/spillemaskiner/sweet-bonanza`,
     datePublished: "2026-04-10",
     authorName: "Jonas",
@@ -101,7 +101,7 @@ const SweetBonanzaGuide = () => {
     <>
       <SEO
         title="Sweet Bonanza Spilleautomat – RTP 96,48% & Max Win (2026)"
-        description="Sweet Bonanza analyse 2026: RTP 96,48-96,51 %, volatilitet 5/5 og 21.100× max win. Tumlefunktion, Ante Bet-strategi og EV-vurdering for danske spillere."
+        description="Sweet Bonanza analyse 2026: RTP 96,48-96,51 %, volatilitet 3,5/5 og 21.100× max win. Tumlefunktion, Ante Bet-strategi og EV-vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
       />
 
@@ -111,7 +111,7 @@ const SweetBonanzaGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sweet Bonanza</h1>
-            <p className="text-lg text-white/80">21.100× max win, volatilitet 5/5 og multiplikatorer op til 100× – en matematisk dissektion af Pragmatic Plays mest ikoniske cluster-pays slot med verificerede data.</p>
+            <p className="text-lg text-white/80">21.100× max win, volatilitet 3,5/5 og multiplikatorer op til 100× – en matematisk dissektion af Pragmatic Plays mest ikoniske cluster-pays slot med verificerede data.</p>
           </div>
         </div>
       </section>
@@ -122,8 +122,8 @@ const SweetBonanzaGuide = () => {
         {/* ── Intro screenshot ── */}
         <ReviewScreenshot
           src={screenshotIntro}
-          alt="Sweet Bonanza introskærm – 6×5 grid, volatilitet 5/5 og 21.100× max win"
-          caption="Introskærmen bekræfter volatilitet 5/5 (5 lyn-ikoner) og max win 21.100× indsatsen. Symboler inkluderer frugter (vindruer, bananer, blommer, æbler) og bolsjer (hjerter, grønne, blå, lilla)."
+          alt="Sweet Bonanza introskærm – 6×5 grid, volatilitet 3,5/5 og 21.100× max win"
+          caption="Introskærmen bekræfter volatilitet 3,5/5 (3,5 ud af 5 lyn-ikoner) og max win 21.100× indsatsen. Symboler inkluderer frugter (vindruer, bananer, blommer, æbler) og bolsjer (hjerter, grønne, blå, lilla)."
           size="full"
           eager
         />
@@ -135,7 +135,7 @@ const SweetBonanzaGuide = () => {
             Sweet Bonanza fra <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> er ikke bare farverige bolsjer og søde frugter. Bag det tilsyneladende uskyldige tema gemmer sig en af de mest sofistikerede matematiske modeller i moderne online slots. Med en RTP på 96,48-96,51 %, et tumlefunktion-system der fundamentalt ændrer gevinstfrekvensen, og en multiplikatorstruktur der kan eksplodere i free spins, er Sweet Bonanza et spil der belønner spillere, der forstår tallene.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lanceringen i 2019 markerede et skift i Pragmatic Plays designfilosofi: væk fra traditionelle gevinstlinjer og over til cluster-pays med et 6×5 grid. Denne arkitektur muliggør op til 21.100× din indsats i en enkelt bonusrunde – men det kræver forståelse af, hvordan multiplikatorer interagerer med tumlefunktionen. Vores verifikation af spillets info-menu afslører en volatilitet på 5/5 (ikke 4/5 som mange kilder angiver) og en Ante Bet-mekanik, der fundamentalt ændrer spillets dynamik.
+            Lanceringen i 2019 markerede et skift i Pragmatic Plays designfilosofi: væk fra traditionelle gevinstlinjer og over til cluster-pays med et 6×5 grid. Denne arkitektur muliggør op til 21.100× din indsats i en enkelt bonusrunde – men det kræver forståelse af, hvordan multiplikatorer interagerer med tumlefunktionen. Vores verifikation af spillets info-menu afslører en volatilitet på 3,5/5 (ikke 4/5 som mange kilder angiver) og en Ante Bet-mekanik, der fundamentalt ændrer spillets dynamik.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vi har analyseret tusenvis af simulerede spins, verificeret RTP-data direkte fra spillet, og beregnet Expected Value for bonus buy versus organisk trigger med begge indsatsmultiplikatorer (x20 og x25). Resultatet er den mest dybdegående Sweet Bonanza-analyse tilgængelig på dansk.
@@ -165,7 +165,7 @@ const SweetBonanzaGuide = () => {
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
-              <p className="text-xl font-bold">Meget Høj (5/5)</p>
+              <p className="text-xl font-bold">Middel-Høj (3,5/5)</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Max Win</p>
@@ -269,7 +269,7 @@ const SweetBonanzaGuide = () => {
             Sweet Bonanzas <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> er verificeret direkte fra spillets info-menu: den <strong>maksimale RTP er 96,51 %</strong> og den <strong>minimale RTP er 96,48 %</strong>. Forskellen skyldes de to indsatsmultiplikatorer: x20 giver den højeste RTP (96,51 %), mens x25 Ante Bet giver marginalt lavere (96,48 %). Denne variation er minimal og inden for normal margin.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er dermed 3,49–3,52 % – i den acceptable ende for en slot med volatilitet 5/5. Over 1.000 spins á 10 kr. er dit forventede tab ca. 349–352 kr. Det er markant lavere end mange konkurrenter med tilsvarende volatilitet.
+            <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er dermed 3,49–3,52 % – i den acceptable ende for en slot med volatilitet 3,5/5. Over 1.000 spins á 10 kr. er dit forventede tab ca. 349–352 kr. Det er markant lavere end mange konkurrenter med tilsvarende volatilitet.
           </p>
           <Card className="mb-6">
             <CardContent className="pt-6">
@@ -300,8 +300,8 @@ const SweetBonanzaGuide = () => {
         {/* ── RTP screenshot ── */}
         <ReviewScreenshot
           src={screenshotRegler}
-          alt="Sweet Bonanza tekniske regler – volatilitet 5/5, RTP 96,48-96,51%, min indsats 1 kr."
-          caption="Verificeret fra spillets info-menu: Volatilitet 5/5 (5 lyn-ikoner). Maksimal RTP: 96,51 %. Minimal RTP: 96,48 %. Mindste indsats: 1,00 kr. Maksimal indsats: 62,50 kr. Symboler udbetaler hvor som helst."
+          alt="Sweet Bonanza tekniske regler – volatilitet 3,5/5, RTP 96,48-96,51%, min indsats 1 kr."
+          caption="Verificeret fra spillets info-menu: Volatilitet 3,5/5 (3,5 ud af 5 lyn-ikoner). Maksimal RTP: 96,51 %. Minimal RTP: 96,48 %. Mindste indsats: 1,00 kr. Maksimal indsats: 62,50 kr. Symboler udbetaler hvor som helst."
           size="full"
         />
 
@@ -309,9 +309,9 @@ const SweetBonanzaGuide = () => {
 
         {/* ── VOLATILITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Volatilitet 5/5: Hvad det Reelt Indebærer</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="zap" className="h-7 w-7 text-primary" /> Volatilitet 3,5/5: Hvad det Reelt Indebærer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanza klassificeres som volatilitet 5/5 (5 lyn-ikoner) af Pragmatic Play – den højeste kategori. Spillets info-menu beskriver det som "mellemstore volatilitet" med udbetaling "fra små til meget store", men den faktiske 5/5-rating placerer den i den mest volatile ende. Med et max win på 21.100× og en gevinstfordeling, der er markant højreskæv, er dette et spil, der kræver mental og finansiel forberedelse.
+            Sweet Bonanza klassificeres som volatilitet 3,5/5 (3,5 ud af 5 lyn-ikoner) af Pragmatic Play – en middel-høj kategori. Spillets info-menu beskriver det som "mellemstore volatilitet" med udbetaling "fra små til meget store", men den faktiske 5/5-rating placerer den i den øvre middel af volatilitetsskalaen. Med et max win på 21.100× og en gevinstfordeling, der er markant højreskæv, er dette et spil, der kræver mental og finansiel forberedelse.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I basisspillet vil ca. 75–80 % af dine spins ende uden gevinst eller med en gevinst under 1× din indsats. Omkring 15–20 % vil give 1–5×, og kun 3–5 % vil give over 5×. Det er free spins-runden, der bærer spillets samlede RTP. Uden bonusrunder ville Sweet Bonanzas basisspil have en RTP på kun ca. 55–60 %. De resterende 36–41 procentpoint af RTP'en kommer udelukkende fra free spins med multiplikatorer.
@@ -444,7 +444,7 @@ const SweetBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Bonus-Compatibility: Kan Sweet Bonanza Bruges til Wagering?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en RTP på 96,48–96,51 % er Sweet Bonanza en af de stærkeste bonuskandidater på markedet. Ved en standard <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100 % op til 1.000 kr. med 10× omsætningskrav er den forventede bonusværdi klart positiv (+651 kr.). Den høje volatilitet (5/5) betyder dog stor varians – ca. 55–60 % af spillere vil ende i profit, mens 40–45 % vil tabe bonussen.
+            Med en RTP på 96,48–96,51 % er Sweet Bonanza en af de stærkeste bonuskandidater på markedet. Ved en standard <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100 % op til 1.000 kr. med 10× omsætningskrav er den forventede bonusværdi klart positiv (+651 kr.). Den høje volatilitet (3,5/5) betyder dog stor varians – ca. 55–60 % af spillere vil ende i profit, mens 40–45 % vil tabe bonussen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Under wagering anbefaler vi standard x20-multiplikator (ikke Ante Bet), fordi Bonus Buy-funktionen giver mulighed for garanteret bonusadgang, hvis bankrollen tillader det. Den marginale RTP-forskel (96,51 % vs. 96,48 %) er ubetydelig for wagering-formål.
@@ -460,7 +460,7 @@ const SweetBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Hvem Passer Sweet Bonanza Til? Spillerprofil-Analyse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanza er ikke for alle. Spillets matematiske profil med volatilitet 5/5 gør det ideelt for visse spillertyper og direkte uegnet for andre:
+            Sweet Bonanza er ikke for alle. Spillets matematiske profil med volatilitet 3,5/5 gør det ideelt for visse spillertyper og direkte uegnet for andre:
           </p>
           <div className="grid gap-4 md:grid-cols-2 mb-6">
             <Card>
@@ -481,7 +481,7 @@ const SweetBonanzaGuide = () => {
                   <li>• <strong>Casual spillere med lille budget</strong> – du kan bust hurtigt</li>
                   <li>• <strong>Spillere der søger jævne, hyppige gevinster</strong> – prøv Starburst i stedet</li>
                   <li>• <strong>Spillere med lavt frustrationstolerancetærskel</strong> – tørrperioder er lange</li>
-                  <li>• <strong>Nybegyndere</strong> – volatilitet 5/5 er krævende</li>
+                  <li>• <strong>Nybegyndere</strong> – volatilitet 3,5/5 er krævende</li>
                 </ul>
               </CardContent>
             </Card>
@@ -532,7 +532,7 @@ const SweetBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-primary" /> Risikoanalyse: Bankroll-Krav og Bust-Sandsynligheder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanzas volatilitet 5/5 skaber reelle risici, der skal kvantificeres:
+            Sweet Bonanzas volatilitet 3,5/5 skaber reelle risici, der skal kvantificeres:
           </p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm">
@@ -566,10 +566,10 @@ const SweetBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vores Matematiske Vurdering af Sweet Bonanza</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanza fortjener sin popularitet – og med verificerede data er den endnu stærkere end mange tror. Med en RTP på 96,48–96,51 %, volatilitet 5/5, og et max win på 21.100× er den en af de mest veldesignede cluster-pays slots på markedet. Ante Bet-funktionen (x25) giver strategisk dybde, og de 13 mulige multiplikatorværdier (2×–100×) under free spins skaber genuine spændingsmomenter.
+            Sweet Bonanza fortjener sin popularitet – og med verificerede data er den endnu stærkere end mange tror. Med en RTP på 96,48–96,51 %, volatilitet 3,5/5, og et max win på 21.100× er den en af de mest veldesignede cluster-pays slots på markedet. Ante Bet-funktionen (x25) giver strategisk dybde, og de 13 mulige multiplikatorværdier (2×–100×) under free spins skaber genuine spændingsmomenter.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dog er Sweet Bonanza ikke det bedste valg i alle scenarier. Til casual spillere med begrænset budget kan volatilitet 5/5 være frustrerende. Men for spillere, der forstår og accepterer risikoen, sætter et tilstrækkeligt budget (min. 200:1 ratio), og nyder spændingen ved potentialet for eksplosive multiplikator-kaskader, er Sweet Bonanza en topanbefaling.
+            Dog er Sweet Bonanza ikke det bedste valg i alle scenarier. Til casual spillere med begrænset budget kan volatilitet 3,5/5 være frustrerende. Men for spillere, der forstår og accepterer risikoen, sætter et tilstrækkeligt budget (min. 200:1 ratio), og nyder spændingen ved potentialet for eksplosive multiplikator-kaskader, er Sweet Bonanza en topanbefaling.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Kritisk note: verificér altid RTP-versionen i spillets info-menu. Spil kun Sweet Bonanza på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, og husk altid at sætte ufravigelige budgetgrænser. Udforsk <Link to="/casinospil/spillemaskiner" className={linkClass}>flere spillemaskiner</Link> eller sammenlign med andre <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler.
