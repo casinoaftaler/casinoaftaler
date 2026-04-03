@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
-import buffalokingLogo from "@/assets/screenshots/buffalokingLogo.webp";
+
 import buffalokingMultiplikatorStacking from "@/assets/screenshots/buffalokingMultiplikatorStacking.webp";
 import buffalokingRtpData from "@/assets/screenshots/buffalokingRtpData.webp";
 import buffalokingBaseGameBonus from "@/assets/screenshots/buffalokingBaseGameBonus.webp";
