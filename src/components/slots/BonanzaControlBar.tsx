@@ -129,7 +129,7 @@ export function BonanzaControlBar({
     if (bonusState.isActive) {
       return (
         <div className="flex flex-col items-center">
-          <MenuIcon iconName="rotate-cw" className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+          <RotateCw className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           <span className="text-[8px] sm:text-[9px] font-bold text-white">FREE</span>
         </div>
       );
