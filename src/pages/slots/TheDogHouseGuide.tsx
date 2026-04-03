@@ -47,10 +47,10 @@ const theDogHouseFaqs: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: "Kan man købe bonusrunden i The Dog House?",
+    question: "Hvordan udløses free spins i The Dog House?",
     answer: (
       <>
-        Ja, The Dog House tilbyder Bonus Buy til 60× indsatsen. Den gennemsnitlige free spins-gevinst er ca. 50-70× indsatsen, hvilket giver en marginal positiv EV for Bonus Buy over et stort antal forsøg. Funktionen er populær blandt spillere, der ønsker direkte adgang til sticky wilds-mekanikken. Bemærk at Bonus Buy muligvis ikke er tilgængelig på alle danske casinoer. Læs mere om <Link to="/casino-bonus" className={linkClass}>bonustyper</Link>.
+        Free spins udløses af 3 scatter-symboler (paw prints) på hjul 1, 3 og 5. Derefter præsenteres et bonushjul med 9 individuelle hjul, der hver tildeler 1, 2 eller 3 free spins – i alt mellem 9 og 27 free spins. Under bonusrunden er alle wilds sticky med tilfældige 2× eller 3× multiplikatorer. Genudløsning er mulig ved 3 nye scattere, som udløser et nyt hjulspil med yderligere spins.
       </>
     ),
   },
@@ -103,14 +103,14 @@ const TheDogHouseGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="dog" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
-            <p className="text-lg text-white/80">Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.</p>
+            <p className="text-lg text-white/80">Pragmatic Play's elskede sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og det innovative bonushjul-system.</p>
           </div>
         </div>
       </section>
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="16 min" />
-        <SnippetAnswer answer="The Dog House er en høj-volatilitets slot fra Pragmatic Play med 96,51 % RTP og 12.305× max win. Spillets unikke feature er sticky wilds under free spins med 2× eller 3× multiplikatorer, der ganges sammen – to wilds med 3× giver 9× samlet multiplikator. Bonus Buy er tilgængelig for 60× indsatsen." />
+        <SnippetAnswer answer="The Dog House er en høj-volatilitets slot fra Pragmatic Play med 96,51 % RTP og 6.750× max win. Spillets unikke feature er sticky wilds under free spins med 2× eller 3× multiplikatorer, der ganges sammen – to wilds med 3× giver 9× samlet multiplikator. Free spins udløses via et bonushjul med 9 individuelle hjul, der hver tildeler 1-3 spins." />
         {/* ── Data First: RTP & Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -131,7 +131,7 @@ const TheDogHouseGuide = () => {
                 <div><span className="text-muted-foreground">Grid:</span> <span className="font-medium">5×3 (20 linjer)</span></div>
                 <div><span className="text-muted-foreground">Hit Frequency:</span> <span className="font-medium">~25 %</span></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span> <span className="font-medium">2 kr.</span></div>
-                <div><span className="text-muted-foreground">Bonus Buy:</span> <span className="font-medium">60× indsats</span></div>
+                <div><span className="text-muted-foreground">Free Spins:</span> <span className="font-medium">9-27 (via hjulspil)</span></div>
               </div>
             </CardContent>
           </Card>
@@ -215,16 +215,16 @@ const TheDogHouseGuide = () => {
             Free Spins-Dynamik og Genudløsning
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The Dog House's <Link to="/free-spins" className={linkClass}>free spins</Link> udløses af 3 scatter-symboler (kun hjul 1, 3 og 5) og giver et valg mellem to modi: standard free spins (9 spins med sticky wilds) eller raining wilds (9 spins med tilfældige wilds pr. spin, men ikke sticky). Standard-moden er den matematisk interessante for denne analyse.
+            The Dog House's <Link to="/free-spins" className={linkClass}>free spins</Link> udløses af 3 scatter-symboler (paw prints) på hjul 1, 3 og 5. I stedet for et fast antal free spins præsenteres spilleren for et unikt bonushjul-system: 9 individuelle hjul spinner, og hvert hjul tildeler enten 1, 2 eller 3 free spins. Det samlede antal free spins varierer derfor fra minimum 9 til maksimum 27 – en mekanik der i sig selv tilføjer et spændingsmoment, allerede inden bonusrunden begynder.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Under standard free spins er hvert wild der lander permanent for runden. Med 9 spins og 3 wild-egnede positioner pr. spin (hjul 2, 3 og 4) er der teoretisk 27 muligheder for wilds – men kun 9 af de 15 total positioner kan bære wilds (hjul 2-4, række 1-3). Den gennemsnitlige free spins-runde producerer typisk 3-5 sticky wilds, hvilket giver en moderat multiplikator-effekt.
+            Under free spins er hvert wild der lander permanent for runden – de "klæber" fast som sticky wilds. Med wilds begrænset til hjul 2, 3 og 4 kan op til 9 positioner (3 hjul × 3 rækker) fyldes med sticky wilds. Den gennemsnitlige free spins-runde producerer typisk 3-5 sticky wilds, men med et højt antal tildelte spins (20+) kan et fuldt grid af wilds opnås.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Genudløsning er mulig med 3 ekstra scattere under free spins, som tildeler yderligere 9 spins. Sandsynligheden for genudløsning er estimeret til ~8-12 % pr. free spins-runde. Genudløsning er særligt værdifuld fordi alle eksisterende sticky wilds forbliver, og nye wilds akkumuleres ovenpå – dette er typisk dér, de virkelig store gevinster (1.000×+) opstår.
+            Genudløsning er mulig med 3 ekstra scattere under free spins, som udløser et nyt hjulspil med yderligere spins. Genudløsning er særligt værdifuld fordi alle eksisterende sticky wilds forbliver, og nye wilds akkumuleres ovenpå – dette er typisk dér, de virkelig store gevinster (1.000×+) opstår. Sandsynligheden for genudløsning er estimeret til ~8-12 % pr. free spins-runde.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bonus Buy til 60× indsatsen giver direkte adgang til free spins. Den gennemsnitlige free spins-gevinst er ca. 50-70× indsatsen, hvilket gør Bonus Buy marginalt positiv EV over et stort sample. For spillere med begrænset tid eller utålmodighed er det en legitim strategi – men husk, at individuelle free spins-runder varierer enormt: fra 5× til 6.750× indsatsen.
+            Bemærk at den originale The Dog House IKKE har en Bonus Buy-funktion – dette er en feature der kun findes i nyere varianter som The Dog House Megaways. Free spins skal altid udløses naturligt via 3 scattere i base game, med en estimeret triggerfrekvens på ca. 1 pr. 180-250 spins.
           </p>
         </section>
 
@@ -264,7 +264,7 @@ const TheDogHouseGuide = () => {
             RTP-fordelingen mellem basespil og bonus er estimeret til ca. 55 % basespil og 45 % free spins. Denne fordeling er mere bonus-tung end Wolf Gold (60/20/15) men mere balanceret end rent bonus-drevne slots som <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> (~35/65). For spilleren betyder dette, at basespillet holder dig i live, mens free spins leverer de afgørende gevinstmoments.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Sammenlignet med Bonus Buy-prisen på 60× er den gennemsnitlige free spins-værdi på ~50-70× interessant. Over 100 Bonus Buy-forsøg (6.000× samlet indsats) ville du statistisk få ~5.000-7.000× tilbage, svarende til en RTP på ~83-117 %. Det brede interval understreger den høje varians – selv Bonus Buy-strategien kræver et stort sample for at konvergere mod gennemsnittet.
+            Da The Dog House ikke har Bonus Buy, er den eneste vej til bonusrunden naturlig triggering via scattere. Over en session på 300 spins kan du statistisk forvente 1-2 bonusrunder, med en gennemsnitlig free spins-gevinst på ca. 50-70× indsatsen. Den variable hjulspil-mekanik (9-27 spins) tilføjer dog ekstra varians: en runde med 27 spins har markant højere gevinst-ceiling end en med kun 9.
           </p>
         </section>
 
@@ -354,14 +354,14 @@ const TheDogHouseGuide = () => {
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Max Win</td><td className="py-2 pr-4">6.750×</td><td className="py-2 pr-4">21.100×</td><td className="py-2">5.000×</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Volatilitet</td><td className="py-2 pr-4">Høj</td><td className="py-2 pr-4">Høj</td><td className="py-2">Høj</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Mekanik</td><td className="py-2 pr-4">Sticky Wilds</td><td className="py-2 pr-4">Tumble/Scatter</td><td className="py-2">Tumble/Multiplier</td></tr>
-                    <tr><td className="py-2 pr-4 font-medium">Bonus Buy</td><td className="py-2 pr-4">60×</td><td className="py-2 pr-4">100×</td><td className="py-2">100×</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium">Bonus Buy</td><td className="py-2 pr-4">Nej</td><td className="py-2 pr-4">100×</td><td className="py-2">100×</td></tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            The Dog House tilbyder den mest tilgængelige Bonus Buy-pris (60× vs. 100×) og den højeste RTP i trioen. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> vinder på max win (21.100×), mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> tilbyder den mest tilfredsstillende tumble-mekanik. For spillere, der prioriterer sticky wild-strategien og ønsker den billigste Bonus Buy, er The Dog House det optimale valg.
+            The Dog House har den højeste RTP i trioen (96,51 %) og er den eneste uden Bonus Buy, hvilket gør den til det mest "klassiske" valg. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> vinder på max win (21.100×), mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> tilbyder den mest tilfredsstillende tumble-mekanik. For spillere, der foretrækker sticky wild-strategien og en mere traditionel bonusudløsning, er The Dog House det naturlige valg.
           </p>
         </section>
 
@@ -372,7 +372,7 @@ const TheDogHouseGuide = () => {
             The Dog House-Serien: Fra Original til Megaways og Beyond
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har udbygget The Dog House til en komplet franchise med tre distinkte varianter, der henvender sig til forskellige spillerprofiler. Det originale The Dog House (2019) forbliver fundamentet med sit 5×3 grid og 20 faste linjer. The Dog House Megaways (2020) introducerede Megaways-mekanikken med op til 117.649 gevinstmuligheder og markant højere volatilitet. The Dog House – Dog or Alive (2022) tog franchisen i en endnu mere aggressiv retning med multiplikatorer op til 128× og en max win på 12.000×.
+            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har udbygget The Dog House til en komplet franchise med tre distinkte varianter, der henvender sig til forskellige spillerprofiler. Det originale The Dog House (2019) forbliver fundamentet med sit 5×3 grid, 20 faste linjer og det unikke bonushjul-system. The Dog House Megaways (2020) introducerede Megaways-mekanikken med op til 117.649 gevinstmuligheder, Bonus Buy-funktion og "Raining Wilds"-modus – features der IKKE findes i originalen. The Dog House – Dog or Alive (2022) tog franchisen i en endnu mere aggressiv retning med multiplikatorer op til 128× og en max win på 12.000×.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Matematisk set er den originale The Dog House det mest balancerede valg i serien. Megaways-versionen har højere ceiling men markant dybere tørkeperioder – hit frequency falder fra ~25 % til ~15-18 % i base game. Dog or Alive-varianten er den mest volatile med den mest aggressive multiplikator-distribution, designet specifikt til streamere og high-roller spillere. For det brede danske spillersegment er den originale udgave fortsat den bedste indgangsvinkel til franchisen.
@@ -425,10 +425,10 @@ const TheDogHouseGuide = () => {
             Den visuelle og auditive feedback under free spins er bevidst designet til at forstærke den emotionelle oplevelse. Hvert wild der lander producerer en distinkt lyd og en dramatisk animation, der signalerer "noget godt skete". Multiplikator-ikonerne (2× eller 3×) vises tydeligt over hvert wild, og når wilds indgår i gevinstlinjer, multipliceres gevinstanimationen med tilsvarende drama. Denne feedback-loop er kritisk for at opretholde spillerens engagement under en 9-spin bonusrunde.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Valget mellem to free spins-modi (standard vs. raining wilds) er en subtil psykologisk mekanisme: det giver spilleren en illusion af kontrol over udfaldet. I virkeligheden er begge modi kalibreret til at producere den samme gennemsnitlige RTP – valget er æstetisk, ikke strategisk. Men følelsen af at have "valgt rigtigt" (eller "forkert") bidrager til den narrative engagement, der holder spilleren i spillet.
+            Bonushjul-mekanikken – hvor 9 hjul tildeler 1-3 spins hver – er i sig selv en psykologisk kraftfuld feature. Hvert hjul der spinner skaber et mikro-spændingsmoment, og spilleren oplever en serie af små "gevinster" (antallet af tildelte spins), der gradvist bygger forventning til selve bonusrunden. En runde med mange 3-spin hjul føles som en "god start", selvom det matematisk set blot øger antallet af spins uden at ændre den forventede gevinstværdi pr. spin.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv er det vigtigt at være bevidst om disse psykologiske mekanismer. The Dog House er designet til at være engagerende – det er et underholdningsprodukt. Men forståelsen af, at "near-miss"-oplevelser ikke øger sandsynligheden for en fremtidig bonus, at multiplikator-wilds er tilfældige (ikke "fortjente"), og at valget af fri spin-modus er matematisk neutralt, kan hjælpe spillere med at træffe mere rationelle beslutninger om deres spilleadfærd. Nyd spillet for hvad det er: en charmerende, veldesignet underholdning med en fair RTP.
+            Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv er det vigtigt at være bevidst om disse psykologiske mekanismer. The Dog House er designet til at være engagerende – det er et underholdningsprodukt. Men forståelsen af, at "near-miss"-oplevelser ikke øger sandsynligheden for en fremtidig bonus, at multiplikator-wilds er tilfældige (ikke "fortjente"), og at hjulspillets resultat er uafhængigt af dine tidligere spins, kan hjælpe spillere med at træffe mere rationelle beslutninger om deres spilleadfærd. Nyd spillet for hvad det er: en charmerende, veldesignet underholdning med en fair RTP.
           </p>
         </section>
 
