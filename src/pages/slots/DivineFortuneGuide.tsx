@@ -90,8 +90,6 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Divine Fortune opererer på et standard 5×3 grid med 20 faste gevinstlinjer. Wild-symbolerne har en unik "Falling Wilds"-mekanik: de falder én position ned for hvert spin og forbliver på griddet, indtil de falder ud i bunden. Denne mekanik skaber en bro mellem base game og bonusfunktioner, da wilds kan persistere over flere spins og generere uventede gevinstkombinationer.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency i base game er estimeret til 30-35 %, hvilket er højere end de fleste high-volatility slots men lavere end ultra-lav volatilitets-titler som <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>. Falling Wilds bidrager med ekstra 5-8 % effektiv hit frequency, da persisterende wilds skaber gevinster over multiple spins. Den samlede effektive gevinstrate er altså tættere på 38-43 %.</p>
           <p className="text-muted-foreground leading-relaxed">Jackpot-bidraget til RTP estimeres til cirka 3-5 % af den samlede 96,59 %. Det betyder at base game + free spins RTP er cirka 91-93 % – stadig acceptabelt, men det understreger at jackpot-chancen er en integreret del af spillets matematiske værdi. Spillere, der aldrig rammer jackpot-spillet, vil opleve en lavere effektiv RTP end den angivne 96,59 %.</p>
-        </section>
-
           <ReviewScreenshot
             src={screenshotGameplay}
             alt="Divine Fortune Black gameplay – 5×3 grid med Medusa, løve, tyr og tre progressive jackpots: Minor 50, Mega 5.000 og Major 500"
