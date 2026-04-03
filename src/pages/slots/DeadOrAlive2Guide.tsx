@@ -33,7 +33,7 @@ const linkClass = "text-primary underline hover:text-primary/80";
 const doa2Faqs: { question: string; answer: ReactNode }[] = [
   {
     question: "Hvad er Dead or Alive 2 RTP?",
-    answer: "Dead or Alive 2 har en fast RTP på 96,82 % – en af de højeste i slot-verdenen. House edge er kun 3,18 %. I modsætning til mange Pragmatic Play-slots tilbyder NetEnt ikke variable RTP-konfigurationer, så alle installationer kører samme matematik.",
+    answer: "Dead or Alive 2 har en RTP på 96,80 % – en af de højeste i slot-verdenen. House edge er kun 3,20 %. I modsætning til mange Pragmatic Play-slots tilbyder NetEnt ikke variable RTP-konfigurationer, så alle installationer kører samme matematik.",
   },
   {
     question: "Hvad er den højeste mulige gevinst i Dead or Alive 2?",
