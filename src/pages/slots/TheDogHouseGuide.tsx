@@ -361,7 +361,7 @@ const TheDogHouseGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            The Dog House tilbyder den mest tilgængelige Bonus Buy-pris (60× vs. 100×) og den højeste RTP i trioen. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> vinder på max win (21.100×), mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> tilbyder den mest tilfredsstillende tumble-mekanik. For spillere, der prioriterer sticky wild-strategien og ønsker den billigste Bonus Buy, er The Dog House det optimale valg.
+            The Dog House har den højeste RTP i trioen (96,51 %) og er den eneste uden Bonus Buy, hvilket gør den til det mest "klassiske" valg. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> vinder på max win (21.100×), mens <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> tilbyder den mest tilfredsstillende tumble-mekanik. For spillere, der foretrækker sticky wild-strategien og en mere traditionel bonusudløsning, er The Dog House det naturlige valg.
           </p>
         </section>
 
