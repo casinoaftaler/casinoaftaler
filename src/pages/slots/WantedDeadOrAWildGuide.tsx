@@ -135,9 +135,9 @@ const WantedDeadOrAWildGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Tier</th><th className="text-right py-2">Pris</th><th className="text-right py-2">Est. Avg. Return</th><th className="text-right py-2">Volatilitet</th></tr></thead>
                 <tbody className="text-muted-foreground">
-                  <tr className="border-b"><td className="py-2 font-medium">Standard Free Spins</td><td className="text-right">100×</td><td className="text-right">~95-100×</td><td className="text-right">Høj</td></tr>
-                  <tr className="border-b"><td className="py-2 font-medium">The Great Train Robbery</td><td className="text-right">150×</td><td className="text-right">~145-155×</td><td className="text-right">Meget Høj</td></tr>
-                  <tr><td className="py-2 font-medium">Duel at Dawn</td><td className="text-right">250×</td><td className="text-right">~240-260×</td><td className="text-right">Ekstrem</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Det Store Togrøveri</td><td className="text-right">80×</td><td className="text-right">~75-85×</td><td className="text-right">Medium</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Duel ved Daggry</td><td className="text-right">200×</td><td className="text-right">~190-210×</td><td className="text-right">Meget Høj</td></tr>
+                  <tr><td className="py-2 font-medium">Død Mands Hånd</td><td className="text-right">400×</td><td className="text-right">~380-420×</td><td className="text-right">Ekstrem</td></tr>
                 </tbody>
               </table>
             </div>
