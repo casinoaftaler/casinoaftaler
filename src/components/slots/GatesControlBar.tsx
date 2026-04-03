@@ -77,7 +77,7 @@ export function GatesControlBar({
 
   const renderSpinContent = () => {
     if (isSpinning) {
-      return <MenuIcon iconName="rotate-cw" className="h-7 w-7 text-white animate-spin" />;
+      return <RotateCw className="h-7 w-7 text-white animate-spin" />;
     }
     if (!canSpinNow) {
       return <span className="text-[9px] text-white/80 text-center leading-tight font-bold">INGEN<br />SPINS</span>;
