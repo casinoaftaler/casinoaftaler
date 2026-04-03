@@ -376,7 +376,7 @@ const LegacyOfDeadGuide = () => {
             I praksis vil ca. 70 % af dine bonusrunder have 0 retriggers og resultere i beskedne gevinster (50-80× indsatsen). De resterende 30 % vil have mindst 1 retrigger og levere markant bedre resultater. Det er denne 30 %-andel, der driver størstedelen af Legacy of Dead's "big win"-momenter og giver spillere den spænding, der fastholder dem ved spillet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot 10 ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead matematisk overlegen i scenarier med retriggers.
+            For spillere, der sammenligner Legacy of Dead med Book of Dead, er retrigger-dynamikken det afgørende differentieringspunkt. I Book of Dead er en retrigger blot ekstra spins med det samme expanding symbol – en lineær gevinststigning. I Legacy of Dead er en retrigger en eksponentiel gevinststigning, fordi det nye expanding symbol forbedrer alle fremtidige spins. Denne ikke-lineære eskalering er, hvad der gør Legacy of Dead's bonusrunder potentielt mere værdifulde end Book of Dead's, trods den lavere basis-RTP.
           </p>
           <ReviewScreenshot
             src={legacyOfDeadCasinoLobby}
