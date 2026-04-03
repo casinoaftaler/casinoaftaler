@@ -17,6 +17,13 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+
+import sugarRushCasinoSearch from "@/assets/screenshots/sugar-rush-casino-search.webp";
+import sugarRushMultipliers from "@/assets/screenshots/sugar-rush-multipliers.webp";
+import sugarRushGameplay from "@/assets/screenshots/sugar-rush-gameplay.webp";
+import sugarRushPaytable from "@/assets/screenshots/sugar-rush-paytable.webp";
+import sugarRushSpilleregler from "@/assets/screenshots/sugar-rush-spilleregler.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -69,6 +76,13 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Tumble/cascade-mekanikken interagerer synergistisk med cluster pays: efter en cluster-gevinst fjernes de involverede symboler, og nye falder ned. Nye clusters kan dannes fra de faldende symboler, og processen gentages. Over gennemsnittet producerer hvert vindende spin ca. 1,5-2,5 cascading-trin. Under free spins, hvor multiplikatorer akkumuleres pr. cascade, kan en enkelt "chain" af 4-5 cascading wins producere eksplosive resultater.</p>
         </section>
 
+        <ReviewScreenshot
+          src={sugarRushGameplay}
+          alt="Sugar Rush gameplay på 7×7 grid med farverige slik-symboler, køb gratis spins-knap og Danske Spil interface"
+          caption="Sugar Rush's 7×7 cluster pays-grid i aktion på Danske Spil. Bemærk de distinkte farvekoder på hvert symboltype – en vigtig UX-detalje for overskuelighed."
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* ── AKKUMULERENDE MULTIPLIKATORER ── */}
@@ -79,6 +93,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den strategiske implikation er, at Sugar Rush belønner længere bonusrunder disproportionalt. De første spins i en bonusrunde bygger multiplikator-fundamentet – de opbygger værdier på positioner. De sidste spins høster udbyttet – gevinster, der lander på positioner med akkumulerede multiplikatorer, forstørres dramatisk. Denne back-loaded gevinststruktur er kendetegnende for Sugar Rush og adskiller den fra slots med front-loaded bonus-mekanikker som <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link>.</p>
           <p className="text-muted-foreground leading-relaxed">Visuelt præsenteres multiplikatorerne som farvede cirkler under hver position, der intensiveres i farve og størrelse, jo højere multiplikatoren er. Denne visuelle feedback er elegant designet og giver spilleren en umiddelbar forståelse af, hvilke positioner der har højest potentiale. Det er en af de mest intuitive multiplikator-præsentationer i moderne slot-design – en subtil men vigtig UX-detalje, der øger engagement uden at komplicere mekanikken.</p>
         </section>
+
+        <ReviewScreenshot
+          src={sugarRushMultipliers}
+          alt="Sugar Rush multiplikator-grid med akkumulerede x2 til x128 multiplikatorer på alle 49 positioner og volatilitetsindikator"
+          caption="Multiplikator-systemet visualiseret: hvert felt har sin egen akkumulerende multiplikator fra x2 til x128. Bemærk den asymmetriske fordeling – centerceller akkumulerer typisk hurtigere."
+        />
 
         <Separator className="my-10" />
 
@@ -105,6 +125,13 @@ const SugarRushGuide = () => {
 
         <InlineCasinoCards />
 
+        <ReviewScreenshot
+          src={sugarRushPaytable}
+          alt="Sugar Rush paytable med alle 8 slik-symboler, udbetalingsværdier for 5-15+ klynger og scatter-symbol forklaring"
+          caption="Spillereglerne viser den fulde gevinsttabel: fra premium-symboler (bolsje, hjerte) til lav-betalende gummibamser. Minimum 5 forbundne symboler kræves for en klynge-gevinst."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ── POSITIONS-HEAT MAP ── */}
@@ -126,6 +153,13 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den forventede gennemsnitlige bonusrunde-gevinst er estimeret til 50-80× indsatsen for 10-spin runder, stigende til 100-200× for 20-25 spin runder. Max win-scenariet (5.000×) kræver en lang bonusrunde med mange retriggers, høje akkumulerede multiplikatorer og store premium-symbol-klynger, der rammer de højest multiplied positioner. Sandsynligheden for 5.000× estimeres til under 1 pr. 100.000 bonusrunder – sjælden men teoretisk mulig.</p>
           <p className="text-muted-foreground leading-relaxed">Bonus Buy-EV'en (100× indsats) er kalibreret til at matche den forventede gennemsnitlige bonusværdi – matematisk set er det hverken fordelagtigt eller ufordelagtigt at købe bonusrunden. Dog giver Bonus Buy adgang til bonusrunden uden base game-drain, hvilket kan være rationelt for spillere med begrænset tid. Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt-spil</Link> perspektiv anbefaler vi forsigtighed med Bonus Buy, da store enkeltindskud kan eskalere spilleadfærd uhensigtsmæssigt.</p>
         </section>
+
+        <ReviewScreenshot
+          src={sugarRushSpilleregler}
+          alt="Sugar Rush spilleregler side 3 med maks gevinst 5.000x indsats forklaring og Køb Gratis Spins for 100x indsats information"
+          caption="Side 3/7 af spillereglerne bekræfter 5.000× max win og Bonus Buy-prisen på 100× indsatsen. Bemærk at GRATIS SPINS-runden slutter øjeblikkeligt, hvis max win nås."
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
@@ -209,6 +243,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne designbeslutning afspejler Pragmatic Plays bredere strategi: tilgængelighed først, dybde bagefter. Sugar Rush er designet til at være forståelig inden for de første 10 spins – du ser clusters fjernes, du ser multiplikatorer stige på bestemte positioner, og du forstår intuitivt, at gentagne gevinster på samme position er værdifulde. Denne lærbarhed er Pragmatic Plays stærkeste side og en af grundene til, at deres slots konsekvent performerer bedst i det brede danske spillermarked.</p>
           <p className="text-muted-foreground leading-relaxed">Sugar Rush har også påvirket Pragmatic Plays efterfølgende udgivelser. Sugar Rush 1000 (med 1000× multiplikator-ceiling) og Sugar Rush Xmas (sæsonvariant) demonstrerer, at Pragmatic Play betragter cluster pays som en strategisk vækstplatform. For danske spillere betyder dette flere og bedre cluster pays-muligheder fremover – og Sugar Rush er det fundament, som hele denne nye genre-gren er bygget på.</p>
         </section>
+
+        <ReviewScreenshot
+          src={sugarRushCasinoSearch}
+          alt="Casino søgeresultater for Sugar Rush med Sugar Rush 1000, Sugar Rush Super Scatter, Sugar Rush Xmas og Sweet Rush Bonanza varianter"
+          caption="Sugar Rush-familien i casinoets søgefunktion: originalen, 1000-varianten, Super Scatter, Xmas-edition og Sweet Rush Bonanza – Pragmatic Play's voksende cluster pays-portefølje."
+        />
 
         <Separator className="my-10" />
 
