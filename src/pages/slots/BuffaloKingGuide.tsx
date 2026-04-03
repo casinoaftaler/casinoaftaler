@@ -141,18 +141,18 @@ const BuffaloKingGuide = () => {
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Symbolhierarki og Paytable-Dekonstruktion</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings symbolsystem er opbygget omkring et nordamerikansk prærie-tema med seks premium-dyresymboler og seks lavværdi-kortsymboler. Buffalen er det højest betalende symbol (7,5× per way ved 6-of-a-kind), fulgt af ørnen, ræven og ulven (ca. 6,25× per way), samt pumaen og elgen (ca. 5× per way). Kortsymbolerne (A, K, Q, J, 10, 9) betaler 2-3× per way for 6-of-a-kind. Med 4.096 ways kan selv moderate per-way værdier akkumulere til store samlede gevinster.</p>
           <Card className="mb-6"><CardContent className="pt-6">
-            <h3 className="font-semibold mb-3">Symbolværdi-tabel (6-of-a-kind ved 1 kr. indsats, 4.096 ways)</h3>
+            <h3 className="font-semibold mb-3">Symbolværdi-tabel (6-of-a-kind per way, 4.096 ways)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead><tr className="border-b"><th className="text-left py-2">Symbol</th><th className="text-left py-2">6× (base)</th><th className="text-left py-2">6× med 5×5× stacking</th><th className="text-left py-2">Relativ frekvens</th></tr></thead>
+                <thead><tr className="border-b"><th className="text-left py-2">Symbol</th><th className="text-left py-2">6× per way</th><th className="text-left py-2">6× med 5×5× stacking</th><th className="text-left py-2">Relativ frekvens</th></tr></thead>
                 <tbody>
-                  <tr className="border-b"><td className="py-2 font-medium">Buffel (Premium 1)</td><td>30× (30 kr.)</td><td>750× (750 kr.)</td><td>Sjælden</td></tr>
-                  <tr className="border-b"><td className="py-2">Ørn (Premium 2)</td><td>25× (25 kr.)</td><td>625× (625 kr.)</td><td>Lav</td></tr>
-                  <tr className="border-b"><td className="py-2">Ræv (Premium 3)</td><td>25× (25 kr.)</td><td>625× (625 kr.)</td><td>Lav</td></tr>
-                  <tr className="border-b"><td className="py-2">Ulv (Premium 4)</td><td>25× (25 kr.)</td><td>625× (625 kr.)</td><td>Moderat-lav</td></tr>
-                  <tr className="border-b"><td className="py-2">Puma (Premium 5)</td><td>20× (20 kr.)</td><td>500× (500 kr.)</td><td>Moderat</td></tr>
-                  <tr className="border-b"><td className="py-2">Elg (Premium 6)</td><td>20× (20 kr.)</td><td>500× (500 kr.)</td><td>Moderat</td></tr>
-                  <tr><td className="py-2">Kortsymboler (A-9)</td><td>8-12× (8-12 kr.)</td><td>200-300× (200-300 kr.)</td><td>Hyppig</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Buffel (Premium 1)</td><td>7,5×</td><td>187,5×</td><td>Sjælden</td></tr>
+                  <tr className="border-b"><td className="py-2">Ørn (Premium 2)</td><td>6,25×</td><td>156,25×</td><td>Lav</td></tr>
+                  <tr className="border-b"><td className="py-2">Ræv (Premium 3)</td><td>6,25×</td><td>156,25×</td><td>Lav</td></tr>
+                  <tr className="border-b"><td className="py-2">Ulv (Premium 4)</td><td>6,25×</td><td>156,25×</td><td>Moderat-lav</td></tr>
+                  <tr className="border-b"><td className="py-2">Puma (Premium 5)</td><td>5×</td><td>125×</td><td>Moderat</td></tr>
+                  <tr className="border-b"><td className="py-2">Elg (Premium 6)</td><td>5×</td><td>125×</td><td>Moderat</td></tr>
+                  <tr><td className="py-2">Kortsymboler (A-9)</td><td>2-3×</td><td>50-75×</td><td>Hyppig</td></tr>
                 </tbody>
               </table>
             </div>
