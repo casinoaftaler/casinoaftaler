@@ -200,7 +200,14 @@ const BigBassBonanzaGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             En vigtig teknisk detalje: fisk-pengesymboler kan faktisk lande i basisspillet, men de har ingen funktion uden for free spins. De er rent visuelle i basisspillet – en designbeslutning, der bygger anticipation og holder spillerens opmærksomhed fokuseret på muligheden for at trigge bonusrunden.
           </p>
-        </section>
+         </section>
+
+        <ReviewScreenshot
+          src={screenshotGameplay}
+          alt="Big Bass Bonanza gameplay på Danske Spil – 5x3 grid med fiskesymboler, guldsmed og kortværdier i undervandstema"
+          caption="Big Bass Bonanzas 5x3 grid med 10 faste gevinstlinjer. Bemærk de detaljerede temasymbolar: fiskekasser, guldsmede og klassiske kortværdier."
+          eager
+        />
 
         <InlineCasinoCards title="Spil Big Bass Bonanza hos disse casinoer" count={6} />
 
