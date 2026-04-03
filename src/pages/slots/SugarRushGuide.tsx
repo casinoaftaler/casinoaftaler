@@ -207,6 +207,74 @@ const SugarRushGuide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── Pragmatic Play's Cluster-Evolution ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="target" className="h-7 w-7 text-primary" /> Pragmatic Play's Cluster Pays-Evolution: Fra Gates til Sugar Rush</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har historisk været mest kendt for deres scatter pays- og line-baserede slots – <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link>, og <Link to="/casinospil/spillemaskiner/the-dog-house" className={linkClass}>The Dog House</Link> er alle line- eller scatter-baserede. Sugar Rush markerer Pragmatic Plays første seriøse forsøg på at konkurrere i cluster pays-segmentet, som traditionelt har været domineret af <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> (Reactoonz) og Push Gaming (Jammin' Jars).</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Det er bemærkelsesværdigt, at Pragmatic Play valgte at differentiere sig med den akkumulerende multiplikator-mekanik i stedet for at kopiere eksisterende cluster-formler. I <Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link> er multiplikation knyttet til Quantum-funktionerne, og i <Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link> er den bundet til bevægelige jar-wilds. Sugar Rush's positionsbaserede akkumulering er en tredje tilgang, der er unikt Pragmatic Plays: den er enklere at forstå end Reactoonz' flerlagede system, men mere strategisk end Jammin' Jars' tilfældige wild-bevægelser.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Denne designbeslutning afspejler Pragmatic Plays bredere strategi: tilgængelighed først, dybde bagefter. Sugar Rush er designet til at være forståelig inden for de første 10 spins – du ser clusters fjernes, du ser multiplikatorer stige på bestemte positioner, og du forstår intuitivt, at gentagne gevinster på samme position er værdifulde. Denne lærbarhed er Pragmatic Plays stærkeste side og en af grundene til, at deres slots konsekvent performerer bedst i det brede danske spillermarked.</p>
+          <p className="text-muted-foreground leading-relaxed">Sugar Rush har også påvirket Pragmatic Plays efterfølgende udgivelser. Sugar Rush 1000 (med 1000× multiplikator-ceiling) og Sugar Rush Xmas (sæsonvariant) demonstrerer, at Pragmatic Play betragter cluster pays som en strategisk vækstplatform. For danske spillere betyder dette flere og bedre cluster pays-muligheder fremover – og Sugar Rush er det fundament, som hele denne nye genre-gren er bygget på.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Multiplikator Deep Dive ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Multiplikator-Matematik: Positional EV og Akkumuleringsmønstre</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sugar Rush's 7×7 grid har 49 positioner, og hvert position kan akkumulere en uafhængig multiplikator. I base game nulstilles multiplikatorerne efter hvert spin, men under free spins forbliver de gennem hele bonusrunden. Denne mekanik skaber en progressiv opbygning, hvor senere spins i bonusrunden er eksponentielt mere værdifulde end de første.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Den matematiske implikation er fascinerende: en gennemsnitlig free spins-runde har 10 spins, og i løbet af disse 10 spins vil typisk 15-25 unikke positioner have akkumuleret mindst 2× multiplikator. De mest "populære" positioner (dem med flest cluster-hits) kan nå 4-6×, og i sjældne tilfælde 8-10×. En cluster, der rammer en 10×-position, giver naturligvis 10× den normale gevinstværdi – og det er disse momenter, der driver Sugar Rush's mest dramatiske gevinster.</p>
+          <Card className="mb-6"><CardContent className="pt-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead><tr className="border-b"><th className="text-left py-2">Free Spin #</th><th className="text-right py-2">Gns. aktive mult.</th><th className="text-right py-2">Gns. højeste mult.</th><th className="text-right py-2">Spin-EV vs. spin #1</th></tr></thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b"><td className="py-2">Spin 1-2</td><td className="text-right">0-3</td><td className="text-right">2×</td><td className="text-right">1,0×</td></tr>
+                  <tr className="border-b"><td className="py-2">Spin 3-4</td><td className="text-right">5-10</td><td className="text-right">3×</td><td className="text-right">1,3×</td></tr>
+                  <tr className="border-b"><td className="py-2">Spin 5-6</td><td className="text-right">10-18</td><td className="text-right">4-5×</td><td className="text-right">1,8×</td></tr>
+                  <tr className="border-b"><td className="py-2">Spin 7-8</td><td className="text-right">15-25</td><td className="text-right">5-7×</td><td className="text-right">2,5×</td></tr>
+                  <tr><td className="py-2">Spin 9-10</td><td className="text-right">20-30</td><td className="text-right">6-10×</td><td className="text-right">3,5×</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent></Card>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Tabellen illustrerer den progressive EV-stigning: de sidste spins i en bonusrunde er ca. 3,5× mere værdifulde end de første. Denne dynamik har en vigtig strategisk implikation for retrigger-mekanikken: hvis du retrigger free spins (typisk +5 ekstra spins), arver de nye spins alle de allerede akkumulerede multiplikatorer. En retrigger er derfor eksponentielt mere værdifuld end den initiale triggering – det er matematisk den vigtigste enkelt-event i hele spillet.</p>
+          <p className="text-muted-foreground leading-relaxed">Den positionsbaserede natur af multiplikatorerne skaber også et visuelt "heat map"-mønster på griddet. Erfarne spillere vil bemærke, at centerpositioner statistisk akkumulerer hurtigere end hjørnepositioner, fordi de har flere tilstødende positioner og dermed flere mulige cluster-forbindelser. Denne observation er korrekt men ikke handelbar – du kan ikke påvirke, hvor clusters dannes. Det er dog tilfredsstillende at observere mønstret, og det bidrager til Sugar Rush's unikke gameplay-identitet.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Wagering Guide ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Wagering-Guide: Sugar Rush som Gennemspilningsværktøj</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Med 96,50 % RTP og høj volatilitet er Sugar Rush et acceptabelt men ikke optimalt valg til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonuspenge</Link>. Ved 10× omsætningskrav med en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det forventede tab 350 kr. – en nettogevinst på +650 kr. Dog er bust-risikoen estimeret til 12-18 % pga. den høje volatilitet, hvilket er markant højere end lavere volatilitetsalternativer.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">For wagering anbefaler vi at UNDGÅ Bonus Buy-funktionen. Den 100× indsats repræsenterer en massiv satsning, der reducerer din effektive bankroll dramatisk. Under wagering er konstante, lave indsatser i base game den optimale strategi, fordi det maksimerer antallet af spins og dermed reducerer variansen. Bonus Buy er en underholdningsfunktion, ikke en wagering-funktion.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sammenligning med alternative wagering-valg: <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (96,15 % RTP, 5-8 % bust-risiko) er det sikre valg. <Link to="/casinospil/spillemaskiner/gonzos-quest" className={linkClass}>Gonzo's Quest</Link> (96,00 % RTP, 8-12 % bust-risiko) er et godt mellempunkt. Sugar Rush (96,50 % RTP, 12-18 % bust-risiko) tilbyder den højeste RTP men med den højeste risiko. For den risikoaverse spiller anbefaler vi Fire Joker; for spillere, der er komfortable med moderat risiko for potentielt højere reward, er Sugar Rush et forsvarligt valg.</p>
+          <p className="text-muted-foreground leading-relaxed">En vigtig advarsel: kontrollér altid, at den specifikke Sugar Rush-version hos dit casino har den fulde 96,50 % RTP. Pragmatic Play tilbyder operatører multiple RTP-konfigurationer (typisk 96,50 %, 95,48 %, og 94,50 %), og den laveste version reducerer din forventede wagering-EV med op til 200 kr. pr. 1.000 kr. bonus. RTP-versionen kan verificeres i spillets hjælpemenu under "Info" eller "Paytable".</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Sugar Rush på Mobilen: 7×7 Grid-Optimering</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Et 7×7 grid er en af de mest udfordrende layouts at optimere til <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>. Pragmatic Play har løst dette med en smart skaleringsalgoritme, der automatisk justerer symbolstørrelsen baseret på skærmens dimensioner. På standardsmartphones (5,5-6,7") fylder hvert symbol ca. 8×8 pixels – lille men stadig identificerbart takket være Sugar Rush's distinkte farvekodning.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Cascade-animationerne er forkortet ca. 30 % på mobil sammenlignet med desktop, hvilket reducerer den totale spintid markant. For mobilspillere, der ofte har kortere sessions, er dette en velovervejet optimering. Multiplikator-ikonerne er også forenklet på mobil – i stedet for detaljerede cirkler med gradient-effekter bruges simple tal med baggrundsfarvekodning, der er lettere at aflæse på små skærme.</p>
+          <p className="text-muted-foreground leading-relaxed">Dataforbruget er moderat til højt for en slot: ca. 20-30 MB pr. 100 spins, primært pga. cascade-animationerne og multiplikator-opdateringerne. For spillere med begrænsede datapakker anbefaler vi WiFi-forbindelse. Load-tiden er ca. 4-6 sekunder på 4G – acceptabelt men mærkbart længere end simplere slots. Pragmatic Play's HTML5-engine håndterer det store grid kompetent, men ældre enheder (2+ år) kan opleve lejlighedsvise frame drops under intensive cascade-sekvenser.</p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Sugar Rush 1000 Sammenligning ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-7 w-7 text-primary" /> Sugar Rush vs. Sugar Rush 1000: Hvilken Skal Du Vælge?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Pragmatic Play har udgivet Sugar Rush 1000 – en opfølger med en markant højere multiplikator-ceiling (1.000× mod originalens 128×). For danske spillere rejser dette et naturligt spørgsmål: hvilken version er bedst? Svaret afhænger af din spillerprofil og risikotolerance.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Sugar Rush 1000 har en lavere base RTP (96,00-96,53 % afhængigt af konfiguration) men et markant højere max win-potentiale. Den akkumulerende multiplikator-mekanik er identisk, men ceiling-grænsen er løftet 8× (fra 128× til 1.000×). I praksis betyder dette, at Sugar Rush 1000's bonusrunder har en mere polariseret gevinstdistribution: de fleste runder ligner den originale Sugar Rush, men de sjældne "perfekte" runder kan producere dramatisk højere gevinster.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">For det brede danske spillersegment anbefaler vi den originale Sugar Rush: den har en mere forudsigelig oplevelse, lavere volatilitet, og en tilstrækkeligt høj multiplikator-ceiling (128×) til at producere spændende gevinster. Sugar Rush 1000 er bedre egnet til erfarne spillere med stor bankroll, der bevidst søger den højere varians og det ekspanderede gevinstpotentiale.</p>
+          <p className="text-muted-foreground leading-relaxed">En vigtig observation: Sugar Rush 1000 er også tilgængelig i flere RTP-varianter, og den laveste konfiguration (94,50 %) er markant dårligere end den originale Sugar Rush's standard-RTP. Verificér ALTID RTP-versionen i spillets hjælpemenu, uanset om du spiller originalen eller 1000-varianten. En 2 procentpoints RTP-forskel repræsenterer ca. 200 kr. i forventet tab pr. 10.000 kr. i indsatser – en substantiel forskel over tid.</p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── KONKLUSION ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trophy" className="h-7 w-7 text-primary" /> Slik-Slotten Med Det Smarteste System: Vores Dom</h2>

@@ -319,6 +319,76 @@ const RazorSharkGuide = () => {
 
         <Separator className="my-10" />
 
+        {/* ── Push Gaming som Studie ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> Push Gaming: Studiets Filosofi og Razor Sharks Betydning</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Push Gaming er et af de mest respekterede indie-studier i slot-industrien. Grundlagt i 2010, har de konsekvent prioriteret mekanisk innovation over volumenproduktion. Hvor konkurrenter som <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> udgiver 4-6 nye titler månedligt, udgiver Push Gaming typisk 6-10 titler årligt – hver med unikke mekaniske innovationer, der adskiller dem fra resten af markedet.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Razor Shark er Push Gamings mest kendte titel og den, der cementerede studiets position i top-tier af slotudbydere. Mystery Stack-mekanikken – som nu er kopieret af adskillige konkurrenter – var en genuin innovation ved lanceringen i 2019. Idéen om at stable identiske mysteriøse symboler, der afsløres simultant, var ny for slot-industrien og tilføjede et lag af spænding, som traditionelle slots manglede: ventetiden mellem stacking og afsløring.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Push Gamings designsprog er kendetegnet ved tre elementer: (1) Visuelt minimalisme – rent, moderne design uden visuel overbelastning. (2) Mekanisk dybde – få men velgennemtænkte funktioner, der interagerer meningsfuldt. (3) Matematisk aggression – høje max wins og høj volatilitet, designet til at belønne tålmodige spillere. Razor Shark er det mest perfekte udtryk for alle tre elementer og fungerer som et designmanifest for hele studiet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For det danske marked har Push Gaming opnået en solid position. Razor Shark er tilgængelig hos alle større danske licenserede casinoer, og studiets nyere titler som <Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link> og Fat Rabbit har også opnået popularitet. Push Gamings konsistente kvalitet og den høje RTP på tværs af deres portefølje gør dem til et af de mest spillervenlige studier – en anbefaling, vi giver uden forbehold.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Mystery Stack Varianter ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" /> Mystery Stack i Kontekst: Hvordan Mekanikken Har Inspireret Industrien</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Razor Sharks Mystery Stack-mekanik har haft en markant indflydelse på slot-designet bredt. Flere konkurrerende studier har implementeret variationer af konceptet: symboler, der afsløres i grupper, typisk med stigende spænding. Pragmatic Play's "tumble with mystery reveal"-mekanik i nyere titler er delvist inspireret af Razor Sharks success, og <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> har integreret lignende afsløringselementer i titler som San Quentin og Tombstone.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det, der adskiller Razor Sharks implementering fra efterligningerne, er den progressive multiplikator-komponent. I de fleste Mystery Stack-varianter er afsløringen et enkelt event: symbolerne afsløres, gevinster tildeles, næste spin. I Razor Shark er afsløringen potentielt begyndelsen på en kaskade af Nudge-sekvenser, der hvert trin øger multiplikatoren. Denne flertrinsstruktur skaber en spændingskurve, der er markant mere engagerende end en simpel afsløring, og det er denne dybde, som kopierne sjældent formår at replikere.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En akademisk observation: Razor Sharks Mystery Stack-mekanik er et eksempel på, hvad spilteoretikere kalder "progressive uncertainty resolution" – en gradvis afsløring af information, der holder spilleren engageret over multiple trin. Denne mekanik er fundamentalt mere engagerende end øjeblikkelig afsløring, fordi den aktiverer forventnings-kredsløb i hjernen gentagne gange i stedet for kun én gang. Det er et elegant stykke psykologisk design, der bidrager markant til Razor Sharks vedvarende popularitet.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Wagering Analyse ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" /> Gennemspilning med Razor Shark: RTP-Fordelen vs. Volatilitets-Risikoen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Razor Sharks 96,70 % RTP er blandt de højeste i vores slot-database, hvilket gør den matematisk attraktiv til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonuspenge</Link>. Ved 10× omsætningskrav med en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det forventede tab kun 330 kr. – den laveste forventede omkostning af alle high-volatility slots vi har analyseret.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Men den høje volatilitet (4,5/5) skaber en bust-risiko på ca. 15-20 % – markant højere end de 5-8 %, der opnås med lavere volatilitetsalternativer. Spørgsmålet er, om den lavere forventede omkostning (pga. højere RTP) kompenserer for den højere bust-risiko. Svaret er nuanceret: for spillere med tilstrækkeligt startbudget (indskud + bonus {'>'} 2.500 kr.) er Razor Sharks høje RTP en netto fordel, fordi den ekstra sikkerhedsmargin reducerer bust-risikoen til acceptable niveauer. For spillere med minimal startbankroll er lavere volatilitet altid at foretrække.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et vigtigt forbehold: Razor Shark har ingen Bonus Buy-funktion, hvilket betyder, at du er afhængig af organiske bonustriggere under wagering. Fraværet af Bonus Buy er faktisk en fordel under wagering, fordi det eliminerer fristelsen til at bruge store beløb på direkte bonuskøb – en handling, der dramatisk øger bust-risikoen. Med Razor Shark er du tvunget til en disciplineret base game-tilgang, hvilket paradoksalt nok gør det til et mere wagering-venligt valg end mange slots med Bonus Buy.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Strategisk anbefaling: Razor Shark er et rationelt wagering-valg for spillere med budget på 2.000+ kr. (inkl. bonus) og en tidshorisont på 1-2 timer. For spillere med minimum-budget, vælg i stedet <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> eller <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> for deres markant lavere bust-risiko. Husk at Razor Sharks faste RTP (ingen variable konfigurationer hos seriøse operatører) er en yderligere sikkerhed – du behøver ikke bekymre dig om reducerede RTP-versioner.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="smartphone" className="h-7 w-7 text-primary" /> Razor Shark på Mobilen: Undervands-Spænding i Lommen</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Razor Sharks 5×4 grid skalerer godt til <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>. Push Gamings HTML5-engine er optimeret til touch-interaktion, og Mystery Stack-afsløringerne fungerer visuelt imponerende på selv mindre skærme. Undervandstemaets blå farvepalet er behagelig for øjnene ved længere sessions, og symbolerne er distinkt udformet med høj kontrastværdi – en vigtig UX-detalje for mobilspil.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den mest tilfredsstillende mobiloplevelse er Nudge-funktionen under bonusrunden: hvert trin nedad producerer en taktil feedback (vibration på understøttede enheder) kombineret med en stigende toneskala, der bygger spænding med hvert afsløret multiplikator-niveau. Denne multisensoriske oplevelse er særligt effektiv på mobil, hvor proximity til skærmen forstærker den visuelle immersion.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Performance-mæssigt er Razor Shark en af de mest optimerede slots på markedet. Push Gamings minimalistiske designsprog resulterer i færre grafiske assets og dermed hurtigere load-tider: typisk 2-3 sekunder på 4G. Dataforbruget er lavt (10-15 MB pr. 100 spins), hvilket gør den ideel til mobilspil med begrænset data. Sammenlignet med grafiktunge alternativer som <Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link> (25-35 MB pr. 100 spins) er Razor Shark markant mere data-effektiv.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ── SEKTION: KONKLUSION ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Push Gamings Mesterværk: Vores Endelige Vurdering</h2>

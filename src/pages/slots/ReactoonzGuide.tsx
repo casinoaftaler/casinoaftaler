@@ -527,6 +527,92 @@ const ReactoonzGuide = () => {
           </p>
         </section>
 
+        {/* ── Play'n GO's Designfilosofi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="palette" className="h-5 w-5 text-primary" />
+            Play'n GO's Grid-Design: Fra Book of Dead til Reactoonz
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> er et af de mest alsidige studier i slot-industrien. Deres portefølje spænder fra den klassiske <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (3×3, 5 linjer) til <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (5×3, 10 linjer) og Reactoonz (7×7, cluster pays). Denne bredde er ikke tilfældig – Play'n GO's designstrategi er at dække hele spillerspektret med titler, der er optimeret til specifikke spillerprofiler.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Reactoonz repræsenterer Play'n GO's mest ambitiøse designeksperiment: et 7×7 grid med ingen traditionelle gevinstlinjer, men i stedet cluster pays med cascading symboler og et multi-layered Quantum-funktionssystem. Denne kompleksitet var en bevidst risiko – cluster pays var i 2017 et nichesegment domineret af Thunderkicks Fruit Warp og lignende eksperimentelle titler. Play'n GO's genistreg var at kombinere cluster-mekanikken med en tilgængelig visuel identitet (farverige aliens) og et intuitivt progressionssystem (Quantum-opladning), der gjorde kompleksiteten forståelig for mainstream-spillere.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Resultatet var en titel, der single-handedly demokratiserede cluster pays-genren. Før Reactoonz var cluster-slots nicheprodukter for avancerede spillere; efter Reactoonz blev cluster pays et af de mest populære formater i online slots. <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play's</Link> <Link to="/casinospil/spillemaskiner/sugar-rush" className={linkClass}>Sugar Rush</Link>, Push Gamings <Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link>, og talrige andre cluster-slots skylder Reactoonz en direkte kreativ gæld.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For det danske marked har Reactoonz en særlig betydning: den var en af de første cluster-slots, der blev bredt tilgængelig hos danske licenserede operatører, og den definerede cluster pays-formatet for en hel generation af danske spillere. Mange danske spillere, der nu nyder Sugar Rush eller andre cluster-slots, startede deres cluster pays-rejse med Reactoonz – en kulturel påvirkning, der er svær at overvurdere.
+          </p>
+        </section>
+
+        {/* ── Quantum Deep Dive ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
+            Quantum-Funktioner: Matematisk Analyse af Alle 5 Niveauer
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Quantum-systemet er Reactoonz' mest innovative mekanik og den primære differentiator fra andre cluster-slots. Systemet har 5 opladningsniveauer, der aktiveres sekventielt ved at samle tilstrækkelige cluster-gevinster. Hvert niveau tilføjer en unik funktion, der modificerer griddet på en specifik måde:
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="space-y-4 text-sm">
+                <div><span className="font-semibold text-foreground">Niveau 1 – Implosion:</span> <span className="text-muted-foreground">3-6 symboler fjernes fra griddet og erstattes af tilfældige symboler. Gennemsnitlig gevinstbidrag: 0,5-1,5× indsats. Mest nyttigt som katalysator for cascading gevinster.</span></div>
+                <Separator />
+                <div><span className="font-semibold text-foreground">Niveau 2 – Incision:</span> <span className="text-muted-foreground">Et wild-symbol placeres i midten af griddet med 2 tilstødende positioner, der konverteres til matchende symboler. Gennemsnitlig gevinstbidrag: 1-3× indsats. Stærkest når centralsymbolet matcher eksisterende clusters.</span></div>
+                <Separator />
+                <div><span className="font-semibold text-foreground">Niveau 3 – Demolition:</span> <span className="text-muted-foreground">Alle forekomster af et lavværdi-symbol fjernes fra griddet. Gennemsnitlig gevinstbidrag: 2-5× indsats. Mest værdifuldt, når griddet har mange forekomster af ét specifikt lavværdi-symbol, da fjernelsen skaber plads til premium-symboler.</span></div>
+                <Separator />
+                <div><span className="font-semibold text-foreground">Niveau 4 – Alteration:</span> <span className="text-muted-foreground">Alle forekomster af ét lavværdi-symbol konverteres til et specifikt andet symbol. Gennemsnitlig gevinstbidrag: 3-8× indsats. Den potentielt mest eksplosive Quantum-funktion, fordi konverteringen kan skabe massive clusters af premium-symboler.</span></div>
+                <Separator />
+                <div><span className="font-semibold text-foreground">Niveau 5 – Gargantoon:</span> <span className="text-muted-foreground">Et 3×3 wild-symbol placeres på griddet og reduceres progressivt til 2×2, derefter 1×1 over cascading trin. Gennemsnitlig gevinstbidrag: 8-25× indsats. Den sjældneste og mest værdifulde Quantum-funktion, ansvarlig for størstedelen af Reactoonz' store gevinster.</span></div>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Den matematiske nøgle til Quantum-systemet er, at funktionerne ikke er uafhængige: de aktiveres sekventielt, og en succesfuld lavere-niveau funktion kan generere nok cluster-gevinster til at oplade det næste niveau. Denne kaskade-effekt er sjælden men dramatisk, når den forekommer – en fuld Quantum-kaskade fra niveau 1 til niveau 5 kan generere 50-200× indsats i en enkelt sekvens.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            I praksis opnår de fleste spillere niveau 2-3 regelmæssigt (ca. hver 15-25 spin), niveau 4 sjældent (ca. hver 50-80 spin), og niveau 5 (Gargantoon) meget sjældent (ca. hver 150-250 spin). Det er Gargantoon der driver Reactoonz' mest mindeværdige øjeblikke og de største gevinster – og det er primært denne funktion, der retfærdiggør den medium-høje volatilitetsklassificering.
+          </p>
+        </section>
+
+        {/* ── Wagering Guide ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />
+            Reactoonz som Wagering-Valg: Balancen Mellem RTP og Volatilitet
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Med 96,51 % RTP og medium volatilitet er Reactoonz et af de bedre wagering-valg i cluster pays-segmentet. Ved 10× <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> med en 1.000 kr. <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> er det forventede tab 349 kr. – en nettogevinst på +651 kr. Bust-risikoen er estimeret til 8-12 %, markant lavere end high-volatility alternativer som <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link> (25-35 %) eller <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> High Noon (15-20 %).
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Reactoonz' medium volatilitet giver den en unik position i wagering-landskabet: den tilbyder den højere RTP, der typisk følger med mere volatile slots, men med en bust-risiko, der er tættere på lav-volatilitet alternativer. Denne kombination gør den til et rationelt "mellempunkt" for spillere, der ønsker bedre EV end <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (96,15 %) uden den dramatiske bust-risiko, der følger med Razor Shark (96,70 % men 15-20 % bust-risiko).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Strategisk anbefaling for wagering: spil med en indsats, der giver minimum 400 spins med din samlede bankroll. Reactoonz' medium volatilitet kræver denne buffer for at give Quantum-systemet tilstrækkeligt mange spins til at aktivere og bidrage positivt til din return. Ved færre end 200 spins er du for afhængig af Gargantoon-triggers, der er sjældne, og din session vil ligne en high-volatility oplevelse snarere end den medium-volatilitet profil, som RTP'en er kalibreret til.
+          </p>
+        </section>
+
+        {/* ── Mobiloplevelse ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="smartphone" className="h-5 w-5 text-primary" />
+            Reactoonz på Mobilen: 7×7 Grid i Lommen
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Reactoonz' 7×7 grid er en af de mest udfordrende layouts at præsentere på <Link to="/mobil-casino" className={linkClass}>mobilskærme</Link>. Play'n GO har løst dette med en intelligent skaleringsalgoritme, der optimerer symbolstørrelser baseret på skærmens dimensioner. På standardsmartphones (5,5-6,7") er hvert alienesymbol ca. 7×7 pixels – lille men identificerbart takket være de distinkte farver og animationer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            En kritisk UX-forbedring på mobil er "cascade speed control": Play'n GO tilbyder tre hastighedsindstillinger (normal, hurtig, turbo) for cascading-animationerne. På mobil er turbo-mode særligt populært, fordi det reducerer den totale spintid markant og gør kortere sessions mere produktive. Quantum-funktionernes animationer er dog ikke hastighedsjusterbare – de spiller altid i fuld hastighed, hvilket er en bevidst beslutning for at bevare den dramatiske effekt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Performance-mæssigt er Reactoonz krævende for en slot: det 7×7 grid med cascading animationer og Quantum-effekter kræver mere processorkraft end de fleste slots. Ældre smartphones (3+ år) kan opleve frame drops under intensive cascading-sekvenser, særligt under Gargantoon-funktionen. Play'n GO's nyere engine-opdateringer har forbedret performance markant, men vi anbefaler stadig en nyere enhed for den bedste oplevelse. Dataforbruget er moderat (25-35 MB pr. 100 spins), og load-tiden er 4-7 sekunder på 4G.
+          </p>
+        </section>
+
         <SlotDataLink slotSlug="reactoonz" slotName="Reactoonz" />
         <SlotProviderLink slotSlug="reactoonz" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/reactoonz" />
