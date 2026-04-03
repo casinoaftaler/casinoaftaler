@@ -311,23 +311,16 @@ export function SupportChatWidget() {
       {/* Floating Button */}
       <button
         onClick={isOpen ? handleClose : handleOpen}
-        className={cn(
-          "fixed bottom-4 right-4 z-[60] transition-all duration-200 hover:scale-110",
-          isOpen
-            ? "h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl flex items-center justify-center"
-            : "h-16 w-16 flex items-center justify-center"
-        )}
+        className="fixed bottom-4 right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
         aria-label="Support chat"
       >
         {isOpen ? (
           <X className="h-6 w-6" />
         ) : (
           <>
-            <img
-              src={chatBubbleIcon}
-              alt="Chat"
-              className="h-16 w-16 drop-shadow-lg"
-            />
+            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+            </svg>
             {(unreadCount > 0 || broadcast) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
                 {unreadCount > 0 ? unreadCount : "!"}
