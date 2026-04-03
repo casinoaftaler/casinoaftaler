@@ -98,7 +98,7 @@ const MadameDestinyMegawaysGuide = () => {
         <ReviewScreenshot
           src={screenshotGameplay}
           alt="Madame Destiny Megaways gameplay – 6 hjul med 1080 ways, Ante Bet aktiv, Bonus Buy kr200"
-          caption="Gameplay med 1080 aktive ways. Ante Bet ('Dobbelt chance') er aktiveret. Bonus Buy tilgængelig til kr200 (100× indsats). Min. indsats: 2,50 kr."
+          caption="Gameplay med 1080 aktive ways. Ante Bet ('Dobbelt chance') er aktiveret. Bonus Buy tilgængelig til kr200 (100× indsats). Min. indsats: 1 kr."
           size="full"
         />
 
@@ -113,7 +113,7 @@ const MadameDestinyMegawaysGuide = () => {
               <div><span className="text-muted-foreground">Grid:</span><br /><strong>6 hjul, 2-8 rækker</strong></div>
               <div><span className="text-muted-foreground">House Edge:</span><br /><strong>3,44 %</strong></div>
               <div><span className="text-muted-foreground">Max Ways:</span><br /><strong>200.704</strong></div>
-              <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>2,50 kr.</strong></div>
+              <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>1 kr.</strong></div>
               <div><span className="text-muted-foreground">Bonus Buy:</span><br /><strong>100× indsats</strong></div>
             </div>
           </CardContent></Card>
@@ -187,7 +187,7 @@ const MadameDestinyMegawaysGuide = () => {
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-5 w-5 text-primary" />Bankroll-Krav og Ansvarligt Spil</h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny MW's høje volatilitet (5/5) kræver en bankroll på minimum 250-400 spins (625-1.000 kr. ved 2,50 kr. indsats). Med Ante Bet aktiveret stiger kravet yderligere pga. den 25 % højere spin-cost. Tabsstop anbefales ved 50 % af startkapitalen. Trods den høje volatilitet giver den stærke RTP (96,56 %) bedre bankroll-stabilitet end mange konkurrenter.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny MW's høje volatilitet (5/5) <p className="text-muted-foreground mb-4 leading-relaxed">Madame Destiny MW's høje volatilitet (5/5) kræver en bankroll på minimum 250-400 spins (250-400 kr. ved 1 kr. indsats). Med Ante Bet aktiveret stiger kravet yderligere pga. den 25 % højere spin-cost. Tabsstop anbefales ved 50 % af startkapitalen. Trods den høje volatilitet giver den stærke RTP (96,56 %) bedre bankroll-stabilitet end mange konkurrenter.</p>. Med Ante Bet aktiveret stiger kravet yderligere pga. den 25 % højere spin-cost. Tabsstop anbefales ved 50 % af startkapitalen. Trods den høje volatilitet giver den stærke RTP (96,56 %) bedre bankroll-stabilitet end mange konkurrenter.</p>
           <p className="text-muted-foreground leading-relaxed">Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper. Ante Bet-funktionen kan friste til at spille hurtigere og for mere end planlagt – sæt dine grænser FØR du aktiverer Ante Bet og overhold dem uanset resultaterne. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide</Link> for at finde det rette Megaways-match, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>
 
@@ -238,8 +238,8 @@ const MadameDestinyMegawaysGuide = () => {
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Strategi</th><th className="text-left py-2">Ante Bet</th><th className="text-left py-2">Budget (45 min)</th><th className="text-left py-2">Forventet bonusrunder</th><th className="text-left py-2">Bust-risiko</th></tr></thead>
                 <tbody>
-                  <tr className="border-b"><td className="py-2 font-medium">Konservativ</td><td>Fra</td><td>800 kr. (2,50 kr./spin)</td><td>1-2</td><td>~12 %</td></tr>
-                  <tr className="border-b"><td className="py-2">Balanced</td><td>Til</td><td>1.200 kr. (2,50 kr./spin)</td><td>2-4</td><td>~20 %</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Konservativ</td><td>Fra</td><td>400 kr. (1 kr./spin)</td><td>1-2</td><td>~12 %</td></tr>
+                  <tr className="border-b"><td className="py-2">Balanced</td><td>Til</td><td>500 kr. (1 kr./spin)</td><td>2-4</td><td>~20 %</td></tr>
                   <tr><td className="py-2">Aggressiv</td><td>Til</td><td>2.000 kr. (5 kr./spin)</td><td>3-5</td><td>~28 %</td></tr>
                 </tbody>
               </table>
