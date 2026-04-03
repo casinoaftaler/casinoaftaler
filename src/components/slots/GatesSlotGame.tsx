@@ -395,12 +395,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       }
     }
 
-    // Show orb reaction video if ANY step had bombs (regardless of wins)
-    const anyStepHasBombs = steps.some((s: any) => s.multiplierBombs?.length > 0);
-    if (anyStepHasBombs) {
-      setShowOrbVideo(true);
-      setOrbVideoTrigger(prev => prev + 1);
-    }
+    // Orb video is now triggered before processTumbleSteps is called
 
     // Sequential bomb blow-up AFTER all tumbles
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
@@ -560,6 +555,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
+        // Trigger orb video immediately before animations start
+        const anyStepHasBombs = result.tumbleSteps.some((s: any) => s.multiplierBombs?.length > 0);
+        if (anyStepHasBombs) {
+          setShowOrbVideo(true);
+          setOrbVideoTrigger(prev => prev + 1);
+        }
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
 
@@ -835,6 +836,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
+        // Trigger orb video immediately before animations start
+        const anyStepHasBombs = result.tumbleSteps.some((s: any) => s.multiplierBombs?.length > 0);
+        if (anyStepHasBombs) {
+          setShowOrbVideo(true);
+          setOrbVideoTrigger(prev => prev + 1);
+        }
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
         setWinAmount(totalWin);
@@ -1011,7 +1018,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
             <div className="mt-[-250px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
               {showOrbVideo ? (
                 <ChromaKeyVideo
-                  src="/videos/gates-character-orbs.mp4"
+                   src="/videos/gates-character-orbs.mp4"
+                   playbackRate={1.5}
                   width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
                   height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
                   className=""

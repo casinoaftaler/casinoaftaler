@@ -6,6 +6,7 @@ interface ChromaKeyVideoProps {
   height: number;
   className?: string;
   loop?: boolean;
+  playbackRate?: number;
   playTrigger?: number;
   onEnded?: () => void;
 }
@@ -94,6 +95,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   height,
   className,
   loop = true,
+  playbackRate = 1,
   playTrigger,
   onEnded,
 }: ChromaKeyVideoProps) {
@@ -160,6 +162,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       onEnded?.();
     };
 
+    video.playbackRate = playbackRate;
     video.addEventListener("play", startProcessing);
     video.addEventListener("ended", handleEnded);
     video.play().catch(() => {});
@@ -176,6 +179,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     if (playTrigger === undefined || playTrigger === 0) return;
     const video = videoRef.current;
     if (!video) return;
+    video.playbackRate = playbackRate;
     video.currentTime = 0;
     video.play().catch(() => {});
   }, [playTrigger]);
