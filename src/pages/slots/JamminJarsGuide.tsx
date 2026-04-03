@@ -17,8 +17,14 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { AlertTriangle, BarChart3, Calculator, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import { MenuIcon } from "@/components/MenuIcon";
+
+import screenshotIntro from "@/assets/screenshots/jammin-jars-intro.webp";
+import screenshotGameplay from "@/assets/screenshots/jammin-jars-gameplay.webp";
+import screenshotBonusBuy from "@/assets/screenshots/jammin-jars-bonus-buy.webp";
+import screenshotPaytable from "@/assets/screenshots/jammin-jars-paytable.webp";
+import screenshotRegler from "@/assets/screenshots/jammin-jars-regler.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -27,7 +33,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Jammin' Jars RTP?",
     answer: (
       <>
-        Jammin' Jars har en RTP på 96,83 %, en af de højeste blandt populære <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link>. House edge er kun 3,17 %. Denne RTP er fast og varierer ikke mellem casinoer, da Push Gaming ikke tilbyder variable konfigurationer for denne titel. Over 1.000 spins á 10 kr. er det forventede statistiske tab kun 317 kr. – markant lavere end de fleste konkurrenter. For mere om slots med høj tilbagebetaling, se vores <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-guide</Link>.
+        Jammin' Jars har en teoretisk RTP på 96,83 %, men den operatør-specifikke version, der tilbydes på det danske marked, er <strong>95,25 %</strong> (house edge 4,75 %). Bonus Buy-funktionen har en separat RTP på 95,35 %. Over 1.000 spins á 10 kr. er det forventede statistiske tab 475 kr. Tjek altid den aktuelle RTP i spillets regelsider. For mere om slots med høj tilbagebetaling, se vores <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-guide</Link>.
       </>
     ),
   },
@@ -35,7 +41,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvordan fungerer jar-wilds og multiplikatorer?",
     answer: (
       <>
-        Jar-symbolerne fungerer som wilds og er kernen i Jammin' Jars' mekanik. Når et jar indgår i en vindende cluster (5+ symboler), får det en multiplikator, der starter ved 1× og stiger med 1 for hvert cascade-trin. Et jar der indgår i 5 på hinanden følgende cascades har en 6× multiplikator. Jars bevæger sig til en tilfældig tilstødende position efter hver cascade, hvilket giver et element af uforudsigelighed. Når to eller flere jars indgår i samme cluster, ganges deres multiplikatorer – 4× og 3× giver 12×.
+        Jar-symbolerne fungerer som wilds og er kernen i Jammin' Jars' mekanik. Når et jar indgår i en vindende cluster (5+ symboler), får det en multiplikator, der starter ved 1× og stiger med 1 for hvert cascade-trin, hvor jarret indgår i en vindende cluster. Et jar der indgår i 5 på hinanden følgende cascades har en 6× multiplikator. Jars bevæger sig til en tilfældig tilstødende position efter hver cascade. Når to eller flere jars indgår i samme cluster, ganges deres multiplikatorer – 4× og 3× giver 12×.
       </>
     ),
   },
@@ -43,7 +49,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvornår udløses free spins i Jammin' Jars?",
     answer: (
       <>
-        Free spins udløses, når 3 eller flere jar-symboler lander på griddet i samme spin. Du modtager 6 free spins, og multiplikatorerne på jars nulstilles ikke mellem cascades under bonusrunden – de fortsætter med at akkumulere. Dette er det definerende element i Jammin' Jars' bonusmekanik og dér, de virkelig store gevinster opstår. Genudløsning er mulig med yderligere 3 jars under free spins.
+        Free spins udløses, når 3 eller flere jar-symboler lander på griddet i samme spin. Du modtager 6 free spins, og multiplikatorerne på jars nulstilles ikke mellem cascades under bonusrunden – de fortsætter med at akkumulere. Genudløsning er mulig med yderligere 3 jars under free spins. Alternativt kan du købe direkte adgang via Bonus Buy-funktionen til 85× din indsats.
       </>
     ),
   },
@@ -51,7 +57,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Jammin' Jars god til bonusomsætning?",
     answer: (
       <>
-        Med en RTP på 96,83 % er Jammin' Jars en af de bedste slots til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonus</Link>. Med det danske 10x omsætningskrav på en 1.000 kr. bonus (10.000 kr. total omsætning) er det forventede tab kun 317 kr. – bonusværdien er +683 kr., klart positiv EV. Kombinér med en <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> for optimal EV. Den høje volatilitet kan dog skabe store saldoudsving under omsætningen.
+        Med den operatør-specifikke RTP på 95,25 % er Jammin' Jars' EV-profil moderat for <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonus</Link>. Med det danske 10x omsætningskrav på en 1.000 kr. bonus (10.000 kr. total omsætning) er det forventede tab 475 kr. – bonusværdien er +525 kr., stadig positiv EV. Den høje volatilitet kan dog skabe store saldoudsving under omsætningen. Kombinér med en <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> for optimal EV.
       </>
     ),
   },
@@ -75,7 +81,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på Jammin' Jars og Jammin' Jars 2?",
     answer: (
       <>
-        Jammin' Jars 2 tilføjer Giga Jar-funktionen (et 3×3 mega jar-symbol) og en valgmulighed mellem to free spins-modi. RTP er lidt lavere (96,40 % vs. 96,83 %), og max win er højere (25.000× vs. 20.000×). Den originale Jammin' Jars tilbyder en renere, mere fokuseret spilloplevelse med bedre RTP, mens opfølgeren tilføjer kompleksitet og volatilitet. For nye spillere anbefaler vi at starte med originalen.
+        Jammin' Jars 2 tilføjer Giga Jar-funktionen (et 3×3 mega jar-symbol) og en valgmulighed mellem to free spins-modi. RTP er lidt lavere (96,40 % vs. 96,83 % teoretisk). Max win er højere (25.000× vs. ~20.000×). Den originale Jammin' Jars tilbyder en renere, mere fokuseret spilloplevelse, mens opfølgeren tilføjer kompleksitet og volatilitet. For nye spillere anbefaler vi at starte med originalen.
       </>
     ),
   },
@@ -85,7 +91,7 @@ const JamminJarsGuide = () => {
   const faqJsonLd = buildFaqSchema(jamminJarsFaqs);
   const articleSchema = buildArticleSchema({
     headline: "Jammin' Jars – Cluster Pays & Multiplikator-Analyse",
-    description: "Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering.",
+    description: "Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, operatør-RTP 95,25 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/jammin-jars`,
     datePublished: "2026-04-04",
     authorName: "Kevin",
@@ -96,7 +102,7 @@ const JamminJarsGuide = () => {
     <>
       <SEO
         title="Jammin' Jars – RTP, cluster pays og max win"
-        description="Jammin' Jars analyse: Jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 % og volatilitetsprofil. Se EV-vurdering for danske spillere."
+        description="Jammin' Jars analyse: Jar-wild mekanik, cluster pays på 8×8 grid, operatør-RTP 95,25 % og volatilitetsprofil. Se EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
@@ -104,13 +110,23 @@ const JamminJarsGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & jar-multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Jammin' Jars – Cluster Pays & Multiplikator-Analyse</h1>
-            <p className="text-lg text-white/80">Push Gamings frugtbaserede cluster-slot med bevægelige jar-wilds: en matematisk analyse af multiplikator-stacking, 8×8 grid-dynamik og en af markedets højeste RTP-værdier.</p>
+            <p className="text-lg text-white/80">Push Gamings frugtbaserede cluster-slot med bevægelige jar-wilds: en matematisk analyse af multiplikator-stacking, 8×8 grid-dynamik og operatør-RTP på 95,25 %.</p>
           </div>
         </div>
       </section>
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="41 min" />
+
+        {/* ── Intro screenshot ── */}
+        <ReviewScreenshot
+          src={screenshotIntro}
+          alt="Jammin' Jars introskærm – Sticky Wild Jars og Regnbue-funktion"
+          caption="Introskærmen viser spillets to kernefeatures: Sticky Wild Jars med voksende multiplikatorer (×2, ×3, ×4) og Regnbue-funktionen med kæmpefrugter."
+          size="full"
+          eager
+        />
+
         {/* ── Experience First: Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -131,48 +147,53 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        {/* ── Gameplay screenshot ── */}
+        <ReviewScreenshot
+          src={screenshotGameplay}
+          alt="Jammin' Jars 8×8 gameplay grid med frugtsymboler"
+          caption="Det fulde 8×8 grid i aktion: 6 forskellige frugtsymboler (jordbær, appelsin, hindbær, æble, blåbær, blomme) fylder de 64 positioner. Min. indsats er 2 kr."
+          size="full"
+        />
+
         <InlineCasinoCards />
 
         {/* ── RTP ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />
-            RTP 96,83 %: En af Markedets Bedste
+            RTP 95,25 %: Operatør-Version på det Danske Marked
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Jammin' Jars' RTP på 96,83 % placerer den i den absolutte elite blandt populære online slots. House edge er kun 3,17 % – til sammenligning tager et gennemsnitligt europæisk roulette-bord 2,70 %. Push Gaming tilbyder ikke variable RTP-konfigurationer, så denne værdi er garanteret på alle casinoer.
+            Jammin' Jars har en teoretisk RTP på 96,83 %, men den version, der tilbydes på danske casinoer, er konfigureret til <strong>95,25 %</strong> – en house edge på 4,75 %. Push Gaming tilbyder variable RTP-konfigurationer, og det er operatørens valg, der bestemmer den faktiske tilbagebetaling. Bonus Buy-funktionen har en separat RTP på <strong>95,35 %</strong>.
           </p>
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
-              <h3 className="font-semibold mb-3">RTP-sammenligning: top cluster-slots</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-border/50">
-                      <th className="text-left py-2 pr-4">Slot</th>
-                      <th className="text-left py-2 pr-4">RTP</th>
-                      <th className="text-left py-2 pr-4">House Edge</th>
-                      <th className="text-left py-2">Tab/1000 spins á 10 kr.</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-muted-foreground">
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Jammin' Jars</td><td className="py-2 pr-4">96,83 %</td><td className="py-2 pr-4">3,17 %</td><td className="py-2">317 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Dead or Alive 2</td><td className="py-2 pr-4">96,82 %</td><td className="py-2 pr-4">3,18 %</td><td className="py-2">318 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Big Bass Bonanza</td><td className="py-2 pr-4">96,71 %</td><td className="py-2 pr-4">3,29 %</td><td className="py-2">329 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Razor Shark</td><td className="py-2 pr-4">96,70 %</td><td className="py-2 pr-4">3,30 %</td><td className="py-2">330 kr.</td></tr>
-                    <tr><td className="py-2 pr-4">Reactoonz</td><td className="py-2 pr-4">96,51 %</td><td className="py-2 pr-4">3,49 %</td><td className="py-2">349 kr.</td></tr>
-                  </tbody>
-                </table>
+              <h3 className="font-semibold mb-3">Teknisk profil – verificeret</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div><span className="text-muted-foreground">RTP (operatør):</span><br /><strong>95,25 %</strong></div>
+                <div><span className="text-muted-foreground">RTP Bonus Buy:</span><br /><strong>95,35 %</strong></div>
+                <div><span className="text-muted-foreground">House Edge:</span><br /><strong>4,75 %</strong></div>
+                <div><span className="text-muted-foreground">Max Win:</span><br /><strong>19.998,45×</strong></div>
+                <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>2 kr.</strong></div>
+                <div><span className="text-muted-foreground">Bonus Buy pris:</span><br /><strong>85× indsats</strong></div>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Med den højeste RTP i sammenligningstabellen er Jammin' Jars den matematisk mest favorable slot for spillere, der prioriterer langsigtet tilbagebetaling. Forskellen mellem Jammin' Jars (96,83 %) og en gennemsnitlig slot (96,00 %) er 0,83 procentpoint – over 1.000 spins á 10 kr. sparer du 83 kr. i statistisk forventet tab.
+            Forskellen mellem den teoretiske RTP (96,83 %) og den faktiske operatør-RTP (95,25 %) er 1,58 procentpoint – en markant reduktion, der øger house edge fra 3,17 % til 4,75 %. Over 1.000 spins á 10 kr. er det forventede statistiske tab 475 kr. frem for de 317 kr., den teoretiske RTP ville producere. Denne forskel understreger vigtigheden af at verificere den aktuelle RTP direkte i spillets regelsider.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Det er vigtigt at understrege, at den høje RTP ikke eliminerer risiko. Med en høj volatilitet kan Jammin' Jars producere lange tabsrækker, der overgår de statistiske gennemsnit med stor margin i kortere sessions. RTP konvergerer først over tusindvis af spins – i en enkelt session er variansen dominerende.
+            Det er vigtigt at understrege, at RTP'en ikke eliminerer risiko. Med en høj volatilitet kan Jammin' Jars producere lange tabsrækker, der overgår de statistiske gennemsnit med stor margin i kortere sessions. RTP konvergerer først over tusindvis af spins – i en enkelt session er variansen dominerende.
           </p>
         </section>
+
+        {/* ── Regler screenshot ── */}
+        <ReviewScreenshot
+          src={screenshotRegler}
+          alt="Jammin' Jars yderligere information – RTP 95,25 % og max win 19.998,45×"
+          caption="Direkte fra spillets regelsider: RTP bekræftet til 95,25 %, Bonus Buy RTP 95,35 %, og maksimal udbetaling 19.998,45× indsatsen."
+          size="medium"
+        />
 
         {/* ── Volatilitet ── */}
         <section className="mb-10">
@@ -188,19 +209,44 @@ const JamminJarsGuide = () => {
               <h3 className="font-semibold mb-3">Volatilitetsindikatorer</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div><span className="text-muted-foreground">Hit Frequency:</span> <span className="font-medium">~26-30 %</span></div>
-                <div><span className="text-muted-foreground">Max Win:</span> <span className="font-medium">20.000×</span></div>
+                <div><span className="text-muted-foreground">Max Win:</span> <span className="font-medium">19.998,45×</span></div>
                 <div><span className="text-muted-foreground">Volatilitet:</span> <span className="font-medium">Høj</span></div>
                 <div><span className="text-muted-foreground">Standardafvigelse:</span> <span className="font-medium">~8-10</span></div>
-                <div><span className="text-muted-foreground">RTP:</span> <span className="font-medium">96,83 %</span></div>
+                <div><span className="text-muted-foreground">RTP (operatør):</span> <span className="font-medium">95,25 %</span></div>
                 <div><span className="text-muted-foreground">Free spins frekvens:</span> <span className="font-medium">~1/130 spins</span></div>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Max win på 20.000× placerer Jammin' Jars i top-tier for cluster pays-slots – markant over Reactoonz (4.570×) og sammenlignelig med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.100×). Denne høje max win er primært drevet af multiplikator-stacking: i det bedste teoretiske scenarie kan tre jars med hver 15×+ multiplikatorer skabe kombinerede multiplikatorer over 3.000×.
+            Max win på ~20.000× placerer Jammin' Jars i top-tier for cluster pays-slots – markant over Reactoonz (4.570×) og sammenlignelig med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.100×). Denne høje max win er primært drevet af multiplikator-stacking: i det bedste teoretiske scenarie kan tre jars med hver 15×+ multiplikatorer skabe kombinerede multiplikatorer over 3.000×.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Standardafvigelsen på ~8-10 placerer Jammin' Jars i midten af høj-volatilitets-spektret. Den er mere volatil end <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (~3-4) og Wolf Gold (~5-7), men mildere end <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive 2</Link> (~12-15) og Money Train 3 (~15-20). For spillere, der ønsker cluster pays med seriøst gevinstpotentiale men uden den mest ekstreme volatilitet, er Jammin' Jars et ideelt kompromis.
+          </p>
+        </section>
+
+        {/* ── Bonus Buy ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="zap" className="h-5 w-5 text-primary" />
+            Bonus Buy: 85× Direkte Adgang til Free Spins
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Jammin' Jars tilbyder en Bonus Buy-funktion (Feature Drop), der giver direkte adgang til free spins-runden for 85× din grundlæggende indsats. Ved en indsats på 2 kr. koster Bonus Buy 170 kr. Funktionen har sin egen RTP på <strong>95,35 %</strong> – marginalt højere end basespillets 95,25 %.
+          </p>
+
+          <ReviewScreenshot
+            src={screenshotBonusBuy}
+            alt="Jammin' Jars Bonus Buy – 170 DKK ved 2 kr. indsats, RTP 95,35 %"
+            caption="Bonuskøb-skærmen: 3 jar-symboler garanteres ved køb til 85× indsatsen (170 kr. ved 2 kr. indsats). Separat RTP på 95,35 %."
+            size="medium"
+          />
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Matematisk set er Bonus Buy en marginalt bedre deal end basespillet (95,35 % vs. 95,25 % RTP). Dog eliminerer den den organiske venteperiode mellem bonusrunder – du betaler en præmie for garanteret adgang. For spillere, der har begrænset tid eller specifikt søger free spins-oplevelsen, kan det give mening. Men bemærk, at 85× indsatsen accelererer din gennemspilning markant og øger risikoen for hurtigere bankroll-tab.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>EV-beregning for Bonus Buy:</strong> Ved 2 kr. grundindsats koster et køb 170 kr. Med RTP 95,35 % er forventet retur 162,10 kr. – et forventet tab på 7,90 kr. pr. køb. Over 10 køb er det akkumulerede forventede tab ~79 kr. Sammenlign med basespillet: 10 × 130 spins (gennemsnitlig tid til organisk trigger) = 1.300 spins × 2 kr. = 2.600 kr. × 4,75 % = 123,50 kr. forventet tab. Bonus Buy er altså ~36 % billigere i forventet tab for at opnå samme antal free spins-runder, men med markant højere volatilitet pr. session.
           </p>
         </section>
 
@@ -224,6 +270,14 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        {/* ── Paytable screenshot ── */}
+        <ReviewScreenshot
+          src={screenshotPaytable}
+          alt="Jammin' Jars gevinsttabel – symbolværdier for alle 6 frugtsymboler"
+          caption="Komplet gevinsttabel: Jordbær er mest værdifuld (200× ved 25+ symboler), efterfulgt af appelsin (125×), hindbær (75×), æble og blomme (50×) og blåbær (20×). Gevinster kræver 5+ matchende symboler i cluster."
+          size="medium"
+        />
+
         {/* ── EV ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -231,7 +285,7 @@ const JamminJarsGuide = () => {
             EV-Perspektiv og Underholdningsværdi
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Med den laveste house edge i vores sammenligning (3,17 %) er Jammin' Jars' EV-profil den mest spillervenlige. Lad os kvantificere hvad det betyder i praksis:
+            Med en house edge på 4,75 % (operatør-RTP 95,25 %) er Jammin' Jars' EV-profil moderat. Lad os kvantificere hvad det betyder i praksis:
           </p>
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
@@ -247,17 +301,20 @@ const JamminJarsGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">100 spins</td><td className="py-2 pr-4">1.000 kr.</td><td className="py-2 pr-4">31,70 kr.</td><td className="py-2">~63 kr.</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">300 spins</td><td className="py-2 pr-4">3.000 kr.</td><td className="py-2 pr-4">95,10 kr.</td><td className="py-2">~63 kr.</td></tr>
-                    <tr><td className="py-2 pr-4">1.000 spins</td><td className="py-2 pr-4">10.000 kr.</td><td className="py-2 pr-4">317,00 kr.</td><td className="py-2">~63 kr.</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">100 spins</td><td className="py-2 pr-4">1.000 kr.</td><td className="py-2 pr-4">47,50 kr.</td><td className="py-2">~95 kr.</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">300 spins</td><td className="py-2 pr-4">3.000 kr.</td><td className="py-2 pr-4">142,50 kr.</td><td className="py-2">~95 kr.</td></tr>
+                    <tr><td className="py-2 pr-4">1.000 spins</td><td className="py-2 pr-4">10.000 kr.</td><td className="py-2 pr-4">475,00 kr.</td><td className="py-2">~95 kr.</td></tr>
                   </tbody>
                 </table>
               </div>
               <p className="text-xs text-muted-foreground mt-2">*Estimeret ved ~200 spins/time inkl. cascade-animationer.</p>
             </CardContent>
           </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Bonusomsætning med operatør-RTP:</strong> Med det danske 10× omsætningskrav på en 1.000 kr. bonus kræves 10.000 kr. i total omsætning. Forventet tab: 10.000 × 0,0475 = 475 kr. Net EV: 1.000 − 475 = <strong>+525 kr.</strong> – stadig positiv, men lavere end den teoretiske RTP ville give (+683 kr.).
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            Med en underholdningsomkostning på ~63 kr./time (ved 10 kr./spin) er Jammin' Jars den mest omkostningseffektive slot i vores database. Til sammenligning koster Reactoonz ~70 kr./time, Wolf Gold ~100 kr./time og Money Train 3 ~78 kr./time. Denne forskel skyldes kombinationen af den højere RTP og den langsommere spin-hastighed (cascade-animationer i 8×8 griddet tager længere tid).
+            Med en underholdningsomkostning på ~95 kr./time (ved 10 kr./spin) er Jammin' Jars dyrere end hvad den teoretiske RTP antyder. Cascade-animationerne i 8×8 griddet giver dog en langsommere spin-hastighed end standard 5×3 slots, hvilket i praksis reducerer det timelige tab sammenlignet med hurtigere spil.
           </p>
         </section>
 
@@ -268,7 +325,7 @@ const JamminJarsGuide = () => {
             Bankroll-Strategi for Jammin' Jars
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Jammin' Jars' kombination af høj RTP og moderat-høj volatilitet gør den til en af de mest bankroll-venlige høj-gevinstpotentiale slots. Vi anbefaler følgende dimensionering:
+            Jammin' Jars' kombination af moderat RTP og høj volatilitet kræver omhyggelig bankroll-dimensionering. Vi anbefaler følgende:
           </p>
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
@@ -284,16 +341,16 @@ const JamminJarsGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Konservativ</td><td className="py-2 pr-4">800 kr.</td><td className="py-2 pr-4">2-4 kr.</td><td className="py-2">~12 %</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Moderat</td><td className="py-2 pr-4">1.500 kr.</td><td className="py-2 pr-4">5-7 kr.</td><td className="py-2">~20 %</td></tr>
-                    <tr><td className="py-2 pr-4">Aggressiv</td><td className="py-2 pr-4">3.000 kr.</td><td className="py-2 pr-4">10-15 kr.</td><td className="py-2">~28 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Konservativ</td><td className="py-2 pr-4">800 kr.</td><td className="py-2 pr-4">2-4 kr.</td><td className="py-2">~15 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4">Moderat</td><td className="py-2 pr-4">1.500 kr.</td><td className="py-2 pr-4">5-7 kr.</td><td className="py-2">~25 %</td></tr>
+                    <tr><td className="py-2 pr-4">Aggressiv</td><td className="py-2 pr-4">3.000 kr.</td><td className="py-2 pr-4">10-15 kr.</td><td className="py-2">~32 %</td></tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            De relativt lave ruin-sandsynligheder afspejler den gunstige RTP og moderate volatilitet. Jammin' Jars er et af de sikreste valg for spillere, der ønsker høj-gevinstpotentiale uden at risikere hurtig bankroll-ruin. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.
+            Ruin-sandsynlighederne er justeret for den lavere operatør-RTP (95,25 %). Med en house edge på 4,75 % er det vigtigt at dimensionere bankrollen konservativt – især da den høje volatilitet kan skabe lange tabsrækker. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-principper.
           </p>
         </section>
 
@@ -319,10 +376,11 @@ const JamminJarsGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">RTP</td><td className="py-2 pr-4">96,83 %</td><td className="py-2 pr-4">96,51 %</td><td className="py-2">96,70 %</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Max Win</td><td className="py-2 pr-4">20.000×</td><td className="py-2 pr-4">4.570×</td><td className="py-2">50.000×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">RTP (operatør)</td><td className="py-2 pr-4">95,25 %</td><td className="py-2 pr-4">96,51 %</td><td className="py-2">96,70 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Max Win</td><td className="py-2 pr-4">~20.000×</td><td className="py-2 pr-4">4.570×</td><td className="py-2">50.000×</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Grid</td><td className="py-2 pr-4">8×8</td><td className="py-2 pr-4">7×7</td><td className="py-2">5×4</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Volatilitet</td><td className="py-2 pr-4">Høj</td><td className="py-2 pr-4">Høj</td><td className="py-2">Meget Høj</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium">Bonus Buy</td><td className="py-2 pr-4">85× (95,35 %)</td><td className="py-2 pr-4">Nej</td><td className="py-2">Nej</td></tr>
                     <tr><td className="py-2 pr-4 font-medium">Kernemekanik</td><td className="py-2 pr-4">Bevægelige Jars</td><td className="py-2 pr-4">Quantum Meter</td><td className="py-2">Mystery Stacks</td></tr>
                   </tbody>
                 </table>
@@ -330,7 +388,7 @@ const JamminJarsGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Jammin' Jars vinder på RTP (96,83 %) og tilbyder det største grid (8×8), men <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> tilbyder markant højere max win (50.000×). Reactoonz' progressive Quantum-system giver en unik progressionsoplevelse. For spillere, der prioriterer matematisk værdi (RTP) kombineret med seriøst gevinstpotentiale (20.000×), er Jammin' Jars det optimale valg i denne trio.
+            Med en operatør-RTP på 95,25 % er Jammin' Jars lavere end både Reactoonz og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> i ren tilbagebetaling. Dens styrke ligger i det unikke multiplikator-system og det store 8×8 grid. Bonus Buy-funktionen er en fordel for spillere, der vil direkte til free spins – en feature ingen af konkurrenterne tilbyder.
           </p>
         </section>
 
@@ -347,7 +405,7 @@ const JamminJarsGuide = () => {
             Denne tilgang er synlig i hele deres portefølje. <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link>'s mystery-stacks er matematisk sofistikerede, Jammin' Jars' bevægelige jar-wilds er en elegant variation af sticky wilds, og Fat Rabbit's voksende wild er en progressiv mekanik, der belønner tålmodighed. Fællestrækket er, at Push Gaming's slots føles mekanisk unikke, selv når de bruger etablerede grundmekanikker.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere er Push Gaming's konsekvente RTP-kvalitet bemærkelsesværdig. Studiet tilbyder typisk RTP'er i intervallet 96,50-97,00 % – konsekvent over branchegennemsnittet. Kombineret med deres refusal af variable RTP-konfigurationer (som mange konkurrenter tilbyder) giver dette Push Gaming-spillere en højere grad af sikkerhed omkring den matematiske værdi de modtager.
+            Bemærk, at Push Gaming – ligesom de fleste moderne udbydere – tilbyder variable RTP-konfigurationer til operatører. Det betyder, at den faktiske RTP kan variere fra casino til casino. Det er altid en god idé at tjekke den specifikke RTP direkte i spillets regelsider, som vi har dokumenteret ovenfor.
           </p>
         </section>
 
@@ -393,22 +451,23 @@ const JamminJarsGuide = () => {
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">RTP</td><td className="py-2 pr-4">96,83 %</td><td className="py-2">96,40 %</td></tr>
-                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Max Win</td><td className="py-2 pr-4">20.000×</td><td className="py-2">25.000×</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">RTP (teoretisk)</td><td className="py-2 pr-4">96,83 %</td><td className="py-2">96,40 %</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">RTP (operatør, DK)</td><td className="py-2 pr-4">95,25 %</td><td className="py-2">Varierer</td></tr>
+                    <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Max Win</td><td className="py-2 pr-4">~20.000×</td><td className="py-2">25.000×</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Volatilitet</td><td className="py-2 pr-4">Høj</td><td className="py-2">Meget Høj</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Grid</td><td className="py-2 pr-4">8×8</td><td className="py-2">8×8</td></tr>
                     <tr className="border-b border-border/30"><td className="py-2 pr-4 font-medium text-foreground">Giga Jar</td><td className="py-2 pr-4">Nej</td><td className="py-2">Ja (3×3)</td></tr>
-                    <tr><td className="py-2 pr-4 font-medium text-foreground">House Edge</td><td className="py-2 pr-4">3,17 %</td><td className="py-2">3,60 %</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Bonus Buy</td><td className="py-2 pr-4">85×</td><td className="py-2">Ja</td></tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Den vigtigste forskel er RTP: originalen's 96,83 % vs. opfølgerens 96,40 %. Over 1.000 spins á 10 kr. er forskellen 43 kr. i forventet tab – ikke dramatisk, men signifikant for langsigtede spillere. Til gengæld tilbyder JJ2 et højere max win-ceiling (25.000× vs. 20.000×) og Giga Jar-funktionen, der kan producere ekstraordinære gevinster, når den aktiveres med høje multiplikatorer.
+            Den vigtigste forskel er de teoretiske RTP'er: originalens 96,83 % vs. opfølgerens 96,40 %. Men i praksis er den operatør-specifikke konfiguration afgørende – originalens 95,25 % på danske casinoer kan være lavere end hvad JJ2 tilbyder hos samme operatør. Tjek altid begge spillets regelsider for aktuelle tal.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling: den originale Jammin' Jars er det bedre valg for de fleste danske spillere. Den højere RTP, enklere mekanik og mere forudsigelige volatilitet gør den til en bedre value proposition. Jammin' Jars 2 er primært relevant for erfarne spillere, der specifikt søger den ekstra volatilitet og Giga Jar-funktionens explosion-potentiale – og som er villige til at betale for det med lavere RTP.
+            Vores anbefaling: den originale Jammin' Jars er det bedre valg for de fleste danske spillere takket være dens enklere mekanik og mere forudsigelige volatilitet. Jammin' Jars 2 er primært relevant for erfarne spillere, der specifikt søger den ekstra volatilitet og Giga Jar-funktionens explosion-potentiale.
           </p>
         </section>
 
