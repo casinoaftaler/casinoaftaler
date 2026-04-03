@@ -144,6 +144,14 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
     GATES_MAX_BET = parseInt(map.gates_max_bet || "10", 10);
     GATES_REEL_DUP_2_CHANCE = parseFloat(map.gates_reel_dup_2_chance || "0.35");
     GATES_REEL_DUP_3_CHANCE = parseFloat(map.gates_reel_dup_3_chance || "0.10");
+    if (map.gates_multiplier_values) {
+      const vals = map.gates_multiplier_values.split(",").map((v: string) => parseInt(v.trim(), 10)).filter((v: number) => !isNaN(v));
+      if (vals.length > 0) GATES_MULTIPLIER_VALUES = vals;
+    }
+    if (map.gates_multiplier_weights) {
+      const wts = map.gates_multiplier_weights.split(",").map((v: string) => parseInt(v.trim(), 10)).filter((v: number) => !isNaN(v));
+      if (wts.length > 0) GATES_MULTIPLIER_WEIGHTS = wts;
+    }
   }
 }
 
