@@ -94,10 +94,10 @@ const TheDogHouseGuide = () => {
         description="Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
-        <div className="container py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(30 70% 28%), hsl(20 60% 22%) 40%, hsl(45 75% 30%))" }}>
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="dog" className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
             <p className="text-lg text-white/80">Pragmatic Play's elskerinde sticky wild-slot: en matematisk dekonstruktion af multiplikator-stacking, free spins-dynamik og den reelle værdi af Bonus Buy.</p>
           </div>
@@ -105,7 +105,8 @@ const TheDogHouseGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="11 min" />
+        <AuthorMetaBar author="jonas" readTime="16 min" />
+        <SnippetAnswer answer="The Dog House er en høj-volatilitets slot fra Pragmatic Play med 96,51 % RTP og 12.305× max win. Spillets unikke feature er sticky wilds under free spins med 2× eller 3× multiplikatorer, der ganges sammen – to wilds med 3× giver 9× samlet multiplikator. Bonus Buy er tilgængelig for 60× indsatsen." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" loading="eager" />
         </div>

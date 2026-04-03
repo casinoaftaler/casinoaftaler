@@ -102,10 +102,10 @@ const ReactoonzGuide = () => {
         description="Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
-        <div className="container py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(270 60% 30%), hsl(290 50% 25%) 40%, hsl(250 65% 28%))" }}>
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="atom" className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Reactoonz – Cluster Pays Analyse & Volatilitetsprofil</h1>
             <p className="text-lg text-white/80">En matematisk gennemgang af Play'n GO's ikoniske 7×7 cluster pays-slot: Quantum-funktioner, kædegevinster og hvornår Gargantoon reelt leverer værdi.</p>
           </div>
@@ -113,7 +113,8 @@ const ReactoonzGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="49 min" />
+        <AuthorMetaBar author="kevin" readTime="22 min" />
+        <SnippetAnswer answer="Reactoonz er en høj-volatilitets cluster pays-slot fra Play'n GO med 96,51 % RTP, 4.570× max win og et progressivt Quantum-system. Spillets fire Quantum Leap-funktioner (Implosion, Alteration, Demolition, Incision) kulminerer i Gargantoon – et 3×3 wild-symbol, der fragmenterer og kan producere de største gevinster." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
         </div>

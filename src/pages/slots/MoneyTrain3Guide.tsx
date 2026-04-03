@@ -94,10 +94,10 @@ const MoneyTrain3Guide = () => {
         description="Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
-        <div className="container py-16 md:py-24">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(0 65% 25%), hsl(350 55% 20%) 40%, hsl(15 70% 28%))" }}>
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
+            <Badge variant="secondary" className="mb-4"><MenuIcon iconName="train" className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Money Train 3 – Max Win Analyse & Bonusmekanik</h1>
             <p className="text-lg text-white/80">Relax Gamings flagskib med 100.000× max win: en matematisk dekonstruktion af Money Cart-bonusrunden, persistent modifiers og den reelle sandsynlighed for store gevinster.</p>
           </div>
@@ -106,6 +106,7 @@ const MoneyTrain3Guide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 min" />
+        <SnippetAnswer answer="Money Train 3 er en ekstremt volatil slot fra Relax Gaming med 96,10 % RTP og 100.000× max win – et af de højeste i online slots. Money Cart-bonusrunden bruger syv unikke special modifiers (Persistent Payer, Collector, Sniper m.fl.) på et udvidet 4×7 grid for eksponentielt voksende gevinster." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" loading="eager" />
         </div>
