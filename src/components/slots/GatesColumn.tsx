@@ -83,6 +83,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             className={cn(
               "relative rounded-lg overflow-visible",
               "bg-transparent",
+              isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover-alpha-blue",
               isWinning && "gates-win-highlight",
               isLanding && "gates-column-stop-impact",
               applyDropOff && "gates-drop-off",
