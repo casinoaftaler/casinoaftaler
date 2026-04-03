@@ -420,8 +420,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           setFlyingMultipliers(prev => [...prev, {
             id: flyId, value: bomb.value, startX: bombX, startY: bombY, targetX, targetY,
           }]);
-          setScreenShake('normal');
-          setTimeout(() => setScreenShake('none'), 400);
           setTimeout(() => {
             explodedPositions.set(bomb.position, 'bomb-exploded');
             setCellAnimStates(new Map(explodedPositions));
