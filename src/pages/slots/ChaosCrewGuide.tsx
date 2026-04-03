@@ -250,16 +250,16 @@ const ChaosCrewGuide = () => {
 
         {/* ── SAMMENLIGNING ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-6 w-6 text-primary" /> Chaos Crew vs. Andre Cluster Pays-Slots</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="scale" className="h-6 w-6 text-primary" /> Chaos Crew vs. Andre Hacksaw Gaming-Slots</h2>
           <Card className="mb-6"><CardContent className="pt-6">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-left py-2">Udvikler</th><th className="text-left py-2">RTP</th><th className="text-left py-2">Max Win</th><th className="text-left py-2">Grid</th></tr></thead>
                 <tbody>
-                  <tr className="border-b"><td className="py-2 font-medium">Chaos Crew</td><td>Hacksaw Gaming</td><td>96,50 %</td><td>10.000×</td><td>5×5</td></tr>
-                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link></td><td>Play'n GO</td><td>96,51 %</td><td>4.570×</td><td>7×7</td></tr>
-                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/jammin-jars" className={linkClass}>Jammin' Jars</Link></td><td>Push Gaming</td><td>96,83 %</td><td>20.000×</td><td>8×8</td></tr>
-                  <tr><td className="py-2"><Link to="/casinospil/spillemaskiner/sugar-rush" className={linkClass}>Sugar Rush</Link></td><td>Pragmatic Play</td><td>96,50 %</td><td>5.000×</td><td>7×7</td></tr>
+                  <tr className="border-b"><td className="py-2 font-medium">Chaos Crew</td><td>Hacksaw Gaming</td><td>96,50 %</td><td>10.000×</td><td>5×3 (15 linjer)</td></tr>
+                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link></td><td>Hacksaw Gaming</td><td>96,38 %</td><td>12.500×</td><td>5×5</td></tr>
+                  <tr className="border-b"><td className="py-2">Chaos Crew 2</td><td>Hacksaw Gaming</td><td>96,50 %</td><td>10.000×</td><td>7×7</td></tr>
+                  <tr><td className="py-2"><Link to="/casinospil/spillemaskiner/reactoonz" className={linkClass}>Reactoonz</Link></td><td>Play'n GO</td><td>96,51 %</td><td>4.570×</td><td>7×7</td></tr>
                 </tbody>
               </table>
             </div>
