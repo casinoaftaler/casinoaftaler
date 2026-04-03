@@ -16,7 +16,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import gonzosQuestDemoLauncher from "@/assets/screenshots/gonzos-quest-demo-launcher.webp";
+import gonzosQuestGameplayGrid from "@/assets/screenshots/gonzos-quest-gameplay-grid.webp";
+import gonzosQuestSpilleregler from "@/assets/screenshots/gonzos-quest-spilleregler.webp";
+import gonzosQuestHeroBanner from "@/assets/screenshots/gonzos-quest-hero-banner.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -113,6 +118,14 @@ const GonzosQuestGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="20 min" />
+        <ReviewScreenshot
+          src={gonzosQuestHeroBanner}
+          alt="Gonzo's Quest officielt banner med Gonzo-karakteren og maya-templet i baggrunden"
+          caption="Gonzo's Quest: NetEnts ikoniske Avalanche-slot fra 2011 med den legendariske opdagelsesrejsende Gonzo."
+          eager
+          size="full"
+        />
+
         {/* ── ÅBNINGSVINKEL: SAMMENLIGNING MED MODERNE SLOTS ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Faderen til Tumble: Gonzo's Quest i en Post-Sweet Bonanza Verden</h2>
@@ -169,6 +182,13 @@ const GonzosQuestGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={gonzosQuestDemoLauncher}
+          alt="Gonzo's Quest demo launcher med NetEnt-logo, Launch Game-knap og tekniske data: RTP 95,97 %, volatilitet Mid, udgivet 2011"
+          caption="Gonzo's Quest demo-visning med spildata: RTP 95,97 %, medium volatilitet og udgivelsesår 2011."
+          size="full"
+        />
+
         <InlineCasinoCards title="Spil Gonzo's Quest hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
@@ -205,6 +225,12 @@ const GonzosQuestGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Under Free Falls er effekten tredoblet. En 15x multiplikator på 4+ consecutive cascades er ekstraordinært kraftfuld. Kombineret med premium-symboler kan dette generere gevinster på 500–1.000x indsatsen i en enkelt cascade-kæde. Det er denne sjældne, men kraftige interaktion, der definerer Gonzo's Quests bedste øjeblikke.
           </p>
+          <ReviewScreenshot
+            src={gonzosQuestGameplayGrid}
+            alt="Gonzo's Quest gameplay med 5x3 grid, maya-stensymboler, 20 gevinstlinjer og multiplikator-display øverst til højre"
+            caption="Basisspillet med 20 gevinstlinjer og multiplikator-displayet (x1 → x2 → x3 → x5) synligt øverst."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -240,6 +266,12 @@ const GonzosQuestGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             EV-bidraget fra Free Fall: med gennemsnitlig udbetaling ca. 80x og trigger 1:200 spins, bidrager bonusrunden med ca. 0,40x pr. spin – ca. 42 % af den samlede RTP. De resterende 58 % leveres af basisspillet. Denne mere jævne fordeling (sammenlignet med f.eks. Razor Sharks 30/70-fordeling) gør Gonzo's Quest mere tilgivende under basisspillet.
           </p>
+          <ReviewScreenshot
+            src={gonzosQuestSpilleregler}
+            alt="Gonzo's Quest spilleregler: How to Play-menu med Game Basics, Avalanche Feature, Wild Symbols, Free Falls og Paytable-sektioner"
+            caption="Den indbyggede spilleguide med forklaring af Avalanche-mekanikken, gevinstlinjer og symbolværdier."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
