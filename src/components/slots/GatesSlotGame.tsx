@@ -398,6 +398,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     // Sequential bomb blow-up AFTER all tumbles
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
+      setShowOrbVideo(true);
+      setOrbVideoTrigger(prev => prev + 1);
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a: any, b: any) => a.position - b.position);
       const explodedPositions = new Map<number, CellAnimState>();
 
