@@ -68,6 +68,7 @@ const Terms = lazyRetry(() => import("./pages/Terms"));
 const Cookies = lazyRetry(() => import("./pages/Cookies"));
 const Shop = lazyRetry(() => import("./pages/Shop"));
 const Highlights = lazyRetry(() => import("./pages/Highlights"));
+const Raffle = lazyRetry(() => import("./pages/Raffle"));
 
 const Leaderboard = lazyRetry(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazyRetry(() => import("./pages/RewardsProgram"));
