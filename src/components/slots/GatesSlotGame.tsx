@@ -408,7 +408,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       }
     }
 
-    // Sequential bomb blow-up AFTER all tumbles
+    // Stop reaction video before bomb blow-up sequence
+    setShowOrbVideo(false);
+
+    // Sequential bomb blow-up AFTER all tumbles (matching Bonanza style)
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a: any, b: any) => a.position - b.position);
@@ -418,8 +421,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
       const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
 
-      const targetX = fallbackWidth / 4;
-      const targetY = fallbackHeight + 40;
+      // Mobile-aware multiplier fly target (same as Bonanza)
+      const targetEl = isMobile ? document.getElementById("gates-mult-target") : null;
+      const gridRect = gridEl?.getBoundingClientRect();
+      const targetRect = targetEl?.getBoundingClientRect();
+
+      const targetX = targetEl && gridRect && targetRect
+        ? (targetRect.left - gridRect.left) + (targetRect.width / 2)
+        : fallbackWidth / 2;
+
+      const targetY = targetEl && gridRect && targetRect
+        ? (targetRect.top - gridRect.top) + (targetRect.height / 2)
+        : (isMobile ? fallbackHeight + 60 : 20);
 
       for (const bomb of sorted) {
         const animState: CellAnimState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
@@ -435,6 +448,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           setFlyingMultipliers(prev => [...prev, {
             id: flyId, value: bomb.value, startX: bombX, startY: bombY, targetX, targetY,
           }]);
+          setScreenShake('normal');
+          setTimeout(() => setScreenShake('none'), 400);
           setTimeout(() => {
             explodedPositions.set(bomb.position, 'bomb-exploded');
             setCellAnimStates(new Map(explodedPositions));
