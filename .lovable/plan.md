@@ -1,53 +1,75 @@
 
 
-## Plan: Add Slot Request Stats to Public Profiles
+## Plan: Community Raffle System
 
 ### What we're building
-Show each user's Bonus Hunt slot request stats (Bonus Hits, No Bonus, Hit Rate %) on their public profile page, so visitors can see how "lucky" a user is.
+An automated raffle system at `/community/raffle` where a new raffle starts every 30 minutes. Users join for free, and when the raffle ends a random winner receives credits (default 500, configurable by admin).
 
-### Approach
+### Database
 
-**1. New hook: `useUserSlotRequestStats`**
-- Create a query in `src/hooks/useSlotRequests.ts` that fetches slot request stats for any user by `user_id`
-- The `slot_requests` table already has an RLS policy allowing anyone to view `bonus_hit` requests, but we also need `no_bonus` for hit rate calculation
-- We'll need a **new RLS policy** to allow public SELECT on `no_bonus` status requests too (or create a DB function that returns aggregated counts securely)
+**New table: `raffles`**
+| Column | Type | Default |
+|--------|------|---------|
+| id | uuid | gen_random_uuid() |
+| prize_credits | integer | 500 |
+| starts_at | timestamptz | now() |
+| ends_at | timestamptz | now() + 30 min |
+| winner_id | uuid (nullable) | null |
+| status | text | 'active' |
+| created_at | timestamptz | now() |
 
-**2. Database migration**
-- Add a **security definer function** `get_user_slot_request_stats(target_user_id uuid)` that returns `bonus_hits`, `no_bonus`, `total_resolved`, `hit_rate` without exposing raw request data
-- This avoids needing to open up RLS further — the function runs with elevated privileges and only returns aggregate numbers
+**New table: `raffle_entries`**
+| Column | Type |
+|--------|------|
+| id | uuid |
+| raffle_id | uuid (FK → raffles) |
+| user_id | uuid |
+| created_at | timestamptz |
+| unique(raffle_id, user_id) |
 
-```sql
-CREATE OR REPLACE FUNCTION public.get_user_slot_request_stats(target_user_id uuid)
-RETURNS jsonb
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-SET search_path = public
-AS $$
-  SELECT jsonb_build_object(
-    'bonus_hits', COUNT(*) FILTER (WHERE status = 'bonus_hit'),
-    'no_bonus', COUNT(*) FILTER (WHERE status = 'no_bonus'),
-    'total', COUNT(*),
-    'pending', COUNT(*) FILTER (WHERE status = 'pending')
-  )
-  FROM public.slot_requests
-  WHERE user_id = target_user_id
-$$;
-```
+**RLS policies:**
+- Anyone can SELECT raffles and raffle_entries
+- Authenticated users can INSERT own raffle_entries
+- Admins can manage raffles (ALL)
 
-**3. New hook: `useUserSlotRequestStats(userId)`**
-- File: `src/hooks/useSlotRequests.ts`
-- Calls `supabase.rpc('get_user_slot_request_stats', { target_user_id: userId })`
-- Returns `{ bonusHits, noBonus, hitRate, total }`
+**New DB function: `settle_raffle()`** — picks a random winner from entries, updates the raffle status to 'completed', awards credits to winner via `slot_spins` upsert + `credit_allocation_log` insert.
 
-**4. Public Profile UI update**
-- File: `src/pages/PublicProfile.tsx`
-- Add a new "Slot Requests" section between Points and Stats sections
-- Show 3 StatCards: Bonus Hits (green), Ingen Bonus (muted), Hit Rate % (with progress bar)
-- Only render section if user has any resolved requests
+**New DB function: `ensure_active_raffle()`** — checks if there's an active raffle with `ends_at > now()`. If not, settles any expired active raffles and creates a new one. Called by the edge function and on page load.
+
+### Edge Function: `raffle-cron`
+- Scheduled via pg_cron every 5 minutes
+- Calls `ensure_active_raffle()` to settle expired raffles and create new ones
+- This ensures raffles rotate even if nobody visits the page
+
+### Frontend
+
+**New page: `src/pages/Raffle.tsx`**
+- Route: `/community/raffle`
+- Uses `CommunityPageLayout` with hero, `CommunityNav`, sidebar widgets
+- Shows current active raffle with countdown timer
+- "Deltag" (Join) button for authenticated users
+- List of current participants (avatars + names)
+- Previous raffle winners section
+- SEO: Article schema, FAQ section
+
+**New hook: `src/hooks/useRaffle.ts`**
+- `useActiveRaffle()` — fetches active raffle + participant count, polls every 10s
+- `useRaffleEntries(raffleId)` — fetches entries with profile data
+- `useJoinRaffle()` — mutation to insert entry
+- `useRecentRaffleWinners()` — last 10 completed raffles with winner profiles
+
+**Navigation updates:**
+- Add "Raffle" tab to `CommunityNav.tsx`
+- Add raffle card to `CommunityHub.tsx` SECTIONS array
+- Add route in `App.tsx`
 
 ### Files changed
-- **1 migration** — `get_user_slot_request_stats` function
-- **`src/hooks/useSlotRequests.ts`** — add `useUserSlotRequestStats` hook
-- **`src/pages/PublicProfile.tsx`** — add slot request stats section
+1. **1 migration** — `raffles` table, `raffle_entries` table, RLS policies, `settle_raffle()` + `ensure_active_raffle()` functions, realtime enabled
+2. **`supabase/functions/raffle-cron/index.ts`** — scheduled edge function
+3. **`src/hooks/useRaffle.ts`** — new hooks
+4. **`src/pages/Raffle.tsx`** — new page
+5. **`src/App.tsx`** — add route
+6. **`src/components/community/CommunityNav.tsx`** — add Raffle tab
+7. **`src/pages/CommunityHub.tsx`** — add Raffle card to SECTIONS
+8. **pg_cron schedule** — via insert tool (not migration)
 
