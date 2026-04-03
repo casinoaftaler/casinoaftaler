@@ -66,7 +66,7 @@ const legacyOfDeadFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Kan man købe bonusrunden i Legacy of Dead?",
-    answer: "Nej, Legacy of Dead har ikke en Bonus Buy-funktion. Free spins skal triggers organisk ved at lande 3+ scatter-symboler (Pharaoh's Tomb). Gennemsnitlig triggerfrekvens er cirka 1 pr. 180-220 spins. Fraværet af Bonus Buy gør spillet mere tålmodigheds-krævende end moderne alternativer, men sikrer også at RTP'en ikke påvirkes af en Bonus Buy-mekanisme.",
+    answer: "Nej, Legacy of Dead har ikke en Bonus Buy-funktion. Free spins skal triggers organisk ved at lande 3+ scatter-symboler (Pharaoh's Tomb), som giver 8 free spins. Gennemsnitlig triggerfrekvens er cirka 1 pr. 180-220 spins. Fraværet af Bonus Buy gør spillet mere tålmodigheds-krævende end moderne alternativer, men sikrer også at RTP'en ikke påvirkes af en Bonus Buy-mekanisme.",
   },
   {
     question: "Hvad er volatiliteten i Legacy of Dead?",
