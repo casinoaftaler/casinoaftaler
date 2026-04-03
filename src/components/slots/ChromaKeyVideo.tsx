@@ -93,6 +93,9 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   width,
   height,
   className,
+  loop = true,
+  playTrigger,
+  onEnded,
 }: ChromaKeyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
