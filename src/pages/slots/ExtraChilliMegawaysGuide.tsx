@@ -107,7 +107,7 @@ const ExtraChilliMegawaysGuide = () => {
           src={screenshotGameplay}
           alt="Extra Chilli Megaways gameplay – 6480 Megaways vist"
           caption="Extra Chilli's Megaways-grid med op til 117.649 ways. Her vises 6.480 ways med chili-symboler (rød, blå, grøn) og kortsymboler (9-K). Bemærk den horisontale reel øverst med ekstra symboler."
-          size="large"
+          size="full"
         />
 
         <section className="mb-12">
