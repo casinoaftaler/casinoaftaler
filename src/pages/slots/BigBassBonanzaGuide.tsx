@@ -364,8 +364,14 @@ const BigBassBonanzaGuide = () => {
             For <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er Big Bass Bonanza et moderat valg. Spillets tema (fiskeri) og moderate volatilitet gør det mindre intenst end ultra-volatile slots, men det er stadig et underholdningsprodukt med negativ EV. Sæt altid et budget, og husk, at den gennemsnitlige spiller taber over tid – uanset hvor mange fisk de fanger.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefalede session: 200–300 spins med en bankroll-ratio på 200:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
+            Vores anbefalede session: 300–400 spins med en bankroll-ratio på 250:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={screenshotSpildetaljer}
+            alt="Big Bass Bonanza 1000 spildetaljer på Danske Spil – udbyder Pragmatic, minimum indsats 1 kr, tilbagebetaling 94,51 % og volatilitetsmåler"
+            caption="Spildetaljer for Big Bass Bonanza 1000-varianten: Pragmatic Play som udbyder, RTP 94,51 % og volatilitetsmåler, der viser høj varians."
+          />
         </section>
 
         <Separator className="my-10" />
