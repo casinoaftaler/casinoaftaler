@@ -169,7 +169,7 @@ const LegacyOfDeadGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Legacy of Dead opererer på et standard 5×3 grid med 10 faste gevinstlinjer – identisk med Book of Dead. Scatter-symbolet (Pharaoh's Tomb) fungerer både som scatter og wild, en dual-funktion der er kendetegnende for "Book of"-genren. Tre eller flere scatters trigger free spins (10 stk.), med mulighed for retrigger ved yderligere 3+ scatters.
+            Legacy of Dead opererer på et standard 5×3 grid med 10 faste gevinstlinjer – identisk med Book of Dead. Scatter-symbolet (Pharaoh's Tomb) fungerer både som scatter og wild, en dual-funktion der er kendetegnende for "Book of"-genren. Tre eller flere scatters trigger free spins (8 stk.), med mulighed for retrigger ved yderligere 3+ scatters, der giver yderligere 8 free spins.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>'en på 96,58 % er en væsentlig forbedring over Book of Dead's 96,21 %. Denne 0,37 procentpoint-forskel lyder beskeden, men over 10.000 spins à 10 kr. repræsenterer det en forventet besparelse på 370 kr. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> på 3,42 % placerer Legacy of Dead i det absolutte topkvartil for high-<Link to="/ordbog/volatilitet" className={linkClass}>volatility</Link> slots – bedre end de fleste konkurrenter i "Book of"-genren.
