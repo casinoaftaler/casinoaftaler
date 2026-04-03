@@ -138,6 +138,71 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med non-jackpot slots som <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link> (som har en fixed Money Respin-jackpot) tilbyder Divine Fortune en ægte progressiv mekanik med ubegrænset potentiale. Wolf Golds Mega Jackpot er fast (typisk 1.000× indsatsen), mens Divine Fortunes vokser over tid. For spillere, der specifikt søger jackpot-spænding med fair matematik, er Divine Fortune det overlegne valg.</p>
         </section>
 
+        {/* ── NetEnt's Jackpot-Arkitektur ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="target" className="h-5 w-5 text-primary" />NetEnt's Jackpot-Arkitektur: Hvordan Puljen Vokser</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For at forstå Divine Fortunes jackpot-økonomi er det nødvendigt at dekonstruere, hvordan den progressive pulje finansieres og fordeles. <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> allokerer en estimeret 2-4 % af hver indsats til den samlede jackpot-pulje. Denne andel fordeles mellem de tre niveauer: estimeret 60 % til Mega, 25 % til Major og 15 % til Minor. Fordelingen sikrer, at Mega Jackpot vokser hurtigst, men at Minor Jackpot falder hyppigst – en designbalance, der holder spillerne engagerede.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Den globale pooling-mekanik betyder, at alle spillere på alle tilsluttede casinoer bidrager til den samme jackpot. For danske spillere har dette to konsekvenser: for det første vokser jackpotten hurtigere, fordi tusindvis af spillere globalt bidrager simultant. For det andet er konkurrencen om jackpotten tilsvarende større – men da jackpotten er RNG-bestemt (ikke baseret på trigger-rækkefølge), påvirker dette ikke den individuelle sandsynlighed.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Et fascinerende aspekt af progressive jackpots er "seed"-mekanismen. Når Mega Jackpot vindes, nulstilles den ikke til 0 kr. – den resetter til en "seed"-værdi (typisk 10.000-50.000 kr.), som finansieres af NetEnt. Denne seed sikrer, at jackpotten altid er attraktiv, selv umiddelbart efter en udbetaling. For EV-beregneren betyder det, at spillets effektive RTP faktisk er marginalt højere lige efter en jackpot-reset, fordi seed-værdien "subsidierer" de næste spilleres jackpot-bidrag.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den gennemsnitlige tid mellem Mega Jackpot-udbetalinger varierer betydeligt, men historisk data fra NetEnt antyder et interval på 2-6 måneder. Den gennemsnitlige Mega Jackpot-størrelse ved fald er estimeret til 100.000-300.000 kr. – langt under Mega Moolah's millioner, men stadig en potentielt livsændrende gevinst for de fleste danske spillere. Vigtigst: denne mere moderate jackpot-størrelse er netop grunden til, at Divine Fortune kan bevare sin høje 96,59 % RTP.
+          </p>
+        </section>
+
+        {/* ── Free Spins Deep Dive ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Free Spins og Falling Wilds: Den Komplette Bonusoplevelse</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Divine Fortunes free spins-runde kombinerer den standard scatter-trigger (3+ golden hand-symboler) med den unikke Falling Wilds-mekanik for at skabe en bonusoplevelse, der føles markant anderledes end konkurrenternes. Under free spins er Falling Wilds-funktionen forstærket: wilds, der lander under free spins, persisterer gennem hele bonusrunden (de falder stadig ned, men med flere spins er sandsynligheden for overlappende wilds markant højere).
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Den gennemsnitlige free spins-gevinst afhænger af trigger-kvaliteten: 3-scatter (5 spins) leverer typisk 8-15× indsatsen, 4-scatter (8 spins) ca. 15-30×, og den sjældne 5-scatter (12 spins) ca. 25-60×. Falling Wilds bidrager estimeret med 30-40 % af den samlede free spins-gevinst, hvilket gør dem til en kritisk komponent i bonusrundens EV.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Retrigger under free spins er muligt ved 3+ scatters, men sandsynligheden er relativt lav (estimeret 5-8 % pr. bonusrunde). Når retrigger forekommer, forlænges bonusrunden med yderligere spins, og eventuelle aktive Falling Wilds fortsætter med at falde. Resultatet kan være en akkumulering af wilds på de nederste rækker, der producerer massive gevinstkombinationer i de afsluttende spins.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Fra et strategisk perspektiv er det vigtigt at forstå, at free spins i Divine Fortune primært er en RTP-stabilisator – de bidrager med estimeret 15-20 % af spillets samlede tilbagebetaling. Den primære appeal forbliver jackpot-mekanikken, men free spins sikrer, at sessioner mellem jackpot-forsøg ikke føles tomme. Denne dobbelte bonusstruktur (free spins + jackpot game) er en af grundene til, at Divine Fortune har en mere tilfredsstillende session-dynamik end rent jackpot-fokuserede titler.
+          </p>
+        </section>
+
+        {/* ── Wagering med jackpot-slots ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="calculator" className="h-5 w-5 text-primary" />Wagering-Analyse: Kan Divine Fortune Bruges til Bonusomsætning?</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Divine Fortune er generelt et dårligt valg til <Link to="/omsaetningskrav" className={linkClass}>bonusomsætning</Link> – ikke på grund af RTP'en (som er excellent), men på grund af operatørrestriktioner. De fleste danske casinoer ekskluderer progressive jackpot-slots fra <Link to="/casino-bonus" className={linkClass}>bonusspil</Link>, eller tæller dem kun med 10-25 % mod omsætningskravet. Grunden er simpel: en jackpot-gevinst under wagering ville koste operatøren betydeligt mere end den udstedte bonus.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Hvis Divine Fortune er tilgængelig med fuld bonusbidrag (100 %), er den faktisk en af de bedste wagering-slots i markedet. Med 96,59 % RTP og medium volatilitet er det forventede tab for en 1.000 kr. bonus med 10× omsætning kun 341 kr. – bedre end <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (392 kr.) og sammenlignelig med <Link to="/casinospil/spillemaskiner/big-bass-bonanza" className={linkClass}>Big Bass Bonanza</Link> (329 kr.). Men verificér ALTID bonusvilkårene – de fleste operatører begrænser eller udelukker jackpot-slots.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            En yderligere komplikation er, at jackpot-gevinster ofte har separate udbetalingsregler. Nogle operatører begrænser maximale udbetalinger fra bonusspil (typisk 10.000-50.000 kr.), hvilket ville eliminere en stor del af jackpot-EV'en. Konklusion: brug Divine Fortune primært med egne midler, ikke bonuspenge, medmindre du har verificeret, at jackpot-gevinster er ubegrænsede under bonusvilkårene.
+          </p>
+        </section>
+
+        {/* ── Spilpsykologi for jackpot-spillere ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="users" className="h-5 w-5 text-primary" />Spilpsykologi: Jackpot-Drømmens Pris</h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Progressive jackpot-slots som Divine Fortune udnytter et af de mest potente psykologiske principper i gambling: "lottery ticket"-effekten. Hvert spin repræsenterer en billet til en potentielt livsændrende gevinst – og den progressive visning af jackpot-størrelsen (ofte i realtid på casinoets hjemmeside) forstærker denne fantasi. Forskning viser, at den blotte tilstedeværelse af en jackpot-counter øger spillerens engagementstid med 15-25 %.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Divine Fortune's design er psykologisk sofistikeret på flere niveauer. Jackpot Bonus Game – med dens visuelle display af guldmønter, der gradvist fylder rækker – skaber en intens "optæl"-oplevelse, der ligner scratch-kortets afdækning. Spilleren føler sig aktiv i processen, selvom resultatet er forudbestemt af RNG. Denne illusionen af agency er et veldokumenteret designprincip, der øger den subjektive tilfredshed.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Minor Jackpots spiller en vigtig psykologisk rolle: de giver spilleren en "smag" af jackpot-oplevelsen uden den fulde udbetaling. Når en spiller vinder en Minor Jackpot (typisk 500-5.000 kr.), bekræfter det, at jackpot-systemet "virker", og motiverer til fortsat spil i jagten på Major eller Mega. Denne "variable reinforcement schedule" – hvor belønningsstørrelsen varierer uforudsigeligt – er den mest effektive form for adfærdsforstærkning.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Som <Link to="/ansvarligt-spil" className={linkClass}>ansvarlig spiller</Link> er det vigtigt at genkende disse mekanismer. En Mega Jackpot-gevinst er statistisk usandsynlig for enhver individuel spiller – behandl den som en uventet bonus, ikke som et mål. Sæt et fast budget for jackpot-spil, og bliv ikke fanget i "sunk cost fallacy" (følelsen af, at du har investeret for meget til at stoppe). Divine Fortune er underholdning – jackpotten er kirsebærret på toppen, ikke kagen.
+          </p>
+        </section>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="shield" className="h-5 w-5 text-primary" />Risikostyring for Jackpot-Spillere</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Jackpot-slots kræver en fundamentalt anderledes bankroll-tilgang end standard-slots. Fordi jackpot-bidraget til RTP kun realiseres i sjældne hændelser, skal du forvente en lavere effektiv return i de fleste sessions. Vi anbefaler at allokere et "jackpot-budget" – et beløb du er villig til at bruge udelukkende for jackpot-chancen, adskilt fra dit regulære slot-budget.</p>
