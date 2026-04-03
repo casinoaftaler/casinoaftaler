@@ -173,6 +173,12 @@ const DeadOrAlive2Guide = () => {
               <p className="text-xl font-bold">9 faste</p>
             </CardContent></Card>
           </div>
+          <ReviewScreenshot
+            src={screenshotGameplay}
+            alt="Dead or Alive 2 gameplay – 5×3 grid med western-symboler som revolvere, whisky, sheriff-stjerne og cowboystøvler"
+            caption="Dead or Alive 2 basisspil med det karakteristiske Wild West-tema. Bemærk de premium-symboler som whisky-flasken, revolveren og sheriff-stjernen."
+            eager
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dead or Alive 2 bruger et klassisk 5x3 grid med kun 9 <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link> – en bevidst minimalistisk opsætning, der koncentrerer gevinsterne på færre, men højere kombinationer. Basisspillet har et Wild West-tema med revolveremner, whisky-flasker, cowboyhatte og sheriff-stjerner som symboler. <Link to="/ordbog/hit-frequency" className={linkClass}>Hit-raten</Link> er ca. 15 % – lavere end de fleste moderne slots, men forventet for dette <Link to="/ordbog/volatilitet" className={linkClass}>volatilitetsniveau</Link>.
           </p>
