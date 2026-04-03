@@ -38,7 +38,7 @@ const legacyOfDeadFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er RTP'en på Legacy of Dead?",
-    answer: "Legacy of Dead har en RTP på 96,58 %, hvilket er højere end Book of Dead (96,21 %). House edge er 3,42 %, som placerer den i det øvre interval for high-volatility slots. RTP'en er fast hos Play'n GO og varierer ikke mellem casinoer. Denne højere RTP kombineret med det progressive expanding symbol-system gør Legacy of Dead til et matematisk attraktivt alternativ til sin forgænger.",
+    answer: "Legacy of Dead har en gennemsnitlig RTP på 94,51 %, hvilket er lavere end Book of Dead (96,21 %). House edge er 5,49 %. Bemærk at RTP'en er 'achieved through participation' ifølge Play'n GO – den faktiske RTP afhænger af spillerens adfærd (f.eks. brug af gamble-funktionen). Det progressive expanding symbol-system giver dog Legacy of Dead et unikt gevinstpotentiale, der kan kompensere for den lavere basis-RTP i forlængede bonusrunder.",
   },
   {
     question: "Hvad er max win i Legacy of Dead?",
