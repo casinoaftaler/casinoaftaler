@@ -136,6 +136,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerGameplay} alt="Fire Joker 3x3 gameplay-grid med joker-symboler, frugter og X-symboler på hjulene" caption="Fire Jokers kompakte 3×3 grid med Joker wild-symboler og klassiske frugtsymboler." />
+
         {/* ── Respin of Fire ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
