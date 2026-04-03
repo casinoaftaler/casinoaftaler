@@ -358,7 +358,7 @@ const BigBassBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="shield" className="h-7 w-7 text-primary" /> Risikovurdering og Bankroll-Perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Big Bass Bonanza er en højrisiko-slot med volatilitet på 5/5. Den kræver solid bankroll-management og tålmodighed. Den estimerede bust-risiko for en 200-spins session (100:1 ratio) er ca. 30–35 % – på niveau med andre 5/5-volatilitet slots.
+            Big Bass Bonanza er en højrisiko-slot med volatilitet på 4/5. Den kræver solid bankroll-management og tålmodighed. Den estimerede bust-risiko for en 200-spins session (100:1 ratio) er ca. 25–30 %.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er Big Bass Bonanza et moderat valg. Spillets tema (fiskeri) og moderate volatilitet gør det mindre intenst end ultra-volatile slots, men det er stadig et underholdningsprodukt med negativ EV. Sæt altid et budget, og husk, at den gennemsnitlige spiller taber over tid – uanset hvor mange fisk de fanger.
