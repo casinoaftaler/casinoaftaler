@@ -144,6 +144,12 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">I jackpot-segmentet konkurrerer Divine Fortune primært med Mega Moolah (Microgaming), Hall of Gods (NetEnt) og Mega Fortune (NetEnt). Divine Fortunes fordel er entydig: den højeste RTP (96,59 % vs. 88-94 % for konkurrenterne) og den laveste volatilitet. Ulempen er en mindre jackpot – Mega Moolah har leveret jackpots på over 100 mio. kr., mens Divine Fortune typisk holder sig under 1 mio. kr.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">For den rationelle spiller er valget klart: Divine Fortunes kombination af fair RTP og realistisk jackpot-potentiale giver den bedste EV. De multi-million jackpot-slots er matematisk straffende – du betaler en massiv RTP-reduktion for en infinitesimal chance for en kæmpe jackpot. Divine Fortune tilbyder en mere proportional risiko-reward balance.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med non-jackpot slots som <Link to="/casinospil/spillemaskiner/wolf-gold" className={linkClass}>Wolf Gold</Link> (som har en fixed Money Respin-jackpot) tilbyder Divine Fortune en ægte progressiv mekanik med ubegrænset potentiale. Wolf Golds Mega Jackpot er fast (typisk 1.000× indsatsen), mens Divine Fortunes vokser over tid. For spillere, der specifikt søger jackpot-spænding med fair matematik, er Divine Fortune det overlegne valg.</p>
+          <ReviewScreenshot
+            src={screenshotJackpot}
+            alt="Divine Fortune Cash Prize og Jackpot-indsamling – Cash Prize-symboler med værdier fra 1x til 20x og tre jackpots: Minor, Major og Mega"
+            caption="Cash Prize-symboler med værdier fra 1× til 20× indsatsen. De tre Jackpot-symboler (Minor, Major, Mega) kan lande på tromle 2-4 i hovedspillet og overalt i Fortune Spins."
+            size="medium"
+          />
         </section>
 
         {/* ── NetEnt's Jackpot-Arkitektur ── */}
