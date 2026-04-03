@@ -246,7 +246,7 @@ const LegacyOfDeadGuide = () => {
             Den reelle forskel ligger i bonusrundens gevinstfordeling. Book of Dead's bonusrunder har en relativt snæver gevinstspredning (de fleste runder leverer 20-80× indsatsen). Legacy of Dead's progressive system skaber en bredere fordeling med en "fat tail" – de fleste runder leverer 15-60× (lidt lavere end Book of Dead), men runder med retriggers kan eksplodere til 200-500×. Denne asymmetri er tiltrækkende for spillere, der værdsætter upside-potentiale.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Konklusion: For spillere, der planlægger sessioner på 500+ spins, er Legacy of Dead det objektivt bedre valg baseret på RTP. For korte sessions eller spillere, der foretrækker en mere forudsigelig bonusrunde, er Book of Dead stadig et gyldigt alternativ. Valget handler ultimativt om præference for konsistens (Book of Dead) vs. progressivt potentiale (Legacy of Dead).
+            Konklusion: Fra et rent EV-perspektiv er Book of Dead det billigere valg med sin højere RTP (96,21 % vs. 94,51 %). Legacy of Dead's appel ligger i det progressive expanding symbol-system, der kan levere exceptionelle bonusrunder med retriggers. Valget handler om præference for lavere house edge (Book of Dead) vs. progressivt upside-potentiale (Legacy of Dead).
           </p>
         </section>
 
