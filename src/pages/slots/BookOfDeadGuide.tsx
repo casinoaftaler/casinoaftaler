@@ -164,6 +164,13 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotGameplay}
+          alt="Book of Dead gameplay på Danske Spil – 5x3 grid med Rich Wilde, Anubis, farao og kortværdier i egyptisk tempel-tema"
+          caption="Book of Deads klassiske 5x3 grid med 10 gevinstlinjer. Bemærk de detaljerede egyptiske symboler: Rich Wilde, Anubis, farao-maske og de guldbelagte kortværdier."
+          eager
+        />
+
         <InlineCasinoCards title="Spil Book of Dead hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
