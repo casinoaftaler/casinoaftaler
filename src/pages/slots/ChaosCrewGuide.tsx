@@ -65,7 +65,7 @@ const ChaosCrewGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
 
-        <SnippetAnswer answer="Chaos Crew er en 5×5 cluster pays-slot fra Hacksaw Gaming med 96,50 % RTP, 10.000× max win og en innovativ dual-wild mekanik. Cranky wilds har faste multiplikatorer (2-3×), mens Sketchy wilds har tilfældige multiplikatorer (1-5×). Under free spins er begge sticky og ganges sammen – det er motoren bag de største gevinster." />
+        <SnippetAnswer answer="Chaos Crew er en 5×3 slot fra Hacksaw Gaming med 15 faste gevinstlinjer, 96,50 % RTP, ekstrem volatilitet og 10.000× max win. Spillets unikke feature er den innovative dual-wild mekanik: Cranky wilds har faste multiplikatorer (2-3×), mens Sketchy wilds har tilfældige multiplikatorer (1-5×). Under free spins er begge sticky og ganges sammen – det er motoren bag de største gevinster." />
         {/* ── HACKSAW GAMING KONTEKST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-6 w-6 text-primary" /> Hacksaw Gaming's Punk-Revolution</h2>
