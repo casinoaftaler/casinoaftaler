@@ -162,6 +162,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       onEnded?.();
     };
 
+    video.playbackRate = playbackRate;
     video.addEventListener("play", startProcessing);
     video.addEventListener("ended", handleEnded);
     video.play().catch(() => {});
