@@ -234,8 +234,13 @@ const DeadOrAlive2Guide = () => {
             Men RTP er en langsigtet statistik, og Dead or Alive 2's ekstreme volatilitet (især i High Noon mode) betyder, at korte sessioner kan afvige voldsomt fra forventningen. Over 200 spins kan din oplevede RTP variere fra 0 % (total bust) til 1.000 %+ (massiv bonusgevinst). Det er først over 50.000+ spins, at den teoretiske RTP konsistent materialiserer sig.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Med det danske 10x omsætningskrav og en 1.000 kr. bonus er det forventede tab: 10.000 × 0,0318 = 318 kr. – en fremragende EV på +680 kr. Bust-risikoen er dog stadig en faktor: med High Noon Saloon er der ca. 15–20 % chance for at gå bust ved 10x wagering. Med Train Heist er det ca. 8–10 %. Valget af mode har altså enorm praktisk betydning.
+            Med det danske 10x omsætningskrav og en 1.000 kr. bonus er det forventede tab: 10.000 × 0,032 = 320 kr. – en fremragende EV på +680 kr. Bust-risikoen er dog stadig en faktor: med High Noon Saloon er der ca. 15–20 % chance for at gå bust ved 10x wagering. Med Train Heist er det ca. 8–10 %. Valget af mode har altså enorm praktisk betydning.
           </p>
+          <ReviewScreenshot
+            src={screenshotSpildetaljer}
+            alt="Dead or Alive 2 spildetaljer – RTP 96,80 %, minimum indsats 0,90 kr., NetEnt udbyder"
+            caption="Spildetaljer bekræfter RTP på 96,80 %, minimum indsats på 0,90 kr. og NetEnt som udbyder."
+          />
         </section>
 
         <Separator className="my-10" />
