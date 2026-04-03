@@ -184,6 +184,7 @@ export default function PublicProfile() {
   const hasFavorites = profile.favorite_slot || profile.favorite_provider || profile.favorite_casino;
   const hasPlayStyle = (profile.play_styles && profile.play_styles.length > 0) || profile.preferred_game_type || profile.volatility_preference;
   const hasPoints = pointsData && pointsData.total_winnings > 0;
+  const hasSlotStats = slotStats && (slotStats.bonusHits > 0 || slotStats.noBonus > 0);
 
   const displayName = profile.display_name || username || "Ukendt";
 
