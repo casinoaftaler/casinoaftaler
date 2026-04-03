@@ -17,6 +17,8 @@ const GATES_SETTINGS_KEYS = [
   "gates_scatter_retrigger",
   "gates_free_spins_initial",
   "gates_free_spins_retrigger",
+  "gates_multiplier_values",
+  "gates_multiplier_weights",
 ];
 
 interface GatesSettings {
@@ -27,6 +29,8 @@ interface GatesSettings {
   scatterRetrigger: number;
   freeSpinsInitial: number;
   freeSpinsRetrigger: number;
+  multiplierValues: string;
+  multiplierWeights: string;
 }
 
 const DEFAULTS: GatesSettings = {
@@ -37,6 +41,8 @@ const DEFAULTS: GatesSettings = {
   scatterRetrigger: 3,
   freeSpinsInitial: 15,
   freeSpinsRetrigger: 5,
+  multiplierValues: "2,3,5,10,15,25,50,100",
+  multiplierWeights: "30,25,20,12,6,3,2,1",
 };
 
 export function GatesGameSettingsAdmin() {
