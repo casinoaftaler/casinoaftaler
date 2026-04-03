@@ -17,11 +17,8 @@
 
 /* Gravity shift for existing symbols moving down to fill gaps */
 @keyframes tumble-gravity {
-  0% { transform: translateY(var(--gravity-offset, -104px)); filter: drop-shadow(0 -8px 6px rgba(147, 197, 253, 0.5)); }
-  40% { filter: drop-shadow(0 -6px 5px rgba(147, 197, 253, 0.35)); }
-  60% { transform: translateY(4px); filter: drop-shadow(0 -2px 3px rgba(147, 197, 253, 0.15)); }
-  80% { transform: translateY(-2px); filter: drop-shadow(0 0 0 transparent); }
-  100% { transform: translateY(0); filter: drop-shadow(0 0 0 transparent); }
+  0% { transform: translateY(var(--gravity-offset, -104px)); }
+  100% { transform: translateY(0); }
 }
 
 /* Gravity drop for existing symbols shifting down */
