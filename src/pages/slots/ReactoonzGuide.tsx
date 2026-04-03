@@ -134,6 +134,12 @@ const ReactoonzGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Play'n GO's filosofi bag Reactoonz afspejler en bredere trend: at gøre slots mere interaktive og belønne spillerengagement over tid. Dette princip er synligt i hele deres portefølje, fra <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link>'s expanding symbols til Reactoonz' Quantum-meters. Forskellen er, at Reactoonz tilføjer et lag af progression, der giver spilleren en følelse af kontrol – selv om det matematiske resultat stadig er bestemt af RNG.
           </p>
+          <ReviewScreenshot
+            src={reactoonzIntroScreen}
+            alt="Reactoonz intro-skærm med Gargantoon-monster og alle ni symboltyper vist sammen med forklaring af wild-mekanik"
+            caption="Intro-skærmen forklarer Gargantoon: et 3×3 wild-symbol, der fragmenterer til mindre wilds og kan drive spillets største gevinster."
+            eager
+          />
         </section>
 
         <YoutubeEmbed videoId="ybFWBECwKbo" title="Reactoonz gennemgang – Cluster pays og Quantum-features" description="Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken og Quantum-features forklaret i praksis." uploadDate="2026-03-07" duration="PT0M57S" />
