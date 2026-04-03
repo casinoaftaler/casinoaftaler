@@ -11,12 +11,19 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import buffalokingLogo from "@/assets/screenshots/buffalokingLogo.webp";
+import buffalokingMultiplikatorStacking from "@/assets/screenshots/buffalokingMultiplikatorStacking.webp";
+import buffalokingRtpData from "@/assets/screenshots/buffalokingRtpData.webp";
+import buffalokingBaseGameBonus from "@/assets/screenshots/buffalokingBaseGameBonus.webp";
+import buffalokingPaytableSymboler from "@/assets/screenshots/buffalokingPaytableSymboler.webp";
+import buffalokingFreeSpinsRegler from "@/assets/screenshots/buffalokingFreeSpinsRegler.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
