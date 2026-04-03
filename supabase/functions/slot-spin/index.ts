@@ -401,7 +401,10 @@ async function calculateGatesFullSpin(
   forceScatters: boolean = false,
   scatterWeightMultiplier: number = 1
 ): Promise<GatesSpinResult> {
-  let grid = await generateGatesGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
+  // 5% chance in base game: orbs instead of scatters (mutually exclusive)
+  const orbMode = !isBonusSpin && !forceScatters && (await prng.next()) < 0.05;
+
+  let grid = await generateGatesGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, orbMode);
 
   // Debug/buyBonus: force exactly 4 scatters
   if (forceScatters && !isBonusSpin) {
@@ -449,7 +452,7 @@ async function calculateGatesFullSpin(
     if (wins.length === 0) break;
 
     // Remove ONLY winning symbols; bombs persist
-    grid = await applyGatesTumble(grid, Array.from(winningPositions), symbols, isBonusSpin, prng);
+    grid = await applyGatesTumble(grid, Array.from(winningPositions), symbols, isBonusSpin, prng, orbMode);
 
     const newScatterCount = countGatesScatters(grid, symbols);
     if (newScatterCount > scatterCount) scatterCount = newScatterCount;
