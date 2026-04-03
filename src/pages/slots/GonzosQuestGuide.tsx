@@ -182,6 +182,13 @@ const GonzosQuestGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={gonzosQuestDemoLauncher}
+          alt="Gonzo's Quest demo launcher med NetEnt-logo, Launch Game-knap og tekniske data: RTP 95,97 %, volatilitet Mid, udgivet 2011"
+          caption="Gonzo's Quest demo-visning med spildata: RTP 95,97 %, medium volatilitet og udgivelsesår 2011."
+          size="full"
+        />
+
         <InlineCasinoCards title="Spil Gonzo's Quest hos disse casinoer" count={6} />
 
         <Separator className="my-10" />
