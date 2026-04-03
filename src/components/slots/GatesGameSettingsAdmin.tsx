@@ -17,6 +17,8 @@ const GATES_SETTINGS_KEYS = [
   "gates_scatter_retrigger",
   "gates_free_spins_initial",
   "gates_free_spins_retrigger",
+  "gates_multiplier_values",
+  "gates_multiplier_weights",
 ];
 
 interface GatesSettings {
@@ -27,6 +29,8 @@ interface GatesSettings {
   scatterRetrigger: number;
   freeSpinsInitial: number;
   freeSpinsRetrigger: number;
+  multiplierValues: string;
+  multiplierWeights: string;
 }
 
 const DEFAULTS: GatesSettings = {
@@ -37,6 +41,8 @@ const DEFAULTS: GatesSettings = {
   scatterRetrigger: 3,
   freeSpinsInitial: 15,
   freeSpinsRetrigger: 5,
+  multiplierValues: "2,3,5,10,15,25,50,100",
+  multiplierWeights: "30,25,20,12,6,3,2,1",
 };
 
 export function GatesGameSettingsAdmin() {
@@ -61,6 +67,8 @@ export function GatesGameSettingsAdmin() {
         scatterRetrigger: parseInt(map.gates_scatter_retrigger || String(DEFAULTS.scatterRetrigger), 10),
         freeSpinsInitial: parseInt(map.gates_free_spins_initial || String(DEFAULTS.freeSpinsInitial), 10),
         freeSpinsRetrigger: parseInt(map.gates_free_spins_retrigger || String(DEFAULTS.freeSpinsRetrigger), 10),
+        multiplierValues: map.gates_multiplier_values || DEFAULTS.multiplierValues,
+        multiplierWeights: map.gates_multiplier_weights || DEFAULTS.multiplierWeights,
       } as GatesSettings;
     },
   });
@@ -79,6 +87,8 @@ export function GatesGameSettingsAdmin() {
         { key: "gates_scatter_retrigger", value: String(s.scatterRetrigger) },
         { key: "gates_free_spins_initial", value: String(s.freeSpinsInitial) },
         { key: "gates_free_spins_retrigger", value: String(s.freeSpinsRetrigger) },
+        { key: "gates_multiplier_values", value: s.multiplierValues },
+        { key: "gates_multiplier_weights", value: s.multiplierWeights },
       ];
       for (const u of updates) {
         const { error } = await supabase
@@ -160,6 +170,27 @@ export function GatesGameSettingsAdmin() {
             <p className="text-xs text-muted-foreground">
               Sandsynlighed pr. celle for en multiplier orb i free spins.
             </p>
+          </div>
+          {/* Multiplier Values & Weights */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Multiplier Værdier</Label>
+              <Input
+                value={form.multiplierValues}
+                onChange={(e) => setForm({ ...form, multiplierValues: e.target.value })}
+                placeholder="2,3,5,10,15,25,50,100"
+              />
+              <p className="text-xs text-muted-foreground">Kommasepareret liste af orb-værdier</p>
+            </div>
+            <div className="space-y-2">
+              <Label>Multiplier Vægte</Label>
+              <Input
+                value={form.multiplierWeights}
+                onChange={(e) => setForm({ ...form, multiplierWeights: e.target.value })}
+                placeholder="30,25,20,12,6,3,2,1"
+              />
+              <p className="text-xs text-muted-foreground">Vægte svarende til hver værdi (højere = hyppigere)</p>
+            </div>
           </div>
         </div>
 

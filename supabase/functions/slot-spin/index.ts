@@ -111,8 +111,8 @@ let GATES_REEL_DUP_2_CHANCE = 0.35;
 let GATES_REEL_DUP_3_CHANCE = 0.10;
 const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10;
 
-const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
-const GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+let GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
+let GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 
 const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const GATES_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
@@ -127,6 +127,7 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
       "gates_min_match", "gates_scatter_trigger", "gates_scatter_retrigger",
       "gates_free_spins_initial", "gates_free_spins_retrigger",
       "gates_max_bet", "gates_reel_dup_2_chance", "gates_reel_dup_3_chance",
+      "gates_multiplier_values", "gates_multiplier_weights",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
@@ -143,6 +144,14 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
     GATES_MAX_BET = parseInt(map.gates_max_bet || "10", 10);
     GATES_REEL_DUP_2_CHANCE = parseFloat(map.gates_reel_dup_2_chance || "0.35");
     GATES_REEL_DUP_3_CHANCE = parseFloat(map.gates_reel_dup_3_chance || "0.10");
+    if (map.gates_multiplier_values) {
+      const vals = map.gates_multiplier_values.split(",").map((v: string) => parseInt(v.trim(), 10)).filter((v: number) => !isNaN(v));
+      if (vals.length > 0) GATES_MULTIPLIER_VALUES = vals;
+    }
+    if (map.gates_multiplier_weights) {
+      const wts = map.gates_multiplier_weights.split(",").map((v: string) => parseInt(v.trim(), 10)).filter((v: number) => !isNaN(v));
+      if (wts.length > 0) GATES_MULTIPLIER_WEIGHTS = wts;
+    }
   }
 }
 
