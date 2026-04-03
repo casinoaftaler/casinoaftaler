@@ -19,7 +19,13 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+
+import dogHouseIntroScreen from "@/assets/screenshots/dog-house-intro-screen.webp";
+import dogHouseGameplay from "@/assets/screenshots/dog-house-gameplay.webp";
+import dogHousePaytable from "@/assets/screenshots/dog-house-paytable.webp";
+import dogHouseSpilleregler from "@/assets/screenshots/dog-house-spilleregler.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
