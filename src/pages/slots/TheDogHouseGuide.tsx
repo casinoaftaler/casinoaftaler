@@ -345,6 +345,66 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        {/* ── The Dog House-Serien: Franchise-Overblik ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="target" className="h-5 w-5 text-primary" />
+            The Dog House-Serien: Fra Original til Megaways og Beyond
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har udbygget The Dog House til en komplet franchise med tre distinkte varianter, der henvender sig til forskellige spillerprofiler. Det originale The Dog House (2019) forbliver fundamentet med sit 5×3 grid og 20 faste linjer. The Dog House Megaways (2020) introducerede Megaways-mekanikken med op til 117.649 gevinstmuligheder og markant højere volatilitet. The Dog House – Dog or Alive (2022) tog franchisen i en endnu mere aggressiv retning med multiplikatorer op til 128× og en max win på 12.000×.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Matematisk set er den originale The Dog House det mest balancerede valg i serien. Megaways-versionen har højere ceiling men markant dybere tørkeperioder – hit frequency falder fra ~25 % til ~15-18 % i base game. Dog or Alive-varianten er den mest volatile med den mest aggressive multiplikator-distribution, designet specifikt til streamere og high-roller spillere. For det brede danske spillersegment er den originale udgave fortsat den bedste indgangsvinkel til franchisen.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Et ofte overset aspekt er RTP-forskellen mellem varianterne. Den originale The Dog House (96,51 %) har faktisk en marginalt lavere RTP end Megaways-versionen (96,55 %), mens Dog or Alive ligger lavere (96,00 %). Forskellen er negligibel i praksis, men den matematisk bevidste spiller bør notere, at den nyeste variant i serien faktisk er den med lavest RTP – en trend der desværre er udbredt i slot-industrien generelt, hvor nyere titler tenderer mod lavere baseline-RTP.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For danske spillere, der overvejer hvilken variant de skal spille, er vores anbefaling klar: start med den originale The Dog House for at forstå den grundlæggende sticky wild-mekanik. Hvis du ønsker mere action og er komfortabel med højere volatilitet, avancér til Megaways-versionen. Dog or Alive er kun for erfarne spillere med stor bankroll og en klar forståelse af ekstremt høj varians. Uanset valget er det vigtigt at verificere RTP-konfigurationen i spillets hjælpemenu, da alle tre varianter tilbydes i multiple RTP-versioner.
+          </p>
+        </section>
+
+        {/* ── Pragmatic Play Sticky Wild-Mekanik i Kontekst ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />
+            Sticky Wild-Mekanikken i Industriel Kontekst
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Sticky wilds er ikke en unik mekanik – den har eksisteret i online slots siden <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> <Link to="/casinospil/spillemaskiner/dead-or-alive-2" className={linkClass}>Dead or Alive</Link>-serie, der populariserede konceptet. Men The Dog House forfiner mekanikken med en kritisk tilføjelse: multiplikator-wilds. I den originale Dead or Alive (2009) var sticky wilds "rene" – de substituerede symboler men multiplicerede ikke gevinster. The Dog House tilføjer 2× og 3× multiplikatorer til hvert wild, hvilket dramatisk ændrer den matematiske model.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Denne innovation har to væsentlige konsekvenser. For det første øger den den potentielle single-spin gevinst under free spins eksponentielt – to wilds med 3× giver 9×, tre wilds giver 27×. For det andet – og vigtigere – ændrer den gevinstdistributionen fundamentalt: i stedet for en relativt flad fordeling af bonusgevinster (som i standard sticky wild-slots) skaber multiplikator-wilds en markant højreSkæv fordeling, hvor de fleste bonusrunder er modeste men de sjældne runder med multiple 3×-wilds eksploderer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Konkurrerende udviklere har taget The Dog House's innovation til sig. <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> bruger en lignende mekanik i <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>, men med additive/multiplicative duel-wilds. Push Gamings <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> tilbyder en alternativ tilgang med progressiv multiplikator-akkumulering. The Dog House forbliver dog den mest "rene" implementering af sticky wild + multiplikator-konceptet – og dermed den bedste referencemodel for spillere, der ønsker at forstå mekanikken.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Et aspekt, der fortjener analyse, er wild-placement-tilfældigheden. I The Dog House kan wilds kun lande på hjul 2, 3 og 4 (midterhjulene), ikke på hjul 1 og 5. Denne restriktion begrænser det totale antal mulige sticky wild-positioner til 9 (3 hjul × 3 rækker) men sikrer, at ethvert wild der lander, har maximum chance for at indgå i gevinstlinjer. Det er en bevidst designbeslutning: ved at koncentrere wilds på midterhjulene øger Pragmatic Play sandsynligheden for, at wilds substituerer relevante symboler, hvilket øger den gennemsnitlige bonusrunde-gevinst uden at ændre wild-frekvensen.
+          </p>
+        </section>
+
+        {/* ── Spilpsykologi ── */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
+            Spilpsykologi: Hvorfor The Dog House Engagerer
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            The Dog House udnytter flere veldokumenterede psykologiske mekanismer til at skabe engagement. Den mest fundamentale er "near-miss"-effekten under base game: scattere kan kun lande på hjul 1, 3 og 5, og det er ekstremt hyppigt, at 2 af 3 lander. Denne "næsten-bonus"-oplevelse aktiverer det dopaminerge belønningssystem og skaber en vedvarende forventning om, at bonusrunden er "lige om hjørnet" – selvom hvert spin er matematisk uafhængigt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Den visuelle og auditive feedback under free spins er bevidst designet til at forstærke den emotionelle oplevelse. Hvert wild der lander producerer en distinkt lyd og en dramatisk animation, der signalerer "noget godt skete". Multiplikator-ikonerne (2× eller 3×) vises tydeligt over hvert wild, og når wilds indgår i gevinstlinjer, multipliceres gevinstanimationen med tilsvarende drama. Denne feedback-loop er kritisk for at opretholde spillerens engagement under en 9-spin bonusrunde.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Valget mellem to free spins-modi (standard vs. raining wilds) er en subtil psykologisk mekanisme: det giver spilleren en illusion af kontrol over udfaldet. I virkeligheden er begge modi kalibreret til at producere den samme gennemsnitlige RTP – valget er æstetisk, ikke strategisk. Men følelsen af at have "valgt rigtigt" (eller "forkert") bidrager til den narrative engagement, der holder spilleren i spillet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv er det vigtigt at være bevidst om disse psykologiske mekanismer. The Dog House er designet til at være engagerende – det er et underholdningsprodukt. Men forståelsen af, at "near-miss"-oplevelser ikke øger sandsynligheden for en fremtidig bonus, at multiplikator-wilds er tilfældige (ikke "fortjente"), og at valget af fri spin-modus er matematisk neutralt, kan hjælpe spillere med at træffe mere rationelle beslutninger om deres spilleadfærd. Nyd spillet for hvad det er: en charmerende, veldesignet underholdning med en fair RTP.
+          </p>
+        </section>
+
         <SlotDataLink slotSlug="the-dog-house" slotName="The Dog House" />
         <SlotProviderLink slotSlug="the-dog-house" />
         <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/the-dog-house" />
