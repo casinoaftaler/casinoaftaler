@@ -241,6 +241,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerRtp} alt="Fire Joker RTP 94,23% vist på spilleautomaten.dk med popularitetsvurdering og top vindere" caption="Fire Jokers RTP og popularitetsdata som vist hos en dansk operatør – bemærk den lavere RTP-konfiguration." />
+
         {/* ── Risiko og ansvarligt spil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
