@@ -213,6 +213,12 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotPaytable}
+          alt="Book of Dead paytable – Rich Wilde 5000 mønter for 5-of-a-kind, Osiris 2000, Anubis og Horus 750, samt 10 gevinstlinjer"
+          caption="Paytable: Rich Wilde betaler 5.000 mønter for 5-of-a-kind, Osiris 2.000, og Anubis/Horus hver 750. Alle gevinster ganges med indsatsen pr. linje."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: RTP DEEP DIVE ── */}
