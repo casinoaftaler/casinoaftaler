@@ -131,7 +131,7 @@ const TheDogHouseGuide = () => {
                 <div><span className="text-muted-foreground">Grid:</span> <span className="font-medium">5×3 (20 linjer)</span></div>
                 <div><span className="text-muted-foreground">Hit Frequency:</span> <span className="font-medium">~25 %</span></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span> <span className="font-medium">2 kr.</span></div>
-                <div><span className="text-muted-foreground">Bonus Buy:</span> <span className="font-medium">60× indsats</span></div>
+                <div><span className="text-muted-foreground">Free Spins:</span> <span className="font-medium">9-27 (via hjulspil)</span></div>
               </div>
             </CardContent>
           </Card>
