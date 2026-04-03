@@ -114,6 +114,8 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot src={fireJokerHero} alt="Fire Joker titelbillede med joker-karakter omgivet af flammer og gyldne ringe" caption="Fire Jokers ikoniske titelbillede – Play'n GO's klassiske frugtmaskine med moderne twist." eager />
+
         {/* ── Spilmekanik ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
