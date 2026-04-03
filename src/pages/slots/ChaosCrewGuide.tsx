@@ -193,9 +193,7 @@ const ChaosCrewGuide = () => {
             </div>
           </CardContent></Card>
 
-          <p className="text-muted-foreground mb-4 leading-relaxed">Bonus buy er matematisk designet til at være RTP-neutral – den samlede RTP forbliver 96,50 % uanset om du bruger bonus buy eller trigger naturligt. Den reelle forskel er i tidseffektivitet og variansstruktur. Bonus buy eliminerer den lange base game-grind (230+ spins i gennemsnit) og giver øjeblikkelig adgang til den volatile bonusrunde. For spillere med begrænset tid kan dette retfærdiggøres som en tidsbesparelse.</p>
-
-          <p className="text-muted-foreground mb-4 leading-relaxed">Enhanced bonus buy (80×) er den mere interessante option. De garanterede start-wilds øger sandsynligheden for en stærk runde markant – du starter aldrig med 0 wilds, hvilket eliminerer de svageste 15-20 % af mulige runder. Den ekstra investering (20× over standard) kompenseres af den forbedrede wild-start, men den samlede EV forbliver neutral.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Bonus buy-RTP'en på 95,92 % er lidt lavere end base game's 96,50 %, hvilket giver en marginalt dårligere EV pr. køb. Forskellen er ca. 0,58 procentpoint – ved 129× indsats svarer det til et forventet tab på ~5,24× pr. køb sammenlignet med ~4,52× ved naturlig trigger. Den reelle fordel er tidseffektivitet: bonus buy eliminerer den lange base game-grind (230+ spins i gennemsnit) og giver øjeblikkelig adgang til den volatile bonusrunde.</p>
 
           <p className="text-muted-foreground leading-relaxed">Vigtigt: bonus buy kan være deaktiveret på danske casinoer under <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>s regulering. Hvis bonus buy ikke er tilgængelig, er den eneste vej til free spins den naturlige trigger via 3+ scatters. Denne regulatoriske begrænsning er relevant for danske spillere, der specifikt søger Chaos Crew for bonus buy-muligheden.</p>
         </section>
