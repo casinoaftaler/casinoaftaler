@@ -10,11 +10,9 @@
 
 /* Symbol drop-in from above with bounce (for new symbols filling gaps) */
 @keyframes tumble-drop {
-  0% { transform: translateY(-120%); opacity: 0; filter: drop-shadow(0 -8px 6px rgba(147, 197, 253, 0.6)); }
-  30% { opacity: 1; filter: drop-shadow(0 -12px 10px rgba(147, 197, 253, 0.5)); }
-  50% { transform: translateY(6%); filter: drop-shadow(0 -4px 4px rgba(147, 197, 253, 0.3)); }
-  75% { transform: translateY(-3%); filter: drop-shadow(0 -2px 2px rgba(147, 197, 253, 0.15)); }
-  100% { transform: translateY(0); opacity: 1; filter: drop-shadow(0 0 0 transparent); }
+  0% { transform: translateY(-120%); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 /* Gravity shift for existing symbols moving down to fill gaps */
