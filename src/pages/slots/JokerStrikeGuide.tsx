@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/joker-strike-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -66,11 +65,6 @@ const JokerStrikeGuide = () => {
         <AuthorMetaBar author="jonas" readTime="19 min" />
 
         <SnippetAnswer answer="Joker Strike er en 5×3 slot fra Quickspin med den højeste tilgængelige RTP i markedet: 98,11 % med Hi Roller-funktionen aktiveret (96,60 % standard). Hi Roller koster 30× indsatsen for 10 spins med forbedret symbolfordeling. Max win er 456× – lavt men bevidst, da spillet er designet til konsistens og optimal gennemspilning, ikke store gevinster." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Joker Strike spillemaskine med klassisk joker-tema" loading="eager" />
-        </div>
-
         {/* ── HI ROLLER DEEP DIVE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="circle-dollar-sign" className="h-6 w-6 text-primary" /> Hi Roller: Premium-Tilstandens Komplette Anatomi</h2>

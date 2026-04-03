@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Dog, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/amerikansk-blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -129,11 +127,6 @@ const AmerikanskBlackjackGuide = () => {
         <AuthorMetaBar author="jonas" readTime="67 Min." />
 
         <SnippetAnswer answer="Amerikansk blackjack bruger hole card-reglen, hvor dealeren tjekker for blackjack med et es eller 10-kort. Det giver spilleren en fordel, da man ikke risikerer at fordoble eller splitte mod en dealer-blackjack. House edge ligger typisk på 0,4–0,6 % med basic strategy og standardregler (S17, DAS, 6-8 decks)." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Amerikansk blackjack-bord med kort og chips i atmosfærisk belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Min test-log: 500 hænder på amerikanske borde
         ═══════════════════════════════════════════════════════════════ */}

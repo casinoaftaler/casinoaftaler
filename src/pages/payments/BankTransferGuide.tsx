@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
-import bankTransferHero from "@/assets/heroes/bank-transfer-hero.jpg";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidLogin from "@/assets/screenshots/kapow-mitid-login.webp";
 
@@ -11,8 +10,6 @@ const BankTransferGuide = () => {
       seoTitle="Bankoverførsel Casino 2026 – Sikker men Langsom"
       seoDescription="Bankoverførsler på danske casinoer: Sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer. Se de bedste casinoer."
       name="Bankoverførsel"
-      heroImage={bankTransferHero}
-      heroImageAlt="Bankoverførsel betalingsmetode på danske casinoer"
       heroSubtitle="Den klassiske og mest troværdige betalingsmetode – direkte overførsler fra din bankkonto til casinoet med fuld sporbarhed og bankgaranti."
       introTitle="Bankoverførslen Lever Stadig – Men Bør Du Bruge den i 2026?"
       introContent={

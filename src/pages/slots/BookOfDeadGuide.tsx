@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -112,10 +111,6 @@ const BookOfDeadGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="163 Min." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" loading="eager" />
-        </div>
-
         {/* ── ÅBNINGSVINKEL: RISIKOPROFIL FØRST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Risikoprofilen Bag Dansk Casinospils Mest Betroede Slot</h2>

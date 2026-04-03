@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/the-dog-house-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -106,10 +105,6 @@ const TheDogHouseGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="16 min" />
         <SnippetAnswer answer="The Dog House er en høj-volatilitets slot fra Pragmatic Play med 96,51 % RTP og 12.305× max win. Spillets unikke feature er sticky wilds under free spins med 2× eller 3× multiplikatorer, der ganges sammen – to wilds med 3× giver 9× samlet multiplikator. Bonus Buy er tilgængelig for 60× indsatsen." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" loading="eager" />
-        </div>
-
         {/* ── Data First: RTP & Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

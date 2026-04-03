@@ -3,8 +3,6 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoA: ComparisonCasino = {
@@ -146,8 +144,6 @@ export default function LeoVegasVsMrGreen() {
       path="/casino-anmeldelser/leovegas-vs-mr-green"
       datePublished="2026-05-11"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af LeoVegas og Mr Green – to ikoniske nordiske casinobrands"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

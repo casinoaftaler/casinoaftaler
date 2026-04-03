@@ -11,8 +11,6 @@ import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import privacyHero from "@/assets/heroes/privacy-hero.jpg";
-
 const privacyFaqs = [
   {
     question: "Hvilke oplysninger indsamler Casinoaftaler.dk?",
@@ -90,14 +88,6 @@ const Privacy = () => {
         <AuthorMetaBar author="redaktionen" readTime="148 Min." showAffiliateDisclaimer={false} />
 
         {/* Hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={privacyHero}
-            alt="Privatlivspolitik og databeskyttelse"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* Section 1 */}
         <section className="mb-12">

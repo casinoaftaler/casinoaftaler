@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/wild-west-gold-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -57,10 +56,6 @@ const WildWestGoldGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="40 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wild West Gold spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" /> RTP & Volatilitet: Den Matematiske Profil</h2>
           <Card className="mb-6"><CardContent className="pt-6">

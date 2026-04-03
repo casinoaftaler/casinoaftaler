@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/amerikansk-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -117,11 +115,6 @@ export default function AmerikanskRouletteGuide() {
         <AuthorMetaBar author="jonas" readTime="133 Min." />
 
         <SnippetAnswer answer="Amerikansk roulette har to nulfelter (0 og 00), hvilket giver en house edge på 5,26 % – næsten dobbelt så høj som europæisk roulette. Top line-indsatsen (0-00-1-2-3) har den højeste house edge på 7,89 %. For danske spillere er europæisk eller fransk roulette altid det bedre valg matematisk." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Amerikansk roulette-hjul med dobbelt-nul i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Introduktion: Hvad er Amerikansk Roulette?
         ═══════════════════════════════════════════════════════════════ */}

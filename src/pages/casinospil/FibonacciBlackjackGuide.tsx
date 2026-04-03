@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, Infinity, LineChart, Repeat, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/fibonacci-blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -129,11 +127,6 @@ const FibonacciBlackjackGuide = () => {
         <AuthorMetaBar author="jonas" readTime="122 Min." />
 
         <SnippetAnswer answer="Fibonacci-systemet i blackjack følger talrækken 1-1-2-3-5-8-13 og eskalerer langsommere end Martingale. Efter tab rykker du ét trin frem i sekvensen; efter gevinst to trin tilbage. Systemet giver mildere drawdowns, men ændrer ikke house edge eller det langsigtede forventede tab." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Casino blackjack-bord med Fibonacci-spiralen og chipstakke arrangeret i talrækken" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Fibonacci: Fra middelalderen til casinobordet
         ═══════════════════════════════════════════════════════════════ */}

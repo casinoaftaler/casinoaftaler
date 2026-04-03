@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/razor-shark-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -108,10 +107,6 @@ const RazorSharkGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 min" />
         <SnippetAnswer answer="Razor Shark er en meget høj volatilitet slot (4,5/5) fra Push Gaming med 96,70 % RTP og et max win-potentiale på 50.000×. Mystery Stacks er kernemekanikken: under free spins kan mystery-symboler afsløre multiplikatorer op til 2.500×, der akkumuleres progressivt for potentielt massive gevinster." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" loading="eager" />
-        </div>
-
         {/* ── ÅBNINGSVINKEL: FEATURE-MEKANIK ANALYSE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Mystery Stacks: Mekanikken der Definerer en Generation</h2>

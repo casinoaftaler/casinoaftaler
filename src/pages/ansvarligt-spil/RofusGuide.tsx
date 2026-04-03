@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
 import { ArrowRight, Ban, Gavel, HelpCircle, Timer, UserX } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -203,16 +202,6 @@ const RofusGuide = () => {
           Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={rofusHero}
-            alt="ROFUS selvudelukkelse – laptop viser registreringsinterface med beskyttelsesskjold og casino-chips"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER ROFUS?

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/money-train-3-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -106,10 +105,6 @@ const MoneyTrain3Guide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 min" />
         <SnippetAnswer answer="Money Train 3 er en ekstremt volatil slot fra Relax Gaming med 96,10 % RTP og 100.000× max win – et af de højeste i online slots. Money Cart-bonusrunden bruger syv unikke special modifiers (Persistent Payer, Collector, Sniper m.fl.) på et udvidet 4×7 grid for eksponentielt voksende gevinster." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" loading="eager" />
-        </div>
-
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

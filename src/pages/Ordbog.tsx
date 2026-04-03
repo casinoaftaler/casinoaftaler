@@ -12,8 +12,6 @@ import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import ordbogHero from "@/assets/heroes/ordbog-hero.jpg";
-
 const ORDBOG_FAQS = [
   { question: "Hvad er en casino ordbog?", answer: "En casino ordbog er en samling af definitioner og forklaringer af de mest almindelige begreber inden for online casino, spillemaskiner og bonusser." },
   { question: "Hvad er den vigtigste term at kende?", answer: "RTP (Return to Player) er nok den vigtigste. Den fortæller dig den langsigtede tilbagebetalingsprocent. Jo højere RTP, desto bedre statistisk chance." },
@@ -69,7 +67,7 @@ const Ordbog = () => {
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${ordbogHero})`,
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% ), hsl(210 80% 30% ))`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -93,16 +91,6 @@ const Ordbog = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="44 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={ordbogHero}
-            alt="Casino ordbog – opslagsbog med terninger, chips og spillekort på et mørkt bord med lilla og teal belysning"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         <div className="relative mb-8">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

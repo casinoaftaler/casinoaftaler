@@ -18,8 +18,6 @@ import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bo
 import { AlertTriangle, BarChart3, BookOpen, Brain, CheckCircle, Layers, Scale, ShieldCheck, Skull, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/martingale-blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -109,16 +107,6 @@ const MartingaleBlackjackGuide = () => {
 
         <SnippetAnswer answer="Martingale i blackjack fordobler indsatsen efter hvert tab. Systemet giver mange små sejre, men risikerer katastrofale tab ved tabsserier. Efter bare 7 tab i træk fra 50 kr. er indsatsen 6.400 kr. – ofte over bordmaksimum. House edge forbliver uændret uanset progressionssystemet." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={heroImage}
-            alt="Blackjack-bord med stigende chipstakke som visualiserer Martingale-systemets fordoblinger"
-            width={1920}
-            height={600}
-            className="h-auto max-h-[400px] w-full object-cover"
-            loading="eager"
-          />
-        </div>
 
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">

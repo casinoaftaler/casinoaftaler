@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/immortal-romance-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -66,11 +65,6 @@ const ImmortalRomanceGuide = () => {
         <AuthorMetaBar author="jonas" readTime="21 min" />
 
         <SnippetAnswer answer="Immortal Romance er en 243 ways-slot fra Microgaming med 96,86 % RTP og 12.150× max win. Spillets kernefeature er Chamber of Spins – et progressivt bonussystem med fire niveauer (Amber, Troy, Michael, Sarah), der låses op over tid og belønner langsigtede spillere med stadig stærkere bonusrunder." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Immortal Romance spillemaskine med vampyr-tema" loading="eager" />
-        </div>
-
         {/* ── NARRATIV DESIGN ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="book-open" className="h-6 w-6 text-primary" /> Narrativ Dybde: Mere End Bare Symboler</h2>

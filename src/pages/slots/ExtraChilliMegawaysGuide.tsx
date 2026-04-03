@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
-import heroImage from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -60,10 +59,6 @@ const ExtraChilliMegawaysGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="17 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Extra Chilli Megaways spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="users" className="h-7 w-7 text-primary" /> Hvem Passer Extra Chilli Megaways Til?</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli Megaways er bygget til den erfarne slot-spiller, der forstår varians, EV og risikostyring. Spillets to unikke funktioner – Feature Drop (bonus buy) og free spins-gamble – kræver aktive beslutninger fra spilleren, hvilket adskiller Extra Chilli fra passive "spin and hope"-slots. Det er et spil for spillere, der vil have kontrol over deres risikoprofil.</p>

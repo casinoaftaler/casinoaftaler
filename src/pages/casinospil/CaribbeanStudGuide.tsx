@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Dog, Shuffle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/caribbean-stud-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -104,11 +102,6 @@ export default function CaribbeanStudGuide() {
         <AuthorMetaBar author="kevin" readTime="170 Min." />
 
         <SnippetAnswer answer="Caribbean Stud Poker spilles mod huset med fem kort og en progressiv jackpot-sideindsats. House edge er ca. 5,22 % på ante-indsatsen. Optimal strategi er simpel: raise med ethvert par eller bedre, og fold med mindre end ace-king. Jackpot-sideindsatsen har typisk en house edge over 25 %." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Caribbean Stud Poker bord med dealer og progressive jackpot display" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ──── Sektion 1: Historisk kontekst & spillets DNA ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

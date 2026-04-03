@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/cleopatra-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -57,10 +56,6 @@ const CleopatraGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="16 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Cleopatra spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><History className="h-5 w-5 text-primary" />Fra Las Vegas til Danmark: Cleopatras Rejse</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Cleopatra er ikke blot en spillemaskine – den er et kulturelt fænomen. Oprindeligt lanceret som en fysisk kabinet-slot af IGT i 2005, revolutionerede Cleopatra den egyptiske slot-genre med sin ikoniske lydeffekt, elegante grafik og en free spins-mekanik, der på det tidspunkt var banebrydende. Overgangen til online-formatet i 2012 bevarede alle de elementer, der gjorde originalen til en succes, samtidig med at IGT tilpassede brugerfladen til digitale platforme.</p>

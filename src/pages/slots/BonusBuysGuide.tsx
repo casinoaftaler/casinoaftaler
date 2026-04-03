@@ -15,39 +15,24 @@ import { type ReactNode, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/bonus-buys-hero.jpg";
-import imgSweetBonanza from "@/assets/heroes/sweet-bonanza-hero.jpg";
-import imgGatesOfOlympus from "@/assets/heroes/gates-of-olympus-hero.jpg";
-import imgWantedDeadOrAWild from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
-import imgBigBassBonanza from "@/assets/heroes/big-bass-bonanza-hero.jpg";
-import imgMadameDestiny from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
-import imgExtraChilli from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
-import imgChaosCrew from "@/assets/heroes/chaos-crew-hero.jpg";
-import imgBuffaloKing from "@/assets/heroes/buffalo-king-hero.jpg";
-import imgSugarRush from "@/assets/heroes/sugar-rush-hero.jpg";
-import imgWildWestGold from "@/assets/heroes/wild-west-gold-hero.jpg";
-import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
-import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
-import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
-import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
 import { ArrowRight, Ban, ChevronLeft, ChevronRight, Dog, DollarSign, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 
 const SLOT_DATA = [
-  { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x", img: imgSweetBonanza },
-  { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x", img: imgGatesOfOlympus },
-  { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x", img: imgWantedDeadOrAWild },
-  { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", rtp: "96,71 %", volatility: "Høj", maxWin: "2.100x", img: imgBigBassBonanza },
-  { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x", img: imgMadameDestiny },
-  { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "Big Time Gaming", rtp: "96,20 %", volatility: "Ekstrem", maxWin: "50.000x", img: imgExtraChilli },
-  { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw Gaming", rtp: "96,32 %", volatility: "Høj", maxWin: "10.000x", img: imgChaosCrew },
-  { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x", img: imgBuffaloKing },
-  { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x", img: imgSugarRush },
-  { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x", img: imgWildWestGold },
-  { to: "/casinospil/spillemaskiner/money-train-3", name: "Money Train 3", provider: "Relax Gaming", rtp: "96,30 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgMoneyTrain3 },
-  { to: "/casinospil/spillemaskiner/razor-shark", name: "Razor Shark", provider: "Push Gaming", rtp: "96,70 %", volatility: "Høj", maxWin: "50.000x", img: imgRazorShark },
-  { to: "/casinospil/spillemaskiner/jammin-jars", name: "Jammin' Jars", provider: "Push Gaming", rtp: "96,83 %", volatility: "Høj", maxWin: "20.000x", img: imgJamminJars },
-  { to: "/casinospil/spillemaskiner/dead-or-alive-2", name: "Dead or Alive 2", provider: "NetEnt", rtp: "96,82 %", volatility: "Ekstrem", maxWin: "100.000x", img: imgDeadOrAlive2 },
+  { to: "/casinospil/spillemaskiner/sweet-bonanza", name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Meget høj", maxWin: "21.175x" },
+  { to: "/casinospil/spillemaskiner/gates-of-olympus", name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Meget høj", maxWin: "5.000x" },
+  { to: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", name: "Wanted Dead or a Wild", provider: "Hacksaw Gaming", rtp: "96,38 %", volatility: "Ekstrem", maxWin: "12.500x" },
+  { to: "/casinospil/spillemaskiner/big-bass-bonanza", name: "Big Bass Bonanza", provider: "Pragmatic Play", rtp: "96,71 %", volatility: "Høj", maxWin: "2.100x" },
+  { to: "/casinospil/spillemaskiner/madame-destiny-megaways", name: "Madame Destiny Megaways", provider: "Pragmatic Play", rtp: "96,58 %", volatility: "Høj", maxWin: "5.000x" },
+  { to: "/casinospil/spillemaskiner/extra-chilli-megaways", name: "Extra Chilli Megaways", provider: "Big Time Gaming", rtp: "96,20 %", volatility: "Ekstrem", maxWin: "50.000x" },
+  { to: "/casinospil/spillemaskiner/chaos-crew", name: "Chaos Crew", provider: "Hacksaw Gaming", rtp: "96,32 %", volatility: "Høj", maxWin: "10.000x" },
+  { to: "/casinospil/spillemaskiner/buffalo-king", name: "Buffalo King", provider: "Pragmatic Play", rtp: "96,06 %", volatility: "Høj", maxWin: "93.750x" },
+  { to: "/casinospil/spillemaskiner/sugar-rush", name: "Sugar Rush", provider: "Pragmatic Play", rtp: "96,50 %", volatility: "Høj", maxWin: "5.000x" },
+  { to: "/casinospil/spillemaskiner/wild-west-gold", name: "Wild West Gold", provider: "Pragmatic Play", rtp: "96,51 %", volatility: "Høj", maxWin: "10.000x" },
+  { to: "/casinospil/spillemaskiner/money-train-3", name: "Money Train 3", provider: "Relax Gaming", rtp: "96,30 %", volatility: "Ekstrem", maxWin: "100.000x" },
+  { to: "/casinospil/spillemaskiner/razor-shark", name: "Razor Shark", provider: "Push Gaming", rtp: "96,70 %", volatility: "Høj", maxWin: "50.000x" },
+  { to: "/casinospil/spillemaskiner/jammin-jars", name: "Jammin' Jars", provider: "Push Gaming", rtp: "96,83 %", volatility: "Høj", maxWin: "20.000x" },
+  { to: "/casinospil/spillemaskiner/dead-or-alive-2", name: "Dead or Alive 2", provider: "NetEnt", rtp: "96,82 %", volatility: "Ekstrem", maxWin: "100.000x" },
 ];
 // Chunk into pages of 9 (3 rows × 3 cols)
 const PAGE_SIZE = 9;
@@ -63,9 +48,7 @@ function SlotCarousel() {
       <div className="grid grid-cols-3 gap-4 mb-6">
         {pageSlots.map((slot) => (
           <Card key={slot.to} className="overflow-hidden flex flex-col">
-            <div className="h-36 overflow-hidden flex-shrink-0">
-              <img src={slot.img} alt={slot.name} className="w-full h-full object-cover" loading="lazy" />
-            </div>
+
             <CardContent className="pt-3 pb-0 flex-1">
               <div className="mb-2">
                 <p className="font-bold text-sm leading-tight">{slot.name}</p>
@@ -256,11 +239,6 @@ const BonusBuysGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="93 Min." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Bonus buy guide til spillemaskiner" loading="eager" />
-        </div>
-
         {/* H2: Hvad er Bonus Buys? */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">

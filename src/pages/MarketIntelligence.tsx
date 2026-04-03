@@ -6,13 +6,11 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
-import GuideHeroImage from "@/components/GuideHeroImage";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import marketIntelligenceHero from "@/assets/heroes/markedsindsigt-hero.jpg";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
 import { useCasinos, type Casino } from "@/hooks/useCasinos";
 import { formatTimestampDanish, usePageLastmod } from "@/hooks/usePageLastmod";
@@ -26,7 +24,6 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { getRouteLastmod } from "@/lib/seoRoutes";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
-const heroAlt = "Markedsindsigt for danske casinoer med verificerede licenssignaler, compliance-data og bonusanalyse";
 
 const faqs = [
   {
@@ -181,7 +178,6 @@ export default function MarketIntelligence() {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="14 min" />
-        <GuideHeroImage src={marketIntelligenceHero} alt={heroAlt} />
 
         {isLoading ? (
           <Card className="border-border bg-card/80">

@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Dices, Lightbulb, MessageSquare, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/poker-bedste-sider-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -115,11 +113,6 @@ export default function PokerBedsteSiderGuide() {
         <AuthorMetaBar author="kevin" readTime="173 Min." />
 
         <SnippetAnswer answer="De bedste pokersider med dansk licens i 2026 inkluderer PokerStars, Unibet, bet365 og Campobet. Valg af pokerside afhænger af spillervolumen, turneringsstruktur, rake og softwarekvalitet. Alle danske pokersider kræver Spillemyndigheden-licens og MitID-verifikation." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Pokerbord med kort og chips i professionelt casino-miljø" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ── SEKTION 1: Introduktion ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

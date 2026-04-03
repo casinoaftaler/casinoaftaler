@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/eye-of-horus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -65,10 +64,6 @@ const EyeOfHorusGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="13 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Eye of Horus spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Fra Spillehal til Online: Eye of Horus' Rejse</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus har en unik oprindelse i online slot-verdenen. Mens de fleste online slots er designet digitalt fra bunden, blev Eye of Horus oprindeligt skabt af Merkur Gaming (en del af den tyske Gauselmann Group) til fysiske spilleautomater i europæiske spillehaller. Spillets mekanikker – expanding symbols, symbol upgrades og den egyptiske tematik – blev optimeret til den landbaserede oplevelse, hvor spillere interagerer fysisk med maskinen.</p>

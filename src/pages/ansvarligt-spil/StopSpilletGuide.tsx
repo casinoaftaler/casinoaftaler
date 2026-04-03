@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
 import { ArrowRight, Gavel, HandHeart, HelpCircle, MessageCircle, Send, UserCheck } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -168,16 +167,6 @@ const StopSpilletGuide = () => {
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={stopspilletHero}
-            alt="StopSpillet rådgivningsguide – telefon med beskyttelsesskjold symboliserer gratis hjælp til spilleafhængige"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER STOPSPILLET?

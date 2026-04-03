@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import paypalHero from "@/assets/heroes/paypal-hero.jpg";
 import paypalKasse from "@/assets/screenshots/paypal-indbetaling-betalingsmetoder.webp";
 import paypalLogin from "@/assets/screenshots/paypal-indbetalingsflow-login.webp";
 import paypalUdbetaling from "@/assets/screenshots/paypal-udbetaling-saldo.webp";
@@ -13,8 +12,6 @@ const PayPalGuide = () => {
       seoTitle="PayPal Casino 2026 – E-Wallet med Køberbeskyttelse"
       seoDescription="Dybdegående analyse af PayPal på danske casinoer: e-wallet-sammenligning, bonusbegrænsninger, vores praktiske test, køberbeskyttelse og regulatorisk kontekst."
       name="PayPal"
-      heroImage={paypalHero}
-      heroImageAlt="PayPal betalingsmetode på danske casinoer"
       heroSubtitle="Verdens mest kendte e-wallet med 430 millioner brugere – men er PayPal det rette valg for danske casinospillere? Vi tester og analyserer fordelene, faldgruberne og alternativerne."
       introTitle="E-Wallet-Landskabet i 2026 – Hvor Passer PayPal Ind Blandt Skrill, Neteller og MobilePay?"
       introContent={

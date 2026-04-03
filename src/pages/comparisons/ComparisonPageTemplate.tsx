@@ -48,8 +48,6 @@ export interface ComparisonPageProps {
   path: string;
   datePublished: string;
   author: "jonas" | "kevin" | "ajse";
-  heroImage: string;
-  heroAlt: string;
   casinoA: ComparisonCasino;
   casinoB: ComparisonCasino;
   categories: ComparisonCategory[];
@@ -104,8 +102,6 @@ export function ComparisonPageTemplate({
   path,
   datePublished,
   author,
-  heroImage,
-  heroAlt,
   casinoA,
   casinoB,
   categories,

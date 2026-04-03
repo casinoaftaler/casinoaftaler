@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/buffalo-king-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -57,10 +56,6 @@ const BuffaloKingGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="18 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Buffalo King spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="zap" className="h-5 w-5 text-primary" />Multiplikator-Stacking: Mekanikken Bag 93.750× Max Win</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings definerende mekanik er multiplikator-stacking under free spins. Under bonusrunden tildeles tilfældige multiplikatorer (2×, 3× eller 5×) til individuelle gevinstsymboler. Når flere symboler med multiplikatorer indgår i samme gevinstlinje, ganges multiplikatorerne SAMMEN – ikke adderes. Denne multiplikativ mekanik er nøglen til spillets ekstreme gevinstpotentiale.</p>

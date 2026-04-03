@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/poker-strategi-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -112,11 +110,6 @@ export default function PokerStrategiGuide() {
         <AuthorMetaBar author="kevin" readTime="60 Min." />
 
         <SnippetAnswer answer="Avanceret poker-strategi handler om pot odds, implied odds, positionsspil og bluffing-frekvens. GTO (Game Theory Optimal) giver en uudnyttelig baseline, mens exploitativ strategi maksimerer profit mod specifikke spillertyper. Bankroll management kræver minimum 20-30 buy-ins for cash games." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Professionel poker-spiller analyserer hånd med matematiske overlays" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════ SEKTION 1: Strategiens fundament ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

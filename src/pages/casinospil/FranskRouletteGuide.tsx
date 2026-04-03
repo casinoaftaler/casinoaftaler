@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/fransk-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -99,11 +97,6 @@ export default function FranskRouletteGuide() {
         <AuthorMetaBar author="jonas" readTime="69 Min." />
 
         <SnippetAnswer answer="Fransk roulette med La Partage-reglen har den laveste house edge i roulette-familien: kun 1,35 % på lige-chancer-indsatser. Når kugler lander på nul, får du halvdelen af din lige-chancer-indsats tilbage. Det gør fransk roulette til den mest spillervenlige variant i enhver sammenligningen." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Fransk roulette-bord med La Partage i elegant Monte Carlo-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* SECTION 1 – Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

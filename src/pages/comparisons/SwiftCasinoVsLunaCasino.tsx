@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
-import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonForside from "@/assets/screenshots/comeon-forside.webp";
 
@@ -145,8 +144,6 @@ export default function SwiftCasinoVsLunaCasino() {
       path="/casino-anmeldelser/swift-casino-vs-luna-casino"
       datePublished="2026-03-18"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af Swift Casino og Luna Casino med fokus på volumen versus kuratering"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

@@ -26,8 +26,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import lotteriHero from "@/assets/heroes/online-lotteri-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ── FAQ ── */
@@ -113,11 +111,6 @@ const OnlineLotteriGuide = () => {
         <AuthorMetaBar author="jonas" readTime="56 Min." />
 
         <SnippetAnswer answer="Online lotteri i Danmark dækker Lotto, Eurojackpot, Vikinglotto og Keno. Gevinstchancen for Lotto-jackpotten er 1:8.145.060, mens Eurojackpot ligger på 1:139.838.160. RTP varierer typisk fra 45–65 %, hvilket gør lotteri til den spilleform med lavest tilbagebetaling. Alle gevinster under 200 kr. er skattefrie." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={lotteriHero} alt="Matematisk analyse af lotteri-sandsynligheder" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">

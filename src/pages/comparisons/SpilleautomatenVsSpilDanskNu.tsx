@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoA: ComparisonCasino = {
@@ -144,8 +142,6 @@ export default function SpilleautomatenVsSpilDanskNu() {
       path="/casino-anmeldelser/spilleautomaten-vs-spildansknu"
       datePublished="2026-03-16"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af Spilleautomaten og SpilDanskNu for danske casinospillere"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

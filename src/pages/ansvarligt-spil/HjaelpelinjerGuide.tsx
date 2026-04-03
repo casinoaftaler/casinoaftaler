@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import hjaelpelinjerHero from "@/assets/heroes/hjaelpelinjer-guide-hero.jpg";
 import { ArrowRight, Ban, Building, HandHeart } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -160,16 +159,6 @@ const HjaelpelinjerGuide = () => {
         <AuthorMetaBar author="ajse" readTime="75 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={hjaelpelinjerHero}
-            alt="Hjælpelinjer for spilleproblemer i Danmark"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ── Intro ── */}
         <section className="mb-12">

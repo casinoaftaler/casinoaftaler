@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, LineChart } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/labouchere-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -103,11 +101,6 @@ export default function LabouchereRouletteGuide() {
         <AuthorMetaBar author="jonas" readTime="123 Min." />
 
         <SnippetAnswer answer="Labouchère-systemet (cancellation) i roulette bruger en brugerdefineret talrække. Indsatsen er summen af første og sidste tal; ved gevinst fjernes begge, ved tab tilføjes det tabte beløb. Systemet giver stor fleksibilitet, men kan eskalere hurtigt ved lange tabsserier og ændrer ikke house edge." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Labouchère roulette system med cancellation-sekvens på et casino-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

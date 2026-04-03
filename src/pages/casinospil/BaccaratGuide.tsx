@@ -18,8 +18,6 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Brain } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
-import baccaratHero from "@/assets/heroes/baccarat-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ───────────────────────── FAQ ───────────────────────── */
@@ -123,14 +121,6 @@ const BaccaratGuide = () => {
 
         <SnippetAnswer answer="Baccarat er et af de mest spillervenlige casinospil med en house edge på kun 1,06 % på banker-indsatsen og 1,24 % på player. Tie-indsatsen bør undgås med sin 14,36 % house edge. Spillet kræver ingen strategiske beslutninger – alle træk følger faste regler." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={baccaratHero}
-            alt="Elegant baccaratbord med kort og chips set fra analytisk perspektiv"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ═══════════════ 1 – MATEMATISK FORKLARING ═══════════════ */}
         <section className="mb-12">

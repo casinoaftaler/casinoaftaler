@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, LineChart, Repeat } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/martingale-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -114,11 +112,6 @@ export default function MartingaleRouletteGuide() {
         <AuthorMetaBar author="frederik" readTime="159 Min." />
 
         <SnippetAnswer answer="Martingale i roulette fordobler indsatsen efter hvert tab på lige-chancer-indsatser. Sandsynligheden for en tabsserie på 7+ er ca. 1 ud af 100 sessioner. Systemet virker kortvarigt, men det matematiske forventede tab er identisk med flat betting: house edge ganger samlet indsats." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

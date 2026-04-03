@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
-import heroImage from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -59,10 +58,6 @@ const MadameDestinyMegawaysGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="48 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Madame Destiny Megaways spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="scale" className="h-5 w-5 text-primary" />Sammenligning med Andre Megaways-Slots</h2>
           <Card className="mb-6"><CardContent className="pt-6">

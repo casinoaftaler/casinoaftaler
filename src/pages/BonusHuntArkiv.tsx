@@ -14,7 +14,6 @@ import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArki
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
 import bonusHuntOverlay from "@/assets/bonus-hunt/bonus-hunt-stream-overlay.webp";
 
 const faqItems = [
@@ -106,14 +105,7 @@ export default function BonusHuntArkiv() {
                 ))}
               </div>
             </div>
-            <div className="hidden md:block">
-              <img
-                src={bonusHuntArkivHero}
-                alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
-                className="w-full h-auto rounded-xl object-cover max-h-[360px] shadow-2xl"
-                loading="eager"
-              />
-            </div>
+
           </div>
         </div>
       </section>
@@ -122,14 +114,6 @@ export default function BonusHuntArkiv() {
         <AuthorMetaBar author="kevin" readTime="25 min" />
 
         {/* Mobile hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl md:hidden">
-          <img
-            src={bonusHuntArkivHero}
-            alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
-            className="w-full h-auto object-cover max-h-[300px]"
-            loading="eager"
-          />
-        </div>
 
         {/* Illustrative stream screenshot */}
         <figure className="rounded-xl overflow-hidden border border-border/50 mb-8">

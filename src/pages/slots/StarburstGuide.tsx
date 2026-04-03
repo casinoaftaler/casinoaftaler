@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/starburst-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -101,10 +100,6 @@ const StarburstGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="95 Min." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Starburst spillemaskine" loading="eager" />
-        </div>
-
         {/* ── ÅBNINGSVINKEL: "ER SPILLET OVERVURDERET?" ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Starburst: Nostalgi eller Substans?</h2>

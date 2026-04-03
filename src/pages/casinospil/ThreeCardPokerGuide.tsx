@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Dog, Play, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/three-card-poker-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -137,11 +135,6 @@ const ThreeCardPokerGuide = () => {
         <AuthorMetaBar author="jonas" readTime="161 Min." />
 
         <SnippetAnswer answer="Three Card Poker har to primære indsatser: Ante/Play og Pair Plus. House edge er 3,37 % på Ante med optimal strategi (raise med Queen-6-4 eller bedre). Pair Plus har en house edge på ca. 7,28 %. Spillet er hurtigt og simpelt, men med relativt høj house edge sammenlignet med blackjack." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Three Card Poker-bord i elegant casino med dealer og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Segment First – Hvem spiller?
         ═══════════════════════════════════════════════════════════════ */}

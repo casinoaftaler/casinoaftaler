@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { AlertTriangle, BarChart3, Brain, Calculator, Play, Scale, ShieldCheck, Sigma, Sparkles, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import rouletteStrategiHero from "@/assets/heroes/roulette-strategi-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ───────────────────────────── FAQ ───────────────────────────── */
@@ -126,16 +124,6 @@ const RouletteStrategiGuide = () => {
 
         <SnippetAnswer answer="Roulette-strategier som Martingale, Fibonacci og D'Alembert ændrer indsatsmønstret men ikke house edge. Den eneste reelle strategiske beslutning er bordvalg: fransk roulette med La Partage (1,35 %) vs. europæisk (2,70 %) vs. amerikansk (5,26 %). Bankroll-styring og tabsloft er vigtigere end ethvert system." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={rouletteStrategiHero}
-            alt="Roulette-hjul med matematiske formler og sandsynlighedsgrafer"
-            width={1920}
-            height={600}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ═══════════════ SEKTION 1 ═══════════════ */}
         <section className="mb-12">

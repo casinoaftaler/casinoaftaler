@@ -25,8 +25,6 @@ import {
   BarChart, Bar
 } from "recharts";
 
-import statistikHero from "@/assets/statistik-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ── Providers with CONFIRMED guide articles ── */
@@ -341,16 +339,6 @@ export default function Statistik() {
         <AuthorMetaBar author="kevin" />
 
         {/* Hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={statistikHero}
-            alt="Bonus Hunt Statistik – aggregeret data fra hundredvis af dokumenterede bonus hunts og spillemaskin-tests"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-            width={1920}
-            height={1080}
-          />
-        </div>
 
         {/* ── Intro prose ── */}
         <section className="mb-12">

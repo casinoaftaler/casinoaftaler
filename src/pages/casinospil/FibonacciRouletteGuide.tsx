@@ -20,8 +20,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, LineChart, Repeat } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/fibonacci-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -113,11 +111,6 @@ export default function FibonacciRouletteGuide() {
         <AuthorMetaBar author="frederik" readTime="136 Min." />
 
         <SnippetAnswer answer="Fibonacci i roulette bruger den berømte talrække (1-1-2-3-5-8-13...) på lige-chancer-indsatser. Progressionen er langsommere end Martingale, men risikoen vokser stadig eksponentielt over længere tabsserier. House edge på 2,70 % (europæisk) eller 1,35 % (fransk med La Partage) forbliver konstant." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Fibonacci roulette system med den gyldne spiral over et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* Indledning */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

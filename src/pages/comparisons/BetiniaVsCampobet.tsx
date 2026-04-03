@@ -3,8 +3,6 @@ import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
-import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoA: ComparisonCasino = {
@@ -145,8 +143,6 @@ export default function BetiniaVsCampobet() {
       path="/casino-anmeldelser/betinia-vs-campobet"
       datePublished="2026-03-16"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af Betinia og Campobet med fokus på No-Sticky bonus og sportsbetting"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

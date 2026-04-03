@@ -3,8 +3,6 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const casinoA: ComparisonCasino = {
@@ -148,8 +146,6 @@ export default function Bet365VsUnibet() {
       path="/casino-anmeldelser/bet365-vs-unibet"
       datePublished="2026-03-06"
       author="jonas"
-      heroImage={heroImage}
-      heroAlt="Sammenligning af bet365 og Unibet – to af Danmarks mest populære online casinoer"
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}

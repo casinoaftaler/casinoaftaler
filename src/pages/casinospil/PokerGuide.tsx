@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import pokerHero from "@/assets/heroes/poker-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ─────────────────── CLUSTER NAVIGATION ─────────────────── */
@@ -180,16 +178,6 @@ const PokerGuide = () => {
 
         <SnippetAnswer answer="Poker er det eneste casinospil hvor spillerens beslutninger har direkte indflydelse på resultatet mod andre spillere. De mest populære varianter i Danmark er Texas Hold'em og Omaha. Casino poker (Caribbean Stud, Three Card) spilles mod huset med faste house edges mellem 2 % og 5 %." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={pokerHero}
-            alt="Pokerbord med kort, chips og spillere i fokuseret session"
-            width={1920}
-            height={600}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ═══════════════ 1 – INTRODUKTION ═══════════════ */}
         <section className="mb-12">
