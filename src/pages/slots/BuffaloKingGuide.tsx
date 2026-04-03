@@ -139,7 +139,7 @@ const BuffaloKingGuide = () => {
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="layers" className="h-7 w-7 text-primary" /> Symbolhierarki og Paytable-Dekonstruktion</h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings symbolsystem er opbygget omkring et nordamerikansk prærie-tema med seks premium-dyresymboler og seks lavværdi-kortsymboler. Buffalen er det højest betalende symbol (30× ved 6-of-a-kind), fulgt af ørnen og ræven (begge 25×), ulven (25×), pumaen og elgen (begge 20×). Kortsymbolerne (A, K, Q, J, 10, 9) betaler 8-12× for 6-of-a-kind. Hierarkiet er designet med en moderat forskel mellem top- og bundsymboler, mens den virkelige gevinsteksplosion kommer fra multiplikator-stacking under free spins.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Buffalo Kings symbolsystem er opbygget omkring et nordamerikansk prærie-tema med seks premium-dyresymboler og seks lavværdi-kortsymboler. Buffalen er det højest betalende symbol (7,5× per way ved 6-of-a-kind), fulgt af ørnen, ræven og ulven (ca. 6,25× per way), samt pumaen og elgen (ca. 5× per way). Kortsymbolerne (A, K, Q, J, 10, 9) betaler 2-3× per way for 6-of-a-kind. Med 4.096 ways kan selv moderate per-way værdier akkumulere til store samlede gevinster.</p>
           <Card className="mb-6"><CardContent className="pt-6">
             <h3 className="font-semibold mb-3">Symbolværdi-tabel (6-of-a-kind ved 1 kr. indsats, 4.096 ways)</h3>
             <div className="overflow-x-auto">
