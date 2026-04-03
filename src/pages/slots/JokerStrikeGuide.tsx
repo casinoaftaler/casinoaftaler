@@ -115,6 +115,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">En vigtig nuance: Hi Roller ændrer ikke spillets grundlæggende mekanik eller payouts. De samme symboler, de samme gevinstlinjer, og de samme gevinstbeløb gælder – det eneste, der ændres, er symbolfrekvenserne. Fjernelsen af lavværdi-symboler øger sandsynligheden for, at premium-symboler og wilds lander, hvilket mekanisk producerer hyppigere og større gevinster. Det er en elegant matematisk løsning, der ikke kræver nye features eller komplekse bonusrunder.</p>
 
           <p className="text-muted-foreground leading-relaxed">Tilgængelighed er en kritisk faktor. Hi Roller er ikke universelt tilgængelig – nogle casinoer deaktiverer funktionen, og visse regulatoriske rammer kan begrænse den. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er Hi Roller typisk tilgængelig, men tjek altid inden du baserer din strategi på funktionen. Uden Hi Roller falder Joker Strike's RTP til 96,60 % – stadig god, men ikke exceptionel nok til at adskille den fra hundredvis af andre slots i samme RTP-range.</p>
+          <ReviewScreenshot
+            src={jokerStrikeHiRoller}
+            alt="Joker Strike Hi Roller-funktion med tre niveauer: 200, 300 og 500 credits samt Joker Strike-gevinst med fuld skærm af jokere"
+            caption="Hi Roller-funktionens tre niveauer (200, 300, 500) og Joker Strike-gevinsten med fuld skærm af jokersymboler."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
