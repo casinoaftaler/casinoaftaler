@@ -1883,6 +1883,65 @@ export type Database = {
         }
         Relationships: []
       }
+      raffle_entries: {
+        Row: {
+          created_at: string
+          id: string
+          raffle_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          raffle_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          raffle_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "raffle_entries_raffle_id_fkey"
+            columns: ["raffle_id"]
+            isOneToOne: false
+            referencedRelation: "raffles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      raffles: {
+        Row: {
+          created_at: string
+          ends_at: string
+          id: string
+          prize_credits: number
+          starts_at: string
+          status: string
+          winner_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          ends_at?: string
+          id?: string
+          prize_credits?: number
+          starts_at?: string
+          status?: string
+          winner_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          ends_at?: string
+          id?: string
+          prize_credits?: number
+          starts_at?: string
+          status?: string
+          winner_id?: string | null
+        }
+        Relationships: []
+      }
       redeem_code_uses: {
         Row: {
           code_id: string
@@ -3110,6 +3169,7 @@ export type Database = {
             }
             Returns: number
           }
+      ensure_active_raffle: { Args: never; Returns: Json }
       get_admin_users_with_email: {
         Args: never
         Returns: {
@@ -3176,6 +3236,7 @@ export type Database = {
         Returns: undefined
       }
       refresh_slot_leaderboard: { Args: never; Returns: undefined }
+      settle_raffle: { Args: { p_raffle_id: string }; Returns: Json }
       update_mission_streak: {
         Args: { p_today: string; p_user_id: string }
         Returns: Json

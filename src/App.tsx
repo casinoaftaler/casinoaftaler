@@ -68,6 +68,7 @@ const Terms = lazyRetry(() => import("./pages/Terms"));
 const Cookies = lazyRetry(() => import("./pages/Cookies"));
 const Shop = lazyRetry(() => import("./pages/Shop"));
 const Highlights = lazyRetry(() => import("./pages/Highlights"));
+const Raffle = lazyRetry(() => import("./pages/Raffle"));
 
 const Leaderboard = lazyRetry(() => import("./pages/Leaderboard"));
 const RewardsProgram = lazyRetry(() => import("./pages/RewardsProgram"));
@@ -612,6 +613,7 @@ const App = () => (
                 <Route path="/community/turneringer/arkiv" element={<TurneringsArkiv />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
+                <Route path="/community/raffle" element={<Suspense fallback={null}><Raffle /></Suspense>} />
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
                 <Route path="/slot-database" element={<SlotDatabase />} />

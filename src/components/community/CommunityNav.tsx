@@ -30,6 +30,7 @@ const NAV_ITEMS = [
   { href: "/highlights", label: "Highlights", iconName: "tv" },
   { href: "/community/hall-of-fame", label: "Hall of Fame", iconName: "crown" },
   { href: "/community/rewards", label: "Rewards", iconName: "gift" },
+  { href: "/community/raffle", label: "Raffle", iconName: "ticket" },
   { href: "/butik", label: "Butik", iconName: "shopping-bag" },
 ];
 
