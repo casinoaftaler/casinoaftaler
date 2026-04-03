@@ -345,7 +345,7 @@ function scanGatesBombs(grid: string[][]): GatesMultiplierBomb[] {
   return bombs;
 }
 
-async function applyGatesTumble(grid: string[][], winningPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function applyGatesTumble(grid: string[][], winningPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, orbMode: boolean = false): Promise<string[][]> {
   await prng.pregenerate(20);
   const newGrid = grid.map(col => [...col]);
   const allRemoved = new Set(winningPositions); // Only winning symbols removed, bombs persist
@@ -358,6 +358,10 @@ async function applyGatesTumble(grid: string[][], winningPositions: number[], sy
   }
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
+  const effectiveSymbols = orbMode ? nonScatterSymbols : symbols;
+  const canPlaceBombs = isBonusSpin || orbMode;
+  const bombChance = isBonusSpin ? GATES_MULTIPLIER_CHANCE_BONUS : GATES_MULTIPLIER_CHANCE_BASE;
+
   for (const [col, removedRows] of removedByCol) {
     const remaining: string[] = [];
     for (let row = 0; row < GATES_ROWS; row++) {
@@ -370,13 +374,13 @@ async function applyGatesTumble(grid: string[][], winningPositions: number[], sy
     let fillHasScatter = false;
     let fillHasBomb = false;
     for (let i = 0; i < needed; i++) {
-      if (isBonusSpin && !colHasBomb && !fillHasBomb && (await prng.next()) < GATES_MULTIPLIER_CHANCE_BONUS) {
+      if (canPlaceBombs && !colHasBomb && !fillHasBomb && (await prng.next()) < bombChance) {
         const bombVal = await pickGatesBombValue(prng);
         newSymbols.push(`bomb_${bombVal}x`);
         fillHasBomb = true;
         continue;
       }
-      let sym = await getGatesRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getGatesRandomSymbol(effectiveSymbols, isBonusSpin, prng);
       if (scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
         sym = await getGatesRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
       }
