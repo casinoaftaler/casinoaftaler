@@ -311,7 +311,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="gtw">
                       <BonusHuntGTWTab
-                        session={isArchived ? archivedSession : session}
+                        session={isArchived ? (archivedSession ?? session) : session}
                         bets={gtwBets}
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
