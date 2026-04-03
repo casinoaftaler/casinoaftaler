@@ -149,6 +149,12 @@ const ReactoonzGuide = () => {
           <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
         </VideoContextBox>
 
+        <ReviewScreenshot
+          src={reactoonzCasinoSearch}
+          alt="Reactoonz-serien fundet via søgning i dansk online casino med Reactoonz, Reactoonz 2 og Reactoonz 100 synlige"
+          caption="Reactoonz-serien er tilgængelig på de fleste danske casinoer – her ses originalen sammen med Reactoonz 2 og den nye Reactoonz 100."
+        />
+
         <InlineCasinoCards />
 
         {/* ── Cluster Pays-Mekanik ── */}
