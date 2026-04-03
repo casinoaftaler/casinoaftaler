@@ -154,7 +154,7 @@ const DeadOrAlive2Guide = () => {
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">RTP</p>
-              <p className="text-xl font-bold">96,82 %</p>
+              <p className="text-xl font-bold">96,80 %</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
