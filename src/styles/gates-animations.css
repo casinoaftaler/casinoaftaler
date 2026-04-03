@@ -680,9 +680,6 @@
       transform: scale(1.05);
     }
   }
-  .gates-gold-highlight::after {
-    display: none; /* Remove pseudo-element border animation */
-  }
   .gates-win-highlight {
     animation-duration: 0.8s;
   }

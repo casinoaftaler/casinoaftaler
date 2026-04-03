@@ -77,6 +77,15 @@ export const GatesColumn = React.memo(function GatesColumn({
         const applyDropOff = isDroppingOff && (cellAnim === 'idle' || cellAnim === 'bomb-exploded');
         const applyDropIn = isDroppingIn && cellAnim === 'idle';
 
+        // Glow classes applied to <img> elements for alpha-aware drop-shadow
+        const imgGlowClass = cn(
+          isWinning && "gates-win-highlight",
+          cellAnim === 'winning' && "gates-gold-highlight",
+          cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
+          cellAnim === 'scatter-tease' && "gates-scatter-tease",
+          cellAnim === 'scatter-tease-intense' && "gates-scatter-tease-intense",
+        );
+
         return (
           <div
             key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}`}
@@ -84,19 +93,14 @@ export const GatesColumn = React.memo(function GatesColumn({
               "relative rounded-lg overflow-visible",
               "bg-transparent",
               isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover-alpha-blue",
-              isWinning && "gates-win-highlight",
               isLanding && "gates-column-stop-impact",
               applyDropOff && "gates-drop-off",
               applyDropIn && "gates-drop-in",
-              cellAnim === 'winning' && "gates-gold-highlight",
               cellAnim === 'removing' && "gates-tumble-remove",
               cellAnim === 'exploding' && "gates-symbol-explode",
               cellAnim === 'dropping' && "gates-gravity-bounce",
               cellAnim === 'filling' && "gates-lightning-fill",
               cellAnim === 'bomb-fizzle' && "bonanza-bomb-fizzle",
-              cellAnim === 'scatter-pulse' && "gates-scatter-trigger-pulse",
-              cellAnim === 'scatter-tease' && "gates-scatter-tease",
-              cellAnim === 'scatter-tease-intense' && "gates-scatter-tease-intense",
             )}
             style={{
               width: SYMBOL_WIDTH,
@@ -117,7 +121,7 @@ export const GatesColumn = React.memo(function GatesColumn({
                     "w-full h-full",
                     shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-blue"
                   )}>
-                    <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" draggable={false} />
+                    <img src={symbol.image_url} alt={symbol.name} className={cn("w-full h-full object-contain", imgGlowClass)} draggable={false} />
                   </div>
                 ) : (
                   <span className="text-2xl font-bold text-blue-200">{symbol.name.charAt(0)}</span>
@@ -125,11 +129,11 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {/* Bomb symbol */}
+            {/* Bomb symbol — also visible during 'winning' state to prevent flicker */}
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-exploded' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && isBomb && (
               <div className="w-full h-full flex items-center justify-center relative">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
-                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" draggable={false} />
+                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className={cn("w-full h-full object-contain", imgGlowClass)} draggable={false} />
                 ) : (
                   <>
                     <span className="text-3xl">💣</span>
