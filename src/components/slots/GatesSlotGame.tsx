@@ -489,7 +489,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setTumblePhase('spinning');
     if (!isBonusSpin) setWinAmount(0);
     setRunningWin(0);
-    setRunningMultiplier(isBonusSpin ? cumulativeMultiplier : 0);
+    setRunningMultiplier(isBonusSpin ? cumulativeMultiplierRef.current : 0);
     if (isBonusSpin) {
       setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
       freeSpinsRemainingRef.current = Math.max(0, freeSpinsRemainingRef.current - 1);
