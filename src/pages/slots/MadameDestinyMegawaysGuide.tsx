@@ -98,7 +98,7 @@ const MadameDestinyMegawaysGuide = () => {
         <ReviewScreenshot
           src={screenshotGameplay}
           alt="Madame Destiny Megaways gameplay – 6 hjul med 1080 ways, Ante Bet aktiv, Bonus Buy kr200"
-          caption="Gameplay med 1080 aktive ways. Ante Bet ('Dobbelt chance') er aktiveret. Bonus Buy tilgængelig til kr200 (100× indsats). Min. indsats: 2,50 kr."
+          caption="Gameplay med 1080 aktive ways. Ante Bet ('Dobbelt chance') er aktiveret. Bonus Buy tilgængelig til kr200 (100× indsats). Min. indsats: 1 kr."
           size="full"
         />
 
