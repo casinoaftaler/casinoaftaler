@@ -14,11 +14,16 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { MenuIcon } from "@/components/MenuIcon";
+
+import wantedGameplay from "@/assets/screenshots/wanted-gameplay.webp";
+import wantedBonusBuy from "@/assets/screenshots/wanted-bonus-buy.webp";
+import wantedCasinoSearch from "@/assets/screenshots/wanted-casino-search.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
