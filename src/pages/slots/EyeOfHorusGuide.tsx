@@ -101,8 +101,9 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Max win på 10.000× er genrens højeste – dobbelt så meget som Book of Dead (5.000×) og Legacy of Dead (5.000×). Denne højere max win kompenserer for den marginalt lavere RTP og gør Eye of Horus til det mest lukrative valg i "Book of"-genren for spillere, der prioriterer upside-potentiale over gennemsnitlig return.</p>
         </section>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="sparkles" className="h-5 w-5 text-primary" />Symbol Upgrade: Den Progressive Transformation</h2>
+        <ReviewScreenshot src={eyeOfHorusGameplay} alt="Eye of Horus gameplay med 5x3 grid, Eye of Horus scatter-symboler og Anubis-symboler på hjulene" caption="Eye of Horus' 5×3 grid med scatter-symboler og tematiske premium-symboler synlige." />
+
+
           <p className="text-muted-foreground mb-4 leading-relaxed">Symbol upgrade er Eye of Horus' killer-feature og den primære grund til spillets 10.000× max win. Mekanikken fungerer således: ved hvert retrigger under free spins opgraderes alle lavbetalende symboler ét niveau. Første retrigger konverterer det laveste kortsymbol (10) til det næsthøjeste (J). Anden retrigger konverterer J til Q, osv. Efter tilstrækkeligt mange retriggers er alle kortsymboler transformeret til premium tematiske symboler.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne mekanik har en eksponentiel effekt på gevinstpotentialet. Med hvert upgrade-niveau stiger gennemsnitsgevinsten pr. spin under free spins markant, fordi de symboler, der hyppigst lander (kortsymboler), nu betaler som premium-symboler. I en bonusrunde med 3+ retriggers og fuldt opgraderede symboler er gevinster på 500-2.000× indsatsen realistiske.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Matematisk set er sandsynligheden for multiple retriggers lav men ikke negligerbar. Estimeret retrigger-sandsynlighed pr. free spin er 3-5 %, hvilket giver cirka 30-40 % chance for mindst ét retrigger i en 12-spin bonusrunde. To retriggers falder til cirka 10-15 %, og tre+ retriggers til under 5 %. Det er i disse sjældne multi-retrigger scenarier, at Eye of Horus' 10.000× potentiale realiseres.</p>
