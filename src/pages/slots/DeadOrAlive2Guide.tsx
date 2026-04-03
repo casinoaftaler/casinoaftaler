@@ -200,6 +200,11 @@ const DeadOrAlive2Guide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Når du trigger free spins (3+ scatters, ca. 1:250 spins), vælger du mellem tre fundamentalt forskellige oplevelser. Alle tre har 12 free spins som standard med mulighed for retrigger, og alle tre deler den samlede RTP ligeligt. Men gevinstfordelingen er radikalt forskellig:
           </p>
+          <ReviewScreenshot
+            src={screenshotIntro}
+            alt="Dead or Alive 2 intro-skærm med Train Heist bonus-mode – mere end 100.000x indsatsen og +5 free spins ved x16 multiplikator"
+            caption="Intro-skærmen viser Train Heist-moden med dens stigende multiplikator (op til x16) og +5 ekstra free spins. Max win er over 100.000× indsatsen."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Train Heist</strong> er den "sikre" mode med stigende multiplikatorer (1x → 2x → 4x → 8x → 16x) for consecutive wins. Max win er 2.000x. Den gennemsnitlige bonusrunde udbetaler ca. 60–80x. Bust-risiko under wagering: ~20 %. Ideel til: wagering, casual play, begrænset budget.
           </p>
