@@ -154,6 +154,13 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Bonus Buy-EV'en (100× indsats) er kalibreret til at matche den forventede gennemsnitlige bonusværdi – matematisk set er det hverken fordelagtigt eller ufordelagtigt at købe bonusrunden. Dog giver Bonus Buy adgang til bonusrunden uden base game-drain, hvilket kan være rationelt for spillere med begrænset tid. Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt-spil</Link> perspektiv anbefaler vi forsigtighed med Bonus Buy, da store enkeltindskud kan eskalere spilleadfærd uhensigtsmæssigt.</p>
         </section>
 
+        <ReviewScreenshot
+          src={sugarRushSpilleregler}
+          alt="Sugar Rush spilleregler side 3 med maks gevinst 5.000x indsats forklaring og Køb Gratis Spins for 100x indsats information"
+          caption="Side 3/7 af spillereglerne bekræfter 5.000× max win og Bonus Buy-prisen på 100× indsatsen. Bemærk at GRATIS SPINS-runden slutter øjeblikkeligt, hvis max win nås."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ── TUMBLE/CASCADE ANALYSE ── */}
