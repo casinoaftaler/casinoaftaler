@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { AlertTriangle, BarChart3, Brain, Calculator, Play, Scale, ShieldCheck, Sigma, Sparkles, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import rouletteStrategiHero from "@/assets/heroes/roulette-strategi-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ───────────────────────────── FAQ ───────────────────────────── */

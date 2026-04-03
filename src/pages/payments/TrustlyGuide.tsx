@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import trustlyHero from "@/assets/heroes/trustly-hero.jpg";
 import kapowMitidLogin from "@/assets/screenshots/kapow-mitid-login.webp";
 
 const TrustlyGuide = () => {

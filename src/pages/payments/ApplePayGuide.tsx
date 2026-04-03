@@ -4,8 +4,6 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import bet365Saldo from "@/assets/screenshots/bet365-saldo.webp";
 import applePayIndbetaling from "@/assets/screenshots/apple-pay-indbetaling-betalingsmetoder.webp";
 import applePayLogo from "@/assets/screenshots/apple-pay-logo-mobilbetaling.webp";
-import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
-
 const ApplePayGuide = () => {
   return (
     <PaymentMethodPage

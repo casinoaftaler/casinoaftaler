@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -67,10 +66,6 @@ const WantedDeadOrAWildGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="21 min" />
         <SnippetAnswer answer="Wanted Dead or a Wild er en ekstremt volatil slot (5/5) fra Hacksaw Gaming med 96,38 % RTP, 12.500× max win og en unik Duel at Dawn-bonusrunde, hvor versus-symboler duellerer og efterlader sticky wilds med multiplicative multiplikatorer. Tre bonus buy-niveauer (100×, 150×, 250×) giver direkte adgang til bonusen." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wanted Dead or a Wild spillemaskine – western duel tema" loading="eager" />
-        </div>
-
         {/* ── HACKSAW GAMING'S DESIGNFILOSOFI ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-7 w-7 text-primary" /> Hacksaw Gaming's Approach til Ekstremt Design</h2>

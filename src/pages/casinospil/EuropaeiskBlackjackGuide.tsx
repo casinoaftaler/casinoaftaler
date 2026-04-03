@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Play, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/europaeisk-blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -132,11 +130,6 @@ const EuropaeiskBlackjackGuide = () => {
         <AuthorMetaBar author="jonas" readTime="135 Min." />
 
         <SnippetAnswer answer="Europæisk blackjack bruger no hole card-reglen, hvor dealeren kun modtager ét kort i første omgang. Det betyder, at splits og doubles kan tabes mod en dealer-blackjack. House edge er ca. 0,4–0,7 % afhængigt af specifikke bordregler. Spilles typisk med 2 decks." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Elegant europæisk blackjack-bord med grønt filt og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════ DATA FIRST: Start med tallene ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

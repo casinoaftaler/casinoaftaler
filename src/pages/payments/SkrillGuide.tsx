@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import skrillHero from "@/assets/heroes/skrill-hero.jpg";
-
 const SkrillGuide = () => {
   return (
     <PaymentMethodPage

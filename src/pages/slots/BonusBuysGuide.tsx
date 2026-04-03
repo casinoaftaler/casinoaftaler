@@ -15,21 +15,6 @@ import { type ReactNode, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/bonus-buys-hero.jpg";
-import imgSweetBonanza from "@/assets/heroes/sweet-bonanza-hero.jpg";
-import imgGatesOfOlympus from "@/assets/heroes/gates-of-olympus-hero.jpg";
-import imgWantedDeadOrAWild from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
-import imgBigBassBonanza from "@/assets/heroes/big-bass-bonanza-hero.jpg";
-import imgMadameDestiny from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
-import imgExtraChilli from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
-import imgChaosCrew from "@/assets/heroes/chaos-crew-hero.jpg";
-import imgBuffaloKing from "@/assets/heroes/buffalo-king-hero.jpg";
-import imgSugarRush from "@/assets/heroes/sugar-rush-hero.jpg";
-import imgWildWestGold from "@/assets/heroes/wild-west-gold-hero.jpg";
-import imgMoneyTrain3 from "@/assets/heroes/money-train-3-hero.jpg";
-import imgRazorShark from "@/assets/heroes/razor-shark-hero.jpg";
-import imgJamminJars from "@/assets/heroes/jammin-jars-hero.jpg";
-import imgDeadOrAlive2 from "@/assets/heroes/dead-or-alive-2-hero.jpg";
 import { ArrowRight, Ban, ChevronLeft, ChevronRight, Dog, DollarSign, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -256,11 +241,6 @@ const BonusBuysGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="93 Min." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Bonus buy guide til spillemaskiner" loading="eager" />
-        </div>
-
         {/* H2: Hvad er Bonus Buys? */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">

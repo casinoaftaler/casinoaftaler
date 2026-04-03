@@ -11,8 +11,6 @@ import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import privacyHero from "@/assets/heroes/privacy-hero.jpg";
-
 const privacyFaqs = [
   {
     question: "Hvilke oplysninger indsamler Casinoaftaler.dk?",

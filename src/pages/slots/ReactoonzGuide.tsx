@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/reactoonz-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -114,10 +113,6 @@ const ReactoonzGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="22 min" />
         <SnippetAnswer answer="Reactoonz er en høj-volatilitets cluster pays-slot fra Play'n GO med 96,51 % RTP, 4.570× max win og et progressivt Quantum-system. Spillets fire Quantum Leap-funktioner (Implosion, Alteration, Demolition, Incision) kulminerer i Gargantoon – et 3×3 wild-symbol, der fragmenterer og kan producere de største gevinster." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
-        </div>
-
         {/* ── Udviklerkontekst ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

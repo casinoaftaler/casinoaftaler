@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import paysafecardHero from "@/assets/heroes/paysafecard-hero.jpg";
-
 const PaysafecardGuide = () => {
   return (
     <PaymentMethodPage

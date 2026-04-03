@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, Shuffle } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import blackjackHero from "@/assets/heroes/blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ─────────────────── CLUSTER NAVIGATION ─────────────────── */
@@ -177,11 +175,6 @@ const BlackjackGuide = () => {
         <AuthorMetaBar author="jonas" readTime="158 Min." />
 
         <SnippetAnswer answer="Blackjack er casinospillet med den laveste house edge – typisk 0,4–0,6 % med korrekt basic strategy. Spillet kombinerer held med strategiske beslutninger om hit, stand, double down og split. Reglerne varierer mellem borde, og valg af S17 vs. H17, antallet af decks og DAS-regler påvirker direkte din forventede tilbagebetaling." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════ CLUSTER NAVIGATION GRID ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">

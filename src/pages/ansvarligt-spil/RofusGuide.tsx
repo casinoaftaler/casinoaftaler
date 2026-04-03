@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
 import { ArrowRight, Ban, Gavel, HelpCircle, Timer, UserX } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";

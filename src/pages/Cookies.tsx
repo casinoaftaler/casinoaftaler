@@ -11,8 +11,6 @@ import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import cookiesHero from "@/assets/heroes/cookies-hero.jpg";
-
 const cookieFaqs = [
   {
     question: "Hvad er cookies?",

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/thunderstruck-ii-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -66,11 +65,6 @@ const ThunderstruckIIGuide = () => {
         <AuthorMetaBar author="frederik" readTime="22 min" />
 
         <SnippetAnswer answer="Thunderstruck II er en 243 ways-slot fra Microgaming med 96,65 % RTP og 8.000× max win. Spillets kernefeature er Great Hall of Spins – fire progressive bonusniveauer (Valkyrie, Loki, Odin, Thor) der forbedres med hver trigger. Den medium volatilitet giver en balanceret oplevelse, der belønner langsigtede spillere med konsistente gevinster." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Thunderstruck II spillemaskine med nordisk tema" loading="eager" />
-        </div>
-
         {/* ── MÅLGRUPPE ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="compass" className="h-6 w-6 text-primary" /> Hvem Er Thunderstruck II For?</h2>

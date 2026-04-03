@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Dice1, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import rouletteHero from "@/assets/heroes/roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ───────────────────────── FAQ ───────────────────────── */

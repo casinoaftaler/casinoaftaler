@@ -25,8 +25,6 @@ import {
   BarChart, Bar
 } from "recharts";
 
-import statistikHero from "@/assets/statistik-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ── Providers with CONFIRMED guide articles ── */

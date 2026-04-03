@@ -40,7 +40,6 @@ import { Loader2 } from "lucide-react";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
-import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
 export default function BonusHunt() {
   const { user } = useAuth();
   const queryClient = useQueryClient();

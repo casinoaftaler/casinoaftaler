@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/europaeisk-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -103,11 +101,6 @@ export default function EuropaeiskRouletteGuide() {
         <AuthorMetaBar author="jonas" readTime="121 Min." />
 
         <SnippetAnswer answer="Europæisk roulette har ét nulfelt og en house edge på 2,70 % – halvdelen af amerikansk roulette. Det er den mest udbredte roulettevariant på danske online casinoer. Med 37 numre giver lige chancer-indsatser en sandsynlighed på 48,65 % for at vinde." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Europæisk roulette-hjul med single zero i elegant casino-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* SECTION 1 – Introduktion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

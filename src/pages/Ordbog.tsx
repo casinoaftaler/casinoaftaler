@@ -12,8 +12,6 @@ import { MenuIcon } from "@/components/MenuIcon";;
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import ordbogHero from "@/assets/heroes/ordbog-hero.jpg";
-
 const ORDBOG_FAQS = [
   { question: "Hvad er en casino ordbog?", answer: "En casino ordbog er en samling af definitioner og forklaringer af de mest almindelige begreber inden for online casino, spillemaskiner og bonusser." },
   { question: "Hvad er den vigtigste term at kende?", answer: "RTP (Return to Player) er nok den vigtigste. Den fortæller dig den langsigtede tilbagebetalingsprocent. Jo højere RTP, desto bedre statistisk chance." },

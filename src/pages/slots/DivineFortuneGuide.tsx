@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/divine-fortune-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -57,10 +56,6 @@ const DivineFortuneGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="19 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Divine Fortune spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="flame" className="h-5 w-5 text-primary" />Jackpot-Slots Redefineret: Hvorfor Divine Fortune Skiller Sig Ud</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Progressive jackpot-slots har historisk set en dårlig <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> – typisk 93-95 % – fordi en andel af hver indsats dirigeres til jackpot-puljen. <Link to="/spiludviklere/netent" className={linkClass}>NetEnt's</Link> Divine Fortune bryder denne konvention med en RTP på 96,59 %, som konkurrerer med non-jackpot slots. Hemmeligheden ligger i NetEnt's jackpot-arkitektur: en relativt beskeden Mega Jackpot (typisk 50.000-500.000 kr.) kombineret med hyppigere udbetalinger, i modsætning til Mega Moolah-typen, der akkumulerer multi-million jackpots men med drastisk reduceret RTP.</p>

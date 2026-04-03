@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/chaos-crew-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -62,11 +61,6 @@ const ChaosCrewGuide = () => {
         <AuthorMetaBar author="kevin" readTime="18 min" />
 
         <SnippetAnswer answer="Chaos Crew er en 5×5 cluster pays-slot fra Hacksaw Gaming med 96,50 % RTP, 10.000× max win og en innovativ dual-wild mekanik. Cranky wilds har faste multiplikatorer (2-3×), mens Sketchy wilds har tilfældige multiplikatorer (1-5×). Under free spins er begge sticky og ganges sammen – det er motoren bag de største gevinster." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Chaos Crew spillemaskine fra Hacksaw Gaming med punk-tema" loading="eager" />
-        </div>
-
         {/* ── HACKSAW GAMING KONTEKST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="palette" className="h-6 w-6 text-primary" /> Hacksaw Gaming's Punk-Revolution</h2>

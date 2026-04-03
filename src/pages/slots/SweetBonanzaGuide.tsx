@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/sweet-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -113,10 +112,6 @@ const SweetBonanzaGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="83 Min." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" loading="eager" />
-        </div>
-
         {/* ── ÅBNINGSVINKEL: MATEMATIK FØRST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvorfor Tallene Bag Sweet Bonanza Fortæller en Anden Historie</h2>

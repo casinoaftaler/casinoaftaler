@@ -19,8 +19,6 @@ import niklasImage from "@/assets/niklas-forfatter.webp";
 import frederikImage from "@/assets/frederik-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import omHeroImage from "@/assets/heroes/om-hero.png";
-
 const OmTeamet = () => {
   const { data: siteSettings } = useSiteSettings();
   const { data: latestNewsData } = usePublishedNews(1, 6);

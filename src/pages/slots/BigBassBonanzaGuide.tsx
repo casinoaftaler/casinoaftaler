@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/big-bass-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -125,10 +124,6 @@ const BigBassBonanzaGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="22 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Big Bass Bonanza spillemaskine" loading="eager" />
-        </div>
-
         {/* ── ÅBNINGSVINKEL: UDVIKLERKONTEKST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvordan Pragmatic Play Opfandt en Helt Ny Slot-Genre</h2>

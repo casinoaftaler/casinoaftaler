@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import pokerHero from "@/assets/heroes/poker-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ─────────────────── CLUSTER NAVIGATION ─────────────────── */

@@ -19,8 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import { Dog, Play, Shuffle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/texas-holdem-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -124,11 +122,6 @@ const TexasHoldemGuide = () => {
         <AuthorMetaBar author="kevin" readTime="160 Min." />
 
         <SnippetAnswer answer="Texas Hold'em er verdens mest populære pokervariant. Hver spiller får to hole cards og deler fem community cards. Spillet har fire betting-runder (pre-flop, flop, turn, river). Position er den vigtigste strategiske faktor – spillere i sen position har informationsfordel og vinder statistisk oftere." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Texas Hold'em pokerbord med community cards og chips i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Arketype B: Data First – Starthands-rangering
         ═══════════════════════════════════════════════════════════════ */}

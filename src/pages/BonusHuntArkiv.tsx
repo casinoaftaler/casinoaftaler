@@ -14,7 +14,6 @@ import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArki
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
 import bonusHuntOverlay from "@/assets/bonus-hunt/bonus-hunt-stream-overlay.webp";
 
 const faqItems = [

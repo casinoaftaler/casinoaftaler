@@ -12,7 +12,6 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import marketIntelligenceHero from "@/assets/heroes/markedsindsigt-hero.jpg";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
 import { useCasinos, type Casino } from "@/hooks/useCasinos";
 import { formatTimestampDanish, usePageLastmod } from "@/hooks/usePageLastmod";

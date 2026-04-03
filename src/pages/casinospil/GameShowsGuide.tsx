@@ -25,7 +25,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import gameShowsHero from "@/assets/heroes/game-shows-hero.jpg";
 import gameShowsLobby from "@/assets/screenshots/game-shows-lobby.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -110,11 +109,6 @@ const GameShowsGuide = () => {
         <AuthorMetaBar author="kevin" readTime="54 Min." />
 
         <SnippetAnswer answer="Casino game shows som Crazy Time, Dream Catcher og Monopoly Live kombinerer underholdning med gambling. RTP varierer fra 90 % til 96,5 %, og volatiliteten er typisk høj. De store multiplikatorer er sjældne – fx rammer Crazy Times top-multiplikator statistisk set under 1 % af runderne." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={gameShowsHero} alt="Matematisk analyse af casino game shows" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">

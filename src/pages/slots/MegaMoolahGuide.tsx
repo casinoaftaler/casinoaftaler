@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/mega-moolah-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -69,10 +68,6 @@ const MegaMoolahGuide = () => {
 
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="4 min" />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Mega Moolah spillemaskine" loading="eager" />
-        </div>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="crown" className="h-5 w-5 text-primary" />Det Progressive Jackpot-Netværk: Sådan Fungerer Det</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Mega Moolah's fire-trins progressive jackpot-system er det mest berømte i online casino-verdenen. Hver spin bidrager med en procentdel af indsatsen til fire separate jackpot-puljer: Mini (typisk €10-100), Minor (€100-1.000), Major (€10.000-100.000) og Mega (starter ved €1.000.000, ingen øvre grænse). Bidraget estimeres til 8-12 % af hver indsats – og det er denne mekanisme, der forklarer den lave basis-<Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 88,12 %.</p>

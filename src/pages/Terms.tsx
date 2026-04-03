@@ -11,8 +11,6 @@ import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import termsHero from "@/assets/heroes/terms-hero.jpg";
-
 const termsFaqs = [
   {
     question: "Er Casinoaftaler.dk et online casino?",

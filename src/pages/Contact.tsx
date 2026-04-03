@@ -1,4 +1,3 @@
-import contactHero from "@/assets/heroes/contact-hero.jpg";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -188,11 +187,6 @@ export default function Contact() {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="ajse" readTime="3 min" showAffiliateDisclaimer={false} />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={contactHero} alt="Kontakt os – professionelt kontor" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* Intro with internal links */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Samarbejd med os</h2>

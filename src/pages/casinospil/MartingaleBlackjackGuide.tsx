@@ -18,8 +18,6 @@ import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bo
 import { AlertTriangle, BarChart3, BookOpen, Brain, CheckCircle, Layers, Scale, ShieldCheck, Skull, Target, TrendingUp } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/martingale-blackjack-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [

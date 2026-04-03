@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
-import heroImage from "@/assets/heroes/sugar-rush-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -61,10 +60,6 @@ const SugarRushGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="17 min" />
         <SnippetAnswer answer="Sugar Rush er en cluster pays-slot fra Pragmatic Play med et 7×7 grid, 96,50 % RTP og 5.000× max win. Spillets unikke mekanik er positionsbaserede akkumulerende multiplikatorer: under free spins øges hver positions multiplikator med 1× for hvert gevinstspin, der rammer positionen, hvilket skaber progressivt voksende gevinster." />
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sugar Rush spillemaskine – slik-tematik cluster pays" loading="eager" />
-        </div>
-
         {/* ── CLUSTER PAYS MATEMATIK ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="calculator" className="h-7 w-7 text-primary" /> Cluster Pays på 7×7: Matematisk Dekonstruktion</h2>

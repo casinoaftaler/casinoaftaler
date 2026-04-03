@@ -18,8 +18,6 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Brain } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
-import crapsHero from "@/assets/heroes/craps-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 /* ───────────────────────── FAQ ───────────────────────── */

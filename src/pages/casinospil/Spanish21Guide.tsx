@@ -18,8 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { Play, Puzzle, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/spanish-21-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -97,11 +95,6 @@ const Spanish21Guide = () => {
         <AuthorMetaBar author="jonas" readTime="17 Min." />
 
         <SnippetAnswer answer="Spanish 21 fjerner alle 10-kort fra kortspillet og kompenserer med bonusudbetalinger, late surrender, redouble og spillervenlige regler. House edge ligger på ca. 0,4 % med optimal strategi – lavere end standard blackjack hos mange borde. Strategien afviger markant fra klassisk basic strategy." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Spanish 21 bord med markerede bonusregler og blackjack-kort" width={1920} height={600} className="h-auto max-h-[400px] w-full object-cover" loading="eager" />
-        </div>
-
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
             <MenuIcon iconName="brain" className="h-7 w-7 text-primary" /> Hvad gør Spanish 21 unik?

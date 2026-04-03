@@ -20,8 +20,6 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/dalembert-roulette-hero.jpg";
-
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -100,11 +98,6 @@ export default function DalembertRouletteGuide() {
         <AuthorMetaBar author="frederik" readTime="175 Min." />
 
         <SnippetAnswer answer="D'Alembert i roulette anvender lineær progression på lige-chancer-indsatser (rød/sort, lige/ulige). Indsatsen stiger med én enhed efter tab og falder med én efter gevinst. Systemet giver lavere variance end Martingale, men den matematiske house edge på 2,70 % (europæisk) forbliver uændret." />
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="D'Alembert progression illustreret med jævnt stigende chipstakke på roulette-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
-
         {/* SECTION 1 – Hvad er D'Alembert? */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

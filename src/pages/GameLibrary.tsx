@@ -18,7 +18,6 @@ import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget"
 import { Button } from "@/components/ui/button";
 import { Rocket } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
-import spillehalHero from "@/assets/community/spillehal-hero.jpg";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";

@@ -15,8 +15,6 @@ import { TurneringsArkivSeoContent } from "@/components/seo-content/TurneringsAr
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
-import turneringsArkivHero from "@/assets/turneringsarkiv-hero.jpg";
-
 const CATEGORY_LABELS: Record<string, { label: string; game: string; metric: string }> = {
   points: { label: "Flest Point", game: "Fedesvin Bonanza", metric: "point" },
   multiplier: { label: "Højeste X", game: "Book of Fedesvin", metric: "x" },

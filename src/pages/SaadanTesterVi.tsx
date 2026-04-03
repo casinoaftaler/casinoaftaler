@@ -15,7 +15,6 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { CheckCircle2, ClipboardList, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const testKriterier = [
