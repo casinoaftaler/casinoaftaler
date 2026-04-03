@@ -346,6 +346,12 @@ const BigBassBonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotFranchise}
+          alt="Big Bass Bonanza franchise-oversigt på Danske Spil – 12+ varianter inkl. Bigger Bass, Megaways, Splash og Keeping it Reel"
+          caption="Søgning på 'Big Bass Bonanza' hos Danske Spil viser 172 resultater – Pragmatic Play har lanceret en massiv franchise med talrige varianter."
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: RISIKOPROFIL ── */}
