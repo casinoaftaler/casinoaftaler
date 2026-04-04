@@ -260,8 +260,8 @@ export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
 ];
 
 export const MORE_LINKS: NavLink[] = [
-  { to: "/ordbog", label: "Casino Ordbog", iconName: "book-a" },
   { to: "/om", label: "Om Casinoaftaler.dk", iconName: "info" },
+  { to: "/ordbog", label: "Casino Ordbog", iconName: "book-a" },
   { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", iconName: "clipboard-check" },
   { to: "/forretningsmodel", label: "Forretningsmodel", iconName: "briefcase" },
   { to: "/redaktionel-politik", label: "Redaktionel Politik", iconName: "file-text" },

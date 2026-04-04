@@ -35,7 +35,7 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          const duration = 1800;
+          const duration = 3600;
           const start = performance.now();
           function tick(now: number) {
             const elapsed = now - start;
