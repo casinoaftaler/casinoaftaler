@@ -337,7 +337,7 @@ const SkrabespilGuide = () => {
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-bold text-lg mb-2">Trin 3: Indstil din indsats og skrab</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Vælg din indsats – typisk fra 1 kr. til 200 kr. per lod. Højere indsats giver proportionelt højere potentielle gevinster, men øger også dit tab per lod. Skrab derefter felterne med din finger (mobil) eller mus (desktop). De fleste spil har også en "Afslør alle"-knap der springer animationen over og viser resultatet med det samme.
+                Vælg din indsats – typisk fra 5 kr. til 75 kr. per lod hos Quick (Danske Lotteri Spil), mens online casino-skrabespil kan starte fra 1 kr. Højere indsats giver proportionelt højere potentielle gevinster, men øger også dit tab per lod. Skrab derefter felterne med din finger (mobil) eller mus (desktop). De fleste spil har også en "Afslør alle"- eller "Autoskrab"-knap der springer animationen over og viser resultatet med det samme.
               </p>
             </div>
 
