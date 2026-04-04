@@ -7,7 +7,6 @@ import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
-import { useAuth } from "@/hooks/useAuth";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
