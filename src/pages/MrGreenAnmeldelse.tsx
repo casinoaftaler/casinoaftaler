@@ -32,6 +32,8 @@ import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.webp
 import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -227,6 +229,9 @@ const MrGreenAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">En potentiel ulempe er, at appen er relativt stor (ca. 180 MB), hvilket kan være en overvejelse for brugere med begrænset lagerplads. Browser-oplevelsen via mobilens webbrowser er dog et fuldt funktionelt alternativ, der ikke kræver installation – og den er næsten lige så poleret som appen. For lejlighedsspillere, der ikke ønsker at dedikere lagerplads til en casino-app, er browser-oplevelsen en fremragende mulighed.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="betinia" headline="Søger du et ansvarligt casino-alternativ?" reason="Betinia kombinerer et stort spiludvalg med fokus på ansvarligt spil, dansk licens og hurtige udbetalinger via Trustly." ctaText="Se Betinia" />
+
+
         <Separator className="my-10" />
 
         {/* Betalingsmetoder */}
@@ -325,6 +330,7 @@ const MrGreenAnmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om Mr Green Casino" faqs={mrgreenFaqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

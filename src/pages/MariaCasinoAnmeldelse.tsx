@@ -11,6 +11,8 @@ import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 const linkClass = "text-primary underline hover:text-primary/80";
 const mariaFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Maria Casino lovligt i Danmark?", answer: (<>Ja, Maria Casino opererer med dansk licens fra Spillemyndigheden via Unibet Denmark Limited under FDJ United (tidl. Kindred Group). Platformen er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Kindred Group (nu en del af FDJ United) var tidligere børsnoteret (nu del af FDJ United).</>) },
@@ -169,6 +171,9 @@ const MariaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">24/7-tilgængeligheden er en klar fordel sammenlignet med mange mellemstore operatører. Det er et direkte resultat af FDJ Uniteds infrastruktur – samme supportsetup kører også hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spildansknu" headline="Vil du have en venlig dansk casino-oplevelse?" reason="SpilDanskNu tilbyder samme venlige atmosfære med dansk licens, MobilePay og et stort udvalg af slots og live casino." ctaText="Se SpilDanskNu" />
+
+
         <Separator className="my-10" />
 
         {/* Mobiloplevelse */}
@@ -232,6 +237,7 @@ const MariaCasinoAnmeldelse = () => {
         <FAQSection faqs={mariaFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

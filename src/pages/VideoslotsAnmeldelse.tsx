@@ -31,6 +31,8 @@ import { Check, Play, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -204,6 +206,9 @@ const VideoslotsAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Det er bemærkelsesværdigt, at Videoslots <strong>ikke</strong> tilbyder <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> – en metode, som de fleste danske spillere foretrækker. For spillere, der insisterer på MobilePay, er <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> eller <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> bedre alternativer. Videoslots' styrke ligger i Trustly og e-wallets, og for spillere, der bruger disse metoder, er udbetalingshastigheden bland de bedste i Danmark.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spilleautomaten" headline="Søger du et stort spiludvalg med dansk licens?" reason="Spilleautomaten tilbyder et massivt udvalg af spillemaskiner fra topudbydere med dansk licens og hurtige udbetalinger." ctaText="Se Spilleautomaten" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice & Mobil */}
@@ -322,6 +327,7 @@ const VideoslotsAnmeldelse = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

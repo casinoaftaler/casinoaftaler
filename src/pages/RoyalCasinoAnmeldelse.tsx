@@ -31,6 +31,8 @@ import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.
 import royalcasinoGruppen from "@/assets/screenshots/royalcasino-gruppen.webp";
 import royalcasinoKampagner from "@/assets/screenshots/royalcasino-kampagner.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -193,6 +195,9 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Minimumsindbetalingen er typisk 100 kr., og udbetaling sker normalt via NemKonto. Ved første udbetaling kan der komme ekstra verifikationstid. Hvis du foretrækker e-wallets som <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> eller <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>, er Royal Casino mindre relevant.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="betinia" headline="Søger du et moderne dansk casino-alternativ?" reason="Betinia leverer et moderne design, dansk licens, hurtige udbetalinger via Trustly og et bredt spiludvalg fra topudbydere." ctaText="Se Betinia" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice & Mobil */}
@@ -279,6 +284,7 @@ const RoyalCasinoAnmeldelse = () => {
         <FAQSection faqs={royalFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

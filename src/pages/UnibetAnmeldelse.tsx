@@ -30,6 +30,8 @@ import unibetLobby from "@/assets/screenshots/unibet-lobby.webp";
 import unibetFiltre from "@/assets/screenshots/unibet-filtre.webp";
 import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -251,6 +253,9 @@ const UnibetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Unibet kræver identitetsverifikation (KYC – Know Your Customer) inden din første udbetaling. Processen kræver upload af legitimation (pas eller kørekort) og adressebevis (forsyningsregning eller kontoudtog). I vores test blev dokumenterne godkendt inden for 4 timer – hurtigere end branchens gennemsnit på 12-24 timer. Unibet accepterer også dansk NemID/MitID til hurtig verifikation, hvilket simplificerer processen markant for danske spillere. Tip: Upload dine dokumenter umiddelbart efter registrering – så undgår du forsinkelser, når du vil udbetale din første gevinst.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="luna-casino" headline="Søger du et friskt dansk casino-alternativ?" reason="Luna Casino tilbyder en moderne platform med dansk licens, generøs velkomstbonus og kun 10x omsætningskrav – væsentligt lavere end Unibets." ctaText="Se Luna Casino" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice */}
@@ -382,6 +387,7 @@ const UnibetAnmeldelse = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="luna-casino" />
     </>
   );
 };

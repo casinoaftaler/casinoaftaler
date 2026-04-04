@@ -29,6 +29,8 @@ import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
 import leovegasPopulaere from "@/assets/screenshots/leovegas-populaere-spil.webp";
 import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -301,6 +303,9 @@ const LeoVegasAnmeldelse = () => {
           </p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spildansknu" headline="Søger du en mobilvenlig dansk casino-oplevelse?" reason="SpilDanskNu leverer en fremragende mobiloplevelse med dansk licens, MobilePay-indbetaling og et stærkt spiludvalg – helt optimeret til danske spillere." ctaText="Besøg SpilDanskNu" />
+
+
         <Separator className="my-10" />
 
         {/* Customer Support */}
@@ -484,6 +489,7 @@ const LeoVegasAnmeldelse = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

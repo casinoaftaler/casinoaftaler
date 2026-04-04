@@ -31,6 +31,8 @@ import { Check, Club, Dog, Play, Smartphone, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -202,6 +204,9 @@ const GetLuckyAnmeldelse = () => {
           <ReviewScreenshot src={getluckySportsbook} alt="GetLucky Sports Betting med live odds på fodbold, populære ligaer og Heldig Indsats-funktion" caption="GetLuckys sportsbook med live odds, populære kampe og den unikke Heldig Indsats-funktion til sportsvæddemål." size="full" />
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spildansknu" headline="Vil du have et loyalt dansk casino-alternativ?" reason="SpilDanskNu tilbyder et stærkt loyalitetsprogram, 1.500+ spil og dansk licens med MobilePay-understøttelse." ctaText="Se SpilDanskNu" />
+
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -319,6 +324,7 @@ const GetLuckyAnmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om GetLucky Casino" faqs={getluckyFaqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

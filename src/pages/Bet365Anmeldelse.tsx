@@ -32,6 +32,8 @@ import { Check, Play, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -391,6 +393,9 @@ const Bet365Anmeldelse = () => {
           </p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Søger du et stærkt sport & casino-alternativ?" reason="Campobet kombinerer sportsvæddemål og casino under dansk licens med konkurrencedygtige odds og generøs velkomstbonus." ctaText="Prøv Campobet" />
+
+
         <Separator className="my-10" />
 
         {/* Sikkerhed og licens */}
@@ -636,6 +641,7 @@ const Bet365Anmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

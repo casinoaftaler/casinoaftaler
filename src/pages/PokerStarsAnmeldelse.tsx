@@ -12,6 +12,8 @@ import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 const linkClass = "text-primary underline hover:text-primary/80";
 const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er PokerStars lovligt i Danmark?", answer: (<>Ja, PokerStars har dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. PokerStars ejes af Flutter Entertainment, verdens største online gambling-koncern.</>) },
@@ -162,6 +164,9 @@ const PokerStarsAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">ROFUS-tilslutning, <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer og 256-bit SSL-kryptering er standardfunktioner. PokerStars tilbyder også specifikke poker-relaterede ansvarligt spil-værktøjer: session-tidsmålere, hand-pauses og mulighed for at begrænse turneringsdeltagelse. Det er detaljer, der viser, at platformen forstår de unikke risikofaktorer ved poker sammenlignet med casino-spil.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Poker kan være afhængighedsskabende. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25, hvis du eller en du kender har problemer med spil.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Denne side indeholder reklamelinks</p></CardContent></Card>
         </section>
+
+        <ReviewAlternativeCTA partnerSlug="swift-casino" headline="Vil du have et hurtigt casino-alternativ?" reason="Swift Casino tilbyder lynhurtige udbetalinger, dansk licens og et stærkt spiludvalg – perfekt som casino-supplement til din poker." ctaText="Prøv Swift Casino" />
+
 
         <Separator className="my-10" />
 
@@ -320,6 +325,7 @@ const PokerStarsAnmeldelse = () => {
         <FAQSection faqs={pokerstarsFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="swift-casino" />
     </>
   );
 };

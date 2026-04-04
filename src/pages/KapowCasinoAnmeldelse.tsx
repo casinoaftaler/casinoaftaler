@@ -12,6 +12,8 @@ import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 const linkClass = "text-primary underline hover:text-primary/80";
 const kapowFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Kapow Casino lovligt i Danmark?", answer: (<>Ja, Kapow Casino opererer med dansk licens fra Spillemyndigheden og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen drives af SkillOnNet Ltd, et Malta-baseret selskab med licenser fra Malta Gaming Authority og UK Gambling Commission. Alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> overholdes, inklusiv MitID-verifikation ved oprettelse og ROFUS-tjek.</>) },
@@ -196,6 +198,9 @@ const KapowCasinoAnmeldelse = () => {
           />
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spildansknu" headline="Søger du et dansk casino med bedre bonus?" reason="SpilDanskNu leverer en generøs velkomstbonus, dansk licens og MobilePay – med et langt større spiludvalg." ctaText="Besøg SpilDanskNu" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice */}
@@ -315,6 +320,7 @@ const KapowCasinoAnmeldelse = () => {
         <FAQSection faqs={kapowFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };
