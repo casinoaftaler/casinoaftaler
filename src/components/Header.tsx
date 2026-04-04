@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Dices, DollarSign, LogOut, Menu, MoreHorizontal, UserCircle, Video, X } from "lucide-react"
+import { ChevronDown, Dices, DollarSign, LogOut, Menu, Moon, MoreHorizontal, Sun, UserCircle, Video, X } from "lucide-react";
 import { MenuIcon } from "@/components/MenuIcon";;
 // Note: Many icons above are used in the desktop dropdown menus
 import { CreditCoin } from "@/components/CreditCoin";
@@ -182,14 +182,14 @@ export const Header = memo(function Header() {
                     Indløs Kode
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
-                    {isDark ? (
+                     {isDark ? (
                       <>
-                        <MenuIcon iconName="sun" className="mr-2 h-4 w-4" />
+                        <Sun className="mr-2 h-4 w-4" />
                         Lys tilstand
                       </>
                     ) : (
                       <>
-                        <MenuIcon iconName="moon" className="mr-2 h-4 w-4" />
+                        <Moon className="mr-2 h-4 w-4" />
                         Mørk tilstand
                       </>
                     )}
