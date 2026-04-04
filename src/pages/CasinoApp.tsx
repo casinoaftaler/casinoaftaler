@@ -585,6 +585,13 @@ const CasinoApp = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={saSweetBonanza}
+          alt="Sweet Bonanza 1000 spilleautomat på Spilleautomaten mobilapp med Køb Gratis Spins, Super Gratis Spins og indsatsjustering"
+          caption="Sweet Bonanza 1000 på mobil – casino apps tilbyder fuldt funktionelle spilleautomater med køb-bonus og indsatsstyring optimeret til touchskærm"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
