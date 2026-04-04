@@ -2,7 +2,10 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaBonussektion from "@/assets/screenshots/betinia-bonussektion.webp";
+import betssonCashback from "@/assets/screenshots/betsson-10pct-cashback-tilbud.webp";
+import bwinCashback from "@/assets/screenshots/bwin-10pct-casino-cashback.webp";
+import unibetCashback from "@/assets/screenshots/unibet-8pct-cashback-kontanter.webp";
+import mariaCashback from "@/assets/screenshots/maria-casino-mandagsudbetaling-cashback.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -202,10 +205,11 @@ const CashbackBonus = () => {
             <Link to="/reload-bonus" className={linkClass}>reload bonus</Link>, har vi en dedikeret guide til det.
           </p>
           <ReviewScreenshot
-            src={betiniaBonussektion}
-            alt="Betinias bonussektion med cashback-tilbud og andre aktive kampagner for danske spillere"
-            caption="Betinias bonussektion – cashback-tilbud vises typisk sammen med andre aktive kampagner"
+            src={betssonCashback}
+            alt="Betsson 10% cashback-tilbud med 3-trins forklaring: spil spilleautomater, tab tælles op, og cashback udbetales mandag kl. 18:00 – uden omsætningskrav"
+            caption="Betssons cashback-tilbud: 10% ugentlig cashback med tydelig 3-trins forklaring og beregningseksempel direkte på siden."
             size="full"
+            eager
           />
         </section>
 
@@ -244,6 +248,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Sådan beregnes cashback */}
+        <ReviewScreenshot
+          src={bwinCashback}
+          alt="bwin 10% casino cashback op til 1.000 kr. – ugentligt nettotab, tilmelding via konto, slots og jackpotspil inkluderet"
+          caption="bwins cashback-side: 10% ugentlig cashback op til 1.000 kr. med tydelig step-by-step vejledning og vilkår."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan beregnes cashback: Nettotab vs. bruttotab</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -499,6 +510,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Hvem passer cashback til */}
+        <ReviewScreenshot
+          src={unibetCashback}
+          alt="Unibet 8% cashback i kontanter – automatisk optjening uden tilmelding, udbetaling hver fredag kl. 18:00, ingen omsætningskrav"
+          caption="Unibets cashback-program: 8% automatisk cashback uden tilmelding – udbetales som kontanter hver fredag."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvem passer cashback bonus til?</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -586,6 +604,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Almindelige fejl */}
+        <ReviewScreenshot
+          src={mariaCashback}
+          alt="Maria Casino mandagsudbetaling – 10% cashback hver mandag uden omsætningskrav, med beregningseksempler og automatisk tilmelding via Maria+"
+          caption="Maria Casinos mandagsudbetaling: 10% cashback uden loft eller omsætningskrav – med konkrete beregningseksempler."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">5 almindelige fejl med cashback bonus</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
