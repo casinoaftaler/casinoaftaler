@@ -35,6 +35,13 @@ const ZimplerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Zimplers nordiske rødder giver en naturlig fordel på det danske marked. Den svenske fintech-tradition – med fokus på brugeroplevelse, compliance og digital innovation – har formet Zimplers tilgang til casinobetalinger. I modsætning til globale betalingsgiganter som PayPal, der tilpasser en eksisterende platform til gambling, er Zimpler bygget fra grunden med iGaming-branchen som kernekundesegment.
           </p>
+           <ReviewScreenshot
+             src={betiniaBetalingsmetoder}
+             alt="Betinia casino kassesektion med Zimpler, MobilePay, Visa, Trustly og Dankort som tilgængelige betalingsmetoder – alle med minimum 100 kr. og 0% gebyr"
+             caption="Zimpler er tilgængelig som betalingsmetode på Betinia sammen med MobilePay, Visa, Trustly og Dankort – alle gebyrfrie."
+             size="medium"
+             eager
+           />
         </>
       }
       whatIsTitle="Fra PugglePay til Zimpler – En Fintech-Evolution"
