@@ -517,6 +517,13 @@ const MegawaysSlots = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={megaways5Lions}
+          alt="5 Lions Megaways gameplay med dynamiske hjul og op til 7 symboler per reel"
+          caption="5 Lions Megaways fra Pragmatic Play – et eksempel på den klassiske 6-hjuls Megaways-opbygning med variabelt antal symboler og max win på 5.000x indsatsen."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 5. BEDSTE MEGAWAYS SLOTS ── */}
