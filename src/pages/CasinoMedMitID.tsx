@@ -18,7 +18,14 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import mitidLoginImg from "@/assets/screenshots/mitid-login-spildansknu.png";
+import mitidAppGodkendImg from "@/assets/screenshots/mitid-app-godkend.png";
+import mitidGodkendtImg from "@/assets/screenshots/mitid-godkendt-verifikation.png";
+import mitidKontograenserImg from "@/assets/screenshots/mitid-kontograenser-spilgraenser.png";
+import nemidNoeglekortImg from "@/assets/screenshots/nemid-noeglekort-fysisk.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
