@@ -585,6 +585,13 @@ const BlackjackGuide = () => {
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 7 – Live blackjack vs RNG blackjack
         ═══════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spildanskenuLobby}
+          alt="SpilDanskNu casino spil-lobby med blackjack- og roulette-varianter fra Stakelogic, herunder Blackjack Classic 1-8, VIP Crystal og Auto Roulette"
+          caption="SpilDanskNus spil-lobby viser det brede udvalg af RNG blackjack- og roulette-varianter fra Stakelogic – ideelt til at øve basic strategy."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />
