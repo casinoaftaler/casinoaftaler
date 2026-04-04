@@ -611,6 +611,13 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={onecasinoBonusvilkaar}
+            alt="OneCasino bonusvilkår med 100 gratis spins uden omsætningskrav og detaljerede betingelser for velkomstbonus"
+            caption="OneCasinos bonusvilkår: 100 gratis spins uden gennemspilskrav – bemærk de specifikke betingelser for maksimal indsats og udløb"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
