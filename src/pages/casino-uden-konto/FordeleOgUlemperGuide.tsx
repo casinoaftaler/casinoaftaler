@@ -363,6 +363,13 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenAnsvarligt}
+          alt="Spillemyndighedens side om ansvarligt spil med spillelovens §1 formålsparagraf og navigation til ROFUS, StopSpillet og lovgivning"
+          caption="Spillemyndighedens officielle side om ansvarligt spil citerer spillelovens §1 – alle licenserede casinoer i Danmark er forpligtet til at udbyde spil ansvarligt."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 5. COMPLIANCE-PERSPEKTIV */}
