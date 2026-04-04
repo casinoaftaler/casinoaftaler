@@ -449,6 +449,13 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betanoAppStore}
+          alt="Betano Sport & Casino app i App Store – Nr. 5 i Sport med 1,2 tusind anmeldelser, velkomstbonus op til 1.000 kr. og eksklusive spil fra Kaizen Gaming"
+          caption="Betano i App Store: Årets Udbyder med velkomstbonus op til 1.000 kr., 4.800+ spilleautomater og eksklusive spil."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 8. APP STORE REGLER OG POLITIK */}
