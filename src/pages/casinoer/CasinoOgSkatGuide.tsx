@@ -18,7 +18,12 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { AlertTriangle, Bitcoin, BookOpen, Calculator, Coins, FileText, Gem, Globe, HelpCircle, Landmark, Scale, Shield, Star, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import skatKasinoerRegler from "@/assets/screenshots/skat-kasinoer-skatteregler-dk.webp";
+import skatAfgiftOnline from "@/assets/screenshots/skat-afgiftssatser-onlinekasino-28pct.webp";
+import skatSpilleautomater from "@/assets/screenshots/skat-spilleautomater-skattefri.webp";
+import skatAfgiftLotteri from "@/assets/screenshots/skat-afgiftssatser-lotteri-klasselotteri.webp";
+import skatKontakt from "@/assets/screenshots/skat-kontakt-gevinster-praemier.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -95,6 +100,13 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Derudover gør skattefriheden for spillere det danske licenserede marked mere attraktivt sammenlignet med ulicenserede alternativer, hvilket reducerer det grå marked og sikrer, at flere spillere vælger regulerede platforme med fuld forbrugerbeskyttelse. Det er en win-win: Staten får sine indtægter, spillerne får skattefri gevinster og fuld beskyttelse, og operatørerne får adgang til et velreguleret marked med klare regler.</p>
         </section>
 
+        <ReviewScreenshot
+          src={skatAfgiftOnline}
+          alt="SKATs afgiftssatser for onlinekasino – 28 pct. afgift af bruttospilleindtægten, samt satser for spilleautomater i spillehaller og restaurationer (41 pct. + 30 pct. tillæg)"
+          caption="SKATs officielle afgiftssatser: Onlinekasino betaler 28 % af bruttospilleindtægten – derfor er dine gevinster skattefri"
+          eager
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -120,6 +132,12 @@ const CasinoOgSkatGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Her bliver situationen alvorlig. Gevinster fra casinoer licenseret uden for EU er som udgangspunkt skattepligtig personlig indkomst i Danmark. Beskatningen sker efter de normale regler for personlig indkomst med en marginalskattesats på op til 52 %. Gevinsten skal selvangives under "anden personlig indkomst" i din årsopgørelse. Manglende selvangivelse kan medføre skattetillæg, bøder og i grove tilfælde strafforfølgelse for skattesvig.</p>
           <p className="text-muted-foreground leading-relaxed">Det sikreste valg er altid et casino med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link>, hvor skattefriheden er 100 % garanteret ved lov. Selv hvis du finder et attraktivt tilbud på et Curaçao-licenseret casino, kan skattekonsekvenserne æde en enorm del af dine gevinster – ud over den manglende forbrugerbeskyttelse.</p>
         </section>
+
+        <ReviewScreenshot
+          src={skatKasinoerRegler}
+          alt="SKAT.dk – skatteregler for kasinoer i Danmark og udenlandske kasinoer: gevinster fra danske casinoer er skattefri, udenlandske EU-casinoer er skattefri hvis godkendt af offentlig myndighed"
+          caption="Fra SKAT.dk: Officielle skatteregler for casino-gevinster – danske og EU-godkendte casinoer er skattefri, øvrige er skattepligtige"
+        />
 
         <Separator className="my-10" />
 
@@ -196,6 +214,12 @@ const CasinoOgSkatGuide = () => {
           </CardContent></Card>
         </section>
 
+        <ReviewScreenshot
+          src={skatSpilleautomater}
+          alt="SKAT.dk – gevinstgivende spilleautomater i Danmark: gevinsten er skattefri for spilleren fordi spiludbyderen betaler afgift"
+          caption="SKAT bekræfter: Gevinster fra gevinstgivende spilleautomater i Danmark er skattefri – afgiften betales af udbyderen"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -219,6 +243,12 @@ const CasinoOgSkatGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">I Danmark beskattes kryptovaluta efter den såkaldte "spekulationsregel": Hvis du har købt kryptovaluta med henblik på at opnå en fortjeneste ved senere salg eller brug, er kursgevinsten skattepligtig som personlig indkomst. Da indsættelse på et casino teknisk set kan betragtes som en "disponering" af din kryptovaluta, kan det udløse beskatning af eventuelle kursgevinster på det tidspunkt, du indsætter.</p>
           <p className="text-muted-foreground leading-relaxed">Vores klare anbefaling er at undgå kryptovaluta-gambling, medmindre du har grundig forståelse af de skattemæssige implikationer, og helst har konsulteret en skatterevisor med erfaring inden for kryptovaluta-beskatning. For langt de fleste danske spillere er det enkleste og mest fordelagtige at spille med danske kroner på <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link>.</p>
         </section>
+
+        <ReviewScreenshot
+          src={skatAfgiftLotteri}
+          alt="SKATs afgiftssatser for lotteri og klasselotteri 2025-2026 – 15 pct. afgift af gevinstbeløb over bundfradraget på 200 kr."
+          caption="SKATs officielle afgiftssatser for lotteri og klasselotteri – bundfradrag på 200 kr. pr. gevinst"
+        />
 
         <Separator className="my-10" />
 
@@ -249,6 +279,13 @@ const CasinoOgSkatGuide = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={skatKontakt}
+          alt="SKATs kontaktoplysninger for spørgsmål om skat af gevinster og præmier – telefon 72 22 28 28"
+          caption="Har du spørgsmål om skat af gevinster? Kontakt SKAT direkte på 72 22 28 28"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
