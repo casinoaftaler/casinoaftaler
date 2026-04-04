@@ -725,6 +725,12 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={campobetBonusser}
+          alt="Campobet tre velkomstbonusser side om side – Påskejagt 100 kr., Sport Velkomstbonus 1.000 kr. og Casino Velkomstbonus 1.000 kr. med vilkår og omsætningskrav"
+          caption="Campobets bonusoversigt: Tre indskudsbonusser med forskellige matchprocenter og omsætningskrav"
+        />
+
         {/* Skatteforhold */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
