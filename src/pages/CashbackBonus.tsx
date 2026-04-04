@@ -205,10 +205,11 @@ const CashbackBonus = () => {
             <Link to="/reload-bonus" className={linkClass}>reload bonus</Link>, har vi en dedikeret guide til det.
           </p>
           <ReviewScreenshot
-            src={betiniaBonussektion}
-            alt="Betinias bonussektion med cashback-tilbud og andre aktive kampagner for danske spillere"
-            caption="Betinias bonussektion – cashback-tilbud vises typisk sammen med andre aktive kampagner"
+            src={betssonCashback}
+            alt="Betsson 10% cashback-tilbud med 3-trins forklaring: spil spilleautomater, tab tælles op, og cashback udbetales mandag kl. 18:00 – uden omsætningskrav"
+            caption="Betssons cashback-tilbud: 10% ugentlig cashback med tydelig 3-trins forklaring og beregningseksempel direkte på siden."
             size="full"
+            eager
           />
         </section>
 
