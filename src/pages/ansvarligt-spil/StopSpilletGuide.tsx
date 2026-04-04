@@ -10,6 +10,9 @@ import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.webp";
+import stopspilletForside from "@/assets/screenshots/stopspillet-forside-hero.webp";
+import stopspilletHvadEr from "@/assets/screenshots/stopspillet-hvad-er-info.webp";
+import stopspilletKontakt from "@/assets/screenshots/stopspillet-kontakt-aabningstider.webp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -249,6 +252,14 @@ const StopSpilletGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={stopspilletForside}
+          alt="StopSpillet.dk forside med budskabet 'Hvis du ikke kan sige det højt, kan du sige det til os' og åbningstider for chat og telefon"
+          caption="StopSpillets forside kommunikerer direkte og empatisk – chatten er åben hverdage, og telefonlinjen har udvidede åbningstider."
+          size="full"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
@@ -322,6 +333,13 @@ const StopSpilletGuide = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={stopspilletKontakt}
+          alt="StopSpillet kontaktinformation med åbningstider for chat (17-21 hverdage) og telefon (9-21 hverdage) samt telefonnummer 70 22 28 25"
+          caption="StopSpillets åbningstider: Chat kl. 17–21 mandag-torsdag og 14–17 fredag. Telefon kl. 9–21 mandag-torsdag og 9–17 fredag. Tlf: 70 22 28 25."
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
@@ -490,6 +508,13 @@ const StopSpilletGuide = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={stopspilletHvadEr}
+          alt="StopSpillet informationssektion om hvad tjenesten er, fortrolige samtaler om ludomani og links til information for spillere og pårørende"
+          caption="StopSpillet tilbyder fortrolig rådgivning – samtaler videregives ikke til andre myndigheder. Der er separate ressourcer for spillere og pårørende."
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
