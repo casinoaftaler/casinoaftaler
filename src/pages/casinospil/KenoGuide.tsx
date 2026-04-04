@@ -314,6 +314,11 @@ const KenoGuide = () => {
               Det statistisk mest fordelagtige valg i standard keno er 4-6 numre, hvor RTP typisk er højest (90-94%) og gevinstfrekvensen balancerer med meningsfulde udbetalinger. Undgå at vælge 13-15 numre – her er house edge markant højere, og sandsynligheden for store gevinster er astronomisk lav. Husk: keno er underholdning med tilfældighedsbaseret gevinst, ikke en investeringsstrategi.
             </p>
           </div>
+          <ReviewScreenshot
+            src={kenoHvadErKenoFaq}
+            alt="Danske Spil Keno FAQ-side der forklarer at keno er et talspil med 70 tal hvor 20 udtrækkes dagligt, med indsatser fra 5 til 100 kr."
+            caption="Danske Spils officielle keno-regler: Vælg 2-10 tal ud af 70, med daglige trækninger af 20 vindertal. Indsatser fra 5 kr. til 100 kr. per række."
+          />
         </section>
 
         <Separator className="my-8" />
