@@ -16,14 +16,21 @@ const PaysafecardGuide = () => {
       introTitle="Paysafecard i Casinobranchen – Den Forudbetalte Metode med Indbygget Budgetkontrol"
       introContent={
         <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Blandt alle betalingsmetoder til danske online casinoer indtager Paysafecard en helt unik position. Det er den eneste metode, der tilbyder ægte budgetmæssig ufravigelighed – du køber en kupon for et fast beløb, og når pengene er brugt, kan du ikke indbetale mere uden fysisk at købe en ny. Denne mekanisme gør Paysafecard til det mest effektive budgetkontrolværktøj i casinobranchen, en egenskab der i stigende grad anerkendes af spilafhængighedseksperter.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Paysafecard er en del af Paysafe Group (samme selskab der ejer{" "}
-            <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
-            og Neteller) og er tilgængelig i over 50 lande. I Danmark kan du købe Paysafecard-kuponer i 7-Eleven, Netto, tankstationer og andre udsalgssteder, eller bestille dem digitalt via Paysafecards hjemmeside. Kuponerne fås typisk i værdier fra 100 kr. til 1.000 kr.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Blandt alle betalingsmetoder til danske online casinoer indtager Paysafecard en helt unik position. Det er den eneste metode, der tilbyder ægte budgetmæssig ufravigelighed – du køber en kupon for et fast beløb, og når pengene er brugt, kan du ikke indbetale mere uden fysisk at købe en ny. Denne mekanisme gør Paysafecard til det mest effektive budgetkontrolværktøj i casinobranchen, en egenskab der i stigende grad anerkendes af spilafhængighedseksperter.
+           </p>
+           <ReviewScreenshot
+             src={paysafecardRegistrering}
+             alt="Paysafecard officiel hjemmeside med tre trin til brug: Registrering med gratis tilmelding, Upload med 16-cifret kode og Betaling med loginoplysninger plus Find forhandlere-knap"
+             caption="Paysafecards tre-trins model: Registrer dig gratis, upload saldo med din 16-cifrede kode, og betal online med dine loginoplysninger."
+             size="medium"
+             eager
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Paysafecard er en del af Paysafe Group (samme selskab der ejer{" "}
+             <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
+             og Neteller) og er tilgængelig i over 50 lande. I Danmark kan du købe Paysafecard-kuponer i 7-Eleven, Netto, tankstationer og andre udsalgssteder, eller bestille dem digitalt via Paysafecards hjemmeside. Kuponerne fås typisk i værdier fra 100 kr. til 1.000 kr.
+           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den store fordel er den totale privatlivsbeskyttelse: Paysafecard kræver ingen registrering, ingen bankoplysninger og ingen personlige data for grundlæggende brug. Det gør den ideel til spillere, der prioriterer anonymitet og fuld kontrol over deres spillebudget – en effektiv strategi for{" "}
             <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
