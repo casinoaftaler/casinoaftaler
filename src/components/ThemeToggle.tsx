@@ -5,15 +5,13 @@ import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
-    // Check localStorage for saved preference, default to light mode
     const saved = localStorage.getItem("theme");
-    return saved === "dark";
+    return saved !== "light";
   });
 
   useEffect(() => {
-    // Apply saved theme on mount
     const saved = localStorage.getItem("theme");
-    const shouldBeDark = saved === "dark";
+    const shouldBeDark = saved !== "light";
     document.documentElement.classList.toggle("dark", shouldBeDark);
     setIsDark(shouldBeDark);
   }, []);
