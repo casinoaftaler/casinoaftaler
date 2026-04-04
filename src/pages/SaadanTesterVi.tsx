@@ -16,6 +16,10 @@ import { CheckCircle2, ClipboardList, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
+import spildansknuLobby from "@/assets/screenshots/spildansknu-lobby-testmetode.webp";
+import spildansknuIndbetaling from "@/assets/screenshots/spildansknu-indbetaling-testmetode.webp";
+import spildansknuFooter from "@/assets/screenshots/spildansknu-footer-licens-testmetode.webp";
+import spildansknutLivechat from "@/assets/screenshots/spildansknu-livechat-testmetode.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const testKriterier = [
@@ -227,6 +231,13 @@ const SaadanTesterVi = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildansknuLobby}
+          alt="SpilDanskNu casino-lobby med spiludvalg – Le Bandit, Sweet Bonanza 1000, Gates of Olympus og flere populære slots fra Hacksaw, Pragmatic Play og Play'n GO"
+          caption="Eksempel på vores test: SpilDanskNu's lobby med kategorifiltre, søgefunktion og bredt spiludvalg fra kendte udbydere"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* 2. Testkriterier */}
@@ -261,6 +272,14 @@ const SaadanTesterVi = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={spildansknuIndbetaling}
+          alt="SpilDanskNu indbetalingsside med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr. indbetaling og MitID-godkendelse"
+          caption="Vores test af indbetalingsprocessen: Vi verificerer betalingsmetoder, minimumsbeløb og MitID-godkendelse på hvert casino"
+        />
+
+        <Separator className="my-10" />
+
         {/* 3. Sådan tester vi i praksis */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan tester vi i praksis</h2>
@@ -287,6 +306,14 @@ const SaadanTesterVi = () => {
             altid afspejler den reelle oplevelse.
           </p>
         </section>
+
+        <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={spildansknuFooter}
+          alt="SpilDanskNu footer med Spillemyndighedens tilladelsessegl, 18+ mærkning, MitID, StopSpillet og ROFUS – licens nr. 21-67980 gyldig til oktober 2027"
+          caption="Vi verificerer altid licensoplysninger direkte i footeren: Spillemyndighedens segl, licensnummer og ansvarligt spil-ikoner"
+        />
 
         <Separator className="my-10" />
 
@@ -320,6 +347,13 @@ const SaadanTesterVi = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={spildansknutLivechat}
+          alt="SpilDanskNu live chat med dansk support agent Maya Dean – hurtig responstid og personlig betjening på dansk"
+          caption="Test af kundeservice: Vi kontakter live chat med reelle spørgsmål og vurderer responstid og svarkvalitet"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
