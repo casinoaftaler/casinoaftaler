@@ -250,6 +250,12 @@ const BingoGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={banko90kugle}
+          alt="90-kugle Banko spilrum med 8 aktive plader, 69 deltagere, præmiepulje på 1.254 kr. og nedtælling til næste runde"
+          caption="Live Banko-rum (90-kugle): 8 plader i spil med automatisk talmarkering. Pladepris kun 2,50 kr. – præmiepulje på 1.254,95 kr."
+        />
+
         <Separator className="my-8" />
 
         {/* RTP og matematik */}
