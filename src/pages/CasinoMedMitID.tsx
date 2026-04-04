@@ -236,10 +236,6 @@ const CasinoMedMitID = () => {
             {[
               { step: "1", title: "Vælg et dansk licenseret casino", desc: "Find et casino fra vores anbefalinger baseret på dine præferencer – bonus, spiludvalg, udbetalingstider eller live casino-kvalitet. Tjek at casinoet har en gyldig dansk licens (licensnummer i footer). Brug vores sammenligningsværktøj til at finde det bedste match." },
               { step: "2", title: "Klik 'Opret konto' eller 'Registrér'", desc: "På casinoets hjemmeside finder du typisk en 'Opret konto'-knap i øverste højre hjørne. Du vil blive bedt om at angive en email-adresse og vælge en adgangskode. Nogle casinoer beder også om et mobilnummer til verifikation." },
-              { step: "3", title: "Godkend med MitID-appen", desc: "Casinoet sender en MitID-anmodning til din telefon. Åbn MitID-appen og godkend med fingeraftryk, ansigtsgenkendelse eller pinkode. Processen tager 2-5 sekunder. Sørg for at din telefon har internetforbindelse og at MitID-appen er opdateret." },
-              { step: "4", title: "Automatisk verifikation (under 30 sek.)", desc: "Når du godkender MitID-anmodningen, overføres dine verificerede oplysninger til casinoet: fulde navn, fødselsdato og adresse. Casinoet kontrollerer automatisk din alder (18+) og ROFUS-status. Hele verifikationen tager typisk under 30 sekunder." },
-              { step: "5", title: "Sæt spillegrænser (anbefalet)", desc: "Inden du indbetaler, anbefaler vi at sætte indbetalings- og tabsgrænser. Det er et vigtigt værktøj for ansvarligt spil, og alle danske casinoer er forpligtede til at tilbyde det. Du kan altid justere grænserne senere – nedsættelse sker øjeblikkeligt, forhøjelse efter 24 timer." },
-              { step: "6", title: "Indbetal og begynd at spille", desc: "Vælg din foretrukne betalingsmetode. Trustly (bank-til-bank) er typisk den hurtigste med øjeblikkelig overførsel. Kreditkort, MobilePay og andre metoder er også tilgængelige afhængigt af casinoet. Din indbetaling krediteres øjeblikkeligt, og du kan begynde at spille med det samme." },
             ].map((item) => (
               <div key={item.step} className="flex items-start gap-4 rounded-lg border border-border p-4">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
@@ -261,7 +257,7 @@ const CasinoMedMitID = () => {
             eager
           />
 
-          <div className="mt-6 space-y-3">
+          <div className="space-y-3">
             <div className="flex items-start gap-4 rounded-lg border border-border p-4">
               <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">3</div>
               <div>
@@ -278,7 +274,7 @@ const CasinoMedMitID = () => {
             size="compact"
           />
 
-          <div className="mt-6 space-y-3">
+          <div className="space-y-3">
             <div className="flex items-start gap-4 rounded-lg border border-border p-4">
               <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">4</div>
               <div>
@@ -294,6 +290,24 @@ const CasinoMedMitID = () => {
             caption="Trin 4: MitID bekræfter godkendelsen – din identitet er verificeret, og casinoet opretter din konto automatisk."
             size="compact"
           />
+
+          <div className="space-y-3">
+            {[
+              { step: "5", title: "Sæt spillegrænser (anbefalet)", desc: "Inden du indbetaler, anbefaler vi at sætte indbetalings- og tabsgrænser. Det er et vigtigt værktøj for ansvarligt spil, og alle danske casinoer er forpligtede til at tilbyde det. Du kan altid justere grænserne senere – nedsættelse sker øjeblikkeligt, forhøjelse efter 24 timer." },
+              { step: "6", title: "Indbetal og begynd at spille", desc: "Vælg din foretrukne betalingsmetode. Trustly (bank-til-bank) er typisk den hurtigste med øjeblikkelig overførsel. Kreditkort, MobilePay og andre metoder er også tilgængelige afhængigt af casinoet. Din indbetaling krediteres øjeblikkeligt, og du kan begynde at spille med det samme." },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-4 rounded-lg border border-border p-4">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <Separator className="my-8" />
 
