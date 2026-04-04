@@ -1,6 +1,7 @@
 import { ReactNode, Suspense } from "react";
 import { lazyRetry } from "@/lib/lazyRetry";
 import { cn } from "@/lib/utils";
+import { LiveWinnersFeed } from "@/components/LiveWinnersFeed";
 
 const LazyContentSidebar = lazyRetry(() =>
   import("@/components/ContentSidebar").then((mod) => ({ default: mod.ContentSidebar }))
@@ -36,7 +37,10 @@ export function CommunityContentShell({
 
         <Suspense fallback={null}>
           <aside className="flex-shrink-0 pt-8 md:pt-12">
-            {rightSidebar ?? <LazyContentSidebar />}
+            <div className="sticky top-24 h-fit flex flex-col gap-4">
+              <LiveWinnersFeed />
+              {rightSidebar ?? <LazyContentSidebar />}
+            </div>
           </aside>
         </Suspense>
       </div>
