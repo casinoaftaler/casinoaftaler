@@ -30,6 +30,8 @@ import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
 import betanoCasinoLobby from "@/assets/screenshots/betano-casino-lobby.webp";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -328,6 +330,9 @@ const BetanoAnmeldelse = () => {
           </p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Søger du en lignende sport & casino-oplevelse?" reason="Campobet tilbyder samme kombination af sportsvæddemål og casino med dansk licens, lavere omsætningskrav og hurtige udbetalinger." ctaText="Se Campobet" />
+
+
         <Separator className="my-10" />
 
         {/* Sikkerhed */}
@@ -539,6 +544,7 @@ const BetanoAnmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om Betano" faqs={faqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

@@ -32,6 +32,8 @@ import { Check, Club, Play, RotateCcw, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -254,6 +256,9 @@ const ComeOnAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Dansk kundeservice er en klar fordel – mange internationale casinoer tilbyder kun engelsktsproget support. ComeOns FAQ-sektion er omfattende og dækker de mest almindelige spørgsmål. E-mail besvares typisk inden for 12-24 timer.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spildansknu" headline="Søger du et simpelt casino med dansk fokus?" reason="SpilDanskNu tilbyder en brugervenlig platform med dansk licens, MobilePay og hurtige udbetalinger – skræddersyet til danske spillere." ctaText="Prøv SpilDanskNu" />
+
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -350,6 +355,7 @@ const ComeOnAnmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om ComeOn Casino" faqs={comeonFaqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

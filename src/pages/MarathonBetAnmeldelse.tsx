@@ -10,6 +10,8 @@ import marathonbetForside from "@/assets/screenshots/marathonbet-forside.webp";
 import marathonbetCasino from "@/assets/screenshots/marathonbet-casino.webp";
 import marathonbetLive from "@/assets/screenshots/marathonbet-live.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 const linkClass = "text-primary underline hover:text-primary/80";
 const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er MarathonBet lovligt i Danmark?", answer: (<>Ja, MarathonBet opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen overholder alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og bruger MitID til registrering. MarathonBet har opereret i Danmark siden licenssystemet blev indført og har aldrig modtaget sanktioner fra Spillemyndigheden.</>) },
@@ -179,6 +181,9 @@ const MarathonBetAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt – også sportsvæddemål. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25, hvis du eller en du kender har problemer med spil.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Denne side indeholder reklamelinks</p></CardContent></Card>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Søger du bedre odds med dansk licens?" reason="Campobet kombinerer konkurrencedygtige odds og casino med dansk licens og hurtige udbetalinger." ctaText="Prøv Campobet" />
+
+
         <Separator className="my-10" />
 
         {/* Hvem bør IKKE vælge MarathonBet */}
@@ -311,6 +316,7 @@ const MarathonBetAnmeldelse = () => {
         <FAQSection faqs={marathonbetFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

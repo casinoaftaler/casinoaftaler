@@ -29,6 +29,8 @@ import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillema
 import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
 import casinostuenShop from "@/assets/screenshots/casinostuen-shop.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -203,6 +205,9 @@ const CasinostuenAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> og <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> sikrer uafhængige vurderinger. Vi modtager affiliate-kommission, men det påvirker aldrig vores ratings eller anbefalinger. Læs mere om vores uafhængighed og metode.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="betinia" headline="Søger du et bredere spiludvalg?" reason="Betinia tilbyder et langt større udvalg af slots og live casino med dansk licens, hurtige udbetalinger og lave omsætningskrav." ctaText="Se Betinia" />
+
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -337,6 +342,7 @@ const CasinostuenAnmeldelse = () => {
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

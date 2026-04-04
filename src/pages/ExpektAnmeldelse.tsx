@@ -32,6 +32,8 @@ import { Check, Dog, Play, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -165,6 +167,9 @@ const ExpektAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Det er desuden værd at overveje, at Expekts velkomstbonus kræver et valg mellem sport og casino – du kan ikke få begge. For spillere, der vil teste begge produkter med bonusmidler, er det en begrænsning, som platforme med samlede velkomstpakker (som <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>) ikke har.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Vil du have et bedre sport & casino-alternativ?" reason="Campobet leverer sportsvæddemål og casino under dansk licens med bedre bonusvilkår og hurtigere udbetaling." ctaText="Se Campobet" />
+
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -280,6 +285,7 @@ const ExpektAnmeldelse = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

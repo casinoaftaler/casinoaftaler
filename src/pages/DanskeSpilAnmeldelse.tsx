@@ -32,6 +32,8 @@ import { Check, Play, RotateCcw, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -246,6 +248,9 @@ const DanskeSpilAnmeldelse = () => {
           </div>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="betinia" headline="Vil du have bedre bonusvilkår med dansk licens?" reason="Betinia tilbyder en generøs velkomstbonus med lave omsætningskrav, dansk licens og et stærkt udvalg af slots og live casino." ctaText="Prøv Betinia" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice */}
@@ -347,6 +352,7 @@ const DanskeSpilAnmeldelse = () => {
         <FAQSection title="Ofte stillede spørgsmål om Danske Spil Casino" faqs={danskeSpilFaqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

@@ -27,6 +27,8 @@ import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.webp
 import nordicbetKampagner from "@/assets/screenshots/nordicbet-kampagner-bonusser.webp";
 import nordicbetLiveCasino from "@/assets/screenshots/nordicbet-live-casino-lobby.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -297,6 +299,9 @@ const NordicBetAnmeldelse = () => {
           </p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Vil du have en stærk nordisk sport & casino-platform?" reason="Campobet tilbyder den samme kombination af sport og casino med dansk licens, men med bedre bonusvilkår og lavere omsætningskrav." ctaText="Se Campobet" />
+
+
         <Separator className="my-10" />
 
         {/* Negative Segmentation */}
@@ -481,6 +486,7 @@ const NordicBetAnmeldelse = () => {
         <FAQSection faqs={nordicbetFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

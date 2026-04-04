@@ -28,6 +28,8 @@ import { Apple, Check, Play, Table, Target, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -385,6 +387,9 @@ const SpilnuAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Åbningstiderne for live chat er begrænsede sammenlignet med casinoer, der tilbyder 24/7 support – Spilnus live chat er typisk tilgængelig fra 09:00 til 23:00. For spillere, der spiller sent om natten, er dette en begrænsning. FAQ-sektionen på Spilnu.dk er velstruktureret og dækker de mest almindelige spørgsmål, men den mangler dybde på tekniske emner. Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, der begge tilbyder 24/7 support med svartider under 1 minut, er Spilnus serviceniveau en halv klasse under – men det er stadig klart over gennemsnittet for det danske marked.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="betinia" headline="Vil du have mere end bingo og basale spil?" reason="Betinia tilbyder et langt bredere spiludvalg med 2.000+ slots, live casino, dansk licens og bedre bonusvilkår." ctaText="Prøv Betinia" />
+
+
         <Separator className="my-10" />
 
         {/* Mobile Experience */}
@@ -532,6 +537,7 @@ const SpilnuAnmeldelse = () => {
         <FAQSection faqs={spilnuFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

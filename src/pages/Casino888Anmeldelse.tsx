@@ -31,6 +31,8 @@ import { Apple, Check, Club, Dog, Play, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -196,6 +198,9 @@ const Casino888Anmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">Designmæssigt har 888 Casino gennemgået flere visuelle opdateringer, men grundstrukturen afslører stadig sit alderdom. Farvepaletten er mørk og klassisk (sort/guld), hvilket giver en premium-følelse men kan virke tung i længere sessions. Kontrasterne mellem tekst og baggrund er dog gode, og tilgængeligheden for spillere med nedsat syn er acceptabel. Det er ikke den mest moderne platform visuelt, men den er funktionelt solid.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spilleautomaten" headline="Vil du have et dansk alternativ med stort udvalg?" reason="Spilleautomaten tilbyder et bredt spiludvalg fra førende udbydere, dansk licens og konkurrencedygtig velkomstbonus." ctaText="Prøv Spilleautomaten" />
+
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -342,6 +347,7 @@ const Casino888Anmeldelse = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

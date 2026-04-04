@@ -26,6 +26,8 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import stakeForside from "@/assets/screenshots/stake-forside.webp";
 import stakeKampagner from "@/assets/screenshots/stake-kampagner.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -189,6 +191,9 @@ const StakeCasinoAnmeldelse = () => {
           </div>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="swift-casino" headline="Søger du hurtige udbetalinger med dansk licens?" reason="Swift Casino lever op til sit navn med lynhurtige udbetalinger, dansk licens og et innovativt casino-koncept." ctaText="Se Swift Casino" />
+
+
         <Separator className="my-10" />
 
         {/* Kundeservice */}
@@ -345,6 +350,7 @@ const StakeCasinoAnmeldelse = () => {
         <FAQSection faqs={stakeFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="swift-casino" />
     </>
   );
 };

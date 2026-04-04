@@ -28,6 +28,8 @@ import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskin
 import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.webp";
 import onecasinoIndbetaling from "@/assets/screenshots/onecasino-indbetaling.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -374,6 +376,9 @@ const OneCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For den gennemsnitlige spiller er kundeservicen tilstrækkelig – du får svar på dine spørgsmål, og problemerne bliver løst. Men det tager lidt længere tid end hos de store aktører, og den sproglige barriere kan være frustrerende for spillere, der ikke er komfortable med engelsk. Det er ikke et deal-breaker, men det understreger, at One Casino er en mindre operation med tilsvarende ressourcer og ambitioner inden for kundeservice.</p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="spilleautomaten" headline="Søger du flere spil og bedre bonusvilkår?" reason="Spilleautomaten har et langt større spiludvalg end One Casino, dansk licens og en generøs velkomstbonus med lave omsætningskrav." ctaText="Se Spilleautomaten" />
+
+
         <Separator className="my-10" />
 
         {/* Mobile Experience */}
@@ -518,6 +523,7 @@ const OneCasinoAnmeldelse = () => {
         <FAQSection faqs={oneFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

@@ -28,6 +28,8 @@ import { Check, Play, Table, X } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import { ReviewAlternativeCTA } from "@/components/ReviewAlternativeCTA";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -453,6 +455,9 @@ const BwinAnmeldelse = () => {
           </p>
         </section>
 
+        <ReviewAlternativeCTA partnerSlug="campobet" headline="Søger du et dansk-licenseret sport & casino-alternativ?" reason="Campobet tilbyder sport og casino i ét med dansk licens, lave omsætningskrav og hurtigere udbetalinger end de fleste konkurrenter." ctaText="Prøv Campobet" />
+
+
         <Separator className="my-10" />
 
         {/* Negative Segmentation */}
@@ -598,6 +603,7 @@ const BwinAnmeldelse = () => {
         <FAQSection faqs={bwinFaqs} />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
