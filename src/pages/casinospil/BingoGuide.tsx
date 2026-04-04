@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilBingo from "@/assets/screenshots/danskespil-bingo.webp";
-import spilnuBingo from "@/assets/screenshots/spilnu-bingo.webp";
+import spillnuBingoLobby from "@/assets/screenshots/spillnu-bingo-lobby.webp";
+import banko90kugle from "@/assets/screenshots/banko-90kugle-spilrum.webp";
+import bankoFlashPraemie from "@/assets/screenshots/banko-flash-megapraemie.webp";
+import bingo75kugleMobil from "@/assets/screenshots/bingo-75kugle-mobil.webp";
+import bingo75kugleDesktop from "@/assets/screenshots/bingo-75kugle-spilrum.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -215,10 +218,10 @@ const BingoGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilBingo}
-          alt="Danske Spil bingo-lobby med 75-kugle og 90-kugle bingo-rum samt aktive jackpots"
-          caption="Danske Spil bingo – et af de mest populære bingo-rum hos danske casinoer med licens"
-          size="full"
+          src={spillnuBingoLobby}
+          alt="Spillnu.dk bingo-lobby med Bingo og Banko varianter, megapræmie på 25.000 kr. og aktive vindere i bunden"
+          caption="Spillnu.dk's bingo-lobby: Vælg mellem 75-kugle Bingo og 90-kugle Banko med live præmiepuljer og megapræmie på 25.000 kr."
+          eager
         />
 
         <Separator className="my-8" />
@@ -246,6 +249,12 @@ const BingoGuide = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={banko90kugle}
+          alt="90-kugle Banko spilrum med 8 aktive plader, 69 deltagere, præmiepulje på 1.254 kr. og nedtælling til næste runde"
+          caption="Live Banko-rum (90-kugle): 8 plader i spil med automatisk talmarkering. Pladepris kun 2,50 kr. – præmiepulje på 1.254,95 kr."
+        />
 
         <Separator className="my-8" />
 
@@ -418,10 +427,10 @@ const BingoGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={spilnuBingo}
-          alt="Spilnu bingo-rum med aktive spil, pladekøb og chat-funktion"
-          caption="Spilnu bingo – eksempel på et dansk bingo-rum med live chat og automatisk talmarkering"
-          size="full"
+          src={bankoFlashPraemie}
+          alt="Banko Flash megapræmie på 25.000 kr. med samlet pulje på 1.464 kr. og præmier for fuld plade, 2 rækker og 1 række"
+          caption="Banko Flash præmieoversigt: Megapræmie på 25.000 kr. med tre gevinstniveauer – fuld plade, 2 rækker (418 kr.) og 1 række (209 kr.)."
+          size="compact"
         />
 
         <Separator className="my-8" />
@@ -493,6 +502,13 @@ const BingoGuide = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={bingo75kugleMobil}
+          alt="75-kugle Bingo på mobil med nummer 49 trukket, 58 tilskuere, præmiepulje på 29,70 kr. og pladekøb til 2,50 kr."
+          caption="75-kugle Bingo på mobil: Kompakt visning med live nummertrukket, spillerliste og pladekøb direkte i appen. Perfekt til on-the-go bingo."
+          size="compact"
+        />
 
         <Separator className="my-8" />
 
