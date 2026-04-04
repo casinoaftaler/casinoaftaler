@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
+import saLoginMitid from "@/assets/screenshots/spilleautomaten-app-login-mitid.webp";
+import saProfilSaldo from "@/assets/screenshots/spilleautomaten-app-profil-saldo.webp";
+import saBetalingsmetoder from "@/assets/screenshots/spilleautomaten-app-betalingsmetoder.webp";
+import saSweetBonanza from "@/assets/screenshots/spilleautomaten-app-sweet-bonanza.webp";
+import saIndbetaling from "@/assets/screenshots/spilleautomaten-app-indbetaling.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -459,6 +464,13 @@ const CasinoApp = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={saProfilSaldo}
+          alt="Spilleautomaten app profilmenu med saldo 0,70 DKK, indbetalings- og udbetalingsknapper, Min Profil og Min Kontooversigt"
+          caption="Profiloversigt i Spilleautomaten-appen – hurtig adgang til saldo, indbetaling, udbetaling og kontoadministration direkte fra mobilmenuen"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
@@ -573,6 +585,13 @@ const CasinoApp = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={saSweetBonanza}
+          alt="Sweet Bonanza 1000 spilleautomat på Spilleautomaten mobilapp med Køb Gratis Spins, Super Gratis Spins og indsatsjustering"
+          caption="Sweet Bonanza 1000 på mobil – casino apps tilbyder fuldt funktionelle spilleautomater med køb-bonus og indsatsstyring optimeret til touchskærm"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
@@ -666,6 +685,13 @@ const CasinoApp = () => {
             optimal performance, er en native app en god investering.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={saBetalingsmetoder}
+          alt="Spilleautomaten app indbetalingsmetoder – MobilePay, Mastercard, Visa og Trustly med minimum 75 kr. indbetaling"
+          caption="Betalingsmetoder i Spilleautomaten-appen – MobilePay, Mastercard, Visa og Trustly tilgængelige med 75 kr. minimumsindbetaling"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
@@ -786,6 +812,13 @@ const CasinoApp = () => {
             for mere information.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={saIndbetaling}
+          alt="Spilleautomaten app indbetalingsskærm med hurtigvalg 100-2000 kr., bonuskode-felt og beløbsinput – minimum 75 kr., maksimum 50.000 kr."
+          caption="Indbetalingsflow på Spilleautomaten – hurtigvalg-knapper fra 100 til 2.000 kr. og bonuskode-felt gør processen hurtig på mobil"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
