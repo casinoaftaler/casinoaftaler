@@ -1,5 +1,10 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+
+import leoVegasLoginKnapper from "@/assets/screenshots/leovegas-login-opret-knapper.webp";
+import leoVegasMitidLogin from "@/assets/screenshots/leovegas-mitid-brugerid-login.webp";
+import leoVegasMitidApp from "@/assets/screenshots/leovegas-mitid-app-godkendelse.webp";
+import leoVegasMitidGodkendt from "@/assets/screenshots/leovegas-mitid-godkendt-bekraeftelse.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
