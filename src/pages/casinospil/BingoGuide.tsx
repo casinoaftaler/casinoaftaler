@@ -503,6 +503,13 @@ const BingoGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={bingo75kugleMobil}
+          alt="75-kugle Bingo på mobil med nummer 49 trukket, 58 tilskuere, præmiepulje på 29,70 kr. og pladekøb til 2,50 kr."
+          caption="75-kugle Bingo på mobil: Kompakt visning med live nummertrukket, spillerliste og pladekøb direkte i appen. Perfekt til on-the-go bingo."
+          size="compact"
+        />
+
         <Separator className="my-8" />
 
         {/* Historien om bingo */}
