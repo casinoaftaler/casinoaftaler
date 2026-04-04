@@ -420,6 +420,13 @@ const BonusUdenOmsaetningskrav = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={betsson50Freespins}
+            alt="Betsson kampagneside med 50 omsætningsfrie freespins som casino velkomsttilbud uden gennemspilskrav"
+            caption="Betssons velkomsttilbud: 50 freespins uden omsætningskrav – gevinster udbetales direkte som kontanter"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
