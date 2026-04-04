@@ -547,6 +547,21 @@ const HurtigRegistreringGuide = () => {
             {[
               { trin: "Klik 'Opret konto'", tid: "1 sek.", note: "Spiller klikker på registreringsknap" },
               { trin: "MitID-autentificering", tid: "15 sek.", note: "MitID-app godkendelse" },
+
+              ].map(() => null)[0]}
+            </div>
+
+            <ReviewScreenshot
+              src={leoVegasMitidLogin}
+              alt="LeoVegas MitID login-formular med bruger-ID felt og Fortsæt-knap"
+              caption="Trin 1: LeoVegas' MitID-loginformular – indtast dit bruger-ID og klik 'Fortsæt' for at åbne MitID-appen."
+              size="compact"
+            />
+
+            <div className="space-y-2 mb-6">
+            {[
+              { trin: "Klik 'Opret konto'", tid: "1 sek.", note: "Spiller klikker på registreringsknap" },
+              { trin: "MitID-autentificering", tid: "15 sek.", note: "MitID-app godkendelse" },
               { trin: "Formular vises (delvist udfyldt)", tid: "3 sek.", note: "Navn/adresse ofte præudfyldt fra MitID" },
               { trin: "Udfyld resterende felter", tid: "45 sek.", note: "Email, brugernavn, adgangskode, mobilnr." },
               { trin: "Accepter vilkår + ansvarligt spil", tid: "15 sek.", note: "Checkboxe + evt. indbetalingsgrænse" },
