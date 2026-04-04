@@ -107,7 +107,7 @@ export function SupportChatWidget() {
       {/* Chat Panel */}
       {isOpen && (
         <div
-          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
           style={{ height: "min(500px, 70vh)" }}
         >
           {/* Header */}
@@ -322,7 +322,7 @@ export function SupportChatWidget() {
       {/* Broadcast Expanded View */}
       {broadcastExpanded && broadcast && (
         <div
-          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
           style={{ maxHeight: "min(400px, 60vh)" }}
         >
           <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
@@ -368,7 +368,7 @@ export function SupportChatWidget() {
       {!isOpen && !broadcastExpanded && broadcast && (
         <button
           onClick={() => setBroadcastExpanded(true)}
-          className="fixed bottom-20 right-4 z-[59] flex items-center gap-2.5 rounded-2xl border border-border bg-card shadow-lg px-4 py-3 max-w-[280px] hover:shadow-xl transition-all duration-200 animate-in slide-in-from-bottom-2 cursor-pointer group"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[59] flex items-center gap-2.5 rounded-2xl border border-border bg-card shadow-lg px-4 py-3 max-w-[280px] hover:shadow-xl transition-all duration-200 animate-in slide-in-from-bottom-2 cursor-pointer group"
         >
           <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-8 w-8 rounded-full object-cover shrink-0" />
           <div className="text-left min-w-0">
@@ -383,7 +383,7 @@ export function SupportChatWidget() {
       {/* Floating Button */}
       <button
         onClick={isOpen ? handleClose : handleOpen}
-        className="fixed bottom-4 right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
+        className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
         aria-label="Support chat"
       >
         {isOpen ? (
