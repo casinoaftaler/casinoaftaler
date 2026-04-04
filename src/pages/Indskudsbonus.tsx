@@ -284,6 +284,13 @@ const Indskudsbonus = () => {
         </section>
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={spilleautomatenBonus}
+          alt="Spilleautomaten 100% velkomstbonus op til 1.000 kr. med Legacy of Dead – trin-for-trin guide til aktivering med bonuskode VELKOMMEN1"
+          caption="Spilleautomatens velkomstbonus: 100% match med klar aktiveringsguide og bonuskode"
+          size="compact"
+        />
+
         {/* Trin-for-trin */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
