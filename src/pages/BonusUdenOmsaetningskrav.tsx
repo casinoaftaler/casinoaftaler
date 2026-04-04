@@ -230,6 +230,12 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src={mrgreenVelkomsttilbud}
+            alt="Mr Green velkomsttilbud med 100 kr. bonus ved første indbetaling uden gennemspilskrav på kontanter"
+            caption="Mr Greens velkomsttilbud: 100 kr. ekstra ved indbetaling – kontanterne er uden omsætningskrav og kan bruges frit"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
