@@ -441,7 +441,6 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
 }
 
 export function MonthlyTournamentBoxes() {
-  const countdown = useTournamentCountdown();
   const { data: configs, isLoading: configLoading } = useMonthlyTournamentConfig();
 
   // Build tournament box configs from DB config
