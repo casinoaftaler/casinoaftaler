@@ -17,7 +17,13 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import kenoMillionkenoForside from "@/assets/screenshots/keno-millionkeno-forside.webp";
+import kenoVaelgSelvBoard from "@/assets/screenshots/keno-vaelg-selv-board.webp";
+import kenoSaadanSpillerDu from "@/assets/screenshots/keno-saadan-spiller-du.webp";
+import kenoHvadErKenoFaq from "@/assets/screenshots/keno-hvad-er-keno-faq.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
