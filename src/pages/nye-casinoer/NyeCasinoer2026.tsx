@@ -11,6 +11,10 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import getluckyForside from "@/assets/screenshots/getlucky-forside.webp";
+import betanoLobby from "@/assets/screenshots/betano-casino-lobby-nyt-2026.webp";
+import casinostuenVelkomst from "@/assets/screenshots/casinostuen-velkomst-nyt-2026.webp";
+import playkasinoLobby from "@/assets/screenshots/playkasino-lobby-nyt-2026.webp";
+import betoroLobby from "@/assets/screenshots/betoro-lobby-nyt-2026.webp";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -239,6 +243,12 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={betanoLobby}
+          alt="Betano casino-lobby med eksklusive spil, Høj RTP og Høj Volatilitet filtre, bonuskøb-muligheder og dansk navigation"
+          caption="Betano: Nyt dansk casino med eksklusive titler, smart kategorisering og moderne lobby-design"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan tester vi nye casinoer i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -291,6 +301,12 @@ const NyeCasinoer2026 = () => {
         </section>
 
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={playkasinoLobby}
+          alt="PlayKasino forside med eksklusivt velkomsttilbud 100% op til 500 kr., populære spilleautomater som Big Bass Splash og Book of Dead"
+          caption="PlayKasino: Nyt dansk casino med 100% velkomstbonus og kurateret spiludvalg"
+        />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Spiludvalg og udbydere hos nye casinoer i 2026</h2>
@@ -349,6 +365,12 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={betoroLobby}
+          alt="Betoro forside med sport velkomstbonus 100% op til 1.000 kr., sportskategorier og moderne mørkt design"
+          caption="Betoro: Nyeste tilskud til det danske marked med fokus på sport og casino i ét"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Betalingsinfrastruktur hos 2026-casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -382,6 +404,13 @@ const NyeCasinoer2026 = () => {
         </section>
 
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={casinostuenVelkomst}
+          alt="Casinostuen velkomstside med 100% bonus op til 500 kr. til casino eller 100 kr. freebet til sport, kategorier for Casino, Live Casino og Sports Betting"
+          caption="Casinostuen: Nyt dansk casino med dobbelt velkomsttilbud – casino bonus eller sports freebet"
+          size="medium"
+        />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Fordele og ulemper ved nye casinoer i 2026</h2>
