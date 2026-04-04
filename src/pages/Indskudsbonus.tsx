@@ -616,6 +616,12 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={leovegasVelkomst}
+          alt="LeoVegas velkomsttilbud med tre separate bonusser – Casino op til 1.000 kr., Live Casino 200 Golden Chips, og Sport op til 1.000 kr. med detaljerede vilkår"
+          caption="LeoVegas' velkomsttilbud: Tre separate indskudsbonusser til casino, live casino og sport"
+        />
+
         {/* Spillerprofiler */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
