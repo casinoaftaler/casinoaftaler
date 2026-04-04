@@ -85,6 +85,24 @@ export interface SlotRequestWithProfile extends SlotRequest {
 
 export function useMySlotRequests() {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const channel = supabase
+      .channel('my-slot-requests-' + user.id)
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'slot_requests', filter: 'user_id=eq.' + user.id },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["my-slot-requests", user.id] });
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [user?.id, queryClient]);
+
   return useQuery({
     queryKey: ["my-slot-requests", user?.id],
     queryFn: async () => {
