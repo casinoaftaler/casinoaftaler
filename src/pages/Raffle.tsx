@@ -163,10 +163,13 @@ function CompletedRaffleCard({
     <RaffleCardShell>
       {/* Header row */}
       <div className="flex items-center justify-between">
-        <Badge variant="secondary" className="text-xs">
-          <Trophy className="mr-1 h-3 w-3" />
-          AFSLUTTET
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="text-xs">
+            <Trophy className="mr-1 h-3 w-3" />
+            AFSLUTTET
+          </Badge>
+          <span className="text-xs font-medium text-muted-foreground">#{raffleNumber}</span>
+        </div>
         <span className="text-xs text-muted-foreground">{formatRaffleDate(raffle.starts_at)}</span>
       </div>
 
