@@ -2,7 +2,8 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kampagner888 from "@/assets/screenshots/888-kampagner.webp";
+import betiniaReload from "@/assets/screenshots/betinia-reload-kampagne.webp";
+import campobetReload from "@/assets/screenshots/campobet-reload-kampagne.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -207,10 +208,11 @@ const ReloadBonus = () => {
             <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link> adskiller sig fra reload, har vi en dedikeret guide.
           </p>
           <ReviewScreenshot
-            src={kampagner888}
-            alt="888 Casinos kampagneside med reload-bonusser og ugentlige tilbud til eksisterende spillere"
-            caption="888 Casinos kampagneside – reload-bonusser er typisk tilgængelige som ugentlige tilbud"
+            src={betiniaReload}
+            alt="Betinia kampagneside med månedlig sportsbonus på 100% op til 500 kr. – eksempel på reload-tilbud til eksisterende spillere"
+            caption="Betinias kampagneside: Månedlig reload-bonus på 100% op til 500 kr. med tydelig visning af vilkår"
             size="full"
+            eager
           />
         </section>
 
@@ -423,6 +425,13 @@ const ReloadBonus = () => {
             <Link to="/cashback-bonus" className={linkClass}>cashback</Link>, kan den samlede bonusværdi realistisk nå 8.000-10.000 kr. for en disciplineret spiller. Det kræver dog, at du aktivt søger de bedste tilbud og ikke bare accepterer det første, du ser.
           </p>
         </section>
+
+        <ReviewScreenshot
+            src={campobetReload}
+            alt="Campobet månedlig sportsbonus – 100% op til 500 kr. med 3-trins forklaring: indbetal, omsæt med min. odds 1.50, og modtag belønning"
+            caption="Campobets reload-kampagne med tydelig 3-trins guide: Indbetal → Omsæt → Modtag bonus"
+            size="full"
+          />
 
         {/* Strategisk brug */}
         <section className="mb-12">
