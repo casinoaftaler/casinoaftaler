@@ -459,7 +459,13 @@ const OmTeamet = () => {
               <Card key={stat.label} className="border-border bg-card text-center">
                 <CardContent className="p-6">
                   <MenuIcon iconName={stat.iconName} className="mx-auto mb-3 h-8 w-8 text-primary" />
-                  <p className="text-3xl font-bold text-foreground md:text-4xl">{stat.value}</p>
+                  <p className="text-3xl font-bold text-foreground md:text-4xl">
+                    {stat.numericValue != null ? (
+                      <AnimatedCounter target={stat.numericValue} suffix={stat.suffix} />
+                    ) : (
+                      stat.textValue
+                    )}
+                  </p>
                   <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
                 </CardContent>
               </Card>
