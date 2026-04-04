@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsKassePaysafecard from "@/assets/screenshots/videoslots-kasse-paysafecard-indbetaling.webp";
+import paysafecardLogin from "@/assets/screenshots/paysafecard-login-betalingsvindue.webp";
+import paysafecardRegistrering from "@/assets/screenshots/paysafecard-registrering-upload-betaling.webp";
+import videoslotsHeader from "@/assets/screenshots/videoslots-header-saldo-profil.webp";
 const PaysafecardGuide = () => {
   return (
     <PaymentMethodPage
@@ -12,14 +16,21 @@ const PaysafecardGuide = () => {
       introTitle="Paysafecard i Casinobranchen – Den Forudbetalte Metode med Indbygget Budgetkontrol"
       introContent={
         <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Blandt alle betalingsmetoder til danske online casinoer indtager Paysafecard en helt unik position. Det er den eneste metode, der tilbyder ægte budgetmæssig ufravigelighed – du køber en kupon for et fast beløb, og når pengene er brugt, kan du ikke indbetale mere uden fysisk at købe en ny. Denne mekanisme gør Paysafecard til det mest effektive budgetkontrolværktøj i casinobranchen, en egenskab der i stigende grad anerkendes af spilafhængighedseksperter.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Paysafecard er en del af Paysafe Group (samme selskab der ejer{" "}
-            <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
-            og Neteller) og er tilgængelig i over 50 lande. I Danmark kan du købe Paysafecard-kuponer i 7-Eleven, Netto, tankstationer og andre udsalgssteder, eller bestille dem digitalt via Paysafecards hjemmeside. Kuponerne fås typisk i værdier fra 100 kr. til 1.000 kr.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Blandt alle betalingsmetoder til danske online casinoer indtager Paysafecard en helt unik position. Det er den eneste metode, der tilbyder ægte budgetmæssig ufravigelighed – du køber en kupon for et fast beløb, og når pengene er brugt, kan du ikke indbetale mere uden fysisk at købe en ny. Denne mekanisme gør Paysafecard til det mest effektive budgetkontrolværktøj i casinobranchen, en egenskab der i stigende grad anerkendes af spilafhængighedseksperter.
+           </p>
+           <ReviewScreenshot
+             src={paysafecardRegistrering}
+             alt="Paysafecard officiel hjemmeside med tre trin til brug: Registrering med gratis tilmelding, Upload med 16-cifret kode og Betaling med loginoplysninger plus Find forhandlere-knap"
+             caption="Paysafecards tre-trins model: Registrer dig gratis, upload saldo med din 16-cifrede kode, og betal online med dine loginoplysninger."
+             size="medium"
+             eager
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Paysafecard er en del af Paysafe Group (samme selskab der ejer{" "}
+             <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
+             og Neteller) og er tilgængelig i over 50 lande. I Danmark kan du købe Paysafecard-kuponer i 7-Eleven, Netto, tankstationer og andre udsalgssteder, eller bestille dem digitalt via Paysafecards hjemmeside. Kuponerne fås typisk i værdier fra 100 kr. til 1.000 kr.
+           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den store fordel er den totale privatlivsbeskyttelse: Paysafecard kræver ingen registrering, ingen bankoplysninger og ingen personlige data for grundlæggende brug. Det gør den ideel til spillere, der prioriterer anonymitet og fuld kontrol over deres spillebudget – en effektiv strategi for{" "}
             <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
@@ -67,12 +78,18 @@ const PaysafecardGuide = () => {
             <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">kortoplysninger</Link>{" "}
             eller e-wallet-logindata er Paysafecards risikoniveau fundamentalt lavere.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en myPaysafe-konto kan du tilføje yderligere sikkerhed med adgangskode og totrinsbekræftelse. Paysafecard er reguleret af det britiske FCA via moderselskabet Paysafe Group og overholder europæiske sikkerhedsstandarder for e-penge-institutioner under EMD2 (Electronic Money Directive).
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            En vigtig nuance: Paysafecards anonymitet gælder kun for betalingstransaktionen. Din casinokonto er aldrig anonym – danske licenserede casinoer kræver MitID-verifikation ved registrering uanset betalingsmetode. Fordelen er, at casinotransaktionerne ikke fremgår af dit bankudtog – en privatlivsbeskyttelse, der kan være relevant for spillere, der ønsker diskretion om deres spilleaktiviteter.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Med en myPaysafe-konto kan du tilføje yderligere sikkerhed med adgangskode og totrinsbekræftelse. Paysafecard er reguleret af det britiske FCA via moderselskabet Paysafe Group og overholder europæiske sikkerhedsstandarder for e-penge-institutioner under EMD2 (Electronic Money Directive).
+           </p>
+           <ReviewScreenshot
+             src={paysafecardLogin}
+             alt="Paysafecard betalingsvindue med login via e-mail og adgangskode, saldo på 0,00 DKK, åbent beløb 100,00 DKK og mulighed for scan2pay-betaling samt tilmeldingslink"
+             caption="Paysafecards betalingsvindue under en casino-indbetaling: Log ind med din myPaysafe-konto eller betal direkte med din 16-cifrede PIN-kode."
+             size="compact"
+           />
+           <p className="text-muted-foreground leading-relaxed">
+             En vigtig nuance: Paysafecards anonymitet gælder kun for betalingstransaktionen. Din casinokonto er aldrig anonym – danske licenserede casinoer kræver MitID-verifikation ved registrering uanset betalingsmetode. Fordelen er, at casinotransaktionerne ikke fremgår af dit bankudtog – en privatlivsbeskyttelse, der kan være relevant for spillere, der ønsker diskretion om deres spilleaktiviteter.
+           </p>
         </>
       }
       howToTitle="Køb, Brug og Kombiner – Praktisk Guide til Paysafecard på Casinoer"
@@ -81,9 +98,15 @@ const PaysafecardGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Køb af kupon:</strong> Besøg et udsalgssted (7-Eleven, Netto, tankstation) og bed om en Paysafecard. Vælg beløb (100, 150, 250, 500 eller 1.000 kr.). Betal kontant eller med kort. Du modtager en kvittering med din 16-cifrede PIN-kode. Alternativt kan du købe digitale kuponer via paysafecard.com – log ind med din myPaysafe-konto, vælg beløb og betal med MitID-godkendt bankoverførsel.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling på casino:</strong> Vælg Paysafecard i casinoets kasse. Indtast din 16-cifrede PIN og beløbet. Pengene er tilgængelige øjeblikkeligt – under 3 sekunder i vores test. Du kan kombinere op til 10 PIN-koder i én transaktion for større indbetalinger (maks. 10.000 kr.).
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Indbetaling på casino:</strong> Vælg Paysafecard i casinoets kasse. Indtast din 16-cifrede PIN og beløbet. Pengene er tilgængelige øjeblikkeligt – under 3 sekunder i vores test. Du kan kombinere op til 10 PIN-koder i én transaktion for større indbetalinger (maks. 10.000 kr.).
+           </p>
+           <ReviewScreenshot
+             src={videoslotsKassePaysafecard}
+             alt="Videoslots casino kassesektion med Paysafecard valgt som indbetalingsmetode, beløbsvælger fra 250 til 10.000 DKK, 0% gebyr og andre tilgængelige metoder som Dankort, Visa, Neteller, Skrill og MobilePay"
+             caption="Videoslots kassesektion med Paysafecard valgt: Vælg beløb fra 100-10.000 DKK og indbetal øjeblikkeligt med din 16-cifrede PIN-kode."
+             size="full"
+           />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Paysafecard understøtter ikke udbetalinger. Du skal vælge en alternativ metode som{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
@@ -135,6 +158,12 @@ const PaysafecardGuide = () => {
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Paysafecard på tre danske casinoer med Spillemyndighedens licens i februar 2026. Vi købte tre fysiske Paysafecard-kuponer à 500 kr. i en 7-Eleven i København. Testen fokuserede på indbetalingshastighed, brugeroplevelse, bonuskvalificering og udbetalingsalternativer.
                </p>
+               <ReviewScreenshot
+                 src={videoslotsHeader}
+                 alt="Videoslots casino header efter Paysafecard-indbetaling med DKK 8,26 i saldo, brugernavnet Jonas Theill Adsersen, Weekend Booster og Spiludbetalinger-knapper"
+                 caption="Videoslots efter en succesfuld Paysafecard-indbetaling: Saldoen er øjeblikkeligt opdateret og klar til spil."
+                 size="full"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Købsoplevelse:</strong> Kuponkøbet tog under 2 minutter. Vi betalte med kontanter (for anonymitetstest) og modtog en kvittering med den 16-cifrede PIN-kode. Kassemedarbejderen stillede ingen spørgsmål og krævede ingen identifikation. Alternativt kan kuponer købes digitalt via paysafecard.com med MitID-login, men dette eliminerer anonymitetsfordelen.
               </p>
