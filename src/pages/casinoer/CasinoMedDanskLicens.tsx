@@ -640,6 +640,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 8: Betalingsmetoder og udbetalinger
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spildansknuLobby}
+          alt="SpilDanskNu forside med dansk licens – 100% bonus på Play'n GO, DGA-licens badge, hurtige udbetalinger og seneste vindere med op til 99x gevinst"
+          caption="SpilDanskNu: Dansk licenseret casino med DGA-licens, hurtige udbetalinger og live vinderfeed"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Betalingsmetoder og udbetalinger hos danske casinoer
