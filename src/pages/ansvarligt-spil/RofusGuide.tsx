@@ -352,6 +352,13 @@ const RofusGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS forsiden med Log på ROFUS med MitID knap og FAQ-sektion om hvad der sker ved login"
+          caption="ROFUS-forsiden giver direkte adgang til registrering via MitID og besvarer de mest stillede spørgsmål om selvudelukkelse."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
