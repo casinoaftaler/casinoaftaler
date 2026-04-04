@@ -6,6 +6,11 @@ import danskeSpilAppStore from "@/assets/screenshots/danske-spil-casino-app-stor
 import mrgreenAppStore from "@/assets/screenshots/mrgreen-casino-app-store.webp";
 import leovegasAppStore from "@/assets/screenshots/leovegas-casino-app-store.webp";
 import spildanskenuAppStore from "@/assets/screenshots/spildansknu-casino-app-store.webp";
+import bet365AppStore from "@/assets/screenshots/bet365-casino-app-store.webp";
+import betanoAppStore from "@/assets/screenshots/betano-casino-app-store.webp";
+import comeonAppStore from "@/assets/screenshots/comeon-casino-app-store.webp";
+import mariaCasinoAppStore from "@/assets/screenshots/maria-casino-app-store.webp";
+import unibetAppStore from "@/assets/screenshots/unibet-casino-app-store.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
