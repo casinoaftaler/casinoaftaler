@@ -718,6 +718,13 @@ const MobilCasino = () => {
           />
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenMitid}
+          alt="Spilleautomaten.dk login-side på mobil med MitID-godkendelse, 'Glemt adgangskode' og mulighed for at registrere ny konto"
+          caption="Login hos Spilleautomaten via MitID: den typiske mobiloplevelse med NemID/MitID-integration på danske casinoer."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
