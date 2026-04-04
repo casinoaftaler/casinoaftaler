@@ -17,6 +17,10 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import liveBlackjackLobby from "@/assets/screenshots/live-blackjack-lobby-spanish21.webp";
+import liveBlackjackSkaermnavn from "@/assets/screenshots/live-blackjack-skaermnavn-dialog.webp";
+import liveBlackjackDealerBust from "@/assets/screenshots/live-blackjack-a-dealer-bust.webp";
+import spanish21StrategyChart from "@/assets/screenshots/spanish-21-basic-strategy-skema.webp";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -131,6 +135,14 @@ const Spanish21Guide = () => {
             I denne guide dissekerer vi Spanish 21 med den præcision, spillet fortjener. Vi gennemgår hver eneste regel, analyserer matematikken bag de manglende kort, præsenterer den optimale strategi, og sammenligner med <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link>, <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk blackjack</Link> og <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>. Vores mål er at give dig den dybeste forståelse af varianten, du finder på dansk.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={liveBlackjackLobby}
+          alt="Live blackjack-lobby med Multihand Blackjack, Speed Blackjack og Blackjack VIP-borde – typisk udvalg hos dansk licenseret online casino"
+          caption="Live blackjack-lobby med filtrering efter udbyder og bordtype – Spanish 21 findes typisk under RNG-bordspil, mens live-lobbyen tilbyder standard blackjack-varianter"
+          size="full"
+          eager
+        />
 
         {/* ═══════════════ DE MANGLENDE 10'ERE ═══════════════ */}
         <section className="mb-12">
@@ -321,6 +333,13 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackDealerBust}
+          alt="Live Blackjack A-bord med dealer bust på 22 – 7-6-2-7 dealerhånd, flere spillere med gevinster og indsatser fra 50 til 25.000 kr."
+          caption="Live Blackjack A med dealer bust på 22 – i Spanish 21 ville spillerens 21 altid vinde, uanset om dealeren også rammer 21"
+          size="full"
+        />
+
         {/* ═══════════════ HOUSE EDGE DEKONSTRUKTION ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
@@ -474,6 +493,13 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spanish21StrategyChart}
+          alt="Spanish 21 basic strategy-skema for Dealer Stands on Soft 17 – farvekodede beslutninger for hårde totaler, bløde hænder og par med Double Down Rescue-regler"
+          caption="Komplet Spanish 21 basic strategy-skema (S17) – bemærk de markante forskelle fra standard blackjack: færre fordoblinger, hyppigere hits og bonus-bevidste par-beslutninger"
+          size="medium"
+        />
+
         {/* ═══════════════ SPANISH 21 vs PONTOON ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
@@ -596,6 +622,13 @@ const Spanish21Guide = () => {
             Spanish 21 med H17 er derimod dyrere end alle andre varianter undtagen de dårligste standard blackjack-borde. Hvis du kun kan finde H17-Spanish 21, overvej i stedet standard europæisk eller amerikansk blackjack – de har lavere house edge med langt simplere strategikrav. Reglen er klar: Spanish 21 er et fremragende spil med S17, men et middelmådigt spil med H17.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={liveBlackjackSkaermnavn}
+          alt="Skærmnavn-dialog ved live blackjack-bord – spilleren vælger brugernavn 'Casinoaftaler' før deltagelse i live-sessionen"
+          caption="Skærmnavns-dialog inden live blackjack – online casinoer kræver et alias for at beskytte spillerens identitet ved bordet"
+          size="compact"
+        />
 
         {/* ═══════════════ BANKROLL OG VARIANS ═══════════════ */}
         <section className="mb-12">
