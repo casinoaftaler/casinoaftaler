@@ -417,6 +417,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Valget mellem live og RNG afhænger af dine præferencer: vil du have autenticitet og social oplevelse, vælg live. Vil du have tempo, lave indsatser og mulighed for demo-play, vælg RNG. Matematikken er den samme – det er oplevelsen, der adskiller dem.
           </p>
+          <ReviewScreenshot
+            src={videoslotsLiveLobby}
+            alt="Videoslots live casino lobby med roulette-varianter inkl. XXXTreme Lightning Roulette, Auto-Roulette VIP, Speed Roulette og Crystal Roulette fra Evolution"
+            caption="Live casino-lobbyen hos Videoslots: over 20 roulette-varianter fra Evolution, Pragmatic Play og andre udbydere – filtreret efter popularitet"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
