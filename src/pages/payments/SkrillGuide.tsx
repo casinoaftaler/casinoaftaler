@@ -133,8 +133,13 @@ const SkrillGuide = () => {
              <>
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Skrill på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen brugte en verificeret Skrill-konto på Standard-niveau (ingen VIP) med en saldo opfyldt via dansk bankoverførsel.
-               </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
+                </p>
+                <ReviewScreenshot
+                  src={spilleautomatenKasse}
+                  alt="Spilleautomaten.dk kassesektion med Skrill valgt under E-wallet sammen med ecoPayz, Neteller og MiFinity – beløbsvalg fra 250 til 10.000 kr."
+                  caption="Spilleautomatens indbetalingsside med Skrill valgt – vælg beløb, indtast e-mail og indbetal med 0% gebyr."
+                />
+               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Skrill var tilgængeligt på alle tre casinoer. Uden 1-Tap tog processen ca. 18 sekunder (login, bekræftelse, 2FA). Med 1-Tap aktiveret faldt det til 4-5 sekunder – den hurtigste e-wallet-oplevelse i vores test. Alle indbetalinger blev krediteret øjeblikkeligt.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
