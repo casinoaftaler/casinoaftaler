@@ -145,6 +145,7 @@ function ActiveRaffleCard({
 
 function CompletedRaffleCard({
   raffle,
+  raffleNumber,
 }: {
   raffle: {
     id: string;
@@ -154,6 +155,7 @@ function CompletedRaffleCard({
     winner_id: string | null;
     winner_profile: { display_name: string | null; avatar_url: string | null } | null;
   };
+  raffleNumber: number;
 }) {
   const [expanded, setExpanded] = useState(false);
 
