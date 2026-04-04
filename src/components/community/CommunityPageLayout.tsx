@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 import { CommunityContentShell } from "./CommunityContentShell";
@@ -8,7 +7,6 @@ import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
-import { useAuth } from "@/hooks/useAuth";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -33,7 +31,7 @@ export function CommunityPageLayout({
   hideSidebar = false,
   heroExtra,
 }: CommunityPageLayoutProps) {
-  const { user } = useAuth();
+  
 
   return (
     <>
@@ -81,11 +79,6 @@ export function CommunityPageLayout({
           </>
         }
       >
-        {user && (
-          <div className="pb-6">
-            <DailyMissionsCard />
-          </div>
-        )}
         {children}
       </CommunityContentShell>
     </>
