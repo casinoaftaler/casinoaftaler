@@ -1,39 +1,36 @@
+## Plan: Velkomstbesked til nye Twitch-brugere
 
+### Koncept
 
-## Plan: Redesign Raffle Page with Card Grid Layout
+Når en bruger logger ind via Twitch for første gang, vises en særlig velkomstbesked i support-chat-widgetten. Beskeden er en engangsbesked der forsvinder permanent når brugeren lukker den.
 
-### What changes
+### Trin
 
-Redesign the raffle page to show both the **active raffle** and **completed raffles** as visual cards in a **2-column grid**, inspired by the reference image. Each card shows:
-- Raffle number (top-left)
-- Date (top-right badge)
-- Prize amount (bold centered text, e.g. "CREDITS 500")
-- Active raffle: "DELTAG" button + countdown timer
-- Completed raffle: "VIS VINDERE" (Show Winners) button that expands/reveals the winner
+**1. Tilføj `welcome_message_dismissed` kolonne til `profiles`-tabellen**
 
-### Design per card (matching reference style)
-- Dark card with rounded corners and subtle border glow
-- Raffle ID number top-left, date badge top-right (dd.mm.yyyy)
-- Large bold prize text centered
-- Bottom area: button + decorative element
-- Active card gets a highlighted border (primary color glow) to stand out
+- Ny boolean kolonne `welcome_message_dismissed` (default: `false`)
+- Bruges til at tracke om brugeren har set og lukket velkomstbeskeden
 
-### Data changes
-- Update `useRecentRaffleWinners` to also fetch completed raffles **without** winners (no entries = no winner), and increase limit to 20
-- Add raffle `id` number display (already available)
+**2. Opdater `SupportChatWidget.tsx**`
 
-### Files changed
+- Fetch brugerens `welcome_message_dismissed` status fra profilen
+- Hvis `false`: vis en særlig velkomstbesked i chatten (over normale beskeder) med:
+  - Personlig hilsen med brugerens display name
+  - Link til turneringer (`/community/turneringer`)
+  - Casinoaftaler-logo som afsender-avatar
+  - En "Luk" knap på beskeden
+- Når brugeren klikker "Luk": opdater `welcome_message_dismissed = true` i profiles og fjern beskeden fra UI
+- Beskeden vises også som en notification-dot på chat-ikonet (ligesom broadcasts)
 
-**`src/pages/Raffle.tsx`** — Full redesign:
-- Remove the current single-card + list layout
-- Render a 2-column grid (`grid-cols-1 md:grid-cols-2`)
-- First card = active raffle (with countdown, join button, participant count)
-- Remaining cards = completed raffles with "Vis Vindere" expand/collapse showing winner info
-- Each card styled as a dark, rounded box with raffle number, date, prize, and CTA
+**3. Styling**
 
-**`src/hooks/useRaffle.ts`** — Minor update:
-- `useRecentRaffleWinners`: fetch all completed raffles (with or without winner), increase limit to 20
-- Include `starts_at` in the select for date display
+- Beskeden styles som en admin-besked med Casinoaftaler-logoet
+- Links i beskeden er klikbare og navigerer korrekt
+- Evt. et 🎉 ikon for at markere det som en speciel besked
 
-### No database changes needed
+### Tekniske detaljer
 
+- Ingen nye tabeller nødvendige — kun én ny kolonne på `profiles`
+- Ingen belastning af support-systemet (ingen samtale oprettes)
+- Beskeden vises client-side baseret på profil-flaget
+- RLS: brugere kan allerede opdatere egen profil, så ingen policy-ændringer
