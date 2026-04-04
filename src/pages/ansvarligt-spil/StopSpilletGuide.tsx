@@ -509,6 +509,13 @@ const StopSpilletGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={stopspilletHvadEr}
+          alt="StopSpillet informationssektion om hvad tjenesten er, fortrolige samtaler om ludomani og links til information for spillere og pårørende"
+          caption="StopSpillet tilbyder fortrolig rådgivning – samtaler videregives ikke til andre myndigheder. Der er separate ressourcer for spillere og pårørende."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
