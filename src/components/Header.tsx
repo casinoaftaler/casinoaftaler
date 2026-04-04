@@ -182,14 +182,14 @@ export const Header = memo(function Header() {
                     Indløs Kode
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
-                    {isDark ? (
+                     {isDark ? (
                       <>
-                        <MenuIcon iconName="sun" className="mr-2 h-4 w-4" />
+                        <Sun className="mr-2 h-4 w-4" />
                         Lys tilstand
                       </>
                     ) : (
                       <>
-                        <MenuIcon iconName="moon" className="mr-2 h-4 w-4" />
+                        <Moon className="mr-2 h-4 w-4" />
                         Mørk tilstand
                       </>
                     )}
