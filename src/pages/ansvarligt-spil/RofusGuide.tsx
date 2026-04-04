@@ -545,6 +545,13 @@ const RofusGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrer}
+          alt="ROFUS registreringsformular med valg mellem endelig udelukkelse og midlertidig udelukkelse med perioder fra 24 timer til 6 måneder"
+          caption="Registreringsformularen i ROFUS viser de to udelukkelsestyper: Endelig (permanent) og midlertidig med valgfri varighed fra 24 timer til 6 måneder."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
