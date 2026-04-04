@@ -158,6 +158,12 @@ const PaysafecardGuide = () => {
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Paysafecard på tre danske casinoer med Spillemyndighedens licens i februar 2026. Vi købte tre fysiske Paysafecard-kuponer à 500 kr. i en 7-Eleven i København. Testen fokuserede på indbetalingshastighed, brugeroplevelse, bonuskvalificering og udbetalingsalternativer.
                </p>
+               <ReviewScreenshot
+                 src={videoslotsHeader}
+                 alt="Videoslots casino header efter Paysafecard-indbetaling med DKK 8,26 i saldo, brugernavnet Jonas Theill Adsersen, Weekend Booster og Spiludbetalinger-knapper"
+                 caption="Videoslots efter en succesfuld Paysafecard-indbetaling: Saldoen er øjeblikkeligt opdateret og klar til spil."
+                 size="full"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Købsoplevelse:</strong> Kuponkøbet tog under 2 minutter. Vi betalte med kontanter (for anonymitetstest) og modtog en kvittering med den 16-cifrede PIN-kode. Kassemedarbejderen stillede ingen spørgsmål og krævede ingen identifikation. Alternativt kan kuponer købes digitalt via paysafecard.com med MitID-login, men dette eliminerer anonymitetsfordelen.
               </p>
