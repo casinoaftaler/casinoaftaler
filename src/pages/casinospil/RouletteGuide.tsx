@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import autoRouletteVip from "@/assets/screenshots/auto-roulette-vip-bordlayout-indsatser.webp";
+import rouletteStatistik from "@/assets/screenshots/roulette-statistik-varme-kolde-tal.webp";
+import videoslotsLiveLobby from "@/assets/screenshots/videoslots-live-casino-roulette-lobby.webp";
+import rouletteSkaermnavn from "@/assets/screenshots/live-roulette-skaermnavn-oprettelse.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
