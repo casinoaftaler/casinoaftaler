@@ -4,6 +4,10 @@ import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonForside from "@/assets/screenshots/comeon-forside.webp";
 import pipMitidGodkend from "@/assets/screenshots/pip-mitid-godkend.webp";
+import spilleautomatenMitid from "@/assets/screenshots/spilleautomaten-mitid-login-mobil.webp";
+import spilleautomatenIndbetaling from "@/assets/screenshots/spilleautomaten-indbetalingsmetoder-mobil.webp";
+import sweetBonanzaMobil from "@/assets/screenshots/sweet-bonanza-1000-mobil-gameplay.webp";
+import spilleautomatenKonto from "@/assets/screenshots/spilleautomaten-kontooversigt-mobil.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -569,6 +573,13 @@ const MobilCasino = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={sweetBonanzaMobil}
+          alt="Sweet Bonanza 1000 spilleautomat på mobil med farverige frugtsymboler, kredit 0,70 kr., indsats 5 kr. og mulighed for køb af gratis spins"
+          caption="Sweet Bonanza 1000 på mobilen: fuldt gameplay med køb af bonus-spins og dobbelt-chance funktion – optimeret til touchskærm."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
@@ -638,6 +649,15 @@ const MobilCasino = () => {
             Her er de mest populære muligheder, der alle er optimeret til mobilbrug:
           </p>
 
+          <ReviewScreenshot
+            src={spilleautomatenIndbetaling}
+            alt="Spilleautomaten.dk indbetalingsside på mobil med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr. for alle metoder"
+            caption="Indbetalingsmetoder hos Spilleautomaten: MobilePay, Mastercard, Visa og Trustly – alle med minimum 75 kr."
+            size="compact"
+          />
+
+
+
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
               <thead>
@@ -697,6 +717,13 @@ const MobilCasino = () => {
             size="compact"
           />
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenMitid}
+          alt="Spilleautomaten.dk login-side på mobil med MitID-godkendelse, 'Glemt adgangskode' og mulighed for at registrere ny konto"
+          caption="Login hos Spilleautomaten via MitID: den typiske mobiloplevelse med NemID/MitID-integration på danske casinoer."
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
@@ -1063,6 +1090,13 @@ const MobilCasino = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenKonto}
+          alt="Spilleautomaten.dk kontooversigt på mobil med saldo 0,70 DKK, indbetaling, udbetaling, profil og kontooversigt-knapper"
+          caption="Kontooversigten på Spilleautomaten: et eksempel på mobilvenlig kontonavigation med hurtig adgang til indbetaling og udbetaling."
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
