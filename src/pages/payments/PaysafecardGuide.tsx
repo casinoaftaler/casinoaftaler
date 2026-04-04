@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsKassePaysafecard from "@/assets/screenshots/videoslots-kasse-paysafecard-indbetaling.webp";
+import paysafecardLogin from "@/assets/screenshots/paysafecard-login-betalingsvindue.webp";
+import paysafecardRegistrering from "@/assets/screenshots/paysafecard-registrering-upload-betaling.webp";
+import videoslotsHeader from "@/assets/screenshots/videoslots-header-saldo-profil.webp";
 const PaysafecardGuide = () => {
   return (
     <PaymentMethodPage
