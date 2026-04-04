@@ -196,6 +196,13 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             I online roulette – både RNG og live – vises bordlayoutet digitalt med interaktive klikzoner. Du trykker eller klikker for at placere chips, og softwaren forhindrer ugyldige placeringer. Mange online-borde tilbyder funktioner som "favourite bets" (gem dine foretrukne chip-placeringer), "rebet" (gentag sidste indsats) og "double" (fordobl alle indsatser). Disse kvalitetsforskelle påvirker ikke odds, men de forbedrer brugeroplevelsen markant.
           </p>
+          <ReviewScreenshot
+            src={autoRouletteVip}
+            alt="Auto-Roulette VIP bordlayout med europæisk roulettehjul, racetrack-væddemål (Tier, Orphelins, Voisins, Zero) og chip-indsatser fra 2 til 1.000 kr."
+            caption="Auto-Roulette VIP hos et dansk casino: det komplette bordlayout med racetrack-sektor, indsatsmuligheder og live gevinsthistorik"
+            size="full"
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
