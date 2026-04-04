@@ -702,6 +702,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Vi opfordrer danske casinoer til at prioritere WCAG 2.1 AA-compliance i deres næste app-opdateringer. Spillere med tilgængelighedsbehov kan kontakte casinoets kundeservice for at få information om tilpassede visuelle temaer eller alternative navigationsmetoder.</p>
         </section>
 
+        <ReviewScreenshot
+          src={mariaCasinoAppStore}
+          alt="Maria Casino app i App Store – Nr. 16 i Kasino med 435 anmeldelser, over 3.500 spil og velkomsttilbud til nye spillere fra Kindred"
+          caption="Maria Casino i App Store: Over 3.500 spilleautomater og live casino i én dedikeret app fra Kindred-gruppen."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 13. SIKKERHED & PRIVACY DEEP-DIVE */}
