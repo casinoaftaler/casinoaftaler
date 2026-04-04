@@ -98,9 +98,15 @@ const PaysafecardGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Køb af kupon:</strong> Besøg et udsalgssted (7-Eleven, Netto, tankstation) og bed om en Paysafecard. Vælg beløb (100, 150, 250, 500 eller 1.000 kr.). Betal kontant eller med kort. Du modtager en kvittering med din 16-cifrede PIN-kode. Alternativt kan du købe digitale kuponer via paysafecard.com – log ind med din myPaysafe-konto, vælg beløb og betal med MitID-godkendt bankoverførsel.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling på casino:</strong> Vælg Paysafecard i casinoets kasse. Indtast din 16-cifrede PIN og beløbet. Pengene er tilgængelige øjeblikkeligt – under 3 sekunder i vores test. Du kan kombinere op til 10 PIN-koder i én transaktion for større indbetalinger (maks. 10.000 kr.).
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Indbetaling på casino:</strong> Vælg Paysafecard i casinoets kasse. Indtast din 16-cifrede PIN og beløbet. Pengene er tilgængelige øjeblikkeligt – under 3 sekunder i vores test. Du kan kombinere op til 10 PIN-koder i én transaktion for større indbetalinger (maks. 10.000 kr.).
+           </p>
+           <ReviewScreenshot
+             src={videoslotsKassePaysafecard}
+             alt="Videoslots casino kassesektion med Paysafecard valgt som indbetalingsmetode, beløbsvælger fra 250 til 10.000 DKK, 0% gebyr og andre tilgængelige metoder som Dankort, Visa, Neteller, Skrill og MobilePay"
+             caption="Videoslots kassesektion med Paysafecard valgt: Vælg beløb fra 100-10.000 DKK og indbetal øjeblikkeligt med din 16-cifrede PIN-kode."
+             size="full"
+           />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Paysafecard understøtter ikke udbetalinger. Du skal vælge en alternativ metode som{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
