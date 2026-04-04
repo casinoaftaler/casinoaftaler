@@ -389,6 +389,13 @@ const Spillemaskiner = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseGameplay}
+          alt="The Dog House Megaways gameplay med bonus scatter-symbol og wild multiplikatorer på hjul 2, 3 og 4"
+          caption="Gameplay fra The Dog House Megaways – bonus scatter-symbolet lander centralt, mens banneret øverst bekræfter wild-multiplikatorernes placering på hjul 2, 3 og 4."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 8: Sammenligning med andre casinospil ── */}
