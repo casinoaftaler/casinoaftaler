@@ -15,9 +15,11 @@ export interface FeedEvent {
   type: FeedEventType;
   timestamp: string;
   // Big win fields
+  userId?: string;
   userName?: string;
   avatarUrl?: string | null;
   winAmount?: number;
+  betAmount?: number;
   multiplier?: number;
   gameId?: string;
   gameName?: string;
@@ -166,9 +168,11 @@ export function useLiveWinnersFeed() {
           id: r.id,
           type: "big_win",
           timestamp: r.created_at,
+          userId: r.user_id,
           userName: profile.display_name,
           avatarUrl: profile.avatar_url,
           winAmount: Number(r.win_amount),
+          betAmount: r.bet_amount,
           multiplier,
           gameId: r.game_id ?? undefined,
           gameName: r.game_id ? GAME_LABELS[r.game_id] || r.game_id : "Ukendt",
@@ -208,9 +212,11 @@ export function useLiveWinnersFeed() {
             id: r.id,
             type: "big_win",
             timestamp: r.created_at,
+            userId: r.user_id,
             userName: profile.display_name,
             avatarUrl: profile.avatar_url,
             winAmount: Number(r.win_amount),
+            betAmount: Number(r.bet_amount),
             multiplier: Math.round(multiplier),
             gameId: r.game_id ?? undefined,
             gameName: r.game_id ? GAME_LABELS[r.game_id] || r.game_id : "Ukendt",

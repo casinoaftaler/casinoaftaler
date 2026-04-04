@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
+import { Link } from "react-router-dom";
 import "@/styles/community-micro.css";
 
 function EventCard({ event }: { event: FeedEvent }) {
@@ -15,17 +16,19 @@ function EventCard({ event }: { event: FeedEvent }) {
   if (event.type === "big_win") {
     return (
       <div className="flex items-start gap-2.5 px-3 py-2 border-b border-border/20 last:border-0">
-        <Avatar className="h-6 w-6 shrink-0 mt-0.5">
-          <AvatarImage src={event.avatarUrl ?? undefined} />
-          <AvatarFallback className="text-[9px] bg-primary/20 text-primary">
-            {(event.userName ?? "?")[0]?.toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
+        <Link to={`/community/profil/${event.userId}`} className="shrink-0 mt-0.5">
+          <Avatar className="h-6 w-6 cursor-pointer hover:ring-2 hover:ring-primary/40 transition-all">
+            <AvatarImage src={event.avatarUrl ?? undefined} />
+            <AvatarFallback className="text-[9px] bg-primary/20 text-primary">
+              {(event.userName ?? "?")[0]?.toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        </Link>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-1">
-            <span className="text-[11px] font-semibold text-foreground truncate">
+            <Link to={`/community/profil/${event.userId}`} className="text-[11px] font-semibold text-foreground truncate hover:text-primary transition-colors">
               {event.userName}
-            </span>
+            </Link>
             <span className="text-[9px] text-muted-foreground shrink-0">{timeAgo}</span>
           </div>
           <div className="flex items-center gap-1 mt-0.5">
@@ -34,7 +37,11 @@ function EventCard({ event }: { event: FeedEvent }) {
             </span>
             <span className="text-[9px] text-muted-foreground">·</span>
             <span className="text-[10px] font-mono text-amber-400">
-              {event.winAmount?.toLocaleString("da-DK")} kr
+              {event.winAmount?.toLocaleString("da-DK")} pts
+            </span>
+            <span className="text-[9px] text-muted-foreground">·</span>
+            <span className="text-[9px] text-muted-foreground/70">
+              bet {event.betAmount?.toLocaleString("da-DK")}
             </span>
           </div>
           <span className="text-[9px] text-muted-foreground/70">{event.gameName}</span>
