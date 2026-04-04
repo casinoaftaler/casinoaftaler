@@ -85,7 +85,7 @@ const PaysafecardGuide = () => {
              src={paysafecardLogin}
              alt="Paysafecard betalingsvindue med login via e-mail og adgangskode, saldo på 0,00 DKK, åbent beløb 100,00 DKK og mulighed for scan2pay-betaling samt tilmeldingslink"
              caption="Paysafecards betalingsvindue under en casino-indbetaling: Log ind med din myPaysafe-konto eller betal direkte med din 16-cifrede PIN-kode."
-             size="small"
+             size="compact"
            />
            <p className="text-muted-foreground leading-relaxed">
              En vigtig nuance: Paysafecards anonymitet gælder kun for betalingstransaktionen. Din casinokonto er aldrig anonym – danske licenserede casinoer kræver MitID-verifikation ved registrering uanset betalingsmetode. Fordelen er, at casinotransaktionerne ikke fremgår af dit bankudtog – en privatlivsbeskyttelse, der kan være relevant for spillere, der ønsker diskretion om deres spilleaktiviteter.
