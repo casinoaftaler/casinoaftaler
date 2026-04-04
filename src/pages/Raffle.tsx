@@ -288,9 +288,22 @@ export default function Raffle() {
               )}
 
               {/* Completed raffles */}
-              {completedRaffles?.map((r) => (
-                <CompletedRaffleCard key={r.id} raffle={r} />
+              {visibleCompleted.map((r, i) => (
+                <CompletedRaffleCard
+                  key={r.id}
+                  raffle={r}
+                  raffleNumber={totalCompleted - i}
+                />
               ))}
+
+              {/* Show all button */}
+              {completedRaffles && completedRaffles.length > 6 && !showAll && (
+                <div className="col-span-full flex justify-center pt-2">
+                  <Button variant="outline" onClick={() => setShowAll(true)}>
+                    Vis alle ({completedRaffles.length}) raffles
+                  </Button>
+                </div>
+              )}
 
               {/* Empty state */}
               {!raffle && (!completedRaffles || completedRaffles.length === 0) && (
