@@ -239,6 +239,13 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={mrgreenAppStore}
+          alt="Mr Green Casino app i App Store – Nr. 2 i Kasino-kategorien med 2,1 tusind anmeldelser, ROFUS-integration og ugentlige kampagner"
+          caption="Mr Green i App Store: Nr. 2 i Kasino-kategorien med fokus på ansvarligt spil via Green Gaming-funktionen."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 5. APP-STØRRELSE OG DATAFORBRUG */}
