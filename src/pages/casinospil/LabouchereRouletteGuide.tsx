@@ -640,8 +640,14 @@ export default function LabouchereRouletteGuide() {
           </Card>
 
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Forskellen er slående: Labouchère på <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage har 91,3 % sekvensgennemførsel og kun 14,2 % RoR over 1.000 spins. På <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulette</Link> falder gennemførselsraten til 71,4 % og RoR stiger til 42,1 %. Valget af variant er <em>vigtigere</em> end valget af sekvensdesign.
+           Forskellen er slående: Labouchère på <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage har 91,3 % sekvensgennemførsel og kun 14,2 % RoR over 1.000 spins. På <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulette</Link> falder gennemførselsraten til 71,4 % og RoR stiger til 42,1 %. Valget af variant er <em>vigtigere</em> end valget af sekvensdesign.
           </p>
+
+          <ReviewScreenshot
+            src={spilleautomatenRoulette}
+            alt="Spilleautomaten live casino-lobby med Extra Time Roulette, Speed Baccarat og andre live bordspil hos dansk licenseret casino"
+            caption="Spilleautomaten tilbyder en bred palette af live roulette-borde – vælg borde med La Partage-reglen for optimal Labouchère-performance."
+          />
         </section>
 
         {/* Bonus-EV */}
