@@ -279,6 +279,12 @@ const CasinoUdenRofus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS.nu forside – Register Over Frivilligt Udelukkede Spillere med MitID login, FAQ om hvad ROFUS er og tilmelding til Nej tak til spilreklamer"
+          caption="ROFUS forsiden (rofus.nu): Login med MitID og information om selvudelukkelse – administreret af Spillemyndigheden"
+        />
+
         <Separator className="my-8" />
 
         {/* Skattemæssig dybdegående */}
