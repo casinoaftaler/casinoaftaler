@@ -220,8 +220,13 @@ const HurtigUdbetaling = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vi har testet udbetalingstider hos 30+ danske casinoer med alle tilgængelige betalingsmetoder. Her er resultatet – fra hurtigst til langsomst:
           </p>
+          <ReviewScreenshot
+            src={spildanskUdbetalingImg}
+            alt="SpilDanskNu udbetalingsside med Trustly og Visa/Mastercard som valgmuligheder – minimum 75 kr. udbetaling"
+            caption="SpilDanskNu's udbetalingsflow: Vælg mellem Trustly (5-15 min.) og Visa/Mastercard (1-3 dage). Minimum udbetaling er 75 kr."
+            eager
+          />
           <div className="space-y-4">
-            {betalingsMetoder.map((method) => (
               <Card key={method.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
