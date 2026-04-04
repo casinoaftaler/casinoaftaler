@@ -818,6 +818,13 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildanskenuBlackjackRtp}
+          alt="Blackjack Classic 1 fra Stakelogic på SpilDanskNu med RTP 99,50%, min. indsats 5 kr. og max. indsats 2.500 kr. samt demo-mode og gratis spins information"
+          caption="Blackjack Classic 1 hos SpilDanskNu: RTP på 99,50 % og indsatser fra 5 kr. til 2.500 kr. – et eksempel på RNG blackjack med høj tilbagebetalingsprocent."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
