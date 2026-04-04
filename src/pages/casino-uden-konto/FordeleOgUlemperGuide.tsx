@@ -429,6 +429,13 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrerMitid}
+          alt="ROFUS registreringssektion med Registrer dig i ROFUS med MitID knap"
+          caption="ROFUS-registrering er tilgængelig uanset casinotype – både kontobaserede og Pay N Play-casinoer er omfattet af det danske selvudelukkelsesregister."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* 7. DATABESKYTTELSESANALYSE */}
