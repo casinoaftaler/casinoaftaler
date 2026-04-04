@@ -271,6 +271,13 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={mrgreenCashSpins}
+          alt="Mr Green kampagneside med 50 cash spins uden indbetaling til Legacy of Dead – registreringsbonus med 3-trins aktiveringsguide"
+          caption="Mr Greens registreringsbonus: 50 cash spins uden indbetaling til Legacy of Dead"
+          size="medium"
+        />
+
         {/* Typer af Free Spins */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Typer af free spins-bonusser</h2>
