@@ -145,6 +145,7 @@ function ActiveRaffleCard({
 
 function CompletedRaffleCard({
   raffle,
+  raffleNumber,
 }: {
   raffle: {
     id: string;
@@ -154,6 +155,7 @@ function CompletedRaffleCard({
     winner_id: string | null;
     winner_profile: { display_name: string | null; avatar_url: string | null } | null;
   };
+  raffleNumber: number;
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -161,10 +163,13 @@ function CompletedRaffleCard({
     <RaffleCardShell>
       {/* Header row */}
       <div className="flex items-center justify-between">
-        <Badge variant="secondary" className="text-xs">
-          <Trophy className="mr-1 h-3 w-3" />
-          AFSLUTTET
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="text-xs">
+            <Trophy className="mr-1 h-3 w-3" />
+            AFSLUTTET
+          </Badge>
+          <span className="text-xs font-medium text-muted-foreground">#{raffleNumber}</span>
+        </div>
         <span className="text-xs text-muted-foreground">{formatRaffleDate(raffle.starts_at)}</span>
       </div>
 
@@ -235,6 +240,15 @@ export default function Raffle() {
   const { data: completedRaffles } = useRecentRaffleWinners();
 
   const hasJoined = entries?.some((e) => e.user_id === user?.id) ?? false;
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleCompleted = useMemo(() => {
+    if (!completedRaffles) return [];
+    return showAll ? completedRaffles : completedRaffles.slice(0, 6);
+  }, [completedRaffles, showAll]);
+
+  // Raffle numbering: total completed count, newest = highest number
+  const totalCompleted = completedRaffles?.length ?? 0;
 
   const articleSchema = useMemo(() => buildArticleSchema({
     headline: "Raffle – Vind Gratis Credits Hver 30. Minut",
@@ -274,9 +288,22 @@ export default function Raffle() {
               )}
 
               {/* Completed raffles */}
-              {completedRaffles?.map((r) => (
-                <CompletedRaffleCard key={r.id} raffle={r} />
+              {visibleCompleted.map((r, i) => (
+                <CompletedRaffleCard
+                  key={r.id}
+                  raffle={r}
+                  raffleNumber={totalCompleted - i}
+                />
               ))}
+
+              {/* Show all button */}
+              {completedRaffles && completedRaffles.length > 6 && !showAll && (
+                <div className="col-span-full flex justify-center pt-2">
+                  <Button variant="outline" onClick={() => setShowAll(true)}>
+                    Vis alle ({completedRaffles.length}) raffles
+                  </Button>
+                </div>
+              )}
 
               {/* Empty state */}
               {!raffle && (!completedRaffles || completedRaffles.length === 0) && (
