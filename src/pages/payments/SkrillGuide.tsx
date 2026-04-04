@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenKasse from "@/assets/screenshots/spilleautomaten-kasse-skrill-indbetaling.webp";
+import skrillRapidTransfer from "@/assets/screenshots/skrill-rapid-transfer-indbetaling-dansk.webp";
+import mitidBrugerId from "@/assets/screenshots/videoslots-mitid-brugerid-login.webp";
+import mitidAppGodkend from "@/assets/screenshots/videoslots-mitid-app-godkend.webp";
+import skrillOversigt from "@/assets/screenshots/skrill-complete-payment-solution-oversigt.webp";
 const SkrillGuide = () => {
   return (
     <PaymentMethodPage
