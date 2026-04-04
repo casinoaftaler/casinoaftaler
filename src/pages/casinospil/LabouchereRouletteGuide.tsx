@@ -265,7 +265,17 @@ export default function LabouchereRouletteGuide() {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling er den flade sekvens (1-1-1-1-1) eller den svagt pyramidiske (1-1-2-1-1). De giver de bedste odds for at gennemføre sekvensen, selvom profitmålet er lavere. Husk: det er bedre at gennemføre 10 sekvenser á 250 kr. end at fejle 3 sekvenser á 650 kr. og miste mere, end du har vundet.
+           Vores anbefaling er den flade sekvens (1-1-1-1-1) eller den svagt pyramidiske (1-1-2-1-1). De giver de bedste odds for at gennemføre sekvensen, selvom profitmålet er lavere. Husk: det er bedre at gennemføre 10 sekvenser á 250 kr. end at fejle 3 sekvenser á 650 kr. og miste mere, end du har vundet.
+          </p>
+
+          <ReviewScreenshot
+            src={rouletteBordlayout}
+            alt="Europæisk roulette-bordlayout med væddemålsfelter for even-money bets som rød/sort, lige/ulige og 1-18/19-36"
+            caption="Labouchère bruges udelukkende på even-money bets (rød/sort, lige/ulige, 1-18/19-36) – her vist på et europæisk bord med enkelt nul."
+            size="medium"
+          />
+
+          <p className="text-muted-foreground leading-relaxed mt-4">
           </p>
         </section>
 
