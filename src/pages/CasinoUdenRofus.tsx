@@ -596,6 +596,13 @@ const CasinoUdenRofus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusKontakt}
+          alt="ROFUS kontaktoplysninger – ring 72 38 60 20 eller send mail for support vedrørende selvudelukkelse"
+          caption="Kontakt ROFUS direkte på telefon 72 38 60 20 for hjælp med registrering eller spørgsmål om selvudelukkelse"
+          size="medium"
+        />
+
         <Separator className="my-8" />
 
         {/* Sådan vælger du et sikkert dansk casino */}
