@@ -20,6 +20,11 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import type { ReactNode } from "react";
+import rofusMobil from "@/assets/screenshots/rofus-mobil-registrering-mitid.webp";
+import rofusForside from "@/assets/screenshots/rofus-forside-login-mitid.webp";
+import rofusKontakt from "@/assets/screenshots/rofus-kontakt-telefon.webp";
+import spillemyndighedenBlokering from "@/assets/screenshots/spillemyndigheden-blokering-ulovlige-sider.webp";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelsesperiode.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
