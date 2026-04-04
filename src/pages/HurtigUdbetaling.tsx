@@ -18,7 +18,14 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import spildanskUdbetalingImg from "@/assets/screenshots/spildansknu-udbetaling-trustly-visa.png";
+import casinoUdbetalingImg from "@/assets/screenshots/casino-udbetaling-betalingsmetoder.png";
+import kycDokumentImg from "@/assets/screenshots/spildansknu-kyc-dokumentupload.png";
+import danskespilBekraeftelseImg from "@/assets/screenshots/danskespil-udbetaling-bekraeftelse.png";
+import annullerUdbetalingImg from "@/assets/screenshots/casino-igangvaerende-udbetaling-annuller.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
