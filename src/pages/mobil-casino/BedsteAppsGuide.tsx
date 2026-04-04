@@ -289,6 +289,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Regelmæssige opdateringer er et positivt tegn – det indikerer aktiv vedligeholdelse, sikkerhedspatches og nye features. Vi anbefaler at aktivere automatiske opdateringer for casino-apps for at sikre, at du altid har den nyeste og mest sikre version.</p>
         </section>
 
+        <ReviewScreenshot
+          src={bet365AppStore}
+          alt="bet365 Sports Betting & Casino app i App Store – Nr. 11 i Sport med 26 tusind anmeldelser, op til 1.000 kr. i væddemålskreditter og live-fodbold"
+          caption="bet365 i App Store: En af de mest downloadede gambling-apps i Danmark med 26.000+ anmeldelser og omfattende sportsbetting."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 6. SIKKERHED */}
