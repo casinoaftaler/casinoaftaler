@@ -17,7 +17,13 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import quickOmQuick from "@/assets/screenshots/quick-om-quick-forside.webp";
+import quickKatalog from "@/assets/screenshots/quick-skrabespil-katalog.webp";
+import quickSaadanSpiller from "@/assets/screenshots/quick-saadan-spiller-du.webp";
+import quickBogstavjagt from "@/assets/screenshots/quick-bogstavjagt-gameplay.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
