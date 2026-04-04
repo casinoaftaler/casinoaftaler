@@ -402,6 +402,13 @@ const HurtigUdbetaling = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={annullerUdbetalingImg}
+            alt="Casino udbetalingsoversigt med igangværende udbetaling på 100 kr. og mulighed for at annullere – reverse withdrawal eksempel"
+            caption="Eksempel på 'Igangværende udbetalinger' med mulighed for at annullere (reverse withdrawal). Fra et ansvarligt spil-perspektiv bør du undgå casinoer med denne funktion."
+            size="medium"
+          />
+
           <div className="rounded-lg border border-border bg-muted/30 p-5">
             <p className="mb-2 font-semibold">Vores anbefaling</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
