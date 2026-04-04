@@ -452,6 +452,9 @@ const GratisCasinoSpil = () => {
               alt="Wanted Dead or a Wild bonuskøb-menu med tre bonusrunder: Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.)"
               caption="Bonus buy-funktionen i Wanted Dead or a Wild – test de tre forskellige bonusrunder i demotilstand før du køber med rigtige penge."
             />
+
+            <div className="rounded-lg border border-border p-5">
+              <h3 className="font-bold text-lg mb-2">Trin 3: Test dit budget i demo</h3>
               <p className="text-sm text-muted-foreground mb-2">
                 Simuler dit faktiske budget i demotilstand. Hvis du planlægger at indbetale 500 kr. og spille med 5 kr. indsats, start din demo med 500 virtuelle kreditter og spil 100 spins. Hvor langt rakte budgettet? Oplevede du bonusrunder? Føltes det underholdende? Denne øvelse giver dig en realistisk forventning til din spillesession med rigtige penge.
               </p>
