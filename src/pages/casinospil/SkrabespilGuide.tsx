@@ -251,6 +251,12 @@ const SkrabespilGuide = () => {
               </Card>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={quickKatalog}
+            alt="Søgeresultater for Quick skrabespil hos Danske Lotteri Spil med priser fra 5 kr. til 75 kr. og gevinster op til 5.625.000 kr."
+            caption="Det fulde Quick-katalog: Over 30 skrabespil med indsatser fra 5 kr. (Bikuben mini) til 75 kr. (Platinbarren) og hovedgevinster op til 5.625.000 kr."
+          />
         </section>
 
         <Separator className="my-8" />
