@@ -17,7 +17,7 @@ function EventCard({ event }: { event: FeedEvent }) {
   if (event.type === "big_win") {
     return (
       <div className="flex items-start gap-2.5 px-3 py-2 border-b border-border/20 last:border-0">
-        <Link to={`/community/profil/${event.userId}`} className="shrink-0 mt-0.5">
+        <Link to={`/u/${encodeURIComponent(event.userName ?? '')}`} className="shrink-0 mt-0.5">
           <Avatar className="h-6 w-6 cursor-pointer hover:ring-2 hover:ring-primary/40 transition-all">
             <AvatarImage src={event.avatarUrl ?? undefined} />
             <AvatarFallback className="text-[9px] bg-primary/20 text-primary">
@@ -27,7 +27,7 @@ function EventCard({ event }: { event: FeedEvent }) {
         </Link>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-1">
-            <Link to={`/community/profil/${event.userId}`} className="text-[11px] font-semibold text-foreground truncate hover:text-primary transition-colors">
+            <Link to={`/u/${encodeURIComponent(event.userName ?? '')}`} className="text-[11px] font-semibold text-foreground truncate hover:text-primary transition-colors">
               {event.userName}
             </Link>
             <span className="text-[9px] text-muted-foreground shrink-0">{timeAgo}</span>
