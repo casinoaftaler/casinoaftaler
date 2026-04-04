@@ -320,6 +320,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 3: Sådan får et casino dansk licens
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={campobetLobby}
+          alt="Campobet casino-sektion med dansk licens – Anbefalede Spil, Golden Slots og 1.846 nye spil med kategorier som Live Casino og Jackpots"
+          caption="Campobets spiludvalg: Dansk licenseret casino med 1.800+ spilleautomater organiseret i kategorier"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Sådan får et casino dansk licens – processen trin for trin
