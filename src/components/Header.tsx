@@ -39,7 +39,7 @@ export const Header = memo(function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
-    return saved === "dark";
+    return saved !== "light";
   });
   const { data: siteSettings } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
@@ -80,7 +80,7 @@ export const Header = memo(function Header() {
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    const shouldBeDark = saved === "dark";
+    const shouldBeDark = saved !== "light";
     document.documentElement.classList.toggle("dark", shouldBeDark);
     setIsDark(shouldBeDark);
   }, []);

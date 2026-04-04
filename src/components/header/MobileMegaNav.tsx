@@ -203,7 +203,7 @@ export function MobileMegaNav({ onClose }: { onClose: () => void }) {
   const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [forfattereExpanded, setForfattereExpanded] = useState(false);
   const [allReviewsExpanded, setAllReviewsExpanded] = useState(false);
-  const [isDark, setIsDark] = useState(() => localStorage.getItem("theme") === "dark");
+  const [isDark, setIsDark] = useState(() => localStorage.getItem("theme") !== "light");
 
   const toggleSection = (key: string) => setSection(section === key ? null : key);
 
