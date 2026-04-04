@@ -2,7 +2,11 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
+import videoslotsIndskud from "@/assets/screenshots/videoslots-indskudsbonus-velkomst.webp";
+import campobetKampagner from "@/assets/screenshots/campobet-kampagner-indskudsbonus.webp";
+import campobetBonusser from "@/assets/screenshots/campobet-bonusser-overblik.webp";
+import spilleautomatenBonus from "@/assets/screenshots/spilleautomaten-velkomstbonus.webp";
+import leovegasVelkomst from "@/assets/screenshots/leovegas-velkomsttilbud.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -196,9 +200,10 @@ const Indskudsbonus = () => {
         </section>
 
         <ReviewScreenshot
-          src={betiniaBonusvilkaar}
-          alt="Indskudsbonus vilkår hos Betinia med 100% match op til 1.000 kr. og detaljerede omsætningskrav"
-          caption="Betinias vilkår for indskudsbonus – matchbonus med 10x omsætningskrav og oversigt over spilbidrag"
+          src={videoslotsIndskud}
+          alt="Videoslots 100% indskudsbonus op til 1.000 kr. ved første indbetaling – velkomstside med bonusvilkår og omsætningskrav"
+          caption="Videoslots' velkomstbonus: 100% match op til 1.000 kr. med tydelige vilkår direkte på forsiden"
+          eager
         />
 
         <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={6} />
@@ -278,6 +283,13 @@ const Indskudsbonus = () => {
           </div>
         </section>
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={spilleautomatenBonus}
+          alt="Spilleautomaten 100% velkomstbonus op til 1.000 kr. med Legacy of Dead – trin-for-trin guide til aktivering med bonuskode VELKOMMEN1"
+          caption="Spilleautomatens velkomstbonus: 100% match med klar aktiveringsguide og bonuskode"
+          size="compact"
+        />
 
         {/* Trin-for-trin */}
         <section className="mb-12">
@@ -450,6 +462,12 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={campobetKampagner}
+          alt="Campobet kampagneside med 6 aktive tilbud – Påskejagt 100 kr., Sport og Casino velkomstbonus 1.000 kr., månedlig sportsbonus 500 kr., Bore Draw refund og tidlig udbetaling"
+          caption="Campobets kampagneoversigt: Eksempel på et casino med flere samtidige indskudsbonusser og reload-tilbud"
+        />
+
         {/* Hvilke spil */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
@@ -598,6 +616,12 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={leovegasVelkomst}
+          alt="LeoVegas velkomsttilbud med tre separate bonusser – Casino op til 1.000 kr., Live Casino 200 Golden Chips, og Sport op til 1.000 kr. med detaljerede vilkår"
+          caption="LeoVegas' velkomsttilbud: Tre separate indskudsbonusser til casino, live casino og sport"
+        />
+
         {/* Spillerprofiler */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
@@ -700,6 +724,12 @@ const Indskudsbonus = () => {
         </section>
 
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={campobetBonusser}
+          alt="Campobet tre velkomstbonusser side om side – Påskejagt 100 kr., Sport Velkomstbonus 1.000 kr. og Casino Velkomstbonus 1.000 kr. med vilkår og omsætningskrav"
+          caption="Campobets bonusoversigt: Tre indskudsbonusser med forskellige matchprocenter og omsætningskrav"
+        />
 
         {/* Skatteforhold */}
         <section className="mb-12">
