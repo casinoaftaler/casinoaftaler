@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -19,6 +20,11 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import type { ReactNode } from "react";
+import rofusMobil from "@/assets/screenshots/rofus-mobil-registrering-mitid.webp";
+import rofusForside from "@/assets/screenshots/rofus-forside-login-mitid.webp";
+import rofusKontakt from "@/assets/screenshots/rofus-kontakt-telefon.webp";
+import spillemyndighedenBlokering from "@/assets/screenshots/spillemyndigheden-blokering-ulovlige-sider.webp";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelsesperiode.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -241,9 +247,15 @@ const CasinoUdenRofus = () => {
           </div>
         </section>
 
-        <Separator className="my-8" />
+        <ReviewScreenshot
+          src={rofusMobil}
+          alt="ROFUS mobilvisning – registrer dig med MitID, vælg mellem 24 timers spillepause, midlertidig udelukkelse i 1-6 måneder eller endelig udelukkelse"
+          caption="ROFUS på mobil: Simpel registrering via MitID med tydelige valgmuligheder for udelukkelsesperiode"
+          size="compact"
+          eager
+        />
 
-        {/* 6 Risici */}
+        <Separator className="my-8" />
         <section className="mb-10">
           <h2 className="mb-6 text-3xl font-bold">6 kritiske risici ved casino uden ROFUS</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -266,6 +278,12 @@ const CasinoUdenRofus = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS.nu forside – Register Over Frivilligt Udelukkede Spillere med MitID login, FAQ om hvad ROFUS er og tilmelding til Nej tak til spilreklamer"
+          caption="ROFUS forsiden (rofus.nu): Login med MitID og information om selvudelukkelse – administreret af Spillemyndigheden"
+        />
 
         <Separator className="my-8" />
 
@@ -421,6 +439,12 @@ const CasinoUdenRofus = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenBlokering}
+          alt="Spillemyndigheden.dk artikel: Spillemyndigheden blokerer 82 ulovlige hjemmesider – det højeste antal blokeringer i Spillemyndighedens historie, september 2022"
+          caption="Dokumentation fra Spillemyndigheden: 82 ulovlige gambling-sider blokeret i én retskendelse – 227 domæner blokeret i alt siden 2012"
+        />
+
         <Separator className="my-8" />
 
         {/* ROFUS og psykologien bag */}
@@ -455,6 +479,13 @@ const CasinoUdenRofus = () => {
             Uanset hvilken profil du identificerer dig med, er det vigtigt at forstå at ROFUS og den danske regulering eksisterer for at beskytte dig – ikke for at begrænse din frihed. De casinoer der aktivt markedsfører sig som "uden ROFUS" henvender sig bevidst til sårbare spillere, og det bør i sig selv være et advarselssignal om deres forretningsmodel og etiske standarder.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS registreringsformular – vælg mellem endelig udelukkelse og midlertidig udelukkelse med perioder på 24 timer, 1 måned, 3 måneder eller 6 måneder"
+          caption="ROFUS registrering: Vælg udelukkelsesperiode – fra 24 timers cooling-off til permanent udelukkelse"
+          size="medium"
+        />
 
         <Separator className="my-8" />
 
@@ -564,6 +595,13 @@ const CasinoUdenRofus = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={rofusKontakt}
+          alt="ROFUS kontaktoplysninger – ring 72 38 60 20 eller send mail for support vedrørende selvudelukkelse"
+          caption="Kontakt ROFUS direkte på telefon 72 38 60 20 for hjælp med registrering eller spørgsmål om selvudelukkelse"
+          size="medium"
+        />
 
         <Separator className="my-8" />
 
