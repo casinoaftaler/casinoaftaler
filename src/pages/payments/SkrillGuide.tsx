@@ -72,13 +72,19 @@ const SkrillGuide = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle Skrill-transaktioner krypteres med 256-bit SSL/TLS, og platformen tilbyder totrinsbekræftelse (2FA) via SMS eller authenticator-app. Skrills svindelovervågning bruger machine learning til at analysere transaktionsmønstre i realtid og kan midlertidigt fryse konti ved mistænkelig aktivitet. Denne proaktive tilgang har sine fordele og ulemper: Den beskytter mod svindel, men kan også midlertidigt blokere legitime store transaktioner.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Den separate Skrill-saldo fungerer som et ekstra sikkerhedslag. Selv ved et databrud hos et casino er dine bankoplysninger beskyttede, da casinoet kun har din Skrill-transaktion – ikke dine bank- eller kortdata. Denne isolation er den primære sikkerhedsfordel ved wallet-modellen sammenlignet med direkte kortbetalinger via{" "}
-            <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>.
-          </p>
-        </>
-      }
+           </p>
+           <ReviewScreenshot
+             src={mitidBrugerId}
+             alt="Videoslots MitID login-dialog med bruger-ID felt – sikker autentificering ved casino-login med dansk e-legitimation"
+             caption="MitID-login på Videoslots – bruger-ID indtastes for at verificere identitet inden adgang til casinokontoen."
+             size="compact"
+           />
+           <p className="text-muted-foreground leading-relaxed">
+             Den separate Skrill-saldo fungerer som et ekstra sikkerhedslag. Selv ved et databrud hos et casino er dine bankoplysninger beskyttede, da casinoet kun har din Skrill-transaktion – ikke dine bank- eller kortdata. Denne isolation er den primære sikkerhedsfordel ved wallet-modellen sammenlignet med direkte kortbetalinger via{" "}
+             <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>.
+           </p>
+         </>
+       }
       howToTitle="Indbetaling, Udbetaling og Prepaid Mastercard – Praktisk Vejledning"
       howToContent={
         <>
