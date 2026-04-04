@@ -535,6 +535,13 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spildanskenuAppStore}
+          alt="SpilDanskNu.dk Online Casino app i App Store – 100% velkomstbonus op til 1.000 kr., live casino i HD-kvalitet og bredt spiludvalg fra Winteq ApS"
+          caption="SpilDanskNu i App Store: Dansk-ejet casino med 100% velkomstbonus, slots og live casino i HD-kvalitet."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 10. PUSH-NOTIFIKATIONER STRATEGI */}
