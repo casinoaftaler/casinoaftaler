@@ -368,7 +368,7 @@ export function SupportChatWidget() {
       {!isOpen && !broadcastExpanded && broadcast && (
         <button
           onClick={() => setBroadcastExpanded(true)}
-          className="fixed bottom-20 right-4 z-[59] flex items-center gap-2.5 rounded-2xl border border-border bg-card shadow-lg px-4 py-3 max-w-[280px] hover:shadow-xl transition-all duration-200 animate-in slide-in-from-bottom-2 cursor-pointer group"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[59] flex items-center gap-2.5 rounded-2xl border border-border bg-card shadow-lg px-4 py-3 max-w-[280px] hover:shadow-xl transition-all duration-200 animate-in slide-in-from-bottom-2 cursor-pointer group"
         >
           <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-8 w-8 rounded-full object-cover shrink-0" />
           <div className="text-left min-w-0">
