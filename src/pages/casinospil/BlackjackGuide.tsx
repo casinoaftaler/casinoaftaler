@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
+import liveBlackjackSkaermnavn from "@/assets/screenshots/live-blackjack-skaermnavn-oprettelse.webp";
+import spildanskenuLobby from "@/assets/screenshots/spildansknu-blackjack-roulette-lobby.webp";
+import spildanskenuBlackjackRtp from "@/assets/screenshots/spildansknu-blackjack-classic-rtp-regler.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
