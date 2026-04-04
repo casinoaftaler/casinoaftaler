@@ -272,6 +272,14 @@ const SaadanTesterVi = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={spildansknuIndbetaling}
+          alt="SpilDanskNu indbetalingsside med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr. indbetaling og MitID-godkendelse"
+          caption="Vores test af indbetalingsprocessen: Vi verificerer betalingsmetoder, minimumsbeløb og MitID-godkendelse på hvert casino"
+        />
+
+        <Separator className="my-10" />
+
         {/* 3. Sådan tester vi i praksis */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan tester vi i praksis</h2>
