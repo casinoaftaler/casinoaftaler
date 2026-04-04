@@ -393,7 +393,7 @@ export function SupportChatWidget() {
             <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            {(unreadCount > 0 || broadcast) && (
+            {(unreadCount > 0 || broadcast || showWelcome) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
                 {unreadCount > 0 ? unreadCount : "!"}
               </span>
