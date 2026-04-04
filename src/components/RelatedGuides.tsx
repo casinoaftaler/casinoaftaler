@@ -301,6 +301,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Forfatter", iconName: "book-open", desc: "Juridisk redaktør & casinoanalytiker" },
         { to: "/forfatter/niklas", label: "Niklas – Forfatter", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Forfatter", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/ansvarligt-spil", label: "Ansvarligt Spil", iconName: "shield-check", desc: "Spil sikkert og ansvarligt" },
         { to: "/spillemyndigheden", label: "Spillemyndigheden", iconName: "landmark", desc: "Danmarks tilsynsmyndighed for spil" },
       ],
@@ -315,9 +316,9 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", iconName: "book-open", desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Streamer", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
         { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", iconName: "shield-check", desc: "Vores testmetode og vurderingskriterier" },
-        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", iconName: "shield-check", desc: "Spil sikkert og ansvarligt" },
       ],
       subtitle: "Udforsk mere om holdet bag Casinoaftaler.dk og ansvarligt spil.",
     };
@@ -329,9 +330,9 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", iconName: "book-open", desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Streamer", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
         { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", iconName: "shield-check", desc: "Vores testmetode og vurderingskriterier" },
-        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", iconName: "shield-check", desc: "Spil sikkert og ansvarligt" },
       ],
       subtitle: "Udforsk mere om holdet bag Casinoaftaler.dk og vores tilgang til casinoanmeldelser.",
     };
@@ -343,6 +344,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Streamer", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/casino-nyheder", label: "Casino Nyheder", iconName: "book-open", desc: "Seneste nyheder om danske casinoer" },
         { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
       ],
@@ -356,11 +358,25 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", iconName: "book-open", desc: "Juridisk redaktør på Casinoaftaler.dk" },
+        { to: "/forfatter/frederik", label: "Frederik – Streamer", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/omsaetningskrav", label: "Omsætningskrav", iconName: "book-open", desc: "Komplet guide til omsætningskrav" },
-        { to: "/casinoer/casino-og-skat", label: "Casino & Skat", iconName: "book-open", desc: "Guide til beskatning af casinogevinster" },
         { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
       ],
       subtitle: "Udforsk mere om holdet og Niklas' ekspertområder.",
+    };
+  }
+
+  if (path === "/forfatter/frederik") {
+    return {
+      guides: [
+        { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
+        { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", iconName: "book-open", desc: "Juridisk redaktør på Casinoaftaler.dk" },
+        { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
+        { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", iconName: "shield-check", desc: "Vores testmetode og vurderingskriterier" },
+      ],
+      subtitle: "Udforsk mere om holdet bag Casinoaftaler.dk og Frederiks ekspertområder.",
     };
   }
 
