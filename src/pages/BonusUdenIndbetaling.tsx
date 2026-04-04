@@ -14,6 +14,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
+import onecasinoRegistrering from "@/assets/screenshots/onecasino-registrering-100-gratis-spins.webp";
+import royalcasinoBonus from "@/assets/screenshots/royalcasino-bonus-100-chancer-800-kroner.webp";
+import royalcasino250Chancer from "@/assets/screenshots/royalcasino-250-chancer-pirots4.webp";
 import { Ban } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -168,15 +171,22 @@ const BonusUdenIndbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En bonus uden indbetaling – også kaldet no deposit bonus – er et casinotilbud, hvor du modtager gratis spillemidler blot ved at oprette en konto. Du skal ikke indsætte penge. Konceptet er enkelt: casinoet tager den fulde risiko, og du får en risikofri prøvetur. Men bag den simple facade gemmer sig en præcis mekanisk struktur, som afgør bonussens reelle værdi.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Teknisk set fungerer en no deposit bonus via en bonuskonto, der er adskilt fra din rigtige saldo. Når du opretter din konto og verificerer via MitID, krediteres bonusmidlerne automatisk – eller du aktiverer dem med en bonuskode. Fra dette øjeblik starter tidsfristen, og alle vilkår træder i kraft. Dine indsatser trækkes fra bonuskontoen, og gevinster tilføjes samme konto. Først når <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt, overføres midlerne til din udbetalbare saldo.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I modsætning til en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> eller <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræver en no deposit bonus ingen indbetaling overhovedet. Det adskiller den fundamentalt fra alle andre bonustyper: din egen saldo er altid nul, så du kan aldrig tabe egne penge. Til gengæld kompenserer casinoet med strammere vilkår – især gevinstlofter, som vi analyserer nedenfor.
-          </p>
-          <p className="mb-8 text-muted-foreground leading-relaxed">
-            Forskellen til en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> er også vigtig at forstå: ved en no-sticky bonus indbetaler du og har to separate saldi (din egen + bonus). Ved en no deposit bonus eksisterer kun bonussaldoen. Det betyder at hele din spilaktivitet sker på casinoets penge – en unik mekanisme i bonusverdenen.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Teknisk set fungerer en no deposit bonus via en bonuskonto, der er adskilt fra din rigtige saldo. Når du opretter din konto og verificerer via MitID, krediteres bonusmidlerne automatisk – eller du aktiverer dem med en bonuskode. Fra dette øjeblik starter tidsfristen, og alle vilkår træder i kraft. Dine indsatser trækkes fra bonuskontoen, og gevinster tilføjes samme konto. Først når <Link to="/omsaetningskrav" className={linkClass}>omsætningskravene</Link> er opfyldt, overføres midlerne til din udbetalbare saldo.
+           </p>
+           <ReviewScreenshot
+             src={onecasinoRegistrering}
+             alt="OneCasino registreringsside med 100 gratis spins uden omsætningskrav ved oprettelse, e-mail og adgangskode-felter samt Registrer Nu-knap på turkis baggrund med dansk flag"
+             caption="Eksempel på en no deposit bonus: OneCasino tilbyder 100 gratis spins helt uden omsætningskrav ved oprettelse – du skal blot registrere dig."
+             size="medium"
+             eager
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             I modsætning til en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> eller <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> kræver en no deposit bonus ingen indbetaling overhovedet. Det adskiller den fundamentalt fra alle andre bonustyper: din egen saldo er altid nul, så du kan aldrig tabe egne penge. Til gengæld kompenserer casinoet med strammere vilkår – især gevinstlofter, som vi analyserer nedenfor.
+           </p>
+           <p className="mb-8 text-muted-foreground leading-relaxed">
+             Forskellen til en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> er også vigtig at forstå: ved en no-sticky bonus indbetaler du og har to separate saldi (din egen + bonus). Ved en no deposit bonus eksisterer kun bonussaldoen. Det betyder at hele din spilaktivitet sker på casinoets penge – en unik mekanisme i bonusverdenen.
+           </p>
 
           <YoutubeEmbed
             videoId="XhbLda1HyOs"
@@ -316,6 +326,13 @@ const BonusUdenIndbetaling = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={royalcasinoBonus}
+          alt="Royal Casino velkomstbonus med 100 chancer ved oprettelse og 800 kroner ved første overførsel på Triple Phoenix Power Combo spilleautomat med guld- og flammetema"
+          caption="Royal Casino kombinerer no deposit bonus (100 chancer ved oprettelse) med en indskudsbonus (800 kr.) – et typisk eksempel på en kombineret velkomstpakke."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -616,6 +633,12 @@ const BonusUdenIndbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det danske no deposit marked har gennemgået markante ændringer de seneste år. Her er de vigtigste tendenser vi ser i 2026:
           </p>
+          <ReviewScreenshot
+            src={royalcasino250Chancer}
+            alt="Royal Casino kampagne med 250 chancer ved oprettelse på Pirots 4 CollectR spilleautomaten med lilla kosmisk baggrund og animerede fuglekarakterer"
+            caption="Royal Casinos seneste no deposit tilbud: 250 chancer ved oprettelse – et eksempel på den stigende konkurrence om nye spillere i 2026."
+            size="medium"
+          />
           <div className="space-y-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
               <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
