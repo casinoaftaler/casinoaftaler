@@ -7,7 +7,7 @@ import { BackToTop } from "./BackToTop";
 import { TwitchLivePlayer } from "./TwitchLivePlayer";
 import { SupportChatWidget } from "./SupportChatWidget";
 import { ProfileCompletionPrompt } from "./ProfileCompletionPrompt";
-import { LiveWinnersFeed } from "./LiveWinnersFeed";
+
 import { usePageTracking } from "@/hooks/usePageTracking";
 import { ScrollToTop } from "./ScrollToTop";
 import { useBanCheck } from "@/hooks/useBanCheck";
