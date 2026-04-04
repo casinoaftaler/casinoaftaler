@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.webp";
+import dogHouseGameplay from "@/assets/screenshots/dog-house-megaways-bonus-symbol.webp";
+import dogHouseRtp from "@/assets/screenshots/dog-house-megaways-rtp-info.webp";
+import dogHouseIntro from "@/assets/screenshots/dog-house-megaways-intro-volatilitet.webp";
+import betiniaUdbydere from "@/assets/screenshots/betinia-spiludbydere-oversigt.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -195,6 +199,13 @@ const Spillemaskiner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseRtp}
+          alt="RTP-information fra The Dog House Megaways der viser teoretisk tilbagebetalingsprocent på 95.51% og indsatsgrænser"
+          caption="RTP-informationen i The Dog House Megaways bekræfter en teoretisk tilbagebetalingsprocent på 95,51 % – vigtigt at verificere, da operatører kan vælge lavere konfigurationer."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 3: Matematikken ── */}
@@ -314,6 +325,13 @@ const Spillemaskiner = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseIntro}
+          alt="The Dog House Megaways introskærm med volatilitetsindikator på maksimum og 3x multiplikator-wilds på alle positioner"
+          caption="Introskærmen til The Dog House Megaways viser sticky wild-multiplikatorer og den højeste volatilitetsklassificering – en typisk high-variance slot til aggressive spillertyper."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 6: Myter om spillemaskiner ── */}
@@ -370,6 +388,13 @@ const Spillemaskiner = () => {
             <strong>Indsatsstørrelse og tempo:</strong> To faktorer, der ofte overses. Autoplay på højeste hastighed kan udføre 600+ spins i timen, mens manuelt spil med pauser giver 200–300. Det tredobler dit forventede tab pr. time. Vi anbefaler: spil manuelt, tag pauser, og nyd animationerne. Det er ikke blot bedre for din bankroll – det er også en mere tilfredsstillende spiloplevelse. Sæt en timer på 30 minutter og tag en pause, når den ringer.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={dogHouseGameplay}
+          alt="The Dog House Megaways gameplay med bonus scatter-symbol og wild multiplikatorer på hjul 2, 3 og 4"
+          caption="Gameplay fra The Dog House Megaways – bonus scatter-symbolet lander centralt, mens banneret øverst bekræfter wild-multiplikatorernes placering på hjul 2, 3 og 4."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -462,6 +487,13 @@ const Spillemaskiner = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaUdbydere}
+          alt="Betinia casino udbyderoversigt med Pragmatic Play (527 spil), Relax Gaming (143 spil), Play'n GO (434 spil) og mange flere studier"
+          caption="Udbyderoversigten hos Betinia giver et godt overblik over de største studier – Pragmatic Play dominerer med 527 titler, mens Play'n GO og Relax Gaming følger efter."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
