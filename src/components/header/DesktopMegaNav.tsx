@@ -528,7 +528,7 @@ export function DesktopMegaNav() {
               activeMenu === key && "text-primary"
             )}
           >
-            <MenuIcon iconName={iconName} className="h-4 w-4" />
+            
             {label}
           </button>
         ))}
