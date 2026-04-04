@@ -7,6 +7,8 @@ import { useSupportChat } from "@/hooks/useSupportChat";
 import { useBroadcastChat } from "@/hooks/useBroadcastChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 
 
@@ -16,6 +18,9 @@ export function SupportChatWidget() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [broadcastExpanded, setBroadcastExpanded] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [welcomeLoaded, setWelcomeLoaded] = useState(false);
+  const [displayName, setDisplayName] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,6 +37,33 @@ export function SupportChatWidget() {
   } = useSupportChat();
 
   const { broadcast, dismissBroadcast } = useBroadcastChat();
+
+  // Fetch welcome_message_dismissed status
+  useEffect(() => {
+    if (!user?.id) return;
+    supabase
+      .from("profiles")
+      .select("welcome_message_dismissed, display_name")
+      .eq("user_id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data && !data.welcome_message_dismissed) {
+          setShowWelcome(true);
+          setDisplayName(data.display_name);
+        }
+        setWelcomeLoaded(true);
+      });
+  }, [user?.id]);
+
+  const dismissWelcome = async () => {
+    setShowWelcome(false);
+    if (user?.id) {
+      await supabase
+        .from("profiles")
+        .update({ welcome_message_dismissed: true } as any)
+        .eq("user_id", user.id);
+    }
+  };
   // Auto-scroll on new messages
   useEffect(() => {
     if (isOpen && scrollRef.current) {
@@ -143,6 +175,46 @@ export function SupportChatWidget() {
                 👋 Velkommen! Hvad kan vi hjælpe dig med?
               </div>
             </div>
+
+            {/* Welcome message for new Twitch users */}
+            {showWelcome && (
+              <div className="flex justify-start gap-2">
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
+                <div className="max-w-[85%] rounded-2xl rounded-bl-sm px-4 py-3 bg-muted text-foreground text-sm relative border border-primary/20">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="text-base">🎉</span>
+                    <span className="font-bold text-xs text-primary">Velkommen!</span>
+                  </div>
+                  <p className="leading-relaxed">
+                    Fedt du oprettede dig{displayName ? `, ${displayName}` : ""}! Du er nu officielt medlem af Danmarks største slot community.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    Hvis du har nogle spørgsmål, så er du altid velkommen til at skrive til os her i supporten.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    Husk at udnyt tiden med at deltage i vores{" "}
+                    <Link
+                      to="/community/turneringer"
+                      className="text-primary font-semibold underline underline-offset-2 hover:opacity-80"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      turneringer
+                    </Link>
+                    !
+                  </p>
+                  <p className="leading-relaxed mt-2 text-muted-foreground text-xs">
+                    Venlig hilsen,<br />Casinoaftaler
+                  </p>
+                  <button
+                    onClick={dismissWelcome}
+                    className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Luk velkomstbesked"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            )}
 
             {isLoading ? (
               <div className="flex justify-center py-4">
@@ -321,7 +393,7 @@ export function SupportChatWidget() {
             <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
             </svg>
-            {(unreadCount > 0 || broadcast) && (
+            {(unreadCount > 0 || broadcast || showWelcome) && (
               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground text-xs font-bold">
                 {unreadCount > 0 ? unreadCount : "!"}
               </span>

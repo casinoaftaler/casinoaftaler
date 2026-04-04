@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN welcome_message_dismissed boolean NOT NULL DEFAULT false;
