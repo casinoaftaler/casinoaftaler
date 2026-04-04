@@ -6,6 +6,11 @@ import danskeSpilAppStore from "@/assets/screenshots/danske-spil-casino-app-stor
 import mrgreenAppStore from "@/assets/screenshots/mrgreen-casino-app-store.webp";
 import leovegasAppStore from "@/assets/screenshots/leovegas-casino-app-store.webp";
 import spildanskenuAppStore from "@/assets/screenshots/spildansknu-casino-app-store.webp";
+import bet365AppStore from "@/assets/screenshots/bet365-casino-app-store.webp";
+import betanoAppStore from "@/assets/screenshots/betano-casino-app-store.webp";
+import comeonAppStore from "@/assets/screenshots/comeon-casino-app-store.webp";
+import mariaCasinoAppStore from "@/assets/screenshots/maria-casino-app-store.webp";
+import unibetAppStore from "@/assets/screenshots/unibet-casino-app-store.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -284,6 +289,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Regelmæssige opdateringer er et positivt tegn – det indikerer aktiv vedligeholdelse, sikkerhedspatches og nye features. Vi anbefaler at aktivere automatiske opdateringer for casino-apps for at sikre, at du altid har den nyeste og mest sikre version.</p>
         </section>
 
+        <ReviewScreenshot
+          src={bet365AppStore}
+          alt="bet365 Sports Betting & Casino app i App Store – Nr. 11 i Sport med 26 tusind anmeldelser, op til 1.000 kr. i væddemålskreditter og live-fodbold"
+          caption="bet365 i App Store: En af de mest downloadede gambling-apps i Danmark med 26.000+ anmeldelser og omfattende sportsbetting."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 6. SIKKERHED */}
@@ -437,6 +449,13 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betanoAppStore}
+          alt="Betano Sport & Casino app i App Store – Nr. 5 i Sport med 1,2 tusind anmeldelser, velkomstbonus op til 1.000 kr. og eksklusive spil fra Kaizen Gaming"
+          caption="Betano i App Store: Årets Udbyder med velkomstbonus op til 1.000 kr., 4.800+ spilleautomater og eksklusive spil."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 8. APP STORE REGLER OG POLITIK */}
@@ -582,6 +601,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Ifølge vores data har danske casino-apps en gennemsnitlig opt-in rate på 62 % for push-notifikationer. Spillere, der deaktiverer bonus-notifikationer men beholder kontomeddelelser, rapporterer generelt en sundere spilprofil. Se vores guide til <Link to="/ansvarligt-spil/spillegraenser" className="text-primary underline hover:text-primary/80">spillegrænser</Link> for mere om kontrol over dit spil.</p>
         </section>
 
+        <ReviewScreenshot
+          src={comeonAppStore}
+          alt="ComeOn! Online Casino & Odds app i App Store – 876 anmeldelser, 100% velkomstbonus op til 1.000 kr. og live-væddemål fra Co-Gaming Ltd"
+          caption="ComeOn! i App Store: Casino og odds i én app med 100% velkomstbonus op til 1.000 kr. og live-væddemål."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 11. OPDATERINGSCYKLUS-ANALYSE */}
@@ -675,6 +701,13 @@ const BedsteAppsGuide = () => {
           </div>
           <p className="text-muted-foreground leading-relaxed mb-4">Vi opfordrer danske casinoer til at prioritere WCAG 2.1 AA-compliance i deres næste app-opdateringer. Spillere med tilgængelighedsbehov kan kontakte casinoets kundeservice for at få information om tilpassede visuelle temaer eller alternative navigationsmetoder.</p>
         </section>
+
+        <ReviewScreenshot
+          src={mariaCasinoAppStore}
+          alt="Maria Casino app i App Store – Nr. 16 i Kasino med 435 anmeldelser, over 3.500 spil og velkomsttilbud til nye spillere fra Kindred"
+          caption="Maria Casino i App Store: Over 3.500 spilleautomater og live casino i én dedikeret app fra Kindred-gruppen."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -811,6 +844,13 @@ const BedsteAppsGuide = () => {
           </div>
           <p className="text-muted-foreground leading-relaxed">Kontakt <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link> (70 22 28 25) for gratis, anonym rådgivning. Se alle <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">hjælpelinjer</Link>.</p>
         </section>
+
+        <ReviewScreenshot
+          src={unibetAppStore}
+          alt="Unibet Live Sports Betting app i App Store – Nr. 31 i Sport med 2,9 tusind anmeldelser, høje odds og live-streaming fra Kindred"
+          caption="Unibet i App Store: Allround-app med casino, sport og poker – Nr. 31 i Sport-kategorien med 2.900+ anmeldelser."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
