@@ -166,7 +166,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/live-casino/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/lightning-roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/monopoly-live", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/live-casino/game-shows", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-06" },
+  { path: "/live-casino/game-shows", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/crazy-time", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/dream-catcher", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/deal-or-no-deal", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
