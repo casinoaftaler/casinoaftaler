@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import autoRouletteVip from "@/assets/screenshots/auto-roulette-vip-bordlayout-indsatser.webp";
+import rouletteStatistik from "@/assets/screenshots/roulette-statistik-varme-kolde-tal.webp";
+import videoslotsLiveLobby from "@/assets/screenshots/videoslots-live-casino-roulette-lobby.webp";
+import rouletteSkaermnavn from "@/assets/screenshots/live-roulette-skaermnavn-oprettelse.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -192,6 +196,13 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             I online roulette – både RNG og live – vises bordlayoutet digitalt med interaktive klikzoner. Du trykker eller klikker for at placere chips, og softwaren forhindrer ugyldige placeringer. Mange online-borde tilbyder funktioner som "favourite bets" (gem dine foretrukne chip-placeringer), "rebet" (gentag sidste indsats) og "double" (fordobl alle indsatser). Disse kvalitetsforskelle påvirker ikke odds, men de forbedrer brugeroplevelsen markant.
           </p>
+          <ReviewScreenshot
+            src={autoRouletteVip}
+            alt="Auto-Roulette VIP bordlayout med europæisk roulettehjul, racetrack-væddemål (Tier, Orphelins, Voisins, Zero) og chip-indsatser fra 2 til 1.000 kr."
+            caption="Auto-Roulette VIP hos et dansk casino: det komplette bordlayout med racetrack-sektor, indsatsmuligheder og live gevinsthistorik"
+            size="full"
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
@@ -406,6 +417,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Valget mellem live og RNG afhænger af dine præferencer: vil du have autenticitet og social oplevelse, vælg live. Vil du have tempo, lave indsatser og mulighed for demo-play, vælg RNG. Matematikken er den samme – det er oplevelsen, der adskiller dem.
           </p>
+          <ReviewScreenshot
+            src={videoslotsLiveLobby}
+            alt="Videoslots live casino lobby med roulette-varianter inkl. XXXTreme Lightning Roulette, Auto-Roulette VIP, Speed Roulette og Crystal Roulette fra Evolution"
+            caption="Live casino-lobbyen hos Videoslots: over 20 roulette-varianter fra Evolution, Pragmatic Play og andre udbydere – filtreret efter popularitet"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -450,6 +467,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>"Inside bets har dårligere odds end outside bets"</strong> – House edge er identisk for alle væddemål i europæisk roulette: 2,70 %. Hvad der ændrer sig, er volatiliteten. En straight-up bet (35:1) har ekstrem høj varians, mens rød/sort (1:1) har lav varians. Over mange spins taber du den samme procentdel uanset bet-type. Valget mellem inside og outside handler om din risikoappetit, ikke om matematisk fordel.
           </p>
+          <ReviewScreenshot
+            src={rouletteStatistik}
+            alt="Roulette statistik-panel med varme og kolde tal, hjulvisualisering og seneste 500 runders resultatfordeling i dansk live roulette"
+            caption="Statistik-panelet i live roulette: 'varme' og 'kolde' tal baseret på de seneste 500 runder – en visuel fælde, da hvert spin er uafhængigt"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -497,6 +520,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Trin 6 – Stop planmæssigt.</strong> Sæt en timer på din telefon. Når din tids- eller tabsgrænse er nået, luk spillet. Den sværeste del af roulette er ikke at lære reglerne – det er at overholde dine egne grænser. Hvis du finder det svært at stoppe, er det et signal om at bruge de <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer, som alle danske casinoer tilbyder.
           </p>
+          <ReviewScreenshot
+            src={rouletteSkaermnavn}
+            alt="Oprettelse af skærmnavn til live roulette med brugernavn Casinoaftaler og SPIL-knap på dansk casino"
+            caption="Første trin i live roulette: vælg dit skærmnavn (2-20 tegn) – det vises i chatten ved bordet"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
