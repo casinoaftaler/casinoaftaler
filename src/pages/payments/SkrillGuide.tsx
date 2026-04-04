@@ -90,8 +90,14 @@ const SkrillGuide = () => {
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Indbetaling:</strong> Vælg Skrill i casinoets kasse, log ind på din Skrill-konto, bekræft beløbet. Med 1-Tap aktiveret tager dette under 5 sekunder. Uden 1-Tap kræver det e-mail, adgangskode og eventuelt 2FA – ca. 15-20 sekunder. Pengene krediteres øjeblikkeligt.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
+           </p>
+           <ReviewScreenshot
+             src={skrillRapidTransfer}
+             alt="Skrill Rapid Transfer indbetalingsside med 1000 DKK beløb og Skrill wallet som betalingsmetode på dansk casino"
+             caption="Skrill indbetalingsflow: Vælg beløb og betal direkte fra din Skrill-saldo eller via Rapid Transfer fra bankkontoen."
+             size="compact"
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Vælg Skrill i udbetalingssektionen, angiv beløbet og bekræft. Pengene lander i din Skrill-saldo typisk inden for 0-4 timer. Derfra kan du overføre til din bank (5,50 EUR gebyr, 1-2 hverdage), bruge dem på andre online-tjenester, eller hæve kontant via Skrill Prepaid Mastercard.
           </p>
           <p className="text-muted-foreground leading-relaxed">
