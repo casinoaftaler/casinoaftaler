@@ -491,6 +491,13 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={skatOnlineSpil}
+          alt="SKAT information om skattefrihed ved online spil hos danske licenserede casinoer og skatteregler for udenlandske spiludbydere"
+          caption="SKATs vejledning bekræfter: Gevinster fra danske licenserede casinoer er skattefrie. Ved udenlandske udbydere gælder særlige regler baseret på EU/EØS-tilknytning."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         <Separator className="my-10" />
