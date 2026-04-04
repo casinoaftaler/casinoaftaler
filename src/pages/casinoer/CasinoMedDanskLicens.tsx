@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-casino-lobby-dansk-licens.webp";
+import campobetLobby from "@/assets/screenshots/campobet-casino-lobby-dansk-licens.webp";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-lobby-dansk-licens.webp";
+import spildansknuLobby from "@/assets/screenshots/spildansknu-lobby-dansk-licens.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
