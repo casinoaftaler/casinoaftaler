@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskeSpilAppStore from "@/assets/screenshots/danske-spil-casino-app-store.webp";
+import mrgreenAppStore from "@/assets/screenshots/mrgreen-casino-app-store.webp";
+import leovegasAppStore from "@/assets/screenshots/leovegas-casino-app-store.webp";
+import spildanskenuAppStore from "@/assets/screenshots/spildansknu-casino-app-store.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -175,6 +179,14 @@ const BedsteAppsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskeSpilAppStore}
+          alt="Danske Spil Casino app i App Store – Nr. 1 i Kasino-kategorien med 5,5 tusind anmeldelser, 4+ stjerner og preview af spillobbyen med favoritter og Top 10"
+          caption="Danske Spil Casino i App Store: Danmarks mest populære casino-app med 5.500+ anmeldelser og nr. 1-placering i Kasino-kategorien."
+          size="full"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* 4. NATIVE APP VS. PWA VS. BROWSER */}
@@ -226,6 +238,13 @@ const BedsteAppsGuide = () => {
             </div>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenAppStore}
+          alt="Mr Green Casino app i App Store – Nr. 2 i Kasino-kategorien med 2,1 tusind anmeldelser, ROFUS-integration og ugentlige kampagner"
+          caption="Mr Green i App Store: Nr. 2 i Kasino-kategorien med fokus på ansvarligt spil via Green Gaming-funktionen."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -456,6 +475,13 @@ const BedsteAppsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={leovegasAppStore}
+          alt="LeoVegas Online Casino app i App Store – Nr. 3 i Kasino-kategorien med velkomstbonus op til 1.000 kr., 217 anmeldelser og Gaming Award som Mobile Operator of the Year"
+          caption="LeoVegas i App Store: Vinder af 'Mobile Operator of the Year' med velkomstbonus op til 1.000 kr."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 9. APP PERFORMANCE BENCHMARKS */}
@@ -508,6 +534,13 @@ const BedsteAppsGuide = () => {
             <p className="text-muted-foreground leading-relaxed"><strong>Batteriforbrug:</strong> Gennemsnitligt 6-10 % pr. time er acceptabelt. Live casino-streaming øger forbruget med yderligere 3-5 % pr. time pga. kontinuerlig video-dekoding. Vi anbefaler at holde øje med enheder, der overskrider 12 % pr. time, da det kan indikere en dårligt optimeret app.</p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spildanskenuAppStore}
+          alt="SpilDanskNu.dk Online Casino app i App Store – 100% velkomstbonus op til 1.000 kr., live casino i HD-kvalitet og bredt spiludvalg fra Winteq ApS"
+          caption="SpilDanskNu i App Store: Dansk-ejet casino med 100% velkomstbonus, slots og live casino i HD-kvalitet."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
