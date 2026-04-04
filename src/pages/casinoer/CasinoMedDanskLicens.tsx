@@ -469,6 +469,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 5: Spillemyndighedens rolle
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk forside med dansk licens – 100% velkomstbonus, dagens vindere med 444x gevinst, og populære slots som Sweet Bonanza og Book of Dead"
+          caption="Spilleautomaten.dk: Dansk licenseret casino med live vinderfeed, velkomstbonus og bredt slot-udvalg"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Spillemyndighedens rolle i det danske casino-marked
