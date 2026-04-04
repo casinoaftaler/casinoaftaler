@@ -439,6 +439,12 @@ const CasinoUdenRofus = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenBlokering}
+          alt="Spillemyndigheden.dk artikel: Spillemyndigheden blokerer 82 ulovlige hjemmesider – det højeste antal blokeringer i Spillemyndighedens historie, september 2022"
+          caption="Dokumentation fra Spillemyndigheden: 82 ulovlige gambling-sider blokeret i én retskendelse – 227 domæner blokeret i alt siden 2012"
+        />
+
         <Separator className="my-8" />
 
         {/* ROFUS og psykologien bag */}
