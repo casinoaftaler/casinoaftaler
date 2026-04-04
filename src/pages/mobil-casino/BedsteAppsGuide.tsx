@@ -845,6 +845,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Kontakt <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link> (70 22 28 25) for gratis, anonym rådgivning. Se alle <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">hjælpelinjer</Link>.</p>
         </section>
 
+        <ReviewScreenshot
+          src={unibetAppStore}
+          alt="Unibet Live Sports Betting app i App Store – Nr. 31 i Sport med 2,9 tusind anmeldelser, høje odds og live-streaming fra Kindred"
+          caption="Unibet i App Store: Allround-app med casino, sport og poker – Nr. 31 i Sport-kategorien med 2.900+ anmeldelser."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 17. HJÆLP */}
