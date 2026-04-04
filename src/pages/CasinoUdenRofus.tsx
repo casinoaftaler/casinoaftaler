@@ -480,6 +480,13 @@ const CasinoUdenRofus = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS registreringsformular – vælg mellem endelig udelukkelse og midlertidig udelukkelse med perioder på 24 timer, 1 måned, 3 måneder eller 6 måneder"
+          caption="ROFUS registrering: Vælg udelukkelsesperiode – fra 24 timers cooling-off til permanent udelukkelse"
+          size="medium"
+        />
+
         <Separator className="my-8" />
 
         {/* Lovgivning og regulering */}
