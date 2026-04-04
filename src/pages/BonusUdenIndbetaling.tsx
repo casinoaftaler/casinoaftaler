@@ -327,6 +327,13 @@ const BonusUdenIndbetaling = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={royalcasinoBonus}
+          alt="Royal Casino velkomstbonus med 100 chancer ved oprettelse og 800 kroner ved første overførsel på Triple Phoenix Power Combo spilleautomat med guld- og flammetema"
+          caption="Royal Casino kombinerer no deposit bonus (100 chancer ved oprettelse) med en indskudsbonus (800 kr.) – et typisk eksempel på en kombineret velkomstpakke."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* === SEKTION 4: Regneeksempler === */}
