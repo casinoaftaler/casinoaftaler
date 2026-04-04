@@ -334,6 +334,13 @@ const StopSpilletGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={stopspilletKontakt}
+          alt="StopSpillet kontaktinformation med åbningstider for chat (17-21 hverdage) og telefon (9-21 hverdage) samt telefonnummer 70 22 28 25"
+          caption="StopSpillets åbningstider: Chat kl. 17–21 mandag-torsdag og 14–17 fredag. Telefon kl. 9–21 mandag-torsdag og 9–17 fredag. Tlf: 70 22 28 25."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
