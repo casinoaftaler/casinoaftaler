@@ -104,7 +104,7 @@ export const Header = memo(function Header() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" style={{ contain: 'layout style', minHeight: '64px' }}>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 header-pattern" style={{ contain: 'layout style', minHeight: '64px' }}>
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 2xl:px-12 flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <div className="flex h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 items-center justify-center overflow-hidden">
