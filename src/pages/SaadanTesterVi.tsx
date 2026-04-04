@@ -309,6 +309,14 @@ const SaadanTesterVi = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={spildansknuFooter}
+          alt="SpilDanskNu footer med Spillemyndighedens tilladelsessegl, 18+ mærkning, MitID, StopSpillet og ROFUS – licens nr. 21-67980 gyldig til oktober 2027"
+          caption="Vi verificerer altid licensoplysninger direkte i footeren: Spillemyndighedens segl, licensnummer og ansvarligt spil-ikoner"
+        />
+
+        <Separator className="my-10" />
+
         {/* 4. Vurderingsmodel */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vores vurderingsmodel</h2>
