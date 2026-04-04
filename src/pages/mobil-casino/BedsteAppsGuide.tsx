@@ -179,6 +179,14 @@ const BedsteAppsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskeSpilAppStore}
+          alt="Danske Spil Casino app i App Store – Nr. 1 i Kasino-kategorien med 5,5 tusind anmeldelser, 4+ stjerner og preview af spillobbyen med favoritter og Top 10"
+          caption="Danske Spil Casino i App Store: Danmarks mest populære casino-app med 5.500+ anmeldelser og nr. 1-placering i Kasino-kategorien."
+          size="full"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* 4. NATIVE APP VS. PWA VS. BROWSER */}
