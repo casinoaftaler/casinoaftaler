@@ -421,10 +421,10 @@ const BingoGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={spilnuBingo}
-          alt="Spilnu bingo-rum med aktive spil, pladekøb og chat-funktion"
-          caption="Spilnu bingo – eksempel på et dansk bingo-rum med live chat og automatisk talmarkering"
-          size="full"
+          src={bankoFlashPraemie}
+          alt="Banko Flash megapræmie på 25.000 kr. med samlet pulje på 1.464 kr. og præmier for fuld plade, 2 rækker og 1 række"
+          caption="Banko Flash præmieoversigt: Megapræmie på 25.000 kr. med tre gevinstniveauer – fuld plade, 2 rækker (418 kr.) og 1 række (209 kr.)."
+          size="compact"
         />
 
         <Separator className="my-8" />
