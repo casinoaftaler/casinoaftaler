@@ -813,6 +813,13 @@ const CasinoApp = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={saIndbetaling}
+          alt="Spilleautomaten app indbetalingsskærm med hurtigvalg 100-2000 kr., bonuskode-felt og beløbsinput – minimum 75 kr., maksimum 50.000 kr."
+          caption="Indbetalingsflow på Spilleautomaten – hurtigvalg-knapper fra 100 til 2.000 kr. og bonuskode-felt gør processen hurtig på mobil"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
