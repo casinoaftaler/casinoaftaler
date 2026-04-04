@@ -247,9 +247,15 @@ const CasinoUdenRofus = () => {
           </div>
         </section>
 
-        <Separator className="my-8" />
+        <ReviewScreenshot
+          src={rofusMobil}
+          alt="ROFUS mobilvisning – registrer dig med MitID, vælg mellem 24 timers spillepause, midlertidig udelukkelse i 1-6 måneder eller endelig udelukkelse"
+          caption="ROFUS på mobil: Simpel registrering via MitID med tydelige valgmuligheder for udelukkelsesperiode"
+          size="compact"
+          eager
+        />
 
-        {/* 6 Risici */}
+        <Separator className="my-8" />
         <section className="mb-10">
           <h2 className="mb-6 text-3xl font-bold">6 kritiske risici ved casino uden ROFUS</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
