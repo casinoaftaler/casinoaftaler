@@ -40,7 +40,7 @@ export function Layout() {
       {isCommunityPage && <TwitchLivePlayer />}
       <ProfileCompletionPrompt />
       {!isSlotMachinePage && <SupportChatWidget />}
-      <LiveWinnersFeed />
+      
     </div>
   );
 }
