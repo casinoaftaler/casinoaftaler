@@ -17,7 +17,13 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import quickOmQuick from "@/assets/screenshots/quick-om-quick-forside.webp";
+import quickKatalog from "@/assets/screenshots/quick-skrabespil-katalog.webp";
+import quickSaadanSpiller from "@/assets/screenshots/quick-saadan-spiller-du.webp";
+import quickBogstavjagt from "@/assets/screenshots/quick-bogstavjagt-gameplay.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -212,6 +218,13 @@ const SkrabespilGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere placerer skrabespil sig i en unik niche: de er hurtigere end <Link to="/casinospil/bingo" className={linkClass}>bingo</Link>, simplere end <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> (ingen gevinstlinjer eller bonusmekanikker at forstå), og mere tilgængelige end <Link to="/casinospil/keno" className={linkClass}>keno</Link> (ingen nummervalg nødvendigt). Denne guide dækker alt fra matematiske modeller og variantforskelle til gevinsttabeller, budgetstyring og de bedste danske casinoer med skrabespil. Spil altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link> og undgå <Link to="/casino-uden-rofus" className={linkClass}>sider uden dansk licens</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={quickOmQuick}
+            alt="Danske Lotteri Spil Quick skrabespil-forside med Om Quick sektion og populære spil som Mega Quick, Bogstavjagt og Guldåren"
+            caption="Quick by Danske Lotteri Spil: Danmarks største udbyder af online skrabespil siden 1992 med titler som Mega Quick (op til 5.000.000 kr.) og Bogstavjagt (op til 600.000 kr.)."
+            eager
+          />
         </section>
 
         <Separator className="my-8" />
@@ -238,6 +251,12 @@ const SkrabespilGuide = () => {
               </Card>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={quickKatalog}
+            alt="Søgeresultater for Quick skrabespil hos Danske Lotteri Spil med priser fra 5 kr. til 75 kr. og gevinster op til 5.625.000 kr."
+            caption="Det fulde Quick-katalog: Over 30 skrabespil med indsatser fra 5 kr. (Bikuben mini) til 75 kr. (Platinbarren) og hovedgevinster op til 5.625.000 kr."
+          />
         </section>
 
         <Separator className="my-8" />
@@ -318,7 +337,7 @@ const SkrabespilGuide = () => {
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-bold text-lg mb-2">Trin 3: Indstil din indsats og skrab</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Vælg din indsats – typisk fra 1 kr. til 200 kr. per lod. Højere indsats giver proportionelt højere potentielle gevinster, men øger også dit tab per lod. Skrab derefter felterne med din finger (mobil) eller mus (desktop). De fleste spil har også en "Afslør alle"-knap der springer animationen over og viser resultatet med det samme.
+                Vælg din indsats – typisk fra 5 kr. til 75 kr. per lod hos Quick (Danske Lotteri Spil), mens online casino-skrabespil kan starte fra 1 kr. Højere indsats giver proportionelt højere potentielle gevinster, men øger også dit tab per lod. Skrab derefter felterne med din finger (mobil) eller mus (desktop). De fleste spil har også en "Afslør alle"- eller "Autoskrab"-knap der springer animationen over og viser resultatet med det samme.
               </p>
             </div>
 
@@ -329,6 +348,12 @@ const SkrabespilGuide = () => {
               </p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={quickSaadanSpiller}
+            alt="Danske Lotteri Spil Quick guide med 3 trin: Log ind med rød konto, indbetal penge, og vælg dit skrabespil"
+            caption="Quick's officielle guide: 1) Log ind på din røde konto, 2) Indbetal via din profil, 3) Vælg dit spil – du kan prøve gratis først."
+          />
         </section>
 
         <Separator className="my-8" />
@@ -448,7 +473,7 @@ const SkrabespilGuide = () => {
             Skrabespillet har en overraskende kort, men fascinerende historie sammenlignet med andre gamblingformer. Det første kommercielle skrabelod blev opfundet i 1974 af den amerikanske datamatiker John Koza og hans partner Daniel Bower. Deres firma, Scientific Games Corporation, udviklede det første "instant lottery ticket" – et lille kort med en latexbelægning der kunne skrabes af for at afsløre resultater. Ideen var enkel og genial: et lotteri der ikke krævede ventetid på trækninger.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Massachusetts Lottery blev den første statslige lotteriagentur der adopterede teknologien i 1974, og konceptet eksploderede i popularitet. Inden for et årti tilbød næsten alle amerikanske stater instant-lotteri-billetter. I Europa spredte skrabelodder sig i 1980'erne – Storbritannien lancerede "Instants" i 1995 via den nationale lotteri-operatør Camelot. I Danmark har Danske Spil tilbudt fysiske skrabelodder siden 1990'erne, med populære serier som "Millionærklubben" og "King Cash".
+            Massachusetts Lottery blev den første statslige lotteriagentur der adopterede teknologien i 1974, og konceptet eksploderede i popularitet. Inden for et årti tilbød næsten alle amerikanske stater instant-lotteri-billetter. I Europa spredte skrabelodder sig i 1980'erne – Storbritannien lancerede "Instants" i 1995 via den nationale lotteri-operatør Camelot. I Danmark har Danske Lotteri Spil's platform <strong>Quick</strong> siden 1992 været kendt for sine sjove og underholdende skrabelodder med milliongevinster. Quick er i dag Danmarks primære udbyder af online skrabespil med populære titler som Mega Quick (op til 5.000.000 kr.), Bogstavjagt (op til 600.000 kr.), Platinbarren (op til 5.625.000 kr.) og Guldåren.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den digitale revolution begyndte i slutningen af 2000'erne, da online casinoer startede med at tilbyde virtuelle skrabelodder. De tidlige versioner var simple Flash-baserede spil der efterlignede den fysiske skrabe-oplevelse. Men med overgangen til HTML5 og udviklingen af avancerede spiludviklings-frameworks eksploderede kvaliteten: HD-grafik, tematiske lydeffekter, bonusrunder og progressive jackpots transformerede genren.
@@ -499,6 +524,13 @@ const SkrabespilGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Et vigtigt koncept er "hit rate" – den procentdel af lodder der giver en gevinst (uanset størrelse). Typiske online skrabespil har en hit rate på 30-40%, hvilket betyder at du statistisk vinder noget på hvert 2½.-3⅓. lod. Sammenlign dette med fysiske skrabelodder, der typisk har en hit rate på kun 15-25%. Den højere hit rate online skyldes de mange små gevinster (1-2x indsats) der holder spilleren engageret.
           </p>
+
+          <ReviewScreenshot
+            src={quickBogstavjagt}
+            alt="Bogstavjagt skrabespil gameplay med krydsord-spilleplade, bonusord-funktion og Autoskrab-knap hos Danske Lotteri Spil"
+            caption="Bogstavjagt i aktion: Et hybrid-skrabespil der kombinerer krydsord med skrabe-mekanik. Skrab bogstaver fri og dan ord for bonusgevinster – op til 600.000 kr."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
@@ -510,7 +542,7 @@ const SkrabespilGuide = () => {
             Danske skrabespil-spillere har adgang til de samme sikre betalingsmetoder som ved øvrige casinospil. De mest populære inkluderer <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> (hurtigste danske løsning med øjeblikkelig indbetaling), <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> (universelt accepteret), <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> (direkte bankoverførsel) og <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>. Alle transaktioner beskyttes af SSL-kryptering og overvåges af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Skrabespil er ekstremt budgetvenlige: indsatser starter fra 1 kr. per lod hos mange udbydere. Med en minimumsindbetaling på 50 kr. kan du spille 50+ lodder – flere timers underholdning. For spillere med stramt budget er skrabespil dermed en af de mest tilgængelige spilformer med minimal investering.
+            Skrabespil er ekstremt budgetvenlige: hos Quick starter indsatser fra 5 kr. per lod (fx Bikuben mini og Fuglevenner Drømmeland), mens enkelte online casino-skrabespil kan spilles fra 1 kr. Med en minimumsindbetaling på 50 kr. kan du spille 10+ lodder – en god intro-session. For spillere med stramt budget er skrabespil dermed en af de mest tilgængelige spilformer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Udbetalinger følger standardprocesserne: hos casinoer med <Link to="/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> modtager du gevinster inden for 1-24 timer via MobilePay eller e-wallets. Bankoverførsler tager 1-3 hverdage. Der kan være minimumsudbetaling (typisk 100-200 kr.), så mindre skrabespil-gevinster akkumuleres på kontoen. Alle skrabespil-gevinster fra danske licenserede casinoer er skattefrie.
