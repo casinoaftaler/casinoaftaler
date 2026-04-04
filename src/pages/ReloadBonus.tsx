@@ -426,6 +426,13 @@ const ReloadBonus = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+            src={campobetReload}
+            alt="Campobet månedlig sportsbonus – 100% op til 500 kr. med 3-trins forklaring: indbetal, omsæt med min. odds 1.50, og modtag belønning"
+            caption="Campobets reload-kampagne med tydelig 3-trins guide: Indbetal → Omsæt → Modtag bonus"
+            size="full"
+          />
+
         {/* Strategisk brug */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Strategisk brug af reload bonusser</h2>
