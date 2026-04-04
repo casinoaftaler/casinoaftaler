@@ -348,6 +348,12 @@ const SkrabespilGuide = () => {
               </p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={quickSaadanSpiller}
+            alt="Danske Lotteri Spil Quick guide med 3 trin: Log ind med rød konto, indbetal penge, og vælg dit skrabespil"
+            caption="Quick's officielle guide: 1) Log ind på din røde konto, 2) Indbetal via din profil, 3) Vælg dit spil – du kan prøve gratis først."
+          />
         </section>
 
         <Separator className="my-8" />
