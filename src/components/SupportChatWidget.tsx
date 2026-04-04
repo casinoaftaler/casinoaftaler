@@ -383,7 +383,7 @@ export function SupportChatWidget() {
       {/* Floating Button */}
       <button
         onClick={isOpen ? handleClose : handleOpen}
-        className="fixed bottom-4 right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
+        className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-[60] h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 flex items-center justify-center"
         aria-label="Support chat"
       >
         {isOpen ? (
