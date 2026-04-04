@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
+import { Link } from "react-router-dom";
 import "@/styles/community-micro.css";
 
 function EventCard({ event }: { event: FeedEvent }) {
