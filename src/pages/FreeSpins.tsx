@@ -29,6 +29,9 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
 import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.webp";
+import mrgreenCashSpins from "@/assets/screenshots/mrgreen-50-cash-spins-registrering.webp";
+import royalCasinoChancer from "@/assets/screenshots/royal-casino-200-chancer-velkomst.webp";
+import onecasinoGratisSpins from "@/assets/screenshots/onecasino-100-gratis-spins-velkomst.webp";
 import { Ban, Dog, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -266,6 +269,13 @@ const FreeSpins = () => {
         <Separator className="my-10" />
 
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={mrgreenCashSpins}
+          alt="Mr Green kampagneside med 50 cash spins uden indbetaling til Legacy of Dead – registreringsbonus med 3-trins aktiveringsguide"
+          caption="Mr Greens registreringsbonus: 50 cash spins uden indbetaling til Legacy of Dead"
+          size="medium"
+        />
 
         {/* Typer af Free Spins */}
         <section className="mb-12">
@@ -635,6 +645,12 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={royalCasinoChancer}
+          alt="Royal Casino velkomsttilbud med 750 kr. bonus ved første overførsel og 200 chancer ved oprettelse – 10x gennemspilskrav og detaljerede vilkår"
+          caption="Royal Casinos dobbelte velkomsttilbud: 750 kr. indskudsbonus + 200 free spins (chancer) ved oprettelse"
+        />
+
         {/* Spillerprofiler */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
@@ -689,6 +705,13 @@ const FreeSpins = () => {
             <Link to="/community/rewards" className="text-primary underline hover:text-primary/80">Rewards Program</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={onecasinoGratisSpins}
+          alt="OneCasino kampagneside med 100 gratis spins velkomstbonus uden omsætningskrav – bonusvilkår og betingelser tydeligt vist"
+          caption="OneCasinos velkomstbonus: 100 gratis spins uden gennemspilskrav – gevinster direkte til kontantsaldo"
+          size="medium"
+        />
 
         <Separator className="my-10" />
         <section className="mb-12">
