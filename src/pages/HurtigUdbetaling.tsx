@@ -302,6 +302,13 @@ const HurtigUdbetaling = () => {
             De fleste casinoer udfører KYC-verifikation ved din første udbetalingsanmodning. Det betyder at din første udbetaling typisk tager 2-24 timer længere end efterfølgende udbetalinger. Processen kræver typisk verifikation af tre ting: identitet (pas eller kørekort), adresse (el-regning eller kontoudtog) og betalingsmetode (screenshot af e-wallet eller billede af kort).
           </p>
 
+          <ReviewScreenshot
+            src={kycDokumentImg}
+            alt="SpilDanskNu KYC-dokumentupload side med uploadede pas, ID-kort, kørekort og kreditkort-dokumenter"
+            caption="SpilDanskNu's dokumentupload-side: Proaktiv upload af pas, ID-kort og kørekort eliminerer ventetiden ved din første udbetaling. Her ses en fuldt verificeret konto."
+            size="medium"
+          />
+
           <div className="space-y-3 mb-6">
             {[
               { step: "1", title: "Verificer ved registrering – ikke ved udbetaling", desc: "De fleste casinoer tillader dig at uploade KYC-dokumenter proaktivt lige efter kontooprettelse. Gør dette med det samme – det eliminerer ventetiden ved din første udbetaling fuldstændigt. Hos casinoer med MitID-verifikation er identitetsdelen ofte allerede klaret automatisk." },
