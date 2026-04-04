@@ -79,18 +79,24 @@ const ZimplerGuide = () => {
             En ofte overset sikkerhedsfordel ved Zimpler er fraværet af lagrede betalingsoplysninger. Hvor kortbetalinger kræver, at casinoet gemmer tokeniserede kortdata, og e-wallets som{" "}
             <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
             lagrer din saldo på deres servere, lagrer Zimpler bogstaveligt talt ingenting. Hver transaktion er en selvstændig enhed – der er ingen persistent forbindelse mellem Zimpler og din bankkonto efter transaktionens afslutning. Dette eliminerer risikoen for masseeksfiltration af betalingsdata ved et eventuelt sikkerhedsbrud.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Zimplers interne sikkerhedsteam overvåger transaktioner i realtid med algoritmer, der identificerer usædvanlige mønstre – f.eks. mange små transaktioner i kort rækkefølge (typisk tegn på bonusmisbrug) eller pludselige store indbetalinger fra konti med lav historisk aktivitet. Denne overvågning supplerer bankernes og casinoernes egne AML-systemer og skaber et tredobbelt sikkerhedsnet, der er svært at omgå.
-          </p>
-        </>
-      }
-      howToTitle="Trin-for-Trin: Indbetaling og Udbetaling med Zimpler"
-      howToContent={
-        <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling – detaljeret flow:</strong> Vælg Zimpler i casinoets kasse. Du omdirigeres til Zimplers sikre betalingsoverlay, der viser en liste over dine tilknyttede banker. Vælg din bank (f.eks. Danske Bank, Nordea). Du sendes til bankens MitID-godkendelsesside, hvor du bekræfter med MitID-appen. Vælg den bankkonto, du vil betale fra, og bekræft beløbet. Saldoen opdateres øjeblikkeligt på casinoet. Hele processen tager typisk 15-25 sekunder, hvoraf størstedelen er MitID-godkendelsen.
-          </p>
+           </p>
+           <ReviewScreenshot
+             src={betiniaMitid}
+             alt="Betinia casino MitID login-dialog – sikker autentificering med MitID ved Zimpler-indbetaling på dansk online casino"
+             caption="MitID-godkendelse ved login og betaling på Betinia – Zimpler bruger samme sikre autentificering."
+             size="compact"
+           />
+           <p className="text-muted-foreground leading-relaxed">
+             Zimplers interne sikkerhedsteam overvåger transaktioner i realtid med algoritmer, der identificerer usædvanlige mønstre – f.eks. mange små transaktioner i kort rækkefølge (typisk tegn på bonusmisbrug) eller pludselige store indbetalinger fra konti med lav historisk aktivitet. Denne overvågning supplerer bankernes og casinoernes egne AML-systemer og skaber et tredobbelt sikkerhedsnet, der er svært at omgå.
+           </p>
+         </>
+       }
+       howToTitle="Trin-for-Trin: Indbetaling og Udbetaling med Zimpler"
+       howToContent={
+         <>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Indbetaling – detaljeret flow:</strong> Vælg Zimpler i casinoets kasse. Du omdirigeres til Zimplers sikre betalingsoverlay, der viser en liste over dine tilknyttede banker. Vælg din bank (f.eks. Danske Bank, Nordea). Du sendes til bankens MitID-godkendelsesside, hvor du bekræfter med MitID-appen. Vælg den bankkonto, du vil betale fra, og bekræft beløbet. Saldoen opdateres øjeblikkeligt på casinoet. Hele processen tager typisk 15-25 sekunder, hvoraf størstedelen er MitID-godkendelsen.
+           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Smart Checkout ved genbesøg:</strong> Hvis du har brugt Zimpler før og har givet samtykke til Smart Checkout, husker systemet din foretrukne bank og konto. Ved tilbagevendende indbetalinger springer du bankvalgs-trinnet over og går direkte til MitID-godkendelse. Dette reducerer indbetalingstiden med 5-8 sekunder – en mærkbar forbedring i den daglige brugeroplevelse.
           </p>
