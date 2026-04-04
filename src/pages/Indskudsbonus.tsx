@@ -462,6 +462,12 @@ const Indskudsbonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={campobetKampagner}
+          alt="Campobet kampagneside med 6 aktive tilbud – Påskejagt 100 kr., Sport og Casino velkomstbonus 1.000 kr., månedlig sportsbonus 500 kr., Bore Draw refund og tidlig udbetaling"
+          caption="Campobets kampagneoversigt: Eksempel på et casino med flere samtidige indskudsbonusser og reload-tilbud"
+        />
+
         {/* Hvilke spil */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
