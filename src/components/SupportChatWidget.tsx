@@ -85,7 +85,12 @@ export function SupportChatWidget() {
     markAsRead();
   };
 
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+    if (showWelcome) {
+      dismissWelcome();
+    }
+  };
 
   const handleSend = async () => {
     if (!input.trim() || sending) return;
