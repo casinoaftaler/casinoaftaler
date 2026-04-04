@@ -151,7 +151,7 @@ export function useLiveWinnersFeed() {
         .select("id, user_id, bet_amount, win_amount, game_id, created_at")
         .gt("win_amount", 0)
         .order("created_at", { ascending: false })
-        .limit(200);
+        .limit(500);
 
       if (!data) return;
 
