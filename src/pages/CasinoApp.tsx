@@ -686,6 +686,13 @@ const CasinoApp = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={saBetalingsmetoder}
+          alt="Spilleautomaten app indbetalingsmetoder – MobilePay, Mastercard, Visa og Trustly med minimum 75 kr. indbetaling"
+          caption="Betalingsmetoder i Spilleautomaten-appen – MobilePay, Mastercard, Visa og Trustly tilgængelige med 75 kr. minimumsindbetaling"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
