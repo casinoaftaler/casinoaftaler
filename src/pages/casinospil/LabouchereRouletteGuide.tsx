@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonLiveRoulette from "@/assets/screenshots/comeon-live-roulette-lobby.webp";
+import getluckyRoulette from "@/assets/screenshots/getlucky-live-roulette-udvalg.webp";
+import spilleautomatenRoulette from "@/assets/screenshots/spilleautomaten-live-casino-roulette.webp";
+import rouletteBordlayout from "@/assets/screenshots/europaeisk-roulette-bordlayout.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
