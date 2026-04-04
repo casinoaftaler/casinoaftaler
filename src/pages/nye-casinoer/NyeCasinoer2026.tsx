@@ -243,6 +243,12 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={betanoLobby}
+          alt="Betano casino-lobby med eksklusive spil, Høj RTP og Høj Volatilitet filtre, bonuskøb-muligheder og dansk navigation"
+          caption="Betano: Nyt dansk casino med eksklusive titler, smart kategorisering og moderne lobby-design"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan tester vi nye casinoer i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
