@@ -322,7 +322,7 @@ export function SupportChatWidget() {
       {/* Broadcast Expanded View */}
       {broadcastExpanded && broadcast && (
         <div
-          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
           style={{ maxHeight: "min(400px, 60vh)" }}
         >
           <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
