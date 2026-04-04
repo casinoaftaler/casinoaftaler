@@ -478,7 +478,14 @@ const CasinoMedMitID = () => {
             ))}
           </div>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <ReviewScreenshot
+            src={nemidNoeglekortImg}
+            alt="Fysisk NemID nøglekort med engangskoder – det gamle autentificeringssystem der blev erstattet af MitID i 2022-2023"
+            caption="Det fysiske NemID nøglekort med engangskoder, som MitID erstattede med app-baseret biometrisk autentificering."
+            size="medium"
+          />
+
+          <p className="mt-4 text-muted-foreground leading-relaxed">
             Den mest mærkbare forbedring for casinospillere er hastigheden. Med NemID skulle du finde dit nøglekort, indtaste et engangskodeord og vente på verifikation – en proces der typisk tog 30-60 sekunder. Med MitID trykker du på en push-notifikation, bekræfter med fingeraftryk, og er verificeret inden for 5 sekunder. Over tid akkumulerer den tidsbesparelse sig, særligt for spillere der logger ind dagligt.
           </p>
         </section>
