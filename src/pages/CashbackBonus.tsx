@@ -510,6 +510,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Hvem passer cashback til */}
+        <ReviewScreenshot
+          src={unibetCashback}
+          alt="Unibet 8% cashback i kontanter – automatisk optjening uden tilmelding, udbetaling hver fredag kl. 18:00, ingen omsætningskrav"
+          caption="Unibets cashback-program: 8% automatisk cashback uden tilmelding – udbetales som kontanter hver fredag."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvem passer cashback bonus til?</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
