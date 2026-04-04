@@ -80,7 +80,7 @@ export const Header = memo(function Header() {
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    const shouldBeDark = saved === "dark";
+    const shouldBeDark = saved !== "light";
     document.documentElement.classList.toggle("dark", shouldBeDark);
     setIsDark(shouldBeDark);
   }, []);
