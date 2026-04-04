@@ -130,11 +130,11 @@ const OmTeamet = () => {
   ];
 
   const stats = [
-    { iconName: "briefcase", value: "17+", label: "Års samlet erfaring" },
-    { iconName: "trophy", value: "30+", label: "Testede danske casinoer" },
-    { iconName: "tv", value: "7000+", label: "Timers live streaming" },
-    { iconName: "book-open", value: "330+", label: "Publicerede artikler & guides" },
-    { iconName: "users", value: "Aktivt", label: "Engageret community" },
+    { iconName: "briefcase", numericValue: 17, suffix: "+", label: "Års samlet erfaring" },
+    { iconName: "trophy", numericValue: 30, suffix: "+", label: "Testede danske casinoer" },
+    { iconName: "tv", numericValue: 7000, suffix: "+", label: "Timers live streaming" },
+    { iconName: "book-open", numericValue: 330, suffix: "+", label: "Publicerede artikler & guides" },
+    { iconName: "users", numericValue: null, textValue: "Aktivt", suffix: "", label: "Engageret community" },
   ];
 
   const trustPoints = [
