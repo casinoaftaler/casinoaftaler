@@ -520,6 +520,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Trin 6 – Stop planmæssigt.</strong> Sæt en timer på din telefon. Når din tids- eller tabsgrænse er nået, luk spillet. Den sværeste del af roulette er ikke at lære reglerne – det er at overholde dine egne grænser. Hvis du finder det svært at stoppe, er det et signal om at bruge de <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer, som alle danske casinoer tilbyder.
           </p>
+          <ReviewScreenshot
+            src={rouletteSkaermnavn}
+            alt="Oprettelse af skærmnavn til live roulette med brugernavn Casinoaftaler og SPIL-knap på dansk casino"
+            caption="Første trin i live roulette: vælg dit skærmnavn (2-20 tegn) – det vises i chatten ved bordet"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
