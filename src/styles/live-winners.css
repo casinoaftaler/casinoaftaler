@@ -1,0 +1,124 @@
+/* ═══════ Live Winners Feed — Premium Panel ═══════ */
+
+.live-winners-panel {
+  position: relative;
+  border: 1px solid hsl(250 25% 88%);
+  background: linear-gradient(180deg, hsl(250 30% 97%) 0%, hsl(240 22% 94%) 100%);
+}
+.dark .live-winners-panel {
+  border: 1px solid hsl(260 40% 22% / 0.6);
+  background: linear-gradient(180deg, hsl(260 30% 13%) 0%, hsl(250 25% 9%) 100%);
+  box-shadow:
+    0 0 0 1px hsl(260 50% 30% / 0.08),
+    0 4px 24px hsl(260 60% 8% / 0.4),
+    inset 0 1px 0 hsl(260 40% 30% / 0.12);
+}
+
+/* Top edge glow */
+.dark .live-winners-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(45 90% 60% / 0.25), transparent);
+  z-index: 1;
+}
+
+/* Header */
+.live-winners-header {
+  background: transparent;
+}
+.dark .live-winners-header {
+  background: linear-gradient(180deg, hsl(260 30% 15% / 0.5) 0%, transparent 100%);
+}
+
+/* Threshold badge */
+.live-winners-threshold {
+  color: hsl(260 40% 50%);
+  background: hsl(260 30% 92%);
+}
+.dark .live-winners-threshold {
+  color: hsl(45 80% 65%);
+  background: hsl(45 60% 50% / 0.1);
+  border: 1px solid hsl(45 50% 50% / 0.15);
+}
+
+/* Footer */
+.live-winners-footer {
+  background: transparent;
+}
+.dark .live-winners-footer {
+  background: hsl(260 25% 8% / 0.4);
+}
+
+/* ═══════ Event Rows ═══════ */
+
+.live-win-row {
+  position: relative;
+}
+.live-win-row:hover {
+  background: hsl(260 30% 94%);
+}
+.dark .live-win-row:hover {
+  background: hsl(260 30% 16% / 0.5);
+}
+
+.live-win-row--highlight {
+  background: hsl(45 50% 96%);
+}
+.dark .live-win-row--highlight {
+  background: hsl(45 40% 12% / 0.15);
+}
+.dark .live-win-row--highlight:hover {
+  background: hsl(45 40% 14% / 0.25);
+}
+
+/* ═══════ Multiplier Badges ═══════ */
+
+.live-win-badge {
+  letter-spacing: 0.02em;
+}
+
+/* Rare (100x–199x) */
+.live-win-badge--rare {
+  color: hsl(142 60% 45%);
+  background: hsl(142 50% 92%);
+}
+.dark .live-win-badge--rare {
+  color: hsl(142 70% 60%);
+  background: hsl(142 50% 20% / 0.3);
+  border: 1px solid hsl(142 40% 40% / 0.2);
+}
+
+/* Epic (200x–499x) */
+.live-win-badge--epic {
+  color: hsl(280 60% 55%);
+  background: hsl(280 40% 92%);
+}
+.dark .live-win-badge--epic {
+  color: hsl(280 70% 70%);
+  background: hsl(280 50% 25% / 0.3);
+  border: 1px solid hsl(280 40% 50% / 0.25);
+  box-shadow: 0 0 8px hsl(280 50% 50% / 0.15);
+}
+
+/* Legendary (500x+) */
+.live-win-badge--legendary {
+  color: hsl(38 95% 55%);
+  background: hsl(38 70% 92%);
+}
+.dark .live-win-badge--legendary {
+  color: hsl(38 95% 65%);
+  background: linear-gradient(135deg, hsl(38 60% 20% / 0.35), hsl(25 50% 18% / 0.25));
+  border: 1px solid hsl(38 50% 50% / 0.3);
+  box-shadow: 0 0 12px hsl(38 70% 50% / 0.2);
+  animation: legendaryPulse 3s ease-in-out infinite;
+}
+
+@keyframes legendaryPulse {
+  0%, 100% { box-shadow: 0 0 8px hsl(38 70% 50% / 0.15); }
+  50% { box-shadow: 0 0 16px hsl(38 70% 50% / 0.3); }
+}
