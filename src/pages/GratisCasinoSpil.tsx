@@ -411,6 +411,12 @@ const GratisCasinoSpil = () => {
               </p>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={baccaratBordImg}
+            alt="Baccarat bordspil i demotilstand – grønt bord med Player ($25), Banker ($10) og Tie ($0.10) indsatser"
+            caption="Baccarat i demo – test forskellen mellem Player-, Banker- og Tie-indsatser uden at risikere rigtige penge."
+          />
         </section>
 
         <Separator className="my-8" />
