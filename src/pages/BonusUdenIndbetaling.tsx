@@ -14,6 +14,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
+import onecasinoRegistrering from "@/assets/screenshots/onecasino-registrering-100-gratis-spins.webp";
+import royalcasinoBonus from "@/assets/screenshots/royalcasino-bonus-100-chancer-800-kroner.webp";
+import royalcasino250Chancer from "@/assets/screenshots/royalcasino-250-chancer-pirots4.webp";
 import { Ban } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
