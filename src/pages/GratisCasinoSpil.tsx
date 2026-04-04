@@ -18,8 +18,15 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
+
+import spildanskLobbyImg from "@/assets/screenshots/spildansknu-lobby-demospil.png";
+import wantedGameplayImg from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.png";
+import wantedBonusBuyImg from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy.png";
+import blackjackDemoImg from "@/assets/screenshots/blackjack-mh-bordet-demotilstand.png";
+import baccaratBordImg from "@/assets/screenshots/baccarat-bord-indsatser.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -212,6 +219,13 @@ const GratisCasinoSpil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildanskLobbyImg}
+          alt="SpilDanskNu casino-lobby med 'Spil' og 'Demo' knapper på Wanted Dead or a Wild – viser hvordan man vælger demotilstand"
+          caption="SpilDanskNu's lobby med tydelige 'Spil' og 'Demo' knapper – du kan teste alle spil gratis direkte i browseren."
+          eager
+        />
+
         <Separator className="my-8" />
 
         {/* Typer af gratis casino spil */}
@@ -341,11 +355,13 @@ const GratisCasinoSpil = () => {
               </Link>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={wantedGameplayImg}
+            alt="Wanted Dead or a Wild spilleautomat fra Hacksaw Gaming i demotilstand med 5x6 grid, skull- og whiskey-symboler"
+            caption="Wanted Dead or a Wild i demotilstand – identisk gameplay og RTP som med rigtige penge. Bemærk 'DEMOSALDO' i bunden."
+          />
         </section>
-
-        <Separator className="my-8" />
-
-        {/* Gratis bordspil sektion */}
         <section className="mb-10">
           <h2 className="mb-4 text-3xl font-bold">Gratis bordspil – strategitræning uden risiko</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -365,6 +381,12 @@ const GratisCasinoSpil = () => {
               </p>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={blackjackDemoImg}
+            alt="Blackjack MH bordspil fra Play'n GO i demotilstand – grønt bord med tre spillepladser og chip-værdier fra 0.1 til 100"
+            caption="Blackjack Multi-Hand i demo – øv basic strategy med tre hænder samtidig helt uden risiko."
+          />
 
           <Card className="mb-4 border-border">
             <CardHeader>
@@ -393,6 +415,12 @@ const GratisCasinoSpil = () => {
               </p>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={baccaratBordImg}
+            alt="Baccarat bordspil i demotilstand – grønt bord med Player ($25), Banker ($10) og Tie ($0.10) indsatser"
+            caption="Baccarat i demo – test forskellen mellem Player-, Banker- og Tie-indsatser uden at risikere rigtige penge."
+          />
         </section>
 
         <Separator className="my-8" />
@@ -418,6 +446,12 @@ const GratisCasinoSpil = () => {
                 Spil minimum 200 spins i demo for at opleve et spils bonusrunde mindst 2-3 gange. Vurder: Hvor ofte triggerer bonusrunden? Hvad er den gennemsnitlige gevinst i bonus? Er der retrigger-mulighed? Brug denne data til at sammenligne spil direkte – et spil med sjælden men lukrativ bonus (fx <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>) har en helt anden profil end et spil med hyppige, mindre bonusrunder (fx <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link>).
               </p>
             </div>
+
+            <ReviewScreenshot
+              src={wantedBonusBuyImg}
+              alt="Wanted Dead or a Wild bonuskøb-menu med tre bonusrunder: Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.)"
+              caption="Bonus buy-funktionen i Wanted Dead or a Wild – test de tre forskellige bonusrunder i demotilstand før du køber med rigtige penge."
+            />
 
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-bold text-lg mb-2">Trin 3: Test dit budget i demo</h3>
