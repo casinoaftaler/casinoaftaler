@@ -1,6 +1,9 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMegawaysFilter from "@/assets/screenshots/betinia-megaways-filter.webp";
+import megawaysLobbyUdvalg from "@/assets/screenshots/megaways-lobby-udvalg.webp";
+import megawaysSpilleregler from "@/assets/screenshots/megaways-spilleregler-paytable.webp";
+import megaways5Lions from "@/assets/screenshots/megaways-5-lions-gameplay.webp";
 import { Link } from "react-router-dom";
 import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { SEO } from "@/components/SEO";
