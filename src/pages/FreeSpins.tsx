@@ -32,7 +32,6 @@ import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-sp
 import mrgreenCashSpins from "@/assets/screenshots/mrgreen-50-cash-spins-registrering.webp";
 import royalCasinoChancer from "@/assets/screenshots/royal-casino-200-chancer-velkomst.webp";
 import onecasinoGratisSpins from "@/assets/screenshots/onecasino-100-gratis-spins-velkomst.webp";
-import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.webp";
 import { Ban, Dog, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 
