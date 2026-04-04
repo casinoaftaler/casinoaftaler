@@ -231,6 +231,13 @@ const SaadanTesterVi = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildansknuLobby}
+          alt="SpilDanskNu casino-lobby med spiludvalg – Le Bandit, Sweet Bonanza 1000, Gates of Olympus og flere populære slots fra Hacksaw, Pragmatic Play og Play'n GO"
+          caption="Eksempel på vores test: SpilDanskNu's lobby med kategorifiltre, søgefunktion og bredt spiludvalg fra kendte udbydere"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* 2. Testkriterier */}
