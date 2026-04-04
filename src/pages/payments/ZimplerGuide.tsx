@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBetalingsmetoder from "@/assets/screenshots/betinia-betalingsmetoder-zimpler.webp";
+import betiniaSaldo from "@/assets/screenshots/betinia-saldo-indskud-zimpler.webp";
+import betiniaMitid from "@/assets/screenshots/betinia-mitid-login-zimpler.webp";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby-spil-zimpler.webp";
 const ZimplerGuide = () => {
   return (
     <PaymentMethodPage
