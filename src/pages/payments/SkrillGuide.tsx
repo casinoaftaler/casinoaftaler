@@ -168,8 +168,14 @@ const SkrillGuide = () => {
                 De tre metoder deler et fælles mål – hurtige, sikre casinotransaktioner – men anvender fundamentalt forskellige teknologier. Skrill og{" "}
                 <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>{" "}
                 er wallet-baserede: Du overfører penge til en separat konto og betaler derfra. Trustly er open banking-baseret: Det forbinder direkte til din bank uden mellemkonto.
-              </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
+               </p>
+               <ReviewScreenshot
+                 src={mitidAppGodkend}
+                 alt="Videoslots MitID app-godkendelse – åbn MitID-appen og godkend login for at tilgå din casinokonto sikkert"
+                 caption="MitID-appens godkendelses-trin ved casino-login – bekræft din identitet med ét swipe i appen."
+                 size="compact"
+               />
+               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Gebyrer:</strong> Trustly er konsekvent gebyrfri. PayPal er gebyrfri i DKK. Skrill opkræver 5,50 EUR for bankoverførsler og op til 3,99 % for valutaomregning. For danske spillere på danske casinoer er Skrill den dyreste af de tre.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
