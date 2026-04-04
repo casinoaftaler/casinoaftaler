@@ -7,6 +7,8 @@ import { useSupportChat } from "@/hooks/useSupportChat";
 import { useBroadcastChat } from "@/hooks/useBroadcastChat";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 
 
@@ -16,6 +18,9 @@ export function SupportChatWidget() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [broadcastExpanded, setBroadcastExpanded] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [welcomeLoaded, setWelcomeLoaded] = useState(false);
+  const [displayName, setDisplayName] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,6 +37,33 @@ export function SupportChatWidget() {
   } = useSupportChat();
 
   const { broadcast, dismissBroadcast } = useBroadcastChat();
+
+  // Fetch welcome_message_dismissed status
+  useEffect(() => {
+    if (!user?.id) return;
+    supabase
+      .from("profiles")
+      .select("welcome_message_dismissed, display_name")
+      .eq("user_id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data && !data.welcome_message_dismissed) {
+          setShowWelcome(true);
+          setDisplayName(data.display_name);
+        }
+        setWelcomeLoaded(true);
+      });
+  }, [user?.id]);
+
+  const dismissWelcome = async () => {
+    setShowWelcome(false);
+    if (user?.id) {
+      await supabase
+        .from("profiles")
+        .update({ welcome_message_dismissed: true } as any)
+        .eq("user_id", user.id);
+    }
+  };
   // Auto-scroll on new messages
   useEffect(() => {
     if (isOpen && scrollRef.current) {
