@@ -440,6 +440,13 @@ const RofusGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={rofusMitidLogin}
+          alt="MitID login-dialog til ROFUS via Spillemyndigheden med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-verifikation er påkrævet for at oprette eller ændre en ROFUS-registrering – processen tager under to minutter."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
