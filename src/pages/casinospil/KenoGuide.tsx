@@ -359,6 +359,11 @@ const KenoGuide = () => {
               </p>
             </div>
           </div>
+          <ReviewScreenshot
+            src={kenoVaelgSelvBoard}
+            alt="Danske Spil Vælg Selv Keno spilleplade med 70 numre, 10 valgte tal markeret i blåt, gevinstoversigt der viser 1.100.000 kr. for 10 rigtige"
+            caption="Vælg Selv Keno: Marker dine lykketal på nummerfeltet 1-70. Her er 10 tal valgt med en mulig topgevinst på 1.100.000 kr. for 5 kr. per række."
+          />
         </section>
 
         <Separator className="my-8" />
