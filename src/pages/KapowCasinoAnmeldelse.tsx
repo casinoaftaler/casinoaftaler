@@ -188,7 +188,7 @@ const KapowCasinoAnmeldelse = () => {
               <div key={m.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><MenuIcon iconName="credit-card" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div className="flex-1"><div className="flex items-center gap-2"><h3 className="font-semibold">{m.title}</h3><Badge variant="outline" className="text-xs">{m.speed}</Badge></div><p className="text-sm text-muted-foreground mt-1">{m.desc}</p></div></div>
             ))}
           </div>
-          <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation ved første udbetaling krævede upload af pas-kopi og screenshot af Trustly-bekræftelse. Processen tog 4 timer fra upload til godkendelse – langsommere end Betsson-gruppens automatiserede MitID-system (2 timer) men inden for normen for SkillOnNet-platforme. Der er ingen gebyrer fra Kapow Casinos side. Minimum udbetaling er 200 kr.</p>
+          <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation ved første udbetaling krævede upload af pas-kopi og screenshot af Trustly-bekræftelse. Processen tog 4 timer fra upload til godkendelse – langsommere end Betsson-gruppens automatiserede MitID-system (2 timer) men inden for normen for platforme på SkillOnNet-teknologi. Der er ingen gebyrer fra Kapow Casinos side. Minimum udbetaling er 200 kr.</p>
 
           <ReviewScreenshot
             src={kapowIndbetaling}
