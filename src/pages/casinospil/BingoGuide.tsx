@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilBingo from "@/assets/screenshots/danskespil-bingo.webp";
-import spilnuBingo from "@/assets/screenshots/spilnu-bingo.webp";
+import spillnuBingoLobby from "@/assets/screenshots/spillnu-bingo-lobby.webp";
+import banko90kugle from "@/assets/screenshots/banko-90kugle-spilrum.webp";
+import bankoFlashPraemie from "@/assets/screenshots/banko-flash-megapraemie.webp";
+import bingo75kugleMobil from "@/assets/screenshots/bingo-75kugle-mobil.webp";
+import bingo75kugleDesktop from "@/assets/screenshots/bingo-75kugle-spilrum.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
