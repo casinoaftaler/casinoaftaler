@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonRouletteLobby from "@/assets/screenshots/comeon-live-roulette-martingale.webp";
+import getluckyRouletteVarianter from "@/assets/screenshots/getlucky-roulette-varianter.webp";
+import spilleautomatenRouletteBordspil from "@/assets/screenshots/spilleautomaten-roulette-bordspil.webp";
+import rouletteBordlayoutEvenMoney from "@/assets/screenshots/roulette-bordlayout-even-money.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -131,6 +135,13 @@ export default function MartingaleRouletteGuide() {
             Vores tilgang er datadrevet: vi bruger faktisk sandsynlighedsregning, ikke anekdoter. Og konklusionen er entydig – Martingale er et system, der vinder ofte men taber stort, og over tid vil den negative forventede værdi altid dominere. Læs videre for at forstå præcis hvorfor.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={comeonRouletteLobby}
+          alt="ComeOn live casino roulette-lobby med Fireball Roulette, Red Door Roulette, Gold Vault Roulette og andre Evolution-borde tilgængelige for danske spillere"
+          caption="ComeOn tilbyder et bredt udvalg af live roulette-borde – vælg standard europæisk roulette for Martingale fremfor specialvarianter som Lightning Roulette."
+          eager
+        />
 
         {/* Sådan fungerer Martingale */}
         <section className="mb-12">
@@ -345,6 +356,13 @@ export default function MartingaleRouletteGuide() {
             Og dér er problemet: al den profit du har akkumuleret over 1.499 succesfulde serier (ca. 74.950 kr. med 50 kr. basis) bliver udslettet af ét enkelt sammenbrud. Det er den matematiske realitet bag Martingale, og det er grunden til, at casinoer ikke bekymrer sig om systemet – de ved, at bordmaksimum er deres ultimative forsvar.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={rouletteBordlayoutEvenMoney}
+          alt="Europæisk roulette-bordlayout med even-money felter for rød/sort, lige/ulige og 1-18/19-36 som bruges til Martingale-systemet"
+          caption="Martingale bruges udelukkende på even-money bets (1-18/19-36, EVEN/ODD, rød/sort) – her vist med placerede chips på et europæisk bord."
+          size="medium"
+        />
 
         {/* 10.000-spins simulering */}
         <section className="mb-12">
@@ -598,6 +616,12 @@ export default function MartingaleRouletteGuide() {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={getluckyRouletteVarianter}
+          alt="GetLucky live roulette-kategori med filtre for Roulette, Multiplikator, Dansk dealer og Evolution hos dansk licenseret casino"
+          caption="GetLucky har dedikerede filtre til roulette-varianter – brug filteret 'Dansk dealer' for at finde borde med dansk-talende croupiers til Martingale."
+        />
+
         {/* Praktiske tips */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -782,6 +806,12 @@ export default function MartingaleRouletteGuide() {
             <strong>Vigtig note om <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link>:</strong> Denne populære variant egner sig <em>dårligt</em> til Martingale, da even-money payouts reduceres til at kompensere for Lightning-multipliers. Du får lavere odds på de væddemål, Martingale kræver, hvilket øger din effektive house edge. Hold dig til standard europæisk eller <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> for Martingale.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenRouletteBordspil}
+          alt="Spilleautomaten live casino-lobby med Extra Time Roulette, Roulette 2, Speed Baccarat og andre live bordspil hos dansk casino"
+          caption="Spilleautomaten tilbyder live roulette-borde med varierende bordgrænser – vælg borde med høj maks-indsats for flest mulige Martingale-fordoblinger."
+        />
 
         {/* Konklusion */}
         <section className="mb-12">
