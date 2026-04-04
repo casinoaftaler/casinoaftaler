@@ -227,6 +227,7 @@ const HurtigUdbetaling = () => {
             eager
           />
           <div className="space-y-4">
+            {betalingsMetoder.map((method) => (
               <Card key={method.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
