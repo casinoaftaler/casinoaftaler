@@ -488,6 +488,13 @@ const Spillemaskiner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaUdbydere}
+          alt="Betinia casino udbyderoversigt med Pragmatic Play (527 spil), Relax Gaming (143 spil), Play'n GO (434 spil) og mange flere studier"
+          caption="Udbyderoversigten hos Betinia giver et godt overblik over de største studier – Pragmatic Play dominerer med 527 titler, mens Play'n GO og Relax Gaming følger efter."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 10: Regulering i Danmark ── */}
