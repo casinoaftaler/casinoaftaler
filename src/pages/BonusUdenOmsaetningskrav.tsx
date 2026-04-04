@@ -3,6 +3,10 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import getluckyKampagner from "@/assets/screenshots/getlucky-kampagner.webp";
+import mrgreenVelkomsttilbud from "@/assets/screenshots/mrgreen-velkomsttilbud-100kr-indbetaling.webp";
+import betsson50Freespins from "@/assets/screenshots/betsson-50-freespins-velkomsttilbud.webp";
+import onecasinoBonusvilkaar from "@/assets/screenshots/onecasino-100-gratis-spins-bonusvilkaar.webp";
+import royalcasinoFoedselsdag from "@/assets/screenshots/royalcasino-foedselsdag-gratis-chancer.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -226,6 +230,12 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src={mrgreenVelkomsttilbud}
+            alt="Mr Green velkomsttilbud med 100 kr. bonus ved første indbetaling uden gennemspilskrav på kontanter"
+            caption="Mr Greens velkomsttilbud: 100 kr. ekstra ved indbetaling – kontanterne er uden omsætningskrav og kan bruges frit"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -410,6 +420,13 @@ const BonusUdenOmsaetningskrav = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={betsson50Freespins}
+            alt="Betsson kampagneside med 50 omsætningsfrie freespins som casino velkomsttilbud uden gennemspilskrav"
+            caption="Betssons velkomsttilbud: 50 freespins uden omsætningskrav – gevinster udbetales direkte som kontanter"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -594,6 +611,13 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={onecasinoBonusvilkaar}
+            alt="OneCasino bonusvilkår med 100 gratis spins uden omsætningskrav og detaljerede betingelser for velkomstbonus"
+            caption="OneCasinos bonusvilkår: 100 gratis spins uden gennemspilskrav – bemærk de specifikke betingelser for maksimal indsats og udløb"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -644,6 +668,13 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={royalcasinoFoedselsdag}
+            alt="Royal Casino fødselsdagskampagne med 10 gratis chancer uden omsætningskrav på Royal Roost X UP spilleautomaten"
+            caption="Royal Casinos fødselsdagstilbud: 10 omsætningsfrie gratis chancer – et eksempel på løbende omsætningsfri kampagner til eksisterende spillere"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
