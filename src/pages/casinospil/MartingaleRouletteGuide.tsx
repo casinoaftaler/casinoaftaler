@@ -616,6 +616,12 @@ export default function MartingaleRouletteGuide() {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={getluckyRouletteVarianter}
+          alt="GetLucky live roulette-kategori med filtre for Roulette, Multiplikator, Dansk dealer og Evolution hos dansk licenseret casino"
+          caption="GetLucky har dedikerede filtre til roulette-varianter – brug filteret 'Dansk dealer' for at finde borde med dansk-talende croupiers til Martingale."
+        />
+
         {/* Praktiske tips */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
