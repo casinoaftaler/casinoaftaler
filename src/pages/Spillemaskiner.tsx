@@ -199,6 +199,13 @@ const Spillemaskiner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseRtp}
+          alt="RTP-information fra The Dog House Megaways der viser teoretisk tilbagebetalingsprocent på 95.51% og indsatsgrænser"
+          caption="RTP-informationen i The Dog House Megaways bekræfter en teoretisk tilbagebetalingsprocent på 95,51 % – vigtigt at verificere, da operatører kan vælge lavere konfigurationer."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 3: Matematikken ── */}
