@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.webp";
+import dogHouseGameplay from "@/assets/screenshots/dog-house-megaways-bonus-symbol.webp";
+import dogHouseRtp from "@/assets/screenshots/dog-house-megaways-rtp-info.webp";
+import dogHouseIntro from "@/assets/screenshots/dog-house-megaways-intro-volatilitet.webp";
+import betiniaUdbydere from "@/assets/screenshots/betinia-spiludbydere-oversigt.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
