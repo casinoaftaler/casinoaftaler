@@ -9,13 +9,16 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaRegMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
+import rofusSpillemyndigheden from "@/assets/screenshots/rofus-spillemyndigheden-info.webp";
+import rofusForside from "@/assets/screenshots/rofus-forside-log-paa.webp";
+import rofusMitidLogin from "@/assets/screenshots/rofus-mitid-login.webp";
+import rofusRegistrer from "@/assets/screenshots/rofus-registrer-udelukkelse.webp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
+
 import { ArrowRight, Ban, Gavel, HelpCircle, Timer, UserX } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
@@ -203,16 +206,6 @@ const RofusGuide = () => {
           Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={rofusHero}
-            alt="ROFUS selvudelukkelse – laptop viser registreringsinterface med beskyttelsesskjold og casino-chips"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER ROFUS?
@@ -287,9 +280,11 @@ const RofusGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={betiniaRegMitid}
-          alt="MitID-login ved ROFUS-registrering – selvudelukkelse via det danske Register Over Frivilligt Udelukkede Spillere"
-          caption="ROFUS-registrering kræver MitID-verifikation for at sikre juridisk bindende selvudelukkelse"
+          src={rofusSpillemyndigheden}
+          alt="ROFUS er Spillemyndighedens register over frivilligt udelukkede spillere med information om fortrolighed, dækning og registrering via MitID"
+          caption="Spillemyndighedens officielle ROFUS-side forklarer registrets funktion, fortrolighed og dækning – registrering er bindende og kan ikke annulleres."
+          size="full"
+          eager
         />
 
         <Separator className="my-10" />
@@ -356,6 +351,13 @@ const RofusGuide = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS forsiden med Log på ROFUS med MitID knap og FAQ-sektion om hvad der sker ved login"
+          caption="ROFUS-forsiden giver direkte adgang til registrering via MitID og besvarer de mest stillede spørgsmål om selvudelukkelse."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -437,6 +439,13 @@ const RofusGuide = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={rofusMitidLogin}
+          alt="MitID login-dialog til ROFUS via Spillemyndigheden med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-verifikation er påkrævet for at oprette eller ændre en ROFUS-registrering – processen tager under to minutter."
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
@@ -535,6 +544,13 @@ const RofusGuide = () => {
             stærkere end midlertidig udelukkelse, fordi du ikke automatisk genaktiveres.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={rofusRegistrer}
+          alt="ROFUS registreringsformular med valg mellem endelig udelukkelse og midlertidig udelukkelse med perioder fra 24 timer til 6 måneder"
+          caption="Registreringsformularen i ROFUS viser de to udelukkelsestyper: Endelig (permanent) og midlertidig med valgfri varighed fra 24 timer til 6 måneder."
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
