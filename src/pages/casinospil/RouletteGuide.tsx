@@ -467,6 +467,12 @@ const RouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>"Inside bets har dårligere odds end outside bets"</strong> – House edge er identisk for alle væddemål i europæisk roulette: 2,70 %. Hvad der ændrer sig, er volatiliteten. En straight-up bet (35:1) har ekstrem høj varians, mens rød/sort (1:1) har lav varians. Over mange spins taber du den samme procentdel uanset bet-type. Valget mellem inside og outside handler om din risikoappetit, ikke om matematisk fordel.
           </p>
+          <ReviewScreenshot
+            src={rouletteStatistik}
+            alt="Roulette statistik-panel med varme og kolde tal, hjulvisualisering og seneste 500 runders resultatfordeling i dansk live roulette"
+            caption="Statistik-panelet i live roulette: 'varme' og 'kolde' tal baseret på de seneste 500 runder – en visuel fælde, da hvert spin er uafhængigt"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
