@@ -138,8 +138,13 @@ const ZimplerGuide = () => {
                 (1-3 dage) og{" "}
                 <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>{" "}
                 (2-5 dage).
-              </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
+               </p>
+               <ReviewScreenshot
+                 src={betiniaLobby}
+                 alt="Betinia casino forside med spiludvalg efter Zimpler-indbetaling – Wolf Gold, Sweet Bonanza, Razor Shark og andre populære spilleautomater"
+                 caption="Betinias spillobby efter succesfuld Zimpler-indbetaling – øjeblikkelig adgang til 150+ spilleautomater."
+               />
+               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Mobiloplevelse:</strong> Zimplers mobilinterface er mærkbart poleret sammenlignet med Trustlys. Bank-valg og beløbsindtastning foregår i en responsive overlay, der tilpasser sig skærmstørrelsen. Knapperne er store nok til touch-betjening, og hele flowet kræver maksimalt fire tryk. Desktop-oplevelsen via browser var funktionel men mindre optimeret – her matcher Trustly eller overgår Zimplers interface.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
