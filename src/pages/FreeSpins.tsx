@@ -646,6 +646,12 @@ const FreeSpins = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={royalCasinoChancer}
+          alt="Royal Casino velkomsttilbud med 750 kr. bonus ved første overførsel og 200 chancer ved oprettelse – 10x gennemspilskrav og detaljerede vilkår"
+          caption="Royal Casinos dobbelte velkomsttilbud: 750 kr. indskudsbonus + 200 free spins (chancer) ved oprettelse"
+        />
+
         {/* Spillerprofiler */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
