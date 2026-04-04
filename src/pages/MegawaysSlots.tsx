@@ -1,6 +1,9 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMegawaysFilter from "@/assets/screenshots/betinia-megaways-filter.webp";
+import megawaysLobbyUdvalg from "@/assets/screenshots/megaways-lobby-udvalg.webp";
+import megawaysSpilleregler from "@/assets/screenshots/megaways-spilleregler-paytable.webp";
+import megaways5Lions from "@/assets/screenshots/megaways-5-lions-gameplay.webp";
 import { Link } from "react-router-dom";
 import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { SEO } from "@/components/SEO";
@@ -514,6 +517,13 @@ const MegawaysSlots = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={megaways5Lions}
+          alt="5 Lions Megaways gameplay med dynamiske hjul og op til 7 symboler per reel"
+          caption="5 Lions Megaways fra Pragmatic Play – et eksempel på den klassiske 6-hjuls Megaways-opbygning med variabelt antal symboler og max win på 5.000x indsatsen."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 5. BEDSTE MEGAWAYS SLOTS ── */}
@@ -761,6 +771,13 @@ const MegawaysSlots = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={megawaysSpilleregler}
+          alt="Megaways spilleregler og paytable med symbolværdier, wild-regler og forklaring af vinderkombinationer"
+          caption="Paytable fra 5 Lions Megaways viser symbolværdier, wild-funktionen og illustrationen af venstre-til-højre gevinsttildeling over op til 117.649 ways."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 8. MEGAWAYS-VARIANTER OG HYBRIDER ── */}
@@ -894,6 +911,13 @@ const MegawaysSlots = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={megawaysLobbyUdvalg}
+          alt="Casino lobby filtreret på Megaways med over 40 tilgængelige titler fra Pragmatic Play, Stakelogic og andre udbydere"
+          caption="Megaways-filteret i et dansk licenseret casino viser det brede udvalg af titler fra flere udbydere – fra populære serier som Dog House og Buffalo King til nichespil."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
