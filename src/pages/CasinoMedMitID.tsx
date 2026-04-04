@@ -578,6 +578,13 @@ const CasinoMedMitID = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={mitidKontograenserImg}
+            alt="Kontogrænser-oversigt på dansk casino med indskuds-, indsats- og tabsgrænser – daglig, ugentlig og månedlig periode"
+            caption="Eksempel på kontogrænser hos et dansk casino: Indskuds-, indsats- og tabsgrænser kan sættes dagligt, ugentligt og månedligt."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
