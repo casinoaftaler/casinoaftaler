@@ -252,7 +252,48 @@ const CasinoMedMitID = () => {
               </div>
             ))}
           </div>
-        </section>
+
+          <ReviewScreenshot
+            src={mitidLoginImg}
+            alt="MitID login-skærm hos SpilDanskNu – bruger-ID felt og FORTSÆT-knap med MitID-logo"
+            caption="Trin 2: MitID login-skærmen hos SpilDanskNu, hvor du indtaster dit bruger-ID for at starte verifikationsprocessen."
+            size="compact"
+            eager
+          />
+
+          <div className="mt-6 space-y-3">
+            <div className="flex items-start gap-4 rounded-lg border border-border p-4">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">3</div>
+              <div>
+                <h3 className="font-semibold">Godkend med MitID-appen</h3>
+                <p className="text-sm text-muted-foreground">Casinoet sender en MitID-anmodning til din telefon. Åbn MitID-appen og godkend med fingeraftryk, ansigtsgenkendelse eller pinkode. Processen tager 2-5 sekunder. Sørg for at din telefon har internetforbindelse og at MitID-appen er opdateret.</p>
+              </div>
+            </div>
+          </div>
+
+          <ReviewScreenshot
+            src={mitidAppGodkendImg}
+            alt="MitID-app viser 'Åbn MitID app og godkend' med animeret telefon-ikon under login hos SpilDanskNu"
+            caption="Trin 3: MitID-appen beder dig godkende login-anmodningen med biometrisk verifikation."
+            size="compact"
+          />
+
+          <div className="mt-6 space-y-3">
+            <div className="flex items-start gap-4 rounded-lg border border-border p-4">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">4</div>
+              <div>
+                <h3 className="font-semibold">Automatisk verifikation (under 30 sek.)</h3>
+                <p className="text-sm text-muted-foreground">Når du godkender MitID-anmodningen, overføres dine verificerede oplysninger til casinoet: fulde navn, fødselsdato og adresse. Casinoet kontrollerer automatisk din alder (18+) og ROFUS-status. Hele verifikationen tager typisk under 30 sekunder.</p>
+              </div>
+            </div>
+          </div>
+
+          <ReviewScreenshot
+            src={mitidGodkendtImg}
+            alt="MitID verifikation godkendt – blåt skjold med flueben og teksten 'Godkendt' bekræfter succesfuld identitetskontrol"
+            caption="Trin 4: MitID bekræfter godkendelsen – din identitet er verificeret, og casinoet opretter din konto automatisk."
+            size="compact"
+          />
 
         <Separator className="my-8" />
 
