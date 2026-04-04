@@ -1091,6 +1091,13 @@ const MobilCasino = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenKonto}
+          alt="Spilleautomaten.dk kontooversigt på mobil med saldo 0,70 DKK, indbetaling, udbetaling, profil og kontooversigt-knapper"
+          caption="Kontooversigten på Spilleautomaten: et eksempel på mobilvenlig kontonavigation med hurtig adgang til indbetaling og udbetaling."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
