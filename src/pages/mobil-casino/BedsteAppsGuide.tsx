@@ -601,6 +601,13 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Ifølge vores data har danske casino-apps en gennemsnitlig opt-in rate på 62 % for push-notifikationer. Spillere, der deaktiverer bonus-notifikationer men beholder kontomeddelelser, rapporterer generelt en sundere spilprofil. Se vores guide til <Link to="/ansvarligt-spil/spillegraenser" className="text-primary underline hover:text-primary/80">spillegrænser</Link> for mere om kontrol over dit spil.</p>
         </section>
 
+        <ReviewScreenshot
+          src={comeonAppStore}
+          alt="ComeOn! Online Casino & Odds app i App Store – 876 anmeldelser, 100% velkomstbonus op til 1.000 kr. og live-væddemål fra Co-Gaming Ltd"
+          caption="ComeOn! i App Store: Casino og odds i én app med 100% velkomstbonus op til 1.000 kr. og live-væddemål."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 11. OPDATERINGSCYKLUS-ANALYSE */}
