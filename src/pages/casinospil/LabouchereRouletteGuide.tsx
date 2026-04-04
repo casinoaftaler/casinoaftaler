@@ -125,6 +125,13 @@ export default function LabouchereRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={comeonLiveRoulette}
+          alt="ComeOn live roulette-lobby med Fireball Roulette, Red Door Roulette og andre Evolution-borde tilgængelige for danske spillere"
+          caption="ComeOn tilbyder et bredt udvalg af live roulette-borde fra Evolution – ideelt til Labouchère-tracking med 45-60 sekunders tempo."
+          eager
+        />
+
         {/* Sådan fungerer det */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
