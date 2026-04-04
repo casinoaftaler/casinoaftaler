@@ -325,6 +325,13 @@ const Spillemaskiner = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={dogHouseIntro}
+          alt="The Dog House Megaways introskærm med volatilitetsindikator på maksimum og 3x multiplikator-wilds på alle positioner"
+          caption="Introskærmen til The Dog House Megaways viser sticky wild-multiplikatorer og den højeste volatilitetsklassificering – en typisk high-variance slot til aggressive spillertyper."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── SEKTION 6: Myter om spillemaskiner ── */}
