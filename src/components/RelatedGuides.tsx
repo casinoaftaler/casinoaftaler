@@ -366,6 +366,20 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  if (path === "/forfatter/frederik") {
+    return {
+      guides: [
+        { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
+        { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", iconName: "book-open", desc: "Juridisk redaktør på Casinoaftaler.dk" },
+        { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
+        { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", iconName: "shield-check", desc: "Vores testmetode og vurderingskriterier" },
+      ],
+      subtitle: "Udforsk mere om holdet bag Casinoaftaler.dk og Frederiks ekspertområder.",
+    };
+  }
+
   // Forretningsmodel & Redaktionel politik
   if (path === "/forretningsmodel" || path === "/redaktionel-politik") {
     return {
