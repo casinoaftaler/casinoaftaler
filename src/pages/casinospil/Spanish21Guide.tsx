@@ -136,6 +136,14 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackLobby}
+          alt="Live blackjack-lobby med Multihand Blackjack, Speed Blackjack og Blackjack VIP-borde – typisk udvalg hos dansk licenseret online casino"
+          caption="Live blackjack-lobby med filtrering efter udbyder og bordtype – Spanish 21 findes typisk under RNG-bordspil, mens live-lobbyen tilbyder standard blackjack-varianter"
+          size="full"
+          loading="eager"
+        />
+
         {/* ═══════════════ DE MANGLENDE 10'ERE ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
