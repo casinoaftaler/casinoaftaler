@@ -248,6 +248,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Sådan beregnes cashback */}
+        <ReviewScreenshot
+          src={bwinCashback}
+          alt="bwin 10% casino cashback op til 1.000 kr. – ugentligt nettotab, tilmelding via konto, slots og jackpotspil inkluderet"
+          caption="bwins cashback-side: 10% ugentlig cashback op til 1.000 kr. med tydelig step-by-step vejledning og vilkår."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan beregnes cashback: Nettotab vs. bruttotab</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
