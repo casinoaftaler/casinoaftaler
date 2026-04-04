@@ -464,6 +464,13 @@ const CasinoApp = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={saProfilSaldo}
+          alt="Spilleautomaten app profilmenu med saldo 0,70 DKK, indbetalings- og udbetalingsknapper, Min Profil og Min Kontooversigt"
+          caption="Profiloversigt i Spilleautomaten-appen – hurtig adgang til saldo, indbetaling, udbetaling og kontoadministration direkte fra mobilmenuen"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
