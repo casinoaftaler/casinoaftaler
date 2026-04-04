@@ -623,6 +623,13 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackSkaermnavn}
+          alt="Skærmnavn-dialog ved live blackjack-bord – spilleren vælger brugernavn 'Casinoaftaler' før deltagelse i live-sessionen"
+          caption="Skærmnavns-dialog inden live blackjack – online casinoer kræver et alias for at beskytte spillerens identitet ved bordet"
+          size="small"
+        />
+
         {/* ═══════════════ BANKROLL OG VARIANS ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
