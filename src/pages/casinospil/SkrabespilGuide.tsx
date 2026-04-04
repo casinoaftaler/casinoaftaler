@@ -218,6 +218,13 @@ const SkrabespilGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere placerer skrabespil sig i en unik niche: de er hurtigere end <Link to="/casinospil/bingo" className={linkClass}>bingo</Link>, simplere end <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> (ingen gevinstlinjer eller bonusmekanikker at forstå), og mere tilgængelige end <Link to="/casinospil/keno" className={linkClass}>keno</Link> (ingen nummervalg nødvendigt). Denne guide dækker alt fra matematiske modeller og variantforskelle til gevinsttabeller, budgetstyring og de bedste danske casinoer med skrabespil. Spil altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link> og undgå <Link to="/casino-uden-rofus" className={linkClass}>sider uden dansk licens</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={quickOmQuick}
+            alt="Danske Lotteri Spil Quick skrabespil-forside med Om Quick sektion og populære spil som Mega Quick, Bogstavjagt og Guldåren"
+            caption="Quick by Danske Lotteri Spil: Danmarks største udbyder af online skrabespil siden 1992 med titler som Mega Quick (op til 5.000.000 kr.) og Bogstavjagt (op til 600.000 kr.)."
+            eager
+          />
         </section>
 
         <Separator className="my-8" />
