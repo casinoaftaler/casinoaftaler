@@ -524,6 +524,13 @@ const SkrabespilGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Et vigtigt koncept er "hit rate" – den procentdel af lodder der giver en gevinst (uanset størrelse). Typiske online skrabespil har en hit rate på 30-40%, hvilket betyder at du statistisk vinder noget på hvert 2½.-3⅓. lod. Sammenlign dette med fysiske skrabelodder, der typisk har en hit rate på kun 15-25%. Den højere hit rate online skyldes de mange små gevinster (1-2x indsats) der holder spilleren engageret.
           </p>
+
+          <ReviewScreenshot
+            src={quickBogstavjagt}
+            alt="Bogstavjagt skrabespil gameplay med krydsord-spilleplade, bonusord-funktion og Autoskrab-knap hos Danske Lotteri Spil"
+            caption="Bogstavjagt i aktion: Et hybrid-skrabespil der kombinerer krydsord med skrabe-mekanik. Skrab bogstaver fri og dan ord for bonusgevinster – op til 600.000 kr."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
