@@ -136,6 +136,13 @@ export default function MartingaleRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={comeonRouletteLobby}
+          alt="ComeOn live casino roulette-lobby med Fireball Roulette, Red Door Roulette, Gold Vault Roulette og andre Evolution-borde tilgængelige for danske spillere"
+          caption="ComeOn tilbyder et bredt udvalg af live roulette-borde – vælg standard europæisk roulette for Martingale fremfor specialvarianter som Lightning Roulette."
+          eager
+        />
+
         {/* Sådan fungerer Martingale */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
