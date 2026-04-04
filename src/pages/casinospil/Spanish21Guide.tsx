@@ -75,7 +75,7 @@ const Spanish21Guide = () => {
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
-      <section className="relative overflow-hidden py-12 md:py-20 bg-gradient-to-br from-primary/10 via-background to-muted">
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
@@ -84,7 +84,7 @@ const Spanish21Guide = () => {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spanish 21 – Bonusregler, Strategi og Hvornår Varianten Giver Mening
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/80">
               Spanish 21 er ikke bare blackjack uden 10'ere. Det er en særskilt variant med egne bonusregler, egne prioriteringer og en strategi der skal læres separat.
             </p>
           </div>
