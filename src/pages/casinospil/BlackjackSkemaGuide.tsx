@@ -434,6 +434,12 @@ const BlackjackSkemaGuide = () => {
             <StrategyTable title="Pairs (split-beslutninger)" iconName="layers" rows={pairTotals} id="pairs" />
           </section>
 
+          <ReviewScreenshot
+            src={blackjackSkemaImg}
+            alt="Komplet blackjack basic strategy skema med farvekodede felter for hard totals, soft totals og pairs – dealerens kort vs. din hånd"
+            caption="Fysisk blackjack strategy chart: Det komplette skema med alle hard totals, soft hands og pairs. H = Hit, S = Stand, FN = Double Down, P = Split, H/R = Surrender/Hit, H/P = Split hvis DAS."
+          />
+
           {/* ── Farvekoder ── */}
           <section id="farvekoder" className="mb-10">
             <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
