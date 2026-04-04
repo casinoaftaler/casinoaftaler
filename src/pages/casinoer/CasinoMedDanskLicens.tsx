@@ -198,6 +198,13 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 2: 7 konkrete fordele ved dansk licens
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby med dansk licens – spiludvalg med Wolf Gold, Sweet Bonanza og Razor Shark, kampagner og MobilePay-indbetaling i DKK"
+          caption="Betinias casino-lobby: Et dansk licenseret casino med bredt spiludvalg, danske kategorier og DKK-saldo"
+          eager
+        />
+
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             7 konkrete fordele ved at vælge et casino med dansk licens
