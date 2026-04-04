@@ -656,7 +656,7 @@ const MobilCasino = () => {
             size="compact"
           />
 
-          <p className="text-muted-foreground leading-relaxed mb-6">
+
 
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
