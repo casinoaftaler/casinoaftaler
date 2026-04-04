@@ -218,10 +218,10 @@ const BingoGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilBingo}
-          alt="Danske Spil bingo-lobby med 75-kugle og 90-kugle bingo-rum samt aktive jackpots"
-          caption="Danske Spil bingo – et af de mest populære bingo-rum hos danske casinoer med licens"
-          size="full"
+          src={spillnuBingoLobby}
+          alt="Spillnu.dk bingo-lobby med Bingo og Banko varianter, megapræmie på 25.000 kr. og aktive vindere i bunden"
+          caption="Spillnu.dk's bingo-lobby: Vælg mellem 75-kugle Bingo og 90-kugle Banko med live præmiepuljer og megapræmie på 25.000 kr."
+          eager
         />
 
         <Separator className="my-8" />
