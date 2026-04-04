@@ -1802,6 +1802,7 @@ export type Database = {
           updated_at: string
           user_id: string
           volatility_preference: string | null
+          welcome_message_dismissed: boolean
         }
         Insert: {
           age_verified?: boolean
@@ -1841,6 +1842,7 @@ export type Database = {
           updated_at?: string
           user_id: string
           volatility_preference?: string | null
+          welcome_message_dismissed?: boolean
         }
         Update: {
           age_verified?: boolean
@@ -1880,6 +1882,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
           volatility_preference?: string | null
+          welcome_message_dismissed?: boolean
         }
         Relationships: []
       }
