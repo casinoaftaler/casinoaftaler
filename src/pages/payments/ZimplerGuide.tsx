@@ -99,8 +99,14 @@ const ZimplerGuide = () => {
            </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Smart Checkout ved genbesøg:</strong> Hvis du har brugt Zimpler før og har givet samtykke til Smart Checkout, husker systemet din foretrukne bank og konto. Ved tilbagevendende indbetalinger springer du bankvalgs-trinnet over og går direkte til MitID-godkendelse. Dette reducerer indbetalingstiden med 5-8 sekunder – en mærkbar forbedring i den daglige brugeroplevelse.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
+           </p>
+           <ReviewScreenshot
+             src={betiniaSaldo}
+             alt="Betinia casino saldo-oversigt med faktisk saldo, bonus saldo og indskudsknap – kontopanel efter Zimpler-indbetaling"
+             caption="Saldo-oversigten på Betinia efter indbetaling – faktisk saldo, bonussaldo og adgang til kasserer og bonusser."
+             size="compact"
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling – hvad du skal vide:</strong> Følg samme proces i omvendt rækkefølge. Vælg Zimpler i udbetalingssektionen, bekræft beløbet og godkend med MitID. Pengene sendes direkte til din bankkonto – typisk inden for få minutter til et par timer, afhængigt af casinoets interne behandlingstid. I vores test var den hurtigste udbetaling 23 minutter og den langsomste 1 time 42 minutter.
           </p>
           <p className="text-muted-foreground leading-relaxed">
