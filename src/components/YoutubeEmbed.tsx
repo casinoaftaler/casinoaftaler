@@ -54,6 +54,19 @@ export function YoutubeEmbed({
           className="absolute inset-0 h-full w-full border-0"
         />
       </div>
+
+      {/* Fallback link for age-restricted videos */}
+      <div className="flex items-center justify-center gap-1.5 border-t border-border bg-muted/40 px-4 py-2">
+        <span className="text-xs text-muted-foreground">Kan du ikke se videoen?</span>
+        <a
+          href={`https://www.youtube.com/watch?v=${videoId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-medium text-primary hover:text-primary/80 underline transition-colors"
+        >
+          Se på YouTube
+        </a>
+      </div>
     </div>
   );
 }
