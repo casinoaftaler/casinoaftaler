@@ -301,6 +301,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Forfatter", iconName: "book-open", desc: "Juridisk redaktør & casinoanalytiker" },
         { to: "/forfatter/niklas", label: "Niklas – Forfatter", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Forfatter", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/ansvarligt-spil", label: "Ansvarligt Spil", iconName: "shield-check", desc: "Spil sikkert og ansvarligt" },
         { to: "/spillemyndigheden", label: "Spillemyndigheden", iconName: "landmark", desc: "Danmarks tilsynsmyndighed for spil" },
       ],
