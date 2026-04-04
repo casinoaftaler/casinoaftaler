@@ -475,6 +475,13 @@ const BedsteAppsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={leovegasAppStore}
+          alt="LeoVegas Online Casino app i App Store – Nr. 3 i Kasino-kategorien med velkomstbonus op til 1.000 kr., 217 anmeldelser og Gaming Award som Mobile Operator of the Year"
+          caption="LeoVegas i App Store: Vinder af 'Mobile Operator of the Year' med velkomstbonus op til 1.000 kr."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 9. APP PERFORMANCE BENCHMARKS */}
