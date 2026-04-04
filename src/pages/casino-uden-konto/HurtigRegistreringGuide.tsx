@@ -598,6 +598,13 @@ const HurtigRegistreringGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={leoVegasMitidGodkendt}
+          alt="MitID godkendt-skærm med blåt skjold og flueben efter vellykket verifikation"
+          caption="MitID bekræfter identiteten med 'Godkendt'-skærmen – hele processen tager under 15 sekunder fra app-åbning til godkendelse."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* 6. UDBETALINGSSAMMENLIGNING */}
