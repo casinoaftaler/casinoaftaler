@@ -645,6 +645,15 @@ const MobilCasino = () => {
             Betalingsmetoder på mobil casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
+
+          <ReviewScreenshot
+            src={spilleautomatenIndbetaling}
+            alt="Spilleautomaten.dk indbetalingsside på mobil med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr. for alle metoder"
+            caption="Indbetalingsmetoder hos Spilleautomaten: MobilePay, Mastercard, Visa og Trustly – alle med minimum 75 kr."
+            size="compact"
+          />
+
+          <p className="text-muted-foreground leading-relaxed mb-6">
             Mobilvenlige betalingsmetoder er en af de største fordele ved mobil casino.
             Her er de mest populære muligheder, der alle er optimeret til mobilbrug:
           </p>
