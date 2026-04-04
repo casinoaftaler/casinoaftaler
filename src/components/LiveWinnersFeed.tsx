@@ -1,10 +1,11 @@
-import { Trophy, TrendingUp } from "lucide-react";
+import { Trophy, TrendingUp, LogIn } from "lucide-react";
 import { useLiveWinnersFeed, FeedEvent } from "@/hooks/useLiveWinnersFeed";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
 import { da } from "date-fns/locale";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import "@/styles/community-micro.css";
 
 function EventCard({ event }: { event: FeedEvent }) {
@@ -71,6 +72,7 @@ function EventCard({ event }: { event: FeedEvent }) {
 
 export function LiveWinnersFeed() {
   const { events } = useLiveWinnersFeed();
+  const { user } = useAuth();
 
   return (
     <div className="community-panel-vertical rounded-xl overflow-hidden">
@@ -88,7 +90,20 @@ export function LiveWinnersFeed() {
       </div>
 
       {/* Event list */}
-      {events.length === 0 ? (
+      {!user ? (
+        <div className="px-3 py-5 text-center">
+          <LogIn className="h-5 w-5 text-muted-foreground/50 mx-auto mb-2" />
+          <p className="text-[10px] text-muted-foreground font-medium">
+            Log ind for at se live gevinster
+          </p>
+          <Link
+            to="/auth"
+            className="inline-block mt-2 text-[10px] font-semibold text-primary hover:underline"
+          >
+            Log ind her →
+          </Link>
+        </div>
+      ) : events.length === 0 ? (
         <div className="px-3 py-4 text-center">
           <p className="text-[10px] text-muted-foreground">
             Ingen store gevinster endnu...
