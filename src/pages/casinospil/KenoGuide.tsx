@@ -17,7 +17,13 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import kenoMillionkenoForside from "@/assets/screenshots/keno-millionkeno-forside.webp";
+import kenoVaelgSelvBoard from "@/assets/screenshots/keno-vaelg-selv-board.webp";
+import kenoSaadanSpillerDu from "@/assets/screenshots/keno-saadan-spiller-du.webp";
+import kenoHvadErKenoFaq from "@/assets/screenshots/keno-hvad-er-keno-faq.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -193,7 +199,7 @@ const KenoGuide = () => {
       <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="71 Min." />
 
-        <SnippetAnswer answer="Online keno i Danmark spilles lovligt hos casinoer med dansk licens fra Spillemyndigheden. Spilleren vælger 1-15 numre fra 80 mulige, hvorefter 20 numre trækkes tilfældigt. Gevinsten afhænger af antal matches og indsats. RTP varierer fra 85-96% for online keno – markant højere end fysisk keno (60-75%). Populære varianter inkluderer Power Keno, Super Keno og video keno med bonusfunktioner. Alle danske keno-gevinster er skattefrie." />
+        <SnippetAnswer answer="Online keno i Danmark spilles lovligt hos casinoer med dansk licens fra Spillemyndigheden. I Danske Spils Keno vælger spilleren 2-10 numre fra 70 mulige, mens international online casino-keno typisk bruger 80 numre med 1-15 valg. 20 numre trækkes tilfældigt, og gevinsten afhænger af antal matches og indsats. RTP varierer fra 85-96% for online keno – markant højere end fysisk keno (60-75%). Populære varianter inkluderer MillionKeno, Vælg Selv og video keno med bonusfunktioner. Alle danske keno-gevinster er skattefrie." />
 
         <QuickComparisonTable count={3} title="Bedste casinoer med keno i Danmark" prioritySlugs={["spilleautomaten", "spildansknu", "betinia"]} />
 
@@ -204,11 +210,22 @@ const KenoGuide = () => {
             Keno er et af de ældste nummertrækningsspil i verden – med rødder der strækker sig over 2.000 år tilbage til det antikke Kina. Legenden fortæller at spillet blev brugt til at finansiere opbygningen af Den Kinesiske Mur, og det spredte sig via kinesiske immigranter til resten af verden i det 19. århundrede. I dag er online keno en populær spilform på <Link to="/casino-med-dansk-licens" className={linkClass}>danske licenserede casinoer</Link>, der kombinerer lotteriets spænding med casinoets tilgængelighed og tempo.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Spillets mekanik er elegant simpelt: du vælger et antal numre (typisk 1-15) fra et felt af 80 numre. Derefter trækkes 20 tilfældige numre af en certificeret <Link to="/ordbog/rng" className={linkClass}>Random Number Generator (RNG)</Link>. Din gevinst bestemmes af, hvor mange af dine valgte numre der matcher de trukne numre – og af hvor mange numre du oprindeligt valgte. Flere matches = større gevinst, men flere valgte numre kræver også flere matches for at ramme de højeste gevinster.
+           Spillets mekanik er elegant simpelt: du vælger et antal numre fra et nummerfelt, og derefter trækkes 20 tilfældige numre. Din gevinst bestemmes af, hvor mange af dine valgte numre der matcher de trukne numre – og af hvor mange numre du oprindeligt valgte. Flere matches = større gevinst, men flere valgte numre kræver også flere matches for at ramme de højeste gevinster.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Bemærk:</strong> Danske Spils Keno bruger et felt med <strong>70 numre</strong> og 2-10 valg, mens international online casino-keno typisk bruger 80 numre med 1-15 valg. Reglerne varierer altså afhængig af udbyderen, men det grundlæggende princip er det samme: jo flere matches, desto større gevinst.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Online keno adskiller sig markant fra fysisk keno og <Link to="/casinospil/online-lotteri" className={linkClass}>lotteri</Link>. Hvor traditionel keno i fysiske casinoer typisk kører med trækninger hvert 5.-15. minut og har en RTP på blot 60-75%, tilbyder online keno trækninger hvert minut (eller øjeblikkeligt i speed-varianter) med en RTP på 85-96%. Denne markante forbedring skyldes lavere driftsomkostninger for online-operatører og den intense konkurrence mellem spiludbydere.
           </p>
+
+          <ReviewScreenshot
+            src={kenoMillionkenoForside}
+            alt="Danske Spil MillionKeno forside med daglige trækninger, Vælg Selv keno, Store Keno og Lille Keno varianter"
+            caption="Danske Spils keno-platform: MillionKeno med 5 rækker à 9 tal for 25 kr., Vælg Selv keno og lynspil-varianter med op til 1,1 million kr. i gevinst."
+            eager
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er keno en attraktiv mellemmulighed: det er simplere end <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (ingen strategibeslutninger under spillet), hurtigere end <Link to="/casinospil/bingo" className={linkClass}>bingo</Link> (ingen ventetid på andre spillere), og tilbyder mere kontrol end <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> (du vælger selv dine numre og din risikoprofil). Denne guide dækker alt fra matematiske modeller og variantforskelle til budgetstyring og de bedste danske keno-casinoer. Spil altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link> og undgå <Link to="/casino-uden-rofus" className={linkClass}>sider uden dansk licens</Link>.
           </p>
@@ -238,6 +255,11 @@ const KenoGuide = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src={kenoSaadanSpillerDu}
+            alt="Danske Spil Keno instruktionsside med videoguides til Vælg Selv Keno, System Keno, Hvad er Keno og Keno PLUS abonnement"
+            caption="Danske Spils videoguides forklarer de forskellige keno-varianter trin for trin – fra Vælg Selv til System Keno og PLUS abonnement."
+          />
         </section>
 
         <Separator className="my-8" />
@@ -292,6 +314,11 @@ const KenoGuide = () => {
               Det statistisk mest fordelagtige valg i standard keno er 4-6 numre, hvor RTP typisk er højest (90-94%) og gevinstfrekvensen balancerer med meningsfulde udbetalinger. Undgå at vælge 13-15 numre – her er house edge markant højere, og sandsynligheden for store gevinster er astronomisk lav. Husk: keno er underholdning med tilfældighedsbaseret gevinst, ikke en investeringsstrategi.
             </p>
           </div>
+          <ReviewScreenshot
+            src={kenoHvadErKenoFaq}
+            alt="Danske Spil Keno FAQ-side der forklarer at keno er et talspil med 70 tal hvor 20 udtrækkes dagligt, med indsatser fra 5 til 100 kr."
+            caption="Danske Spils officielle keno-regler: Vælg 2-10 tal ud af 70, med daglige trækninger af 20 vindertal. Indsatser fra 5 kr. til 100 kr. per række."
+          />
         </section>
 
         <Separator className="my-8" />
@@ -321,7 +348,7 @@ const KenoGuide = () => {
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-bold text-lg mb-2">Trin 3: Vælg dine numre og indsats</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Marker dine foretrukne numre på keno-boardet (1-80). De fleste spil tillader 1-15 valg. Indstil din indsats per runde – typisk fra 1 kr. til 500 kr. Husk at din risikoprofil bestemmes af antal valgte numre: færre numre = hyppigere, men mindre gevinster. Flere numre = sjældnere, men potentielt enorme gevinster. "Quick Pick" lader computeren vælge tilfældige numre for dig.
+                Marker dine foretrukne numre på keno-boardet. I Danske Spils Keno vælger du 2-10 numre fra et felt af 70, mens international casino-keno typisk bruger 80 numre med 1-15 valg. Indstil din indsats per runde – i Danske Spils Keno fra 5 kr. til 100 kr. per række. Husk at din risikoprofil bestemmes af antal valgte numre: færre numre = hyppigere, men mindre gevinster. Flere numre = sjældnere, men potentielt enorme gevinster. "Auto-Udfyld" lader computeren vælge tilfældige numre for dig.
               </p>
             </div>
 
@@ -332,6 +359,11 @@ const KenoGuide = () => {
               </p>
             </div>
           </div>
+          <ReviewScreenshot
+            src={kenoVaelgSelvBoard}
+            alt="Danske Spil Vælg Selv Keno spilleplade med 70 numre, 10 valgte tal markeret i blåt, gevinstoversigt der viser 1.100.000 kr. for 10 rigtige"
+            caption="Vælg Selv Keno: Marker dine lykketal på nummerfeltet 1-70. Her er 10 tal valgt med en mulig topgevinst på 1.100.000 kr. for 5 kr. per række."
+          />
         </section>
 
         <Separator className="my-8" />
