@@ -221,6 +221,9 @@ const CasinoOgSkatGuide = () => {
         />
 
         <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="coins" className="h-7 w-7 text-primary" /> Kryptovaluta og casino-skat</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovaluta-gambling tilføjer et helt ekstra lag af skattemæssig kompleksitet, som mange spillere undervurderer. Med den voksende popularitet af <Link to="/casinoer/crypto-casino" className={linkClass}>crypto casinoer</Link> er det afgørende at forstå de skattemæssige implikationer af at gamble med Bitcoin, Ethereum og andre kryptovalutaer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det grundlæggende princip er, at der er <strong>to separate skattemæssige lag</strong> ved krypto-gambling: 1) Selve casino-gevinsten beskattes efter de normale regler (skattefri fra licenserede casinoer, skattepligtig fra ulicenserede), og 2) kursgevinster på den kryptovaluta, du bruger til gambling, kan være separat skattepligtige under reglerne for kryptovaluta-beskatning.</p>
 
