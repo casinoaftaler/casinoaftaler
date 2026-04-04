@@ -357,6 +357,13 @@ export default function MartingaleRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rouletteBordlayoutEvenMoney}
+          alt="Europæisk roulette-bordlayout med even-money felter for rød/sort, lige/ulige og 1-18/19-36 som bruges til Martingale-systemet"
+          caption="Martingale bruges udelukkende på even-money bets (1-18/19-36, EVEN/ODD, rød/sort) – her vist med placerede chips på et europæisk bord."
+          size="medium"
+        />
+
         {/* 10.000-spins simulering */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
