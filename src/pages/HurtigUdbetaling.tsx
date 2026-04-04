@@ -18,7 +18,14 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import spildanskUdbetalingImg from "@/assets/screenshots/spildansknu-udbetaling-trustly-visa.png";
+import casinoUdbetalingImg from "@/assets/screenshots/casino-udbetaling-betalingsmetoder.png";
+import kycDokumentImg from "@/assets/screenshots/spildansknu-kyc-dokumentupload.png";
+import danskespilBekraeftelseImg from "@/assets/screenshots/danskespil-udbetaling-bekraeftelse.png";
+import annullerUdbetalingImg from "@/assets/screenshots/casino-igangvaerende-udbetaling-annuller.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -213,8 +220,13 @@ const HurtigUdbetaling = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vi har testet udbetalingstider hos 30+ danske casinoer med alle tilgængelige betalingsmetoder. Her er resultatet – fra hurtigst til langsomst:
           </p>
+          <ReviewScreenshot
+            src={spildanskUdbetalingImg}
+            alt="SpilDanskNu udbetalingsside med Trustly og Visa/Mastercard som valgmuligheder – minimum 75 kr. udbetaling"
+            caption="SpilDanskNu's udbetalingsflow: Vælg mellem Trustly (5-15 min.) og Visa/Mastercard (1-3 dage). Minimum udbetaling er 75 kr."
+            eager
+          />
           <div className="space-y-4">
-            {betalingsMetoder.map((method) => (
               <Card key={method.title} className="border-border">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
@@ -269,6 +281,13 @@ const HurtigUdbetaling = () => {
           <p className="mt-2 text-xs text-muted-foreground">
             * Visa Direct (øjeblikkelig Visa-overførsel) er tilgængelig hos få casinoer. Standard Visa-refundering tager 1-3 dage.
           </p>
+
+          <ReviewScreenshot
+            src={casinoUdbetalingImg}
+            alt="Casino udbetalingsvindue med Visa, MobilePay og Trustly som tilgængelige betalingsmetoder – gebyrfri overførsler"
+            caption="Udbetalingsvindue fra et dansk casino: Visa/MasterCard, MobilePay og Trustly tilgængelig med 0% gebyr. Bemærk den gennemførte Visa-udbetaling på 4.091 kr. i bunden."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
@@ -282,6 +301,13 @@ const HurtigUdbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De fleste casinoer udfører KYC-verifikation ved din første udbetalingsanmodning. Det betyder at din første udbetaling typisk tager 2-24 timer længere end efterfølgende udbetalinger. Processen kræver typisk verifikation af tre ting: identitet (pas eller kørekort), adresse (el-regning eller kontoudtog) og betalingsmetode (screenshot af e-wallet eller billede af kort).
           </p>
+
+          <ReviewScreenshot
+            src={kycDokumentImg}
+            alt="SpilDanskNu KYC-dokumentupload side med uploadede pas, ID-kort, kørekort og kreditkort-dokumenter"
+            caption="SpilDanskNu's dokumentupload-side: Proaktiv upload af pas, ID-kort og kørekort eliminerer ventetiden ved din første udbetaling. Her ses en fuldt verificeret konto."
+            size="medium"
+          />
 
           <div className="space-y-3 mb-6">
             {[
@@ -349,6 +375,13 @@ const HurtigUdbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv er pending time og reverse withdrawal problematisk. Forskning viser at spillere der annullerer udbetalinger har signifikant højere risiko for at udvikle problematisk spilleadfærd. Jo længere pending time, jo større fristelse – og jo større risiko for at du ender med at spille pengene op i stedet for at hæve dem.
           </p>
+          <ReviewScreenshot
+            src={danskespilBekraeftelseImg}
+            alt="Danske Spil bekræftelse på udbetaling af 100 kr. med grønt flueben – beløbet er sat til udbetaling"
+            caption="Bekræftelse fra Danske Spil: 'Beløbet på 100,00 kr. er sat til udbetaling' – et eksempel på øjeblikkelig udbetalingsbehandling uden pending time."
+            size="compact"
+          />
+
           <div className="grid gap-4 sm:grid-cols-2 mb-4">
             <Card className="border-primary/30 bg-primary/5">
               <CardHeader className="pb-2">
@@ -369,6 +402,13 @@ const HurtigUdbetaling = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={annullerUdbetalingImg}
+            alt="Casino udbetalingsoversigt med igangværende udbetaling på 100 kr. og mulighed for at annullere – reverse withdrawal eksempel"
+            caption="Eksempel på 'Igangværende udbetalinger' med mulighed for at annullere (reverse withdrawal). Fra et ansvarligt spil-perspektiv bør du undgå casinoer med denne funktion."
+            size="medium"
+          />
+
           <div className="rounded-lg border border-border bg-muted/30 p-5">
             <p className="mb-2 font-semibold">Vores anbefaling</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
