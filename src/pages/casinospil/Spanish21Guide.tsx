@@ -141,7 +141,7 @@ const Spanish21Guide = () => {
           alt="Live blackjack-lobby med Multihand Blackjack, Speed Blackjack og Blackjack VIP-borde – typisk udvalg hos dansk licenseret online casino"
           caption="Live blackjack-lobby med filtrering efter udbyder og bordtype – Spanish 21 findes typisk under RNG-bordspil, mens live-lobbyen tilbyder standard blackjack-varianter"
           size="full"
-          loading="eager"
+          eager
         />
 
         {/* ═══════════════ DE MANGLENDE 10'ERE ═══════════════ */}
