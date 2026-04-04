@@ -568,9 +568,7 @@ const HurtigRegistreringGuide = () => {
             caption="Trin 1: LeoVegas' MitID-loginformular – indtast dit bruger-ID og klik 'Fortsæt' for at åbne MitID-appen."
             size="compact"
           />
-              </div>
-            ))}
-          </div>
+
 
           <h3 className="text-xl font-semibold mb-3 text-foreground">Standard email (total: ~4:12)</h3>
           <div className="space-y-2 mb-6">
