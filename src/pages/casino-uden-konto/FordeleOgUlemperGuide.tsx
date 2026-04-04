@@ -1,6 +1,10 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.webp";
+import spillemyndighedenAnsvarligt from "@/assets/screenshots/spillemyndigheden-ansvarligt-spil.webp";
+import skatOnlineSpil from "@/assets/screenshots/skat-online-spil-danmark.webp";
+import casinoKontograenser from "@/assets/screenshots/casino-kontograenser-indskud.webp";
+import rofusRegistrerMitid from "@/assets/screenshots/rofus-registrer-mitid-knap.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
