@@ -355,11 +355,13 @@ const GratisCasinoSpil = () => {
               </Link>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={wantedGameplayImg}
+            alt="Wanted Dead or a Wild spilleautomat fra Hacksaw Gaming i demotilstand med 5x6 grid, skull- og whiskey-symboler"
+            caption="Wanted Dead or a Wild i demotilstand – identisk gameplay og RTP som med rigtige penge. Bemærk 'DEMOSALDO' i bunden."
+          />
         </section>
-
-        <Separator className="my-8" />
-
-        {/* Gratis bordspil sektion */}
         <section className="mb-10">
           <h2 className="mb-4 text-3xl font-bold">Gratis bordspil – strategitræning uden risiko</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
