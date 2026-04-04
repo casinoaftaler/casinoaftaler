@@ -36,7 +36,7 @@ export function CommunityContentShell({
         </div>
 
         <Suspense fallback={null}>
-          <aside className="flex-shrink-0 pt-8 md:pt-12">
+          <aside className="hidden xl:block flex-shrink-0 pt-8 md:pt-12">
             <div className="sticky top-24 h-fit flex flex-col gap-4">
               <LiveWinnersFeed />
               {rightSidebar ?? <LazyContentSidebar />}
