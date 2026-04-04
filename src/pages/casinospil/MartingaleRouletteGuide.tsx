@@ -807,6 +807,12 @@ export default function MartingaleRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenRouletteBordspil}
+          alt="Spilleautomaten live casino-lobby med Extra Time Roulette, Roulette 2, Speed Baccarat og andre live bordspil hos dansk casino"
+          caption="Spilleautomaten tilbyder live roulette-borde med varierende bordgrænser – vælg borde med høj maks-indsats for flest mulige Martingale-fordoblinger."
+        />
+
         {/* Konklusion */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
