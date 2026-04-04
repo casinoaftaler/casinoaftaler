@@ -107,7 +107,7 @@ export function SupportChatWidget() {
       {/* Chat Panel */}
       {isOpen && (
         <div
-          className="fixed bottom-20 right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-[calc(8.5rem+env(safe-area-inset-bottom))] right-4 z-[60] w-[360px] max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
           style={{ height: "min(500px, 70vh)" }}
         >
           {/* Header */}
