@@ -240,6 +240,15 @@ export default function Raffle() {
   const { data: completedRaffles } = useRecentRaffleWinners();
 
   const hasJoined = entries?.some((e) => e.user_id === user?.id) ?? false;
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleCompleted = useMemo(() => {
+    if (!completedRaffles) return [];
+    return showAll ? completedRaffles : completedRaffles.slice(0, 6);
+  }, [completedRaffles, showAll]);
+
+  // Raffle numbering: total completed count, newest = highest number
+  const totalCompleted = completedRaffles?.length ?? 0;
 
   const articleSchema = useMemo(() => buildArticleSchema({
     headline: "Raffle – Vind Gratis Credits Hver 30. Minut",
