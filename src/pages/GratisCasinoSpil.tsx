@@ -18,8 +18,15 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
+
+import spildanskLobbyImg from "@/assets/screenshots/spildansknu-lobby-demospil.png";
+import wantedGameplayImg from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.png";
+import wantedBonusBuyImg from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy.png";
+import blackjackDemoImg from "@/assets/screenshots/blackjack-mh-bordet-demotilstand.png";
+import baccaratBordImg from "@/assets/screenshots/baccarat-bord-indsatser.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
