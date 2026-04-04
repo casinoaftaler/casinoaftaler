@@ -36,6 +36,12 @@ const SkrillGuide = () => {
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
             og MobilePay.
           </p>
+           <ReviewScreenshot
+             src={skrillOversigt}
+             alt="Skrill officiel hjemmeside med fire tjenester: Pay online, Send money, Crypto og Skrill Prepaid Mastercard – komplet betalingsløsning"
+             caption="Skrills økosystem: Online betaling, pengeoverførsler, krypto og fysisk Prepaid Mastercard – alt samlet i én wallet."
+             eager
+           />
         </>
       }
       whatIsTitle="Skrills Tekniske Arkitektur – Wallet-Model, 1-Tap og API-Integration"
