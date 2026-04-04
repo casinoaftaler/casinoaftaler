@@ -668,6 +668,13 @@ const BonusUdenOmsaetningskrav = () => {
               </div>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={royalcasinoFoedselsdag}
+            alt="Royal Casino fødselsdagskampagne med 10 gratis chancer uden omsætningskrav på Royal Roost X UP spilleautomaten"
+            caption="Royal Casinos fødselsdagstilbud: 10 omsætningsfrie gratis chancer – et eksempel på løbende omsætningsfri kampagner til eksisterende spillere"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
