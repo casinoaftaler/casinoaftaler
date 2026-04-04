@@ -1,6 +1,10 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.webp";
+import spillemyndighedenAnsvarligt from "@/assets/screenshots/spillemyndigheden-ansvarligt-spil.webp";
+import skatOnlineSpil from "@/assets/screenshots/skat-online-spil-danmark.webp";
+import casinoKontograenser from "@/assets/screenshots/casino-kontograenser-indskud.webp";
+import rofusRegistrerMitid from "@/assets/screenshots/rofus-registrer-mitid-knap.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -163,6 +167,14 @@ const FordeleOgUlemperGuide = () => {
             Casino uden konto er ikke en universel løsning for alle spillere. Det er et teknologisk paradigmeskift med klare styrker og begrænsninger, som vi evaluerer systematisk i denne guide. Vores mål er at give dig et datadrevet grundlag for at vælge den registreringsmetode, der passer til dine prioriteter.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={casinoKontograenser}
+          alt="Kontogrænsepanel med indskuds- og indsatsgrænser fordelt på daglig, ugentlig og månedlig periode"
+          caption="Kontogrænsesystemet hos et dansk casino – her ses indskudsgrænsen sat til 15.000 kr. dagligt med 14.900 kr. resterende. Grænser kan sættes per dag, uge og måned."
+          size="full"
+          eager
+        />
 
         <Separator className="my-10" />
 
@@ -351,6 +363,13 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenAnsvarligt}
+          alt="Spillemyndighedens side om ansvarligt spil med spillelovens §1 formålsparagraf og navigation til ROFUS, StopSpillet og lovgivning"
+          caption="Spillemyndighedens officielle side om ansvarligt spil citerer spillelovens §1 – alle licenserede casinoer i Danmark er forpligtet til at udbyde spil ansvarligt."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* 5. COMPLIANCE-PERSPEKTIV */}
@@ -410,6 +429,13 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrerMitid}
+          alt="ROFUS registreringssektion med Registrer dig i ROFUS med MitID knap"
+          caption="ROFUS-registrering er tilgængelig uanset casinotype – både kontobaserede og Pay N Play-casinoer er omfattet af det danske selvudelukkelsesregister."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* 7. DATABESKYTTELSESANALYSE */}
@@ -464,6 +490,13 @@ const FordeleOgUlemperGuide = () => {
             * Pay N Play registrerer IP-adresse for anti-fraud formål, men deler den typisk ikke som del af KYC-processen.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={skatOnlineSpil}
+          alt="SKAT information om skattefrihed ved online spil hos danske licenserede casinoer og skatteregler for udenlandske spiludbydere"
+          caption="SKATs vejledning bekræfter: Gevinster fra danske licenserede casinoer er skattefrie. Ved udenlandske udbydere gælder særlige regler baseret på EU/EØS-tilknytning."
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
