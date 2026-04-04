@@ -575,8 +575,14 @@ export default function LabouchereRouletteGuide() {
             Labouchère kræver ca. 10-15 sekunder per tracking-opdatering (læs sekvens → identificer første/sidste → beregn sum → opdater). I <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link> med 45-60 sekunder per spin er der rigeligt tid. I RNG-turbo med 3-5 sekunder per spin er tracking fysisk umuligt uden fejl – og tracking-fejl i Labouchère kan koste dyrt (forkert indsats → forkert cancellation/tilføjelse).
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores stærke anbefaling: brug <em>kun</em> Labouchère i live dealer roulette, hvor du har tid til korrekt tracking og rationelle beslutninger. Brug et notesark eller din mobils notesfunktion til at skrive sekvensen ned. At forsøge Labouchère i hurtige RNG-formater er en opskrift på tracking-fejl og impulsive beslutninger.
+           Vores stærke anbefaling: brug <em>kun</em> Labouchère i live dealer roulette, hvor du har tid til korrekt tracking og rationelle beslutninger. Brug et notesark eller din mobils notesfunktion til at skrive sekvensen ned. At forsøge Labouchère i hurtige RNG-formater er en opskrift på tracking-fejl og impulsive beslutninger.
           </p>
+
+          <ReviewScreenshot
+            src={getluckyRoulette}
+            alt="GetLucky live roulette-kategori med filtre for Roulette, Multiplikator, Dansk dealer og Evolution på dansk casino"
+            caption="GetLucky har dedikerede filtre til roulette-varianter – brug 'Dansk dealer' filteret for at finde borde med dansk-talende croupiers."
+          />
         </section>
 
         {/* Variant-performance */}
