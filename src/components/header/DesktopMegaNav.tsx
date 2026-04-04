@@ -517,7 +517,7 @@ export function DesktopMegaNav() {
                 casinospil: "/casinospil",
                 "live-casino": "/live-casino",
                 "casino-bonus": "/casino-bonus",
-                mere: "/ordbog",
+                mere: "/om",
                 community: "/community",
               };
               close();

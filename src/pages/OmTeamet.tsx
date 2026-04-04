@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -20,6 +21,45 @@ import frederikImage from "@/assets/frederik-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
+
+function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 1800;
+          const start = performance.now();
+          function tick(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return (
+    <span ref={ref}>
+      {count.toLocaleString("da-DK")}{suffix}
+    </span>
+  );
+}
 
 const OmTeamet = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -130,11 +170,11 @@ const OmTeamet = () => {
   ];
 
   const stats = [
-    { iconName: "briefcase", value: "17+", label: "Års samlet erfaring" },
-    { iconName: "trophy", value: "30+", label: "Testede danske casinoer" },
-    { iconName: "tv", value: "7000+", label: "Timers live streaming" },
-    { iconName: "book-open", value: "330+", label: "Publicerede artikler & guides" },
-    { iconName: "users", value: "Aktivt", label: "Engageret community" },
+    { iconName: "briefcase", numericValue: 17, suffix: "+", label: "Års samlet erfaring" },
+    { iconName: "trophy", numericValue: 30, suffix: "+", label: "Testede danske casinoer" },
+    { iconName: "tv", numericValue: 7000, suffix: "+", label: "Timers live streaming" },
+    { iconName: "book-open", numericValue: 330, suffix: "+", label: "Publicerede artikler & guides" },
+    { iconName: "users", numericValue: null, textValue: "Aktivt", suffix: "", label: "Engageret community" },
   ];
 
   const trustPoints = [
@@ -458,7 +498,13 @@ const OmTeamet = () => {
               <Card key={stat.label} className="border-border bg-card text-center">
                 <CardContent className="p-6">
                   <MenuIcon iconName={stat.iconName} className="mx-auto mb-3 h-8 w-8 text-primary" />
-                  <p className="text-3xl font-bold text-foreground md:text-4xl">{stat.value}</p>
+                  <p className="text-3xl font-bold text-foreground md:text-4xl">
+                    {stat.numericValue != null ? (
+                      <AnimatedCounter target={stat.numericValue} suffix={stat.suffix} />
+                    ) : (
+                      stat.textValue
+                    )}
+                  </p>
                   <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
                 </CardContent>
               </Card>
