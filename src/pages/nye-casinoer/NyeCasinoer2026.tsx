@@ -302,6 +302,12 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={playkasinoLobby}
+          alt="PlayKasino forside med eksklusivt velkomsttilbud 100% op til 500 kr., populære spilleautomater som Big Bass Splash og Book of Dead"
+          caption="PlayKasino: Nyt dansk casino med 100% velkomstbonus og kurateret spiludvalg"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Spiludvalg og udbydere hos nye casinoer i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
