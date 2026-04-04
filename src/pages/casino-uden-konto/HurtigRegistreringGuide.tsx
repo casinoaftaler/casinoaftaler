@@ -1,5 +1,10 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+
+import leoVegasLoginKnapper from "@/assets/screenshots/leovegas-login-opret-knapper.webp";
+import leoVegasMitidLogin from "@/assets/screenshots/leovegas-mitid-brugerid-login.webp";
+import leoVegasMitidApp from "@/assets/screenshots/leovegas-mitid-app-godkendelse.webp";
+import leoVegasMitidGodkendt from "@/assets/screenshots/leovegas-mitid-godkendt-bekraeftelse.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -182,9 +187,14 @@ const HurtigRegistreringGuide = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={leoVegasLoginKnapper}
+          alt="LeoVegas topbar med Log Ind og Opret-knapper til hurtig registrering"
+          caption="LeoVegas' registreringsflow starter med tydelige 'Log Ind' og 'Opret'-knapper i headeren – MitID-registrering vælges ved klik på 'Opret'."
+          size="medium"
+        />
 
-        {/* 2. SIDE-BY-SIDE COMPARISON */}
+
         <section className="mb-12" id="sammenligning">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Side-by-side sammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
@@ -329,6 +339,13 @@ const HurtigRegistreringGuide = () => {
             <strong>Hastigheds-faktor:</strong> Pay N Play er i gennemsnit <strong>6,1x hurtigere</strong> end MitID-registrering og <strong>9,3x hurtigere</strong> end standard email-registrering. Variationen inden for Pay N Play er markant lavere (SA: 4,4 sek.) sammenlignet med standard email (SA: 52 sek.), hvilket indikerer en mere konsistent brugeroplevelse.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={leoVegasMitidApp}
+          alt="LeoVegas MitID-verifikation med Åbn MitID-knap og Trustly betalingslogoer"
+          caption="LeoVegas beder spilleren om at åbne MitID-appen for at godkende registreringen – Trustly, Visa, ROFUS og StopSpillet vises i bunden."
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
@@ -552,6 +569,14 @@ const HurtigRegistreringGuide = () => {
             ))}
           </div>
 
+          <ReviewScreenshot
+            src={leoVegasMitidLogin}
+            alt="LeoVegas MitID login-formular med bruger-ID felt og Fortsæt-knap"
+            caption="Trin 1: LeoVegas' MitID-loginformular – indtast dit bruger-ID og klik 'Fortsæt' for at åbne MitID-appen."
+            size="compact"
+          />
+
+
           <h3 className="text-xl font-semibold mb-3 text-foreground">Standard email (total: ~4:12)</h3>
           <div className="space-y-2 mb-6">
             {[
@@ -572,6 +597,13 @@ const HurtigRegistreringGuide = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={leoVegasMitidGodkendt}
+          alt="MitID godkendt-skærm med blåt skjold og flueben efter vellykket verifikation"
+          caption="MitID bekræfter identiteten med 'Godkendt'-skærmen – hele processen tager under 15 sekunder fra app-åbning til godkendelse."
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
