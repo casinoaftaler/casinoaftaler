@@ -365,6 +365,12 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={betoroLobby}
+          alt="Betoro forside med sport velkomstbonus 100% op til 1.000 kr., sportskategorier og moderne mørkt design"
+          caption="Betoro: Nyeste tilskud til det danske marked med fokus på sport og casino i ét"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Betalingsinfrastruktur hos 2026-casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
