@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import classicBlackjack from "@/assets/screenshots/classic-blackjack.webp";
+import blackjackSkemaImg from "@/assets/screenshots/blackjack-skema-komplet-strategi.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -432,6 +433,12 @@ const BlackjackSkemaGuide = () => {
             <StrategyTable title="Soft Totals (hænder med es)" iconName="sparkles" rows={softTotals} id="soft-totals" />
             <StrategyTable title="Pairs (split-beslutninger)" iconName="layers" rows={pairTotals} id="pairs" />
           </section>
+
+          <ReviewScreenshot
+            src={blackjackSkemaImg}
+            alt="Komplet blackjack basic strategy skema med farvekodede felter for hard totals, soft totals og pairs – dealerens kort vs. din hånd"
+            caption="Fysisk blackjack strategy chart: Det komplette skema med alle hard totals, soft hands og pairs. H = Hit, S = Stand, FN = Double Down, P = Split, H/R = Surrender/Hit, H/P = Split hvis DAS."
+          />
 
           {/* ── Farvekoder ── */}
           <section id="farvekoder" className="mb-10">
