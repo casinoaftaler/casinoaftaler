@@ -252,6 +252,14 @@ const StopSpilletGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={stopspilletForside}
+          alt="StopSpillet.dk forside med budskabet 'Hvis du ikke kan sige det højt, kan du sige det til os' og åbningstider for chat og telefon"
+          caption="StopSpillets forside kommunikerer direkte og empatisk – chatten er åben hverdage, og telefonlinjen har udvidede åbningstider."
+          size="full"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
