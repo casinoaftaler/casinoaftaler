@@ -130,6 +130,12 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Det sikreste valg er altid et casino med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link>, hvor skattefriheden er 100 % garanteret ved lov. Selv hvis du finder et attraktivt tilbud på et Curaçao-licenseret casino, kan skattekonsekvenserne æde en enorm del af dine gevinster – ud over den manglende forbrugerbeskyttelse.</p>
         </section>
 
+        <ReviewScreenshot
+          src={skatKasinoerRegler}
+          alt="SKAT.dk – skatteregler for kasinoer i Danmark og udenlandske kasinoer: gevinster fra danske casinoer er skattefri, udenlandske EU-casinoer er skattefri hvis godkendt af offentlig myndighed"
+          caption="Fra SKAT.dk: Officielle skatteregler for casino-gevinster – danske og EU-godkendte casinoer er skattefri, øvrige er skattepligtige"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
