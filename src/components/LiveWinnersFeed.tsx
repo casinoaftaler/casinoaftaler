@@ -27,7 +27,7 @@ function EventCard({ event }: { event: FeedEvent }) {
         </Link>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-1">
-            <Link to={`/community/profil/${event.userId}`} className="text-[11px] font-semibold text-foreground truncate hover:text-primary transition-colors">
+            <Link to={`/u/${encodeURIComponent(event.userName ?? '')}`} className="text-[11px] font-semibold text-foreground truncate hover:text-primary transition-colors">
               {event.userName}
             </Link>
             <span className="text-[9px] text-muted-foreground shrink-0">{timeAgo}</span>
