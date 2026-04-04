@@ -255,6 +255,11 @@ const KenoGuide = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src={kenoSaadanSpillerDu}
+            alt="Danske Spil Keno instruktionsside med videoguides til Vælg Selv Keno, System Keno, Hvad er Keno og Keno PLUS abonnement"
+            caption="Danske Spils videoguides forklarer de forskellige keno-varianter trin for trin – fra Vælg Selv til System Keno og PLUS abonnement."
+          />
         </section>
 
         <Separator className="my-8" />
