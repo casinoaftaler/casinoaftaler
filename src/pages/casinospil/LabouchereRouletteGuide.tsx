@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonLiveRoulette from "@/assets/screenshots/comeon-live-roulette-lobby.webp";
+import getluckyRoulette from "@/assets/screenshots/getlucky-live-roulette-udvalg.webp";
+import spilleautomatenRoulette from "@/assets/screenshots/spilleautomaten-live-casino-roulette.webp";
+import rouletteBordlayout from "@/assets/screenshots/europaeisk-roulette-bordlayout.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -120,6 +124,13 @@ export default function LabouchereRouletteGuide() {
             Labouchère er særligt populært blandt erfarne spillere, der finder Martingale for aggressivt og <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> for passivt. Det repræsenterer en mellemvej – men som vi vil demonstrere, er det stadig en vej med negativ forventet værdi i enden.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={comeonLiveRoulette}
+          alt="ComeOn live roulette-lobby med Fireball Roulette, Red Door Roulette og andre Evolution-borde tilgængelige for danske spillere"
+          caption="ComeOn tilbyder et bredt udvalg af live roulette-borde fra Evolution – ideelt til Labouchère-tracking med 45-60 sekunders tempo."
+          eager
+        />
 
         {/* Sådan fungerer det */}
         <section className="mb-12">
@@ -254,7 +265,17 @@ export default function LabouchereRouletteGuide() {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefaling er den flade sekvens (1-1-1-1-1) eller den svagt pyramidiske (1-1-2-1-1). De giver de bedste odds for at gennemføre sekvensen, selvom profitmålet er lavere. Husk: det er bedre at gennemføre 10 sekvenser á 250 kr. end at fejle 3 sekvenser á 650 kr. og miste mere, end du har vundet.
+           Vores anbefaling er den flade sekvens (1-1-1-1-1) eller den svagt pyramidiske (1-1-2-1-1). De giver de bedste odds for at gennemføre sekvensen, selvom profitmålet er lavere. Husk: det er bedre at gennemføre 10 sekvenser á 250 kr. end at fejle 3 sekvenser á 650 kr. og miste mere, end du har vundet.
+          </p>
+
+          <ReviewScreenshot
+            src={rouletteBordlayout}
+            alt="Europæisk roulette-bordlayout med væddemålsfelter for even-money bets som rød/sort, lige/ulige og 1-18/19-36"
+            caption="Labouchère bruges udelukkende på even-money bets (rød/sort, lige/ulige, 1-18/19-36) – her vist på et europæisk bord med enkelt nul."
+            size="medium"
+          />
+
+          <p className="text-muted-foreground leading-relaxed mt-4">
           </p>
         </section>
 
@@ -554,8 +575,14 @@ export default function LabouchereRouletteGuide() {
             Labouchère kræver ca. 10-15 sekunder per tracking-opdatering (læs sekvens → identificer første/sidste → beregn sum → opdater). I <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link> med 45-60 sekunder per spin er der rigeligt tid. I RNG-turbo med 3-5 sekunder per spin er tracking fysisk umuligt uden fejl – og tracking-fejl i Labouchère kan koste dyrt (forkert indsats → forkert cancellation/tilføjelse).
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores stærke anbefaling: brug <em>kun</em> Labouchère i live dealer roulette, hvor du har tid til korrekt tracking og rationelle beslutninger. Brug et notesark eller din mobils notesfunktion til at skrive sekvensen ned. At forsøge Labouchère i hurtige RNG-formater er en opskrift på tracking-fejl og impulsive beslutninger.
+           Vores stærke anbefaling: brug <em>kun</em> Labouchère i live dealer roulette, hvor du har tid til korrekt tracking og rationelle beslutninger. Brug et notesark eller din mobils notesfunktion til at skrive sekvensen ned. At forsøge Labouchère i hurtige RNG-formater er en opskrift på tracking-fejl og impulsive beslutninger.
           </p>
+
+          <ReviewScreenshot
+            src={getluckyRoulette}
+            alt="GetLucky live roulette-kategori med filtre for Roulette, Multiplikator, Dansk dealer og Evolution på dansk casino"
+            caption="GetLucky har dedikerede filtre til roulette-varianter – brug 'Dansk dealer' filteret for at finde borde med dansk-talende croupiers."
+          />
         </section>
 
         {/* Variant-performance */}
@@ -613,8 +640,14 @@ export default function LabouchereRouletteGuide() {
           </Card>
 
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Forskellen er slående: Labouchère på <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage har 91,3 % sekvensgennemførsel og kun 14,2 % RoR over 1.000 spins. På <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulette</Link> falder gennemførselsraten til 71,4 % og RoR stiger til 42,1 %. Valget af variant er <em>vigtigere</em> end valget af sekvensdesign.
+           Forskellen er slående: Labouchère på <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage har 91,3 % sekvensgennemførsel og kun 14,2 % RoR over 1.000 spins. På <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulette</Link> falder gennemførselsraten til 71,4 % og RoR stiger til 42,1 %. Valget af variant er <em>vigtigere</em> end valget af sekvensdesign.
           </p>
+
+          <ReviewScreenshot
+            src={spilleautomatenRoulette}
+            alt="Spilleautomaten live casino-lobby med Extra Time Roulette, Speed Baccarat og andre live bordspil hos dansk licenseret casino"
+            caption="Spilleautomaten tilbyder en bred palette af live roulette-borde – vælg borde med La Partage-reglen for optimal Labouchère-performance."
+          />
         </section>
 
         {/* Bonus-EV */}
