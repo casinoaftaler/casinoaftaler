@@ -493,6 +493,13 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spanish21StrategyChart}
+          alt="Spanish 21 basic strategy-skema for Dealer Stands on Soft 17 – farvekodede beslutninger for hårde totaler, bløde hænder og par med Double Down Rescue-regler"
+          caption="Komplet Spanish 21 basic strategy-skema (S17) – bemærk de markante forskelle fra standard blackjack: færre fordoblinger, hyppigere hits og bonus-bevidste par-beslutninger"
+          size="medium"
+        />
+
         {/* ═══════════════ SPANISH 21 vs PONTOON ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
