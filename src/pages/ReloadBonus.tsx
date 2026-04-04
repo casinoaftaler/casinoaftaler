@@ -208,10 +208,11 @@ const ReloadBonus = () => {
             <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link> adskiller sig fra reload, har vi en dedikeret guide.
           </p>
           <ReviewScreenshot
-            src={kampagner888}
-            alt="888 Casinos kampagneside med reload-bonusser og ugentlige tilbud til eksisterende spillere"
-            caption="888 Casinos kampagneside – reload-bonusser er typisk tilgængelige som ugentlige tilbud"
+            src={betiniaReload}
+            alt="Betinia kampagneside med månedlig sportsbonus på 100% op til 500 kr. – eksempel på reload-tilbud til eksisterende spillere"
+            caption="Betinias kampagneside: Månedlig reload-bonus på 100% op til 500 kr. med tydelig visning af vilkår"
             size="full"
+            eager
           />
         </section>
 
