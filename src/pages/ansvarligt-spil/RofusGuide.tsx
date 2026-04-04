@@ -280,9 +280,11 @@ const RofusGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={betiniaRegMitid}
-          alt="MitID-login ved ROFUS-registrering – selvudelukkelse via det danske Register Over Frivilligt Udelukkede Spillere"
-          caption="ROFUS-registrering kræver MitID-verifikation for at sikre juridisk bindende selvudelukkelse"
+          src={rofusSpillemyndigheden}
+          alt="ROFUS er Spillemyndighedens register over frivilligt udelukkede spillere med information om fortrolighed, dækning og registrering via MitID"
+          caption="Spillemyndighedens officielle ROFUS-side forklarer registrets funktion, fortrolighed og dækning – registrering er bindende og kan ikke annulleres."
+          size="full"
+          eager
         />
 
         <Separator className="my-10" />
