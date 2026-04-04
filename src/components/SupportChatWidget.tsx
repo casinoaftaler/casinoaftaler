@@ -176,6 +176,46 @@ export function SupportChatWidget() {
               </div>
             </div>
 
+            {/* Welcome message for new Twitch users */}
+            {showWelcome && (
+              <div className="flex justify-start gap-2">
+                <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-7 w-7 rounded-full object-cover mt-1 shrink-0" />
+                <div className="max-w-[85%] rounded-2xl rounded-bl-sm px-4 py-3 bg-muted text-foreground text-sm relative border border-primary/20">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="text-base">🎉</span>
+                    <span className="font-bold text-xs text-primary">Velkommen!</span>
+                  </div>
+                  <p className="leading-relaxed">
+                    Fedt du oprettede dig{displayName ? `, ${displayName}` : ""}! Du er nu officielt medlem af Danmarks største slot community.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    Hvis du har nogle spørgsmål, så er du altid velkommen til at skrive til os her i supporten.
+                  </p>
+                  <p className="leading-relaxed mt-2">
+                    Husk at udnyt tiden med at deltage i vores{" "}
+                    <Link
+                      to="/community/turneringer"
+                      className="text-primary font-semibold underline underline-offset-2 hover:opacity-80"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      turneringer
+                    </Link>
+                    !
+                  </p>
+                  <p className="leading-relaxed mt-2 text-muted-foreground text-xs">
+                    Venlig hilsen,<br />Casinoaftaler
+                  </p>
+                  <button
+                    onClick={dismissWelcome}
+                    className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Luk velkomstbesked"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            )}
+
             {isLoading ? (
               <div className="flex justify-center py-4">
                 <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
