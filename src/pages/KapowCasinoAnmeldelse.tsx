@@ -62,7 +62,7 @@ const KapowCasinoAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Antal spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2.000+</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Microgaming", "Play'n GO", "Evolution Gaming", "Pragmatic Play", "Nolimit City", "Red Tiger"]} />
-              <QuickFactsLicense licenseId="18-0073" />
+              <QuickFactsLicense licenseId="16 0015962" />
             </CardContent>
           </Card>
         </section>
