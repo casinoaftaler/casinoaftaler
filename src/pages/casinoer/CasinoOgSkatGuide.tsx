@@ -100,10 +100,14 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Derudover gør skattefriheden for spillere det danske licenserede marked mere attraktivt sammenlignet med ulicenserede alternativer, hvilket reducerer det grå marked og sikrer, at flere spillere vælger regulerede platforme med fuld forbrugerbeskyttelse. Det er en win-win: Staten får sine indtægter, spillerne får skattefri gevinster og fuld beskyttelse, og operatørerne får adgang til et velreguleret marked med klare regler.</p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={skatAfgiftOnline}
+          alt="SKATs afgiftssatser for onlinekasino – 28 pct. afgift af bruttospilleindtægten, samt satser for spilleautomater i spillehaller og restaurationer (41 pct. + 30 pct. tillæg)"
+          caption="SKATs officielle afgiftssatser: Onlinekasino betaler 28 % af bruttospilleindtægten – derfor er dine gevinster skattefri"
+          eager
+        />
 
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Skatteforhold for udenlandske casinoer</h2>
+        <Separator className="my-10" />
           <p className="mb-4 text-muted-foreground leading-relaxed">Spiller du på casinoer uden dansk licens, ændrer skattereglerne sig markant. Det afgørende kriterium er, hvor casinoet er licenseret – ikke hvor serverne er placeret eller hvilken valuta der bruges. Her gennemgår vi de forskellige scenarior i detaljer med konkrete eksempler.</p>
           
           <div className="overflow-x-auto mb-6">
