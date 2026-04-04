@@ -187,9 +187,14 @@ const HurtigRegistreringGuide = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={leoVegasLoginKnapper}
+          alt="LeoVegas topbar med Log Ind og Opret-knapper til hurtig registrering"
+          caption="LeoVegas' registreringsflow starter med tydelige 'Log Ind' og 'Opret'-knapper i headeren – MitID-registrering vælges ved klik på 'Opret'."
+          size="medium"
+        />
 
-        {/* 2. SIDE-BY-SIDE COMPARISON */}
+
         <section className="mb-12" id="sammenligning">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />Side-by-side sammenligning</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
