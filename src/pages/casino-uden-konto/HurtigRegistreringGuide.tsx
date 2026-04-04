@@ -340,6 +340,13 @@ const HurtigRegistreringGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={leoVegasMitidApp}
+          alt="LeoVegas MitID-verifikation med Åbn MitID-knap og Trustly betalingslogoer"
+          caption="LeoVegas beder spilleren om at åbne MitID-appen for at godkende registreringen – Trustly, Visa, ROFUS og StopSpillet vises i bunden."
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* 3.5 MOBIL TIDSTEST */}
