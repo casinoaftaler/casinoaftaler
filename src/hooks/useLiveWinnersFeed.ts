@@ -15,9 +15,11 @@ export interface FeedEvent {
   type: FeedEventType;
   timestamp: string;
   // Big win fields
+  userId?: string;
   userName?: string;
   avatarUrl?: string | null;
   winAmount?: number;
+  betAmount?: number;
   multiplier?: number;
   gameId?: string;
   gameName?: string;
