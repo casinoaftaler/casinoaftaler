@@ -348,6 +348,13 @@ const SaadanTesterVi = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={spildansknutLivechat}
+          alt="SpilDanskNu live chat med dansk support agent Maya Dean – hurtig responstid og personlig betjening på dansk"
+          caption="Test af kundeservice: Vi kontakter live chat med reelle spørgsmål og vurderer responstid og svarkvalitet"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* 5. Transparens */}
