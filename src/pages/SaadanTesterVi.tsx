@@ -16,6 +16,10 @@ import { CheckCircle2, ClipboardList, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
+import spildansknuLobby from "@/assets/screenshots/spildansknu-lobby-testmetode.webp";
+import spildansknuIndbetaling from "@/assets/screenshots/spildansknu-indbetaling-testmetode.webp";
+import spildansknuFooter from "@/assets/screenshots/spildansknu-footer-licens-testmetode.webp";
+import spildansknutLivechat from "@/assets/screenshots/spildansknu-livechat-testmetode.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const testKriterier = [
