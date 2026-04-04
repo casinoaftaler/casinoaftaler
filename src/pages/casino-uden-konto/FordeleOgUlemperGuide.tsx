@@ -168,6 +168,14 @@ const FordeleOgUlemperGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={casinoKontograenser}
+          alt="Kontogrænsepanel med indskuds- og indsatsgrænser fordelt på daglig, ugentlig og månedlig periode"
+          caption="Kontogrænsesystemet hos et dansk casino – her ses indskudsgrænsen sat til 15.000 kr. dagligt med 14.900 kr. resterende. Grænser kan sættes per dag, uge og måned."
+          size="full"
+          eager
+        />
+
         <Separator className="my-10" />
 
         {/* 2. FORDELE – DYB ANALYSE */}
