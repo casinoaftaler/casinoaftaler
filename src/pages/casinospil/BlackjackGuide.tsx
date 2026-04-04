@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
+import liveBlackjackSkaermnavn from "@/assets/screenshots/live-blackjack-skaermnavn-oprettelse.webp";
+import spildanskenuLobby from "@/assets/screenshots/spildansknu-blackjack-roulette-lobby.webp";
+import spildanskenuBlackjackRtp from "@/assets/screenshots/spildansknu-blackjack-classic-rtp-regler.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -292,11 +295,15 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackSkaermnavn}
+          alt="Live blackjack skærmnavn-oprettelse med Casinoaftaler som brugernavn ved et Evolution blackjack-bord med flere spillere og Bet Behind-funktion"
+          caption="Oprettelse af skærmnavn ved et live blackjack-bord: vælg et passende navn, før du deltager i spillet med andre spillere."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
-        {/* ═══════════════════════════════════════════════════════════════
-            SECTION 3 – Basic Strategy – matematikken bag perfekte beslutninger
-        ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
@@ -582,6 +589,13 @@ const BlackjackGuide = () => {
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 7 – Live blackjack vs RNG blackjack
         ═══════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spildanskenuLobby}
+          alt="SpilDanskNu casino spil-lobby med blackjack- og roulette-varianter fra Stakelogic, herunder Blackjack Classic 1-8, VIP Crystal og Auto Roulette"
+          caption="SpilDanskNus spil-lobby viser det brede udvalg af RNG blackjack- og roulette-varianter fra Stakelogic – ideelt til at øve basic strategy."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="sparkles" className="h-7 w-7 text-primary" />
@@ -807,6 +821,13 @@ const BlackjackGuide = () => {
             Blackjack er det optimale valg for spillere, der ønsker <strong>maksimal kontrol over deres odds</strong>. Du betaler for den fordel med indlæringstid – basic strategy kræver øvelse at mestre. Men investeringen betaler sig: ingen anden casinodisciplin giver dig mulighed for at reducere husets fordel til under 0,5 % udelukkende med viden. Dine beslutninger har konsekvenser, og det gør spillet meningsfuldt ud over ren underholdning.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spildanskenuBlackjackRtp}
+          alt="Blackjack Classic 1 fra Stakelogic på SpilDanskNu med RTP 99,50%, min. indsats 5 kr. og max. indsats 2.500 kr. samt demo-mode og gratis spins information"
+          caption="Blackjack Classic 1 hos SpilDanskNu: RTP på 99,50 % og indsatser fra 5 kr. til 2.500 kr. – et eksempel på RNG blackjack med høj tilbagebetalingsprocent."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
