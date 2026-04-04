@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-casino-lobby-dansk-licens.webp";
+import campobetLobby from "@/assets/screenshots/campobet-casino-lobby-dansk-licens.webp";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-lobby-dansk-licens.webp";
+import spildansknuLobby from "@/assets/screenshots/spildansknu-lobby-dansk-licens.webp";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -193,6 +198,13 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 2: 7 konkrete fordele ved dansk licens
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby med dansk licens – spiludvalg med Wolf Gold, Sweet Bonanza og Razor Shark, kampagner og MobilePay-indbetaling i DKK"
+          caption="Betinias casino-lobby: Et dansk licenseret casino med bredt spiludvalg, danske kategorier og DKK-saldo"
+          eager
+        />
+
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             7 konkrete fordele ved at vælge et casino med dansk licens
@@ -308,6 +320,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 3: Sådan får et casino dansk licens
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={campobetLobby}
+          alt="Campobet casino-sektion med dansk licens – Anbefalede Spil, Golden Slots og 1.846 nye spil med kategorier som Live Casino og Jackpots"
+          caption="Campobets spiludvalg: Dansk licenseret casino med 1.800+ spilleautomater organiseret i kategorier"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Sådan får et casino dansk licens – processen trin for trin
@@ -451,6 +469,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 5: Spillemyndighedens rolle
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk forside med dansk licens – 100% velkomstbonus, dagens vindere med 444x gevinst, og populære slots som Sweet Bonanza og Book of Dead"
+          caption="Spilleautomaten.dk: Dansk licenseret casino med live vinderfeed, velkomstbonus og bredt slot-udvalg"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Spillemyndighedens rolle i det danske casino-marked
@@ -616,6 +640,12 @@ const CasinoMedDanskLicens = () => {
         {/* ══════════════════════════════════════════════════════════════════
             SEKTION 8: Betalingsmetoder og udbetalinger
         ══════════════════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={spildansknuLobby}
+          alt="SpilDanskNu forside med dansk licens – 100% bonus på Play'n GO, DGA-licens badge, hurtige udbetalinger og seneste vindere med op til 99x gevinst"
+          caption="SpilDanskNu: Dansk licenseret casino med DGA-licens, hurtige udbetalinger og live vinderfeed"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Betalingsmetoder og udbetalinger hos danske casinoer
