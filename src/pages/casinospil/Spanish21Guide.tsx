@@ -17,6 +17,10 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { MenuIcon } from "@/components/MenuIcon";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import liveBlackjackLobby from "@/assets/screenshots/live-blackjack-lobby-spanish21.webp";
+import liveBlackjackSkaermnavn from "@/assets/screenshots/live-blackjack-skaermnavn-dialog.webp";
+import liveBlackjackDealerBust from "@/assets/screenshots/live-blackjack-a-dealer-bust.webp";
+import spanish21StrategyChart from "@/assets/screenshots/spanish-21-basic-strategy-skema.webp";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
