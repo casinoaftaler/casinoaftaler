@@ -333,6 +333,13 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackDealerBust}
+          alt="Live Blackjack A-bord med dealer bust på 22 – 7-6-2-7 dealerhånd, flere spillere med gevinster og indsatser fra 50 til 25.000 kr."
+          caption="Live Blackjack A med dealer bust på 22 – i Spanish 21 ville spillerens 21 altid vinde, uanset om dealeren også rammer 21"
+          size="full"
+        />
+
         {/* ═══════════════ HOUSE EDGE DEKONSTRUKTION ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 flex items-center gap-2 text-2xl font-bold text-foreground">
