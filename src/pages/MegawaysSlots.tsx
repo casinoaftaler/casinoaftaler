@@ -771,6 +771,13 @@ const MegawaysSlots = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={megawaysSpilleregler}
+          alt="Megaways spilleregler og paytable med symbolværdier, wild-regler og forklaring af vinderkombinationer"
+          caption="Paytable fra 5 Lions Megaways viser symbolværdier, wild-funktionen og illustrationen af venstre-til-højre gevinsttildeling over op til 117.649 ways."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 8. MEGAWAYS-VARIANTER OG HYBRIDER ── */}
