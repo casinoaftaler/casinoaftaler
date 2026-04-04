@@ -387,6 +387,10 @@ const GratisCasinoSpil = () => {
             alt="Blackjack MH bordspil fra Play'n GO i demotilstand – grønt bord med tre spillepladser og chip-værdier fra 0.1 til 100"
             caption="Blackjack Multi-Hand i demo – øv basic strategy med tre hænder samtidig helt uden risiko."
           />
+
+          <Card className="mb-4 border-border">
+            <CardHeader>
+              <CardTitle className="text-xl">Gratis Roulette</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p>
