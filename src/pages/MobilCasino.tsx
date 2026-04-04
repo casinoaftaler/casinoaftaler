@@ -573,6 +573,13 @@ const MobilCasino = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={sweetBonanzaMobil}
+          alt="Sweet Bonanza 1000 spilleautomat på mobil med farverige frugtsymboler, kredit 0,70 kr., indsats 5 kr. og mulighed for køb af gratis spins"
+          caption="Sweet Bonanza 1000 på mobilen: fuldt gameplay med køb af bonus-spins og dobbelt-chance funktion – optimeret til touchskærm."
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
