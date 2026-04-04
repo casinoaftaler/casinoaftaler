@@ -645,6 +645,9 @@ const MobilCasino = () => {
             Betalingsmetoder på mobil casino
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
+            Mobilvenlige betalingsmetoder er en af de største fordele ved mobil casino.
+            Her er de mest populære muligheder, der alle er optimeret til mobilbrug:
+          </p>
 
           <ReviewScreenshot
             src={spilleautomatenIndbetaling}
@@ -654,9 +657,6 @@ const MobilCasino = () => {
           />
 
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Mobilvenlige betalingsmetoder er en af de største fordele ved mobil casino.
-            Her er de mest populære muligheder, der alle er optimeret til mobilbrug:
-          </p>
 
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
