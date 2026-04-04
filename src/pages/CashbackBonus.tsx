@@ -604,6 +604,13 @@ const CashbackBonus = () => {
         </section>
 
         {/* Almindelige fejl */}
+        <ReviewScreenshot
+          src={mariaCashback}
+          alt="Maria Casino mandagsudbetaling – 10% cashback hver mandag uden omsætningskrav, med beregningseksempler og automatisk tilmelding via Maria+"
+          caption="Maria Casinos mandagsudbetaling: 10% cashback uden loft eller omsætningskrav – med konkrete beregningseksempler."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">5 almindelige fejl med cashback bonus</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
