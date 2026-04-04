@@ -31,7 +31,7 @@ export function CommunityPageLayout({
   hideSidebar = false,
   heroExtra,
 }: CommunityPageLayoutProps) {
-  const { user } = useAuth();
+  
 
   return (
     <>
