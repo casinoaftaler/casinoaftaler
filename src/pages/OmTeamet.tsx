@@ -35,12 +35,12 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          const duration = 3600;
+          const duration = 5000;
           const start = performance.now();
           function tick(now: number) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
+            const eased = progress;
             setCount(Math.round(eased * target));
             if (progress < 1) requestAnimationFrame(tick);
           }
