@@ -375,6 +375,13 @@ const HurtigUdbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Fra et <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-perspektiv er pending time og reverse withdrawal problematisk. Forskning viser at spillere der annullerer udbetalinger har signifikant højere risiko for at udvikle problematisk spilleadfærd. Jo længere pending time, jo større fristelse – og jo større risiko for at du ender med at spille pengene op i stedet for at hæve dem.
           </p>
+          <ReviewScreenshot
+            src={danskespilBekraeftelseImg}
+            alt="Danske Spil bekræftelse på udbetaling af 100 kr. med grønt flueben – beløbet er sat til udbetaling"
+            caption="Bekræftelse fra Danske Spil: 'Beløbet på 100,00 kr. er sat til udbetaling' – et eksempel på øjeblikkelig udbetalingsbehandling uden pending time."
+            size="compact"
+          />
+
           <div className="grid gap-4 sm:grid-cols-2 mb-4">
             <Card className="border-primary/30 bg-primary/5">
               <CardHeader className="pb-2">
