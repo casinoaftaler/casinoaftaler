@@ -80,11 +80,6 @@ export function CommunityPageLayout({
           </>
         }
       >
-        {user && (
-          <div className="pb-6">
-            <DailyMissionsCard />
-          </div>
-        )}
         {children}
       </CommunityContentShell>
     </>
