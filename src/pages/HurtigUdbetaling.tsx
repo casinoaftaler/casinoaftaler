@@ -281,6 +281,13 @@ const HurtigUdbetaling = () => {
           <p className="mt-2 text-xs text-muted-foreground">
             * Visa Direct (øjeblikkelig Visa-overførsel) er tilgængelig hos få casinoer. Standard Visa-refundering tager 1-3 dage.
           </p>
+
+          <ReviewScreenshot
+            src={casinoUdbetalingImg}
+            alt="Casino udbetalingsvindue med Visa, MobilePay og Trustly som tilgængelige betalingsmetoder – gebyrfri overførsler"
+            caption="Udbetalingsvindue fra et dansk casino: Visa/MasterCard, MobilePay og Trustly tilgængelig med 0% gebyr. Bemærk den gennemførte Visa-udbetaling på 4.091 kr. i bunden."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
