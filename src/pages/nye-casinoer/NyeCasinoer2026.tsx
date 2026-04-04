@@ -405,6 +405,13 @@ const NyeCasinoer2026 = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={casinostuenVelkomst}
+          alt="Casinostuen velkomstside med 100% bonus op til 500 kr. til casino eller 100 kr. freebet til sport, kategorier for Casino, Live Casino og Sports Betting"
+          caption="Casinostuen: Nyt dansk casino med dobbelt velkomsttilbud – casino bonus eller sports freebet"
+          size="medium"
+        />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Fordele og ulemper ved nye casinoer i 2026</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
