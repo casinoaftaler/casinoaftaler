@@ -219,6 +219,13 @@ const GratisCasinoSpil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildanskLobbyImg}
+          alt="SpilDanskNu casino-lobby med 'Spil' og 'Demo' knapper på Wanted Dead or a Wild – viser hvordan man vælger demotilstand"
+          caption="SpilDanskNu's lobby med tydelige 'Spil' og 'Demo' knapper – du kan teste alle spil gratis direkte i browseren."
+          eager
+        />
+
         <Separator className="my-8" />
 
         {/* Typer af gratis casino spil */}
