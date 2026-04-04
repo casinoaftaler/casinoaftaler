@@ -912,6 +912,13 @@ const MegawaysSlots = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={megawaysLobbyUdvalg}
+          alt="Casino lobby filtreret på Megaways med over 40 tilgængelige titler fra Pragmatic Play, Stakelogic og andre udbydere"
+          caption="Megaways-filteret i et dansk licenseret casino viser det brede udvalg af titler fra flere udbydere – fra populære serier som Dog House og Buffalo King til nichespil."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 10. BANKROLL-SIMULERING ── */}
