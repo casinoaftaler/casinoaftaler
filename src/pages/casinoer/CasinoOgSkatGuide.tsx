@@ -288,6 +288,9 @@ const CasinoOgSkatGuide = () => {
         />
 
         <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="alert-triangle" className="h-7 w-7 text-destructive" /> Konsekvenser ved manglende selvangivelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at tage selvangivelse af skattepligtige casinogevinster alvorligt. SKAT har adgang til oplysninger om overførsler til og fra udenlandske spilleplatforme via bankrapportering, og de anvender i stigende grad data-analytiske værktøjer til at identificere uindberettede gambling-indtægter.</p>
           <Card className="bg-destructive/5 border-destructive/20 mb-6"><CardContent className="pt-6">
             <ul className="space-y-3 text-sm text-muted-foreground">
