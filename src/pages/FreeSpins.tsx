@@ -707,6 +707,13 @@ const FreeSpins = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={onecasinoGratisSpins}
+          alt="OneCasino kampagneside med 100 gratis spins velkomstbonus uden omsætningskrav – bonusvilkår og betingelser tydeligt vist"
+          caption="OneCasinos velkomstbonus: 100 gratis spins uden gennemspilskrav – gevinster direkte til kontantsaldo"
+          size="medium"
+        />
+
         <Separator className="my-10" />
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
