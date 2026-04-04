@@ -18,7 +18,12 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { AlertTriangle, Bitcoin, BookOpen, Calculator, Coins, FileText, Gem, Globe, HelpCircle, Landmark, Scale, Shield, Star, TrendingUp } from "lucide-react"
-import { MenuIcon } from "@/components/MenuIcon";;
+import { MenuIcon } from "@/components/MenuIcon";
+import skatKasinoerRegler from "@/assets/screenshots/skat-kasinoer-skatteregler-dk.webp";
+import skatAfgiftOnline from "@/assets/screenshots/skat-afgiftssatser-onlinekasino-28pct.webp";
+import skatSpilleautomater from "@/assets/screenshots/skat-spilleautomater-skattefri.webp";
+import skatAfgiftLotteri from "@/assets/screenshots/skat-afgiftssatser-lotteri-klasselotteri.webp";
+import skatKontakt from "@/assets/screenshots/skat-kontakt-gevinster-praemier.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
