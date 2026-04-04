@@ -295,11 +295,15 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackSkaermnavn}
+          alt="Live blackjack skærmnavn-oprettelse med Casinoaftaler som brugernavn ved et Evolution blackjack-bord med flere spillere og Bet Behind-funktion"
+          caption="Oprettelse af skærmnavn ved et live blackjack-bord: vælg et passende navn, før du deltager i spillet med andre spillere."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
-        {/* ═══════════════════════════════════════════════════════════════
-            SECTION 3 – Basic Strategy – matematikken bag perfekte beslutninger
-        ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
