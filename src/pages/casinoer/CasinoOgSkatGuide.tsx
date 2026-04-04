@@ -238,10 +238,13 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Vores klare anbefaling er at undgå kryptovaluta-gambling, medmindre du har grundig forståelse af de skattemæssige implikationer, og helst har konsulteret en skatterevisor med erfaring inden for kryptovaluta-beskatning. For langt de fleste danske spillere er det enkleste og mest fordelagtige at spille med danske kroner på <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link>.</p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={skatAfgiftLotteri}
+          alt="SKATs afgiftssatser for lotteri og klasselotteri 2025-2026 – 15 pct. afgift af gevinstbeløb over bundfradraget på 200 kr."
+          caption="SKATs officielle afgiftssatser for lotteri og klasselotteri – bundfradrag på 200 kr. pr. gevinst"
+        />
 
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Fysiske casinoer i udlandet</h2>
+        <Separator className="my-10" />
           <p className="mb-4 text-muted-foreground leading-relaxed">Mange danske spillere besøger fysiske casinoer under rejser i udlandet – fra Monte Carlo til Las Vegas. Skatteforholdene for gevinster fra fysiske casinoer følger det samme grundprincip som online casinoer: Det afgørende er beliggenheden (og dermed jurisdiktionen).</p>
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-green-500/20"><CardContent className="pt-6"><h3 className="font-bold mb-3 text-green-500">EU-lande: Skattefri</h3><p className="text-sm text-muted-foreground mb-3">Gevinster fra fysiske casinoer i EU-lande er skattefri for danske statsborgere. Dette gælder Casino Copenhagen, Casino di Venezia, Casino de Monte-Carlo (Monaco er ikke EU, men har særaftale), Casino Barcelona, Casino Helsinki og andre EU-baserede casinoer. Du behøver ikke indberette disse gevinster til SKAT.</p></CardContent></Card>
