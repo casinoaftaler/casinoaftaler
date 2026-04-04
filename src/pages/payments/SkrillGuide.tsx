@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenKasse from "@/assets/screenshots/spilleautomaten-kasse-skrill-indbetaling.webp";
+import skrillRapidTransfer from "@/assets/screenshots/skrill-rapid-transfer-indbetaling-dansk.webp";
+import mitidBrugerId from "@/assets/screenshots/videoslots-mitid-brugerid-login.webp";
+import mitidAppGodkend from "@/assets/screenshots/videoslots-mitid-app-godkend.webp";
+import skrillOversigt from "@/assets/screenshots/skrill-complete-payment-solution-oversigt.webp";
 const SkrillGuide = () => {
   return (
     <PaymentMethodPage
@@ -31,6 +36,12 @@ const SkrillGuide = () => {
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
             og MobilePay.
           </p>
+           <ReviewScreenshot
+             src={skrillOversigt}
+             alt="Skrill officiel hjemmeside med fire tjenester: Pay online, Send money, Crypto og Skrill Prepaid Mastercard – komplet betalingsløsning"
+             caption="Skrills økosystem: Online betaling, pengeoverførsler, krypto og fysisk Prepaid Mastercard – alt samlet i én wallet."
+             eager
+           />
         </>
       }
       whatIsTitle="Skrills Tekniske Arkitektur – Wallet-Model, 1-Tap og API-Integration"
@@ -61,20 +72,32 @@ const SkrillGuide = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Alle Skrill-transaktioner krypteres med 256-bit SSL/TLS, og platformen tilbyder totrinsbekræftelse (2FA) via SMS eller authenticator-app. Skrills svindelovervågning bruger machine learning til at analysere transaktionsmønstre i realtid og kan midlertidigt fryse konti ved mistænkelig aktivitet. Denne proaktive tilgang har sine fordele og ulemper: Den beskytter mod svindel, men kan også midlertidigt blokere legitime store transaktioner.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Den separate Skrill-saldo fungerer som et ekstra sikkerhedslag. Selv ved et databrud hos et casino er dine bankoplysninger beskyttede, da casinoet kun har din Skrill-transaktion – ikke dine bank- eller kortdata. Denne isolation er den primære sikkerhedsfordel ved wallet-modellen sammenlignet med direkte kortbetalinger via{" "}
-            <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>.
-          </p>
-        </>
-      }
+           </p>
+           <ReviewScreenshot
+             src={mitidBrugerId}
+             alt="Videoslots MitID login-dialog med bruger-ID felt – sikker autentificering ved casino-login med dansk e-legitimation"
+             caption="MitID-login på Videoslots – bruger-ID indtastes for at verificere identitet inden adgang til casinokontoen."
+             size="compact"
+           />
+           <p className="text-muted-foreground leading-relaxed">
+             Den separate Skrill-saldo fungerer som et ekstra sikkerhedslag. Selv ved et databrud hos et casino er dine bankoplysninger beskyttede, da casinoet kun har din Skrill-transaktion – ikke dine bank- eller kortdata. Denne isolation er den primære sikkerhedsfordel ved wallet-modellen sammenlignet med direkte kortbetalinger via{" "}
+             <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link>.
+           </p>
+         </>
+       }
       howToTitle="Indbetaling, Udbetaling og Prepaid Mastercard – Praktisk Vejledning"
       howToContent={
         <>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Indbetaling:</strong> Vælg Skrill i casinoets kasse, log ind på din Skrill-konto, bekræft beløbet. Med 1-Tap aktiveret tager dette under 5 sekunder. Uden 1-Tap kræver det e-mail, adgangskode og eventuelt 2FA – ca. 15-20 sekunder. Pengene krediteres øjeblikkeligt.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
+           </p>
+           <ReviewScreenshot
+             src={skrillRapidTransfer}
+             alt="Skrill Rapid Transfer indbetalingsside med 1000 DKK beløb og Skrill wallet som betalingsmetode på dansk casino"
+             caption="Skrill indbetalingsflow: Vælg beløb og betal direkte fra din Skrill-saldo eller via Rapid Transfer fra bankkontoen."
+             size="compact"
+           />
+           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Vælg Skrill i udbetalingssektionen, angiv beløbet og bekræft. Pengene lander i din Skrill-saldo typisk inden for 0-4 timer. Derfra kan du overføre til din bank (5,50 EUR gebyr, 1-2 hverdage), bruge dem på andre online-tjenester, eller hæve kontant via Skrill Prepaid Mastercard.
           </p>
           <p className="text-muted-foreground leading-relaxed">
@@ -110,8 +133,13 @@ const SkrillGuide = () => {
              <>
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Skrill på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen brugte en verificeret Skrill-konto på Standard-niveau (ingen VIP) med en saldo opfyldt via dansk bankoverførsel.
-               </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
+                </p>
+                <ReviewScreenshot
+                  src={spilleautomatenKasse}
+                  alt="Spilleautomaten.dk kassesektion med Skrill valgt under E-wallet sammen med ecoPayz, Neteller og MiFinity – beløbsvalg fra 250 til 10.000 kr."
+                  caption="Spilleautomatens indbetalingsside med Skrill valgt – vælg beløb, indtast e-mail og indbetal med 0% gebyr."
+                />
+               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Skrill var tilgængeligt på alle tre casinoer. Uden 1-Tap tog processen ca. 18 sekunder (login, bekræftelse, 2FA). Med 1-Tap aktiveret faldt det til 4-5 sekunder – den hurtigste e-wallet-oplevelse i vores test. Alle indbetalinger blev krediteret øjeblikkeligt.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -140,8 +168,14 @@ const SkrillGuide = () => {
                 De tre metoder deler et fælles mål – hurtige, sikre casinotransaktioner – men anvender fundamentalt forskellige teknologier. Skrill og{" "}
                 <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link>{" "}
                 er wallet-baserede: Du overfører penge til en separat konto og betaler derfra. Trustly er open banking-baseret: Det forbinder direkte til din bank uden mellemkonto.
-              </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
+               </p>
+               <ReviewScreenshot
+                 src={mitidAppGodkend}
+                 alt="Videoslots MitID app-godkendelse – åbn MitID-appen og godkend login for at tilgå din casinokonto sikkert"
+                 caption="MitID-appens godkendelses-trin ved casino-login – bekræft din identitet med ét swipe i appen."
+                 size="compact"
+               />
+               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Gebyrer:</strong> Trustly er konsekvent gebyrfri. PayPal er gebyrfri i DKK. Skrill opkræver 5,50 EUR for bankoverførsler og op til 3,99 % for valutaomregning. For danske spillere på danske casinoer er Skrill den dyreste af de tre.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
