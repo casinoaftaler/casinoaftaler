@@ -18,7 +18,14 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
+
+import mitidLoginImg from "@/assets/screenshots/mitid-login-spildansknu.png";
+import mitidAppGodkendImg from "@/assets/screenshots/mitid-app-godkend.png";
+import mitidGodkendtImg from "@/assets/screenshots/mitid-godkendt-verifikation.png";
+import mitidKontograenserImg from "@/assets/screenshots/mitid-kontograenser-spilgraenser.png";
+import nemidNoeglekortImg from "@/assets/screenshots/nemid-noeglekort-fysisk.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -229,8 +236,63 @@ const CasinoMedMitID = () => {
             {[
               { step: "1", title: "Vælg et dansk licenseret casino", desc: "Find et casino fra vores anbefalinger baseret på dine præferencer – bonus, spiludvalg, udbetalingstider eller live casino-kvalitet. Tjek at casinoet har en gyldig dansk licens (licensnummer i footer). Brug vores sammenligningsværktøj til at finde det bedste match." },
               { step: "2", title: "Klik 'Opret konto' eller 'Registrér'", desc: "På casinoets hjemmeside finder du typisk en 'Opret konto'-knap i øverste højre hjørne. Du vil blive bedt om at angive en email-adresse og vælge en adgangskode. Nogle casinoer beder også om et mobilnummer til verifikation." },
-              { step: "3", title: "Godkend med MitID-appen", desc: "Casinoet sender en MitID-anmodning til din telefon. Åbn MitID-appen og godkend med fingeraftryk, ansigtsgenkendelse eller pinkode. Processen tager 2-5 sekunder. Sørg for at din telefon har internetforbindelse og at MitID-appen er opdateret." },
-              { step: "4", title: "Automatisk verifikation (under 30 sek.)", desc: "Når du godkender MitID-anmodningen, overføres dine verificerede oplysninger til casinoet: fulde navn, fødselsdato og adresse. Casinoet kontrollerer automatisk din alder (18+) og ROFUS-status. Hele verifikationen tager typisk under 30 sekunder." },
+            ].map((item) => (
+              <div key={item.step} className="flex items-start gap-4 rounded-lg border border-border p-4">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <ReviewScreenshot
+            src={mitidLoginImg}
+            alt="MitID login-skærm hos SpilDanskNu – bruger-ID felt og FORTSÆT-knap med MitID-logo"
+            caption="Trin 2: MitID login-skærmen hos SpilDanskNu, hvor du indtaster dit bruger-ID for at starte verifikationsprocessen."
+            size="compact"
+            eager
+          />
+
+          <div className="space-y-3">
+            <div className="flex items-start gap-4 rounded-lg border border-border p-4">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">3</div>
+              <div>
+                <h3 className="font-semibold">Godkend med MitID-appen</h3>
+                <p className="text-sm text-muted-foreground">Casinoet sender en MitID-anmodning til din telefon. Åbn MitID-appen og godkend med fingeraftryk, ansigtsgenkendelse eller pinkode. Processen tager 2-5 sekunder. Sørg for at din telefon har internetforbindelse og at MitID-appen er opdateret.</p>
+              </div>
+            </div>
+          </div>
+
+          <ReviewScreenshot
+            src={mitidAppGodkendImg}
+            alt="MitID-app viser 'Åbn MitID app og godkend' med animeret telefon-ikon under login hos SpilDanskNu"
+            caption="Trin 3: MitID-appen beder dig godkende login-anmodningen med biometrisk verifikation."
+            size="compact"
+          />
+
+          <div className="space-y-3">
+            <div className="flex items-start gap-4 rounded-lg border border-border p-4">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">4</div>
+              <div>
+                <h3 className="font-semibold">Automatisk verifikation (under 30 sek.)</h3>
+                <p className="text-sm text-muted-foreground">Når du godkender MitID-anmodningen, overføres dine verificerede oplysninger til casinoet: fulde navn, fødselsdato og adresse. Casinoet kontrollerer automatisk din alder (18+) og ROFUS-status. Hele verifikationen tager typisk under 30 sekunder.</p>
+              </div>
+            </div>
+          </div>
+
+          <ReviewScreenshot
+            src={mitidGodkendtImg}
+            alt="MitID verifikation godkendt – blåt skjold med flueben og teksten 'Godkendt' bekræfter succesfuld identitetskontrol"
+            caption="Trin 4: MitID bekræfter godkendelsen – din identitet er verificeret, og casinoet opretter din konto automatisk."
+            size="compact"
+          />
+
+          <div className="space-y-3">
+            {[
               { step: "5", title: "Sæt spillegrænser (anbefalet)", desc: "Inden du indbetaler, anbefaler vi at sætte indbetalings- og tabsgrænser. Det er et vigtigt værktøj for ansvarligt spil, og alle danske casinoer er forpligtede til at tilbyde det. Du kan altid justere grænserne senere – nedsættelse sker øjeblikkeligt, forhøjelse efter 24 timer." },
               { step: "6", title: "Indbetal og begynd at spille", desc: "Vælg din foretrukne betalingsmetode. Trustly (bank-til-bank) er typisk den hurtigste med øjeblikkelig overførsel. Kreditkort, MobilePay og andre metoder er også tilgængelige afhængigt af casinoet. Din indbetaling krediteres øjeblikkeligt, og du kan begynde at spille med det samme." },
             ].map((item) => (
@@ -430,7 +492,14 @@ const CasinoMedMitID = () => {
             ))}
           </div>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <ReviewScreenshot
+            src={nemidNoeglekortImg}
+            alt="Fysisk NemID nøglekort med engangskoder – det gamle autentificeringssystem der blev erstattet af MitID i 2022-2023"
+            caption="Det fysiske NemID nøglekort med engangskoder, som MitID erstattede med app-baseret biometrisk autentificering."
+            size="medium"
+          />
+
+          <p className="mt-4 text-muted-foreground leading-relaxed">
             Den mest mærkbare forbedring for casinospillere er hastigheden. Med NemID skulle du finde dit nøglekort, indtaste et engangskodeord og vente på verifikation – en proces der typisk tog 30-60 sekunder. Med MitID trykker du på en push-notifikation, bekræfter med fingeraftryk, og er verificeret inden for 5 sekunder. Over tid akkumulerer den tidsbesparelse sig, særligt for spillere der logger ind dagligt.
           </p>
         </section>
@@ -523,6 +592,13 @@ const CasinoMedMitID = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={mitidKontograenserImg}
+            alt="Kontogrænser-oversigt på dansk casino med indskuds-, indsats- og tabsgrænser – daglig, ugentlig og månedlig periode"
+            caption="Eksempel på kontogrænser hos et dansk casino: Indskuds-, indsats- og tabsgrænser kan sættes dagligt, ugentligt og månedligt."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-8" />
