@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 import { CommunityContentShell } from "./CommunityContentShell";
