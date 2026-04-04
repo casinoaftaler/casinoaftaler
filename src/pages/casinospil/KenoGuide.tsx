@@ -348,7 +348,7 @@ const KenoGuide = () => {
             <div className="rounded-lg border border-border p-5">
               <h3 className="font-bold text-lg mb-2">Trin 3: Vælg dine numre og indsats</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Marker dine foretrukne numre på keno-boardet (1-80). De fleste spil tillader 1-15 valg. Indstil din indsats per runde – typisk fra 1 kr. til 500 kr. Husk at din risikoprofil bestemmes af antal valgte numre: færre numre = hyppigere, men mindre gevinster. Flere numre = sjældnere, men potentielt enorme gevinster. "Quick Pick" lader computeren vælge tilfældige numre for dig.
+                Marker dine foretrukne numre på keno-boardet. I Danske Spils Keno vælger du 2-10 numre fra et felt af 70, mens international casino-keno typisk bruger 80 numre med 1-15 valg. Indstil din indsats per runde – i Danske Spils Keno fra 5 kr. til 100 kr. per række. Husk at din risikoprofil bestemmes af antal valgte numre: færre numre = hyppigere, men mindre gevinster. Flere numre = sjældnere, men potentielt enorme gevinster. "Auto-Udfyld" lader computeren vælge tilfældige numre for dig.
               </p>
             </div>
 
