@@ -108,6 +108,9 @@ const CasinoOgSkatGuide = () => {
         />
 
         <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="globe" className="h-7 w-7 text-primary" /> Skatteforhold for udenlandske casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spiller du på casinoer uden dansk licens, ændrer skattereglerne sig markant. Det afgørende kriterium er, hvor casinoet er licenseret – ikke hvor serverne er placeret eller hvilken valuta der bruges. Her gennemgår vi de forskellige scenarior i detaljer med konkrete eksempler.</p>
           
           <div className="overflow-x-auto mb-6">
