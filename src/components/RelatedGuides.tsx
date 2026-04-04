@@ -344,6 +344,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", iconName: "book-open", desc: "Grundlægger af Casinoaftaler.dk" },
         { to: "/forfatter/kevin", label: "Kevin – Forfatter", iconName: "book-open", desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", iconName: "book-open", desc: "Finansøkonom & forsikringsekspert" },
+        { to: "/forfatter/frederik", label: "Frederik – Streamer", iconName: "book-open", desc: "Casino-streamer & live-tester" },
         { to: "/casino-nyheder", label: "Casino Nyheder", iconName: "book-open", desc: "Seneste nyheder om danske casinoer" },
         { to: "/om", label: "Om Casinoaftaler.dk", iconName: "book-open", desc: "Mød teamet bag Casinoaftaler.dk" },
       ],
