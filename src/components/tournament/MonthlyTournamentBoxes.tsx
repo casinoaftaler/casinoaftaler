@@ -441,7 +441,6 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
 }
 
 export function MonthlyTournamentBoxes() {
-  const countdown = useTournamentCountdown();
   const { data: configs, isLoading: configLoading } = useMonthlyTournamentConfig();
 
   // Build tournament box configs from DB config
@@ -460,39 +459,6 @@ export function MonthlyTournamentBoxes() {
 
   return (
     <div className="space-y-4">
-      {/* NEW TOURNAMENT ANNOUNCEMENT BANNER */}
-      <div className="relative overflow-hidden rounded-xl border-2 border-amber-500/50 bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-amber-500/10 p-4">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-400/10 via-transparent to-transparent" />
-        <div className="relative flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="absolute inset-0 bg-amber-400 rounded-full animate-ping opacity-20" />
-              <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-10 h-10 flex items-center justify-center shadow-lg shadow-amber-500/30">
-                <MenuIcon iconName="trophy" className="h-5 w-5 text-amber-900" />
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-foreground">Ny Turnering er LIVE!</h2>
-                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 animate-pulse text-[10px]">
-                  AKTIV
-                </Badge>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                April turnering er startet — slutter <span className="font-bold text-amber-400">1. maj 2026</span>
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 bg-background/60 backdrop-blur-sm rounded-lg border border-border/50 px-4 py-2.5 shadow-sm">
-            <MenuIcon iconName="clock" className="h-4 w-4 text-amber-400" />
-            <div className="text-center">
-              <span className="text-xs text-muted-foreground block">Slutter om</span>
-              <span className="text-sm font-bold font-mono text-foreground">{countdown.label}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Tournament boxes */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {tournamentBoxes.map((box) => (
