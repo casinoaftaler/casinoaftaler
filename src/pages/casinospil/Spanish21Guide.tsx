@@ -627,7 +627,7 @@ const Spanish21Guide = () => {
           src={liveBlackjackSkaermnavn}
           alt="Skærmnavn-dialog ved live blackjack-bord – spilleren vælger brugernavn 'Casinoaftaler' før deltagelse i live-sessionen"
           caption="Skærmnavns-dialog inden live blackjack – online casinoer kræver et alias for at beskytte spillerens identitet ved bordet"
-          size="small"
+          size="compact"
         />
 
         {/* ═══════════════ BANKROLL OG VARIANS ═══════════════ */}
