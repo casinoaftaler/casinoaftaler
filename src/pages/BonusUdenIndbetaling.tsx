@@ -633,6 +633,12 @@ const BonusUdenIndbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det danske no deposit marked har gennemgået markante ændringer de seneste år. Her er de vigtigste tendenser vi ser i 2026:
           </p>
+          <ReviewScreenshot
+            src={royalcasino250Chancer}
+            alt="Royal Casino kampagne med 250 chancer ved oprettelse på Pirots 4 CollectR spilleautomaten med lilla kosmisk baggrund og animerede fuglekarakterer"
+            caption="Royal Casinos seneste no deposit tilbud: 250 chancer ved oprettelse – et eksempel på den stigende konkurrence om nye spillere i 2026."
+            size="medium"
+          />
           <div className="space-y-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
               <MenuIcon iconName="trending-up" className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
