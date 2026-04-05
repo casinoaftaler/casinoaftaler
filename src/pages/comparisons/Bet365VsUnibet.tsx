@@ -311,7 +311,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 5: Mobiloplevelse */}
+        <ReviewScreenshot
+          src={bet365LiveCasino}
+          alt="bet365 live casino med roulette- og blackjack-borde fra Evolution Gaming – danske limits og VIP-borde"
+          caption="bet365s live casino – premium roulette- og blackjack-borde med eksklusive bet365-brandede varianter."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Unibets dedikerede app vs. bet365's responsiv</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
