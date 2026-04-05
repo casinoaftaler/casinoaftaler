@@ -146,7 +146,7 @@ export default function MarketIntelligence() {
       />
 
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
         style={{
           backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
