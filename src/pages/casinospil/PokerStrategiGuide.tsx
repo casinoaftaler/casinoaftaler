@@ -10,8 +10,6 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import pokerstarsSpillemaskiner from "@/assets/screenshots/pokerstars-spillemaskiner.webp";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -244,11 +242,6 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Bankroll management (BRM) er den mest oversete disciplin i poker, og samtidig den vigtigste for langsigtet overlevelse. Selv den bedste spiller i verden vil gå broke uden korrekt BRM, fordi pokervarians kan producere 20-30 buy-in downswings selv for vinnende spillere.
           </p>
-        <ReviewScreenshot
-          src={pokerstarsSpillemaskiner}
-          alt="PokerStars platform med spilleautomater og bordspil – et casino der tilbyder både poker og strategisk spil"
-          caption="PokerStars tilbyder udover poker også et bredt udvalg af casinospil til strategisk underholdning"
-        />
 
           <Card className="mb-6">
             <CardHeader>
