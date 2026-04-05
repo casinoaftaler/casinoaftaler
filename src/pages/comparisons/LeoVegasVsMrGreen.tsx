@@ -493,6 +493,13 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={mgSport}
+          alt="Mr Green Sport kampagner med 100 kr. risikofrit på korrekt score, fodboldnyheder og App Challenge"
+          caption="Mr Greens sportkampagner – risikofri væddemål og ugentlige app-challenges for aktive spillere."
+          size="full"
+        />
+
       {/* SECTION: Anti-fit */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå hvilket brand? – anti-fit gør valget skarpere</h2>
