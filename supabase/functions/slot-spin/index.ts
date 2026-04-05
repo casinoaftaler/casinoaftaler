@@ -426,7 +426,7 @@ async function calculateGatesFullSpin(
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: GatesTumbleStep[] = [];
   let totalRawWin = 0;
-  let totalMultiplier = 0; // Per-spin: always start at 0
+  let totalMultiplier = runningMultiplier; // Start from cumulative multiplier (previous bonus spins)
   let scatterCount = countGatesScatters(grid, symbols);
   let maxTumbles = 50;
 
