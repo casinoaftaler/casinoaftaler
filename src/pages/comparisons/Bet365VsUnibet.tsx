@@ -1,6 +1,12 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
+import bet365Sportsbook from "@/assets/screenshots/bet365-sportsbook-forside-dansk.webp";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby-spiludvalg.webp";
+import bet365LiveCasino from "@/assets/screenshots/bet365-live-casino-roulette-blackjack.webp";
+import unibetForside from "@/assets/screenshots/unibet-forside-velkomst-kampagner.webp";
+import unibetCasinoLobby from "@/assets/screenshots/unibet-casino-lobby-anbefalede-spil.webp";
+import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino-roulette-borde.webp";
+import unibetKampagner from "@/assets/screenshots/unibet-kampagner-casino-bingo.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
