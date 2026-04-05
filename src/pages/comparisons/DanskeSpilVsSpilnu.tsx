@@ -188,6 +188,21 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={dsForside}
+          alt="Danske Spil forside med login-valg mellem Sport & Casino (blå konto) og Lotteri & Skrab (rød konto)"
+          caption="Danske Spils forside – spillere vælger mellem Blå Konto (Sport & Casino) og Rød Konto (Lotteri & Skrab)."
+          size="full"
+          eager
+        />
+
+        <ReviewScreenshot
+          src={dsOversigt}
+          alt="Danske Spil Sport & Casino produktoversigt med Oddset, eOddset, Tips, Casino, Live Casino, Tivoli Casino, Poker, Bingo og Spil-id"
+          caption="Danske Spils komplette produktportefølje under Blå Konto – fra Oddset til Live Casino og Poker."
+          size="medium"
+        />
+
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – 500 kr. vs. 1.000 kr. med identisk omsætning</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
