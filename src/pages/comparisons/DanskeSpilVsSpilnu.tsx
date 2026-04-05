@@ -281,7 +281,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Brand og tillid */}
+        <ReviewScreenshot
+          src={dsLiveCasino}
+          alt="Danske Spil Live Casino lobby med Roulette, XXXtreme Lightning Roulette, Red Door Roulette og Blackjack-borde"
+          caption="Danske Spils Live Casino – dedikerede danske roulette-borde og et bredt udvalg af live dealer-spil."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={spilnuForside}
+          alt="Spilnu forside med Påske-kampagne for gratis skrabelod hver dag og søgefelt til spilleautomater"
+          caption="Spilnus forside – fokuseret casino- og skrabeoplevelse med sæsonkampagner og direkte spilsøgning."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Brand, tillid og det danske DNA</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
