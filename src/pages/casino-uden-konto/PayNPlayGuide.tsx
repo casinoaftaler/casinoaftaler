@@ -1,6 +1,4 @@
 import React from "react";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaMobilepayBekraeft from "@/assets/screenshots/betinia-mobilepay-bekraeft.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
