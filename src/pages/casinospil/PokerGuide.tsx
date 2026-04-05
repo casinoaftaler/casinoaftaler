@@ -569,6 +569,12 @@ const PokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsLivePokerLobby}
+          alt="PokerStars live poker-lobby med Casino Hold'em, Caribbean Stud Poker og Three Card Poker borde fra Evolution"
+          caption="PokerStars' live casino-sektion med pokerborde fra Evolution Gaming – Casino Hold'em, Caribbean Stud og Three Card Poker."
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ 12 – FÆRDIGHED VS HASARD ═══════════════ */}
