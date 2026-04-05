@@ -110,10 +110,10 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
 
     const { gl, texture } = ctx;
 
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = height;
-      gl.viewport(0, 0, width, height);
+    if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      gl.viewport(0, 0, video.videoWidth, video.videoHeight);
     }
 
     gl.bindTexture(gl.TEXTURE_2D, texture);
