@@ -562,6 +562,13 @@ const IPhoneCasinoGuide = () => {
               for en rangeret liste.
             </p>
           </div>
+
+          <ReviewScreenshot
+            src={campobetForside}
+            alt="CampoBet app forside med velkomstbonus, hovedmenu med Casino, Live Casino, Jackpots, Sports og bund-navigation"
+            caption="CampoBets dedikerede iOS-app: Velkomstbonus prominent placeret, hurtig adgang til Casino, Live Casino og Sports via den intuitive bundnavigation."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
