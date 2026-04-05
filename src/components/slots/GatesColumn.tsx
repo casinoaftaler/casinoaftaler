@@ -173,7 +173,23 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {/* Removal/explosion for regular symbols */}
+            {/* Scatter celebration video overlay */}
+            {cellAnim === 'scatter-video' && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                {/* Show the scatter symbol underneath */}
+                {symbol && symbol.image_url && (
+                  <img src={symbol.image_url} alt={symbol.name} className="w-[120%] h-[120%] object-contain absolute" draggable={false} />
+                )}
+                <BlackChromaKeyVideo
+                  src="/videos/gates-scatter-celebration.mp4"
+                  width={SYMBOL_WIDTH}
+                  height={SYMBOL_HEIGHT}
+                  className="absolute inset-0"
+                />
+              </div>
+            )}
+
+
             {(cellAnim === 'removing' || cellAnim === 'exploding') && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center gates-symbol-explode">
                 {symbol.image_url ? (
