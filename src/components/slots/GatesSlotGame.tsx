@@ -41,6 +41,7 @@ import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar"
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
 import { GatesMultiplierOrb } from "./GatesMultiplierOrb";
+import { GatesBonusSpinWinReveal } from "./GatesBonusSpinWinReveal";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -109,7 +110,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
-  const [runningMultiplier, setRunningMultiplier] = useState(0);
+  const [runningMultiplier, _setRunningMultiplier] = useState(0);
+  const runningMultiplierRef = useRef(0);
+  const setRunningMultiplier = useCallback((val: number | ((prev: number) => number)) => {
+    _setRunningMultiplier(prev => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      runningMultiplierRef.current = next;
+      return next;
+    });
+  }, []);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [showLightningFlash, setShowLightningFlash] = useState(false);
   const [animationEpoch, setAnimationEpoch] = useState(0);
@@ -123,6 +132,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const orbVideoPlayingRef = useRef(false);
   const lastOrbReactionSignatureRef = useRef("");
   const gridContainerRef = useRef<HTMLDivElement>(null);
+  const [showSpinWinReveal, setShowSpinWinReveal] = useState(false);
+  const [revealTumbleWin, setRevealTumbleWin] = useState(0);
+  const [revealMultiplier, setRevealMultiplier] = useState(0);
 
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -509,13 +521,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       }
     }
 
-    // Collision effect
+    // Collision effect + bonus spin win reveal
     if (winningStepCount > 0) {
       if (isBonusActiveRef.current && lastStepWithBombs?.multiplierBombs?.some((b: any) => b.activated)) {
+        const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
+        setRevealTumbleWin(rawTumbleWin);
+        setRevealMultiplier(runningMultiplierRef.current);
+        setShowSpinWinReveal(true);
         setCollisionPhase('colliding');
         await new Promise(r => setTimeout(r, 600));
         setCollisionPhase('resolved');
-        await new Promise(r => setTimeout(r, 1200));
+        await new Promise(r => setTimeout(r, 2200));
+        setShowSpinWinReveal(false);
         setCollisionPhase('idle');
         setTumbleBarVisible(false);
       } else {
@@ -557,6 +574,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCollisionPhase('idle');
     setTumbleBarVisible(false);
     setFlyingMultipliers([]);
+    setShowSpinWinReveal(false);
     resetOrbReactionState();
     serverResultRef.current = null;
 
@@ -1138,6 +1156,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
               {/* Flying multipliers */}
               <BonanzaFlyingMultiplier flyers={flyingMultipliers} className="gates-mult-fly" />
+              {/* Bonus spin win reveal (center overlay) */}
+              <GatesBonusSpinWinReveal
+                tumbleWin={revealTumbleWin}
+                multiplier={revealMultiplier}
+                visible={showSpinWinReveal}
+              />
               {/* Tumble win bar */}
               {!isMobile && (
                 <BonanzaTumbleWinBar
