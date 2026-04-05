@@ -443,6 +443,13 @@ export default function EuropaeiskRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetLiveRouletteLobby}
+          alt="CampoBet live roulette lobby med Dansk Roulette, Power Up Roulette, Speed Roulette og flere varianter"
+          caption="CampoBets live roulette-udvalg – et typisk dansk casino med 12+ europæiske roulette-borde fra Evolution Gaming."
+          size="full"
+        />
+
         {/* SECTION 8 – Historisk Oprindelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
