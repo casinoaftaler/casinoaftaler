@@ -611,6 +611,12 @@ const OmahaPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Training sites:</strong> Dedikerede PLO-training sites som Run It Once (grundlagt af Phil Galfond, en af verdens bedste PLO-spillere) tilbyder strukturerede kurser fra micro-stakes til high-stakes PLO. For danske spillere der vil tage PLO seriøst, er en kombination af solver-studie, tracking software og struktureret coaching den mest effektive vej til forbedring. Husk dog: software er et supplement til, ikke en erstatning for, fundamental strategisk forståelse.
           </p>
+          <ReviewScreenshot
+            src={pokerstarsInstallation}
+            alt="PokerStars installation på dansk – Velkommen til PokerStars.dk med Standard installation og dansk sprogvalg"
+            caption="PokerStars' danske installationsguide – vælg Standard installation for hurtig opsætning"
+            size="medium"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
