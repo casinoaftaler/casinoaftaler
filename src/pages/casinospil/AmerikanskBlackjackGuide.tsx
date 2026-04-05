@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.webp";
+import blackjackLiveLobby from "@/assets/screenshots/blackjack-live-casino-lobby.png";
+import blackjackDealerBord from "@/assets/screenshots/blackjack-dealer-bord-venter.png";
+import blackjackMidgame from "@/assets/screenshots/blackjack-midgame-kort-dealt.png";
+import blackjackOmspillet from "@/assets/screenshots/blackjack-omspillet-regler-menu.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
