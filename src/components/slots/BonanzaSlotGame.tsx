@@ -814,8 +814,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     showRetriggerRef.current = false;
     // Release spin lock so next spin can proceed
     spinLockRef.current = false;
-    // Resume auto-spin in bonus after retrigger
-    if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+    // Always resume auto-spin in bonus after retrigger
+    if (isBonusActiveRef.current) {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
       autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
     }
