@@ -224,15 +224,37 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     };
   }, [processFrame, renderFrame, onEnded, playbackRate, src]);
 
-  // Handle playTrigger changes — restart video from beginning
+  // Handle playTrigger changes — restart video from beginning without flashing
   useEffect(() => {
     if (playTrigger === undefined || playTrigger === 0) return;
     const video = videoRef.current;
     if (!video) return;
-    video.playbackRate = playbackRate;
-    video.currentTime = 0;
-    video.play().catch(() => {});
-  }, [playTrigger, playbackRate, src]);
+
+    hasRenderedFrameRef.current = false;
+    setReady(false);
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    const handleSeeked = () => {
+      renderFrame();
+      video.playbackRate = playbackRate;
+      video.play().catch(() => {
+        renderFrame();
+      });
+    };
+
+    video.pause();
+    video.addEventListener("seeked", handleSeeked, { once: true });
+
+    try {
+      video.currentTime = 0;
+    } catch {
+      handleSeeked();
+    }
+
+    return () => {
+      video.removeEventListener("seeked", handleSeeked);
+    };
+  }, [playTrigger, playbackRate, renderFrame]);
 
   return (
     <div

@@ -26,7 +26,6 @@ interface GatesColumnProps {
   cellAnimStates: Map<number, CellAnimState>;
   cellDropOffsets: Map<number, number>;
   tumblePhase: string;
-  animationEpoch?: number;
   bombSymbolsMap?: Map<number, BombSymbol>;
   symbolWidth?: number;
   symbolHeight?: number;
