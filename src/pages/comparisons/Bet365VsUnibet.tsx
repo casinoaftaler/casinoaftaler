@@ -341,7 +341,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 7: Kundeservice */}
+        <ReviewScreenshot
+          src={unibetForside}
+          alt="Unibet forside med Slingo Sweet Bonanza hero-banner, kampagner og produktkategorier – dansk version april 2026"
+          caption="Unibets forside – balanceret allround-platform med casino, odds, live casino, bingo og poker under samme login."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Kundeservice – skala mod specialisering i praksis</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
