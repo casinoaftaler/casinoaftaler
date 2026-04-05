@@ -359,7 +359,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Bonusøkonomi over tid */}
+        <ReviewScreenshot
+          src={spilnuLogin}
+          alt="Spilnu login-dialog med e-mail og adgangskode, Log ind uden adgangskode, MitID-login og Opret spilkonto"
+          caption="Spilnus login – flere muligheder inkl. e-mail, passwordless og MitID-integration."
+          size="compact"
+        />
+
+        <ReviewScreenshot
+          src={spilnuMitid}
+          alt="MitID login hos Spilnu.dk med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-login hos Spilnu – hurtig verifikation via det nationale digitale ID."
+          size="compact"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi på 30, 60 og 90 dages sigt</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
