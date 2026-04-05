@@ -368,14 +368,11 @@ export function usePendingQueuePositions() {
     queryKey: ["pending-queue-positions"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from("slot_requests" as any)
-        .select("id")
-        .eq("status", "pending")
-        .order("created_at", { ascending: true });
+        .rpc("get_pending_queue_positions" as any);
       if (error) throw error;
       const map = new Map<string, number>();
-      (data as any[]).forEach((r: any, i: number) => {
-        map.set(r.id, i + 1);
+      (data as any[])?.forEach((r: any) => {
+        map.set(r.request_id, r.queue_position);
       });
       return map;
     },
