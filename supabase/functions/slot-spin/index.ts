@@ -825,7 +825,8 @@ async function calculateBonanzaFullSpin(
   forceScatters: boolean = false,
   scatterWeightMultiplier: number = 1
 ): Promise<BonanzaSpinResult> {
-  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, forceScatters && !isBonusSpin ? 4 : 0);
+  const isBuyBonus = forceScatters && !isBonusSpin;
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, isBuyBonus ? 4 : 0);
 
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: BonanzaTumbleStep[] = [];
