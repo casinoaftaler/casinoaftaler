@@ -299,6 +299,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er det vigtigt at inkludere <Link to="/casinoer/casino-og-skat" className={linkClass}>skatteovervejelser</Link> i bankroll-beregningen. Pokergevinster over 200 kr. pr. spil er skattepligtige i Danmark, hvilket reducerer den effektive win-rate og dermed kræver en proportionelt større bankroll. Konsultér en skatterådgiver for præcise beregninger baseret på din spillevolumen.
           </p>
+
+          <ReviewScreenshot
+            src={bet365PokerKontantspil}
+            alt="bet365 poker-sektion med kontantspil, Twister-turneringer og buy-in niveauer fra €5 til €100"
+            caption="bet365 tilbyder et bredt udvalg af pokerformater med kontantspil fra €0,10/€0,20 og Twister-turneringer med præmiepuljer op til €100.000"
+          />
         </section>
 
         {/* ═══════════ SEKTION 5: Bluffing-matematik ═══════════ */}
