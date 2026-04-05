@@ -272,6 +272,21 @@ const DalembertBlackjackGuide = () => {
             <LineChart className="h-7 w-7 text-primary" />
             Min 5.000-Hånds Simulering: D'Alembert Under Lup
           </h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            <ReviewScreenshot
+              src={dalembertScenarie1}
+              alt="D'Alembert Scenarie 1 – konservativ 2% indsats med 100 kr. bankroll, balanceret forløb med profit på 8 kr."
+              caption="Scenarie 1: Konservativ tilgang med 2% indsats – bankroll overlever flere tab og ender i plus."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={dalembertScenarie2}
+              alt="D'Alembert Scenarie 2 – aggressiv 10% indsats med 10 kr. bankroll, hurtig ruin efter 4 runder"
+              caption="Scenarie 2: Aggressiv 10% indsats – bankroll udslettet efter kun 4 tab. Illustrerer risikoen ved for høj basisenhed."
+              size="compact"
+            />
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci-simulering</Link>.
           </p>
