@@ -110,10 +110,10 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
 
     const { gl, texture } = ctx;
 
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = height;
-      gl.viewport(0, 0, width, height);
+    if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      gl.viewport(0, 0, video.videoWidth, video.videoHeight);
     }
 
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -161,7 +161,7 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
   }, [processFrame, renderFrame, onEnded, src]);
 
   return (
-    <div className={className} style={{ width, height, position: "relative" }}>
+    <div className={className} style={{ width, height, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <video
         ref={videoRef}
         src={src}
@@ -178,8 +178,10 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
         width={width}
         height={height}
         style={{
-          width: "100%",
-          height: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "auto",
           display: "block",
           opacity: ready ? 1 : 0,
         }}
