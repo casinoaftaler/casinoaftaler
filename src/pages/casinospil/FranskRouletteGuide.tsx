@@ -256,6 +256,13 @@ export default function FranskRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={franskRouletteBordlayout}
+          alt="Fransk roulette bordlayout med Voisins du Zero, Black Splites, Red Splites og Tiers du Cylindre sektioner"
+          caption="Det franske roulette-bordlayout med call bet-sektioner (Voisins du Zéro, Tiers du Cylindre) og standardindsatser – bemærk chips og nummerplacering."
+          size="full"
+        />
+
         {/* SECTION 4 – Simulering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
