@@ -135,9 +135,10 @@ const OnlineLotteriGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilForside}
-          alt="Danske Spil forside med Lotto, Eurojackpot og skrabespil – Danmarks officielle lotteriudbyder"
-          caption="Danske Spil er den primære udbyder af online lotteri i Danmark med Lotto og Eurojackpot"
+          src={lottoForside}
+          alt="Danske Spil Lotto forside med Det Store Påske Lotto – 10 rækker og ekstra lodtrækning april 2026"
+          caption="Danske Spils Lotto-forside med Det Store Påske Lotto – Danmarks primære online lotteriudbyder."
+          eager
         />
 
         {/* ── H2 2 ── */}
