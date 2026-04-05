@@ -338,6 +338,12 @@ const PokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
           </p>
+          <ReviewScreenshot
+            src={pokerHandRankings}
+            alt="Komplet oversigt over pokerhænders rangering fra Royal Flush til High Card med visuelle korteksempler"
+            caption="Pokerhændernes rangering – fra Royal Flush (stærkest) til High Card (svageste). Rangeringen er baseret på kombinationernes sandsynlighed."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
