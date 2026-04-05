@@ -300,18 +300,17 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       if (i === 0) await new Promise(r => setTimeout(r, 200));
 
       // Orb video trigger: play ONCE per spin when orbs are first detected
-      // Don't re-trigger if already playing (prevents flashing)
       const currentBombPositions = new Set<number>((step.multiplierBombs || []).map((b: any) => b.position));
       if (i === 0) {
-        // Initial grid — play once if any orbs exist
-        if (currentBombPositions.size > 0 && !showOrbVideo) {
+        if (currentBombPositions.size > 0 && !orbVideoPlayingRef.current) {
+          orbVideoPlayingRef.current = true;
           setShowOrbVideo(true);
           setOrbVideoTrigger(prev => prev + 1);
         }
       } else {
-        // Tumble step — only play if a brand new orb dropped in AND video isn't already playing
         const hasNewBombs = [...currentBombPositions].some(pos => !allSeenBombPositions.has(pos));
-        if (hasNewBombs && !showOrbVideo) {
+        if (hasNewBombs && !orbVideoPlayingRef.current) {
+          orbVideoPlayingRef.current = true;
           setShowOrbVideo(true);
           setOrbVideoTrigger(prev => prev + 1);
         }
