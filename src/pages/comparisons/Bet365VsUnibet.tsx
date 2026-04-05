@@ -189,7 +189,13 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 2: Velkomstbonus */}
+        <ReviewScreenshot
+          src={bet365Sportsbook}
+          alt="bet365 sportsbook forside med Superligaen odds, live streaming og boost-væddemål – dansk version april 2026"
+          caption="bet365s sportsbook-forside – verdens største med live streaming, Super Boost og dansk Superliga-dækning."
+          size="full"
+          eager
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – sammenligning af tilbud og omsætningskrav</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
