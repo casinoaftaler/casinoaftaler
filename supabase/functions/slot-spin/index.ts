@@ -611,7 +611,7 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
   return symbols[symbols.length - 1];
 }
 
-async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
+async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1, forceExactScatters: number = 0): Promise<string[][]> {
   // Pre-generate enough random values for grid generation:
   // ~5 rows * 6 cols * 2 (symbol picks + bomb/scatter rolls) + ~20 (dup rolls + shuffles) = ~80
   await prng.pregenerate(100);
