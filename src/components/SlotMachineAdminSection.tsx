@@ -38,9 +38,10 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer, Gamepad2 } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer, Gamepad2, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { downloadSymbolImages } from "@/lib/downloadSymbolImages";
 import {
   DndContext,
   closestCenter,
