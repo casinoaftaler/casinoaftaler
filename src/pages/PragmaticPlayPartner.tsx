@@ -197,6 +197,13 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotAffiliatePartners}
+          alt="Pragmatic Play affiliate partners-side med Casinoaftaler.dk listet som officiel partner blandt andre iGaming-affiliates"
+          caption="Casinoaftaler.dk er officielt listet som affiliate-partner på Pragmatic Plays hjemmeside – et direkte bevis på partnerskabet."
+          eager
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 2: HVORFOR PRAGMATIC PLAY?
         ═══════════════════════════════════════════════════════════ */}
