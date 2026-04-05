@@ -440,6 +440,12 @@ const FibonacciBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={comeonBlackjack}
+          alt="ComeOn live blackjack-lobby med Easy Blackjack, Lightning Blackjack, Free Bet Blackjack og VIP-borde fra Evolution"
+          caption="ComeOn tilbyder varianter som Lightning Blackjack og Free Bet Blackjack – begge kompatible med Fibonacci-progression"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
