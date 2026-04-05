@@ -804,8 +804,8 @@ async function applyBonanzaTumble(grid: string[][], winningPositions: number[], 
         fillHasBomb = true;
         continue;
       }
-      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
-      if (scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
+      let sym = await getBonanzaRandomSymbol(blockScatters ? nonScatterSymbols : symbols, isBonusSpin, prng);
+      if (!blockScatters && scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
         sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
       }
       if (scatterSymbol && sym.id === scatterSymbol.id) fillHasScatter = true;
