@@ -150,6 +150,14 @@ const BonanzaGuide = () => {
               </div>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={screenshotBonanzaStats}
+            alt="Bonanza Megaways Game Stats: Max Win 26.000× Stake, RTP 96,00% og 117.649 Ways"
+            caption="Officielle nøgletal for Bonanza Megaways: max win 26.000× indsatsen, RTP 96,00 % og op til 117.649 gevinstmuligheder."
+            size="compact"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bonanzas matematiske fundament hviler på det variable Megaways-system. Hvert af de 6 hovedhjul kan vise mellem 2 og 7 symboler, hvilket giver et minimum af 64 (2⁶) og et maksimum af 117.649 (7⁶) gevinstmuligheder. Det vandrette ekstrahjul øverst tilføjer 4 positioner, der primært bærer scatter- og wild-symboler. Gennemsnitligt vises cirka 46.000 gevinstmuligheder pr. spin – en dramatisk forskel fra traditionelle 20-linje slots.
           </p>
