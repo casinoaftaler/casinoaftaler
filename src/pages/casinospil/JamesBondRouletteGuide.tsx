@@ -12,10 +12,16 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import screenshotRouletteBord from "@/assets/screenshots/roulette-bord-layout-chips.png";
+import screenshotSpildanskKatalog from "@/assets/screenshots/spildansknu-roulette-katalog.png";
+import screenshotDanskeSpilLobby from "@/assets/screenshots/danske-spil-roulette-lobby.png";
+import screenshotDanskeSpilLive from "@/assets/screenshots/danske-spil-live-roulette-gameplay.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const linkClass = "text-primary underline hover:text-primary/80";
 
