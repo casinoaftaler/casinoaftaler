@@ -120,6 +120,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [flyingMultipliers, setFlyingMultipliers] = useState<FlyingMultiplier[]>([]);
   const [showOrbVideo, setShowOrbVideo] = useState(false);
   const [orbVideoTrigger, setOrbVideoTrigger] = useState(0);
+  const orbVideoPlayingRef = useRef(false);
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   // Bonus state
@@ -298,20 +299,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setCurrentTumbleStep(i);
       if (i === 0) await new Promise(r => setTimeout(r, 200));
 
-      // Orb video trigger:
-      // - Step 0 (initial grid): play if any orbs exist
-      // - Step 1+ (tumble refills): play only if NEW orbs dropped in from above
+      // Orb video trigger: play ONCE per spin when orbs are first detected
       const currentBombPositions = new Set<number>((step.multiplierBombs || []).map((b: any) => b.position));
       if (i === 0) {
-        // Initial grid — play if orbs are present at all
-        if (currentBombPositions.size > 0) {
+        if (currentBombPositions.size > 0 && !orbVideoPlayingRef.current) {
+          orbVideoPlayingRef.current = true;
           setShowOrbVideo(true);
           setOrbVideoTrigger(prev => prev + 1);
         }
       } else {
-        // Tumble step — only play if a brand new orb dropped in (not just repositioned)
         const hasNewBombs = [...currentBombPositions].some(pos => !allSeenBombPositions.has(pos));
-        if (hasNewBombs) {
+        if (hasNewBombs && !orbVideoPlayingRef.current) {
+          orbVideoPlayingRef.current = true;
           setShowOrbVideo(true);
           setOrbVideoTrigger(prev => prev + 1);
         }
@@ -419,6 +418,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
 
     // Stop reaction video before bomb blow-up sequence
     setShowOrbVideo(false);
+    orbVideoPlayingRef.current = false;
 
     // Sequential bomb blow-up AFTER all tumbles (matching Bonanza style)
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
@@ -1055,7 +1055,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   className=""
                   loop={false}
                   playTrigger={orbVideoTrigger}
-                  onEnded={() => setShowOrbVideo(false)}
+                  onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}
                 />
               ) : (
                 <ChromaKeyVideo
