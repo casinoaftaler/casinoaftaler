@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.webp";
+import rouletteLiveCasinoLobby from "@/assets/screenshots/roulette-live-casino-lobby.png";
+import rouletteClassicAutoBordlayout from "@/assets/screenshots/roulette-classic-auto-bordlayout.png";
+import rouletteHjulCloseup from "@/assets/screenshots/roulette-hjul-closeup.png";
+import rouletteHjaelpReglerMenu from "@/assets/screenshots/roulette-hjaelp-regler-menu.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -146,6 +150,21 @@ export default function AmerikanskRouletteGuide() {
               </div>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={rouletteHjulCloseup}
+            alt="Close-up af roulette-hjulet i Classic Auto Roulette med synlige tal og kugle"
+            caption="Roulette-hjulet i nærbillede – bemærk den europæiske single-zero talrækkefølge. Et amerikansk hjul har 00 direkte overfor 0."
+            size="medium"
+            eager={true}
+         />
+
+          <ReviewScreenshot
+            src={rouletteClassicAutoBordlayout}
+            alt="Classic Auto Roulette bordlayout med indsatsfelter, chip-values og roulette-hjul"
+            caption="Det komplette bordlayout i Classic Auto Roulette – med alle indsatstyper synlige: straight-up, split, street, corner, dozen og even-money felter."
+            size="full"
+          />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Men denne guide handler ikke bare om at sige "spil europæisk i stedet" – selvom det er det korrekte råd i 99 % af tilfældene. Vi dykker ned i den komplette matematik bag det amerikanske hjul, analyserer alle væddemålstyper, dokumenterer den berygtede Five Number Bet, simulerer 10.000 spins, og giver dig de data du har brug for til at forstå præcis hvad du betaler for den ekstra underholdning.
@@ -548,6 +567,13 @@ export default function AmerikanskRouletteGuide() {
             </CardContent>
           </Card>
 
+          <ReviewScreenshot
+            src={rouletteHjaelpReglerMenu}
+            alt="Hjælpe- og regelmenu i live roulette med oversigt over indsatstyper, regler og indstillinger"
+            caption="Live roulettens indbyggede hjælpemenu – her kan du læse om indsatstyper, call-indsatser, tilbagebetalingsregler og statistik direkte i spillet."
+            size="compact"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bemærk: det gennemsnitlige tab er identisk uanset strategi (det følger af house edge), men ruin-risikoen varierer kraftigt. Martingale på et amerikansk hjul har 38 % sandsynlighed for total ruin (defineret som tab af hele startkapitalen) mod 24 % på europæisk. Flat betting er konsekvent den sikreste tilgang med den laveste ruin-risiko.
           </p>
@@ -649,6 +675,13 @@ export default function AmerikanskRouletteGuide() {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={rouletteLiveCasinoLobby}
+            alt="Live casino lobby med roulette-varianter: Classic Auto Roulette, Auto Roulette Burgundy, VIP og Sports"
+            caption="Live casino-lobbyen med roulette-udvalget – Classic Auto Roulette, Burgundy, VIP og Sports-varianter, alle tilgængelige hos danske licenserede casinoer."
+            size="full"
+          />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
             <strong>Hastigheds-implikation:</strong> Den lavere spin-rate på live borde er faktisk en <em>fordel</em> for din bankroll. Med 30 spins/time mod RNG's 80+ spins/time eksponeres du for 2,7× færre væddemål pr. time – og dermed 2,7× lavere forventet tab pr. time. Hos <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> finder du et bredt udvalg af <Link to="/live-casino/roulette" className={linkClass}>live roulette-borde</Link> med professionelle dealers.
