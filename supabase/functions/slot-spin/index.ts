@@ -476,7 +476,8 @@ async function calculateGatesFullSpin(
     ? scatterCount >= GATES_SCATTER_RETRIGGER
     : scatterCount >= GATES_SCATTER_TRIGGER;
 
-  const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
+  const effectiveMultiplier = runningMultiplier + totalMultiplier;
+  const totalWin = effectiveMultiplier > 0 ? totalRawWin * effectiveMultiplier : totalRawWin;
 
   return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };
 }
