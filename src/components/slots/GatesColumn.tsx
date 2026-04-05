@@ -13,7 +13,7 @@ const DEFAULT_SYMBOL_HEIGHT = 108;
 
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'bomb-exploded' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'bomb-exploded' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense' | 'scatter-video';
 
 interface GatesColumnProps {
   col: number;
