@@ -111,8 +111,8 @@ let GATES_REEL_DUP_2_CHANCE = 0.35;
 let GATES_REEL_DUP_3_CHANCE = 0.10;
 const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10;
 
-let GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
-let GATES_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+let GATES_MULTIPLIER_VALUES = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 50, 100, 250, 500];
+let GATES_MULTIPLIER_WEIGHTS = [5000, 3000, 2000, 1500, 1200, 1000, 800, 700, 600, 500, 400, 350, 250, 100, 50];
 
 const gatesSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const GATES_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
