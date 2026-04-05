@@ -657,6 +657,12 @@ export default function MarketIntelligence() {
                   </tbody>
                 </table>
               </div>
+
+              <ReviewScreenshot
+                src={screenshotSpildanskFooter}
+                alt="SpilDanskNu.dk footer med Spillemyndighedens tilladelsessegl, ROFUS-logo, StopSpillet og MitID samt licensnummer og udløbsdato"
+                caption="Sådan ser en compliant casinofooter ud i praksis – SpilDanskNu viser licensnummer, udløbsdato og links til ROFUS og StopSpillet."
+              />
             </section>
           </>
         )}
