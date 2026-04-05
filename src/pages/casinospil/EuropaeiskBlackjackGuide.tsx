@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
-import euroBlackjackBetting from "@/assets/screenshots/euro-blackjack-multihand-betting.png";
-import euroBlackjackPush from "@/assets/screenshots/euro-blackjack-push-dealer17.png";
-import euroBlackjackBeslutninger from "@/assets/screenshots/euro-blackjack-beslutninger.png";
-import euroBlackjackDealerBust from "@/assets/screenshots/euro-blackjack-dealer-bust.png";
-import euroBlackjackHardTotals from "@/assets/screenshots/euro-blackjack-hard-totals-skema.png";
-import euroBlackjackSoftPairs from "@/assets/screenshots/euro-blackjack-soft-pairs-skema.png";
+import euroBlackjackBetting from "@/assets/screenshots/euro-blackjack-multihand-betting.webp";
+import euroBlackjackPush from "@/assets/screenshots/euro-blackjack-push-dealer17.webp";
+import euroBlackjackBeslutninger from "@/assets/screenshots/euro-blackjack-beslutninger.webp";
+import euroBlackjackDealerBust from "@/assets/screenshots/euro-blackjack-dealer-bust.webp";
+import euroBlackjackHardTotals from "@/assets/screenshots/euro-blackjack-hard-totals-skema.webp";
+import euroBlackjackSoftPairs from "@/assets/screenshots/euro-blackjack-soft-pairs-skema.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

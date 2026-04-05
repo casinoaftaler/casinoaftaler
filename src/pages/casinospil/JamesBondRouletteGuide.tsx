@@ -18,10 +18,10 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import screenshotRouletteBord from "@/assets/screenshots/roulette-bord-layout-chips.png";
-import screenshotSpildanskKatalog from "@/assets/screenshots/spildansknu-roulette-katalog.png";
-import screenshotDanskeSpilLobby from "@/assets/screenshots/danske-spil-roulette-lobby.png";
-import screenshotDanskeSpilLive from "@/assets/screenshots/danske-spil-live-roulette-gameplay.png";
+import screenshotRouletteBord from "@/assets/screenshots/roulette-bord-layout-chips.webp";
+import screenshotSpildanskKatalog from "@/assets/screenshots/spildansknu-roulette-katalog.webp";
+import screenshotDanskeSpilLobby from "@/assets/screenshots/danske-spil-roulette-lobby.webp";
+import screenshotDanskeSpilLive from "@/assets/screenshots/danske-spil-live-roulette-gameplay.webp";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilUltimateTexasHoldem from "@/assets/screenshots/danskespil-ultimate-texas-holdem.webp";
-import danskespilPokerLobby from "@/assets/screenshots/danskespil-poker-lobby.png";
-import pokerStarthaender from "@/assets/screenshots/poker-starthaender-rangering.png";
-import pokerHaandrankering from "@/assets/screenshots/poker-haandrankering-oversigt.png";
-import ggpokerBord from "@/assets/screenshots/ggpoker-texas-holdem-bord.png";
+import danskespilPokerLobby from "@/assets/screenshots/danskespil-poker-lobby.webp";
+import pokerStarthaender from "@/assets/screenshots/poker-starthaender-rangering.webp";
+import pokerHaandrankering from "@/assets/screenshots/poker-haandrankering-oversigt.webp";
+import ggpokerBord from "@/assets/screenshots/ggpoker-texas-holdem-bord.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

@@ -15,12 +15,12 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
-import dalembertPortrait from "@/assets/screenshots/dalembert-portrat-jean-le-rond.png";
-import dalembertScenarie1 from "@/assets/screenshots/dalembert-scenarie-1-bankroll-management.png";
-import dalembertScenarie2 from "@/assets/screenshots/dalembert-scenarie-2-aggressiv-indsats.png";
-import leovegasLiveBlackjack from "@/assets/screenshots/leovegas-live-blackjack-lobby.png";
-import playjangoBlackjack from "@/assets/screenshots/playjango-live-blackjack-vip-borde.png";
-import swiftCasinoBlackjack from "@/assets/screenshots/swift-casino-blackjack-udvalg.png";
+import dalembertPortrait from "@/assets/screenshots/dalembert-portrat-jean-le-rond.webp";
+import dalembertScenarie1 from "@/assets/screenshots/dalembert-scenarie-1-bankroll-management.webp";
+import dalembertScenarie2 from "@/assets/screenshots/dalembert-scenarie-2-aggressiv-indsats.webp";
+import leovegasLiveBlackjack from "@/assets/screenshots/leovegas-live-blackjack-lobby.webp";
+import playjangoBlackjack from "@/assets/screenshots/playjango-live-blackjack-vip-borde.webp";
+import swiftCasinoBlackjack from "@/assets/screenshots/swift-casino-blackjack-udvalg.webp";
 import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowDown, ArrowUp, GraduationCap, Lightbulb, LineChart, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;

@@ -22,11 +22,11 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import type { ReactNode } from "react";
 import { SLOT_COUNT_LABEL } from "@/hooks/useSlotCountLabel";
 
-import spildanskLobbyImg from "@/assets/screenshots/spildansknu-lobby-demospil.png";
-import wantedGameplayImg from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.png";
-import wantedBonusBuyImg from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy.png";
-import blackjackDemoImg from "@/assets/screenshots/blackjack-mh-bordet-demotilstand.png";
-import baccaratBordImg from "@/assets/screenshots/baccarat-bord-indsatser.png";
+import spildanskLobbyImg from "@/assets/screenshots/spildansknu-lobby-demospil.webp";
+import wantedGameplayImg from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.webp";
+import wantedBonusBuyImg from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy.webp";
+import blackjackDemoImg from "@/assets/screenshots/blackjack-mh-bordet-demotilstand.webp";
+import baccaratBordImg from "@/assets/screenshots/baccarat-bord-indsatser.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

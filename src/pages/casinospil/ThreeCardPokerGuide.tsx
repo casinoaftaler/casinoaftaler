@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.webp";
-import threeCardPokerBordlayout from "@/assets/screenshots/three-card-poker-bordlayout.png";
-import threeCardPokerTreKonger from "@/assets/screenshots/three-card-poker-tre-konger.png";
-import threeCardPokerBordOverhead from "@/assets/screenshots/three-card-poker-bord-overhead.png";
-import pokerstarsLobbyDansk from "@/assets/screenshots/pokerstars-lobby-dansk.png";
-import pokerstarsMobilGameplay from "@/assets/screenshots/pokerstars-mobil-gameplay.png";
+import threeCardPokerBordlayout from "@/assets/screenshots/three-card-poker-bordlayout.webp";
+import threeCardPokerTreKonger from "@/assets/screenshots/three-card-poker-tre-konger.webp";
+import threeCardPokerBordOverhead from "@/assets/screenshots/three-card-poker-bord-overhead.webp";
+import pokerstarsLobbyDansk from "@/assets/screenshots/pokerstars-lobby-dansk.webp";
+import pokerstarsMobilGameplay from "@/assets/screenshots/pokerstars-mobil-gameplay.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

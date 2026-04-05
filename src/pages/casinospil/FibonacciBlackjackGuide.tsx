@@ -15,10 +15,10 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
-import fibonacciDiagram from "@/assets/screenshots/fibonacci-talraekke-diagram.png";
-import comeonBlackjack from "@/assets/screenshots/comeon-live-blackjack-lobby.png";
-import getluckyBlackjack from "@/assets/screenshots/getlucky-live-blackjack-lobby.png";
-import spildansknuBlackjack from "@/assets/screenshots/spildansknu-live-blackjack-grid.png";
+import fibonacciDiagram from "@/assets/screenshots/fibonacci-talraekke-diagram.webp";
+import comeonBlackjack from "@/assets/screenshots/comeon-live-blackjack-lobby.webp";
+import getluckyBlackjack from "@/assets/screenshots/getlucky-live-blackjack-lobby.webp";
+import spildansknuBlackjack from "@/assets/screenshots/spildansknu-live-blackjack-grid.webp";
 import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, Infinity, LineChart, Repeat, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;

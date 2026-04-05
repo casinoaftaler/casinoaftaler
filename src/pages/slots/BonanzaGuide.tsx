@@ -18,11 +18,11 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
-import screenshotBonanzaIntro from "@/assets/screenshots/bonanza-megaways-intro.png";
-import screenshotBonanzaGameplay from "@/assets/screenshots/bonanza-megaways-gameplay.png";
-import screenshotBonanzaPaytable from "@/assets/screenshots/bonanza-megaways-paytable.png";
-import screenshotBonanzaFreeSpins from "@/assets/screenshots/bonanza-megaways-free-spins-trigger.png";
-import screenshotBonanzaStats from "@/assets/screenshots/bonanza-megaways-game-stats.png";
+import screenshotBonanzaIntro from "@/assets/screenshots/bonanza-megaways-intro.webp";
+import screenshotBonanzaGameplay from "@/assets/screenshots/bonanza-megaways-gameplay.webp";
+import screenshotBonanzaPaytable from "@/assets/screenshots/bonanza-megaways-paytable.webp";
+import screenshotBonanzaFreeSpins from "@/assets/screenshots/bonanza-megaways-free-spins-trigger.webp";
+import screenshotBonanzaStats from "@/assets/screenshots/bonanza-megaways-game-stats.webp";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 

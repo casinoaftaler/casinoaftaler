@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spildanskLiveCasinoLobby from "@/assets/screenshots/spildansknu-live-casino-blackjack-lobby.png";
-import liveBlackjackBord from "@/assets/screenshots/live-blackjack-a-bord-evolution.png";
-import deHardTotals from "@/assets/screenshots/double-exposure-hard-totals-strategi.png";
-import deSoftTotals from "@/assets/screenshots/double-exposure-soft-totals-strategi.png";
-import deSplits from "@/assets/screenshots/double-exposure-splits-strategi.png";
+import spildanskLiveCasinoLobby from "@/assets/screenshots/spildansknu-live-casino-blackjack-lobby.webp";
+import liveBlackjackBord from "@/assets/screenshots/live-blackjack-a-bord-evolution.webp";
+import deHardTotals from "@/assets/screenshots/double-exposure-hard-totals-strategi.webp";
+import deSoftTotals from "@/assets/screenshots/double-exposure-soft-totals-strategi.webp";
+import deSplits from "@/assets/screenshots/double-exposure-splits-strategi.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
