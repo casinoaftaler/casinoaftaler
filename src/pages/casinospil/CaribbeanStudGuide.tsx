@@ -345,6 +345,13 @@ export default function CaribbeanStudGuide() {
           </Card>
 
           <h3 className="text-xl font-semibold text-foreground mb-3">Break-even jackpot-størrelse: det magiske tal</h3>
+
+          <ReviewScreenshot
+            src={caribbeanStudCallBet}
+            alt="Caribbean Stud Poker call bet odds – udbetalinger fra Royal Flush 100:1 til et par eller lavere 1:1"
+            caption="Call bet odds i Caribbean Stud – bemærk at udbetalingerne er markant lavere end 5+1 Bonus, men med højere træffrekvens"
+            size="compact"
+          />
           <p className="text-muted-foreground leading-relaxed mb-4">
             Med standard progressive udbetalinger er break-even punktet ca. 263.204× indsatsen. Ved en 10 kr.-indsats skal jackpotten altså overstige 2.632.040 kr. for at side-bettet har positiv forventet værdi. I praksis når de fleste online progressive jackpots dette niveau ekstremt sjældent – typisk resettes de ved 500.000-1.500.000 kr.
           </p>
