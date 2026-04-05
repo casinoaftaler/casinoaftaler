@@ -464,6 +464,21 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Polariserede vs. merged ranges:</strong> En polariseret range indeholder kun stærke hænder (value) og svage hænder (bluffs) – ingen medium-stærke hænder. Eksempel: En stor river-bet er typisk polariseret. En merged range indeholder mange medium-stærke hænder. Eksempel: En lille flop c-bet er typisk merged. At forstå om modstanderens range er polariseret eller merged er nøglen til korrekte call/fold-beslutninger.
           </p>
+
+          <div className="grid sm:grid-cols-2 gap-4 mt-6">
+            <ReviewScreenshot
+              src={pokerstarsHandRankingsTop}
+              alt="PokerStars håndrangering oversigt – Royal Flush, Straight Flush, Fire ens, Fuldt hus, Flush og Straight"
+              caption="PokerStars' officielle håndrangering: De seks stærkeste pokerhænder fra Royal Flush til Straight"
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={pokerstarsHandRankingsBund}
+              alt="PokerStars håndrangering – Tre ens, To par, Par og High card"
+              caption="De fire lavest rangerede pokerhænder – vigtigt at kende for korrekt range-analyse"
+              size="compact"
+            />
+          </div>
         </section>
 
         {/* ═══════════ SEKTION 9: Tilt management ═══════════ */}
