@@ -711,6 +711,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotWantedGameplay}
+          alt="Wanted Dead or a Wild gameplay med western-tema, pengesække og whiskey-symboler på 5x5 grid hos SpilDanskNu"
+          caption="Wanted Dead or a Wild fra Hacksaw Gaming – en af de mest populære bonus buy-slots med ekstremt høj volatilitet og op til 12.500x max win."
+        />
+
         {/* H2: Bankroll management ved buy feature */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
