@@ -220,6 +220,13 @@ const AndroidCasinoGuide = () => {
             </div>
           </div>
           <ReviewScreenshot
+            src={androidLogoBrand}
+            alt="Android-logoet med den grønne Android-maskot – operativsystemet bag 45% af alle danske smartphones"
+            caption="Android – verdens mest udbredte mobil-OS og en stærk platform for dansk online casino."
+            size="medium"
+            eager
+          />
+
             src={mrvegasForside}
             alt="MrVegas casino-lobby med Android-venligt design og responsivt mobilinterface"
             caption="MrVegas' forside – designet fungerer problemfrit på Android-enheder uden behov for app-installation"
