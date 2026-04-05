@@ -165,6 +165,13 @@ export default function JamesBondRouletteGuide() {
             </Card>
           </div>
 
+          <ReviewScreenshot
+            src={screenshotRouletteBord}
+            alt="Europæisk roulette-bord med chips placeret på høje tal, six-line 13-18 og nul – James Bond-systemets tre væddemål visualiseret"
+            caption="Roulette-bordets layout med chips placeret efter James Bond-mønsteret: 140 kr. på 19-36, 50 kr. på six-line 13-18 og 10 kr. på nul."
+            eager
+          />
+
           <h3 className="text-lg font-semibold text-foreground mb-3">Resultatscenarier</h3>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm">
