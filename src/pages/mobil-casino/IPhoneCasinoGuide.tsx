@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mariaForside from "@/assets/screenshots/maria-forside.webp";
+import campobetMitidLogin from "@/assets/screenshots/campobet-mitid-login-brugerid.jpg";
+import campobetMitidApp from "@/assets/screenshots/campobet-mitid-godkend-app.jpg";
+import campobetMitidGodkendt from "@/assets/screenshots/campobet-mitid-godkendt.jpg";
+import campobetAppStore from "@/assets/screenshots/campobet-app-store-listing.jpg";
+import campobetAppStoreDetaljer from "@/assets/screenshots/campobet-app-store-detaljer.jpg";
+import campobetKasserer from "@/assets/screenshots/campobet-kasserer-betalingsmetoder.jpg";
+import campobetForside from "@/assets/screenshots/campobet-app-forside-menu.jpg";
+import campobetLiveCasino from "@/assets/screenshots/campobet-live-casino-lobby.jpg";
+import campobetCasinoLobby from "@/assets/screenshots/campobet-casino-lobby-spil.jpg";
+import campobetAppStorePreview from "@/assets/screenshots/campobet-app-store-preview.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -125,7 +135,7 @@ const IPhoneCasinoGuide = () => {
 
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
@@ -143,7 +153,7 @@ const IPhoneCasinoGuide = () => {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino på iPhone – Komplet iOS Guide
             </h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-primary-foreground/80">
               Face ID-login, Apple Pay-indbetalinger, Safari PWA og performance-benchmarks
               for alle iPhone-modeller. Alt du skal vide om casino på iOS.
             </p>
@@ -416,12 +426,27 @@ const IPhoneCasinoGuide = () => {
             til en af de mest sikre platforme for online gambling. Her gennemgår vi, hvordan biometrisk
             autentificering fungerer i praksis med danske casinoer:
           </p>
-          <ReviewScreenshot
-            src={mariaForside}
-            alt="Maria Casino forside med iPhone-venligt mobildesign og populære spillekategorier"
-            caption="Maria Casinos forside – et eksempel på en iPhone-optimeret casinooplevelse med Touch/Face ID-support"
-            size="full"
-          />
+          <div className="grid gap-4 sm:grid-cols-3 mb-6">
+            <ReviewScreenshot
+              src={campobetMitidLogin}
+              alt="CampoBet MitID login-skærm med Bruger-ID felt og Spillemyndighedens tilladelse synlig i toppen"
+              caption="Trin 1: Indtast Bruger-ID hos CampoBet – Spillemyndighedens tilladelse vises øverst i appen."
+              size="compact"
+              eager
+            />
+            <ReviewScreenshot
+              src={campobetMitidApp}
+              alt="CampoBet MitID-bekræftelse med 'Åbn MitID app og godkend' besked og blåt MitID-ikon"
+              caption="Trin 2: MitID-appen åbnes automatisk til biometrisk godkendelse via Face ID eller Touch ID."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetMitidGodkendt}
+              alt="MitID godkendt-skærm med blåt skjold og flueben efter succesfuld biometrisk verifikation"
+              caption="Trin 3: MitID-godkendelse fuldført – du er nu sikkert logget ind med biometrisk verifikation."
+              size="compact"
+            />
+          </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3">Biometrisk autentificering i casino-kontekst</h3>
@@ -537,6 +562,13 @@ const IPhoneCasinoGuide = () => {
               for en rangeret liste.
             </p>
           </div>
+
+          <ReviewScreenshot
+            src={campobetForside}
+            alt="CampoBet app forside med velkomstbonus, hovedmenu med Casino, Live Casino, Jackpots, Sports og bund-navigation"
+            caption="CampoBets dedikerede iOS-app: Velkomstbonus prominent placeret, hurtig adgang til Casino, Live Casino og Sports via den intuitive bundnavigation."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -649,7 +681,14 @@ const IPhoneCasinoGuide = () => {
                   <div className="flex gap-4 text-xs">
                     <span className="text-muted-foreground">Tid: <span className="text-foreground font-medium">{method.time}</span></span>
                     <span className="text-muted-foreground">Gebyr: <span className="text-foreground font-medium">{method.fee}</span></span>
-                  </div>
+          </div>
+
+          <ReviewScreenshot
+            src={campobetKasserer}
+            alt="CampoBet kasserer med betalingsmetoder: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med min. 100 kr og 0% gebyr"
+            caption="CampoBets kasserer på iPhone: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med 0 % gebyr og minimum 100 kr indbetaling."
+            size="medium"
+          />
                   <p className="text-sm text-muted-foreground">{method.desc}</p>
                   <Link to={method.link} className="text-primary underline hover:text-primary/80 text-xs">
                     Læs komplet guide →
@@ -708,7 +747,22 @@ const IPhoneCasinoGuide = () => {
               <div key={rule} className="flex items-start gap-2">
                 <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{rule}</span>
-              </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 mb-6">
+            <ReviewScreenshot
+              src={campobetAppStore}
+              alt="CampoBet App Store listing med 4,6 stjerner, 434 vurderinger, GLOBALIX HOLDING LIMITED og 18+ aldersgrænse"
+              caption="CampoBet i App Store: 4,6 stjerner fra 434 vurderinger, udgivet af GLOBALIX HOLDING LIMITED med 18+ aldersklassificering."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetAppStoreDetaljer}
+              alt="CampoBet App Store detaljer med 135,1 MB størrelse, Kasino-kategori, 18+ aldersgrænse og GLOBALIX HOLDING LIMITED som leverandør"
+              caption="App Store-detaljer: 135,1 MB, Kasino-kategori, 18+ aldersklassificering – alle Spillemyndighedens krav er opfyldt."
+              size="compact"
+            />
+          </div>
             ))}
           </div>
 
@@ -920,6 +974,20 @@ const IPhoneCasinoGuide = () => {
             ))}
           </div>
 
+          <div className="grid gap-4 sm:grid-cols-2 mb-6">
+            <ReviewScreenshot
+              src={campobetCasinoLobby}
+              alt="CampoBet casino-lobby med Anbefalede spil, Golden Slots og Nye Spil – over 3.100 tilgængelige titler på iPhone"
+              caption="CampoBets casino-lobby på iPhone: Anbefalede spil, Golden Slots og over 3.100 nye titler – alt optimeret til touch."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetLiveCasino}
+              alt="CampoBet Live Casino med Speed Roulette, Lightning Baccarat, Crazy Pachinko, Dansk Roulette og Blackjack på iPhone"
+              caption="Live Casino-sektionen med 660+ borde: Speed Roulette, Lightning Baccarat, Dansk Roulette og Blackjack – alt i HD direkte på iPhone."
+              size="compact"
+            />
+          </div>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Generelt set er 95 % af alle casino-spiltitler kompatible med iPhone via Safari. De resterende
             5 % er typisk ældre Flash-baserede spil, der ikke længere understøttes af nogen moderne platform.
