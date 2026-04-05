@@ -334,6 +334,13 @@ const NyeCasinoerLavWagering = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={royalCasinoBonus}
+          alt="Royal Casino bonusside med 750 kr. ved første overførsel og 200 chancer ved oprettelse med 10x omsætningskrav"
+          caption="Royal Casino viser tydelige bonusvilkår – 10x omsætning på 750 kr. bonus og separate free spins"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* Common mistakes - UNIQUE */}
