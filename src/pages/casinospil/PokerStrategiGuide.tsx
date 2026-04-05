@@ -11,6 +11,13 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsForside from "@/assets/screenshots/pokerstars-forside-bonus-tilbud.png";
+import pokerstarsHandRankingsTop from "@/assets/screenshots/pokerstars-hand-rankings-top.png";
+import pokerstarsHandRankingsBund from "@/assets/screenshots/pokerstars-hand-rankings-bund.png";
+import unibetPokerStellar from "@/assets/screenshots/unibet-poker-stellar-sundays.png";
+import bet365PokerKontantspil from "@/assets/screenshots/bet365-poker-kontantspil-twister.png";
+import danskeSpilPokerLobby from "@/assets/screenshots/danske-spil-poker-live-lobby.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -126,6 +133,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Resultater vs. beslutninger:</strong> Det vigtigste mindset-skift for nye pokerspillere er at fokusere på <em>beslutningskvalitet</em> fremfor resultater. Du kan lave den perfekte all-in med AA preflop og tabe mod 72o, der rammer to par. Det ændrer ikke, at din beslutning var korrekt. Over tid belønner poker gode beslutninger matematisk – men på kort sigt kan varians producere resultater der tilsyneladende modsiger dette. Disciplinen til at fastholde optimal strategi trods kortsigtede tab er det, der adskiller vindende spillere fra tabende.
           </p>
+
+          <ReviewScreenshot
+            src={pokerstarsForside}
+            alt="PokerStars forside med 100 kr. bonus i ekstra spil for nye spillere – dansk pokerklient"
+            caption="PokerStars tilbyder nye danske spillere 100 kr. i ekstra spil som Spin & Go-billetter ved første indbetaling"
+          />
         </section>
 
         {/* ═══════════ SEKTION 2: Positionsspil ═══════════ */}
@@ -286,6 +299,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er det vigtigt at inkludere <Link to="/casinoer/casino-og-skat" className={linkClass}>skatteovervejelser</Link> i bankroll-beregningen. Pokergevinster over 200 kr. pr. spil er skattepligtige i Danmark, hvilket reducerer den effektive win-rate og dermed kræver en proportionelt større bankroll. Konsultér en skatterådgiver for præcise beregninger baseret på din spillevolumen.
           </p>
+
+          <ReviewScreenshot
+            src={bet365PokerKontantspil}
+            alt="bet365 poker-sektion med kontantspil, Twister-turneringer og buy-in niveauer fra €5 til €100"
+            caption="bet365 tilbyder et bredt udvalg af pokerformater med kontantspil fra €0,10/€0,20 og Twister-turneringer med præmiepuljer op til €100.000"
+          />
         </section>
 
         {/* ═══════════ SEKTION 5: Bluffing-matematik ═══════════ */}
@@ -445,6 +464,21 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Polariserede vs. merged ranges:</strong> En polariseret range indeholder kun stærke hænder (value) og svage hænder (bluffs) – ingen medium-stærke hænder. Eksempel: En stor river-bet er typisk polariseret. En merged range indeholder mange medium-stærke hænder. Eksempel: En lille flop c-bet er typisk merged. At forstå om modstanderens range er polariseret eller merged er nøglen til korrekte call/fold-beslutninger.
           </p>
+
+          <div className="grid sm:grid-cols-2 gap-4 mt-6">
+            <ReviewScreenshot
+              src={pokerstarsHandRankingsTop}
+              alt="PokerStars håndrangering oversigt – Royal Flush, Straight Flush, Fire ens, Fuldt hus, Flush og Straight"
+              caption="PokerStars' officielle håndrangering: De seks stærkeste pokerhænder fra Royal Flush til Straight"
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={pokerstarsHandRankingsBund}
+              alt="PokerStars håndrangering – Tre ens, To par, Par og High card"
+              caption="De fire lavest rangerede pokerhænder – vigtigt at kende for korrekt range-analyse"
+              size="compact"
+            />
+          </div>
         </section>
 
         {/* ═══════════ SEKTION 9: Tilt management ═══════════ */}
@@ -556,6 +590,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Final table strategi:</strong> Ved final table (typisk 6-9 spillere) eskalerer ICM-effekten yderligere. Hvert pay-jump repræsenterer en significant stigning i præmie, og dine strategiske beslutninger bør afspejle dette. Generelt: undgå marginale all-ins mod andre medium-stacks (risikoen for elimination overvejer gevinsten af ekstra chips), og target short-stacks aggressivt (de er de mest sandsynlige til at bubbe). Læs mere om pokervarianter i vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={unibetPokerStellar}
+            alt="Unibet Poker Stellar Sundays turnering med Kom i Gang-sektion og download/browser-muligheder"
+            caption="Unibet Poker tilbyder turneringer som Stellar Sundays og mulighed for at spille direkte i browseren eller via download"
+          />
         </section>
 
         {/* ═══════════ SEKTION 12: Online vs. Live ═══════════ */}
@@ -576,6 +616,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Fysiske tells vs. timing tells:</strong> I live poker kan du observere modstanderens kropssprog, ansigtsudtryk og chip-håndtering. Online har du timing tells (hvor hurtigt modstanderen handler), bet-sizing tells og HUD-statistikker (hvis tilladt). Begge tell-typer giver værdifuld information, men live tells er ofte mere pålidelige, da de er sværere at fake.
           </p>
+
+          <ReviewScreenshot
+            src={danskeSpilPokerLobby}
+            alt="Danske Spil live poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker"
+            caption="Danske Spil tilbyder live casino-poker med varianter som Ultimate Texas Holdem (min. 5 kr.) og Casino Holdem (min. 10 kr.)"
+          />
         </section>
 
         <CasinospilMoneyLinks gameName="Poker Strategi" currentPath="/casinospil/poker/poker-strategi" />
