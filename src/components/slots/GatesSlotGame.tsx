@@ -604,7 +604,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
             scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
             setCellAnimStates(scatterAnims);
             slotSounds.playScatterCelebration();
-            await new Promise(r => setTimeout(r, 1500));
+            await new Promise(r => setTimeout(r, 3050));
             setCellAnimStates(new Map());
           }
         }
