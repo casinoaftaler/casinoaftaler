@@ -430,6 +430,13 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={lottoVindertal}
+          alt="Danske Spil Lotto vindertal og gevinstoversigt – 7 rigtige tal, antal vindere og præmiebeløb april 2026"
+          caption="Lotto-resultaterne viser gevinstfordelingen – fra 4 rigtige (70 kr.) til Millionærchancen (1.000.000 kr.)."
+          size="medium"
+        />
+
         {/* ── H2 11 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
