@@ -298,30 +298,21 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   // Process tumble steps — Bonanza-style with sequential bomb blow-up
   const processTumbleSteps = useCallback(async (steps: any[]) => {
     let winningStepCount = 0;
-    let allSeenBombPositions = new Set<number>();
 
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
       if (i === 0) await new Promise(r => setTimeout(r, 200));
 
-      // Orb video trigger: play ONCE per spin when orbs are first detected
-      const currentBombPositions = new Set<number>((step.multiplierBombs || []).map((b: any) => b.position));
-      if (i === 0) {
-        if (currentBombPositions.size > 0 && !orbVideoPlayingRef.current) {
-          orbVideoPlayingRef.current = true;
-          setShowOrbVideo(true);
-          setOrbVideoTrigger(prev => prev + 1);
-        }
-      } else {
-        const hasNewBombs = [...currentBombPositions].some(pos => !allSeenBombPositions.has(pos));
-        if (hasNewBombs && !orbVideoPlayingRef.current) {
+      // Orb reaction should only trigger once per spin, on the first grid that contains orbs.
+      if ((step.multiplierBombs?.length || 0) > 0 && !orbReactionTriggeredThisSpinRef.current) {
+        orbReactionTriggeredThisSpinRef.current = true;
+        if (!orbVideoPlayingRef.current) {
           orbVideoPlayingRef.current = true;
           setShowOrbVideo(true);
           setOrbVideoTrigger(prev => prev + 1);
         }
       }
-      currentBombPositions.forEach(pos => allSeenBombPositions.add(pos));
 
       const hasWins = step.wins.length > 0;
 
@@ -422,12 +413,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       }
     }
 
-    // Stop reaction video before bomb blow-up sequence
-    setShowOrbVideo(false);
-    orbVideoPlayingRef.current = false;
+    const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
+
+    // Only interrupt the reaction clip when the actual bomb resolution is about to begin.
+    if (lastStepWithBombs?.multiplierBombs?.length) {
+      setShowOrbVideo(false);
+      orbVideoPlayingRef.current = false;
+    }
 
     // Sequential bomb blow-up AFTER all tumbles (matching Bonanza style)
-    const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a: any, b: any) => a.position - b.position);
       const explodedPositions = new Map<number, CellAnimState>();
