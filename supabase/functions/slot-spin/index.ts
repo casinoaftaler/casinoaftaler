@@ -795,12 +795,21 @@ async function calculateBonanzaFullSpin(
 ): Promise<BonanzaSpinResult> {
   let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
 
-  // Debug: force exactly 4 scatters across different columns
+  // BuyBonus: force EXACTLY 4 scatters — remove any existing scatters first
   if (forceScatters && !isBonusSpin) {
     const scatterSymbol = symbols.find(s => s.is_scatter);
     if (scatterSymbol) {
+      const nonScatter = symbols.filter(s => !s.is_scatter && !s.is_wild);
+      // Remove all existing scatters from the grid
+      for (let c = 0; c < BONANZA_COLS; c++) {
+        for (let r = 0; r < BONANZA_ROWS; r++) {
+          if (grid[c][r] === scatterSymbol.id) {
+            grid[c][r] = nonScatter[Math.floor(await prng.next() * nonScatter.length)].id;
+          }
+        }
+      }
+      // Place exactly 4 scatters in 4 random columns
       const cols = [0, 1, 2, 3, 4, 5];
-      // Pick 4 random columns
       for (let i = cols.length - 1; i > 0; i--) {
         const j = Math.floor(await prng.next() * (i + 1));
         [cols[i], cols[j]] = [cols[j], cols[i]];
