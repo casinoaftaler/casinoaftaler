@@ -11,7 +11,10 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilLiveCasino from "@/assets/screenshots/danskespil-live-casino.webp";
+import comeonCraps from "@/assets/screenshots/comeon-craps-velkomstbonus-opret-konto.webp";
+import crapsPayoutOdds from "@/assets/screenshots/craps-payout-odds-oversigt.webp";
+import crapsBordLayout from "@/assets/screenshots/craps-bord-layout-pass-line-field.webp";
+import crapsTerminologi from "@/assets/screenshots/craps-terning-navne-kombinationer.webp";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -143,9 +146,10 @@ const CrapsGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilLiveCasino}
-          alt="Danske Spil live casino-lobby med bordspil inklusiv craps, roulette og blackjack hos et dansk licenseret casino"
-          caption="Live casino-lobbyen hos Danske Spil viser det tilgængelige udvalg af bordspil for danske spillere"
+          src={comeonCraps}
+          alt="ComeOn casino craps-side med velkomstbonus på 100% op til 1.000 kr. og opret konto-knap for danske spillere"
+          caption="ComeOn tilbyder craps med dansk licens – her ses velkomsttilbuddet med 10x omsætningskrav"
+          eager
         />
 
         <InlineCasinoCards title="Bedste Casinoer til Craps" count={6} />
@@ -192,6 +196,13 @@ const CrapsGuide = () => {
             <strong>Vigtig nuance:</strong> Selvom 7 er den mest sandsynlige individuelle sum, er sandsynligheden for "ikke-7" langt højere: 30/36 = 83,33 %. Det er den psykologiske fælde – det "meste af tiden" er 7 fraværende, hvilket giver en illusion af, at specifikke numre er "varme" eller at 7'ere kan undgås. De kan ikke. Over mange kast konvergerer frekvensen af 7'ere uundgåeligt mod 16,67 %.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={crapsTerminologi}
+          alt="Oversigt over craps-terningekombinationer med navne som Snake Eyes, Boxcars, Hard Eight og alle 36 mulige udfald"
+          caption="Alle 36 terningekombinationer i craps med deres traditionelle kaldenavne – fra Snake Eyes (1+1) til Midnight (6+6)"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
@@ -252,6 +263,13 @@ const CrapsGuide = () => {
             Hvorfor tilbyder casinoer dette tilsyneladende umulige væddemål? Fordi du skal først have en Pass Line-indsats (med 1,41 % edge) for at kvalificere. Casinoets profit på Pass Line er garanteret – Odds Bets er en mekanisme til at tiltrække og fastholde spillere. Desuden har Odds Bets høj varians (store udsving), og de fleste spillere har ikke bankroll eller disciplin til at udnytte dem maksimalt. Casinoet tjener tilstrækkeligt på spillernes øvrige væddemål – herunder de lukrative proposition bets.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={crapsBordLayout}
+          alt="Craps bordlayout med Pass Line, Don't Pass Bar, Come, Field og proposition bets i midten af bordet"
+          caption="Standard craps bordlayout – bemærk Pass Line i kanten (lav house edge) og proposition bets i midten (høj house edge)"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
@@ -360,6 +378,13 @@ const CrapsGuide = () => {
             Tabellen afslører et klart mønster: de synligste, mest tilgængelige væddemål i midten af bordet har de højeste house edges. De "kedelige" væddemål i kanten (Pass Line, Don't Pass, Odds Bets) har de laveste. Casinoets borddesign er en form for adfærdsøkonomisk arkitektur: det, der fanger din opmærksomhed, er designet til at maksimere casinoets profit, ikke din spilleoplevelse. At kende denne tabel er den vigtigste strategiske fordel, en craps-spiller kan have.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={crapsPayoutOdds}
+          alt="Komplet craps payout odds oversigt med udbetalinger for Pass Line, Odds, Place Bets, Buy Bets, Lay Bets, Field, Hard Ways og 1-Roll Bets"
+          caption="Payout odds for alle craps-væddemål – fra Pass Line (1:1) til Craps Two/Twelve (30:1)"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
