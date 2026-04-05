@@ -311,6 +311,13 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotKoebDialog}
+          alt="Bekræftelsesdialog for køb af gratis spins i 5 Lions Megaways – pris 500 kr. med bekræft og annuller-knapper"
+          caption="Bekræftelsesdialogen ved bonus buy – spilleren skal aktivt godkende købet, før bonusrunden starter."
+          size="compact"
+        />
+
         {/* H2: Matematikken bag bonus buy */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
