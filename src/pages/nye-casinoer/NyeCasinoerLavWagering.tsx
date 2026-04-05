@@ -171,9 +171,10 @@ const NyeCasinoerLavWagering = () => {
             Ikke alle spil bidrager lige meget til omsætningskravet. De fleste nye casinoer anvender følgende standard, men der er vigtige afvigelser, du skal kende. Vi har gennemgået bonusvilkårene hos 15+ nye danske casinoer og fundet disse mønstre:
           </p>
            <ReviewScreenshot
-             src={spildansknuBonus}
-             alt="Bonusvilkår og omsætningskrav hos SpilDanskNu med lav wagering på velkomstbonus"
-             caption="Bonussiden hos et nyt dansk casino – tjek altid omsætningskrav inden du aktiverer"
+             src={comeonBonus}
+             alt="ComeOn velkomstbonus med 100% bonus op til 1.000 kr. til casino eller live casino med 10x omsætningskrav"
+             caption="ComeOn tilbyder 100% velkomstbonus med overskuelige omsætningskrav – et godt eksempel på lav wagering"
+             size="medium"
            />
           <div className="overflow-x-auto rounded-lg border border-border mb-4">
             <table className="w-full text-sm">
