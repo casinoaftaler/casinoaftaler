@@ -933,7 +933,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
       {activeGameId === "fedesvin-bonanza" && <BonanzaGameSettingsAdmin />}
       {activeGameId === "fedesvin-bonanza" && <BonanzaBombSymbolsAdmin />}
 
-      {/* Game Position Offset */}
+      {/* Game Position Offset — only for Book/Rise */}
+      {activeGameId !== "gates-of-fedesvin" && activeGameId !== "fedesvin-bonanza" && (
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -989,6 +990,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
           </Button>
         </CardContent>
       </Card>
+      )}
 
       {/* Egyptian Frame Generator */}
       <SlotFrameAdminControls gameId={gameId} />
