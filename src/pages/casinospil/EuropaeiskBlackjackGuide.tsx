@@ -305,6 +305,13 @@ const EuropaeiskBlackjackGuide = () => {
           </div>
 
           <h3 className="mb-3 text-xl font-semibold">EV-forskel i praksis: 6 scenarier</h3>
+          <ReviewScreenshot
+            src={euroBlackjackPush}
+            alt="European Blackjack resultat – dealer står på 17, to hænder viser PUSH med 17, én hånd med 16 taber"
+            caption="Dealer står på 17 (S17-regel) – to PUSH-resultater og én tabende hånd illustrerer den europæiske bordoplevelse"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at kvantificere forskellen mellem ENHC og OBO, lad os gennemgå seks typiske hånde og beregne den forventede værdi under hver regel:
           </p>
