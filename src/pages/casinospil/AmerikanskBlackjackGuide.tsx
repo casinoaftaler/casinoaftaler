@@ -610,6 +610,13 @@ const AmerikanskBlackjackGuide = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={blackjackOmspillet}
+            alt="Om Spillet-menuen i live blackjack med regler for indsatstyper, tilbagebetalinger og indstillinger"
+            caption="Spillets hjælpemenu – her finder du regler for indsatstyper, tilbagebetalingsprocenter, BUZZ-funktioner og andre indstillinger direkte i spillet."
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Lucky Lucky</strong> (house edge: 2,7 %) er den bedste side bet rent matematisk. Den betaler baseret på summen af dine to kort plus dealerens up card: 777 suited betaler 200:1, og enhver 21-total betaler 3:1 eller bedre. Men selv 2,7 % er næsten ti gange højere end grundspillets house edge.
           </p>
