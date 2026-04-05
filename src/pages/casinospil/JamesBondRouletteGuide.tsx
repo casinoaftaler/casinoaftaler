@@ -95,7 +95,7 @@ export default function JamesBondRouletteGuide() {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               James Bond Roulette System 2026 – 007's Strategi Under Mikroskop
             </h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-primary-foreground/80">
               007's berømte roulette-strategi: dæk 25 af 37 tal med tre væddemål. Vi tester om agentens tilgang kan slå house edge – spoiler: selv Bond taber over tid.
             </p>
           </div>
