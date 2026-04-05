@@ -13,7 +13,7 @@ export function GatesMultiplierOrb({ multiplierValue, isActive, compact = false 
   const orbSize = compact ? 80 : 120;
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div id="gates-total-multiplier-orb" className="flex flex-col items-center gap-1">
       <span
         className="uppercase tracking-widest font-black text-blue-300/90"
         style={{
