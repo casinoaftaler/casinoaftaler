@@ -501,6 +501,8 @@ export default function MarketIntelligence() {
                   caption="Den officielle liste over tilladelsesindehavere hos Spillemyndigheden – vi matcher casinoer op mod denne database."
                   size="compact"
                 />
+
+                <Card className="border-border bg-card/80">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <ArrowRight className="h-5 w-5 text-primary" />
