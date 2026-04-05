@@ -466,6 +466,13 @@ const EuropaeiskBlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nøglen er simpel: under ENHC undgår du at lægge ekstra penge på bordet (fordobling/split) mod dealerens 10 og es, fordi risikoen for at miste dem mod en uopdaget blackjack er for høj. De fire kritiske afvigelser (A+A, 11, 8+8, 10) dækker ca. 80 % af den samlede strategiske forskel. Lær disse fire først – de resterende 10 kan tilføjes gradvist.
           </p>
+          <ReviewScreenshot
+            src={euroBlackjackDealerBust}
+            alt="Dealer bust med 22 – to spillerhænder viser WIN med udbetalinger på 200 og 400 kr."
+            caption="Dealer buster med 22 (4+J+8) – spillerens hænder med 14 og 13 vinder begge, split-hånden udbetaler 400 kr."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             <strong>Hyppighedsanalyse:</strong> Du vil møde en af de 14 afvigelsessituationer i ca. 8 % af alle hænder (ca. 16 gange pr. 200 hænder). De fire kritiske afvigelser forekommer i ca. 5 % af hænderne (10 gange pr. 200 hænder). Korrekt spil i disse situationer sparer dig ca. 40-60 kr. pr. 200 hænder – en betydelig besparelse over tid.
           </p>
