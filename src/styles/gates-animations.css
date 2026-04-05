@@ -410,11 +410,11 @@
 }
 
 .gates-tumble-drop {
-  animation: tumble-drop 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: tumble-drop 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .gates-tumble-gravity {
-  animation: tumble-gravity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: tumble-gravity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .gates-win-highlight {
