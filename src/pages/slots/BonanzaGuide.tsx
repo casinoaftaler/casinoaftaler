@@ -259,6 +259,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaPaytable}
+          alt="Bonanza Megaways gevinsttabel med diamant (50× for 6), rød ædelsten (7,5×), blå ædelsten (2×), grøn ædelsten (2×) og A-symbol (1,75×) – alle gange indsats"
+          caption="Bonanzas officielle gevinsttabel: diamanten er det højest betalende symbol med 50× indsats for 6-of-a-kind, mens ædelstene betaler 2-7,5×."
+        />
+
         {/* ── Megaways-sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
