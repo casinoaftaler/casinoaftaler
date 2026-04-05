@@ -464,7 +464,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 14: Sessionøkonomi og bankroll-fit */}
+        <ReviewScreenshot
+          src={unibetLiveCasino}
+          alt="Unibet live casino med eksklusive roulette-borde, Lightning Roulette og blackjack – danske limits"
+          caption="Unibets live casino med eksklusive Unibet-brandede borde og bredt Evolution Gaming-udvalg."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Sessionøkonomi, bankroll-fit og hvad de to brands gør ved din spilleadfærd</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
