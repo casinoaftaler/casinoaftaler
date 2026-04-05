@@ -537,6 +537,13 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotDanskeSpilLobby}
+          alt="Danske Spil live roulette-lobby med Danske Spil Roulette, XXXtreme Lightning Roulette og Dynasty Lightning Roulette samt spillerantal og minimumsindsatser"
+          caption="Danske Spils roulette-lobby med live-borde – Lightning Roulette er populært men har lidt højere house edge end standard europæisk roulette."
+          size="medium"
+        />
+
         {/* Varianter */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
