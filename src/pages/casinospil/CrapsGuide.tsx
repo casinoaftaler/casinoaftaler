@@ -197,6 +197,13 @@ const CrapsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={crapsTerminologi}
+          alt="Oversigt over craps-terningekombinationer med navne som Snake Eyes, Boxcars, Hard Eight og alle 36 mulige udfald"
+          caption="Alle 36 terningekombinationer i craps med deres traditionelle kaldenavne – fra Snake Eyes (1+1) til Midnight (6+6)"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ 3 – COME OUT ROLL ═══════════════ */}
