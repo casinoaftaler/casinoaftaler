@@ -124,6 +124,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const orbVideoPlayingRef = useRef(false);
   const lastOrbReactionSignatureRef = useRef("");
   const gridContainerRef = useRef<HTMLDivElement>(null);
+  const [showSpinWinReveal, setShowSpinWinReveal] = useState(false);
+  const [revealTumbleWin, setRevealTumbleWin] = useState(0);
+  const [revealMultiplier, setRevealMultiplier] = useState(0);
 
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
