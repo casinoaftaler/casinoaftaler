@@ -1,6 +1,15 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.webp";
+import dsForside from "@/assets/screenshots/danske-spil-forside-login-konti.webp";
+import dsOversigt from "@/assets/screenshots/danske-spil-sport-casino-lotteri-oversigt.webp";
+import dsCasinoLobby from "@/assets/screenshots/danske-spil-casino-lobby-paske-freespins.webp";
+import dsLiveCasino from "@/assets/screenshots/danske-spil-live-casino-roulette-blackjack-lobby.webp";
+import dsIndbetaling from "@/assets/screenshots/danske-spil-indbetaling-mobilepay-visa.webp";
+import spilnuForside from "@/assets/screenshots/spilnu-forside-paske-skrabelod.webp";
+import spilnuLogin from "@/assets/screenshots/spilnu-login-email-mitid.webp";
+import spilnuMitid from "@/assets/screenshots/spilnu-mitid-login-brugerid.webp";
+import spilnuSpil from "@/assets/screenshots/spilnu-mest-populaere-spil-jackpot.webp";
+import spilnuLive from "@/assets/screenshots/spilnu-live-casino-spil-oversigt.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -179,6 +188,21 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={dsForside}
+          alt="Danske Spil forside med login-valg mellem Sport & Casino (blå konto) og Lotteri & Skrab (rød konto)"
+          caption="Danske Spils forside – spillere vælger mellem Blå Konto (Sport & Casino) og Rød Konto (Lotteri & Skrab)."
+          size="full"
+          eager
+        />
+
+        <ReviewScreenshot
+          src={dsOversigt}
+          alt="Danske Spil Sport & Casino produktoversigt med Oddset, eOddset, Tips, Casino, Live Casino, Tivoli Casino, Poker, Bingo og Spil-id"
+          caption="Danske Spils komplette produktportefølje under Blå Konto – fra Oddset til Live Casino og Poker."
+          size="medium"
+        />
+
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – 500 kr. vs. 1.000 kr. med identisk omsætning</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -214,9 +238,9 @@ export default function DanskeSpilVsSpilnu() {
       </section>
 
         <ReviewScreenshot
-          src={danskespilCasinoLobby}
-          alt="Danske Spil casino-lobby med populære spil og kategorier – Danmarks største spiludbyder"
-          caption="Danske Spils casino-lobby – den mest kendte danske platform med fokus på tryghed og dansk licens."
+          src={dsCasinoLobby}
+          alt="Danske Spil Casino lobby med Påske-kampagne, King Kong Splash og populære spilleautomater som Jammin Jars og Gates of Olympus"
+          caption="Danske Spil Casino lobbyen – påskekampagne med freespins og personlige spilanbefalinger."
           size="full"
         />
 
@@ -257,7 +281,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Brand og tillid */}
+        <ReviewScreenshot
+          src={dsLiveCasino}
+          alt="Danske Spil Live Casino lobby med Roulette, XXXtreme Lightning Roulette, Red Door Roulette og Blackjack-borde"
+          caption="Danske Spils Live Casino – dedikerede danske roulette-borde og et bredt udvalg af live dealer-spil."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={spilnuForside}
+          alt="Spilnu forside med Påske-kampagne for gratis skrabelod hver dag og søgefelt til spilleautomater"
+          caption="Spilnus forside – fokuseret casino- og skrabeoplevelse med sæsonkampagner og direkte spilsøgning."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Brand, tillid og det danske DNA</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -293,7 +329,12 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Kundeservice */}
+        <ReviewScreenshot
+          src={dsIndbetaling}
+          alt="Danske Spil indbetaling med indbetalingsgrænse, beløbsvalg (250-750 kr.), Visa-kort og MobilePay som betalingsmetoder"
+          caption="Danske Spils indbetalingsside – tydelig daglig grænse og danske betalingsmetoder inkl. MobilePay."
+          size="compact"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Kundeservice – institutionel tryghed mod specialiseret community-support</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -318,7 +359,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Bonusøkonomi over tid */}
+        <ReviewScreenshot
+          src={spilnuLogin}
+          alt="Spilnu login-dialog med e-mail og adgangskode, Log ind uden adgangskode, MitID-login og Opret spilkonto"
+          caption="Spilnus login – flere muligheder inkl. e-mail, passwordless og MitID-integration."
+          size="compact"
+        />
+
+        <ReviewScreenshot
+          src={spilnuMitid}
+          alt="MitID login hos Spilnu.dk med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-login hos Spilnu – hurtig verifikation via det nationale digitale ID."
+          size="compact"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi på 30, 60 og 90 dages sigt</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -479,7 +532,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Spillerprofiler */}
+        <ReviewScreenshot
+          src={spilnuSpil}
+          alt="Spilnu mest populære spil med Diamond Express, Big Bait, Flaming Tiger, Gold Blitz Ultimate, Bingo og Super Jackpots"
+          caption="Spilnus mest populære spil – Super Jackpots op til 342.616 kr. og et bredt udvalg af danske favoritter."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={spilnuLive}
+          alt="Spilnu Live Casino oversigt med Blackjack, Lightning Roulette, Red Door Roulette, Casino Hold'em, Dansk Roulette og mere"
+          caption="Spilnus Live Casino – 15+ live dealer-spil inkl. Dansk Roulette med danske dealere."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – udvidede spillerprofiler</h2>
 
