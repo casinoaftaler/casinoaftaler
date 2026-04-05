@@ -115,7 +115,7 @@ export const GatesColumn = React.memo(function GatesColumn({
             } as React.CSSProperties}
           >
             {/* Regular symbol */}
-            {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && symbol && !isBomb && (
+            {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && cellAnim !== 'scatter-video' && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
                   <div className={cn(
