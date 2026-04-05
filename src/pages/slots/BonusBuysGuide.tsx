@@ -608,7 +608,7 @@ const BonusBuysGuide = () => {
             Det er fristende at antage, at en billigere buy automatisk er "bedre værdi". Det er ikke nødvendigvis tilfældet. En 50x buy med en gennemsnitlig retur på 40x er relativt værre (-20 %) end en 100x buy med en gennemsnitlig retur på 85x (-15 %). EV pr. krone investeret er den relevante metrik, ikke den absolutte pris.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Nogle slots tilbyder flere buy-varianter til forskellige priser. <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link> har eksempelvis tre niveauer: Standard Free Spins (100x), The Great Train Robbery (150x), og Dead or a Wild Duel (250x). Hver variant har sin egen risikoprofil og forventet afkast. Generelt stiger volatiliteten proportionalt med prisen.
+            Nogle slots tilbyder flere buy-varianter til forskellige priser. <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link> har eksempelvis tre niveauer: Det Store Togrøveri (80x), Duel ved Daggry (200x), og Død Mands Hånd (400x). Hver variant har sin egen risikoprofil og forventet afkast. Generelt stiger volatiliteten proportionalt med prisen.
           </p>
         </section>
 
