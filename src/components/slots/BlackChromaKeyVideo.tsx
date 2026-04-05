@@ -178,8 +178,10 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
         width={width}
         height={height}
         style={{
-          width: "100%",
-          height: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "auto",
           display: "block",
           opacity: ready ? 1 : 0,
         }}
