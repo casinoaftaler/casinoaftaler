@@ -13,6 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { ManualBonusHitDialog } from "./ManualBonusHitDialog";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
   pending: { label: "Afventer", variant: "secondary" },
