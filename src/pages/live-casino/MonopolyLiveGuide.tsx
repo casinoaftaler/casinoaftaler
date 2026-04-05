@@ -515,6 +515,12 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={monopolyLiveBoardCloseup}
+          alt="Monopoly Live 3D-bræt close-up med detaljerede ejendomme, gader og bygninger i fuld 3D"
+          caption="Close-up af det detaljerede 3D Monopoly-bræt med bygninger, parker og gadenavne – kvaliteten af Evolutions grafik er bemærkelsesværdig"
+        />
+
         <Separator className="my-10" />
 
         {/* H2 #8 – Psykologiske fælder */}
