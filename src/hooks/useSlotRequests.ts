@@ -63,7 +63,7 @@ export function findBestRequesterMatch(
       best = info;
     }
   }
-  return bestScore >= 0.5 ? best : undefined;
+  return bestScore >= 0.75 ? best : undefined;
 }
 
 export interface SlotRequest {
