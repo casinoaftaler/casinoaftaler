@@ -224,9 +224,19 @@ const PayNPlayGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={leovegasMitidLogin}
+          alt="LeoVegas MitID login-skærm med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-login hos LeoVegas: Spilleren indtaster bruger-ID og godkender via MitID-appen – det første trin i Pay N Play-flowet. Screenshot fra april 2026."
+        />
 
-        {/* 3. KOMPLET BANKMATRICE */}
+        <ReviewScreenshot
+          src={leovegasMitidApp}
+          alt="MitID app-godkendelse med besked om at åbne MitID-appen og godkende login hos LeoVegas"
+          caption="Efter bruger-ID sendes godkendelsesanmodningen til MitID-appen. Spilleren bekræfter med fingeraftryk eller pinkode. Screenshot fra april 2026."
+        />
+
+        <Separator className="my-10" />
         <section className="mb-12" id="bankmatrice">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />Komplet bankkompatibilitetsmatrice</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
