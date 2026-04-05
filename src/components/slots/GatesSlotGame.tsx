@@ -642,7 +642,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                       setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
                       setRunningWin(0);
                       setRunningMultiplier(0);
-                    }, 1500);
+                    }, 3050);
                     return;
                   }
                 }
