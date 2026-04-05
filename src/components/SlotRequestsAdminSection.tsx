@@ -196,9 +196,9 @@ export function SlotRequestsAdminSection() {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => handleAction(req.id, req.user_id, "bonus_hit", true)}
+                              onClick={() => setManualHitRequest({ id: req.id, userId: req.user_id, slotName: req.slot_name })}
                               disabled={updateStatus.isPending}
-                              title="Manuel Bonus Hit (fallback)"
+                              title="Manuel Bonus Hit"
                             >
                               <Trophy className="h-3.5 w-3.5" />
                             </Button>
