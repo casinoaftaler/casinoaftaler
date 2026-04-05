@@ -214,7 +214,13 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
-        {/* ── H2 3: De fire bonusspil ── */}
+        <ReviewScreenshot
+          src={cashHuntGameplay}
+          alt="Crazy Time Cash Hunt bonusrunde med 108 symboler og sigtekorn – vælg dit felt for en tilfældig multiplikator"
+          caption="Cash Hunt-bonusrunden – 108 skjulte multiplikatorer bag ikoner som spilleren vælger med et sigtekorn."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="layers" className="h-5 w-5 text-primary" />De fire bonusspil – mekanik, matematik og gevinstprofil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
