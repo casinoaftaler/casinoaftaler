@@ -161,7 +161,7 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
   }, [processFrame, renderFrame, onEnded, src]);
 
   return (
-    <div className={className} style={{ width, height, position: "relative" }}>
+    <div className={className} style={{ width, height, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <video
         ref={videoRef}
         src={src}
