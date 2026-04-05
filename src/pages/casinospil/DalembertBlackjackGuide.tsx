@@ -530,6 +530,26 @@ const DalembertBlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Et bord med 0,28 % house edge (SpilDanskNu Infinite) vs. 0,62 % (Spilleautomaten VIP) halverer næsten dit forventede tab pr. hånd. Over 500 hænder med gennemsnitlig indsats 125 kr. er forskellen ca. 212 kr. – ikke dramatisk, men det akkumulerer over tid.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLiveBlackjack}
+            alt="LeoVegas live blackjack-lobby med eksklusive Speed Blackjack, Free Bet Blackjack og VIP-borde fra Evolution og Pragmatic Play"
+            caption="LeoVegas' live blackjack-lobby – bredt udvalg af borde med forskellige indsatsgrænser, ideelt til D'Alembert-progression."
+          />
+
+          <ReviewScreenshot
+            src={swiftCasinoBlackjack}
+            alt="Swift Casino blackjack-sektion med Studio 2/7 borde, Blackjack Live, Infinite Blackjack og Speed Blackjack"
+            caption="Swift Casino tilbyder både RNG og live blackjack med lave minimumsindsatser – perfekt til D'Alemberts konservative progression."
+          />
+
+          <ReviewScreenshot
+            src={playjangoBlackjack}
+            alt="PlayJango live blackjack VIP-borde med Blackjack VIP Q, P, X, U og andre varianter"
+            caption="PlayJango's VIP blackjack-lobby – højere bordgrænser til spillere, der ønsker større basisenheder i D'Alembert."
+            size="compact"
+          />
+          </p>
         </section>
 
         <Separator className="mb-12" />
