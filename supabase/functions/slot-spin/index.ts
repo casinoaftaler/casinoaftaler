@@ -771,7 +771,7 @@ function scanBonanzaBombs(grid: string[][]): BonanzaMultiplierBomb[] {
   return bombs;
 }
 
-async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, blockScatters: boolean = false): Promise<string[][]> {
   // Pre-generate enough random values for tumble fill (~15 per tumble)
   await prng.pregenerate(20);
   const newGrid = grid.map(col => [...col]);
