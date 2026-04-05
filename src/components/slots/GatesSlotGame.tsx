@@ -521,7 +521,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         // runningMultiplier already includes the newly added bombs at this point
         setRevealMultiplier(runningMultiplier);
         setShowSpinWinReveal(true);
-        setShowSpinWinReveal(true);
         setCollisionPhase('colliding');
         await new Promise(r => setTimeout(r, 600));
         setCollisionPhase('resolved');
