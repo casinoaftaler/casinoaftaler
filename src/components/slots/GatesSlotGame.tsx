@@ -121,7 +121,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [showOrbVideo, setShowOrbVideo] = useState(false);
   const [orbVideoTrigger, setOrbVideoTrigger] = useState(0);
   const orbVideoPlayingRef = useRef(false);
-  const orbReactionTriggeredThisSpinRef = useRef(false);
+  const lastOrbReactionSignatureRef = useRef("");
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   // Bonus state
@@ -265,7 +265,23 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const resetOrbReactionState = useCallback(() => {
     setShowOrbVideo(false);
     orbVideoPlayingRef.current = false;
-    orbReactionTriggeredThisSpinRef.current = false;
+    lastOrbReactionSignatureRef.current = "";
+  }, []);
+
+  const triggerOrbReaction = useCallback((multiplierBombs?: Array<{ position: number; value: number }>) => {
+    if (!multiplierBombs?.length) return;
+
+    const signature = [...multiplierBombs]
+      .sort((a, b) => a.position - b.position)
+      .map(bomb => `${bomb.position}:${bomb.value}`)
+      .join("|");
+
+    if (!signature || signature === lastOrbReactionSignatureRef.current) return;
+
+    lastOrbReactionSignatureRef.current = signature;
+    orbVideoPlayingRef.current = true;
+    setShowOrbVideo(true);
+    setOrbVideoTrigger(prev => prev + 1);
   }, []);
 
   useEffect(() => { freeSpinsRemainingRef.current = freeSpinsRemaining; }, [freeSpinsRemaining]);
@@ -304,15 +320,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setCurrentTumbleStep(i);
       if (i === 0) await new Promise(r => setTimeout(r, 200));
 
-      // Orb reaction should only trigger once per spin, on the first grid that contains orbs.
-      if ((step.multiplierBombs?.length || 0) > 0 && !orbReactionTriggeredThisSpinRef.current) {
-        orbReactionTriggeredThisSpinRef.current = true;
-        if (!orbVideoPlayingRef.current) {
-          orbVideoPlayingRef.current = true;
-          setShowOrbVideo(true);
-          setOrbVideoTrigger(prev => prev + 1);
-        }
-      }
+      // Trigger the character reaction only when the currently visible grid contains a new orb layout.
+      triggerOrbReaction(step.multiplierBombs);
 
       const hasWins = step.wins.length > 0;
 
@@ -400,6 +409,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           setCellAnimStates(dropAnims);
           setCellDropOffsets(offsets);
           setAnimationEpoch(prev => prev + 1);
+          triggerOrbReaction(steps[i + 1]?.multiplierBombs);
           slotSounds.playClack();
           await new Promise(r => setTimeout(r, 500));
           await new Promise(r => setTimeout(r, 200));
@@ -513,7 +523,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         setTumbleBarVisible(false);
       }
     }
-  }, []);
+  }, [SYMBOL_HEIGHT, SYMBOL_WIDTH, isMobile, triggerOrbReaction]);
 
   // Client seed for provably fair
   const clientSeedRef = useRef<string>(crypto.randomUUID());
@@ -1063,8 +1073,30 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   />
                 </div>
                 <div
+                  className="pointer-events-none"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    opacity: showOrbVideo ? 0 : 1,
+                    visibility: showOrbVideo ? 'hidden' : 'visible',
+                    transition: 'none',
+                  }}
+                >
+                  <ChromaKeyVideo
+                    key="idle"
+                    src="/videos/gates-character.mp4"
+                    width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                    height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                    className=""
+                  />
+                </div>
+                <div
                   className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                  style={{ opacity: showOrbVideo ? 1 : 0, transition: 'opacity 80ms linear' }}
+                  style={{
+                    opacity: showOrbVideo ? 1 : 0,
+                    visibility: showOrbVideo ? 'visible' : 'hidden',
+                    transition: 'none',
+                  }}
                 >
                   <ChromaKeyVideo
                     key="orb-reaction"
@@ -1073,6 +1105,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                     width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
                     height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
                     className=""
+                    autoplay={false}
                     loop={false}
                     playTrigger={orbVideoTrigger}
                     onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}

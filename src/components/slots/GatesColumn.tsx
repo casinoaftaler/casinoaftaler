@@ -176,12 +176,12 @@ export const GatesColumn = React.memo(function GatesColumn({
 
             {/* Scatter celebration video overlay — hides symbol, plays video only */}
             {cellAnim === 'scatter-video' && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center">
+              <div className="absolute inset-0 z-10 flex items-center justify-center overflow-visible pointer-events-none">
                 <BlackChromaKeyVideo
                   src="/videos/gates-scatter-celebration.mp4"
-                  width={SYMBOL_WIDTH}
-                  height={SYMBOL_HEIGHT}
-                  className="absolute inset-0"
+                  width={Math.round(SYMBOL_WIDTH * 1.22)}
+                  height={Math.round(SYMBOL_HEIGHT * 1.22)}
+                  className="pointer-events-none"
                 />
               </div>
             )}
