@@ -479,8 +479,14 @@ const PokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Tells:</strong> Live poker tilbyder fysiske tells – kropssprog, stemme, timing. Online eliminerer fysiske tells men introducerer timing tells og betting pattern tells (via HUD-software). <strong>Sværhedsgrad:</strong> Online er generelt sværere pga. adgang til tracking-software og træningsmateriale. En vinder på 5/10 kr. online dominerer typisk 10/20 kr. live.
           </p>
+
+          <ReviewScreenshot
+            src={unibetPokerForside}
+            alt="Unibet Poker forside med Deepstack Open turnering, download-knapper og begynder-guide"
+            caption="Unibet Poker tilbyder turneringer som Deepstack Open og en brugervenlig browser-baseret pokerklient."
+          />
+
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Rake:</strong> Online har typisk lavere rake (2,5–5 % med cap) end live (5–10 %). Lavere rake online giver bedre netto-EV – men den hårdere konkurrence modvirker delvist denne fordel.
           </p>
         </section>
 
