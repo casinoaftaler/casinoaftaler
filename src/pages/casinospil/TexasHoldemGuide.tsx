@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilUltimateTexasHoldem from "@/assets/screenshots/danskespil-ultimate-texas-holdem.webp";
+import danskespilPokerLobby from "@/assets/screenshots/danskespil-poker-lobby.png";
+import pokerStarthaender from "@/assets/screenshots/poker-starthaender-rangering.png";
+import pokerHaandrankering from "@/assets/screenshots/poker-haandrankering-oversigt.png";
+import ggpokerBord from "@/assets/screenshots/ggpoker-texas-holdem-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -208,6 +212,13 @@ const TexasHoldemGuide = () => {
         </section>
 
         <ReviewScreenshot
+          src={pokerStarthaender}
+          alt="Top 24 starthænder i Texas Hold'em rangeret fra Pocket Aces til King-Jack Offsuit"
+          caption="Visuel oversigt over de 24 stærkeste starthænder i Texas Hold'em – fra Pocket Aces (1.) til King-Jack Offsuit (24.)."
+          size="full"
+        />
+
+        <ReviewScreenshot
           src={danskespilUltimateTexasHoldem}
           alt="Ultimate Texas Hold'em bord hos Danske Spil med community cards og indsatsstruktur"
           caption="Ultimate Texas Hold'em hos Danske Spil – casino-versionen af Texas Hold'em med faste odds mod dealeren."
@@ -322,6 +333,13 @@ const TexasHoldemGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerHaandrankering}
+          alt="Poker håndrankering fra Royal Flush til High Card med visuelle korteksempler"
+          caption="Komplet poker-håndrankering: Royal Flush (1) til High Card (10) – de ti mulige hændtyper i Texas Hold'em."
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 4 – Positionsspil
         ═══════════════════════════════════════════════════════════════ */}
@@ -380,6 +398,13 @@ const TexasHoldemGuide = () => {
             Position interagerer også med koncepter som <strong>steal og re-steal</strong>: fra button kan du open-raise med hænder som K8s eller Q9s for at "stjæle" blinds, fordi du ved, at kun to spillere (SB og BB) har kort. Omvendt kan blindspillere re-raise (3-bet) som en bluff for at forsvare sig mod disse steals. Denne dynamik er et af de mest strategisk rige elementer i moderne Hold'em.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={ggpokerBord}
+          alt="GGPoker Texas Hold'em bord med community cards, pot og spillerpositioner"
+          caption="Texas Hold'em i aktion på GGPoker – river-runden med community cards 2-K-A-6 og en total pot på $135.000."
+          size="full"
+        />
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 5 – Pot Odds og EV
@@ -575,6 +600,13 @@ const TexasHoldemGuide = () => {
             <strong>Casino Hold'em i live casino:</strong> Udover traditionel poker tilbyder de fleste danske <Link to="/live-casino" className={linkClass}>live casinoer</Link> Casino Hold'em – en forenklet variant, hvor du spiller mod huset i stedet for andre spillere. Her er det ren <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> (ca. 2,16 %), og strategien er langt simplere: raise med ethvert par eller bedre, og fold med mindre end A-K high. Det er en god introduction til Hold'em-mekanikken, men mangler det strategiske dybde fra rigtig poker.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilPokerLobby}
+          alt="Danske Spil Casino poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker"
+          caption="Danske Spils live poker-udvalg – Ultimate Texas Holdem, Casino Holdem og Three Card Poker med danske dealere."
+          size="full"
+        />
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 9 – Bankroll Management
