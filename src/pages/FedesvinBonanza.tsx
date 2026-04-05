@@ -89,14 +89,23 @@ export default function FedesvinBonanza() {
     };
   }, []);
 
+  const handleVideoTimeUpdate = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    // Restart slightly before the end to avoid white flash frame
+    if (video.duration && video.currentTime > video.duration - 0.3) {
+      video.currentTime = 0;
+    }
+  }, []);
+
   const PageBackground = () => (
     <>
-      <div className="absolute inset-0 bg-gradient-to-b from-pink-100 via-rose-50 to-fuchsia-100 -z-10" />
+      <div className="absolute inset-0 bg-black -z-10" />
       <video
         autoPlay
         loop
         muted
         playsInline
+        onTimeUpdate={handleVideoTimeUpdate}
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/videos/fedesvin-bonanza-bg.mp4"
       />
