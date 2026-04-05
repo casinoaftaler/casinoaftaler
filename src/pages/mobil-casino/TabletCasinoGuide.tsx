@@ -338,6 +338,12 @@ const TabletCasinoGuide = () => {
             <p className="text-muted-foreground leading-relaxed mb-3">For spillere, der primært bruger tabletten til casino, anbefaler vi et justerbart stativ (ikke keyboard-cover) for maximum fleksibilitet. Et godt tablet-stativ giver dig mulighed for hurtigt at skifte mellem portrait og landscape, justere vinklen for komfortable viewing angles, og holde tabletten fri af hænderne for touch-betjening.</p>
             <p className="text-muted-foreground leading-relaxed">Vær opmærksom på rotationslåsen: Sørg for at den er deaktiveret under casino-spil, så appen kan rotere frit. På iPad: Kontrolcenter → rotationslås. På Samsung Tab: Hurtige indstillinger → Skærmrotation.</p>
           </div>
+          <ReviewScreenshot
+            src={tabletRouletteBordlayout}
+            alt="Super Stake Roulette bordlayout i landscape-mode på tablet – komplet nummer-grid med franske væddemål synlige"
+            caption="Roulette i landscape-mode på tablet – hele bordlayoutet inkl. Tier, Orphelins og Voisins er synligt uden scrolling"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
