@@ -251,7 +251,7 @@ const BonanzaGuide = () => {
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">96,00 %</td><td className="text-center">96,50 %</td><td className="text-center">96,51 %</td></tr>
-                    <tr className="border-b"><td className="py-2">Max Win</td><td className="text-center">10.000×</td><td className="text-center">5.000×</td><td className="text-center">21.100×</td></tr>
+                    <tr className="border-b"><td className="py-2">Max Win</td><td className="text-center">26.000×</td><td className="text-center">5.000×</td><td className="text-center">21.100×</td></tr>
                     <tr className="border-b"><td className="py-2">Volatilitet</td><td className="text-center">Høj</td><td className="text-center">Høj</td><td className="text-center">Høj</td></tr>
                     <tr className="border-b"><td className="py-2">Multiplier</td><td className="text-center">Ubegrænset (FS)</td><td className="text-center">Op til 500×</td><td className="text-center">Op til 100×</td></tr>
                     <tr className="border-b"><td className="py-2">Bonus Buy</td><td className="text-center">Nej</td><td className="text-center">Ja (100×)</td><td className="text-center">Ja (100×)</td></tr>
