@@ -12,7 +12,7 @@ import campobetKasserer from "@/assets/screenshots/campobet-kasserer-betalingsme
 import campobetForside from "@/assets/screenshots/campobet-app-forside-menu.jpg";
 import campobetLiveCasino from "@/assets/screenshots/campobet-live-casino-lobby.jpg";
 import campobetCasinoLobby from "@/assets/screenshots/campobet-casino-lobby-spil.jpg";
-import campobetAppStorePreview from "@/assets/screenshots/campobet-app-store-preview.jpg";
+
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
