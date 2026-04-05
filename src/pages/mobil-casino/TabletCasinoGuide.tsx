@@ -385,6 +385,13 @@ const TabletCasinoGuide = () => {
             </table>
           </div>
 
+          <ReviewScreenshot
+            src={tabletLiveBlackjack}
+            alt="Blackjack Classic 1 live dealer på tablet – fuld dealer-video med Super Stake sidebets og flere spillere ved bordet"
+            caption="Live Blackjack Classic på tablet – dealer, kort og Super Stake multipliers er tydeligt synlige i landscape"
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed mb-4">Live casino-oplevelsen på en 11-13" tablet i landscape-mode nærmer sig 85-90 % af desktop-oplevelsen. Det vigtigste element – dealer-videoen – er stor nok til tydeligt at se kortene i blackjack og kuglens bevægelser i roulette. Chat-funktionen kan bruges komfortabelt sideløbende med spillet, og alle side-bets og special-funktioner er tilgængelige uden ekstra navigation.</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
