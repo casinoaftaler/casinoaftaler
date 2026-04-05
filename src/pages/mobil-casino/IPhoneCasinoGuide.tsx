@@ -747,7 +747,22 @@ const IPhoneCasinoGuide = () => {
               <div key={rule} className="flex items-start gap-2">
                 <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{rule}</span>
-              </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 mb-6">
+            <ReviewScreenshot
+              src={campobetAppStore}
+              alt="CampoBet App Store listing med 4,6 stjerner, 434 vurderinger, GLOBALIX HOLDING LIMITED og 18+ aldersgrænse"
+              caption="CampoBet i App Store: 4,6 stjerner fra 434 vurderinger, udgivet af GLOBALIX HOLDING LIMITED med 18+ aldersklassificering."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetAppStoreDetaljer}
+              alt="CampoBet App Store detaljer med 135,1 MB størrelse, Kasino-kategori, 18+ aldersgrænse og GLOBALIX HOLDING LIMITED som leverandør"
+              caption="App Store-detaljer: 135,1 MB, Kasino-kategori, 18+ aldersklassificering – alle Spillemyndighedens krav er opfyldt."
+              size="compact"
+            />
+          </div>
             ))}
           </div>
 
