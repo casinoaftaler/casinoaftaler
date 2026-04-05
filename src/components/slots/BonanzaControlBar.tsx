@@ -317,13 +317,6 @@ export function BonanzaControlBar({
         )}
         {bonusState.isActive && gameId === "gates-of-fedesvin" && (
           <div className="flex items-center gap-3 pl-2 border-l border-blue-500/20">
-            <div className="flex flex-col items-center">
-              <span className="text-[9px] uppercase tracking-widest text-yellow-500/80 font-semibold">Free Spins</span>
-              <span className="text-xl font-black text-yellow-300 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)] tabular-nums">
-                {bonusState.freeSpinsRemaining}<span className="text-sm text-yellow-500/60 font-bold">/{bonusState.totalFreeSpins}</span>
-              </span>
-            </div>
-            <div className="w-px h-8 bg-yellow-500/30" />
             <div className="flex flex-col items-center" id="gates-total-multiplier">
               <span className="text-[9px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
               <span className="text-xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
