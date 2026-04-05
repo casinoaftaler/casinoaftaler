@@ -229,9 +229,9 @@ export default function LeoVegasVsMrGreen() {
       </section>
 
         <ReviewScreenshot
-          src={leovegasLobby}
-          alt="LeoVegas casino-lobby med mobilvenligt design og featured spil"
-          caption="LeoVegas' casino-forside – kendt for sit mobilvenlige design og brede spiludvalg."
+          src={mgLobby}
+          alt="Mr Green casino-lobby med favoritter, Book of Dead, Zeus vs Hades og påske-kampagne med 25 cash spins"
+          caption="Mr Greens kuraterede casino-lobby – personlige favoritter og sæsonkampagner i et elegant design."
           size="full"
         />
 
