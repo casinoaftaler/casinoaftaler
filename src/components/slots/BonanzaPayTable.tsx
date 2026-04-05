@@ -32,15 +32,15 @@ function SymbolCard({ symbol, bet }: { symbol: any; bet: number }) {
       <div className="w-full space-y-0.5 text-[10px] md:text-xs">
         <div className="flex justify-between gap-1">
           <span className="text-pink-300/70">12+</span>
-          <span className="text-pink-100 font-medium">kr {formatPayout(symbol.multiplier_5, bet)}</span>
+          <span className="text-pink-100 font-medium">{formatPayout(symbol.multiplier_5, bet)}</span>
         </div>
         <div className="flex justify-between gap-1">
           <span className="text-pink-300/70">10-11</span>
-          <span className="text-pink-100 font-medium">kr {formatPayout(symbol.multiplier_4, bet)}</span>
+          <span className="text-pink-100 font-medium">{formatPayout(symbol.multiplier_4, bet)}</span>
         </div>
         <div className="flex justify-between gap-1">
           <span className="text-pink-300/70">8-9</span>
-          <span className="text-pink-100 font-medium">kr {formatPayout(symbol.multiplier_3, bet)}</span>
+          <span className="text-pink-100 font-medium">{formatPayout(symbol.multiplier_3, bet)}</span>
         </div>
       </div>
     </div>
@@ -120,15 +120,15 @@ export function BonanzaPayTable({ gameId, bet = 1, className }: BonanzaPayTableP
                   <div className="space-y-0.5 text-xs">
                     <div className="flex justify-between">
                       <span className="text-purple-300/70">6+</span>
-                      <span className="text-purple-100 font-medium">kr {formatPayout(scatterSymbol.multiplier_5, bet)}</span>
+                      <span className="text-purple-100 font-medium">{formatPayout(scatterSymbol.multiplier_5, bet)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-purple-300/70">5</span>
-                      <span className="text-purple-100 font-medium">kr {formatPayout(scatterSymbol.multiplier_4, bet)}</span>
+                      <span className="text-purple-100 font-medium">{formatPayout(scatterSymbol.multiplier_4, bet)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-purple-300/70">4</span>
-                      <span className="text-purple-100 font-medium">kr {formatPayout(scatterSymbol.multiplier_3, bet)}</span>
+                      <span className="text-purple-100 font-medium">{formatPayout(scatterSymbol.multiplier_3, bet)}</span>
                     </div>
                   </div>
                   <p className="text-[10px] text-purple-400/70 pt-1">
