@@ -618,7 +618,15 @@ const AndroidCasinoGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             <strong>Kontrollér din Play Protect-status:</strong> Google Play → Profil → Play Protect → "Seneste
             scanning". Sørg for at "Forbedr registrering af skadelige apps" er aktiveret, da dette sender
-            anonymiserede data til Google, der forbedrer malware-detektionen for alle brugere.
+             anonymiserede data til Google, der forbedrer malware-detektionen for alle brugere.
+          </p>
+
+          <ReviewScreenshot
+            src={googlePixelPhone}
+            alt="Google Pixel-telefon i blå – Titan M2 sikkerhedschip og dag-1 sikkerhedspatches gør den ideel til casino"
+            caption="Google Pixel – den mest sikkerhedsbevidste Android-telefon med hardware Titan M2-chip og hurtigste opdateringer."
+            size="medium"
+          />
           </p>
 
           <h3 className="text-xl font-semibold mt-8 mb-3" id="verified-boot">Verified Boot og Integritetskontrol</h3>
