@@ -348,6 +348,13 @@ export default function LeoVegasVsMrGreen() {
         </div>
       </section>
 
+        <ReviewScreenshot
+          src={mgLogin}
+          alt="Mr Green login med MitID, e-mail/adgangskode og Tilmeld dig-knap – Spillemyndigheden licens synlig"
+          caption="Mr Greens login – MitID-integration og tydelig visning af Spillemyndighedens licens."
+          size="compact"
+        />
+
       {/* SECTION: Betalingsmetoder */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder, udbetalingshastighed og cashflow-oplevelse</h2>
