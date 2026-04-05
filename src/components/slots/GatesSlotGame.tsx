@@ -296,7 +296,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   }, []);
 
   // Process tumble steps — Bonanza-style with sequential bomb blow-up
-  const processTumbleSteps = useCallback(async (steps: any[]) => {
+  const processTumbleSteps = useCallback(async (steps: any[], serverTotalWin?: number) => {
     let winningStepCount = 0;
 
     for (let i = 0; i < steps.length; i++) {
@@ -486,13 +486,17 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
 
-    // Calculate final win
+    // Calculate final win — use server's authoritative totalWin when available
     if (winningStepCount > 0) {
-      const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
-      const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter((b: any) => b.activated) || [];
-      const totalMultiplierValue = activatedBombs.reduce((sum: number, b: any) => sum + b.value, 0);
-      const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
-      setWinAmount(prev => prev + finalWin);
+      if (serverTotalWin !== undefined && serverTotalWin > 0) {
+        setWinAmount(prev => prev + serverTotalWin);
+      } else {
+        const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
+        const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter((b: any) => b.activated) || [];
+        const totalMultiplierValue = activatedBombs.reduce((sum: number, b: any) => sum + b.value, 0);
+        const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
+        setWinAmount(prev => prev + finalWin);
+      }
     }
 
     // Collision effect
@@ -591,7 +595,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
-        await processTumbleSteps(result.tumbleSteps);
+        await processTumbleSteps(result.tumbleSteps, result.totalWin);
         const totalWin = result.totalWin || 0;
 
         // Scatter celebration
@@ -868,7 +872,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
-        await processTumbleSteps(result.tumbleSteps);
+        await processTumbleSteps(result.tumbleSteps, result.totalWin);
         const totalWin = result.totalWin || 0;
         setWinAmount(totalWin);
       }

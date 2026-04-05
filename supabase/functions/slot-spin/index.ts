@@ -426,7 +426,7 @@ async function calculateGatesFullSpin(
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: GatesTumbleStep[] = [];
   let totalRawWin = 0;
-  let totalMultiplier = 0; // Per-spin: always start at 0
+  let totalMultiplier = 0; // Only this spin's new orbs
   let scatterCount = countGatesScatters(grid, symbols);
   let maxTumbles = 50;
 
@@ -476,7 +476,8 @@ async function calculateGatesFullSpin(
     ? scatterCount >= GATES_SCATTER_RETRIGGER
     : scatterCount >= GATES_SCATTER_TRIGGER;
 
-  const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
+  const effectiveMultiplier = runningMultiplier + totalMultiplier;
+  const totalWin = effectiveMultiplier > 0 ? totalRawWin * effectiveMultiplier : totalRawWin;
 
   return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };
 }
