@@ -601,7 +601,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           const { count: scatCount, positions: scatPos } = countGatesScatters(finalGridForScatter, symbols);
           if (scatCount >= 4) {
             const scatterAnims = new Map<number, CellAnimState>();
-            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
             setCellAnimStates(scatterAnims);
             slotSounds.playScatterCelebration();
             await new Promise(r => setTimeout(r, 1500));
