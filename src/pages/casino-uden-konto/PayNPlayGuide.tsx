@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,14 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Apple, ArrowRight, Ban, Play, Server } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+
+import spilleautomatenIndbetaling from "@/assets/screenshots/spilleautomaten-indbetaling-mobilepay-visa.webp";
+import spilleautomatenUdbetaling from "@/assets/screenshots/spilleautomaten-udbetaling-trustly-visa.webp";
+import trustlyVaelgBank from "@/assets/screenshots/trustly-vaelg-bank-udbetaling.webp";
+import trustlyQrKode from "@/assets/screenshots/trustly-qr-kode-godkendelse.webp";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-lobby-spil-oversigt.webp";
+import leovegasMitidLogin from "@/assets/screenshots/leovegas-mitid-login-brugerid.webp";
+import leovegasMitidApp from "@/assets/screenshots/leovegas-mitid-app-godkend.webp";
 
 const payNPlayFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
@@ -175,9 +184,14 @@ const PayNPlayGuide = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={spilleautomatenIndbetaling}
+          alt="Spilleautomaten.dk indbetalingsside med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr."
+          caption="Indbetalingsmetoder hos Spilleautomaten.dk: MobilePay, Mastercard, Visa og Trustly med 75 kr. minimumsindbetaling. Screenshot fra april 2026."
+          eager
+        />
 
-        {/* 2. TEKNISK FLOW-DIAGRAM */}
+        <Separator className="my-10" />
         <section className="mb-12" id="teknisk-flow">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />Teknisk flow – fra klik til spin</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Her er det komplette tekniske flow, der udfoldes, når en spiller initierer en Pay N Play-transaktion. Hvert trin er designet til at minimere latency og maksimere sikkerhed:</p>
@@ -210,9 +224,19 @@ const PayNPlayGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={leovegasMitidLogin}
+          alt="LeoVegas MitID login-skærm med bruger-ID felt og Fortsæt-knap"
+          caption="MitID-login hos LeoVegas: Spilleren indtaster bruger-ID og godkender via MitID-appen – det første trin i Pay N Play-flowet. Screenshot fra april 2026."
+        />
 
-        {/* 3. KOMPLET BANKMATRICE */}
+        <ReviewScreenshot
+          src={leovegasMitidApp}
+          alt="MitID app-godkendelse med besked om at åbne MitID-appen og godkende login hos LeoVegas"
+          caption="Efter bruger-ID sendes godkendelsesanmodningen til MitID-appen. Spilleren bekræfter med fingeraftryk eller pinkode. Screenshot fra april 2026."
+        />
+
+        <Separator className="my-10" />
         <section className="mb-12" id="bankmatrice">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="landmark" className="h-7 w-7 text-primary" />Komplet bankkompatibilitetsmatrice</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -277,9 +301,25 @@ const PayNPlayGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={spilleautomatenUdbetaling}
+          alt="Spilleautomaten.dk udbetalingsside med Trustly og Visa/Mastercard som udbetalingsmetoder"
+          caption="Udbetalingsmetoder hos Spilleautomaten.dk: Trustly og Visa/Mastercard med minimum 75 kr. Tretrinsprocessen sikrer hurtig udbetaling. Screenshot fra april 2026."
+        />
 
-        {/* 4. PSD2 OG OPEN BANKING */}
+        <ReviewScreenshot
+          src={trustlyVaelgBank}
+          alt="Trustly bankvalg-skærm med liste over danske banker inkl. Arbejdernes Landsbank, BasisBank og Coop Bank"
+          caption="Trustly's bankvalg ved udbetaling: Spilleren vælger sin bank fra en komplet liste af danske pengeinstitutter. Søgefunktionen gør det nemt at finde sin bank. Screenshot fra april 2026."
+        />
+
+        <ReviewScreenshot
+          src={trustlyQrKode}
+          alt="Trustly QR-kode godkendelse med besked om at scanne med mobilkamera"
+          caption="Trustly's QR-kode til bankgodkendelse: Spilleren scanner koden med mobilkameraet (ikke bank-appen) for at gennemføre transaktionen sikkert. Screenshot fra april 2026."
+        />
+
+        <Separator className="my-10" />
         <section className="mb-12" id="psd2-open-banking">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />PSD2 og open banking-grundlaget</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -416,8 +456,14 @@ const PayNPlayGuide = () => {
             </table>
           </div>
           <p className="text-muted-foreground leading-relaxed text-sm italic">
-            * Data indsamlet marts 2026 med Danske Bank, Nordea, Jyske Bank, Sydbank og Spar Nord. Desktop-test: Chrome 122 på Windows 11. Mobil-test: Safari 18 (iOS 18) og Chrome 122 (Android 15).
+             * Data indsamlet marts 2026 med Danske Bank, Nordea, Jyske Bank, Sydbank og Spar Nord. Desktop-test: Chrome 122 på Windows 11. Mobil-test: Safari 18 (iOS 18) og Chrome 122 (Android 15).
           </p>
+
+          <ReviewScreenshot
+            src={spilleautomatenLobby}
+            alt="Spilleautomaten.dk spilobiby med seneste gevinster, populære slots og nye udgivelser"
+            caption="Spilleautomaten.dk's lobby efter Pay N Play-registrering: Spilleren har direkte adgang til hele spiludvalget med aktiv saldo. Seneste gevinster vises øverst. Screenshot fra april 2026."
+          />
         </section>
 
         <Separator className="my-10" />
