@@ -627,7 +627,6 @@ const AndroidCasinoGuide = () => {
             caption="Google Pixel – den mest sikkerhedsbevidste Android-telefon med hardware Titan M2-chip og hurtigste opdateringer."
             size="medium"
           />
-          </p>
 
           <h3 className="text-xl font-semibold mt-8 mb-3" id="verified-boot">Verified Boot og Integritetskontrol</h3>
           <p className="text-muted-foreground leading-relaxed mb-4">
