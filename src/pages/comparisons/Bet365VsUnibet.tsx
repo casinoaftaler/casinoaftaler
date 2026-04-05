@@ -414,7 +414,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 11: 30-60-90 dage */}
+        <ReviewScreenshot
+          src={unibetCasinoLobby}
+          alt="Unibet casino-lobby med anbefalede spil, Slingo, Game of Thrones og Gates of Olympus – dansk spiludvalg"
+          caption="Unibets casino-sektion med personlige anbefalinger, nye spil og eksklusive titler."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem giver mest værdi efter 30, 60 og 90 dage?</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
