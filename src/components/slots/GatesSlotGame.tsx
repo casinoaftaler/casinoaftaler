@@ -281,10 +281,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setCumulativeMultiplier(0);
       cumulativeMultiplierRef.current = 0;
       pendingBonusStateRef.current = null;
-      if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
-        if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
-      }
+      // Always auto-spin during bonus
+      if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+      autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
     }
     setBonusAutoSpinPending(false);
   }, []);
