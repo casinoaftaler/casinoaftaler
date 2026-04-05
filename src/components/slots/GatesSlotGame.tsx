@@ -111,6 +111,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
   const [runningMultiplier, setRunningMultiplier] = useState(0);
+  const runningMultiplierRef = useRef(0);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [showLightningFlash, setShowLightningFlash] = useState(false);
   const [animationEpoch, setAnimationEpoch] = useState(0);
