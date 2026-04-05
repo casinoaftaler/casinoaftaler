@@ -118,7 +118,7 @@ export const GatesColumn = React.memo(function GatesColumn({
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
                   <div className={cn(
-                    "w-full h-full",
+                    "w-[120%] h-[120%]",
                     shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-blue"
                   )}>
                     <img src={symbol.image_url} alt={symbol.name} className={cn("w-full h-full object-contain", imgGlowClass)} draggable={false} />
