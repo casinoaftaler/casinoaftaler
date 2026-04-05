@@ -554,6 +554,13 @@ export default function CaribbeanStudGuide() {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={caribbeanStud5plus1Bonus}
+            alt="5+1 Bonus side-bet odds i Caribbean Stud – fra Royal Flush 1.000:1 til Tre ens 7:1"
+            caption="5+1 Bonus side-bet udbetalinger – høje odds men med en husets fordel på 10-18 %, langt over hovedspillets 5,22 %"
+            size="compact"
+          />
         </section>
 
         {/* ──── Sektion 10: Bankroll management for Caribbean Stud ──── */}
