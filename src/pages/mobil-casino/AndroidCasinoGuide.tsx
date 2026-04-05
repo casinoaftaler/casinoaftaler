@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrvegasForside from "@/assets/screenshots/mrvegas-forside.webp";
+import androidLogoBrand from "@/assets/screenshots/android-logo-brand.png";
+import samsungGalaxyS26 from "@/assets/screenshots/samsung-galaxy-s26-series.png";
+import xiaomiPhoneCasino from "@/assets/screenshots/xiaomi-phone-casino.png";
+import googlePixelPhone from "@/assets/screenshots/google-pixel-phone.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -216,6 +220,14 @@ const AndroidCasinoGuide = () => {
             </div>
           </div>
           <ReviewScreenshot
+            src={androidLogoBrand}
+            alt="Android-logoet med den grønne Android-maskot – operativsystemet bag 45% af alle danske smartphones"
+            caption="Android – verdens mest udbredte mobil-OS og en stærk platform for dansk online casino."
+            size="medium"
+            eager
+          />
+
+          <ReviewScreenshot
             src={mrvegasForside}
             alt="MrVegas casino-lobby med Android-venligt design og responsivt mobilinterface"
             caption="MrVegas' forside – designet fungerer problemfrit på Android-enheder uden behov for app-installation"
@@ -302,6 +314,13 @@ const AndroidCasinoGuide = () => {
               .
             </p>
           </div>
+
+          <ReviewScreenshot
+            src={samsungGalaxyS26}
+            alt="Samsung Galaxy S26 Series med Galaxy AI – flagskibstelefonen der scorer højest i vores casino-benchmarks"
+            caption="Samsung Galaxy S26-serien – vores top-anbefaling til Android-casino med Snapdragon-chip og 120 Hz AMOLED."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -599,8 +618,15 @@ const AndroidCasinoGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             <strong>Kontrollér din Play Protect-status:</strong> Google Play → Profil → Play Protect → "Seneste
             scanning". Sørg for at "Forbedr registrering af skadelige apps" er aktiveret, da dette sender
-            anonymiserede data til Google, der forbedrer malware-detektionen for alle brugere.
+             anonymiserede data til Google, der forbedrer malware-detektionen for alle brugere.
           </p>
+
+          <ReviewScreenshot
+            src={googlePixelPhone}
+            alt="Google Pixel-telefon i blå – Titan M2 sikkerhedschip og dag-1 sikkerhedspatches gør den ideel til casino"
+            caption="Google Pixel – den mest sikkerhedsbevidste Android-telefon med hardware Titan M2-chip og hurtigste opdateringer."
+            size="medium"
+          />
 
           <h3 className="text-xl font-semibold mt-8 mb-3" id="verified-boot">Verified Boot og Integritetskontrol</h3>
           <p className="text-muted-foreground leading-relaxed mb-4">
@@ -736,6 +762,13 @@ const AndroidCasinoGuide = () => {
               <p><strong>Bedst for power users:</strong> OnePlus 13 – hurtigste Snapdragon 8 Elite implementering, 100W opladning (fuld i 25 min), og ren software-oplevelse tæt på stock Android.</p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={xiaomiPhoneCasino}
+            alt="Xiaomi-smartphone i grøn – populært budgetvalg til casino med AMOLED-skærm og lang batterilevetid"
+            caption="Xiaomi – det bedste budget-valg til Android-casino med AMOLED 120 Hz og imponerende batterilevetid."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
