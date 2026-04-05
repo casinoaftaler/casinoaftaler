@@ -38,7 +38,7 @@ interface SymbolCardProps {
 function SymbolCard({ symbol, bet }: SymbolCardProps) {
   return (
     <div className="flex flex-col items-center border border-blue-500/20 rounded-lg bg-blue-950/40 p-2 min-w-0">
-      <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-1.5">
+      <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center mb-1.5">
         {symbol.image_url ? (
           <img src={symbol.image_url} alt={symbol.name} className="w-full h-full object-contain" />
         ) : (
