@@ -11,7 +11,11 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
+import pokerstarsOmahaGuide from "@/assets/screenshots/pokerstars-omaha-guide.png";
+import omahaReglerForklaring from "@/assets/screenshots/omaha-regler-forklaring.png";
+import pokerstarsInstallation from "@/assets/screenshots/pokerstars-installation-dansk.png";
+import omahaPokerBord from "@/assets/screenshots/omaha-poker-bord-kort.png";
+import omahaCommunityCards from "@/assets/screenshots/omaha-community-hole-cards.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -174,9 +178,11 @@ const OmahaPokerGuide = () => {
             Omaha følger den samme grundstruktur som Texas Hold'em: preflop, flop, turn, river. Forskellen ligger i de fire hole cards og den obligatoriske "must use 2"-regel. Lad os gennemgå reglerne i detaljer.
           </p>
         <ReviewScreenshot
-          src={pokerstarsForside}
-          alt="PokerStars forside med Omaha Poker-turneringer og cash games tilgængelige for danske spillere"
-          caption="PokerStars tilbyder et bredt udvalg af Omaha Poker-varianter inklusiv PLO og PLO Hi-Lo"
+          src={pokerstarsOmahaGuide}
+          alt="PokerStars Omaha guide – 'Sådan spiller du Omaha' med forklaring af regler, varianter og strategi"
+          caption="PokerStars' officielle Omaha-guide – introduktion til regler, Omaha High og varianter"
+          size="full"
+          eager={true}
         />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Kortuddelingen:</strong> Hver spiller modtager fire private kort (hole cards). Blinds og dealing fungerer identisk med Hold'em – small blind til venstre for button, big blind til venstre for small blind. Preflop-action starter fra UTG og bevæger sig med uret. I PLO er der ingen ante (medmindre det specifikt er angivet), og blind-strukturen er fast i cash games.
@@ -190,6 +196,12 @@ const OmahaPokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Betting-runder:</strong> Der er fire betting-runder, identiske med Hold'em: (1) <em>Preflop</em> – efter hole cards er delt, (2) <em>Flop</em> – efter tre community cards er vist, (3) <em>Turn</em> – efter fjerde community card, (4) <em>River</em> – efter femte og sidste community card. I hver runde kan spillere checke, bette, calle, raise eller folde. Den pot-limit struktur betyder, at potterne typisk vokser 3-5x per gade, og en preflop pot på 100 kr. nemt kan blive 5.000+ kr. på river.
           </p>
+          <ReviewScreenshot
+            src={omahaReglerForklaring}
+            alt="Omaha poker regler – forklaring af 4 lommekort, fælleskort og must-use-2 reglen på PokerStars"
+            caption="Omaha-reglerne forklaret: fire lommekort, must-use-2 reglen og de tre varianter (Pot Limit, No Limit, Fixed Limit)"
+            size="full"
+          />
           <p className="text-muted-foreground leading-relaxed">
             <strong>Showdown:</strong> Ved showdown afslører alle aktive spillere deres kort, og den bedste 5-korts hånd vinder. Husk: du evaluerer ALLE mulige kombinationer af 2 hole cards + 3 community cards. Med fire hole cards og fem community cards har du i alt C(4,2) × C(5,3) = 6 × 10 = 60 mulige kombinationer at evaluere. Softwarebaserede spil gør dette automatisk, men i live poker er det vigtigt at kende din bedste hånd. En hyppig fejl i live PLO er at misreadne sin egen hånd – sørg for at dobbelttjekke, inden du vender dine kort.
           </p>
@@ -241,6 +253,13 @@ const OmahaPokerGuide = () => {
               </div>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={omahaPokerBord}
+            alt="Omaha Poker bord med fire spillere, dealer-chip, chips og community cards – 9, 10, 7, 4 på bordet"
+            caption="Omaha Poker i praksis – fire spillere ved bordet med community cards og lommekort synlige"
+            size="full"
+          />
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Coordination er alt:</strong> Bemærk at de bedste hænder alle har fire kort, der connecter via pairs, suited-ness eller connectivity. En "rundown" som JT98 (fire connected kort) er en stærk hånd, fordi den kan lave mange straights. Omvendt er AAxx med to lave, uconnected sidekort (f.eks. AA-7-2 rainbow) en trap – du har aces, men dine to andre kort hjælper sjældent.
@@ -342,6 +361,12 @@ const OmahaPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Re-draws og backdoor equity:</strong> I PLO er det ikke nok bare at ramme en straight – du skal tænke på, om din straight kan blive slået af en bedre straight eller en flush på næste gade. Når du rammer en straight med non-nut kort, og boardet har en mulig flush draw, er din equity langt lavere end tallene ovenfor antyder. Avancerede PLO-spillere evaluerer altid deres "nut outs" separat fra deres "non-nut outs" for at undgå at overcommitte med den næstbedste hånd.
           </p>
+          <ReviewScreenshot
+            src={omahaCommunityCards}
+            alt="Omaha kortlayout – community cards og hole cards vist separat med to hænder og fem fælleskort"
+            caption="Omaha kortlayout – community cards (øverst) og to spilleres hole cards (nederst) illustrerer must-use-2 reglen"
+            size="full"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -586,6 +611,12 @@ const OmahaPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Training sites:</strong> Dedikerede PLO-training sites som Run It Once (grundlagt af Phil Galfond, en af verdens bedste PLO-spillere) tilbyder strukturerede kurser fra micro-stakes til high-stakes PLO. For danske spillere der vil tage PLO seriøst, er en kombination af solver-studie, tracking software og struktureret coaching den mest effektive vej til forbedring. Husk dog: software er et supplement til, ikke en erstatning for, fundamental strategisk forståelse.
           </p>
+          <ReviewScreenshot
+            src={pokerstarsInstallation}
+            alt="PokerStars installation på dansk – Velkommen til PokerStars.dk med Standard installation og dansk sprogvalg"
+            caption="PokerStars' danske installationsguide – vælg Standard installation for hurtig opsætning"
+            size="medium"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
