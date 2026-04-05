@@ -212,6 +212,13 @@ const TexasHoldemGuide = () => {
         </section>
 
         <ReviewScreenshot
+          src={pokerStarthaender}
+          alt="Top 24 starthænder i Texas Hold'em rangeret fra Pocket Aces til King-Jack Offsuit"
+          caption="Visuel oversigt over de 24 stærkeste starthænder i Texas Hold'em – fra Pocket Aces (1.) til King-Jack Offsuit (24.)."
+          size="full"
+        />
+
+        <ReviewScreenshot
           src={danskespilUltimateTexasHoldem}
           alt="Ultimate Texas Hold'em bord hos Danske Spil med community cards og indsatsstruktur"
           caption="Ultimate Texas Hold'em hos Danske Spil – casino-versionen af Texas Hold'em med faste odds mod dealeren."
