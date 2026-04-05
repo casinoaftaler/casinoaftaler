@@ -227,6 +227,7 @@ const AndroidCasinoGuide = () => {
             eager
           />
 
+          <ReviewScreenshot
             src={mrvegasForside}
             alt="MrVegas casino-lobby med Android-venligt design og responsivt mobilinterface"
             caption="MrVegas' forside – designet fungerer problemfrit på Android-enheder uden behov for app-installation"
