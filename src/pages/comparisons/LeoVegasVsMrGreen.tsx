@@ -260,6 +260,13 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvTop10}
+          alt="LeoVegas Top 10 spil med Area Link Dragon Ascension, Gates of Olympus Super Scatter, Pirots 4, Legacy of Dead og Sweet Bonanza 1000"
+          caption="LeoVegas' Top 10 – over 2.500 titler med eksklusivt indhold fra Games Global og Pragmatic Play."
+          size="full"
+        />
+
       {/* SECTION: Mobiloplevelse */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – to prisvindende platforme</h2>
