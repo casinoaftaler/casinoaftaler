@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.webp";
+import tabletLiveBlackjack from "@/assets/screenshots/tablet-live-blackjack-dealer.png";
+import tabletLiveRouletteHotCold from "@/assets/screenshots/tablet-live-roulette-hotcold.png";
+import tabletRouletteBordlayout from "@/assets/screenshots/tablet-roulette-bordlayout.png";
+import tabletSpeedtestWifi from "@/assets/screenshots/tablet-speedtest-wifi.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -334,6 +338,12 @@ const TabletCasinoGuide = () => {
             <p className="text-muted-foreground leading-relaxed mb-3">For spillere, der primært bruger tabletten til casino, anbefaler vi et justerbart stativ (ikke keyboard-cover) for maximum fleksibilitet. Et godt tablet-stativ giver dig mulighed for hurtigt at skifte mellem portrait og landscape, justere vinklen for komfortable viewing angles, og holde tabletten fri af hænderne for touch-betjening.</p>
             <p className="text-muted-foreground leading-relaxed">Vær opmærksom på rotationslåsen: Sørg for at den er deaktiveret under casino-spil, så appen kan rotere frit. På iPad: Kontrolcenter → rotationslås. På Samsung Tab: Hurtige indstillinger → Skærmrotation.</p>
           </div>
+          <ReviewScreenshot
+            src={tabletRouletteBordlayout}
+            alt="Super Stake Roulette bordlayout i landscape-mode på tablet – komplet nummer-grid med franske væddemål synlige"
+            caption="Roulette i landscape-mode på tablet – hele bordlayoutet inkl. Tier, Orphelins og Voisins er synligt uden scrolling"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -375,6 +385,13 @@ const TabletCasinoGuide = () => {
             </table>
           </div>
 
+          <ReviewScreenshot
+            src={tabletLiveBlackjack}
+            alt="Blackjack Classic 1 live dealer på tablet – fuld dealer-video med Super Stake sidebets og flere spillere ved bordet"
+            caption="Live Blackjack Classic på tablet – dealer, kort og Super Stake multipliers er tydeligt synlige i landscape"
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed mb-4">Live casino-oplevelsen på en 11-13" tablet i landscape-mode nærmer sig 85-90 % af desktop-oplevelsen. Det vigtigste element – dealer-videoen – er stor nok til tydeligt at se kortene i blackjack og kuglens bevægelser i roulette. Chat-funktionen kan bruges komfortabelt sideløbende med spillet, og alle side-bets og special-funktioner er tilgængelige uden ekstra navigation.</p>
 
           <div className="grid gap-4 md:grid-cols-2 mb-6">
@@ -399,6 +416,13 @@ const TabletCasinoGuide = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={tabletLiveRouletteHotCold}
+            alt="Super Stake Roulette 5000X live dealer med Hot/Cold nummer-statistik på tablet i landscape-tilstand"
+            caption="Super Stake Roulette med Hot/Cold statistik – tabletskærmen giver plads til dealer-video, hjul og fuldt betting-grid samtidig"
+            size="full"
+          />
 
           <p className="text-muted-foreground leading-relaxed mb-4">En unik fordel ved tablets er muligheden for at have live casino kørende i ét vindue mens du checker odds eller statistik i et andet. Med iPad Stage Manager eller Samsung Multi Window kan du fx have live blackjack i et vindue og en strategiguide i det andet – en feature, der er helt umulig på smartphones.</p>
         </section>
@@ -728,6 +752,14 @@ const TabletCasinoGuide = () => {
           </div>
 
           <p className="text-muted-foreground leading-relaxed mb-4"><strong>Vores anbefaling:</strong> For de fleste casino-spillere er WiFi-only modellen tilstrækkelig, da tablet-casino primært foregår hjemme. Cellular-modellen er kun relevant, hvis du regelmæssigt spiller slots/bordspil uden for hjemmet (sommerhus, campingvogn, hotel). Til live casino anbefaler vi altid WiFi uanset tablet-variant for maksimal stabilitet.</p>
+
+          <ReviewScreenshot
+            src={tabletSpeedtestWifi}
+            alt="Speedtest resultat på WiFi – 772 Mbps download og 839 Mbps upload via Hiper fiberforbindelse i København"
+            caption="Speedtest fra vores testopsætning – en stabil WiFi 6-forbindelse med lav ping sikrer problemfri live casino-streaming på tablet"
+            size="medium"
+          />
+
           <p className="text-muted-foreground leading-relaxed mb-4">Hvis du har en WiFi-only tablet og har brug for internet on-the-go, kan du bruge din smartphones hotspot-funktion. Bemærk dog at dette tærer på telefonens batteri og kan give ustabil forbindelse for live casino. En dedikeret mobilt WiFi-enhed (MiFi) er et bedre alternativ for regelmæssig on-the-go casino.</p>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
