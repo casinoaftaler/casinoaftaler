@@ -11,7 +11,11 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import royalcasinoSpillemaskiner from "@/assets/screenshots/royalcasino-spillemaskiner.webp";
+import vpHandRankings from "@/assets/screenshots/video-poker-hand-rankings-jacks-or-better.png";
+import vpUdbetalingstabel from "@/assets/screenshots/video-poker-udbetalingstabel-coins.png";
+import vpPayTableRtp from "@/assets/screenshots/video-poker-pay-table-rtp-oversigt.png";
+import vpStrategiCheatSheet from "@/assets/screenshots/video-poker-jacks-or-better-strategi-cheat-sheet.png";
+import vpGameplay from "@/assets/screenshots/video-poker-9-6-jacks-or-better-gameplay.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -128,9 +132,12 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════
-            SEKTION 2 – RTP-analyse og udbetalingstabeller
-        ═══════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={vpHandRankings}
+          alt="Hand rankings i Jacks or Better video poker – fra Royal Flush til par med knægte eller bedre"
+          caption="Oversigt over alle 9 vindende hænder i Jacks or Better, rangeret fra Royal Flush (højest) til par med knægte eller bedre (lavest)"
+          size="medium"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
@@ -183,6 +190,20 @@ export default function VideoPokerGuide() {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er det vigtigt at bemærke, at mange online casinoer tilbyder reducerede udbetalingstabeller (f.eks. 8/5 eller 7/5 Jacks or Better). Disse ser næsten identiske ud med full-pay versionerne, men husets fordel kan være 2-4× højere. Det er en bevidst strategi fra casinoernes side: de fleste spillere tjekker aldrig udbetalingstabellen og bemærker ikke forskellen. Din første handling på ethvert nyt casino bør være at åbne video poker-spillet i demo-mode og verificere Full House/Flush-udbetalingerne.
           </p>
+
+          <ReviewScreenshot
+            src={vpUdbetalingstabel}
+            alt="Jacks or Better udbetalingstabel med coin-udbetalinger fra 1 til 5 coins for alle hænder"
+            caption="Udbetalingstabel for Jacks or Better – bemærk den disproportionale Royal Flush-bonus ved 5 coins (4.000 vs. 1.000 ved 4 coins)"
+            size="compact"
+          />
+
+          <ReviewScreenshot
+            src={vpPayTableRtp}
+            alt="Sammenligning af Jacks or Better pay tables med RTP fra 95,00 % (6/5) til 99,54 % (Full Pay 9/6)"
+            caption="RTP-forskelle mellem Jacks or Better-varianter – vælg altid 9/6 Full Pay for den højeste tilbagebetaling"
+            size="compact"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════
@@ -247,9 +268,10 @@ export default function VideoPokerGuide() {
             Den optimale strategi for 9/6 Jacks or Better kan komprimeres til en rangeret liste af hold-prioriteter. Når du modtager dine fem kort, finder du den højest rangerede hold-kombination og beholder de tilsvarende kort. Listen nedenfor dækker alle 30+ beslutninger med deres Expected Value (EV) pr. coin ved max bet.
           </p>
         <ReviewScreenshot
-          src={royalcasinoSpillemaskiner}
-          alt="Royal Casino spillemaskin-lobby med video poker og bordspil tilgængelige for danske spillere"
-          caption="Royal Casino tilbyder video poker-varianter blandt deres brede udvalg af casinospil"
+          src={vpStrategiCheatSheet}
+          alt="Jacks or Better strategi cheat sheet med 11 prioriterede hold/discard-regler for optimal video poker-spil"
+          caption="Komplet strategi cheat sheet til Jacks or Better – følg prioriteringslisten fra top til bund for optimal EV"
+          size="medium"
         />
 
           <Card className="mb-6">
@@ -588,9 +610,11 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════
-            SEKTION 12 – Online vs. Live
-        ═══════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={vpGameplay}
+          alt="9/6 Jacks or Better video poker gameplay med 5 kort og udbetalingstabel synlig – klassisk IGT-design"
+          caption="Klassisk 9/6 Jacks or Better video poker-maskine med synlig udbetalingstabel, hold/cancel-knapper og max bet aktiveret"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
