@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
+import euroBlackjackBetting from "@/assets/screenshots/euro-blackjack-multihand-betting.png";
+import euroBlackjackPush from "@/assets/screenshots/euro-blackjack-push-dealer17.png";
+import euroBlackjackBeslutninger from "@/assets/screenshots/euro-blackjack-beslutninger.png";
+import euroBlackjackDealerBust from "@/assets/screenshots/euro-blackjack-dealer-bust.png";
+import euroBlackjackHardTotals from "@/assets/screenshots/euro-blackjack-hard-totals-skema.png";
+import euroBlackjackSoftPairs from "@/assets/screenshots/euro-blackjack-soft-pairs-skema.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -206,6 +212,14 @@ const EuropaeiskBlackjackGuide = () => {
 
         <InlineCasinoCards title="Bedste europæisk blackjack online" count={4} />
 
+        <ReviewScreenshot
+          src={euroBlackjackBetting}
+          alt="European Blackjack MH – tre hænder med 100 kr. indsats hver, DEAL og CLEAR ALL knapper synlige"
+          caption="European Blackjack Multi-Hand fra Play'n GO – tre samtidige hænder med 100 kr. indsats og chip-valg fra 1 til 100"
+          size="full"
+          eager={true}
+        />
+
         {/* ═══════════════ Hvad er europæisk blackjack ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -291,6 +305,13 @@ const EuropaeiskBlackjackGuide = () => {
           </div>
 
           <h3 className="mb-3 text-xl font-semibold">EV-forskel i praksis: 6 scenarier</h3>
+          <ReviewScreenshot
+            src={euroBlackjackPush}
+            alt="European Blackjack resultat – dealer står på 17, to hænder viser PUSH med 17, én hånd med 16 taber"
+            caption="Dealer står på 17 (S17-regel) – to PUSH-resultater og én tabende hånd illustrerer den europæiske bordoplevelse"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at kvantificere forskellen mellem ENHC og OBO, lad os gennemgå seks typiske hånde og beregne den forventede værdi under hver regel:
           </p>
@@ -372,6 +393,13 @@ const EuropaeiskBlackjackGuide = () => {
             Under ENHC-regler skal du justere din strategi for at undgå at miste ekstra indsatser mod potentielle dealer-blackjacks. Standard basic strategy antager, at dealerens blackjack allerede er udelukket (via peek) – under ENHC er det ikke tilfældet. Her er alle 14 afvigelser fra standard strategy, organiseret efter hyppighed og EV-impact:
           </p>
 
+          <ReviewScreenshot
+            src={euroBlackjackBeslutninger}
+            alt="European Blackjack beslutningsknapper – DOUBLE, HIT, STAND og SPLIT synlige med tre hænder: 10, 14 og 11"
+            caption="Beslutningsøjeblikket: DOUBLE, HIT, STAND og SPLIT – tre hænder der kræver forskellige ENHC-strategivalg"
+            size="full"
+          />
+
           <h3 className="mb-3 text-xl font-semibold">Kritiske afvigelser (høj EV-impact)</h3>
           <Card className="border-border bg-card my-4">
             <CardContent className="pt-4">
@@ -438,6 +466,13 @@ const EuropaeiskBlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nøglen er simpel: under ENHC undgår du at lægge ekstra penge på bordet (fordobling/split) mod dealerens 10 og es, fordi risikoen for at miste dem mod en uopdaget blackjack er for høj. De fire kritiske afvigelser (A+A, 11, 8+8, 10) dækker ca. 80 % af den samlede strategiske forskel. Lær disse fire først – de resterende 10 kan tilføjes gradvist.
           </p>
+          <ReviewScreenshot
+            src={euroBlackjackDealerBust}
+            alt="Dealer bust med 22 – to spillerhænder viser WIN med udbetalinger på 200 og 400 kr."
+            caption="Dealer buster med 22 (4+J+8) – spillerens hænder med 14 og 13 vinder begge, split-hånden udbetaler 400 kr."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             <strong>Hyppighedsanalyse:</strong> Du vil møde en af de 14 afvigelsessituationer i ca. 8 % af alle hænder (ca. 16 gange pr. 200 hænder). De fire kritiske afvigelser forekommer i ca. 5 % af hænderne (10 gange pr. 200 hænder). Korrekt spil i disse situationer sparer dig ca. 40-60 kr. pr. 200 hænder – en betydelig besparelse over tid.
           </p>
@@ -498,6 +533,20 @@ const EuropaeiskBlackjackGuide = () => {
             <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sessionssimulering: 1.000 Hænder ENHC vs. OBO
           </h2>
+          <ReviewScreenshot
+            src={euroBlackjackHardTotals}
+            alt="Basic strategy skema for hard totals – Hit, Stand og Double Down anbefalinger for spillerværdier 5-17 mod dealer 2-Es"
+            caption="Hard totals strategiskema – H (Hit), S (Stand), D (Double Down) for europæisk blackjack"
+            size="full"
+          />
+
+          <ReviewScreenshot
+            src={euroBlackjackSoftPairs}
+            alt="Basic strategy skema for soft totals og par – Hit, Stand, Split og Double Down for A,2-A,9 og 2,2-A,A"
+            caption="Soft totals og pairs strategiskema – inkl. Sp (Split) anbefalinger for alle partyper"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at illustrere den reelle forskel mellem ENHC og OBO simulerede vi 1.000 hænder med 100 kr. indsats under identiske regler (6-deck, S17, DAS). Simuleringen bruger Monte Carlo-metoden med 10.000 gentagelser for at generere statistisk signifikante resultater.
           </p>
