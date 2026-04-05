@@ -186,6 +186,12 @@ const FibonacciBlackjackGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={fibonacciDiagram}
+          alt="Fibonacci-talrækken visualiseret med TAB (fremad) og VIND (to trin tilbage) – 1, 1, 2, 3, 5, 8, 13, 21"
+          caption="Fibonacci-sekvensens mekanik: Ved tab rykker du ét trin frem. Ved gevinst rykker du to trin tilbage i sekvensen."
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
