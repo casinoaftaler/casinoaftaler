@@ -291,22 +291,30 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const processTumbleSteps = useCallback(async (steps: any[]) => {
     let winningStepCount = 0;
     let allSeenBombPositions = new Set<number>();
-    let orbVideoTriggeredThisSpin = false;
 
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       setCurrentTumbleStep(i);
       if (i === 0) await new Promise(r => setTimeout(r, 200));
 
-      // Check for orbs: trigger video once on first appearance, then only when NEW orbs drop in via refill
+      // Orb video trigger:
+      // - Step 0 (initial grid): play if any orbs exist
+      // - Step 1+ (tumble refills): play only if NEW orbs dropped in from above
       const currentBombPositions = new Set<number>((step.multiplierBombs || []).map((b: any) => b.position));
-      const hasNewBombs = [...currentBombPositions].some(pos => !allSeenBombPositions.has(pos));
-      if (hasNewBombs) {
-        setShowOrbVideo(true);
-        setOrbVideoTrigger(prev => prev + 1);
-        orbVideoTriggeredThisSpin = true;
+      if (i === 0) {
+        // Initial grid — play if orbs are present at all
+        if (currentBombPositions.size > 0) {
+          setShowOrbVideo(true);
+          setOrbVideoTrigger(prev => prev + 1);
+        }
+      } else {
+        // Tumble step — only play if a brand new orb dropped in (not just repositioned)
+        const hasNewBombs = [...currentBombPositions].some(pos => !allSeenBombPositions.has(pos));
+        if (hasNewBombs) {
+          setShowOrbVideo(true);
+          setOrbVideoTrigger(prev => prev + 1);
+        }
       }
-      // Track all bombs we've ever seen so surviving orbs don't re-trigger
       currentBombPositions.forEach(pos => allSeenBombPositions.add(pos));
 
       const hasWins = step.wins.length > 0;
