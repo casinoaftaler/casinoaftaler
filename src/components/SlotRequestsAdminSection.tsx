@@ -217,6 +217,16 @@ export function SlotRequestsAdminSection() {
           )}
         </CardContent>
       </Card>
+
+      {manualHitRequest && (
+        <ManualBonusHitDialog
+          open={!!manualHitRequest}
+          onOpenChange={(open) => !open && setManualHitRequest(null)}
+          requestId={manualHitRequest.id}
+          userId={manualHitRequest.userId}
+          slotName={manualHitRequest.slotName}
+        />
+      )}
     </div>
   );
 }
