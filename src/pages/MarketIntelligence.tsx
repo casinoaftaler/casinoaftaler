@@ -2,6 +2,10 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Activity, ArrowRight, FileCheck, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import screenshotSpillemyndighedenHeader from "@/assets/screenshots/spillemyndigheden-licence-holders.png";
+import screenshotSpillemyndighedenListe from "@/assets/screenshots/spillemyndigheden-tilladelsesindehavere-liste.png";
+import screenshotSpildanskFooter from "@/assets/screenshots/spildansknu-footer-licens-compliance.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
