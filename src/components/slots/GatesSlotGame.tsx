@@ -1055,7 +1055,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   className=""
                   loop={false}
                   playTrigger={orbVideoTrigger}
-                  onEnded={() => setShowOrbVideo(false)}
+                  onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}
                 />
               ) : (
                 <ChromaKeyVideo
