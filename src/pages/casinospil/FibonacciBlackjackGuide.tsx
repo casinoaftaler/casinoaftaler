@@ -526,6 +526,12 @@ const FibonacciBlackjackGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={getluckyBlackjack}
+          alt="GetLucky live blackjack-sektion med Unlimited, Multiplikator og Evolution-filtre – borde fra 10 kr."
+          caption="GetLucky har et overskueligt blackjack-udvalg med filtrering efter bordtype – nyttigt til at finde borde med passende indsatsgrænser"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
