@@ -610,9 +610,11 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════
-            SEKTION 12 – Online vs. Live
-        ═══════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={vpGameplay}
+          alt="9/6 Jacks or Better video poker gameplay med 5 kort og udbetalingstabel synlig – klassisk IGT-design"
+          caption="Klassisk 9/6 Jacks or Better video poker-maskine med synlig udbetalingstabel, hold/cancel-knapper og max bet aktiveret"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="users" className="h-5 w-5 text-primary" />
