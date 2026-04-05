@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,14 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Apple, ArrowRight, Ban, Play, Server } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+
+import spilleautomatenIndbetaling from "@/assets/screenshots/spilleautomaten-indbetaling-mobilepay-visa.webp";
+import spilleautomatenUdbetaling from "@/assets/screenshots/spilleautomaten-udbetaling-trustly-visa.webp";
+import trustlyVaelgBank from "@/assets/screenshots/trustly-vaelg-bank-udbetaling.webp";
+import trustlyQrKode from "@/assets/screenshots/trustly-qr-kode-godkendelse.webp";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-lobby-spil-oversigt.webp";
+import leovegasMitidLogin from "@/assets/screenshots/leovegas-mitid-login-brugerid.webp";
+import leovegasMitidApp from "@/assets/screenshots/leovegas-mitid-app-godkend.webp";
 
 const payNPlayFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {
