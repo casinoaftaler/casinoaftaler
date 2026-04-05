@@ -1,35 +1,26 @@
 
 
-## Play Scatter Celebration Video in Scatter Cells — Gates of Fedesvin
+## Plan: Manual Bonus Hit med slot-vælger dialog
 
-### Overview
-When scatters trigger a bonus in Gates of Fedesvin, play the uploaded video inside each scatter cell (replacing the current CSS glow animation). The video has a black background, so we'll use a black-chroma-key variant to make it transparent.
+### Hvad bygges
+Når admin trykker på "Manuel Bonus Hit" (Trophy-knappen) på en pending slot request, åbnes en dialog der viser alle slots fra den aktive bonus hunt som **ikke** allerede har en requester tilknyttet. Admin vælger hvilken slot requestet matcher, og derefter tildeles bonus hit + 200 credits som normalt.
 
-### Steps
+### Teknisk implementering
 
-**1. Add the video asset**
-- Copy `user-uploads://hf_20260405_120256_66841dd4-18ee-4b5c-bb60-9e334a0b1e3d.mp4` to `public/videos/gates-scatter-celebration.mp4`
+**1. Ny komponent: `ManualBonusHitDialog.tsx`**
+- Modtager props: `requestId`, `userId`, `slotName` (fra requestet), `open`, `onOpenChange`
+- Fetcher aktive hunt data via `useBonusHuntData()` (slot-listen fra API)
+- Fetcher `useBonusHuntSlotRequesters(huntNumber)` for at finde slots der allerede har en requester
+- Filtrerer hunt-slots til kun dem **uden** requester-match (via `findBestRequesterMatch`)
+- Viser en søgbar liste af umatched slots med navn + provider
+- Pre-highlighter den slot der fuzzy-matcher requestets `slot_name` (hvis nogen)
+- Ved valg kalder `useUpdateSlotRequestStatus` med bonus_hit + credits
 
-**2. Create a BlackChromaKeyVideo component (or extend ChromaKeyVideo)**
-- The existing `ChromaKeyVideo` removes green. We need a variant that removes black (dark pixels → transparent).
-- New fragment shader: discard pixels where `r + g + b < threshold` (e.g. 0.15), with soft-edge alpha falloff for near-black pixels.
-- Same structure as `ChromaKeyVideo` but with the black-key shader.
+**2. Ændring i `SlotRequestsAdminSection.tsx`**
+- Erstatter den direkte `handleAction(... "bonus_hit", true)` onClick på Trophy-knappen med åbning af `ManualBonusHitDialog`
+- State for hvilken request der er valgt (`selectedRequest`) og dialog open/close
 
-**3. Add `scatter-video` cell animation state to GatesColumn**
-- Add `'scatter-video'` to the `CellAnimState` type.
-- When `cellAnim === 'scatter-video'`, render the `BlackChromaKeyVideo` component inside the cell, sized to `SYMBOL_WIDTH × SYMBOL_HEIGHT`, overlaid on top of the scatter symbol.
-- The video plays once (`loop={false}`), positioned absolutely over the scatter image.
-
-**4. Update GatesSlotGame scatter celebration logic**
-- In all places where `scatter-pulse` is set on scatter positions, change to `scatter-video`.
-- Keep the 1500ms wait (or adjust to match video duration).
-- After video ends / timeout, reset `cellAnimStates` back to empty map as before.
-
-**5. Keep existing CSS scatter-pulse as fallback**
-- The `scatter-pulse` CSS animation remains available but won't be used for Gates scatter celebrations anymore.
-
-### Technical Details
-- The black-key shader replaces the green-dominance check with a luminance check: `float lum = r * 0.299 + g * 0.587 + b * 0.114; if (lum < 0.08) discard;` with soft edge smoothstep for lum 0.08–0.15.
-- Video preloaded on component mount to avoid delay when scatters land.
-- Component renders as `position: absolute; inset: 0; z-index: 10` inside the cell div.
+**3. Ingen database-ændringer nødvendige**
+- Eksisterende `useUpdateSlotRequestStatus` mutation bruges som-is
+- Hunt data + requester map hooks eksisterer allerede
 
