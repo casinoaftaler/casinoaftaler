@@ -456,8 +456,14 @@ const PayNPlayGuide = () => {
             </table>
           </div>
           <p className="text-muted-foreground leading-relaxed text-sm italic">
-            * Data indsamlet marts 2026 med Danske Bank, Nordea, Jyske Bank, Sydbank og Spar Nord. Desktop-test: Chrome 122 på Windows 11. Mobil-test: Safari 18 (iOS 18) og Chrome 122 (Android 15).
+             * Data indsamlet marts 2026 med Danske Bank, Nordea, Jyske Bank, Sydbank og Spar Nord. Desktop-test: Chrome 122 på Windows 11. Mobil-test: Safari 18 (iOS 18) og Chrome 122 (Android 15).
           </p>
+
+          <ReviewScreenshot
+            src={spilleautomatenLobby}
+            alt="Spilleautomaten.dk spilobiby med seneste gevinster, populære slots og nye udgivelser"
+            caption="Spilleautomaten.dk's lobby efter Pay N Play-registrering: Spilleren har direkte adgang til hele spiludvalget med aktiv saldo. Seneste gevinster vises øverst. Screenshot fra april 2026."
+          />
         </section>
 
         <Separator className="my-10" />
