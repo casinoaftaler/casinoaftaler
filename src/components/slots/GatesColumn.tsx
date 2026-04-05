@@ -165,10 +165,10 @@ export const GatesColumn = React.memo(function GatesColumn({
               />
             )}
 
-            {/* Bomb exploded decal */}
+            {/* Bomb exploded decal — Gates lightning style */}
             {cellAnim === 'bomb-exploded' && (
-              <div className={cn("w-full h-full flex items-center justify-center", !applyDropOff && "bonanza-bomb-exploded-decal")}>
-                <img src={bombExplodedDecal} alt="Explosion" className="w-full h-full object-contain" draggable={false} />
+              <div className={cn("w-full h-full flex items-center justify-center", !applyDropOff && "gates-bomb-exploded-decal")}>
+                <img src={gatesExplosionDecal} alt="Explosion" className="w-[140%] h-[140%] object-contain absolute" draggable={false} style={{ filter: 'drop-shadow(0 0 8px rgba(59,130,246,0.8))' }} />
               </div>
             )}
 

@@ -430,18 +430,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
       const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
 
-      // Mobile-aware multiplier fly target (same as Bonanza)
-      const targetEl = isMobile ? document.getElementById("gates-mult-target") : null;
+      // Fly target: desktop = total multiplier orb in side panel, mobile = fallback
+      const targetEl = document.getElementById("gates-total-multiplier-orb");
       const gridRect = gridEl?.getBoundingClientRect();
       const targetRect = targetEl?.getBoundingClientRect();
 
       const targetX = targetEl && gridRect && targetRect
         ? (targetRect.left - gridRect.left) + (targetRect.width / 2)
-        : fallbackWidth / 2;
+        : (isMobile ? fallbackWidth / 2 : -80);
 
       const targetY = targetEl && gridRect && targetRect
         ? (targetRect.top - gridRect.top) + (targetRect.height / 2)
-        : (isMobile ? fallbackHeight + 60 : 20);
+        : (isMobile ? fallbackHeight + 60 : fallbackHeight / 2 - 40);
 
       for (const bomb of sorted) {
         const animState: CellAnimState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
