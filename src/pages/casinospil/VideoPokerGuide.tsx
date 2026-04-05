@@ -251,9 +251,10 @@ export default function VideoPokerGuide() {
             Den optimale strategi for 9/6 Jacks or Better kan komprimeres til en rangeret liste af hold-prioriteter. Når du modtager dine fem kort, finder du den højest rangerede hold-kombination og beholder de tilsvarende kort. Listen nedenfor dækker alle 30+ beslutninger med deres Expected Value (EV) pr. coin ved max bet.
           </p>
         <ReviewScreenshot
-          src={royalcasinoSpillemaskiner}
-          alt="Royal Casino spillemaskin-lobby med video poker og bordspil tilgængelige for danske spillere"
-          caption="Royal Casino tilbyder video poker-varianter blandt deres brede udvalg af casinospil"
+          src={vpStrategiCheatSheet}
+          alt="Jacks or Better strategi cheat sheet med 11 prioriterede hold/discard-regler for optimal video poker-spil"
+          caption="Komplet strategi cheat sheet til Jacks or Better – følg prioriteringslisten fra top til bund for optimal EV"
+          size="medium"
         />
 
           <Card className="mb-6">
