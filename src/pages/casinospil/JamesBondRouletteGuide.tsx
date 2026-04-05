@@ -622,6 +622,12 @@ export default function JamesBondRouletteGuide() {
             <li>Spillere der søger profitabel strategi (den eksisterer ikke i roulette)</li>
             <li>Bonus wagering (roulettes lave tællingsrate gør det ineffektivt)</li>
           </ul>
+          <ReviewScreenshot
+            src={screenshotDanskeSpilLive}
+            alt="Danske Spil live roulette gameplay med dealer, europæisk hjul og betting-grid der viser Første 12, Midterste 12 og Sidste 12 sektioner på dansk"
+            caption="Live roulette hos Danske Spil med dansk interface – bemærk de danske betegnelser for væddemålsområderne."
+          />
+
           <h3 className="text-lg font-semibold text-foreground mb-3">Anbefalede casinoer til James Bond-systemet</h3>
           <p className="text-muted-foreground leading-relaxed mb-3">
             For den optimale James Bond-oplevelse anbefaler vi casinoer med europæiske live-borde, lave minimumsindsatser og Favourite Bets-funktionalitet:
