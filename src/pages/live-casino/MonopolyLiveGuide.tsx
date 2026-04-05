@@ -303,6 +303,12 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={monopolyLiveWheel}
+          alt="Monopoly Live spinning wheel med vært i rødt studie – segmenter med 1, 2, 5, 10, Chance og 2/4 Rolls synlige"
+          caption="Monopoly Live hjulet i aktion: Værten spinner det fysiske hjul mens spillere placerer indsatser på de 7 segmenter"
+        />
+
         <Separator className="my-10" />
 
         {/* H2 #4 – Chance-segmentet */}
