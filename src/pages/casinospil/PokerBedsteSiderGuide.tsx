@@ -300,6 +300,13 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
 
+            <ReviewScreenshot
+              src={bet365PokerLobby}
+              alt="bet365 Poker lobby med No Limit Hold'em kontantspil, Twister turneringer og kampagner"
+              caption="bet365 Poker – bred lobbyoversigt med kontantspil, Twister-turneringer og kvalifikationsevents"
+              size="full"
+            />
+
             {/* Campobet */}
             <Card className="border-border bg-card">
               <CardHeader>
