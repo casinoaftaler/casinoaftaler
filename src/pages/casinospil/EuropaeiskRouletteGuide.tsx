@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.webp";
+import campobetVelkomstbonus from "@/assets/screenshots/campobet-velkomstbonus-roulette.png";
+import campobetOmsaetningsbidrag from "@/assets/screenshots/campobet-omsaetningsbidrag-tabel.png";
+import campobetLiveRouletteLobby from "@/assets/screenshots/campobet-live-roulette-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -440,6 +443,13 @@ export default function EuropaeiskRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetLiveRouletteLobby}
+          alt="CampoBet live roulette lobby med Dansk Roulette, Power Up Roulette, Speed Roulette og flere varianter"
+          caption="CampoBets live roulette-udvalg – et typisk dansk casino med 12+ europæiske roulette-borde fra Evolution Gaming."
+          size="full"
+        />
+
         {/* SECTION 8 – Historisk Oprindelse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -537,9 +547,16 @@ export default function EuropaeiskRouletteGuide() {
             <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Bonusomsætning med Europæisk Roulette: EV-Analyse
           </h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">
+           <p className="text-muted-foreground mb-4 leading-relaxed">
             Kan du bruge europæisk roulette til at omsætte <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link>? Det korte svar er: det afhænger af casinoets bonusvilkår. De fleste danske casinoer med licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> reducerer roulettes bidrag til omsætningskravet til 10-25 % af den samlede indsats. Det betyder, at 100 kr. satset på roulette kun tæller som 10-25 kr. mod omsætningskravet.
           </p>
+
+          <ReviewScreenshot
+            src={campobetVelkomstbonus}
+            alt="CampoBet velkomstbonus – 100% op til 1.000 kr. med trinvis aktivering af bonus"
+            caption="Eksempel på en typisk dansk velkomstbonus hos CampoBet – 100 % op til 1.000 kr. med minimumsindbetaling på 100 kr."
+            size="full"
+          />
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Lad os beregne Expected Value (EV) for en typisk dansk bonus omsæt via europæisk roulette:
           </p>
@@ -561,6 +578,13 @@ export default function EuropaeiskRouletteGuide() {
               </p>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={campobetOmsaetningsbidrag}
+            alt="CampoBet omsætningsbidrag – tabel over spilkategorier og deres procentvise bidrag til bonusomsætning"
+            caption="Omsætningsbidrag hos CampoBet: spillemaskiner bidrager 100 %, mens live casino, videopoker og bordspil er begrænset for bonusspil."
+            size="full"
+          />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Konklusionen er klar: europæisk roulette er generelt en dårlig strategi for bonusomsætning, medmindre casinoet tilbyder 100 % bidrag fra roulette (sjældent) eller et ekstremt lavt omsætningskrav. Ved standard 10× omsætning og 10% bidrag skal du satse 100.000 kr. for at omsætte en 1.000 kr. bonus – og dit forventede tab overstiger bonusværdien.
