@@ -206,7 +206,15 @@ const BonanzaGuide = () => {
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bonanzas free spins-runde aktiveres ved at lande fire scatter-symboler, der staver G-O-L-D. Tre af disse vises på det vandrette hjul øverst (G, O, L), mens det fjerde (D) skal lande et sted på hovedgriddet. Du modtager 12 gratis spins ved trigger, med mulighed for at vinde yderligere 5 spins ved at lande 3+ scatters under bonusrunden. Der er ingen øvre grænse for retriggers, men sandsynligheden falder med hvert retrigger.
-          </p>
+           </p>
+
+          <ReviewScreenshot
+            src={screenshotBonanzaFreeSpins}
+            alt="Bonanza Megaways free spins trigger med 12 Free Spins Awarded, Unlimited Win Multiplier og mulighed for extra free games ved 3+ scatters"
+            caption="Free spins triggeret i Bonanza: 12 gratis spins med ubegrænset win multiplier – 3 eller flere scatters under bonusrunden giver ekstra spins."
+            size="medium"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Den ubegrænsede progressiv multiplier er free spins-rundens definerende element. Startende ved 1× stiger den med +1 for hver cascading win – og den nulstilles aldrig under bonusrunden. I en gennemsnitlig free spins-session kan multiplikatoren nå 8-15×, men i exceptionelle runder kan den overstige 40×. Matematisk set er den forventede gennemsnitlige bonusrunde-gevinst cirka 80-120× indsatsen, med en median tættere på 40-60× (fordi fordelingen er kraftigt skævvredet mod høje værdier).
           </p>
