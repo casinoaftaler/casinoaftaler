@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
+import pokerHandRankings from "@/assets/screenshots/poker-hand-rankings-oversigt.png";
+import danskespilPokerForside from "@/assets/screenshots/danske-spil-poker-ggpoker-forside.png";
+import danskespilPokerDownload from "@/assets/screenshots/danske-spil-poker-download-side.png";
+import unibetPokerForside from "@/assets/screenshots/unibet-poker-forside-deepstack-open.png";
+import pokerstarsLivePokerLobby from "@/assets/screenshots/pokerstars-live-poker-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -333,6 +338,12 @@ const PokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
           </p>
+          <ReviewScreenshot
+            src={pokerHandRankings}
+            alt="Komplet oversigt over pokerhænders rangering fra Royal Flush til High Card med visuelle korteksempler"
+            caption="Pokerhændernes rangering – fra Royal Flush (stærkest) til High Card (svageste). Rangeringen er baseret på kombinationernes sandsynlighed."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -448,6 +459,19 @@ const PokerGuide = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={danskespilPokerForside}
+          alt="Danske Spil Poker powered by GGPoker – forsiden med download og ny pokerplatform-knapper"
+          caption="Danske Spil Poker drives af GGPoker og tilbyder cash games, turneringer og en downloadbar pokerklient."
+        />
+
+        <ReviewScreenshot
+          src={danskespilPokerDownload}
+          alt="Danske Spil Poker download-side med trin-for-trin guide til at oprette konto og hente pokerklient"
+          caption="Download-processen hos Danske Spil: Opret konto → hent pokerklient til PC, Mac, Android eller iOS."
+          size="compact"
+        />
+
         {/* ═══════════════ 8 – ONLINE VS LIVE ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Online Poker vs. Live Poker – Tempo, Tells og Rake</h2>
@@ -457,6 +481,13 @@ const PokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Tells:</strong> Live poker tilbyder fysiske tells – kropssprog, stemme, timing. Online eliminerer fysiske tells men introducerer timing tells og betting pattern tells (via HUD-software). <strong>Sværhedsgrad:</strong> Online er generelt sværere pga. adgang til tracking-software og træningsmateriale. En vinder på 5/10 kr. online dominerer typisk 10/20 kr. live.
           </p>
+
+          <ReviewScreenshot
+            src={unibetPokerForside}
+            alt="Unibet Poker forside med Deepstack Open turnering, download-knapper og begynder-guide"
+            caption="Unibet Poker tilbyder turneringer som Deepstack Open og en brugervenlig browser-baseret pokerklient."
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             <strong>Rake:</strong> Online har typisk lavere rake (2,5–5 % med cap) end live (5–10 %). Lavere rake online giver bedre netto-EV – men den hårdere konkurrence modvirker delvist denne fordel.
           </p>
@@ -540,6 +571,12 @@ const PokerGuide = () => {
             <strong>Vigtigt:</strong> Spiller du på en ulicenseret platform, mister du skattefrihed, spillerbeskyttelse og ROFUS-adgang. Tjek altid licensen på Spillemyndighedens hjemmeside, før du opretter en konto. For mere om dansk spillelovgivning, se vores <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighed-guide</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsLivePokerLobby}
+          alt="PokerStars live poker-lobby med Casino Hold'em, Caribbean Stud Poker og Three Card Poker borde fra Evolution"
+          caption="PokerStars' live casino-sektion med pokerborde fra Evolution Gaming – Casino Hold'em, Caribbean Stud og Three Card Poker."
+        />
 
         <Separator className="my-10" />
 
