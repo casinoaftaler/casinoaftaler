@@ -200,6 +200,13 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
 
+            <ReviewScreenshot
+              src={danskespilPokerLobby}
+              alt="Danske Spil poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker live borde"
+              caption="Danske Spils poker-sektion – live casino poker med professionelle dealers og dansk interface"
+              size="full"
+            />
+
             {/* Unibet */}
             <Card className="border-border bg-card">
               <CardHeader>
