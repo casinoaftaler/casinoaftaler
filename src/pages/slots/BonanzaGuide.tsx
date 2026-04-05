@@ -192,6 +192,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaGameplay}
+          alt="Bonanza Megaways gameplay med 34.300 aktive gevinstmuligheder, 6 hjul med variabel højde og vandret minekarrehjul med ædelstensymboler"
+          caption="Bonanza Megaways i aktion: bemærk det variable antal symboler per hjul (2-7) og det vandrette minekarrehjul øverst, der bærer scatter-symbolerne."
+        />
+
         {/* ── Free Spins ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
