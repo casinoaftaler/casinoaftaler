@@ -305,6 +305,13 @@ const ThreeCardPokerGuide = () => {
             <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Optimal Strategi – Q-6-4 Reglen
           </h2>
+          <ReviewScreenshot
+            src={threeCardPokerTreKonger}
+            alt="Three of a Kind med tre konger i Three Card Poker – den næststærkeste hånd i spillet"
+            caption="Three of a Kind (tre konger) – den næststærkeste hånd i Three Card Poker, kun slået af Straight Flush"
+            size="medium"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Three Card Pokers optimale strategi er elegant i sin enkelhed: <strong>Raise med Queen-Six-Four eller bedre, fold alt andet</strong>. Denne strategi reducerer house edge til 3,37 % på Ante/Play-kombinationen. Men hvad betyder "Queen-Six-Four eller bedre" præcist?
           </p>
