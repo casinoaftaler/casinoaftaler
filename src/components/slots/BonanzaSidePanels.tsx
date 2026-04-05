@@ -21,6 +21,7 @@ interface BonanzaSidePanelsProps {
   isBonusActive?: boolean;
   horizontal?: boolean;
   compact?: boolean;
+  headerContent?: React.ReactNode;
 }
 
 export function BonanzaSidePanels({
