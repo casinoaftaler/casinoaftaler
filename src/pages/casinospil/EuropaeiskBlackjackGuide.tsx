@@ -533,6 +533,20 @@ const EuropaeiskBlackjackGuide = () => {
             <MenuIcon iconName="bar-chart3" className="h-7 w-7 text-primary" />
             Sessionssimulering: 1.000 Hænder ENHC vs. OBO
           </h2>
+          <ReviewScreenshot
+            src={euroBlackjackHardTotals}
+            alt="Basic strategy skema for hard totals – Hit, Stand og Double Down anbefalinger for spillerværdier 5-17 mod dealer 2-Es"
+            caption="Hard totals strategiskema – H (Hit), S (Stand), D (Double Down) for europæisk blackjack"
+            size="full"
+          />
+
+          <ReviewScreenshot
+            src={euroBlackjackSoftPairs}
+            alt="Basic strategy skema for soft totals og par – Hit, Stand, Split og Double Down for A,2-A,9 og 2,2-A,A"
+            caption="Soft totals og pairs strategiskema – inkl. Sp (Split) anbefalinger for alle partyper"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at illustrere den reelle forskel mellem ENHC og OBO simulerede vi 1.000 hænder med 100 kr. indsats under identiske regler (6-deck, S17, DAS). Simuleringen bruger Monte Carlo-metoden med 10.000 gentagelser for at generere statistisk signifikante resultater.
           </p>
