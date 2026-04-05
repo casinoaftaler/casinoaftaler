@@ -2,6 +2,10 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Activity, ArrowRight, FileCheck, Loader2 } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import screenshotSpillemyndighedenHeader from "@/assets/screenshots/spillemyndigheden-licence-holders.png";
+import screenshotSpillemyndighedenListe from "@/assets/screenshots/spillemyndigheden-tilladelsesindehavere-liste.png";
+import screenshotSpildanskFooter from "@/assets/screenshots/spildansknu-footer-licens-compliance.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -142,7 +146,7 @@ export default function MarketIntelligence() {
       />
 
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
         style={{
           backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
@@ -260,6 +264,12 @@ export default function MarketIntelligence() {
                       </div>
                     </div>
                   ) : null}
+                  <ReviewScreenshot
+                    src={screenshotSpillemyndighedenHeader}
+                    alt="Spillemyndighedens officielle side for tilladelsesindehavere med forklaring af de to licenstyper til online væddemål og onlinekasino"
+                    caption="Spillemyndighedens side for tilladelsesindehavere – det er her, vi verificerer at casinoer har gyldig dansk licens."
+                    eager
+                  />
                 </CardContent>
               </Card>
 
@@ -485,6 +495,13 @@ export default function MarketIntelligence() {
                   </CardContent>
                 </Card>
 
+                <ReviewScreenshot
+                  src={screenshotSpillemyndighedenListe}
+                  alt="Spillemyndighedens søgbare liste over tilladelsesindehavere med licenstype og tilknyttede domæner for 25syv, 888 og Apollo Entertainment"
+                  caption="Den officielle liste over tilladelsesindehavere hos Spillemyndigheden – vi matcher casinoer op mod denne database."
+                  size="compact"
+                />
+
                 <Card className="border-border bg-card/80">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
@@ -640,6 +657,12 @@ export default function MarketIntelligence() {
                   </tbody>
                 </table>
               </div>
+
+              <ReviewScreenshot
+                src={screenshotSpildanskFooter}
+                alt="SpilDanskNu.dk footer med Spillemyndighedens tilladelsessegl, ROFUS-logo, StopSpillet og MitID samt licensnummer og udløbsdato"
+                caption="Sådan ser en compliant casinofooter ud i praksis – SpilDanskNu viser licensnummer, udløbsdato og links til ROFUS og StopSpillet."
+              />
             </section>
           </>
         )}
