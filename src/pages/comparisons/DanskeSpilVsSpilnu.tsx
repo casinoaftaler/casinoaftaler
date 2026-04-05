@@ -1,6 +1,15 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.webp";
+import dsForside from "@/assets/screenshots/danske-spil-forside-login-konti.webp";
+import dsOversigt from "@/assets/screenshots/danske-spil-sport-casino-lotteri-oversigt.webp";
+import dsCasinoLobby from "@/assets/screenshots/danske-spil-casino-lobby-paske-freespins.webp";
+import dsLiveCasino from "@/assets/screenshots/danske-spil-live-casino-roulette-blackjack-lobby.webp";
+import dsIndbetaling from "@/assets/screenshots/danske-spil-indbetaling-mobilepay-visa.webp";
+import spilnuForside from "@/assets/screenshots/spilnu-forside-paske-skrabelod.webp";
+import spilnuLogin from "@/assets/screenshots/spilnu-login-email-mitid.webp";
+import spilnuMitid from "@/assets/screenshots/spilnu-mitid-login-brugerid.webp";
+import spilnuSpil from "@/assets/screenshots/spilnu-mest-populaere-spil-jackpot.webp";
+import spilnuLive from "@/assets/screenshots/spilnu-live-casino-spil-oversigt.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
