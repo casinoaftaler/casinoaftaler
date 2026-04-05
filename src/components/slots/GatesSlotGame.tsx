@@ -1042,7 +1042,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                 <ChromaKeyVideo
                   key={`orb-${orbVideoTrigger}`}
                   src="/videos/gates-character-orbs.mp4"
-                  playbackRate={1.5}
+                  playbackRate={3}
                   width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
                   height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
                   className=""
