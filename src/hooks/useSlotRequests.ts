@@ -176,15 +176,15 @@ export function useCreateSlotRequest() {
         return false;
       };
 
-      // Server-side guard: user can have max 5 pending requests
+      // Server-side guard: user can have max 2 pending requests
       const { data: userPending } = await supabase
         .from("slot_requests" as any)
         .select("id")
-        .eq("user_id", user!.id)
+        .eq("user_id", user.id)
         .eq("status", "pending");
 
-      if ((userPending as any[])?.length >= 5) {
-        throw new Error("Du har allerede 5 aktive requests. Vent til en er behandlet, før du sender en ny.");
+      if ((userPending as any[])?.length >= 2) {
+        throw new Error("Du har allerede 2 aktive requests. Vent til en er behandlet, før du sender en ny.");
       }
 
       // Fuzzy duplicate check across ALL users for pending requests
