@@ -333,6 +333,13 @@ const TexasHoldemGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerHaandrankering}
+          alt="Poker håndrankering fra Royal Flush til High Card med visuelle korteksempler"
+          caption="Komplet poker-håndrankering: Royal Flush (1) til High Card (10) – de ti mulige hændtyper i Texas Hold'em."
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 4 – Positionsspil
         ═══════════════════════════════════════════════════════════════ */}
