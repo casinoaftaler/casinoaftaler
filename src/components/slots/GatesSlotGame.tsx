@@ -281,10 +281,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setCumulativeMultiplier(0);
       cumulativeMultiplierRef.current = 0;
       pendingBonusStateRef.current = null;
-      if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
-        if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
-      }
+      // Always auto-spin during bonus
+      if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+      autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
     }
     setBonusAutoSpinPending(false);
   }, []);
@@ -746,7 +745,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         !showRetriggerRef.current &&
         !pendingBonusActionRef.current;
 
-      if (shouldContinueBonus && isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+      if (shouldContinueBonus) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
@@ -777,7 +776,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setShowRetrigger(false);
     showRetriggerRef.current = false;
     spinLockRef.current = false;
-    if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+    // Always resume auto-spin in bonus after retrigger
+    if (isBonusActiveRef.current) {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
       autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
     }
