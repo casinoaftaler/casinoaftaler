@@ -132,9 +132,12 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════
-            SEKTION 2 – RTP-analyse og udbetalingstabeller
-        ═══════════════════════════════════════════════════════ */}
+        <ReviewScreenshot
+          src={vpHandRankings}
+          alt="Hand rankings i Jacks or Better video poker – fra Royal Flush til par med knægte eller bedre"
+          caption="Oversigt over alle 9 vindende hænder i Jacks or Better, rangeret fra Royal Flush (højest) til par med knægte eller bedre (lavest)"
+          size="medium"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="bar-chart3" className="h-5 w-5 text-primary" />
