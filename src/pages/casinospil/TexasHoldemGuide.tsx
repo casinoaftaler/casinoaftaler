@@ -601,6 +601,13 @@ const TexasHoldemGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilPokerLobby}
+          alt="Danske Spil Casino poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker"
+          caption="Danske Spils live poker-udvalg – Ultimate Texas Holdem, Casino Holdem og Three Card Poker med danske dealere."
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 9 – Bankroll Management
         ═══════════════════════════════════════════════════════════════ */}
