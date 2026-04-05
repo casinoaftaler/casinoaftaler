@@ -526,8 +526,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       if (isBonusActiveRef.current && lastStepWithBombs?.multiplierBombs?.some((b: any) => b.activated)) {
         const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
         setRevealTumbleWin(rawTumbleWin);
-        // runningMultiplier already includes the newly added bombs at this point
-        setRevealMultiplier(runningMultiplier);
+        setRevealMultiplier(runningMultiplierRef.current);
         setShowSpinWinReveal(true);
         setCollisionPhase('colliding');
         await new Promise(r => setTimeout(r, 600));
