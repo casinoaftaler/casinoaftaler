@@ -183,6 +183,14 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvForside}
+          alt="LeoVegas forside med velkomsttilbud op til 1.000 kr. i kontanter, Big Bass Splash og Top 10 spil-kategorier"
+          caption="LeoVegas' danske forside – velkomstbonus og direkte adgang til populære kategorier som Megaways og Jackpot."
+          size="full"
+          eager
+        />
+
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – LeoVegas' unikke 10x-model</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
