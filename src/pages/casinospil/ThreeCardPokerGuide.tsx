@@ -601,6 +601,20 @@ const ThreeCardPokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsLobbyDansk}
+          alt="PokerStars dansk lobby med velkomstbonus på 100 kr. i ekstra spil – poker, casino og sport sektioner"
+          caption="PokerStars' danske platform – en af de mest populære pokersider med dansk licens og dedikeret Three Card Poker-sektion"
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={pokerstarsMobilGameplay}
+          alt="PokerStars mobil poker-gameplay med Texas Hold'em bord, Fold/Call/Raise knapper og flere spillere"
+          caption="PokerStars mobilapp – intuitivt poker-interface med tydelige action-knapper, der også understøtter casinopoker-varianter"
+          size="medium"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 10 – Bankroll Management
         ═══════════════════════════════════════════════════════════════ */}
