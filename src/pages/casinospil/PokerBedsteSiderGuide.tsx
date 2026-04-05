@@ -257,6 +257,13 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
 
+            <ReviewScreenshot
+              src={unibetPokerLobby}
+              alt="Unibet Poker lobby med Stellar Sundays turnering, download og browser-spil muligheder"
+              caption="Unibet Poker – Stellar Sundays turnering og intuitiv lobby med download og browser-baseret spil"
+              size="full"
+            />
+
             {/* bet365 */}
             <Card className="border-border bg-card">
               <CardHeader>
