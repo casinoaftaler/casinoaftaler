@@ -26,7 +26,6 @@ interface GatesColumnProps {
   cellAnimStates: Map<number, CellAnimState>;
   cellDropOffsets: Map<number, number>;
   tumblePhase: string;
-  animationEpoch?: number;
   bombSymbolsMap?: Map<number, BombSymbol>;
   symbolWidth?: number;
   symbolHeight?: number;
@@ -44,7 +43,6 @@ export const GatesColumn = React.memo(function GatesColumn({
   cellAnimStates,
   cellDropOffsets,
   tumblePhase,
-  animationEpoch = 0,
   bombSymbolsMap,
   symbolWidth: SYMBOL_WIDTH = DEFAULT_SYMBOL_WIDTH,
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
@@ -89,7 +87,7 @@ export const GatesColumn = React.memo(function GatesColumn({
 
         return (
           <div
-            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${applyDropOff ? 'off' : applyDropIn ? 'in' : 'idle'}`}
+            key={`${row}-${applyDropOff ? 'off' : applyDropIn ? 'in' : 'idle'}`}
             className={cn(
               "relative rounded-lg overflow-visible",
               "bg-transparent",
