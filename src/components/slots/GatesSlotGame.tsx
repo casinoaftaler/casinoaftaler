@@ -601,7 +601,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
           const { count: scatCount, positions: scatPos } = countGatesScatters(finalGridForScatter, symbols);
           if (scatCount >= 4) {
             const scatterAnims = new Map<number, CellAnimState>();
-            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
             setCellAnimStates(scatterAnims);
             slotSounds.playScatterCelebration();
             await new Promise(r => setTimeout(r, 1500));
@@ -631,7 +631,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
                   if (scatterPos.length > 0) {
                     const scatterAnims = new Map<number, CellAnimState>();
-                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
                     setCellAnimStates(scatterAnims);
                     slotSounds.playScatterCelebration();
                     setTimeout(() => {
@@ -659,7 +659,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
                   if (scatterPos.length > 0) {
                     const scatterAnims = new Map<number, CellAnimState>();
-                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
                     setCellAnimStates(scatterAnims);
                     slotSounds.playScatterCelebration();
                     setTimeout(() => {
@@ -882,7 +882,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
             const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
             if (scatterPos.length > 0) {
               const scatterAnims = new Map<number, CellAnimState>();
-              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
               setCellAnimStates(scatterAnims);
               slotSounds.playScatterCelebration();
               setTimeout(() => {

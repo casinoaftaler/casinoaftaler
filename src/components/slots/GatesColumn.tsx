@@ -7,13 +7,14 @@ import type { BombSymbol } from "@/hooks/useBombSymbols";
 import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import { BombFractureExplosion } from "./BombFractureExplosion";
 import gatesExplosionDecal from "@/assets/slots/gates/explosion-decal.png";
+import { BlackChromaKeyVideo } from "./BlackChromaKeyVideo";
 
 const DEFAULT_SYMBOL_WIDTH = 140;
 const DEFAULT_SYMBOL_HEIGHT = 108;
 
 export type ColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
-export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'bomb-exploded' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense';
+export type CellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'bomb-exploded' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense' | 'scatter-video';
 
 interface GatesColumnProps {
   col: number;
@@ -172,7 +173,23 @@ export const GatesColumn = React.memo(function GatesColumn({
               </div>
             )}
 
-            {/* Removal/explosion for regular symbols */}
+            {/* Scatter celebration video overlay */}
+            {cellAnim === 'scatter-video' && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                {/* Show the scatter symbol underneath */}
+                {symbol && symbol.image_url && (
+                  <img src={symbol.image_url} alt={symbol.name} className="w-[120%] h-[120%] object-contain absolute" draggable={false} />
+                )}
+                <BlackChromaKeyVideo
+                  src="/videos/gates-scatter-celebration.mp4"
+                  width={SYMBOL_WIDTH}
+                  height={SYMBOL_HEIGHT}
+                  className="absolute inset-0"
+                />
+              </div>
+            )}
+
+
             {(cellAnim === 'removing' || cellAnim === 'exploding') && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center gates-symbol-explode">
                 {symbol.image_url ? (
