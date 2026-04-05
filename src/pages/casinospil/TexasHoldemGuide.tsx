@@ -399,6 +399,13 @@ const TexasHoldemGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={ggpokerBord}
+          alt="GGPoker Texas Hold'em bord med community cards, pot og spillerpositioner"
+          caption="Texas Hold'em i aktion på GGPoker – river-runden med community cards 2-K-A-6 og en total pot på $135.000."
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 5 – Pot Odds og EV
         ═══════════════════════════════════════════════════════════════ */}
