@@ -860,10 +860,12 @@ async function calculateBonanzaFullSpin(
     if (wins.length === 0) break;
 
     // Remove ONLY winning symbols; bombs persist on the grid
-    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng);
+    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng, isBuyBonus);
 
-    const newScatterCount = countBonanzaScatters(grid, symbols);
-    if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+    if (!isBuyBonus) {
+      const newScatterCount = countBonanzaScatters(grid, symbols);
+      if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+    }
   }
 
   // After all tumbles: if there were any wins, collect ALL remaining bombs
