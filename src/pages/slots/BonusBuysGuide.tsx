@@ -281,6 +281,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshot5Lions}
+          alt="5 Lions Megaways spillemaskine med synlig Køb Gratis Spins-knap til venstre for hjulene – bonus buy koster 500 kr. ved 5 kr. indsats"
+          caption="5 Lions Megaways med bonus buy-knappen tydeligt synlig til venstre – her koster køb af gratis spins 500 kr. (100x indsatsen á 5 kr.)."
+          eager
+        />
 
         {/* H2: Hvorfor tilbyder slots en Buy Feature? */}
         <section className="mb-12">
