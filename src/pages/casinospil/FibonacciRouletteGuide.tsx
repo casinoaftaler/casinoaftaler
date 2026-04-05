@@ -86,7 +86,8 @@ export default function FibonacciRouletteGuide() {
         title="Fibonacci Roulette 2026 – System, Matematik & Ærlig Analyse"
         description="Fibonacci-systemet i roulette: Den gyldne spiral på casinobordet, to-trin-tilbage mekanik og Monte Carlo simulering. Se om det slår huset."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-02-14"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -802,9 +803,9 @@ export default function FibonacciRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Fibonacci Roulette" currentPath="/casinospil/roulette/fibonacci-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/fibonacci-roulette" />
-        <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="frederik" />
+        <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

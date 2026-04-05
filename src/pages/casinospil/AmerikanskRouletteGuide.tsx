@@ -94,7 +94,8 @@ export default function AmerikanskRouletteGuide() {
         title="Amerikansk Roulette 2026 – Double Zero, House Edge & Strategi"
         description="Amerikansk roulette: Dobbelt-nul mekanik, 5,26 % house edge, Five Number Bet fælden og 10.000-spins simulering. Se om det er værd at spille."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-01-18"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -1031,9 +1032,9 @@ export default function AmerikanskRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Amerikansk Roulette" currentPath="/casinospil/roulette/amerikansk-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/amerikansk-roulette" />
-        <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
+        <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

@@ -73,7 +73,8 @@ export default function DalembertRouletteGuide() {
         title="D'Alembert Roulette 2026 – System, Matematik & Ærlig Test"
         description="D'Alembert i roulette: Lineær progression, equilibrium-teori, 10.000-spins Monte Carlo simulering og sammenligning med Martingale. Se om det virker."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-02-08"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -646,9 +647,9 @@ export default function DalembertRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="D'Alembert Roulette" currentPath="/casinospil/roulette/dalembert-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/dalembert-roulette" />
-        <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
-        <FAQSection faqs={faqs} />
         <AuthorBio author="frederik" />
+        <FAQSection faqs={faqs} />
+        <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

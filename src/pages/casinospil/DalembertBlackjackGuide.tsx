@@ -650,9 +650,9 @@ const DalembertBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="D'Alembert Blackjack" currentPath="/casinospil/blackjack/dalembert" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/dalembert" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/blackjack/dalembert" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

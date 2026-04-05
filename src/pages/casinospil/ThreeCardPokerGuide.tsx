@@ -115,7 +115,8 @@ const ThreeCardPokerGuide = () => {
         title="Three Card Poker 2026 – Regler & Strategi Guide"
         description="Komplet dansk guide til Three Card Poker med regler, Q-6-4 optimal strategi, Pair Plus udbetalinger og house edge-analyse for danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-03-28"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -840,9 +841,9 @@ const ThreeCardPokerGuide = () => {
 
         <CasinospilMoneyLinks gameName="Three Card Poker" currentPath="/casinospil/poker/three-card-poker" />
         <LatestNewsByCategory pagePath="/casinospil/poker/three-card-poker" />
-        <RelatedGuides currentPath="/casinospil/poker/three-card-poker" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
+        <RelatedGuides currentPath="/casinospil/poker/three-card-poker" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>

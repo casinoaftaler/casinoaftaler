@@ -93,7 +93,8 @@ const GameShowsGuide = () => {
         title="Casino Game Shows – House Edge & Volatilitetsanalyse"
         description="Dybdegående analyse af casino game shows: house edge, RTP, volatilitet, EV og multiplier-matematik. Sammenligningstabeller og risikovurdering."
         jsonLd={[articleSchema, faqJsonLd]}
-      />
+      datePublished="2025-11-30"
+        />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
@@ -624,9 +625,9 @@ const GameShowsGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/live-casino/game-shows" />
-        <RelatedGuides currentPath="/live-casino/game-shows" />
-        <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio author="kevin" />
+        <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
+        <RelatedGuides currentPath="/live-casino/game-shows" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

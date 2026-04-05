@@ -81,7 +81,8 @@ export default function CaribbeanStudGuide() {
         title="Caribbean Stud Poker Guide 2026 – Odds, Regler & Strategi"
         description="Caribbean Stud Poker: Optimal strategi, progressiv jackpot-matematik og udbetalingstabeller. Find de bedste spil hos danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-01-09"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -659,9 +660,9 @@ export default function CaribbeanStudGuide() {
 
         <CasinospilMoneyLinks gameName="Caribbean Stud Poker" currentPath="/casinospil/poker/caribbean-stud" />
         <LatestNewsByCategory pagePath="/casinospil/poker/caribbean-stud" />
-        <RelatedGuides currentPath="/casinospil/poker/caribbean-stud" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/poker/caribbean-stud" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

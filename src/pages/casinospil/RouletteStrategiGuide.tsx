@@ -96,7 +96,8 @@ const RouletteStrategiGuide = () => {
         title="Roulette Strategi 2026 – Matematisk Analyse"
         description="Matematisk deep-dive i roulette-strategier: Martingale, Fibonacci, D'Alembert, risk of ruin og bankroll management. Formler, simuleringer og data."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-02-01"
+        />
 
       {/* ── HERO ── */}
       <section
@@ -503,9 +504,9 @@ const RouletteStrategiGuide = () => {
 
         <CasinospilMoneyLinks gameName="Roulette Strategi" currentPath="/casinospil/roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette" />
-        <RelatedGuides currentPath="/casinospil/roulette" />
-
         <FAQSection faqs={strategiFaqs} />
+
+        <RelatedGuides currentPath="/casinospil/roulette" />
 
         <AuthorBio author="frederik" showCommunity={false} />
       </ContentPageLayout>

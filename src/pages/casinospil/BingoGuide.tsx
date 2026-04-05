@@ -164,7 +164,8 @@ const BingoGuide = () => {
         title="Online Bingo – Spil Bingo med Dansk Licens | Casinoaftaler"
         description="Komplet guide til online bingo i Danmark: 90-kugle, 75-kugle, speed bingo. Find de bedste bingo-sider med dansk licens, RTP-analyse og bonusvilkår."
         jsonLd={[faqJsonLd, articleJsonLd]}
-      />
+      datePublished="2025-12-05"
+        />
 
       {/* Hero */}
       <section

@@ -93,7 +93,8 @@ const BaccaratGuide = () => {
         title="Baccarat Matematik 2026 – Odds, Edge og Analyse"
         description="Baccarat guide 2026: Banker vs Player edge, kommissionsberegning, varians og korttælling. Se matematisk analyse og strategi for danske spillere."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2025-11-22"
+        />
 
       {/* ── HERO ── */}
       <section
@@ -433,9 +434,9 @@ const BaccaratGuide = () => {
 
         <CasinospilMoneyLinks gameName="Baccarat" currentPath="/casinospil/baccarat" />
         <LatestNewsByCategory pagePath="/casinospil/baccarat" />
-        <RelatedGuides currentPath="/casinospil/baccarat" />
-        <FAQSection faqs={baccaratFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />
+        <FAQSection faqs={baccaratFaqs} />
+        <RelatedGuides currentPath="/casinospil/baccarat" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>

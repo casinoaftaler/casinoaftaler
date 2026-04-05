@@ -650,11 +650,11 @@ const DoubleExposureBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure-blackjack" />
+        <AuthorBio />
+
         <RelatedGuides currentPath="/casinospil/blackjack/double-exposure-blackjack" />
 
         <FAQSection faqs={faqs} />
-
-        <AuthorBio />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

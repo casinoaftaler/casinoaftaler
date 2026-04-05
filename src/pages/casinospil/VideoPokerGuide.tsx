@@ -85,7 +85,8 @@ export default function VideoPokerGuide() {
         title="Video Poker Guide 2026 – RTP, Strategi & Bedste Varianter"
         description="Video poker guide: Jacks or Better (99,54 % RTP), Deuces Wild og Joker Poker. Lær optimal strategi og find spil hos danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-02-18"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -655,9 +656,9 @@ export default function VideoPokerGuide() {
 
         <CasinospilMoneyLinks gameName="Video Poker" currentPath="/casinospil/poker/video-poker" />
         <LatestNewsByCategory pagePath="/casinospil/poker/video-poker" />
-        <RelatedGuides currentPath="/casinospil/poker/video-poker" />
-        <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
+        <FAQSection faqs={faqs} />
+        <RelatedGuides currentPath="/casinospil/poker/video-poker" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

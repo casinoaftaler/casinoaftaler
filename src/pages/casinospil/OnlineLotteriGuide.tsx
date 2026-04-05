@@ -98,7 +98,8 @@ const OnlineLotteriGuide = () => {
         title="Online Lotteri – Jackpot-Sandsynlighed & EV-Analyse"
         description="Lotteri-sandsynligheder analyseret: Kombinatorik, EV, house edge og regression to the mean. Se matematikken bag jackpots og hvad odds reelt betyder."
         jsonLd={[articleSchema, faqJsonLd]}
-      />
+      datePublished="2025-11-15"
+        />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
@@ -570,8 +571,8 @@ const OnlineLotteriGuide = () => {
 
         <CasinospilMoneyLinks gameName="Online Lotteri" currentPath="/casinospil/online-lotteri" />
         <LatestNewsByCategory pagePath="/casinospil/online-lotteri" />
-        <RelatedGuides currentPath="/casinospil/online-lotteri" />
         <FAQSection title="Ofte stillede spørgsmål om online lotteri" faqs={lotteriFaqs} />
+        <RelatedGuides currentPath="/casinospil/online-lotteri" />
         <AuthorBio />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />

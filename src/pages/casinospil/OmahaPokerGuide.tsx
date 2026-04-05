@@ -111,7 +111,8 @@ const OmahaPokerGuide = () => {
         title="Omaha Poker 2026 – Regler, PLO & Hi-Lo Strategi"
         description="Komplet dansk guide til Omaha poker med PLO-regler, Hi-Lo split, starthands-rangering, wraps og avanceret strategi for begyndere og øvede."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2025-12-28"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -785,9 +786,9 @@ const OmahaPokerGuide = () => {
 
         <CasinospilMoneyLinks gameName="Omaha Poker" currentPath="/casinospil/poker/omaha" />
         <LatestNewsByCategory pagePath="/casinospil/poker/omaha" />
-        <RelatedGuides currentPath="/casinospil/poker/omaha" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="kevin" />
+        <RelatedGuides currentPath="/casinospil/poker/omaha" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
