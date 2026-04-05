@@ -122,6 +122,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaIntro}
+          alt="Bonanza Megaways introduktionsskærm med Free Spins med GOLD Unlimited Win Multiplier, Megaways-logo og Win Reactions-forklaring"
+          caption="Bonanzas velkomstskærm præsenterer spillets tre kernefeatures: Free Spins med ubegrænset multiplier, Megaways-systemet og Win Reactions (cascading wins)."
+          eager
+        />
 
         {/* ── Teknisk profil ── */}
         <section className="mb-10">
