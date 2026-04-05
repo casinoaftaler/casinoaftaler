@@ -1107,7 +1107,6 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                       cellAnimStates={cellAnimStates}
                       cellDropOffsets={cellDropOffsets}
                       tumblePhase={tumblePhase}
-                      animationEpoch={animationEpoch}
                       bombSymbolsMap={bombSymbolsMap}
                       symbolWidth={SYMBOL_WIDTH}
                       symbolHeight={SYMBOL_HEIGHT}
