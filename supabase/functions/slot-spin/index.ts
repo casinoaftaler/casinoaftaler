@@ -771,7 +771,7 @@ function scanBonanzaBombs(grid: string[][]): BonanzaMultiplierBomb[] {
   return bombs;
 }
 
-async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, blockScatters: boolean = false): Promise<string[][]> {
   // Pre-generate enough random values for tumble fill (~15 per tumble)
   await prng.pregenerate(20);
   const newGrid = grid.map(col => [...col]);
@@ -804,8 +804,8 @@ async function applyBonanzaTumble(grid: string[][], winningPositions: number[], 
         fillHasBomb = true;
         continue;
       }
-      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
-      if (scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
+      let sym = await getBonanzaRandomSymbol(blockScatters ? nonScatterSymbols : symbols, isBonusSpin, prng);
+      if (!blockScatters && scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
         sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
       }
       if (scatterSymbol && sym.id === scatterSymbol.id) fillHasScatter = true;
@@ -825,7 +825,8 @@ async function calculateBonanzaFullSpin(
   forceScatters: boolean = false,
   scatterWeightMultiplier: number = 1
 ): Promise<BonanzaSpinResult> {
-  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, forceScatters && !isBonusSpin ? 4 : 0);
+  const isBuyBonus = forceScatters && !isBonusSpin;
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, isBuyBonus ? 4 : 0);
 
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: BonanzaTumbleStep[] = [];
@@ -859,10 +860,12 @@ async function calculateBonanzaFullSpin(
     if (wins.length === 0) break;
 
     // Remove ONLY winning symbols; bombs persist on the grid
-    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng);
+    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng, isBuyBonus);
 
-    const newScatterCount = countBonanzaScatters(grid, symbols);
-    if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+    if (!isBuyBonus) {
+      const newScatterCount = countBonanzaScatters(grid, symbols);
+      if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+    }
   }
 
   // After all tumbles: if there were any wins, collect ALL remaining bombs
