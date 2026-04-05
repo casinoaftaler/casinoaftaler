@@ -38,9 +38,10 @@ import {
 } from "@/components/ui/dialog";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer, BarChart, Bar, LineChart, Line } from "recharts";
-import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer, Gamepad2 } from "lucide-react";
+import { GripVertical, Pencil, Loader2, Trophy, Sparkles, TrendingUp, BarChart3, Lock, Wand2, Users, Calendar, Percent, Calculator, ArrowUp, ArrowDown, Timer, Gamepad2, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { downloadSymbolImages } from "@/lib/downloadSymbolImages";
 import {
   DndContext,
   closestCenter,
@@ -650,6 +651,22 @@ function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
       </Card>
 
       {/* Symbol list */}
+      <div className="flex justify-end mb-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            const items = orderedSymbols
+              .filter(s => s.image_url)
+              .map(s => ({ name: s.name, imageUrl: s.image_url! }));
+            downloadSymbolImages(items);
+            toast.success("Downloader symboler...");
+          }}
+        >
+          <Download className="h-4 w-4 mr-1" />
+          Download alle symboler
+        </Button>
+      </div>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
