@@ -139,23 +139,32 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
     const video = videoRef.current;
     if (!video) return;
 
+    readyRef.current = false;
+    setReady(false);
+
     const startProcessing = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(processFrame);
     };
 
     const handleEnded = () => onEnded?.();
+    const handleCanPlay = () => renderFrame();
 
     video.addEventListener("play", startProcessing);
     video.addEventListener("ended", handleEnded);
+    video.addEventListener("loadeddata", handleCanPlay);
+    video.addEventListener("canplay", handleCanPlay);
 
     video.play().catch(() => {
+      video.load();
       renderFrame();
     });
 
     return () => {
       video.removeEventListener("play", startProcessing);
       video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("loadeddata", handleCanPlay);
+      video.removeEventListener("canplay", handleCanPlay);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [processFrame, renderFrame, onEnded, src]);
@@ -184,6 +193,7 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
           height: "auto",
           display: "block",
           opacity: ready ? 1 : 0,
+          transition: "none",
         }}
       />
     </div>

@@ -5,6 +5,7 @@ interface ChromaKeyVideoProps {
   width: number;
   height: number;
   className?: string;
+  autoplay?: boolean;
   loop?: boolean;
   playbackRate?: number;
   playTrigger?: number;
@@ -103,6 +104,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
   width,
   height,
   className,
+  autoplay = true,
   loop = true,
   playbackRate = 1,
   playTrigger,
@@ -198,23 +200,39 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
     video.addEventListener("ended", handleEnded);
     video.addEventListener("canplay", handleCanPlay);
 
-    // Try to play - use load() only if src actually changed
+    // Try to play only when autoplay is intended.
+    const primeVideo = () => {
+      try {
+        video.pause();
+        if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+          video.load();
+        } else {
+          renderFrame();
+        }
+      } catch {
+        renderFrame();
+      }
+    };
+
     const tryPlay = async () => {
       try {
         await video.play();
-      } catch (e) {
-        // Autoplay blocked or load error — try loading explicitly
+      } catch {
         try {
           video.load();
           await video.play();
         } catch {
-          // Still failed — at least try to render a still frame
           console.warn("[ChromaKeyVideo] Play failed for", src);
           renderFrame();
         }
       }
     };
-    tryPlay();
+
+    if (autoplay) {
+      tryPlay();
+    } else {
+      primeVideo();
+    }
 
     return () => {
       video.removeEventListener("play", startProcessing);
@@ -222,7 +240,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
       video.removeEventListener("canplay", handleCanPlay);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [processFrame, renderFrame, onEnded, playbackRate, src]);
+  }, [autoplay, processFrame, renderFrame, onEnded, playbackRate, src]);
 
   // Handle playTrigger changes — restart video from beginning without flashing
   useEffect(() => {
@@ -291,7 +309,7 @@ export const ChromaKeyVideo = React.memo(function ChromaKeyVideo({
           // Hide canvas until first chroma-keyed frame is rendered
           // This prevents the green/black flash between video switches
           opacity: ready ? 1 : 0,
-          transition: "opacity 0.05s ease-in",
+           transition: "none",
         }}
       />
     </div>
