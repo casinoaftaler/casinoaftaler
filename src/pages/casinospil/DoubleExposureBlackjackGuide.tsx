@@ -590,9 +590,13 @@ const DoubleExposureBlackjackGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={liveBlackjackBord}
+          alt="Live Blackjack A bord hos dansk casino med Evolution Gaming dealer, chips og kortfordeling"
+          caption="Live Blackjack A hos et dansk casino – standard live blackjack er det nærmeste alternativ til Double Exposure i live-format"
+        />
 
-        {/* ═══════════════ Hvem bør spille ═══════════════ */}
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
