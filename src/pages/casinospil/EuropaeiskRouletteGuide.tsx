@@ -547,9 +547,16 @@ export default function EuropaeiskRouletteGuide() {
             <MenuIcon iconName="calculator" className="h-7 w-7 text-primary" />
             Bonusomsætning med Europæisk Roulette: EV-Analyse
           </h2>
-          <p className="text-muted-foreground mb-4 leading-relaxed">
+           <p className="text-muted-foreground mb-4 leading-relaxed">
             Kan du bruge europæisk roulette til at omsætte <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link>? Det korte svar er: det afhænger af casinoets bonusvilkår. De fleste danske casinoer med licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> reducerer roulettes bidrag til omsætningskravet til 10-25 % af den samlede indsats. Det betyder, at 100 kr. satset på roulette kun tæller som 10-25 kr. mod omsætningskravet.
           </p>
+
+          <ReviewScreenshot
+            src={campobetVelkomstbonus}
+            alt="CampoBet velkomstbonus – 100% op til 1.000 kr. med trinvis aktivering af bonus"
+            caption="Eksempel på en typisk dansk velkomstbonus hos CampoBet – 100 % op til 1.000 kr. med minimumsindbetaling på 100 kr."
+            size="full"
+          />
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Lad os beregne Expected Value (EV) for en typisk dansk bonus omsæt via europæisk roulette:
           </p>
