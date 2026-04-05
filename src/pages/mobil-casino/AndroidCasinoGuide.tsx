@@ -763,6 +763,13 @@ const AndroidCasinoGuide = () => {
               <p><strong>Bedst for power users:</strong> OnePlus 13 – hurtigste Snapdragon 8 Elite implementering, 100W opladning (fuld i 25 min), og ren software-oplevelse tæt på stock Android.</p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={xiaomiPhoneCasino}
+            alt="Xiaomi-smartphone i grøn – populært budgetvalg til casino med AMOLED-skærm og lang batterilevetid"
+            caption="Xiaomi – det bedste budget-valg til Android-casino med AMOLED 120 Hz og imponerende batterilevetid."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
