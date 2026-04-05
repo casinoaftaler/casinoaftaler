@@ -379,6 +379,13 @@ const CrapsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={crapsPayoutOdds}
+          alt="Komplet craps payout odds oversigt med udbetalinger for Pass Line, Odds, Place Bets, Buy Bets, Lay Bets, Field, Hard Ways og 1-Roll Bets"
+          caption="Payout odds for alle craps-væddemål – fra Pass Line (1:1) til Craps Two/Twelve (30:1)"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ 10 – VARIANS ═══════════════ */}
