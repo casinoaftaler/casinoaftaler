@@ -675,7 +675,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                       setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
                       cumulativeMultiplierRef.current = bs.cumulativeMultiplier || 0;
                       setRunningMultiplier(bs.cumulativeMultiplier || 0);
-                    }, 1500);
+                    }, 3050);
                     return;
                   }
                 }
