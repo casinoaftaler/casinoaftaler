@@ -747,6 +747,8 @@ const IPhoneCasinoGuide = () => {
               <div key={rule} className="flex items-start gap-2">
                 <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{rule}</span>
+              </div>
+            ))}
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
@@ -762,8 +764,6 @@ const IPhoneCasinoGuide = () => {
               caption="App Store-detaljer: 135,1 MB, Kasino-kategori, 18+ aldersklassificering – alle Spillemyndighedens krav er opfyldt."
               size="compact"
             />
-          </div>
-            ))}
           </div>
 
           <p className="text-muted-foreground leading-relaxed mb-4">
