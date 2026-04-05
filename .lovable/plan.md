@@ -1,40 +1,35 @@
 
 
-## Plan: Total Multiplier Orb Above "Køb Bonus" Button
+## Play Scatter Celebration Video in Scatter Cells — Gates of Fedesvin
 
-### What we're building
-A decorative orb/emblem component (inspired by the uploaded image — golden wings, lightning bolt, circular frame) that displays the cumulative bonus multiplier. This replaces the current "Multiplier" text in the control bar. The orb sits directly above the "Køb Bonus" button in the side panel area.
+### Overview
+When scatters trigger a bonus in Gates of Fedesvin, play the uploaded video inside each scatter cell (replacing the current CSS glow animation). The video has a black background, so we'll use a black-chroma-key variant to make it transparent.
 
 ### Steps
 
-1. **Generate the orb image asset**
-   - Use AI image generation (Gemini) to create a transparent PNG of the orb frame (golden wings + lightning bolt circle, similar to the uploaded reference). The multiplier text will be overlaid via CSS, so the image should have an empty/dark center.
-   - Save to `src/assets/slots/gates/multiplier-orb.png`.
+**1. Add the video asset**
+- Copy `user-uploads://hf_20260405_120256_66841dd4-18ee-4b5c-bb60-9e334a0b1e3d.mp4` to `public/videos/gates-scatter-celebration.mp4`
 
-2. **Create `GatesMultiplierOrb` component**
-   - New file: `src/components/slots/GatesMultiplierOrb.tsx`
-   - Props: `multiplierValue: number`, `isActive: boolean` (bonus active), `isMobile?: boolean`
-   - Renders the orb image with "TOTAL MULTIPLIER" label above and `x{value}` centered over the orb
-   - Only visible when `isActive` (bonus mode)
-   - Styled with glow/pulse animation when multiplier increases
+**2. Create a BlackChromaKeyVideo component (or extend ChromaKeyVideo)**
+- The existing `ChromaKeyVideo` removes green. We need a variant that removes black (dark pixels → transparent).
+- New fragment shader: discard pixels where `r + g + b < threshold` (e.g. 0.15), with soft-edge alpha falloff for near-black pixels.
+- Same structure as `ChromaKeyVideo` but with the black-key shader.
 
-3. **Update `BonanzaSidePanels` to accept an optional header slot**
-   - Add an optional `headerContent?: React.ReactNode` prop
-   - Render it above the "Køb Bonus" button in vertical layout (desktop)
-   - In horizontal layout (mobile), render it inline or to the left
+**3. Add `scatter-video` cell animation state to GatesColumn**
+- Add `'scatter-video'` to the `CellAnimState` type.
+- When `cellAnim === 'scatter-video'`, render the `BlackChromaKeyVideo` component inside the cell, sized to `SYMBOL_WIDTH × SYMBOL_HEIGHT`, overlaid on top of the scatter symbol.
+- The video plays once (`loop={false}`), positioned absolutely over the scatter image.
 
-4. **Update `GatesSlotGame.tsx`**
-   - Pass `cumulativeMultiplier` and `runningMultiplier` to the side panel area via the new `GatesMultiplierOrb` component
-   - Wire it into both desktop (above "Køb Bonus" in the side panel) and mobile layouts
+**4. Update GatesSlotGame scatter celebration logic**
+- In all places where `scatter-pulse` is set on scatter positions, change to `scatter-video`.
+- Keep the 1500ms wait (or adjust to match video duration).
+- After video ends / timeout, reset `cellAnimStates` back to empty map as before.
 
-5. **Remove multiplier from `BonanzaControlBar`**
-   - Remove the `gates-of-fedesvin` multiplier block (lines 318-325 in BonanzaControlBar.tsx) that currently shows "Multiplier" and the x value
-   - Keep the "Tumble Win" display
+**5. Keep existing CSS scatter-pulse as fallback**
+- The `scatter-pulse` CSS animation remains available but won't be used for Gates scatter celebrations anymore.
 
-### Files changed
-- `src/assets/slots/gates/multiplier-orb.png` (new — generated)
-- `src/components/slots/GatesMultiplierOrb.tsx` (new)
-- `src/components/slots/BonanzaSidePanels.tsx` (add `headerContent` prop)
-- `src/components/slots/GatesSlotGame.tsx` (wire orb component, pass to side panels)
-- `src/components/slots/BonanzaControlBar.tsx` (remove multiplier section for gates)
+### Technical Details
+- The black-key shader replaces the green-dominance check with a luminance check: `float lum = r * 0.299 + g * 0.587 + b * 0.114; if (lum < 0.08) discard;` with soft edge smoothstep for lum 0.08–0.15.
+- Video preloaded on component mount to avoid delay when scatters land.
+- Component renders as `position: absolute; inset: 0; z-index: 10` inside the cell div.
 
