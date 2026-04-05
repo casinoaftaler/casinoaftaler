@@ -153,7 +153,7 @@ const IPhoneCasinoGuide = () => {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino på iPhone – Komplet iOS Guide
             </h1>
-            <p className="text-lg text-primary-foreground/80">
+            <p className="text-lg text-white/80">
               Face ID-login, Apple Pay-indbetalinger, Safari PWA og performance-benchmarks
               for alle iPhone-modeller. Alt du skal vide om casino på iOS.
             </p>
