@@ -418,6 +418,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
 
     // Stop reaction video before bomb blow-up sequence
     setShowOrbVideo(false);
+    orbVideoPlayingRef.current = false;
 
     // Sequential bomb blow-up AFTER all tumbles (matching Bonanza style)
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
