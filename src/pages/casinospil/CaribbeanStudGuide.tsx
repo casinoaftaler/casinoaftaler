@@ -636,7 +636,11 @@ export default function CaribbeanStudGuide() {
           </p>
         </section>
 
-        {/* ──── Sektion 12: Dansk lovgivning og skatteforhold ──── */}
+        <ReviewScreenshot
+          src={pokerstarsIndbetaling}
+          alt="PokerStars dansk platform med ind- og udbetaling sektion – licenseret til Caribbean Stud og andre pokerspil"
+          caption="PokerStars' danske platform med ind- og udbetalingsmuligheder – en af platformene med Caribbean Stud-varianter"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
