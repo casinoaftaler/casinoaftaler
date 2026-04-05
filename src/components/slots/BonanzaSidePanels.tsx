@@ -35,6 +35,7 @@ export function BonanzaSidePanels({
   compact = false,
 }: BonanzaSidePanelsProps) {
   const [showBuyConfirm, setShowBuyConfirm] = useState(false);
+  // headerContent is destructured from props above
   const buyBonusCost = bet * 100;
   const displayBet = doubleChance ? bet * 2 : bet;
 
