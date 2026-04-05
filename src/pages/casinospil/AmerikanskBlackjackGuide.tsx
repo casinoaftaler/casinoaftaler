@@ -160,6 +160,14 @@ const AmerikanskBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Det vigtigste takeaway fra min test er ikke resultatet – det er den konsistente beskyttelse fra peek-reglen. I de 500 hænder blev dealeren peeked 67 gange (dealer viste es eller 10-kort). 5 gange havde dealeren blackjack og runden sluttede øjeblikkeligt. Uden peek-reglen (som i <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk ENHC-blackjack</Link>) ville mindst 2 af disse 5 gange have kostet mig ekstra fordoblinger eller splits – en besparelse på ca. 200 kr. over sessionen.
           </p>
+
+          <ReviewScreenshot
+            src={blackjackDealerBord}
+            alt="Live blackjack-bord med dealer klar til at dele kort – Blackjack Pays 3 to 2 synlig på filten"
+            caption="Live Blackjack Classic 2 – dealeren venter på indsatser. Bemærk 'BLACKJACK PAYS 3 TO 2' og 'INSURANCE PAYS 2 TO 1' printet direkte på bordet."
+            size="full"
+            eager={true}
+          />
         </section>
 
         <InlineCasinoCards title="Casinoer med bedst amerikansk blackjack" count={4} />
