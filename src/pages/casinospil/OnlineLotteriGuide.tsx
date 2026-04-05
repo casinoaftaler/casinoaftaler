@@ -402,6 +402,12 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={lottoLynpakker}
+          alt="Danske Spil Lotto lynpakker – Stor, Mellem og Lille pakke med Lotto, Vikinglotto og Eurojackpot priser"
+          caption="Lynpakker giver adgang til flere lotterier samtidig – fra 170 kr. til 350 kr. med samlet præmiepulje op til 190 mio."
+        />
+
         <Separator className="my-10" />
 
         {/* ── H2 10 ── */}
