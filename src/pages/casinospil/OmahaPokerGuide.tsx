@@ -196,6 +196,12 @@ const OmahaPokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Betting-runder:</strong> Der er fire betting-runder, identiske med Hold'em: (1) <em>Preflop</em> – efter hole cards er delt, (2) <em>Flop</em> – efter tre community cards er vist, (3) <em>Turn</em> – efter fjerde community card, (4) <em>River</em> – efter femte og sidste community card. I hver runde kan spillere checke, bette, calle, raise eller folde. Den pot-limit struktur betyder, at potterne typisk vokser 3-5x per gade, og en preflop pot på 100 kr. nemt kan blive 5.000+ kr. på river.
           </p>
+          <ReviewScreenshot
+            src={omahaReglerForklaring}
+            alt="Omaha poker regler – forklaring af 4 lommekort, fælleskort og must-use-2 reglen på PokerStars"
+            caption="Omaha-reglerne forklaret: fire lommekort, must-use-2 reglen og de tre varianter (Pot Limit, No Limit, Fixed Limit)"
+            size="full"
+          />
           <p className="text-muted-foreground leading-relaxed">
             <strong>Showdown:</strong> Ved showdown afslører alle aktive spillere deres kort, og den bedste 5-korts hånd vinder. Husk: du evaluerer ALLE mulige kombinationer af 2 hole cards + 3 community cards. Med fire hole cards og fem community cards har du i alt C(4,2) × C(5,3) = 6 × 10 = 60 mulige kombinationer at evaluere. Softwarebaserede spil gør dette automatisk, men i live poker er det vigtigt at kende din bedste hånd. En hyppig fejl i live PLO er at misreadne sin egen hånd – sørg for at dobbelttjekke, inden du vender dine kort.
           </p>
