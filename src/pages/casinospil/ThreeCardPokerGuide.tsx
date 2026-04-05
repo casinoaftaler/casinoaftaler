@@ -518,6 +518,13 @@ const ThreeCardPokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={threeCardPokerBordOverhead}
+          alt="Three Card Poker bord set ovenfra med Pair Plus, Ante og Play felter for flere spillere samt udbetalingsregler"
+          caption="Three Card Poker-bordet set ovenfra – bemærk de separate indsatsfelter for Pair Plus, Ante og Play for hver siddeplads"
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 8 – Progressive Jackpot Analyse
         ═══════════════════════════════════════════════════════════════ */}
