@@ -254,6 +254,13 @@ const OmahaPokerGuide = () => {
             </CardContent>
           </Card>
 
+          <ReviewScreenshot
+            src={omahaPokerBord}
+            alt="Omaha Poker bord med fire spillere, dealer-chip, chips og community cards – 9, 10, 7, 4 på bordet"
+            caption="Omaha Poker i praksis – fire spillere ved bordet med community cards og lommekort synlige"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Coordination er alt:</strong> Bemærk at de bedste hænder alle har fire kort, der connecter via pairs, suited-ness eller connectivity. En "rundown" som JT98 (fire connected kort) er en stærk hånd, fordi den kan lave mange straights. Omvendt er AAxx med to lave, uconnected sidekort (f.eks. AA-7-2 rainbow) en trap – du har aces, men dine to andre kort hjælper sjældent.
           </p>
