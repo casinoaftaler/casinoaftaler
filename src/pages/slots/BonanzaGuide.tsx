@@ -51,7 +51,7 @@ const bonanzaFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Bonanza eller Sweet Bonanza bedst?",
     answer: (
       <>
-        Det afhænger af din spillestil. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> har højere max win (21.100× vs. 10.000×) og bruger scatter pays i stedet for Megaways-linjer, mens Bonanza tilbyder den klassiske Megaways-oplevelse med cascading wins og en ubegrænset multiplier under free spins. Sweet Bonanza har også en Bonus Buy-funktion, som Bonanza mangler. For spillere, der foretrækker traditionel venstre-til-højre gevinstmekanik med progressivt stigende multiplier, er Bonanza det bedre valg.
+        Det afhænger af din spillestil. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> har lavere max win (21.100× vs. 26.000×) men bruger scatter pays i stedet for Megaways-linjer, mens Bonanza tilbyder den klassiske Megaways-oplevelse med cascading wins og en ubegrænset multiplier under free spins. Sweet Bonanza har også en Bonus Buy-funktion, som Bonanza mangler. For spillere, der foretrækker traditionel venstre-til-højre gevinstmekanik med progressivt stigende multiplier, er Bonanza det bedre valg.
       </>
     ),
   },
