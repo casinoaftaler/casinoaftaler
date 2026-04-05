@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.webp";
+import blackjackLiveLobby from "@/assets/screenshots/blackjack-live-casino-lobby.png";
+import blackjackDealerBord from "@/assets/screenshots/blackjack-dealer-bord-venter.png";
+import blackjackMidgame from "@/assets/screenshots/blackjack-midgame-kort-dealt.png";
+import blackjackOmspillet from "@/assets/screenshots/blackjack-omspillet-regler-menu.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -156,6 +160,14 @@ const AmerikanskBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Det vigtigste takeaway fra min test er ikke resultatet – det er den konsistente beskyttelse fra peek-reglen. I de 500 hænder blev dealeren peeked 67 gange (dealer viste es eller 10-kort). 5 gange havde dealeren blackjack og runden sluttede øjeblikkeligt. Uden peek-reglen (som i <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk ENHC-blackjack</Link>) ville mindst 2 af disse 5 gange have kostet mig ekstra fordoblinger eller splits – en besparelse på ca. 200 kr. over sessionen.
           </p>
+
+          <ReviewScreenshot
+            src={blackjackDealerBord}
+            alt="Live blackjack-bord med dealer klar til at dele kort – Blackjack Pays 3 to 2 synlig på filten"
+            caption="Live Blackjack Classic 2 – dealeren venter på indsatser. Bemærk 'BLACKJACK PAYS 3 TO 2' og 'INSURANCE PAYS 2 TO 1' printet direkte på bordet."
+            size="full"
+            eager={true}
+          />
         </section>
 
         <InlineCasinoCards title="Casinoer med bedst amerikansk blackjack" count={4} />
@@ -475,6 +487,13 @@ const AmerikanskBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={blackjackMidgame}
+          alt="Live blackjack mid-game med kort dealt til flere spillere – Super Stake multiplikatorer synlige"
+          caption="En aktiv hånd i live blackjack: dealer viser 9, flere spillere har modtaget kort. Bemærk Super Stake-multiplikatorerne (X2, X3) i øverste venstre hjørne."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -591,6 +610,13 @@ const AmerikanskBlackjackGuide = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={blackjackOmspillet}
+            alt="Om Spillet-menuen i live blackjack med regler for indsatstyper, tilbagebetalinger og indstillinger"
+            caption="Spillets hjælpemenu – her finder du regler for indsatstyper, tilbagebetalingsprocenter, BUZZ-funktioner og andre indstillinger direkte i spillet."
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Lucky Lucky</strong> (house edge: 2,7 %) er den bedste side bet rent matematisk. Den betaler baseret på summen af dine to kort plus dealerens up card: 777 suited betaler 200:1, og enhver 21-total betaler 3:1 eller bedre. Men selv 2,7 % er næsten ti gange højere end grundspillets house edge.
           </p>
@@ -872,6 +898,13 @@ const AmerikanskBlackjackGuide = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={blackjackLiveLobby}
+            alt="Live casino lobby med blackjack- og roulette-varianter: American Blackjack, Extended Blackjack, Super Stake Roulette"
+            caption="Live casino-lobbyen med det fulde udvalg af blackjack-varianter – American Blackjack Classic 1-5, Extended Blackjack og roulette-borde side om side."
+            size="full"
+          />
 
           <p className="text-muted-foreground leading-relaxed">
             Alle fire casinoer bruger <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gamings</Link> live-platform, som er industristandarden for live blackjack. Reglerne er identiske på tværs af casinoer (da Evolution kontrollerer bordene), men velkomstbonusser, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastigheder varierer. Tjek vores individuelle <Link to="/casino-anmeldelser" className={linkClass}>casino-anmeldelser</Link> for detaljerede sammenligninger.
