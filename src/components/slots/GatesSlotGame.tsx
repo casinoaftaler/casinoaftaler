@@ -1048,29 +1048,32 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               draggable={false}
             />
             <div className="mt-[-250px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
-              {/* Idle video — always mounted, hidden when orb reaction plays */}
-              <div style={{ display: showOrbVideo ? 'none' : 'block' }}>
-                <ChromaKeyVideo
-                  key="idle"
-                  src="/videos/gates-character.mp4"
-                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
-                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
-                  className=""
-                />
-              </div>
-              {/* Orb reaction video — always mounted, hidden when idle */}
-              <div style={{ display: showOrbVideo ? 'block' : 'none' }}>
-                <ChromaKeyVideo
-                  key="orb-reaction"
-                  src="/videos/gates-character-orbs.mp4"
-                  playbackRate={3}
-                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
-                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
-                  className=""
-                  loop={false}
-                  playTrigger={orbVideoTrigger}
-                  onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}
-                />
+              <div className="relative flex justify-center" style={{ overflow: 'visible' }}>
+                <div>
+                  <ChromaKeyVideo
+                    key="idle"
+                    src="/videos/gates-character.mp4"
+                    width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                    height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                    className=""
+                  />
+                </div>
+                <div
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  style={{ opacity: showOrbVideo ? 1 : 0, transition: 'opacity 80ms linear' }}
+                >
+                  <ChromaKeyVideo
+                    key="orb-reaction"
+                    src="/videos/gates-character-orbs.mp4"
+                    playbackRate={3}
+                    width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                    height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                    className=""
+                    loop={false}
+                    playTrigger={orbVideoTrigger}
+                    onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}
+                  />
+                </div>
               </div>
             </div>
           </div>
