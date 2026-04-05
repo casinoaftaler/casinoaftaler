@@ -1048,7 +1048,18 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               draggable={false}
             />
             <div className="mt-[-250px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] flex justify-center" style={{ overflow: 'visible' }}>
-              {showOrbVideo ? (
+              {/* Idle video — always mounted, hidden when orb reaction plays */}
+              <div style={{ display: showOrbVideo ? 'none' : 'block' }}>
+                <ChromaKeyVideo
+                  key="idle"
+                  src="/videos/gates-character.mp4"
+                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
+                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
+                  className=""
+                />
+              </div>
+              {/* Orb reaction video — always mounted, hidden when idle */}
+              <div style={{ display: showOrbVideo ? 'block' : 'none' }}>
                 <ChromaKeyVideo
                   key="orb-reaction"
                   src="/videos/gates-character-orbs.mp4"
@@ -1060,15 +1071,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
                   playTrigger={orbVideoTrigger}
                   onEnded={() => { setShowOrbVideo(false); orbVideoPlayingRef.current = false; }}
                 />
-              ) : (
-                <ChromaKeyVideo
-                  key="idle"
-                  src="/videos/gates-character.mp4"
-                  width={isMobile ? Math.round(gridWidth * 0.5) : Math.round(gridWidth * 0.6)}
-                  height={isMobile ? Math.round(gridWidth * 0.65) : Math.round(gridWidth * 0.8)}
-                  className=""
-                />
-              )}
+              </div>
             </div>
           </div>
           {/* Main game grid */}
