@@ -393,6 +393,13 @@ const EuropaeiskBlackjackGuide = () => {
             Under ENHC-regler skal du justere din strategi for at undgå at miste ekstra indsatser mod potentielle dealer-blackjacks. Standard basic strategy antager, at dealerens blackjack allerede er udelukket (via peek) – under ENHC er det ikke tilfældet. Her er alle 14 afvigelser fra standard strategy, organiseret efter hyppighed og EV-impact:
           </p>
 
+          <ReviewScreenshot
+            src={euroBlackjackBeslutninger}
+            alt="European Blackjack beslutningsknapper – DOUBLE, HIT, STAND og SPLIT synlige med tre hænder: 10, 14 og 11"
+            caption="Beslutningsøjeblikket: DOUBLE, HIT, STAND og SPLIT – tre hænder der kræver forskellige ENHC-strategivalg"
+            size="full"
+          />
+
           <h3 className="mb-3 text-xl font-semibold">Kritiske afvigelser (høj EV-impact)</h3>
           <Card className="border-border bg-card my-4">
             <CardContent className="pt-4">
