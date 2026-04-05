@@ -99,8 +99,8 @@ export const GatesColumn = React.memo(function GatesColumn({
               applyDropIn && "gates-drop-in",
               cellAnim === 'removing' && "gates-tumble-remove",
               cellAnim === 'exploding' && "gates-symbol-explode",
-              cellAnim === 'dropping' && "gates-gravity-bounce",
-              cellAnim === 'filling' && "gates-lightning-fill",
+              cellAnim === 'dropping' && "gates-tumble-gravity",
+              cellAnim === 'filling' && "gates-tumble-drop",
               cellAnim === 'bomb-fizzle' && "bonanza-bomb-fizzle",
             )}
             style={{
