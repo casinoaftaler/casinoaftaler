@@ -752,6 +752,14 @@ const TabletCasinoGuide = () => {
           </div>
 
           <p className="text-muted-foreground leading-relaxed mb-4"><strong>Vores anbefaling:</strong> For de fleste casino-spillere er WiFi-only modellen tilstrækkelig, da tablet-casino primært foregår hjemme. Cellular-modellen er kun relevant, hvis du regelmæssigt spiller slots/bordspil uden for hjemmet (sommerhus, campingvogn, hotel). Til live casino anbefaler vi altid WiFi uanset tablet-variant for maksimal stabilitet.</p>
+
+          <ReviewScreenshot
+            src={tabletSpeedtestWifi}
+            alt="Speedtest resultat på WiFi – 772 Mbps download og 839 Mbps upload via Hiper fiberforbindelse i København"
+            caption="Speedtest fra vores testopsætning – en stabil WiFi 6-forbindelse med lav ping sikrer problemfri live casino-streaming på tablet"
+            size="medium"
+          />
+
           <p className="text-muted-foreground leading-relaxed mb-4">Hvis du har en WiFi-only tablet og har brug for internet on-the-go, kan du bruge din smartphones hotspot-funktion. Bemærk dog at dette tærer på telefonens batteri og kan give ustabil forbindelse for live casino. En dedikeret mobilt WiFi-enhed (MiFi) er et bedre alternativ for regelmæssig on-the-go casino.</p>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
