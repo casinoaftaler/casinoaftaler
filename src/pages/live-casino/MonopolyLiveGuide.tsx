@@ -373,6 +373,12 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={monopolyLiveBoardOverview}
+          alt="Monopoly Live 3D bonusrunde – Mr. Monopoly på det virtuelle brætspil med multiplikatorer fra 4x til 8x på ejendomme"
+          caption="Bonusrunden i Monopoly Live: Mr. Monopoly bevæger sig rundt på det 3D-animerede brætspil med multiplikatorer på hver ejendom"
+        />
+
         <Separator className="my-10" />
 
         {/* H2 #6 – Bankroll management */}
