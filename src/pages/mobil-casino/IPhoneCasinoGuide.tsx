@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mariaForside from "@/assets/screenshots/maria-forside.webp";
+
 import campobetMitidLogin from "@/assets/screenshots/campobet-mitid-login-brugerid.jpg";
 import campobetMitidApp from "@/assets/screenshots/campobet-mitid-godkend-app.jpg";
 import campobetMitidGodkendt from "@/assets/screenshots/campobet-mitid-godkendt.jpg";
