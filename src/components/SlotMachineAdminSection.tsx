@@ -651,6 +651,22 @@ function SymbolsTab({ gameId = "book-of-fedesvin" }: { gameId?: string }) {
       </Card>
 
       {/* Symbol list */}
+      <div className="flex justify-end mb-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            const items = orderedSymbols
+              .filter(s => s.image_url)
+              .map(s => ({ name: s.name, imageUrl: s.image_url! }));
+            downloadSymbolImages(items);
+            toast.success("Downloader symboler...");
+          }}
+        >
+          <Download className="h-4 w-4 mr-1" />
+          Download alle symboler
+        </Button>
+      </div>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
