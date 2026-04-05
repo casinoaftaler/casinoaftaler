@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.webp";
+import threeCardPokerBordlayout from "@/assets/screenshots/three-card-poker-bordlayout.png";
+import threeCardPokerTreKonger from "@/assets/screenshots/three-card-poker-tre-konger.png";
+import threeCardPokerBordOverhead from "@/assets/screenshots/three-card-poker-bord-overhead.png";
+import pokerstarsLobbyDansk from "@/assets/screenshots/pokerstars-lobby-dansk.png";
+import pokerstarsMobilGameplay from "@/assets/screenshots/pokerstars-mobil-gameplay.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -238,6 +243,12 @@ const ThreeCardPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Forskellen mellem den bedste og værste Pair Plus-tabel er <strong>næsten 5 procentpoint</strong> i house edge. Over 1.000 hænder med 100 kr. indsats er det forskellen mellem at miste 2.320 kr. og 7.280 kr. statistisk set. Tjek ALTID udbetalingstabellen, før du spiller Pair Plus.
           </p>
+          <ReviewScreenshot
+            src={threeCardPokerBordlayout}
+            alt="Three Card Poker bordlayout med Pair Plus, Ante og Play felter samt udbetalingstabel for Pair Plus og Ante Bonus"
+            caption="Three Card Poker bordlayout – Pair Plus, Ante og Play indsatsfelterne samt udbetalingstabellerne tydeligt markeret"
+            size="medium"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -294,6 +305,13 @@ const ThreeCardPokerGuide = () => {
             <MenuIcon iconName="brain" className="h-7 w-7 text-primary" />
             Optimal Strategi – Q-6-4 Reglen
           </h2>
+          <ReviewScreenshot
+            src={threeCardPokerTreKonger}
+            alt="Three of a Kind med tre konger i Three Card Poker – den næststærkeste hånd i spillet"
+            caption="Three of a Kind (tre konger) – den næststærkeste hånd i Three Card Poker, kun slået af Straight Flush"
+            size="medium"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Three Card Pokers optimale strategi er elegant i sin enkelhed: <strong>Raise med Queen-Six-Four eller bedre, fold alt andet</strong>. Denne strategi reducerer house edge til 3,37 % på Ante/Play-kombinationen. Men hvad betyder "Queen-Six-Four eller bedre" præcist?
           </p>
@@ -500,6 +518,13 @@ const ThreeCardPokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={threeCardPokerBordOverhead}
+          alt="Three Card Poker bord set ovenfra med Pair Plus, Ante og Play felter for flere spillere samt udbetalingsregler"
+          caption="Three Card Poker-bordet set ovenfra – bemærk de separate indsatsfelter for Pair Plus, Ante og Play for hver siddeplads"
+          size="full"
+        />
+
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 8 – Progressive Jackpot Analyse
         ═══════════════════════════════════════════════════════════════ */}
@@ -575,6 +600,20 @@ const ThreeCardPokerGuide = () => {
             <strong>Forventet tab sammenligning:</strong> Med en 100 kr. Ante i live casino (35 hænder/time) er dit forventede tab ca. 118 kr./time. Samme indsats i RNG (100 hænder/time) giver et forventet tab på ca. 337 kr./time. Det langsommere live-tempo er dermed en fordel for din bankroll – selvom house edge er identisk, spiller du færre hænder og mister derfor mindre per time. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsLobbyDansk}
+          alt="PokerStars dansk lobby med velkomstbonus på 100 kr. i ekstra spil – poker, casino og sport sektioner"
+          caption="PokerStars' danske platform – en af de mest populære pokersider med dansk licens og dedikeret Three Card Poker-sektion"
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={pokerstarsMobilGameplay}
+          alt="PokerStars mobil poker-gameplay med Texas Hold'em bord, Fold/Call/Raise knapper og flere spillere"
+          caption="PokerStars mobilapp – intuitivt poker-interface med tydelige action-knapper, der også understøtter casinopoker-varianter"
+          size="medium"
+        />
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 10 – Bankroll Management
