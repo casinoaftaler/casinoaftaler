@@ -899,6 +899,13 @@ const AmerikanskBlackjackGuide = () => {
             </Card>
           </div>
 
+          <ReviewScreenshot
+            src={blackjackLiveLobby}
+            alt="Live casino lobby med blackjack- og roulette-varianter: American Blackjack, Extended Blackjack, Super Stake Roulette"
+            caption="Live casino-lobbyen med det fulde udvalg af blackjack-varianter – American Blackjack Classic 1-5, Extended Blackjack og roulette-borde side om side."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             Alle fire casinoer bruger <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gamings</Link> live-platform, som er industristandarden for live blackjack. Reglerne er identiske på tværs af casinoer (da Evolution kontrollerer bordene), men velkomstbonusser, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastigheder varierer. Tjek vores individuelle <Link to="/casino-anmeldelser" className={linkClass}>casino-anmeldelser</Link> for detaljerede sammenligninger.
           </p>
