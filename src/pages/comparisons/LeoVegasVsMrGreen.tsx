@@ -1,6 +1,15 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
+import lvForside from "@/assets/screenshots/leovegas-forside-velkomstbonus-bigbass.webp";
+import lvTop10 from "@/assets/screenshots/leovegas-top10-spil-populaere.webp";
+import lvLiveExclusive from "@/assets/screenshots/leovegas-live-casino-exclusive-blackjack-roulette.webp";
+import lvLiveTop10 from "@/assets/screenshots/leovegas-live-casino-top10-spil.webp";
+import lvSport from "@/assets/screenshots/leovegas-sport-oddsboosts-superligaen.webp";
+import mgLogin from "@/assets/screenshots/mrgreen-mitid-login-tilmeld.webp";
+import mgLobby from "@/assets/screenshots/mrgreen-casino-lobby-favoritter-paske.webp";
+import mgLive from "@/assets/screenshots/mrgreen-live-casino-blackjack-roulette-borde.webp";
+import mgKampagner from "@/assets/screenshots/mrgreen-kampagner-casino-paske-cashspins.webp";
+import mgSport from "@/assets/screenshots/mrgreen-sport-kampagner-risikofrit.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -174,6 +183,14 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvForside}
+          alt="LeoVegas forside med velkomsttilbud op til 1.000 kr. i kontanter, Big Bass Splash og Top 10 spil-kategorier"
+          caption="LeoVegas' danske forside – velkomstbonus og direkte adgang til populære kategorier som Megaways og Jackpot."
+          size="full"
+          eager
+        />
+
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – LeoVegas' unikke 10x-model</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -212,9 +229,9 @@ export default function LeoVegasVsMrGreen() {
       </section>
 
         <ReviewScreenshot
-          src={leovegasLobby}
-          alt="LeoVegas casino-lobby med mobilvenligt design og featured spil"
-          caption="LeoVegas' casino-forside – kendt for sit mobilvenlige design og brede spiludvalg."
+          src={mgLobby}
+          alt="Mr Green casino-lobby med favoritter, Book of Dead, Zeus vs Hades og påske-kampagne med 25 cash spins"
+          caption="Mr Greens kuraterede casino-lobby – personlige favoritter og sæsonkampagner i et elegant design."
           size="full"
         />
 
@@ -243,6 +260,13 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvTop10}
+          alt="LeoVegas Top 10 spil med Area Link Dragon Ascension, Gates of Olympus Super Scatter, Pirots 4, Legacy of Dead og Sweet Bonanza 1000"
+          caption="LeoVegas' Top 10 – over 2.500 titler med eksklusivt indhold fra Games Global og Pragmatic Play."
+          size="full"
+        />
+
       {/* SECTION: Mobiloplevelse */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – to prisvindende platforme</h2>
@@ -254,6 +278,13 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvLiveExclusive}
+          alt="LeoVegas Live Casino med Exclusive Sports Blackjack, Exclusive Live Roulette, Exclusive Free Bet Blackjack og LeoVegas Exclusive Roulette"
+          caption="LeoVegas' eksklusive live casino-borde – dedikerede blackjack- og roulette-borde kun for LeoVegas-spillere."
+          size="full"
+        />
+
       {/* SECTION: Live Casino */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Live casino – LeoVegas' eksklusive VIP-oplevelse</h2>
@@ -264,6 +295,20 @@ export default function LeoVegasVsMrGreen() {
           Mr Green tilbyder et solidt live casino med standard Evolution Gaming-udvalg og enkelte dedikerede Mr Green-borde med lavere minimums. Det er fuldt tilstrækkeligt for casual live casino-spillere, men kan ikke matche LeoVegas' dybde og eksklusivitet. VIP-medlemmer hos LeoVegas får udbetalinger behandlet under 1 time.
         </p>
       </section>
+
+        <ReviewScreenshot
+          src={mgLive}
+          alt="Mr Green Live Casino med Dansk Blackjack 1 og 2, Manhattan Blackjack, Cosmopolitan Blackjack, Exclusive Roulette og Free Bet Blackjack"
+          caption="Mr Greens Live Casino – danske blackjack-borde med navngivne dealere og VIP-borde op til 30.000 kr."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={lvLiveTop10}
+          alt="LeoVegas Top 10 Live Casino spil med XXXtreme Lightning Roulette, Exclusive Live Roulette, Crazy Coin Flip, Red Door Roulette"
+          caption="LeoVegas' Top 10 Live Casino – fra Lightning Roulette til eksklusive borde med lave minimums."
+          size="full"
+        />
 
       {/* SECTION: Ansvarligt spil */}
       <section className="mb-12">
@@ -309,6 +354,13 @@ export default function LeoVegasVsMrGreen() {
           </p>
         </div>
       </section>
+
+        <ReviewScreenshot
+          src={mgLogin}
+          alt="Mr Green login med MitID, e-mail/adgangskode og Tilmeld dig-knap – Spillemyndigheden licens synlig"
+          caption="Mr Greens login – MitID-integration og tydelig visning af Spillemyndighedens licens."
+          size="compact"
+        />
 
       {/* SECTION: Betalingsmetoder */}
       <section className="mb-12">
@@ -383,6 +435,20 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvSport}
+          alt="LeoVegas Sport med Superligaen, FA Cup, LeoKing, Top Oddsboosts for FC København og spilkupon"
+          caption="LeoVegas Sport – oddsboosts, Superliga-dækning og LeoKing-konkurrence for danske spillere."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={mgKampagner}
+          alt="Mr Green Kampagner med Casino, Sport, Poker og Særligt udvalgt – Påske-cashspins og Spilsamling"
+          caption="Mr Greens kampagneoversigt – dedikerede kategorier for casino, sport og live casino-tilbud."
+          size="full"
+        />
+
       {/* SECTION: Udbetalingspsykologi */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Udbetalingspsykologi – hvorfor hurtige cashouts ændrer hele premium-følelsen</h2>
@@ -433,6 +499,13 @@ export default function LeoVegasVsMrGreen() {
           Hvis du leder efter maksimal premium-energi, vælger du LeoVegas. Hvis du leder efter premium-ro, vælger du Mr Green. Den forskel er langt mere praktisk, end den måske lyder.
         </p>
       </section>
+
+        <ReviewScreenshot
+          src={mgSport}
+          alt="Mr Green Sport kampagner med 100 kr. risikofrit på korrekt score, fodboldnyheder og App Challenge"
+          caption="Mr Greens sportkampagner – risikofri væddemål og ugentlige app-challenges for aktive spillere."
+          size="full"
+        />
 
       {/* SECTION: Anti-fit */}
       <section className="mb-12">
