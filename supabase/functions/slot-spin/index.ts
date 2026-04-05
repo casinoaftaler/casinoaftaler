@@ -884,8 +884,20 @@ async function calculateBonanzaFullSpin(
     ? scatterCount >= BONANZA_SCATTER_RETRIGGER
     : scatterCount >= BONANZA_SCATTER_TRIGGER;
 
+  // Calculate scatter payout (scatters pay regardless of min match count)
+  let scatterPayout = 0;
+  if (scatterCount >= 3) {
+    const scatterSymbol = symbols.find(s => s.is_scatter);
+    if (scatterSymbol) {
+      if (scatterCount >= 6) scatterPayout = scatterSymbol.multiplier_5 * betAmount;
+      else if (scatterCount >= 5) scatterPayout = scatterSymbol.multiplier_5 * betAmount;
+      else if (scatterCount >= 4) scatterPayout = scatterSymbol.multiplier_4 * betAmount;
+      else scatterPayout = scatterSymbol.multiplier_3 * betAmount;
+    }
+  }
+
   // Apply total multiplier to raw win
-  const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
+  const totalWin = (totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin) + scatterPayout;
 
   return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };
 }
