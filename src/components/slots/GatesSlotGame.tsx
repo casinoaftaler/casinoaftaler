@@ -110,8 +110,15 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
   const [runningWin, setRunningWin] = useState(0);
-  const [runningMultiplier, setRunningMultiplier] = useState(0);
+  const [runningMultiplier, _setRunningMultiplier] = useState(0);
   const runningMultiplierRef = useRef(0);
+  const setRunningMultiplier = useCallback((val: number | ((prev: number) => number)) => {
+    _setRunningMultiplier(prev => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      runningMultiplierRef.current = next;
+      return next;
+    });
+  }, []);
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [showLightningFlash, setShowLightningFlash] = useState(false);
   const [animationEpoch, setAnimationEpoch] = useState(0);
