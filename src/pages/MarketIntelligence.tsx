@@ -264,6 +264,12 @@ export default function MarketIntelligence() {
                       </div>
                     </div>
                   ) : null}
+                  <ReviewScreenshot
+                    src={screenshotSpillemyndighedenHeader}
+                    alt="Spillemyndighedens officielle side for tilladelsesindehavere med forklaring af de to licenstyper til online væddemål og onlinekasino"
+                    caption="Spillemyndighedens side for tilladelsesindehavere – det er her, vi verificerer at casinoer har gyldig dansk licens."
+                    eager
+                  />
                 </CardContent>
               </Card>
 
