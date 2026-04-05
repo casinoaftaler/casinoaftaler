@@ -495,7 +495,12 @@ export default function MarketIntelligence() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-border bg-card/80">
+                <ReviewScreenshot
+                  src={screenshotSpillemyndighedenListe}
+                  alt="Spillemyndighedens søgbare liste over tilladelsesindehavere med licenstype og tilknyttede domæner for 25syv, 888 og Apollo Entertainment"
+                  caption="Den officielle liste over tilladelsesindehavere hos Spillemyndigheden – vi matcher casinoer op mod denne database."
+                  size="compact"
+                />
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <ArrowRight className="h-5 w-5 text-primary" />
