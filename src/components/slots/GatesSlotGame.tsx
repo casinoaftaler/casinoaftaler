@@ -121,6 +121,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   const [showOrbVideo, setShowOrbVideo] = useState(false);
   const [orbVideoTrigger, setOrbVideoTrigger] = useState(0);
   const orbVideoPlayingRef = useRef(false);
+  const orbReactionTriggeredThisSpinRef = useRef(false);
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   // Bonus state
@@ -260,6 +261,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const [bonusAutoSpinPending, setBonusAutoSpinPending] = useState(false);
+
+  const resetOrbReactionState = useCallback(() => {
+    setShowOrbVideo(false);
+    orbVideoPlayingRef.current = false;
+    orbReactionTriggeredThisSpinRef.current = false;
+  }, []);
 
   useEffect(() => { freeSpinsRemainingRef.current = freeSpinsRemaining; }, [freeSpinsRemaining]);
   useEffect(() => { isBonusActiveRef.current = isBonusActive; }, [isBonusActive]);
