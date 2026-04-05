@@ -11,7 +11,10 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilForside from "@/assets/screenshots/danskespil-forside.webp";
+import lottoForside from "@/assets/screenshots/danske-spil-lotto-forside-paske.webp";
+import lottoPaske from "@/assets/screenshots/danske-spil-lotto-paske-praemiepulje.webp";
+import lottoLynpakker from "@/assets/screenshots/danske-spil-lotto-lynpakker-priser.webp";
+import lottoVindertal from "@/assets/screenshots/danske-spil-lotto-vindertal-gevinster.webp";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -132,9 +135,10 @@ const OnlineLotteriGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilForside}
-          alt="Danske Spil forside med Lotto, Eurojackpot og skrabespil – Danmarks officielle lotteriudbyder"
-          caption="Danske Spil er den primære udbyder af online lotteri i Danmark med Lotto og Eurojackpot"
+          src={lottoForside}
+          alt="Danske Spil Lotto forside med Det Store Påske Lotto – 10 rækker og ekstra lodtrækning april 2026"
+          caption="Danske Spils Lotto-forside med Det Store Påske Lotto – Danmarks primære online lotteriudbyder."
+          eager
         />
 
         {/* ── H2 2 ── */}
@@ -191,6 +195,13 @@ const OnlineLotteriGuide = () => {
             Perspektivering hjælper: Sandsynligheden for at vinde Eurojackpots førstepræmie (1:139,8 mio.) er sammenlignelig med at flippe en fair mønt og få plat 27 gange i træk (1:134 mio.). Eller at vælge den rigtige sekund i en 4,4-årig periode. Disse tal er intuitivt ufatteligt små – hvilket er præcis grunden til, at mennesker systematisk overvurderer deres vindchance. Vores hjerner er ikke designet til at processere sandsynligheder i denne størrelsesorden.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={lottoPaske}
+          alt="Danske Spil Lotto og Påske Lotto præmiepuljer – 10 mio. kr. førstepræmie og 25 × 1 mio. ekstra lodtrækning"
+          caption="Lottos præmiepuljer – vælg mellem klassisk Lotto og Det Store Påske Lotto med 25 ekstra millionærchancer."
+          size="medium"
+        />
 
         {/* ── H2 4 ── */}
         <section className="mb-12">
@@ -391,6 +402,12 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={lottoLynpakker}
+          alt="Danske Spil Lotto lynpakker – Stor, Mellem og Lille pakke med Lotto, Vikinglotto og Eurojackpot priser"
+          caption="Lynpakker giver adgang til flere lotterier samtidig – fra 170 kr. til 350 kr. med samlet præmiepulje op til 190 mio."
+        />
+
         <Separator className="my-10" />
 
         {/* ── H2 10 ── */}
@@ -412,6 +429,13 @@ const OnlineLotteriGuide = () => {
             En tredje kategori er internationale lotteriagenter – tjenester, der køber kuponer på spillerens vegne i udenlandske lotterier (PowerBall, Mega Millions). Disse opererer i en juridisk gråzone i Danmark og er ikke reguleret af Spillemyndigheden. Risikoen er dobbelt: ingen garanteret udbetalingsbeskyttelse og potentielle skattemæssige komplikationer ved udenlandske gevinster. For danske spillere anbefales udelukkende Spillemyndighed-regulerede lotterier.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={lottoVindertal}
+          alt="Danske Spil Lotto vindertal og gevinstoversigt – 7 rigtige tal, antal vindere og præmiebeløb april 2026"
+          caption="Lotto-resultaterne viser gevinstfordelingen – fra 4 rigtige (70 kr.) til Millionærchancen (1.000.000 kr.)."
+          size="medium"
+        />
 
         {/* ── H2 11 ── */}
         <section className="mb-12">
