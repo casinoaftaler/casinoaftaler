@@ -187,13 +187,11 @@ const DoubleExposureBlackjackGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={betanoLiveCasino}
-          alt="Live casino-lobby med blackjack-varianter – Double Exposure er tilgængelig som RNG-spil hos danske casinoer"
-          caption="Live casino-lobbyen viser udvalget af blackjack-borde – Double Exposure findes typisk under RNG-sektionen hos de fleste udbydere."
-          size="full"
+          src={spildanskLiveCasinoLobby}
+          alt="SpilDanskNu live casino-lobby med blackjack-varianter, Crystal Roulette og søgning efter blackjack-borde"
+          caption="SpilDanskNu's live casino-lobby med bred blackjack-dækning – Double Exposure findes typisk under RNG-sektionen."
+          eager
         />
-
-        <Separator className="my-10" />
 
         {/* ═══════════════ Reglerne ═══════════════ */}
         <section className="mb-12">
