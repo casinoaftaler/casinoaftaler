@@ -579,6 +579,13 @@ export default function EuropaeiskRouletteGuide() {
             </CardContent>
           </Card>
 
+          <ReviewScreenshot
+            src={campobetOmsaetningsbidrag}
+            alt="CampoBet omsætningsbidrag – tabel over spilkategorier og deres procentvise bidrag til bonusomsætning"
+            caption="Omsætningsbidrag hos CampoBet: spillemaskiner bidrager 100 %, mens live casino, videopoker og bordspil er begrænset for bonusspil."
+            size="full"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Konklusionen er klar: europæisk roulette er generelt en dårlig strategi for bonusomsætning, medmindre casinoet tilbyder 100 % bidrag fra roulette (sjældent) eller et ekstremt lavt omsætningskrav. Ved standard 10× omsætning og 10% bidrag skal du satse 100.000 kr. for at omsætte en 1.000 kr. bonus – og dit forventede tab overstiger bonusværdien.
           </p>
