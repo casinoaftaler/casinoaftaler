@@ -1,6 +1,12 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
+import bet365Sportsbook from "@/assets/screenshots/bet365-sportsbook-forside-dansk.webp";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby-spiludvalg.webp";
+import bet365LiveCasino from "@/assets/screenshots/bet365-live-casino-roulette-blackjack.webp";
+import unibetForside from "@/assets/screenshots/unibet-forside-velkomst-kampagner.webp";
+import unibetCasinoLobby from "@/assets/screenshots/unibet-casino-lobby-anbefalede-spil.webp";
+import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino-roulette-borde.webp";
+import unibetKampagner from "@/assets/screenshots/unibet-kampagner-casino-bingo.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -183,7 +189,13 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 2: Velkomstbonus */}
+        <ReviewScreenshot
+          src={bet365Sportsbook}
+          alt="bet365 sportsbook forside med Superligaen odds, live streaming og boost-væddemål – dansk version april 2026"
+          caption="bet365s sportsbook-forside – verdens største med live streaming, Super Boost og dansk Superliga-dækning."
+          size="full"
+          eager
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Velkomstbonus – sammenligning af tilbud og omsætningskrav</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -245,8 +257,8 @@ export default function Bet365VsUnibet() {
 
         <ReviewScreenshot
           src={bet365CasinoLobby}
-          alt="Bet365 casino-lobby med spilkategorier og velkomstbonus – overblik over platformens design"
-          caption="Bet365s casino-sektion – en af Danmarks mest etablerede platforme med bredt spiludvalg."
+          alt="bet365 casino-lobby med spilleautomater, bonuskøb og månedens spil – dansk casinosektion april 2026"
+          caption="bet365s casino-sektion med kategorier, bonuskøb og månedens udvalgte spilleautomater."
           size="full"
         />
 
@@ -299,7 +311,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 5: Mobiloplevelse */}
+        <ReviewScreenshot
+          src={bet365LiveCasino}
+          alt="bet365 live casino med roulette- og blackjack-borde fra Evolution Gaming – danske limits og VIP-borde"
+          caption="bet365s live casino – premium roulette- og blackjack-borde med eksklusive bet365-brandede varianter."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Unibets dedikerede app vs. bet365's responsiv</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -324,7 +341,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 7: Kundeservice */}
+        <ReviewScreenshot
+          src={unibetForside}
+          alt="Unibet forside med Slingo Sweet Bonanza hero-banner, kampagner og produktkategorier – dansk version april 2026"
+          caption="Unibets forside – balanceret allround-platform med casino, odds, live casino, bingo og poker under samme login."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Kundeservice – skala mod specialisering i praksis</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -392,7 +414,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 11: 30-60-90 dage */}
+        <ReviewScreenshot
+          src={unibetCasinoLobby}
+          alt="Unibet casino-lobby med anbefalede spil, Slingo, Game of Thrones og Gates of Olympus – dansk spiludvalg"
+          caption="Unibets casino-sektion med personlige anbefalinger, nye spil og eksklusive titler."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem giver mest værdi efter 30, 60 og 90 dage?</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -437,7 +464,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 14: Sessionøkonomi og bankroll-fit */}
+        <ReviewScreenshot
+          src={unibetLiveCasino}
+          alt="Unibet live casino med eksklusive roulette-borde, Lightning Roulette og blackjack – danske limits"
+          caption="Unibets live casino med eksklusive Unibet-brandede borde og bredt Evolution Gaming-udvalg."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Sessionøkonomi, bankroll-fit og hvad de to brands gør ved din spilleadfærd</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -471,7 +503,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 16: Markedsposition og corporate signaler */}
+        <ReviewScreenshot
+          src={unibetKampagner}
+          alt="Unibet kampagneoversigt med Slingo, cashback, free spins og bingo-kampagner – dansk casinokampagner"
+          caption="Unibets kampagneside – strukturerede casino- og bingo-kampagner med tydelige vilkår."
+          size="medium"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Markedsposition, corporate signaler og hvilken type tillid du egentlig køber</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
