@@ -42,7 +42,7 @@ export function GatesBonusSpinWinReveal({
       {/* Backdrop glow */}
       <div className={cn(
         "absolute inset-0 transition-opacity duration-300",
-        phase !== "idle" ? "opacity-100" : "opacity-0"
+        visible ? "opacity-100" : "opacity-0"
       )} style={{
         background: "radial-gradient(ellipse at center, rgba(147,51,234,0.25) 0%, transparent 70%)"
       }} />
