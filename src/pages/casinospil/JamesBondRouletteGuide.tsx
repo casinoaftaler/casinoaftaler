@@ -399,7 +399,11 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
-        {/* Psykologisk analyse */}
+        <ReviewScreenshot
+          src={screenshotSpildanskKatalog}
+          alt="SpilDanskNu.dk roulette-katalog med europæiske roulette-varianter fra Stakelogic og Play'n GO inklusiv European Roulette Glam og Vegas Drops Roulette"
+          caption="SpilDanskNu tilbyder et bredt udvalg af europæiske roulette-varianter – ideelt til James Bond-systemet med lave minimumsindsatser."
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="brain" className="h-5 w-5 text-primary" />
