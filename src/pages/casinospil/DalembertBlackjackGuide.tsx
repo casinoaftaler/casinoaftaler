@@ -15,6 +15,12 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
+import dalembertPortrait from "@/assets/screenshots/dalembert-portrat-jean-le-rond.png";
+import dalembertScenarie1 from "@/assets/screenshots/dalembert-scenarie-1-bankroll-management.png";
+import dalembertScenarie2 from "@/assets/screenshots/dalembert-scenarie-2-aggressiv-indsats.png";
+import leovegasLiveBlackjack from "@/assets/screenshots/leovegas-live-blackjack-lobby.png";
+import playjangoBlackjack from "@/assets/screenshots/playjango-live-blackjack-vip-borde.png";
+import swiftCasinoBlackjack from "@/assets/screenshots/swift-casino-blackjack-udvalg.png";
 import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowDown, ArrowUp, GraduationCap, Lightbulb, LineChart, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
@@ -163,6 +169,13 @@ const DalembertBlackjackGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={dalembertPortrait}
+          alt="Portræt af Jean le Rond d'Alembert – den franske matematiker og filosof bag D'Alembert-systemet"
+          caption="Jean le Rond d'Alembert (1717-1783) – matematiker, filosof og ophavsmand til det lineære progressionssystem."
+          size="compact"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -262,6 +275,21 @@ const DalembertBlackjackGuide = () => {
             <LineChart className="h-7 w-7 text-primary" />
             Min 5.000-Hånds Simulering: D'Alembert Under Lup
           </h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            <ReviewScreenshot
+              src={dalembertScenarie1}
+              alt="D'Alembert Scenarie 1 – konservativ 2% indsats med 100 kr. bankroll, balanceret forløb med profit på 8 kr."
+              caption="Scenarie 1: Konservativ tilgang med 2% indsats – bankroll overlever flere tab og ender i plus."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={dalembertScenarie2}
+              alt="D'Alembert Scenarie 2 – aggressiv 10% indsats med 10 kr. bankroll, hurtig ruin efter 4 runder"
+              caption="Scenarie 2: Aggressiv 10% indsats – bankroll udslettet efter kun 4 tab. Illustrerer risikoen ved for høj basisenhed."
+              size="compact"
+            />
+          </div>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci-simulering</Link>.
           </p>
@@ -505,6 +533,25 @@ const DalembertBlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Et bord med 0,28 % house edge (SpilDanskNu Infinite) vs. 0,62 % (Spilleautomaten VIP) halverer næsten dit forventede tab pr. hånd. Over 500 hænder med gennemsnitlig indsats 125 kr. er forskellen ca. 212 kr. – ikke dramatisk, men det akkumulerer over tid.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLiveBlackjack}
+            alt="LeoVegas live blackjack-lobby med eksklusive Speed Blackjack, Free Bet Blackjack og VIP-borde fra Evolution og Pragmatic Play"
+            caption="LeoVegas' live blackjack-lobby – bredt udvalg af borde med forskellige indsatsgrænser, ideelt til D'Alembert-progression."
+          />
+
+          <ReviewScreenshot
+            src={swiftCasinoBlackjack}
+            alt="Swift Casino blackjack-sektion med Studio 2/7 borde, Blackjack Live, Infinite Blackjack og Speed Blackjack"
+            caption="Swift Casino tilbyder både RNG og live blackjack med lave minimumsindsatser – perfekt til D'Alemberts konservative progression."
+          />
+
+          <ReviewScreenshot
+            src={playjangoBlackjack}
+            alt="PlayJango live blackjack VIP-borde med Blackjack VIP Q, P, X, U og andre varianter"
+            caption="PlayJango's VIP blackjack-lobby – højere bordgrænser til spillere, der ønsker større basisenheder i D'Alembert."
+            size="compact"
+          />
         </section>
 
         <Separator className="mb-12" />
