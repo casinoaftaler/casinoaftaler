@@ -301,9 +301,25 @@ const PayNPlayGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={spilleautomatenUdbetaling}
+          alt="Spilleautomaten.dk udbetalingsside med Trustly og Visa/Mastercard som udbetalingsmetoder"
+          caption="Udbetalingsmetoder hos Spilleautomaten.dk: Trustly og Visa/Mastercard med minimum 75 kr. Tretrinsprocessen sikrer hurtig udbetaling. Screenshot fra april 2026."
+        />
 
-        {/* 4. PSD2 OG OPEN BANKING */}
+        <ReviewScreenshot
+          src={trustlyVaelgBank}
+          alt="Trustly bankvalg-skærm med liste over danske banker inkl. Arbejdernes Landsbank, BasisBank og Coop Bank"
+          caption="Trustly's bankvalg ved udbetaling: Spilleren vælger sin bank fra en komplet liste af danske pengeinstitutter. Søgefunktionen gør det nemt at finde sin bank. Screenshot fra april 2026."
+        />
+
+        <ReviewScreenshot
+          src={trustlyQrKode}
+          alt="Trustly QR-kode godkendelse med besked om at scanne med mobilkamera"
+          caption="Trustly's QR-kode til bankgodkendelse: Spilleren scanner koden med mobilkameraet (ikke bank-appen) for at gennemføre transaktionen sikkert. Screenshot fra april 2026."
+        />
+
+        <Separator className="my-10" />
         <section className="mb-12" id="psd2-open-banking">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="file-text" className="h-7 w-7 text-primary" />PSD2 og open banking-grundlaget</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
