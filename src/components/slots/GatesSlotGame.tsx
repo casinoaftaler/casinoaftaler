@@ -595,7 +595,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
       setColumnSpinStates(Array(GATES_COLS).fill('idle'));
 
       if (result.tumbleSteps) {
-        await processTumbleSteps(result.tumbleSteps);
+        await processTumbleSteps(result.tumbleSteps, result.totalWin);
         const totalWin = result.totalWin || 0;
 
         // Scatter celebration
