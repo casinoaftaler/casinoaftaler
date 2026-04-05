@@ -273,6 +273,27 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
+        <div className="grid gap-4 sm:grid-cols-3 my-8">
+          <ReviewScreenshot
+            src={coinFlipLogo}
+            alt="Coin Flip bonusspil logo fra Crazy Time – gyldne bogstaver med rød mønt"
+            caption="Coin Flip – den laveste house edge (4,3%) af de fire bonusspil."
+            size="full"
+          />
+          <ReviewScreenshot
+            src={cashHuntLogo}
+            alt="Cash Hunt bonusspil logo fra Crazy Time – guldtekst med målskive-ikon"
+            caption="Cash Hunt – vælg mellem 108 skjulte multiplikatorer."
+            size="full"
+          />
+          <ReviewScreenshot
+            src={pachinkoLogo}
+            alt="Pachinko bonusspil logo fra Crazy Time – script-tekst med lilla candy-ikon"
+            caption="Pachinko – bolden falder gennem pins til tilfældig multiplikator."
+            size="full"
+          />
+        </div>
+
         {/* ── H2 4: Top Slot-mekanikken ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="trending-up" className="h-5 w-5 text-primary" />Top Slot-multiplikatoren – den skjulte volatilitetsmotor</h2>
