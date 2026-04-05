@@ -486,13 +486,17 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
 
-    // Calculate final win
+    // Calculate final win — use server's authoritative totalWin when available
     if (winningStepCount > 0) {
-      const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
-      const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter((b: any) => b.activated) || [];
-      const totalMultiplierValue = activatedBombs.reduce((sum: number, b: any) => sum + b.value, 0);
-      const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
-      setWinAmount(prev => prev + finalWin);
+      if (serverTotalWin !== undefined && serverTotalWin > 0) {
+        setWinAmount(prev => prev + serverTotalWin);
+      } else {
+        const rawTumbleWin = steps.reduce((sum: number, s: any) => sum + (s.stepWin || 0), 0);
+        const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter((b: any) => b.activated) || [];
+        const totalMultiplierValue = activatedBombs.reduce((sum: number, b: any) => sum + b.value, 0);
+        const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
+        setWinAmount(prev => prev + finalWin);
+      }
     }
 
     // Collision effect
