@@ -264,6 +264,13 @@ const CrapsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={crapsBordLayout}
+          alt="Craps bordlayout med Pass Line, Don't Pass Bar, Come, Field og proposition bets i midten af bordet"
+          caption="Standard craps bordlayout – bemærk Pass Line i kanten (lav house edge) og proposition bets i midten (høj house edge)"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ 6 – PLACE BETS ═══════════════ */}
