@@ -475,6 +475,8 @@ const PokerGuide = () => {
         {/* ═══════════════ 8 – ONLINE VS LIVE ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Online Poker vs. Live Poker – Tempo, Tells og Rake</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Online poker og live poker bruger de samme regler, men spilleoplevelsen og de strategiske krav er markant anderledes. <strong>Tempo:</strong> Online er 3–5x hurtigere (60–80 hænder/time vs. 15–25 live). Med multi-tabling kan online-spillere spille 200–500 hænder/time.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Tells:</strong> Live poker tilbyder fysiske tells – kropssprog, stemme, timing. Online eliminerer fysiske tells men introducerer timing tells og betting pattern tells (via HUD-software). <strong>Sværhedsgrad:</strong> Online er generelt sværere pga. adgang til tracking-software og træningsmateriale. En vinder på 5/10 kr. online dominerer typisk 10/20 kr. live.
@@ -487,6 +489,7 @@ const PokerGuide = () => {
           />
 
           <p className="text-muted-foreground leading-relaxed">
+            <strong>Rake:</strong> Online har typisk lavere rake (2,5–5 % med cap) end live (5–10 %). Lavere rake online giver bedre netto-EV – men den hårdere konkurrence modvirker delvist denne fordel.
           </p>
         </section>
 
