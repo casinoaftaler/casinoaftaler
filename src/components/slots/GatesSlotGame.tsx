@@ -776,7 +776,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setShowRetrigger(false);
     showRetriggerRef.current = false;
     spinLockRef.current = false;
-    if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+    // Always resume auto-spin in bonus after retrigger
+    if (isBonusActiveRef.current) {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
       autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
     }
