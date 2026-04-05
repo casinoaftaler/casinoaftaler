@@ -552,7 +552,6 @@ const DalembertBlackjackGuide = () => {
             caption="PlayJango's VIP blackjack-lobby – højere bordgrænser til spillere, der ønsker større basisenheder i D'Alembert."
             size="compact"
           />
-          </p>
         </section>
 
         <Separator className="mb-12" />
