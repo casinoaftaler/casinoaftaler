@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
+import spildanskLiveCasinoLobby from "@/assets/screenshots/spildansknu-live-casino-blackjack-lobby.png";
+import liveBlackjackBord from "@/assets/screenshots/live-blackjack-a-bord-evolution.png";
+import deHardTotals from "@/assets/screenshots/double-exposure-hard-totals-strategi.png";
+import deSoftTotals from "@/assets/screenshots/double-exposure-soft-totals-strategi.png";
+import deSplits from "@/assets/screenshots/double-exposure-splits-strategi.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -183,13 +187,11 @@ const DoubleExposureBlackjackGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={betanoLiveCasino}
-          alt="Live casino-lobby med blackjack-varianter – Double Exposure er tilgængelig som RNG-spil hos danske casinoer"
-          caption="Live casino-lobbyen viser udvalget af blackjack-borde – Double Exposure findes typisk under RNG-sektionen hos de fleste udbydere."
-          size="full"
+          src={spildanskLiveCasinoLobby}
+          alt="SpilDanskNu live casino-lobby med blackjack-varianter, Crystal Roulette og søgning efter blackjack-borde"
+          caption="SpilDanskNu's live casino-lobby med bred blackjack-dækning – Double Exposure findes typisk under RNG-sektionen."
+          eager
         />
-
-        <Separator className="my-10" />
 
         {/* ═══════════════ Reglerne ═══════════════ */}
         <section className="mb-12">
@@ -394,9 +396,29 @@ const DoubleExposureBlackjackGuide = () => {
               </div>
             </CardContent>
           </Card>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed mb-6">
             Den mest kontraintuitive ændring: du hitter oftere på hånde over 15, fordi et tie er et tab. Og du stander oftere på lave hånde (12-14), fordi du kan <em>se</em> at dealeren sandsynligvis buster. Denne dynamik gør Double Exposure til en udmærket variant for spillere, der vil udfordre deres strategiske tænkning ud over <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={deHardTotals}
+            alt="Double Exposure Blackjack strategi-skema for hard totals – farvekodede handlinger mod dealerens totaler fra 4-20"
+            caption="Komplet strategi-skema for hard totals i Double Exposure (Dealer Stands on Soft 17) – H=Hit, S=Stand, Dh=Double/Hit"
+          />
+
+          <ReviewScreenshot
+            src={deSoftTotals}
+            alt="Double Exposure Blackjack strategi-skema for soft totals – farvekodede handlinger fra soft 13 til soft 21"
+            caption="Strategi-skema for soft totals i Double Exposure – bemærk de hyppigere doubles sammenlignet med standard blackjack"
+            size="medium"
+          />
+
+          <ReviewScreenshot
+            src={deSplits}
+            alt="Double Exposure Blackjack strategi-skema for splits – hvornår man skal splitte par fra 2,2 til A,A"
+            caption="Split-strategi for Double Exposure – P=Split, P/H=Split eller Hit, Dh=Double/Hit. Bemærk de mange situationer hvor split frarådes"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -568,9 +590,13 @@ const DoubleExposureBlackjackGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={liveBlackjackBord}
+          alt="Live Blackjack A bord hos dansk casino med Evolution Gaming dealer, chips og kortfordeling"
+          caption="Live Blackjack A hos et dansk casino – standard live blackjack er det nærmeste alternativ til Double Exposure i live-format"
+        />
 
-        {/* ═══════════════ Hvem bør spille ═══════════════ */}
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <MenuIcon iconName="trending-up" className="h-7 w-7 text-primary" />
