@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.webp";
+import crazyTimeDealer from "@/assets/screenshots/crazy-time-dealer-hjul-gameplay.webp";
+import crazyTimeLogo from "@/assets/screenshots/crazy-time-logo-hjul.webp";
+import cashHuntGameplay from "@/assets/screenshots/crazy-time-cash-hunt-bonusrunde.webp";
+import cashHuntLogo from "@/assets/screenshots/crazy-time-cash-hunt-logo.webp";
+import coinFlipLogo from "@/assets/screenshots/crazy-time-coin-flip-logo.webp";
+import pachinkoLogo from "@/assets/screenshots/crazy-time-pachinko-logo.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -146,12 +151,20 @@ const CrazyTimeGuide = () => {
             For danske spillere er Crazy Time tilgængeligt hos alle større <Link to="/casino-anmeldelser" className={linkClass}>casinoer med dansk licens</Link>, der samarbejder med Evolution Gaming – hvilket inkluderer størstedelen af de licenserede danske operatører. Spillet er identisk uanset casino: samme studie, samme hjul, samme odds. Valget af casino bør derfor baseres på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed – ikke på gameplay-forskelle, der ikke eksisterer.
           </p>
           <ReviewScreenshot
-            src={royalcasinoLiveCasino}
-            alt="RoyalCasino live casino-lobby med game shows som Crazy Time og Dream Catcher"
-            caption="RoyalCasino's live casino – herfra finder du Crazy Time og andre populære game shows fra Evolution"
+            src={crazyTimeDealer}
+            alt="Crazy Time live dealer foran det ikoniske hjul med segmenter for Coin Flip, Cash Hunt, Pachinko og Crazy Time bonus"
+            caption="Crazy Time – Evolutions mest populære game show med live dealer og fire unikke bonusspil."
             size="full"
+            eager
           />
         </section>
+
+        <ReviewScreenshot
+          src={crazyTimeLogo}
+          alt="Crazy Time officielt logo med det farverige hjul og gylden nøgle"
+          caption="Crazy Time-logoet – Evolutions flagskib inden for live game shows siden 2020."
+          size="medium"
+        />
 
         {/* ── H2 2: Hjulets opbygning ── */}
         <section className="mb-12">
@@ -201,7 +214,13 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
-        {/* ── H2 3: De fire bonusspil ── */}
+        <ReviewScreenshot
+          src={cashHuntGameplay}
+          alt="Crazy Time Cash Hunt bonusrunde med 108 symboler og sigtekorn – vælg dit felt for en tilfældig multiplikator"
+          caption="Cash Hunt-bonusrunden – 108 skjulte multiplikatorer bag ikoner som spilleren vælger med et sigtekorn."
+          size="full"
+        />
+
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><MenuIcon iconName="layers" className="h-5 w-5 text-primary" />De fire bonusspil – mekanik, matematik og gevinstprofil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -253,6 +272,27 @@ const CrazyTimeGuide = () => {
             For danske spillere, der ønsker bonusspil med lavere house edge, er Coin Flip det matematisk bedste valg (4,3 % HE), mens Crazy Time-bonussen er det dyreste (5,6 % HE). Men forskellen mellem 4,3 % og 5,6 % er relativt lille sammenlignet med forskellen til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (0,5 % HE) – vælg derfor bonusspil baseret på underholdningspræference, ikke på en illusorisk matematisk fordel.
           </p>
         </section>
+
+        <div className="grid gap-4 sm:grid-cols-3 my-8">
+          <ReviewScreenshot
+            src={coinFlipLogo}
+            alt="Coin Flip bonusspil logo fra Crazy Time – gyldne bogstaver med rød mønt"
+            caption="Coin Flip – den laveste house edge (4,3%) af de fire bonusspil."
+            size="full"
+          />
+          <ReviewScreenshot
+            src={cashHuntLogo}
+            alt="Cash Hunt bonusspil logo fra Crazy Time – guldtekst med målskive-ikon"
+            caption="Cash Hunt – vælg mellem 108 skjulte multiplikatorer."
+            size="full"
+          />
+          <ReviewScreenshot
+            src={pachinkoLogo}
+            alt="Pachinko bonusspil logo fra Crazy Time – script-tekst med lilla candy-ikon"
+            caption="Pachinko – bolden falder gennem pins til tilfældig multiplikator."
+            size="full"
+          />
+        </div>
 
         {/* ── H2 4: Top Slot-mekanikken ── */}
         <section className="mb-12">
