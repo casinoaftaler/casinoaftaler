@@ -45,13 +45,32 @@ export function MultiplierSymbolsAdmin() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-purple-500" />
-          Multiplier Symboler
-        </CardTitle>
-        <CardDescription>
-          Upload eller skift billeder for multiplier orbs.
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-purple-500" />
+              Multiplier Symboler
+            </CardTitle>
+            <CardDescription>
+              Upload eller skift billeder for multiplier orbs.
+            </CardDescription>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              const items = (symbols || []).map((sym) => ({
+                name: sym.label,
+                imageUrl: sym.image_url || hardcodedMap.get(sym.id)?.imageUrl || "",
+              })).filter(s => s.imageUrl);
+              downloadSymbolImages(items);
+              toast.success("Downloader multiplier symboler...");
+            }}
+          >
+            <Download className="h-4 w-4 mr-1" />
+            Download alle
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
