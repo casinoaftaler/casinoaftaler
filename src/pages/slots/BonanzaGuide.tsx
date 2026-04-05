@@ -41,7 +41,7 @@ const bonanzaFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er max win i Bonanza Megaways?",
-    answer: "Bonanza Megaways har en teoretisk max win på 10.000× din indsats. Med en indsats på 10 kr. er den maksimale gevinst altså 100.000 kr. Denne max win opnås typisk under free spins-runden med en kombination af høje multiplier-værdier fra cascading wins og premium-symboler (diamanter). Det er vigtigt at forstå, at max win er en teoretisk grænse – de fleste bonus-runder vil levere betydeligt lavere gevinster, typisk i intervallet 20-200× indsatsen.",
+    answer: "Bonanza Megaways har en teoretisk max win på 26.000× din indsats. Med en indsats på 10 kr. er den maksimale gevinst altså 260.000 kr. Denne max win opnås typisk under free spins-runden med en kombination af høje multiplier-værdier fra cascading wins og premium-symboler (diamanter). Det er vigtigt at forstå, at max win er en teoretisk grænse – de fleste bonus-runder vil levere betydeligt lavere gevinster, typisk i intervallet 20-200× indsatsen.",
   },
   {
     question: "Hvad udløser free spins i Bonanza?",
