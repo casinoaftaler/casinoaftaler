@@ -354,9 +354,11 @@ export default function PokerBedsteSiderGuide() {
             Nedenfor sammenligner vi de vigtigste parametre for at vælge pokersite. Prioriteringen afhænger af din spillestil: grindere prioriterer rakeback og spillerpulje, recreational spillere prioriterer anonyme borde og blødhed, og turneringsspillere prioriterer garanterede præmiepuljer og turneringsvariation. Casino poker-spillere bør i stedet fokusere på video poker-udbud og <Link to="/casino-bonus" className={linkClass}>bonusvilkår</Link>.
           </p>
         <ReviewScreenshot
-          src={pokerstarsLiveCasino}
-          alt="PokerStars live casino og poker-lobby med cash games, turneringer og bordspil for danske pokerspillere"
-          caption="PokerStars er en af de mest populære pokersider med dansk licens og bredt turneringsudvalg"
+          src={pokerstarsVelkomst}
+          alt="PokerStars dansk lobby med velkomstbonus – 100 kr. i ekstra spil for nye spillere"
+          caption="PokerStars' danske velkomstside – markedslederen med størst spillerpulje og bedste turneringsprogram"
+          size="full"
+          eager={true}
         />
           <Card className="mb-6">
             <CardContent className="pt-6">
