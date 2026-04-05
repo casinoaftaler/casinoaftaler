@@ -11,7 +11,12 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.webp";
+import danskespilPokerLobby from "@/assets/screenshots/danskespil-poker-lobby.png";
+import pokerstarsVelkomst from "@/assets/screenshots/pokerstars-velkomst-dansk.png";
+import pokerstarsHaandrangering from "@/assets/screenshots/pokerstars-haandrangering.png";
+import pokerstarsHaandrangering2 from "@/assets/screenshots/pokerstars-haandrangering-2.png";
+import unibetPokerLobby from "@/assets/screenshots/unibet-poker-lobby.png";
+import bet365PokerLobby from "@/assets/screenshots/bet365-poker-lobby.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -195,6 +200,13 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
 
+            <ReviewScreenshot
+              src={danskespilPokerLobby}
+              alt="Danske Spil poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker live borde"
+              caption="Danske Spils poker-sektion – live casino poker med professionelle dealers og dansk interface"
+              size="full"
+            />
+
             {/* Unibet */}
             <Card className="border-border bg-card">
               <CardHeader>
@@ -245,6 +257,13 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
 
+            <ReviewScreenshot
+              src={unibetPokerLobby}
+              alt="Unibet Poker lobby med Stellar Sundays turnering, download og browser-spil muligheder"
+              caption="Unibet Poker – Stellar Sundays turnering og intuitiv lobby med download og browser-baseret spil"
+              size="full"
+            />
+
             {/* bet365 */}
             <Card className="border-border bg-card">
               <CardHeader>
@@ -280,6 +299,13 @@ export default function PokerBedsteSiderGuide() {
                 </div>
               </CardContent>
             </Card>
+
+            <ReviewScreenshot
+              src={bet365PokerLobby}
+              alt="bet365 Poker lobby med No Limit Hold'em kontantspil, Twister turneringer og kampagner"
+              caption="bet365 Poker – bred lobbyoversigt med kontantspil, Twister-turneringer og kvalifikationsevents"
+              size="full"
+            />
 
             {/* Campobet */}
             <Card className="border-border bg-card">
@@ -349,9 +375,11 @@ export default function PokerBedsteSiderGuide() {
             Nedenfor sammenligner vi de vigtigste parametre for at vælge pokersite. Prioriteringen afhænger af din spillestil: grindere prioriterer rakeback og spillerpulje, recreational spillere prioriterer anonyme borde og blødhed, og turneringsspillere prioriterer garanterede præmiepuljer og turneringsvariation. Casino poker-spillere bør i stedet fokusere på video poker-udbud og <Link to="/casino-bonus" className={linkClass}>bonusvilkår</Link>.
           </p>
         <ReviewScreenshot
-          src={pokerstarsLiveCasino}
-          alt="PokerStars live casino og poker-lobby med cash games, turneringer og bordspil for danske pokerspillere"
-          caption="PokerStars er en af de mest populære pokersider med dansk licens og bredt turneringsudvalg"
+          src={pokerstarsVelkomst}
+          alt="PokerStars dansk lobby med velkomstbonus – 100 kr. i ekstra spil for nye spillere"
+          caption="PokerStars' danske velkomstside – markedslederen med størst spillerpulje og bedste turneringsprogram"
+          size="full"
+          eager={true}
         />
           <Card className="mb-6">
             <CardContent className="pt-6">
@@ -521,6 +549,20 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={pokerstarsHaandrangering}
+            alt="PokerStars håndrangering guide – Royal Flush, Straight Flush, Fire ens, Fuldt hus, Flush og Straight forklaret med kortillustrationer"
+            caption="PokerStars' officielle håndrangering – fra Royal Flush til Straight, illustreret med kort"
+            size="full"
+          />
+
+          <ReviewScreenshot
+            src={pokerstarsHaandrangering2}
+            alt="PokerStars håndrangering fortsat – Tre ens, To par, Par og High card med eksempler"
+            caption="Håndrangering fortsat – Tre ens, To par, Par og High card med visuelle eksempler"
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             Vores poker-cluster dækker begge verdener: <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> og <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link> for PvP-spillere, og <Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> og <Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> for casino poker-spillere. For en samlet oversigt, se vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
