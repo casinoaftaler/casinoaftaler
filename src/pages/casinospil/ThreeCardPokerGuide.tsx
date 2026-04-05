@@ -243,6 +243,12 @@ const ThreeCardPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Forskellen mellem den bedste og værste Pair Plus-tabel er <strong>næsten 5 procentpoint</strong> i house edge. Over 1.000 hænder med 100 kr. indsats er det forskellen mellem at miste 2.320 kr. og 7.280 kr. statistisk set. Tjek ALTID udbetalingstabellen, før du spiller Pair Plus.
           </p>
+          <ReviewScreenshot
+            src={threeCardPokerBordlayout}
+            alt="Three Card Poker bordlayout med Pair Plus, Ante og Play felter samt udbetalingstabel for Pair Plus og Ante Bonus"
+            caption="Three Card Poker bordlayout – Pair Plus, Ante og Play indsatsfelterne samt udbetalingstabellerne tydeligt markeret"
+            size="medium"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
