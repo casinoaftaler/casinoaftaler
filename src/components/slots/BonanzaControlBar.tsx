@@ -316,14 +316,7 @@ export function BonanzaControlBar({
           </div>
         )}
         {bonusState.isActive && gameId === "gates-of-fedesvin" && (
-          <div className="flex items-center gap-3 pl-2 border-l border-blue-500/20">
-            <div className="flex flex-col items-center" id="gates-total-multiplier">
-              <span className="text-[9px] uppercase tracking-widest text-blue-400/80 font-semibold">Multiplier</span>
-              <span className="text-xl font-black text-blue-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)] tabular-nums">
-                x{bonusTumblePhase !== 'idle' ? bonusRunningMultiplier : bonusCumulativeMultiplier}
-              </span>
-            </div>
-            <div className="w-px h-8 bg-yellow-500/30" />
+          <div className="flex items-center gap-3 pl-2 border-l border-yellow-500/20">
             <div className="flex flex-col items-center">
               <span className="text-[9px] uppercase tracking-widest text-emerald-400/80 font-semibold">Tumble Win</span>
               <span className="text-xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">

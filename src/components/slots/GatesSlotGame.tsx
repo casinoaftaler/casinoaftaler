@@ -40,6 +40,7 @@ import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPo
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
+import { GatesMultiplierOrb } from "./GatesMultiplierOrb";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -1020,6 +1021,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               onBuyBonus={handleBuyBonus}
               disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive || isBuyingBonus}
               isBonusActive={isBonusActive}
+              headerContent={
+                <GatesMultiplierOrb
+                  multiplierValue={tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
+                  isActive={isBonusActive}
+                />
+              }
             />
           </div>
         )}

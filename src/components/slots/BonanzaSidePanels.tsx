@@ -21,6 +21,7 @@ interface BonanzaSidePanelsProps {
   isBonusActive?: boolean;
   horizontal?: boolean;
   compact?: boolean;
+  headerContent?: React.ReactNode;
 }
 
 export function BonanzaSidePanels({
@@ -32,6 +33,7 @@ export function BonanzaSidePanels({
   isBonusActive,
   horizontal = false,
   compact = false,
+  headerContent,
 }: BonanzaSidePanelsProps) {
   const [showBuyConfirm, setShowBuyConfirm] = useState(false);
   const buyBonusCost = bet * 100;
@@ -44,6 +46,8 @@ export function BonanzaSidePanels({
         ? "flex-row gap-3 w-full"
         : "flex-col gap-[14px] ml-2"
     )} style={horizontal ? undefined : { width: 160 }}>
+      {/* Optional header content (e.g. multiplier orb) */}
+      {!horizontal && headerContent}
       {/* ── Buy Feature ── */}
       <button
         onClick={() => setShowBuyConfirm(true)}
