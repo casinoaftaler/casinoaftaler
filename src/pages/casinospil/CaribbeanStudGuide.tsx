@@ -132,10 +132,10 @@ export default function CaribbeanStudGuide() {
         </section>
 
         <ReviewScreenshot
-          src={danskespilThreeCardPoker}
-          alt="Casino poker-bord med Ante og Raise indsatsstruktur – Caribbean Stud bruger lignende mekanik"
-          caption="Casino-pokerspil som Caribbean Stud deler grundmekanikken med Three Card Poker – spiller mod dealer med faste odds."
-          size="full"
+          src={caribbeanStudLiveBord}
+          alt="Live Caribbean Stud Poker bord med dealer, kort og Ante/Bonus/Play indsatsfelter – Evolution Gaming"
+          caption="Live Caribbean Stud Poker hos et dansk casino – dealeren viser sine kort efter spillerens raise/fold-beslutning"
+          eager
         />
 
         {/* ──── Sektion 2: Odds & Sandsynligheder ──── */}
