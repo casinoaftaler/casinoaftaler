@@ -1150,6 +1150,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
               {/* Flying multipliers */}
               <BonanzaFlyingMultiplier flyers={flyingMultipliers} className="gates-mult-fly" />
+              {/* Bonus spin win reveal (center overlay) */}
+              <GatesBonusSpinWinReveal
+                tumbleWin={revealTumbleWin}
+                multiplier={revealMultiplier}
+                visible={showSpinWinReveal}
+              />
               {/* Tumble win bar */}
               {!isMobile && (
                 <BonanzaTumbleWinBar
