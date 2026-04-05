@@ -95,6 +95,8 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
   const glRef = useRef<{ gl: WebGLRenderingContext; texture: WebGLTexture } | null>(null);
   const [ready, setReady] = useState(false);
 
+  const readyRef = useRef(false);
+
   const renderFrame = useCallback(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -120,8 +122,11 @@ export const BlackChromaKeyVideo = React.memo(function BlackChromaKeyVideo({
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-    if (!ready) setReady(true);
-  }, [width, height, ready]);
+    if (!readyRef.current) {
+      readyRef.current = true;
+      setReady(true);
+    }
+  }, [width, height]);
 
   const processFrame = useCallback(() => {
     const video = videoRef.current;
