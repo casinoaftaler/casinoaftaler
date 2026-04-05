@@ -257,8 +257,8 @@ export default function Bet365VsUnibet() {
 
         <ReviewScreenshot
           src={bet365CasinoLobby}
-          alt="Bet365 casino-lobby med spilkategorier og velkomstbonus – overblik over platformens design"
-          caption="Bet365s casino-sektion – en af Danmarks mest etablerede platforme med bredt spiludvalg."
+          alt="bet365 casino-lobby med spilleautomater, bonuskøb og månedens spil – dansk casinosektion april 2026"
+          caption="bet365s casino-sektion med kategorier, bonuskøb og månedens udvalgte spilleautomater."
           size="full"
         />
 
