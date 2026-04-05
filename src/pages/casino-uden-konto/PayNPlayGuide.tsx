@@ -117,12 +117,6 @@ const PayNPlayGuide = () => {
         </div>
       </section>
 
-        <ReviewScreenshot
-          src={betiniaMobilepayBekraeft}
-          alt="MobilePay betalingsbekræftelse ved casino-indbetaling – hurtig Pay N Play oplevelse"
-          caption="MobilePay-bekræftelse illustrerer den sømløse betalingsoplevelse, der kendetegner Pay N Play-konceptet."
-          size="full"
-        />
 
       <div className="container py-6">
       </div>
