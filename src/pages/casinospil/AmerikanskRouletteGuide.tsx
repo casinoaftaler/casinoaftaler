@@ -567,6 +567,13 @@ export default function AmerikanskRouletteGuide() {
             </CardContent>
           </Card>
 
+          <ReviewScreenshot
+            src={rouletteHjaelpReglerMenu}
+            alt="Hjælpe- og regelmenu i live roulette med oversigt over indsatstyper, regler og indstillinger"
+            caption="Live roulettens indbyggede hjælpemenu – her kan du læse om indsatstyper, call-indsatser, tilbagebetalingsregler og statistik direkte i spillet."
+            size="small"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bemærk: det gennemsnitlige tab er identisk uanset strategi (det følger af house edge), men ruin-risikoen varierer kraftigt. Martingale på et amerikansk hjul har 38 % sandsynlighed for total ruin (defineret som tab af hele startkapitalen) mod 24 % på europæisk. Flat betting er konsekvent den sikreste tilgang med den laveste ruin-risiko.
           </p>
