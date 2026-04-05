@@ -43,7 +43,6 @@ export const GatesColumn = React.memo(function GatesColumn({
   cellAnimStates,
   cellDropOffsets,
   tumblePhase,
-  animationEpoch = 0,
   bombSymbolsMap,
   symbolWidth: SYMBOL_WIDTH = DEFAULT_SYMBOL_WIDTH,
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
