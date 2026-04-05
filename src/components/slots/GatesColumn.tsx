@@ -107,11 +107,14 @@ export const GatesColumn = React.memo(function GatesColumn({
               width: SYMBOL_WIDTH,
               height: SYMBOL_HEIGHT,
               '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
+              transform: cellAnim === 'dropping' ? `translateY(${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px)` :
+                cellAnim === 'filling' ? 'translateY(-120%)' : undefined,
               animationDelay: applyDropOff ? `${(GATES_ROWS - 1 - row) * 40}ms` :
                 applyDropIn ? `${row * 50}ms` :
                 isLanding ? `${row * 50}ms` :
                 cellAnim === 'filling' ? `${row * 40}ms` :
                 cellAnim === 'dropping' ? `${row * 30}ms` : undefined,
+              animationFillMode: (cellAnim === 'dropping' || cellAnim === 'filling') ? 'forwards' : undefined,
             } as React.CSSProperties}
           >
             {/* Regular symbol */}
