@@ -882,7 +882,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
             const { positions: scatterPos } = countGatesScatters(finalGrid, symbols);
             if (scatterPos.length > 0) {
               const scatterAnims = new Map<number, CellAnimState>();
-              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-video'));
               setCellAnimStates(scatterAnims);
               slotSounds.playScatterCelebration();
               setTimeout(() => {
