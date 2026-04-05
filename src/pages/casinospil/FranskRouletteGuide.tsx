@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.webp";
+import franskRouletteBordlayout from "@/assets/screenshots/fransk-roulette-bordlayout.png";
+import liveRouletteVarianter from "@/assets/screenshots/live-roulette-varianter-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -254,6 +256,13 @@ export default function FranskRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={franskRouletteBordlayout}
+          alt="Fransk roulette bordlayout med Voisins du Zero, Black Splites, Red Splites og Tiers du Cylindre sektioner"
+          caption="Det franske roulette-bordlayout med call bet-sektioner (Voisins du Zéro, Tiers du Cylindre) og standardindsatser – bemærk chips og nummerplacering."
+          size="full"
+        />
+
         {/* SECTION 4 – Simulering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -429,6 +438,13 @@ export default function FranskRouletteGuide() {
             <strong>Bankroll-effekt af hastighed:</strong> Den lavere spin-rate i live-formatet (30 vs. 80+ spins/time) er en skjult fordel for din bankroll. Over 2 timer spiller du ca. 60 spins live vs. 160+ RNG. Med 100 kr. indsats og 1,35 % HE er dit forventede tab 81 kr. live vs. 216 kr. RNG. Den langsommere hastighed giver dig også tid til at tænke over dine indsatser og undgå impulsive beslutninger. For mere om <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link>, se vores dedikerede guide.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={liveRouletteVarianter}
+          alt="Live roulette-varianter hos dansk casino – Red Door Roulette, Lightning Roulette, Instant Roulette, Immersive Roulette og Gold Vault Roulette"
+          caption="Udvalg af live roulette-varianter hos et dansk casino – fra Red Door Roulette til Gold Vault Roulette med spillerantal og minimumsindsatser."
+          size="full"
+        />
 
         {/* SECTION 8 – Avanceret Variansanalyse */}
         <section className="mb-12">
