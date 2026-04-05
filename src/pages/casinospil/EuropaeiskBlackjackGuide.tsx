@@ -212,6 +212,14 @@ const EuropaeiskBlackjackGuide = () => {
 
         <InlineCasinoCards title="Bedste europæisk blackjack online" count={4} />
 
+        <ReviewScreenshot
+          src={euroBlackjackBetting}
+          alt="European Blackjack MH – tre hænder med 100 kr. indsats hver, DEAL og CLEAR ALL knapper synlige"
+          caption="European Blackjack Multi-Hand fra Play'n GO – tre samtidige hænder med 100 kr. indsats og chip-valg fra 1 til 100"
+          size="full"
+          eager={true}
+        />
+
         {/* ═══════════════ Hvad er europæisk blackjack ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
