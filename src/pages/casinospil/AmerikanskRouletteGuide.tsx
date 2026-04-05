@@ -571,7 +571,7 @@ export default function AmerikanskRouletteGuide() {
             src={rouletteHjaelpReglerMenu}
             alt="Hjælpe- og regelmenu i live roulette med oversigt over indsatstyper, regler og indstillinger"
             caption="Live roulettens indbyggede hjælpemenu – her kan du læse om indsatstyper, call-indsatser, tilbagebetalingsregler og statistik direkte i spillet."
-            size="small"
+            size="compact"
           />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
