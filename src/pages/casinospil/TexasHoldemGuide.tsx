@@ -101,7 +101,8 @@ const TexasHoldemGuide = () => {
         title="Texas Hold'em 2026 – Regler, Strategi & Odds"
         description="Komplet dansk guide til Texas Hold'em poker med regler, starthands-rangering, pot odds, positionsspil og avanceret strategi for alle niveauer."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-01-31"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

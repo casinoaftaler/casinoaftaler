@@ -155,7 +155,8 @@ const PokerGuide = () => {
         title="Poker Guide 2026 – Varianter, Matematik og Odds"
         description="Komplet poker-guide: Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake og bankroll management. Hub for alle poker-guides."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2025-12-01"
+        />
 
       {/* ── HERO ── */}
       <section

@@ -100,7 +100,8 @@ const RouletteGuide = () => {
         title="Roulette Regler 2026 – Væddemål, Odds og Varianter"
         description="Roulette guide 2026: Regler, bet-typer, odds, European vs American og live roulette. Alt du skal vide for at spille optimalt på danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2025-11-08"
+        />
 
       {/* ── HERO ── */}
       <section

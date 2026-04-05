@@ -239,9 +239,9 @@ const MartingaleBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Martingale Blackjack" currentPath="/casinospil/blackjack/martingale" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/martingale" />
+        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/blackjack/martingale" />
         <FAQSection faqs={faqs} />
-        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>

@@ -733,9 +733,9 @@ const EuropaeiskBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Europæisk Blackjack" currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/europaeisk-blackjack" />
+        <AuthorBio />
         <RelatedGuides currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <FAQSection faqs={faqs} />
-        <AuthorBio />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>

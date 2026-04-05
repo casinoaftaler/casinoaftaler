@@ -74,7 +74,8 @@ export default function FranskRouletteGuide() {
         title="Fransk Roulette 2026 – La Partage, 1,35% HE & Komplet Guide"
         description="Fransk roulette: La Partage og En Prison regler, 1,35 % house edge, franske betegnelser, call bets og casino-anbefalinger. Se hvorfor det er bedst."
         jsonLd={[faqJsonLd, articleSchema]}
-      />
+      datePublished="2026-01-03"
+        />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -651,8 +652,8 @@ export default function FranskRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Fransk Roulette" currentPath="/casinospil/roulette/fransk-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/fransk-roulette" />
-        <RelatedGuides currentPath="/casinospil/roulette/fransk-roulette" />
         <FAQSection faqs={faqs} />
+        <RelatedGuides currentPath="/casinospil/roulette/fransk-roulette" />
         <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
