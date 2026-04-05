@@ -487,6 +487,13 @@ const AmerikanskBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={blackjackMidgame}
+          alt="Live blackjack mid-game med kort dealt til flere spillere – Super Stake multiplikatorer synlige"
+          caption="En aktiv hånd i live blackjack: dealer viser 9, flere spillere har modtaget kort. Bemærk Super Stake-multiplikatorerne (X2, X3) i øverste venstre hjørne."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
