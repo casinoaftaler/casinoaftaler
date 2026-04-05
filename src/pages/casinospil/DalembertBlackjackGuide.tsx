@@ -169,10 +169,14 @@ const DalembertBlackjackGuide = () => {
           </Card>
         </section>
 
-        <Separator className="mb-12" />
+        <ReviewScreenshot
+          src={dalembertPortrait}
+          alt="Portræt af Jean le Rond d'Alembert – den franske matematiker og filosof bag D'Alembert-systemet"
+          caption="Jean le Rond d'Alembert (1717-1783) – matematiker, filosof og ophavsmand til det lineære progressionssystem."
+          size="compact"
+        />
 
-        {/* ═══════════════════════════════════════════════════════════════
-            SECTION 2 – Mekanikken
+        <Separator className="mb-12" />
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
