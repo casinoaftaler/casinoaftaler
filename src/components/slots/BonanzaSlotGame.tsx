@@ -775,7 +775,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         !showRetriggerRef.current &&
         !pendingBonusActionRef.current;
 
-      if (shouldContinueBonus && isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+      if (shouldContinueBonus) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {

@@ -745,7 +745,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         !showRetriggerRef.current &&
         !pendingBonusActionRef.current;
 
-      if (shouldContinueBonus && isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+      if (shouldContinueBonus) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
