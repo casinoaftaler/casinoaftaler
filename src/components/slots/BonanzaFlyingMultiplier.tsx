@@ -11,9 +11,10 @@ export interface FlyingMultiplier {
 
 interface BonanzaFlyingMultiplierProps {
   flyers: FlyingMultiplier[];
+  className?: string;
 }
 
-export function BonanzaFlyingMultiplier({ flyers }: BonanzaFlyingMultiplierProps) {
+export function BonanzaFlyingMultiplier({ flyers, className }: BonanzaFlyingMultiplierProps) {
   return (
     <>
       {flyers.map((f) => {
@@ -22,7 +23,7 @@ export function BonanzaFlyingMultiplier({ flyers }: BonanzaFlyingMultiplierProps
         return (
           <div
             key={f.id}
-            className="bonanza-mult-fly absolute pointer-events-none z-50"
+            className={`${className || 'bonanza-mult-fly'} absolute pointer-events-none z-50`}
             style={{
               left: f.startX,
               top: f.startY,
