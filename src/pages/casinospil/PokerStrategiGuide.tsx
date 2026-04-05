@@ -133,6 +133,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Resultater vs. beslutninger:</strong> Det vigtigste mindset-skift for nye pokerspillere er at fokusere på <em>beslutningskvalitet</em> fremfor resultater. Du kan lave den perfekte all-in med AA preflop og tabe mod 72o, der rammer to par. Det ændrer ikke, at din beslutning var korrekt. Over tid belønner poker gode beslutninger matematisk – men på kort sigt kan varians producere resultater der tilsyneladende modsiger dette. Disciplinen til at fastholde optimal strategi trods kortsigtede tab er det, der adskiller vindende spillere fra tabende.
           </p>
+
+          <ReviewScreenshot
+            src={pokerstarsForside}
+            alt="PokerStars forside med 100 kr. bonus i ekstra spil for nye spillere – dansk pokerklient"
+            caption="PokerStars tilbyder nye danske spillere 100 kr. i ekstra spil som Spin & Go-billetter ved første indbetaling"
+          />
         </section>
 
         {/* ═══════════ SEKTION 2: Positionsspil ═══════════ */}
