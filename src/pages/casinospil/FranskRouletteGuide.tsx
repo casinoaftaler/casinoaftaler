@@ -439,6 +439,13 @@ export default function FranskRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveRouletteVarianter}
+          alt="Live roulette-varianter hos dansk casino – Red Door Roulette, Lightning Roulette, Instant Roulette, Immersive Roulette og Gold Vault Roulette"
+          caption="Udvalg af live roulette-varianter hos et dansk casino – fra Red Door Roulette til Gold Vault Roulette med spillerantal og minimumsindsatser."
+          size="full"
+        />
+
         {/* SECTION 8 – Avanceret Variansanalyse */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
