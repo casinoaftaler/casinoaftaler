@@ -135,7 +135,7 @@ const IPhoneCasinoGuide = () => {
 
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
