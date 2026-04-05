@@ -11,12 +11,18 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, BarChart3, Calculator, Dog, Flame, Play, Scale, Shield, Sparkles, Target, TrendingUp, Trophy, Users, Zap } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
+import screenshotBonanzaIntro from "@/assets/screenshots/bonanza-megaways-intro.png";
+import screenshotBonanzaGameplay from "@/assets/screenshots/bonanza-megaways-gameplay.png";
+import screenshotBonanzaPaytable from "@/assets/screenshots/bonanza-megaways-paytable.png";
+import screenshotBonanzaFreeSpins from "@/assets/screenshots/bonanza-megaways-free-spins-trigger.png";
+import screenshotBonanzaStats from "@/assets/screenshots/bonanza-megaways-game-stats.png";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors";
 
@@ -35,7 +41,7 @@ const bonanzaFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er max win i Bonanza Megaways?",
-    answer: "Bonanza Megaways har en teoretisk max win på 10.000× din indsats. Med en indsats på 10 kr. er den maksimale gevinst altså 100.000 kr. Denne max win opnås typisk under free spins-runden med en kombination af høje multiplier-værdier fra cascading wins og premium-symboler (diamanter). Det er vigtigt at forstå, at max win er en teoretisk grænse – de fleste bonus-runder vil levere betydeligt lavere gevinster, typisk i intervallet 20-200× indsatsen.",
+    answer: "Bonanza Megaways har en teoretisk max win på 26.000× din indsats. Med en indsats på 10 kr. er den maksimale gevinst altså 260.000 kr. Denne max win opnås typisk under free spins-runden med en kombination af høje multiplier-værdier fra cascading wins og premium-symboler (diamanter). Det er vigtigt at forstå, at max win er en teoretisk grænse – de fleste bonus-runder vil levere betydeligt lavere gevinster, typisk i intervallet 20-200× indsatsen.",
   },
   {
     question: "Hvad udløser free spins i Bonanza?",
@@ -45,7 +51,7 @@ const bonanzaFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Bonanza eller Sweet Bonanza bedst?",
     answer: (
       <>
-        Det afhænger af din spillestil. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> har højere max win (21.100× vs. 10.000×) og bruger scatter pays i stedet for Megaways-linjer, mens Bonanza tilbyder den klassiske Megaways-oplevelse med cascading wins og en ubegrænset multiplier under free spins. Sweet Bonanza har også en Bonus Buy-funktion, som Bonanza mangler. For spillere, der foretrækker traditionel venstre-til-højre gevinstmekanik med progressivt stigende multiplier, er Bonanza det bedre valg.
+        Det afhænger af din spillestil. <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> har lavere max win (21.100× vs. 26.000×) men bruger scatter pays i stedet for Megaways-linjer, mens Bonanza tilbyder den klassiske Megaways-oplevelse med cascading wins og en ubegrænset multiplier under free spins. Sweet Bonanza har også en Bonus Buy-funktion, som Bonanza mangler. For spillere, der foretrækker traditionel venstre-til-højre gevinstmekanik med progressivt stigende multiplier, er Bonanza det bedre valg.
       </>
     ),
   },
@@ -84,12 +90,12 @@ const BonanzaGuide = () => {
       />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
+      <section className="relative overflow-hidden py-12 text-primary-foreground md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><MenuIcon iconName="sparkles" className="mr-1.5 h-3.5 w-3.5" /> Megaways, kaskader & bonusanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bonanza Megaways – Den Komplette Megaways-Analyse</h1>
-            <p className="text-lg text-white/80">Big Time Gamings banebrydende Megaways-slot: en matematisk dekonstruktion af den mekanik, der revolutionerede online slots og stadig definerer genren i 2026.</p>
+            <p className="text-lg text-primary-foreground/80">Big Time Gamings banebrydende Megaways-slot: en matematisk dekonstruktion af den mekanik, der revolutionerede online slots og stadig definerer genren i 2026.</p>
           </div>
         </div>
       </section>
@@ -116,6 +122,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaIntro}
+          alt="Bonanza Megaways introduktionsskærm med Free Spins med GOLD Unlimited Win Multiplier, Megaways-logo og Win Reactions-forklaring"
+          caption="Bonanzas velkomstskærm præsenterer spillets tre kernefeatures: Free Spins med ubegrænset multiplier, Megaways-systemet og Win Reactions (cascading wins)."
+          eager
+        />
 
         {/* ── Teknisk profil ── */}
         <section className="mb-10">
@@ -130,7 +142,7 @@ const BonanzaGuide = () => {
                 <div><span className="text-muted-foreground">Udgivelsesår:</span><br /><strong>2016</strong></div>
                 <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,00 %</strong></div>
                 <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Høj (4/5)</strong></div>
-                <div><span className="text-muted-foreground">Max win:</span><br /><strong>10.000× indsats</strong></div>
+                <div><span className="text-muted-foreground">Max win:</span><br /><strong>26.000× indsats</strong></div>
                 <div><span className="text-muted-foreground">Gevinstlinjer:</span><br /><strong>Op til 117.649</strong></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,20 kr.</strong></div>
                 <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>400 kr.</strong></div>
@@ -138,11 +150,19 @@ const BonanzaGuide = () => {
               </div>
             </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src={screenshotBonanzaStats}
+            alt="Bonanza Megaways Game Stats: Max Win 26.000× Stake, RTP 96,00% og 117.649 Ways"
+            caption="Officielle nøgletal for Bonanza Megaways: max win 26.000× indsatsen, RTP 96,00 % og op til 117.649 gevinstmuligheder."
+            size="compact"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bonanzas matematiske fundament hviler på det variable Megaways-system. Hvert af de 6 hovedhjul kan vise mellem 2 og 7 symboler, hvilket giver et minimum af 64 (2⁶) og et maksimum af 117.649 (7⁶) gevinstmuligheder. Det vandrette ekstrahjul øverst tilføjer 4 positioner, der primært bærer scatter- og wild-symboler. Gennemsnitligt vises cirka 46.000 gevinstmuligheder pr. spin – en dramatisk forskel fra traditionelle 20-linje slots.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Gevinstberegningen følger en venstre-til-højre model med minimum 3 matchende symboler. De seks symboltyper har følgende multiplikatorer: Diamanter (50× for 6-of-a-kind), røde ædelstene (25×), grønne ædelstene (15×), blå ædelstene (10×), samt lav-betalende A, K, Q, J, 10 og 9. Gevinstbeløbet beregnes som symbol-multiplier × indsats ÷ antal aktive Megaways, hvilket betyder at individuelle gevinster typisk er små, men kompenseres af det høje antal samtidige gevinstlinjer.
+            Gevinstberegningen følger en venstre-til-højre model med minimum 3 matchende symboler. De højest betalende symboler har følgende multiplikatorer (× indsats for 6-of-a-kind): Diamanter (50×), røde ædelstene (7,5×), blå ædelstene (2×), grønne ædelstene (2×), samt lav-betalende A (1,75×), K, Q, J, 10 og 9. Gevinstbeløbet beregnes som symbol-multiplier × indsats, og med det høje antal samtidige gevinstlinjer kan de mange små gevinster hurtigt akkumulere.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             House edge på 4,00 % placerer Bonanza i det gennemsnitlige interval for high-volatility slots. For en session med 500 spins à 10 kr. (samlet indsats: 5.000 kr.) er det forventede tab 200 kr. Dog skal denne EV-beregning forstås i kontekst: Bonanzas volatilitet betyder, at faktiske resultater vil afvige kraftigt fra gennemsnittet. Standardafvigelsen pr. spin er estimeret til cirka 15-20× indsatsen, hvilket gør kort-tids resultater ekstremt uforudsigelige.
@@ -172,6 +192,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaGameplay}
+          alt="Bonanza Megaways gameplay med 34.300 aktive gevinstmuligheder, 6 hjul med variabel højde og vandret minekarrehjul med ædelstensymboler"
+          caption="Bonanza Megaways i aktion: bemærk det variable antal symboler per hjul (2-7) og det vandrette minekarrehjul øverst, der bærer scatter-symbolerne."
+        />
+
         {/* ── Free Spins ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -180,7 +206,15 @@ const BonanzaGuide = () => {
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Bonanzas free spins-runde aktiveres ved at lande fire scatter-symboler, der staver G-O-L-D. Tre af disse vises på det vandrette hjul øverst (G, O, L), mens det fjerde (D) skal lande et sted på hovedgriddet. Du modtager 12 gratis spins ved trigger, med mulighed for at vinde yderligere 5 spins ved at lande 3+ scatters under bonusrunden. Der er ingen øvre grænse for retriggers, men sandsynligheden falder med hvert retrigger.
-          </p>
+           </p>
+
+          <ReviewScreenshot
+            src={screenshotBonanzaFreeSpins}
+            alt="Bonanza Megaways free spins trigger med 12 Free Spins Awarded, Unlimited Win Multiplier og mulighed for extra free games ved 3+ scatters"
+            caption="Free spins triggeret i Bonanza: 12 gratis spins med ubegrænset win multiplier – 3 eller flere scatters under bonusrunden giver ekstra spins."
+            size="medium"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Den ubegrænsede progressiv multiplier er free spins-rundens definerende element. Startende ved 1× stiger den med +1 for hver cascading win – og den nulstilles aldrig under bonusrunden. I en gennemsnitlig free spins-session kan multiplikatoren nå 8-15×, men i exceptionelle runder kan den overstige 40×. Matematisk set er den forventede gennemsnitlige bonusrunde-gevinst cirka 80-120× indsatsen, med en median tættere på 40-60× (fordi fordelingen er kraftigt skævvredet mod høje værdier).
           </p>
@@ -225,6 +259,12 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotBonanzaPaytable}
+          alt="Bonanza Megaways gevinsttabel med diamant (50× for 6), rød ædelsten (7,5×), blå ædelsten (2×), grøn ædelsten (2×) og A-symbol (1,75×) – alle gange indsats"
+          caption="Bonanzas officielle gevinsttabel: diamanten er det højest betalende symbol med 50× indsats for 6-of-a-kind, mens ædelstene betaler 2-7,5×."
+        />
+
         {/* ── Megaways-sammenligning ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -245,7 +285,7 @@ const BonanzaGuide = () => {
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr className="border-b"><td className="py-2">RTP</td><td className="text-center">96,00 %</td><td className="text-center">96,50 %</td><td className="text-center">96,51 %</td></tr>
-                    <tr className="border-b"><td className="py-2">Max Win</td><td className="text-center">10.000×</td><td className="text-center">5.000×</td><td className="text-center">21.100×</td></tr>
+                    <tr className="border-b"><td className="py-2">Max Win</td><td className="text-center">26.000×</td><td className="text-center">5.000×</td><td className="text-center">21.100×</td></tr>
                     <tr className="border-b"><td className="py-2">Volatilitet</td><td className="text-center">Høj</td><td className="text-center">Høj</td><td className="text-center">Høj</td></tr>
                     <tr className="border-b"><td className="py-2">Multiplier</td><td className="text-center">Ubegrænset (FS)</td><td className="text-center">Op til 500×</td><td className="text-center">Op til 100×</td></tr>
                     <tr className="border-b"><td className="py-2">Bonus Buy</td><td className="text-center">Nej</td><td className="text-center">Ja (100×)</td><td className="text-center">Ja (100×)</td></tr>
@@ -404,7 +444,7 @@ const BonanzaGuide = () => {
             Bonanza Megaways er mere end en slot – det er det fundament, som moderne online slots er bygget på. BTG's innovation med det variable Megaways-system og cascading wins med progressiv multiplier definerede en helt ny kategori og inspirerede hundredvis af efterfølgere. At spillet efter over 8 år fortsat er en af de mest populære high-volatility slots er et testamente til dets tidløse design og matematiske elegance.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Med en RTP på 96,00 %, en max win på 10.000× og en ubegrænset free spins-multiplier tilbyder Bonanza en unik risiko-reward profil. Den manglende Bonus Buy-funktion gør det til et mere tålmodigt spil end moderne konkurrenter, men den rene Megaways-oplevelse – uden distraktioner eller sekundære bonusspil – er netop det, der gør Bonanza til en klassiker.
+            Med en RTP på 96,00 %, en max win på 26.000× og en ubegrænset free spins-multiplier tilbyder Bonanza en unik risiko-reward profil. Den manglende Bonus Buy-funktion gør det til et mere tålmodigt spil end moderne konkurrenter, men den rene Megaways-oplevelse – uden distraktioner eller sekundære bonusspil – er netop det, der gør Bonanza til en klassiker.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere, der søger den autentiske Megaways-oplevelse, er Bonanza det oplagte valg. Sørg for at verificere RTP-konfigurationen hos dit valgte casino, hold dig til en disciplineret bankroll-strategi, og husk at Bonanzas magi ligger i de sjældne, men spektakulære free spins-runder – tålmodighed belønnes. Læs mere om <Link to="/casinospil/spillemaskiner" className={linkClass}>alle vores spillemaskineguides</Link> for at finde det spil, der bedst matcher din spillestil.
