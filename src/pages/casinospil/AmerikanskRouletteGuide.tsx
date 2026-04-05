@@ -104,7 +104,7 @@ export default function AmerikanskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
+              <MenuIcon iconName="calculator" className="mr-1.5 h-3.5 w-3.5" /> Dobbelt-nul statistik
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Amerikansk Roulette – Dobbelt-Nul Hjulet der Koster Dig Dobbelt Så Meget
