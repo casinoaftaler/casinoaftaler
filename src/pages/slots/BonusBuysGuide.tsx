@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import screenshot5Lions from "@/assets/screenshots/5-lions-megaways-bonus-buy-knap.png";
+import screenshotKoebDialog from "@/assets/screenshots/bonus-buy-koeb-gratis-spins-dialog.png";
+import screenshotSpilleregler from "@/assets/screenshots/spilleregler-rtp-volatilitet-info.png";
+import screenshotWantedGameplay from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.png";
+import screenshotWantedBuyMenu from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy-menu.png";
+import screenshotBuyRtp from "@/assets/screenshots/bonus-buy-rtp-spilleregler.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -275,6 +281,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshot5Lions}
+          alt="5 Lions Megaways spillemaskine med synlig Køb Gratis Spins-knap til venstre for hjulene – bonus buy koster 500 kr. ved 5 kr. indsats"
+          caption="5 Lions Megaways med bonus buy-knappen tydeligt synlig til venstre – her koster køb af gratis spins 500 kr. (100x indsatsen á 5 kr.)."
+          eager
+        />
 
         {/* H2: Hvorfor tilbyder slots en Buy Feature? */}
         <section className="mb-12">
@@ -298,6 +310,13 @@ const BonusBuysGuide = () => {
             Det er værd at bemærke, at flere jurisdiktioner har reageret på disse bekymringer. I Storbritannien har UKGC forbudt bonus buys helt, mens de fortsat er tilladte i Danmark under Spillemyndighedens regulering. Denne forskel i regulering afspejler forskellige holdninger til, hvor meget ansvar der skal placeres hos spilleren vs. operatøren.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotKoebDialog}
+          alt="Bekræftelsesdialog for køb af gratis spins i 5 Lions Megaways – pris 500 kr. med bekræft og annuller-knapper"
+          caption="Bekræftelsesdialogen ved bonus buy – spilleren skal aktivt godkende købet, før bonusrunden starter."
+          size="compact"
+        />
 
         {/* H2: Matematikken bag bonus buy */}
         <section className="mb-12">
@@ -476,6 +495,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotSpilleregler}
+          alt="Spilleregler for 5 Lions Megaways med RTP-information – standard RTP 95,50%, bonus buy RTP 95,50% og Ante-indsats RTP 95,50%"
+          caption="RTP-oplysningerne i spillets regler – her kan du verificere den faktiske RTP for både standard spil, bonus buy og ante-indsats."
+        />
+
         {/* H2: Volatilitet og risiko ved køb af bonus */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
@@ -587,6 +612,13 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotWantedBuyMenu}
+          alt="Wanted Dead or a Wild bonus buy-menu med tre prisklasser – Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.) ved 20 kr. indsats"
+          caption="Wanted Dead or a Wild tilbyder tre forskellige bonus buy-niveauer med stigende pris og volatilitet – et godt eksempel på tiered buy features."
+          size="medium"
+        />
+
         {/* H2: Slots med bonus buy – vores analyser */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
@@ -678,6 +710,12 @@ const BonusBuysGuide = () => {
             Vi anbefaler, at du aktivt bruger Spillemyndighedens og casinoets ansvarligt spil-værktøjer, uanset om du benytter bonus buy eller ej. Læs mere i vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotWantedGameplay}
+          alt="Wanted Dead or a Wild gameplay med western-tema, pengesække og whiskey-symboler på 5x5 grid hos SpilDanskNu"
+          caption="Wanted Dead or a Wild fra Hacksaw Gaming – en af de mest populære bonus buy-slots med ekstremt høj volatilitet og op til 12.500x max win."
+        />
 
         {/* H2: Bankroll management ved buy feature */}
         <section className="mb-12">
