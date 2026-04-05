@@ -233,6 +233,13 @@ export default function CaribbeanStudGuide() {
           </p>
 
           <h3 className="text-xl font-semibold text-foreground mb-3">Bordets layout og indsatsfelter</h3>
+
+          <ReviewScreenshot
+            src={caribbeanStudAnteKnapper}
+            alt="Caribbean Stud Poker indsatsfelter – Ante, 5+1 Bonus og Play knapper på live casino-bordet"
+            caption="Indsatsfelterne i Caribbean Stud: Ante (obligatorisk), 5+1 Bonus (valgfri side-bet) og Play (2× ante raise)"
+            size="medium"
+          />
           <p className="text-muted-foreground leading-relaxed mb-4">
             Et standard Caribbean Stud-bord har tre indsatsfelter pr. spillerposition: "Ante" (den obligatoriske startindsats), "Raise" (2× ante, kun placeret efter kortvurdering) og "Progressive Jackpot" (en separat slot eller felt til jackpot-indsatsen). Nogle moderne borde tilføjer yderligere side-bets som "5+1 Bonus" (kombinerer dine 5 kort med dealerens synlige kort til den bedste 6-korts hånd), men disse har typisk en høj husets fordel og anbefales ikke for seriøse spillere.
           </p>
