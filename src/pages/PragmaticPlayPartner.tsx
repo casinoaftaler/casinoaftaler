@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 import pragmaticPlayLogo from "@/assets/providers/pragmatic-play-logo-transparent.png";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import screenshotAffiliatePartners from "@/assets/screenshots/pragmatic-play-affiliate-partners.png";
+import screenshotSlotsKatalog from "@/assets/screenshots/pragmatic-play-slots-katalog.png";
+import screenshotLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.png";
+import screenshotSpildansknu from "@/assets/screenshots/spildansknu-pragmatic-play-spil.png";
+import screenshotGatesGameplay from "@/assets/screenshots/gates-of-olympus-1000-gameplay.png";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
@@ -190,6 +196,13 @@ const PragmaticPlayPartner = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotAffiliatePartners}
+          alt="Pragmatic Play affiliate partners-side med Casinoaftaler.dk listet som officiel partner blandt andre iGaming-affiliates"
+          caption="Casinoaftaler.dk er officielt listet som affiliate-partner på Pragmatic Plays hjemmeside – et direkte bevis på partnerskabet."
+          eager
+        />
 
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 2: HVORFOR PRAGMATIC PLAY?
@@ -388,6 +401,12 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotGatesGameplay}
+          alt="Gates of Olympus 1000 gameplay-screenshot med multiplier-symboler og tumble-mekanik på SpilDanskNu"
+          caption="Gates of Olympus 1000 i aktion – Pragmatic Plays ikoniske multiplier collect-mekanik med op til 15.000x indsatsen."
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 6: SÅDAN TESTER VI PRAGMATIC PLAY SPIL
         ═══════════════════════════════════════════════════════════ */}
@@ -540,6 +559,12 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotSpildansknu}
+          alt="SpilDanskNu casinospil-katalog med over 40 Pragmatic Play spillemaskiner inkl. Sweet Bonanza, Gates of Olympus og Big Bass Bonanza"
+          caption="Pragmatic Plays brede udvalg hos SpilDanskNu – et af de danske casinoer med flest Pragmatic Play-titler."
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 8: PRAGMATIC PLAY I BONUS HUNTS & COMMUNITY
         ═══════════════════════════════════════════════════════════ */}
@@ -656,6 +681,12 @@ const PragmaticPlayPartner = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={screenshotLiveCasino}
+          alt="Pragmatic Play Live Casino-portefølje med The Bingo Spot, Mega Roulette 3000 og Money Time game shows"
+          caption="Pragmatic Plays live casino-produkter – streamet fra deres egne studier med game shows som The Bingo Spot og Money Time."
+        />
 
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 10: PRAGMATIC PLAYS TEKNISKE STANDARDER
