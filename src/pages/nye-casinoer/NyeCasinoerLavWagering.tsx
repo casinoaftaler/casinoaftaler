@@ -253,6 +253,12 @@ const NyeCasinoerLavWagering = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowBonus}
+          alt="Kapow Casino velkomstbonus med 100 spins til Gates of Olympus for 100 kr. indbetaling og 10x omsætningskrav"
+          caption="Kapow Casino tilbyder 100 free spins ved 100 kr. indbetaling – bemærk 10x omsætningskrav i vilkårene"
+        />
+
         <Separator className="my-10" />
 
         {/* Bankroll management during wagering - UNIQUE */}
