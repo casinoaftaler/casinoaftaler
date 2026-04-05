@@ -13,6 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2, Gamepad2, Trophy, X, Minus, Save, Settings, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { ManualBonusHitDialog } from "./ManualBonusHitDialog";
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
   pending: { label: "Afventer", variant: "secondary" },
@@ -29,6 +30,7 @@ export function SlotRequestsAdminSection() {
   const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
   const activeHuntNumber = session?.hunt_number;
+  const [manualHitRequest, setManualHitRequest] = useState<{ id: string; userId: string; slotName: string } | null>(null);
 
   const currentMax = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
   const [maxLimit, setMaxLimit] = useState(currentMax);
@@ -194,9 +196,9 @@ export function SlotRequestsAdminSection() {
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => handleAction(req.id, req.user_id, "bonus_hit", true)}
+                              onClick={() => setManualHitRequest({ id: req.id, userId: req.user_id, slotName: req.slot_name })}
                               disabled={updateStatus.isPending}
-                              title="Manuel Bonus Hit (fallback)"
+                              title="Manuel Bonus Hit"
                             >
                               <Trophy className="h-3.5 w-3.5" />
                             </Button>
@@ -215,6 +217,16 @@ export function SlotRequestsAdminSection() {
           )}
         </CardContent>
       </Card>
+
+      {manualHitRequest && (
+        <ManualBonusHitDialog
+          open={!!manualHitRequest}
+          onOpenChange={(open) => !open && setManualHitRequest(null)}
+          requestId={manualHitRequest.id}
+          userId={manualHitRequest.userId}
+          slotName={manualHitRequest.slotName}
+        />
+      )}
     </div>
   );
 }
