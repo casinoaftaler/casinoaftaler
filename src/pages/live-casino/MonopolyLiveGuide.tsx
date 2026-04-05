@@ -1,6 +1,9 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
+import monopolyLiveWheel from "@/assets/screenshots/monopoly-live-spinning-wheel.png";
+import monopolyLiveBoardOverview from "@/assets/screenshots/monopoly-live-3d-board-overview.png";
+import monopolyLiveBoardCloseup from "@/assets/screenshots/monopoly-live-board-closeup.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
