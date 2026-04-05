@@ -329,7 +329,12 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Kundeservice */}
+        <ReviewScreenshot
+          src={dsIndbetaling}
+          alt="Danske Spil indbetaling med indbetalingsgrænse, beløbsvalg (250-750 kr.), Visa-kort og MobilePay som betalingsmetoder"
+          caption="Danske Spils indbetalingsside – tydelig daglig grænse og danske betalingsmetoder inkl. MobilePay."
+          size="compact"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Kundeservice – institutionel tryghed mod specialiseret community-support</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
