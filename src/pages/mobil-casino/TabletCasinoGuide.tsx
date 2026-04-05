@@ -417,6 +417,13 @@ const TabletCasinoGuide = () => {
             </Card>
           </div>
 
+          <ReviewScreenshot
+            src={tabletLiveRouletteHotCold}
+            alt="Super Stake Roulette 5000X live dealer med Hot/Cold nummer-statistik på tablet i landscape-tilstand"
+            caption="Super Stake Roulette med Hot/Cold statistik – tabletskærmen giver plads til dealer-video, hjul og fuldt betting-grid samtidig"
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed mb-4">En unik fordel ved tablets er muligheden for at have live casino kørende i ét vindue mens du checker odds eller statistik i et andet. Med iPad Stage Manager eller Samsung Multi Window kan du fx have live blackjack i et vindue og en strategiguide i det andet – en feature, der er helt umulig på smartphones.</p>
         </section>
 
