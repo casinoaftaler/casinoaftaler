@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.webp";
+import caribbeanStud5plus1Bonus from "@/assets/screenshots/caribbean-stud-5plus1-bonus-odds.png";
+import caribbeanStudCallBet from "@/assets/screenshots/caribbean-stud-call-bet-odds.png";
+import pokerstarsIndbetaling from "@/assets/screenshots/pokerstars-ind-og-udbetaling.png";
+import caribbeanStudLiveBord from "@/assets/screenshots/caribbean-stud-live-casino-bord.png";
+import caribbeanStudAnteKnapper from "@/assets/screenshots/caribbean-stud-ante-bonus-play-knapper.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
