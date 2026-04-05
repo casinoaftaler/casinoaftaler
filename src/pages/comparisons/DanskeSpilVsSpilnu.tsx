@@ -532,7 +532,19 @@ export default function DanskeSpilVsSpilnu() {
         </p>
       </section>
 
-      {/* SECTION: Spillerprofiler */}
+        <ReviewScreenshot
+          src={spilnuSpil}
+          alt="Spilnu mest populære spil med Diamond Express, Big Bait, Flaming Tiger, Gold Blitz Ultimate, Bingo og Super Jackpots"
+          caption="Spilnus mest populære spil – Super Jackpots op til 342.616 kr. og et bredt udvalg af danske favoritter."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={spilnuLive}
+          alt="Spilnu Live Casino oversigt med Blackjack, Lightning Roulette, Red Door Roulette, Casino Hold'em, Dansk Roulette og mere"
+          caption="Spilnus Live Casino – 15+ live dealer-spil inkl. Dansk Roulette med danske dealere."
+          size="full"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – udvidede spillerprofiler</h2>
 
