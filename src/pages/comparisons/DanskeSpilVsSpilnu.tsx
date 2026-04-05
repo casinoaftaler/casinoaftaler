@@ -238,9 +238,9 @@ export default function DanskeSpilVsSpilnu() {
       </section>
 
         <ReviewScreenshot
-          src={danskespilCasinoLobby}
-          alt="Danske Spil casino-lobby med populære spil og kategorier – Danmarks største spiludbyder"
-          caption="Danske Spils casino-lobby – den mest kendte danske platform med fokus på tryghed og dansk licens."
+          src={dsCasinoLobby}
+          alt="Danske Spil Casino lobby med Påske-kampagne, King Kong Splash og populære spilleautomater som Jammin Jars og Gates of Olympus"
+          caption="Danske Spil Casino lobbyen – påskekampagne med freespins og personlige spilanbefalinger."
           size="full"
         />
 
