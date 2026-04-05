@@ -568,6 +568,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCollisionPhase('idle');
     setTumbleBarVisible(false);
     setFlyingMultipliers([]);
+    setShowSpinWinReveal(false);
     resetOrbReactionState();
     serverResultRef.current = null;
 
