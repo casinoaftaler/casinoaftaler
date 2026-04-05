@@ -12,11 +12,16 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Activity, LineChart, Play } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import screenshotRouletteBord from "@/assets/screenshots/roulette-bord-layout-chips.png";
+import screenshotSpildanskKatalog from "@/assets/screenshots/spildansknu-roulette-katalog.png";
+import screenshotDanskeSpilLobby from "@/assets/screenshots/danske-spil-roulette-lobby.png";
+import screenshotDanskeSpilLive from "@/assets/screenshots/danske-spil-live-roulette-gameplay.png";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
@@ -78,7 +83,7 @@ export default function JamesBondRouletteGuide() {
       />
 
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
         style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}
       >
         <div className="container">
@@ -89,7 +94,7 @@ export default function JamesBondRouletteGuide() {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               James Bond Roulette System 2026 – 007's Strategi Under Mikroskop
             </h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-primary-foreground/80">
               007's berømte roulette-strategi: dæk 25 af 37 tal med tre væddemål. Vi tester om agentens tilgang kan slå house edge – spoiler: selv Bond taber over tid.
             </p>
           </div>
@@ -159,6 +164,13 @@ export default function JamesBondRouletteGuide() {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={screenshotRouletteBord}
+            alt="Europæisk roulette-bord med chips placeret på høje tal, six-line 13-18 og nul – James Bond-systemets tre væddemål visualiseret"
+            caption="Roulette-bordets layout med chips placeret efter James Bond-mønsteret: 140 kr. på 19-36, 50 kr. på six-line 13-18 og 10 kr. på nul."
+            eager
+          />
 
           <h3 className="text-lg font-semibold text-foreground mb-3">Resultatscenarier</h3>
           <div className="overflow-x-auto mb-4">
@@ -387,6 +399,12 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotSpildanskKatalog}
+          alt="SpilDanskNu.dk roulette-katalog med europæiske roulette-varianter fra Stakelogic og Play'n GO inklusiv European Roulette Glam og Vegas Drops Roulette"
+          caption="SpilDanskNu tilbyder et bredt udvalg af europæiske roulette-varianter – ideelt til James Bond-systemet med lave minimumsindsatser."
+        />
+
         {/* Psykologisk analyse */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -519,6 +537,13 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotDanskeSpilLobby}
+          alt="Danske Spil live roulette-lobby med Danske Spil Roulette, XXXtreme Lightning Roulette og Dynasty Lightning Roulette samt spillerantal og minimumsindsatser"
+          caption="Danske Spils roulette-lobby med live-borde – Lightning Roulette er populært men har lidt højere house edge end standard europæisk roulette."
+          size="medium"
+        />
+
         {/* Varianter */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -597,6 +622,12 @@ export default function JamesBondRouletteGuide() {
             <li>Spillere der søger profitabel strategi (den eksisterer ikke i roulette)</li>
             <li>Bonus wagering (roulettes lave tællingsrate gør det ineffektivt)</li>
           </ul>
+          <ReviewScreenshot
+            src={screenshotDanskeSpilLive}
+            alt="Danske Spil live roulette gameplay med dealer, europæisk hjul og betting-grid der viser Første 12, Midterste 12 og Sidste 12 sektioner på dansk"
+            caption="Live roulette hos Danske Spil med dansk interface – bemærk de danske betegnelser for væddemålsområderne."
+          />
+
           <h3 className="text-lg font-semibold text-foreground mb-3">Anbefalede casinoer til James Bond-systemet</h3>
           <p className="text-muted-foreground leading-relaxed mb-3">
             For den optimale James Bond-oplevelse anbefaler vi casinoer med europæiske live-borde, lave minimumsindsatser og Favourite Bets-funktionalitet:
