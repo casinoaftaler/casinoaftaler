@@ -151,6 +151,14 @@ export default function AmerikanskRouletteGuide() {
             </CardContent>
           </Card>
 
+          <ReviewScreenshot
+            src={rouletteHjulCloseup}
+            alt="Close-up af roulette-hjulet i Classic Auto Roulette med synlige tal og kugle"
+            caption="Roulette-hjulet i nærbillede – bemærk den europæiske single-zero talrækkefølge. Et amerikansk hjul har 00 direkte overfor 0."
+            size="medium"
+            eager={true}
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Men denne guide handler ikke bare om at sige "spil europæisk i stedet" – selvom det er det korrekte råd i 99 % af tilfældene. Vi dykker ned i den komplette matematik bag det amerikanske hjul, analyserer alle væddemålstyper, dokumenterer den berygtede Five Number Bet, simulerer 10.000 spins, og giver dig de data du har brug for til at forstå præcis hvad du betaler for den ekstra underholdning.
           </p>
