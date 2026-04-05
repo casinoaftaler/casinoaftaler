@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mariaForside from "@/assets/screenshots/maria-forside.webp";
+
 import campobetMitidLogin from "@/assets/screenshots/campobet-mitid-login-brugerid.jpg";
 import campobetMitidApp from "@/assets/screenshots/campobet-mitid-godkend-app.jpg";
 import campobetMitidGodkendt from "@/assets/screenshots/campobet-mitid-godkendt.jpg";
@@ -12,7 +12,7 @@ import campobetKasserer from "@/assets/screenshots/campobet-kasserer-betalingsme
 import campobetForside from "@/assets/screenshots/campobet-app-forside-menu.jpg";
 import campobetLiveCasino from "@/assets/screenshots/campobet-live-casino-lobby.jpg";
 import campobetCasinoLobby from "@/assets/screenshots/campobet-casino-lobby-spil.jpg";
-import campobetAppStorePreview from "@/assets/screenshots/campobet-app-store-preview.jpg";
+
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -681,14 +681,7 @@ const IPhoneCasinoGuide = () => {
                   <div className="flex gap-4 text-xs">
                     <span className="text-muted-foreground">Tid: <span className="text-foreground font-medium">{method.time}</span></span>
                     <span className="text-muted-foreground">Gebyr: <span className="text-foreground font-medium">{method.fee}</span></span>
-          </div>
-
-          <ReviewScreenshot
-            src={campobetKasserer}
-            alt="CampoBet kasserer med betalingsmetoder: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med min. 100 kr og 0% gebyr"
-            caption="CampoBets kasserer på iPhone: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med 0 % gebyr og minimum 100 kr indbetaling."
-            size="medium"
-          />
+                  </div>
                   <p className="text-sm text-muted-foreground">{method.desc}</p>
                   <Link to={method.link} className="text-primary underline hover:text-primary/80 text-xs">
                     Læs komplet guide →
@@ -697,6 +690,13 @@ const IPhoneCasinoGuide = () => {
               </Card>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={campobetKasserer}
+            alt="CampoBet kasserer med betalingsmetoder: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med min. 100 kr og 0% gebyr"
+            caption="CampoBets kasserer på iPhone: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med 0 % gebyr og minimum 100 kr indbetaling."
+            size="medium"
+          />
 
           <p className="text-muted-foreground leading-relaxed mb-4">
             En unik iOS-fordel er, at Apple Pay-transaktioner aldrig deler dit egentlige kortnummer med
