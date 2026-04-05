@@ -426,12 +426,27 @@ const IPhoneCasinoGuide = () => {
             til en af de mest sikre platforme for online gambling. Her gennemgår vi, hvordan biometrisk
             autentificering fungerer i praksis med danske casinoer:
           </p>
-          <ReviewScreenshot
-            src={mariaForside}
-            alt="Maria Casino forside med iPhone-venligt mobildesign og populære spillekategorier"
-            caption="Maria Casinos forside – et eksempel på en iPhone-optimeret casinooplevelse med Touch/Face ID-support"
-            size="full"
-          />
+          <div className="grid gap-4 sm:grid-cols-3 mb-6">
+            <ReviewScreenshot
+              src={campobetMitidLogin}
+              alt="CampoBet MitID login-skærm med Bruger-ID felt og Spillemyndighedens tilladelse synlig i toppen"
+              caption="Trin 1: Indtast Bruger-ID hos CampoBet – Spillemyndighedens tilladelse vises øverst i appen."
+              size="compact"
+              eager
+            />
+            <ReviewScreenshot
+              src={campobetMitidApp}
+              alt="CampoBet MitID-bekræftelse med 'Åbn MitID app og godkend' besked og blåt MitID-ikon"
+              caption="Trin 2: MitID-appen åbnes automatisk til biometrisk godkendelse via Face ID eller Touch ID."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetMitidGodkendt}
+              alt="MitID godkendt-skærm med blåt skjold og flueben efter succesfuld biometrisk verifikation"
+              caption="Trin 3: MitID-godkendelse fuldført – du er nu sikkert logget ind med biometrisk verifikation."
+              size="compact"
+            />
+          </div>
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3">Biometrisk autentificering i casino-kontekst</h3>
