@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.webp";
+import rouletteLiveCasinoLobby from "@/assets/screenshots/roulette-live-casino-lobby.png";
+import rouletteClassicAutoBordlayout from "@/assets/screenshots/roulette-classic-auto-bordlayout.png";
+import rouletteHjulCloseup from "@/assets/screenshots/roulette-hjul-closeup.png";
+import rouletteHjaelpReglerMenu from "@/assets/screenshots/roulette-hjaelp-regler-menu.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
