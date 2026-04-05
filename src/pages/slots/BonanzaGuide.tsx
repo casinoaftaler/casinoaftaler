@@ -136,7 +136,7 @@ const BonanzaGuide = () => {
                 <div><span className="text-muted-foreground">Udgivelsesår:</span><br /><strong>2016</strong></div>
                 <div><span className="text-muted-foreground">RTP:</span><br /><strong>96,00 %</strong></div>
                 <div><span className="text-muted-foreground">Volatilitet:</span><br /><strong>Høj (4/5)</strong></div>
-                <div><span className="text-muted-foreground">Max win:</span><br /><strong>10.000× indsats</strong></div>
+                <div><span className="text-muted-foreground">Max win:</span><br /><strong>26.000× indsats</strong></div>
                 <div><span className="text-muted-foreground">Gevinstlinjer:</span><br /><strong>Op til 117.649</strong></div>
                 <div><span className="text-muted-foreground">Min. indsats:</span><br /><strong>0,20 kr.</strong></div>
                 <div><span className="text-muted-foreground">Maks. indsats:</span><br /><strong>400 kr.</strong></div>
