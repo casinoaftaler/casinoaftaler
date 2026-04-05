@@ -396,9 +396,29 @@ const DoubleExposureBlackjackGuide = () => {
               </div>
             </CardContent>
           </Card>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed mb-6">
             Den mest kontraintuitive ændring: du hitter oftere på hånde over 15, fordi et tie er et tab. Og du stander oftere på lave hånde (12-14), fordi du kan <em>se</em> at dealeren sandsynligvis buster. Denne dynamik gør Double Exposure til en udmærket variant for spillere, der vil udfordre deres strategiske tænkning ud over <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={deHardTotals}
+            alt="Double Exposure Blackjack strategi-skema for hard totals – farvekodede handlinger mod dealerens totaler fra 4-20"
+            caption="Komplet strategi-skema for hard totals i Double Exposure (Dealer Stands on Soft 17) – H=Hit, S=Stand, Dh=Double/Hit"
+          />
+
+          <ReviewScreenshot
+            src={deSoftTotals}
+            alt="Double Exposure Blackjack strategi-skema for soft totals – farvekodede handlinger fra soft 13 til soft 21"
+            caption="Strategi-skema for soft totals i Double Exposure – bemærk de hyppigere doubles sammenlignet med standard blackjack"
+            size="medium"
+          />
+
+          <ReviewScreenshot
+            src={deSplits}
+            alt="Double Exposure Blackjack strategi-skema for splits – hvornår man skal splitte par fra 2,2 til A,A"
+            caption="Split-strategi for Double Exposure – P=Split, P/H=Split eller Hit, Dh=Double/Hit. Bemærk de mange situationer hvor split frarådes"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
