@@ -146,9 +146,10 @@ const CrapsGuide = () => {
         </section>
 
         <ReviewScreenshot
-          src={danskespilLiveCasino}
-          alt="Danske Spil live casino-lobby med bordspil inklusiv craps, roulette og blackjack hos et dansk licenseret casino"
-          caption="Live casino-lobbyen hos Danske Spil viser det tilgængelige udvalg af bordspil for danske spillere"
+          src={comeonCraps}
+          alt="ComeOn casino craps-side med velkomstbonus på 100% op til 1.000 kr. og opret konto-knap for danske spillere"
+          caption="ComeOn tilbyder craps med dansk licens – her ses velkomsttilbuddet med 10x omsætningskrav"
+          eager
         />
 
         <InlineCasinoCards title="Bedste Casinoer til Craps" count={6} />
