@@ -682,6 +682,12 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotLiveCasino}
+          alt="Pragmatic Play Live Casino-portefølje med The Bingo Spot, Mega Roulette 3000 og Money Time game shows"
+          caption="Pragmatic Plays live casino-produkter – streamet fra deres egne studier med game shows som The Bingo Spot og Money Time."
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 10: PRAGMATIC PLAYS TEKNISKE STANDARDER
         ═══════════════════════════════════════════════════════════ */}
