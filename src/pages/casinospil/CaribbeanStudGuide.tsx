@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.webp";
+import caribbeanStud5plus1Bonus from "@/assets/screenshots/caribbean-stud-5plus1-bonus-odds.png";
+import caribbeanStudCallBet from "@/assets/screenshots/caribbean-stud-call-bet-odds.png";
+import pokerstarsIndbetaling from "@/assets/screenshots/pokerstars-ind-og-udbetaling.png";
+import caribbeanStudLiveBord from "@/assets/screenshots/caribbean-stud-live-casino-bord.png";
+import caribbeanStudAnteKnapper from "@/assets/screenshots/caribbean-stud-ante-bonus-play-knapper.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -128,10 +132,10 @@ export default function CaribbeanStudGuide() {
         </section>
 
         <ReviewScreenshot
-          src={danskespilThreeCardPoker}
-          alt="Casino poker-bord med Ante og Raise indsatsstruktur – Caribbean Stud bruger lignende mekanik"
-          caption="Casino-pokerspil som Caribbean Stud deler grundmekanikken med Three Card Poker – spiller mod dealer med faste odds."
-          size="full"
+          src={caribbeanStudLiveBord}
+          alt="Live Caribbean Stud Poker bord med dealer, kort og Ante/Bonus/Play indsatsfelter – Evolution Gaming"
+          caption="Live Caribbean Stud Poker hos et dansk casino – dealeren viser sine kort efter spillerens raise/fold-beslutning"
+          eager
         />
 
         {/* ──── Sektion 2: Odds & Sandsynligheder ──── */}
@@ -229,6 +233,13 @@ export default function CaribbeanStudGuide() {
           </p>
 
           <h3 className="text-xl font-semibold text-foreground mb-3">Bordets layout og indsatsfelter</h3>
+
+          <ReviewScreenshot
+            src={caribbeanStudAnteKnapper}
+            alt="Caribbean Stud Poker indsatsfelter – Ante, 5+1 Bonus og Play knapper på live casino-bordet"
+            caption="Indsatsfelterne i Caribbean Stud: Ante (obligatorisk), 5+1 Bonus (valgfri side-bet) og Play (2× ante raise)"
+            size="medium"
+          />
           <p className="text-muted-foreground leading-relaxed mb-4">
             Et standard Caribbean Stud-bord har tre indsatsfelter pr. spillerposition: "Ante" (den obligatoriske startindsats), "Raise" (2× ante, kun placeret efter kortvurdering) og "Progressive Jackpot" (en separat slot eller felt til jackpot-indsatsen). Nogle moderne borde tilføjer yderligere side-bets som "5+1 Bonus" (kombinerer dine 5 kort med dealerens synlige kort til den bedste 6-korts hånd), men disse har typisk en høj husets fordel og anbefales ikke for seriøse spillere.
           </p>
@@ -334,6 +345,13 @@ export default function CaribbeanStudGuide() {
           </Card>
 
           <h3 className="text-xl font-semibold text-foreground mb-3">Break-even jackpot-størrelse: det magiske tal</h3>
+
+          <ReviewScreenshot
+            src={caribbeanStudCallBet}
+            alt="Caribbean Stud Poker call bet odds – udbetalinger fra Royal Flush 100:1 til et par eller lavere 1:1"
+            caption="Call bet odds i Caribbean Stud – bemærk at udbetalingerne er markant lavere end 5+1 Bonus, men med højere træffrekvens"
+            size="compact"
+          />
           <p className="text-muted-foreground leading-relaxed mb-4">
             Med standard progressive udbetalinger er break-even punktet ca. 263.204× indsatsen. Ved en 10 kr.-indsats skal jackpotten altså overstige 2.632.040 kr. for at side-bettet har positiv forventet værdi. I praksis når de fleste online progressive jackpots dette niveau ekstremt sjældent – typisk resettes de ved 500.000-1.500.000 kr.
           </p>
@@ -536,6 +554,13 @@ export default function CaribbeanStudGuide() {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={caribbeanStud5plus1Bonus}
+            alt="5+1 Bonus side-bet odds i Caribbean Stud – fra Royal Flush 1.000:1 til Tre ens 7:1"
+            caption="5+1 Bonus side-bet udbetalinger – høje odds men med en husets fordel på 10-18 %, langt over hovedspillets 5,22 %"
+            size="compact"
+          />
         </section>
 
         {/* ──── Sektion 10: Bankroll management for Caribbean Stud ──── */}
@@ -611,7 +636,11 @@ export default function CaribbeanStudGuide() {
           </p>
         </section>
 
-        {/* ──── Sektion 12: Dansk lovgivning og skatteforhold ──── */}
+        <ReviewScreenshot
+          src={pokerstarsIndbetaling}
+          alt="PokerStars dansk platform med ind- og udbetaling sektion – licenseret til Caribbean Stud og andre pokerspil"
+          caption="PokerStars' danske platform med ind- og udbetalingsmuligheder – en af platformene med Caribbean Stud-varianter"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
             <MenuIcon iconName="scale" className="h-5 w-5 text-primary" />
