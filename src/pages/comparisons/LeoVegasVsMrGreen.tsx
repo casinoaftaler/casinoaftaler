@@ -428,6 +428,20 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvSport}
+          alt="LeoVegas Sport med Superligaen, FA Cup, LeoKing, Top Oddsboosts for FC København og spilkupon"
+          caption="LeoVegas Sport – oddsboosts, Superliga-dækning og LeoKing-konkurrence for danske spillere."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={mgKampagner}
+          alt="Mr Green Kampagner med Casino, Sport, Poker og Særligt udvalgt – Påske-cashspins og Spilsamling"
+          caption="Mr Greens kampagneoversigt – dedikerede kategorier for casino, sport og live casino-tilbud."
+          size="full"
+        />
+
       {/* SECTION: Udbetalingspsykologi */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Udbetalingspsykologi – hvorfor hurtige cashouts ændrer hele premium-følelsen</h2>
