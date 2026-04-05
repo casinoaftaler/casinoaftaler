@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
+import pokerHandRankings from "@/assets/screenshots/poker-hand-rankings-oversigt.png";
+import danskespilPokerForside from "@/assets/screenshots/danske-spil-poker-ggpoker-forside.png";
+import danskespilPokerDownload from "@/assets/screenshots/danske-spil-poker-download-side.png";
+import unibetPokerForside from "@/assets/screenshots/unibet-poker-forside-deepstack-open.png";
+import pokerstarsLivePokerLobby from "@/assets/screenshots/pokerstars-live-poker-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
