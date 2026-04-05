@@ -190,6 +190,20 @@ export default function VideoPokerGuide() {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er det vigtigt at bemærke, at mange online casinoer tilbyder reducerede udbetalingstabeller (f.eks. 8/5 eller 7/5 Jacks or Better). Disse ser næsten identiske ud med full-pay versionerne, men husets fordel kan være 2-4× højere. Det er en bevidst strategi fra casinoernes side: de fleste spillere tjekker aldrig udbetalingstabellen og bemærker ikke forskellen. Din første handling på ethvert nyt casino bør være at åbne video poker-spillet i demo-mode og verificere Full House/Flush-udbetalingerne.
           </p>
+
+          <ReviewScreenshot
+            src={vpUdbetalingstabel}
+            alt="Jacks or Better udbetalingstabel med coin-udbetalinger fra 1 til 5 coins for alle hænder"
+            caption="Udbetalingstabel for Jacks or Better – bemærk den disproportionale Royal Flush-bonus ved 5 coins (4.000 vs. 1.000 ved 4 coins)"
+            size="compact"
+          />
+
+          <ReviewScreenshot
+            src={vpPayTableRtp}
+            alt="Sammenligning af Jacks or Better pay tables med RTP fra 95,00 % (6/5) til 99,54 % (Full Pay 9/6)"
+            caption="RTP-forskelle mellem Jacks or Better-varianter – vælg altid 9/6 Full Pay for den højeste tilbagebetaling"
+            size="compact"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════
