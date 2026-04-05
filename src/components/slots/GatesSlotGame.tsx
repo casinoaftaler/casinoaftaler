@@ -1021,6 +1021,12 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
               onBuyBonus={handleBuyBonus}
               disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive || isBuyingBonus}
               isBonusActive={isBonusActive}
+              headerContent={
+                <GatesMultiplierOrb
+                  multiplierValue={tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
+                  isActive={isBonusActive}
+                />
+              }
             />
           </div>
         )}
