@@ -3,9 +3,10 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, Upload, X, Sparkles } from "lucide-react";
+import { Loader2, Upload, X, Sparkles, Download } from "lucide-react";
 import { toast } from "sonner";
 import { MULTIPLIER_SYMBOLS } from "@/lib/gatesMultiplierSymbols";
+import { downloadSymbolImages } from "@/lib/downloadSymbolImages";
 
 interface MultRow {
   id: string;
