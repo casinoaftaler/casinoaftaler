@@ -612,6 +612,13 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotWantedBuyMenu}
+          alt="Wanted Dead or a Wild bonus buy-menu med tre prisklasser – Det Store Togrøveri (1.600 kr.), Duel ved Daggry (4.000 kr.) og Død Mands Hånd (8.000 kr.) ved 20 kr. indsats"
+          caption="Wanted Dead or a Wild tilbyder tre forskellige bonus buy-niveauer med stigende pris og volatilitet – et godt eksempel på tiered buy features."
+          size="medium"
+        />
+
         {/* H2: Slots med bonus buy – vores analyser */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
