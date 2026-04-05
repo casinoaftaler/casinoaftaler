@@ -503,7 +503,12 @@ export default function Bet365VsUnibet() {
         </p>
       </section>
 
-      {/* SECTION 16: Markedsposition og corporate signaler */}
+        <ReviewScreenshot
+          src={unibetKampagner}
+          alt="Unibet kampagneoversigt med Slingo, cashback, free spins og bingo-kampagner – dansk casinokampagner"
+          caption="Unibets kampagneside – strukturerede casino- og bingo-kampagner med tydelige vilkår."
+          size="medium"
+        />
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Markedsposition, corporate signaler og hvilken type tillid du egentlig køber</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
