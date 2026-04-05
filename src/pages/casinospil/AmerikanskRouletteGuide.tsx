@@ -676,6 +676,13 @@ export default function AmerikanskRouletteGuide() {
             </Card>
           </div>
 
+          <ReviewScreenshot
+            src={rouletteLiveCasinoLobby}
+            alt="Live casino lobby med roulette-varianter: Classic Auto Roulette, Auto Roulette Burgundy, VIP og Sports"
+            caption="Live casino-lobbyen med roulette-udvalget – Classic Auto Roulette, Burgundy, VIP og Sports-varianter, alle tilgængelige hos danske licenserede casinoer."
+            size="full"
+          />
+
           <p className="text-muted-foreground mb-4 leading-relaxed">
             <strong>Hastigheds-implikation:</strong> Den lavere spin-rate på live borde er faktisk en <em>fordel</em> for din bankroll. Med 30 spins/time mod RNG's 80+ spins/time eksponeres du for 2,7× færre væddemål pr. time – og dermed 2,7× lavere forventet tab pr. time. Hos <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> finder du et bredt udvalg af <Link to="/live-casino/roulette" className={linkClass}>live roulette-borde</Link> med professionelle dealers.
           </p>
