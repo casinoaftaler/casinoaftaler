@@ -184,9 +184,14 @@ const PayNPlayGuide = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={spilleautomatenIndbetaling}
+          alt="Spilleautomaten.dk indbetalingsside med MobilePay, Mastercard, Visa og Trustly – minimum 75 kr."
+          caption="Indbetalingsmetoder hos Spilleautomaten.dk: MobilePay, Mastercard, Visa og Trustly med 75 kr. minimumsindbetaling. Screenshot fra april 2026."
+          eager
+        />
 
-        {/* 2. TEKNISK FLOW-DIAGRAM */}
+        <Separator className="my-10" />
         <section className="mb-12" id="teknisk-flow">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><MenuIcon iconName="refresh-cw" className="h-7 w-7 text-primary" />Teknisk flow – fra klik til spin</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">Her er det komplette tekniske flow, der udfoldes, når en spiller initierer en Pay N Play-transaktion. Hvert trin er designet til at minimere latency og maksimere sikkerhed:</p>
