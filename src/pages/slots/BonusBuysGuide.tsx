@@ -495,6 +495,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotSpilleregler}
+          alt="Spilleregler for 5 Lions Megaways med RTP-information – standard RTP 95,50%, bonus buy RTP 95,50% og Ante-indsats RTP 95,50%"
+          caption="RTP-oplysningerne i spillets regler – her kan du verificere den faktiske RTP for både standard spil, bonus buy og ante-indsats."
+        />
+
         {/* H2: Volatilitet og risiko ved køb af bonus */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
