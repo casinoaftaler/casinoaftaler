@@ -278,6 +278,13 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={lvLiveExclusive}
+          alt="LeoVegas Live Casino med Exclusive Sports Blackjack, Exclusive Live Roulette, Exclusive Free Bet Blackjack og LeoVegas Exclusive Roulette"
+          caption="LeoVegas' eksklusive live casino-borde – dedikerede blackjack- og roulette-borde kun for LeoVegas-spillere."
+          size="full"
+        />
+
       {/* SECTION: Live Casino */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Live casino – LeoVegas' eksklusive VIP-oplevelse</h2>
