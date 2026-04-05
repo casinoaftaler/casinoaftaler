@@ -616,6 +616,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Fysiske tells vs. timing tells:</strong> I live poker kan du observere modstanderens kropssprog, ansigtsudtryk og chip-håndtering. Online har du timing tells (hvor hurtigt modstanderen handler), bet-sizing tells og HUD-statistikker (hvis tilladt). Begge tell-typer giver værdifuld information, men live tells er ofte mere pålidelige, da de er sværere at fake.
           </p>
+
+          <ReviewScreenshot
+            src={danskeSpilPokerLobby}
+            alt="Danske Spil live poker-lobby med Ultimate Texas Holdem, Casino Holdem og Three Card Poker"
+            caption="Danske Spil tilbyder live casino-poker med varianter som Ultimate Texas Holdem (min. 5 kr.) og Casino Holdem (min. 10 kr.)"
+          />
         </section>
 
         <CasinospilMoneyLinks gameName="Poker Strategi" currentPath="/casinospil/poker/poker-strategi" />
