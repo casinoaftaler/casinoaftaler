@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import classicBlackjack from "@/assets/screenshots/classic-blackjack.webp";
-import blackjackSkemaImg from "@/assets/screenshots/blackjack-skema-komplet-strategi.png";
+import blackjackSkemaImg from "@/assets/screenshots/blackjack-skema-komplet-strategi.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

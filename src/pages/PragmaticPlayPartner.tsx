@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import pragmaticPlayLogo from "@/assets/providers/pragmatic-play-logo-transparent.png";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import screenshotAffiliatePartners from "@/assets/screenshots/pragmatic-play-affiliate-partners.png";
-import screenshotSlotsKatalog from "@/assets/screenshots/pragmatic-play-slots-katalog.png";
-import screenshotLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.png";
-import screenshotSpildansknu from "@/assets/screenshots/spildansknu-pragmatic-play-spil.png";
-import screenshotGatesGameplay from "@/assets/screenshots/gates-of-olympus-1000-gameplay.png";
+import screenshotAffiliatePartners from "@/assets/screenshots/pragmatic-play-affiliate-partners.webp";
+import screenshotSlotsKatalog from "@/assets/screenshots/pragmatic-play-slots-katalog.webp";
+import screenshotLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
+import screenshotSpildansknu from "@/assets/screenshots/spildansknu-pragmatic-play-spil.webp";
+import screenshotGatesGameplay from "@/assets/screenshots/gates-of-olympus-1000-gameplay.webp";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
