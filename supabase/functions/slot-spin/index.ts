@@ -611,7 +611,7 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
   return symbols[symbols.length - 1];
 }
 
-async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
+async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1, forceExactScatters: number = 0): Promise<string[][]> {
   // Pre-generate enough random values for grid generation:
   // ~5 rows * 6 cols * 2 (symbol picks + bomb/scatter rolls) + ~20 (dup rolls + shuffles) = ~80
   await prng.pregenerate(100);
@@ -620,13 +620,34 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
   const regularSymbols = nonScatterSymbols; // non-scatter, non-bomb candidates for duplication
   const grid: string[][] = [];
 
+  // If forceExactScatters > 0, pre-select which columns get a scatter
+  let scatterColumns = new Set<number>();
+  if (forceExactScatters > 0 && scatterSymbol) {
+    const cols = [0, 1, 2, 3, 4, 5];
+    for (let i = cols.length - 1; i > 0; i--) {
+      const j = Math.floor(await prng.next() * (i + 1));
+      [cols[i], cols[j]] = [cols[j], cols[i]];
+    }
+    for (let i = 0; i < Math.min(forceExactScatters, BONANZA_COLS); i++) {
+      scatterColumns.add(cols[i]);
+    }
+  }
+
   for (let col = 0; col < BONANZA_COLS; col++) {
     const column: string[] = [];
+    const mustHaveScatter = scatterColumns.has(col);
+    const scatterRow = mustHaveScatter ? Math.floor(await prng.next() * BONANZA_ROWS) : -1;
 
     // Step 1: Generate 5 symbols for this reel
     let hasScatter = false;
     let hasBomb = false;
     for (let row = 0; row < BONANZA_ROWS; row++) {
+      // If this is the forced scatter row, place it directly
+      if (mustHaveScatter && row === scatterRow) {
+        column.push(scatterSymbol!.id);
+        hasScatter = true;
+        continue;
+      }
       // In bonus: chance to place a multiplier bomb (max 1 per reel)
       if (isBonusSpin && !hasBomb && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
         const bombVal = await pickBonanzaBombValue(prng);
@@ -635,22 +656,23 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
         continue;
       }
       let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng, scatterWeightMultiplier);
-      // Cap 1 scatter per column
-      if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
-        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
+      // No scatters in columns without forced scatter when buying, and cap 1 scatter per column normally
+      if (scatterSymbol && sym.id === scatterSymbol.id) {
+        if (forceExactScatters > 0 || hasScatter) {
+          sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
+        } else {
+          hasScatter = true;
+        }
       }
-      if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
       column.push(sym.id);
     }
 
     // Step 2: Reel-based duplication for regular symbols only
-    // Configurable chance for 2 or 3 identical symbols per reel
     const dupRoll = await prng.next();
     const tripleThreshold = BONANZA_REEL_DUP_3_CHANCE;
     const doubleThreshold = tripleThreshold + BONANZA_REEL_DUP_2_CHANCE;
     if (dupRoll < doubleThreshold) {
       const dupCount = dupRoll < tripleThreshold ? 3 : 2;
-      // Find regular symbol indices (not scatter, not bomb)
       const regularIndices: number[] = [];
       for (let i = 0; i < column.length; i++) {
         const id = column[i];
@@ -659,12 +681,9 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
         }
       }
       if (regularIndices.length >= dupCount) {
-        // Pick a random regular symbol to be the duplicate
         const sourceIdx = regularIndices[Math.floor((await prng.next()) * regularIndices.length)];
         const sourceId = column[sourceIdx];
-        // Pick (dupCount - 1) other regular indices to replace
         const otherIndices = regularIndices.filter(i => i !== sourceIdx);
-        // Shuffle and take needed count
         for (let i = otherIndices.length - 1; i > 0; i--) {
           const j = Math.floor((await prng.next()) * (i + 1));
           [otherIndices[i], otherIndices[j]] = [otherIndices[j], otherIndices[i]];
@@ -676,10 +695,23 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
       }
     }
 
-    // Step 3: Shuffle the reel individually
-    for (let i = column.length - 1; i > 0; i--) {
-      const j = Math.floor((await prng.next()) * (i + 1));
-      [column[i], column[j]] = [column[j], column[i]];
+    // Step 3: Shuffle the reel individually (but keep forced scatter in place)
+    if (mustHaveScatter) {
+      // Shuffle only non-scatter positions
+      const nonScatterIndices: number[] = [];
+      for (let i = 0; i < column.length; i++) {
+        if (scatterSymbol && column[i] !== scatterSymbol.id) nonScatterIndices.push(i);
+      }
+      for (let i = nonScatterIndices.length - 1; i > 0; i--) {
+        const j = Math.floor((await prng.next()) * (i + 1));
+        const a = nonScatterIndices[i], b = nonScatterIndices[j];
+        [column[a], column[b]] = [column[b], column[a]];
+      }
+    } else {
+      for (let i = column.length - 1; i > 0; i--) {
+        const j = Math.floor((await prng.next()) * (i + 1));
+        [column[i], column[j]] = [column[j], column[i]];
+      }
     }
 
     grid.push(column);
@@ -793,34 +825,7 @@ async function calculateBonanzaFullSpin(
   forceScatters: boolean = false,
   scatterWeightMultiplier: number = 1
 ): Promise<BonanzaSpinResult> {
-  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
-
-  // BuyBonus: force EXACTLY 4 scatters — remove any existing scatters first
-  if (forceScatters && !isBonusSpin) {
-    const scatterSymbol = symbols.find(s => s.is_scatter);
-    if (scatterSymbol) {
-      const nonScatter = symbols.filter(s => !s.is_scatter && !s.is_wild);
-      // Remove all existing scatters from the grid
-      for (let c = 0; c < BONANZA_COLS; c++) {
-        for (let r = 0; r < BONANZA_ROWS; r++) {
-          if (grid[c][r] === scatterSymbol.id) {
-            grid[c][r] = nonScatter[Math.floor(await prng.next() * nonScatter.length)].id;
-          }
-        }
-      }
-      // Place exactly 4 scatters in 4 random columns
-      const cols = [0, 1, 2, 3, 4, 5];
-      for (let i = cols.length - 1; i > 0; i--) {
-        const j = Math.floor(await prng.next() * (i + 1));
-        [cols[i], cols[j]] = [cols[j], cols[i]];
-      }
-      const chosen = cols.slice(0, 4);
-      for (const col of chosen) {
-        const row = Math.floor(await prng.next() * BONANZA_ROWS);
-        grid[col][row] = scatterSymbol.id;
-      }
-    }
-  }
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier, forceScatters && !isBonusSpin ? 4 : 0);
 
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: BonanzaTumbleStep[] = [];
