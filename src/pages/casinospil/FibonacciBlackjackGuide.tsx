@@ -15,6 +15,10 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
+import fibonacciDiagram from "@/assets/screenshots/fibonacci-talraekke-diagram.png";
+import comeonBlackjack from "@/assets/screenshots/comeon-live-blackjack-lobby.png";
+import getluckyBlackjack from "@/assets/screenshots/getlucky-live-blackjack-lobby.png";
+import spildansknuBlackjack from "@/assets/screenshots/spildansknu-live-blackjack-grid.png";
 import { Badge } from "@/components/ui/badge";
 import { Activity, ArrowRight, Infinity, LineChart, Repeat, Timer } from "lucide-react"
 import { MenuIcon } from "@/components/MenuIcon";;
@@ -181,6 +185,12 @@ const FibonacciBlackjackGuide = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={fibonacciDiagram}
+          alt="Fibonacci-talrækken visualiseret med TAB (fremad) og VIND (to trin tilbage) – 1, 1, 2, 3, 5, 8, 13, 21"
+          caption="Fibonacci-sekvensens mekanik: Ved tab rykker du ét trin frem. Ved gevinst rykker du to trin tilbage i sekvensen."
+        />
 
         <Separator className="mb-12" />
 
@@ -384,6 +394,12 @@ const FibonacciBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildansknuBlackjack}
+          alt="SpilDanskNu live blackjack-lobby med Evolution og Pragmatic Play borde fra 10 kr. til 500 kr. – ideel til Fibonacci-progressionen"
+          caption="SpilDanskNu tilbyder et bredt udvalg af live blackjack-borde med indsatser fra 10 kr. – perfekt til at teste Fibonacci med lav basisenhed"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
@@ -423,6 +439,12 @@ const FibonacciBlackjackGuide = () => {
             Fibonacci placerer sig som "midtervej-systemet" – mere aggressivt end D'Alembert, men langt mindre volatilt end Martingale. Hvis du er typen, der vil have lidt spænding uden det emotionelle traume af Martingale, og D'Alembert føles for kedeligt, er Fibonacci det mindst ringe kompromis.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={comeonBlackjack}
+          alt="ComeOn live blackjack-lobby med Easy Blackjack, Lightning Blackjack, Free Bet Blackjack og VIP-borde fra Evolution"
+          caption="ComeOn tilbyder varianter som Lightning Blackjack og Free Bet Blackjack – begge kompatible med Fibonacci-progression"
+        />
 
         <Separator className="mb-12" />
 
@@ -503,6 +525,12 @@ const FibonacciBlackjackGuide = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={getluckyBlackjack}
+          alt="GetLucky live blackjack-sektion med Unlimited, Multiplikator og Evolution-filtre – borde fra 10 kr."
+          caption="GetLucky har et overskueligt blackjack-udvalg med filtrering efter bordtype – nyttigt til at finde borde med passende indsatsgrænser"
+        />
 
         <Separator className="mb-12" />
 
