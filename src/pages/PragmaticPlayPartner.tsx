@@ -559,6 +559,12 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotSpildansknu}
+          alt="SpilDanskNu casinospil-katalog med over 40 Pragmatic Play spillemaskiner inkl. Sweet Bonanza, Gates of Olympus og Big Bass Bonanza"
+          caption="Pragmatic Plays brede udvalg hos SpilDanskNu – et af de danske casinoer med flest Pragmatic Play-titler."
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 8: PRAGMATIC PLAY I BONUS HUNTS & COMMUNITY
         ═══════════════════════════════════════════════════════════ */}
