@@ -196,6 +196,13 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={lottoPaske}
+          alt="Danske Spil Lotto og Påske Lotto præmiepuljer – 10 mio. kr. førstepræmie og 25 × 1 mio. ekstra lodtrækning"
+          caption="Lottos præmiepuljer – vælg mellem klassisk Lotto og Det Store Påske Lotto med 25 ekstra millionærchancer."
+          size="medium"
+        />
+
         {/* ── H2 4 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
