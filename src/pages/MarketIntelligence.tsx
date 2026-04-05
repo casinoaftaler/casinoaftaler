@@ -155,27 +155,27 @@ export default function MarketIntelligence() {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4 gap-2 border border-primary-foreground/15 bg-background/15 text-primary-foreground backdrop-blur-sm">
+            <Badge variant="secondary" className="mb-4 gap-2 border border-white/15 bg-background/15 text-white backdrop-blur-sm">
               <MenuIcon iconName="sparkles" className="h-3.5 w-3.5" />
               Verificeret markedsindsigt · 2026
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
               Markedsindsigt for danske casinoer
             </h1>
-            <p className="mt-4 text-lg leading-relaxed text-primary-foreground/85">
+            <p className="mt-4 text-lg leading-relaxed text-white/85">
               Følg dokumenterede licenssignaler, bonusrammer og konkrete markedsskift på tværs af danske operatører — samlet i et offentligt overblik, der er skabt til både spillere og research.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-primary-foreground/85">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <MenuIcon iconName="shield-check" className="h-4 w-4 text-primary-foreground" />
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-white/85">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <MenuIcon iconName="shield-check" className="h-4 w-4 text-white" />
                 Verificerede markedssignaler
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <MenuIcon iconName="trending-up" className="h-4 w-4 text-primary-foreground" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <MenuIcon iconName="trending-up" className="h-4 w-4 text-white" />
                 Live snapshot af markedet
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
-                <MenuIcon iconName="landmark" className="h-4 w-4 text-primary-foreground" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <MenuIcon iconName="landmark" className="h-4 w-4 text-white" />
                 Kilder fra licens- og bonussider
               </div>
             </div>
