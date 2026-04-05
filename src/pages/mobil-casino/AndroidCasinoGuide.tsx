@@ -314,6 +314,13 @@ const AndroidCasinoGuide = () => {
               .
             </p>
           </div>
+
+          <ReviewScreenshot
+            src={samsungGalaxyS26}
+            alt="Samsung Galaxy S26 Series med Galaxy AI – flagskibstelefonen der scorer højest i vores casino-benchmarks"
+            caption="Samsung Galaxy S26-serien – vores top-anbefaling til Android-casino med Snapdragon-chip og 120 Hz AMOLED."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
