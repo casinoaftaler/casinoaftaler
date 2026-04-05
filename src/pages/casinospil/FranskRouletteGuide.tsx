@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.webp";
+import franskRouletteBordlayout from "@/assets/screenshots/fransk-roulette-bordlayout.png";
+import liveRouletteVarianter from "@/assets/screenshots/live-roulette-varianter-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
