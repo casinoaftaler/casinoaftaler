@@ -543,6 +543,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCollisionPhase('idle');
     setTumbleBarVisible(false);
     setFlyingMultipliers([]);
+    resetOrbReactionState();
     serverResultRef.current = null;
 
     const STAGGER_MS = 80;
@@ -769,7 +770,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         }
       }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, stopAutoSpin, doubleChance]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, stopAutoSpin, doubleChance, resetOrbReactionState]);
 
   handleSpinRef.current = handleSpin;
 
@@ -827,6 +828,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
     setCollisionPhase('idle');
     setTumbleBarVisible(false);
     setFlyingMultipliers([]);
+    resetOrbReactionState();
     serverResultRef.current = null;
 
     const STAGGER_MS = 80;
@@ -921,7 +923,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
         spinLockRef.current = false;
       }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid, resetOrbReactionState]);
 
   // Spacebar to spin
   useEffect(() => {
