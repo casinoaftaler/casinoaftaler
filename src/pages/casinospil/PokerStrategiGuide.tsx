@@ -590,6 +590,12 @@ export default function PokerStrategiGuide() {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Final table strategi:</strong> Ved final table (typisk 6-9 spillere) eskalerer ICM-effekten yderligere. Hvert pay-jump repræsenterer en significant stigning i præmie, og dine strategiske beslutninger bør afspejle dette. Generelt: undgå marginale all-ins mod andre medium-stacks (risikoen for elimination overvejer gevinsten af ekstra chips), og target short-stacks aggressivt (de er de mest sandsynlige til at bubbe). Læs mere om pokervarianter i vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={unibetPokerStellar}
+            alt="Unibet Poker Stellar Sundays turnering med Kom i Gang-sektion og download/browser-muligheder"
+            caption="Unibet Poker tilbyder turneringer som Stellar Sundays og mulighed for at spille direkte i browseren eller via download"
+          />
         </section>
 
         {/* ═══════════ SEKTION 12: Online vs. Live ═══════════ */}
