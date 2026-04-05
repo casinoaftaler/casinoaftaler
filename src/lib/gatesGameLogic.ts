@@ -25,9 +25,9 @@ export const SCATTER_RETRIGGER_COUNT = 3;
 export const FREE_SPINS_BY_SCATTER: Record<number, number> = { 4: 10, 5: 12, 6: 15 };
 export const FREE_SPINS_RETRIGGER = 5;
 
-// Multiplier orb values and their weights
-export const MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
-export const MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+// Multiplier orb values and their weights (synced with site_settings)
+export const MULTIPLIER_VALUES = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 50, 100, 250, 500];
+export const MULTIPLIER_WEIGHTS = [5000, 3000, 2000, 1500, 1200, 1000, 800, 700, 600, 500, 400, 350, 250, 100, 50];
 
 // Re-export multiplier helpers for convenience
 export { isMultiplierSymbol, getMultiplierValue } from './gatesMultiplierSymbols';
