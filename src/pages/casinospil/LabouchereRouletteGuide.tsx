@@ -80,8 +80,7 @@ export default function LabouchereRouletteGuide() {
         title="Labouchère Roulette 2026 – Cancellation System, Matematik & Test"
         description="Labouchère roulette-system: Cancellation-mekanismen, sekvensdesign og Monte Carlo simulering. Virker strategien reelt? Se vores ærlige test."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-03-07"
-        />
+      />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -722,9 +721,9 @@ export default function LabouchereRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Labouchère Roulette" currentPath="/casinospil/roulette/labouchere-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/labouchere-roulette" />
-        <AuthorBio author="jonas" />
-        <FAQSection faqs={faqs} />
         <RelatedGuides currentPath="/casinospil/roulette/labouchere-roulette" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

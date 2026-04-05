@@ -90,8 +90,7 @@ export default function PokerStrategiGuide() {
         title="Poker Strategi Guide 2026 – EV, Position & Bankroll"
         description="Avanceret dansk poker strategi-guide. Lær positionsspil, pot odds, EV-beregninger, GTO-koncepter og bankroll management. Fra begynder til professionelt niveau."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-03-21"
-        />
+      />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -627,9 +626,9 @@ export default function PokerStrategiGuide() {
 
         <CasinospilMoneyLinks gameName="Poker Strategi" currentPath="/casinospil/poker/poker-strategi" />
         <LatestNewsByCategory pagePath="/casinospil/poker/poker-strategi" />
-        <AuthorBio author="kevin" />
         <RelatedGuides currentPath="/casinospil/poker/poker-strategi" />
         <FAQSection faqs={faqs} />
+        <AuthorBio author="kevin" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>

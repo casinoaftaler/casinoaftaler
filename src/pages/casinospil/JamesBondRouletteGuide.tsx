@@ -80,8 +80,7 @@ export default function JamesBondRouletteGuide() {
         title="James Bond Roulette 2026 – 007's System, Matematik & Ærlig Test"
         description="James Bond roulette: 007's dækningsmønster, sandsynlighedsmatematik og Monte Carlo simulering. Virker Bond-strategien? Se analysen."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-02-21"
-        />
+      />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

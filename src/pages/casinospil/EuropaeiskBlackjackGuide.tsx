@@ -109,7 +109,7 @@ const EuropaeiskBlackjackGuide = () => {
         title="Europæisk Blackjack 2026 – ENHC, OBO & Regler"
         description="Europæisk blackjack: ENHC vs. OBO-regler, tilpasset basic strategy og matematisk sammenligning med amerikansk variant. Se hvad der passer dig."
         type="article"
-        datePublished="2026-03-09"
+        datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -733,9 +733,9 @@ const EuropaeiskBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Europæisk Blackjack" currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/europaeisk-blackjack" />
-        <AuthorBio />
         <RelatedGuides currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <FAQSection faqs={faqs} />
+        <AuthorBio />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>

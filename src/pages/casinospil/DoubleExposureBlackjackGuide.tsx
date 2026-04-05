@@ -107,7 +107,7 @@ const DoubleExposureBlackjackGuide = () => {
         title="Double Exposure Blackjack 2026 – Regler & House Edge"
         description="Double Exposure Blackjack guide: begge dealerkort synlige, house edge, tilpasset strategi og hvornår varianten giver mening for danske spillere."
         type="article"
-        datePublished="2026-02-22"
+        datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -650,11 +650,11 @@ const DoubleExposureBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure-blackjack" />
-        <AuthorBio />
-
         <RelatedGuides currentPath="/casinospil/blackjack/double-exposure-blackjack" />
 
         <FAQSection faqs={faqs} />
+
+        <AuthorBio />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

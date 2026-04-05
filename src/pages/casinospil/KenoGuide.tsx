@@ -167,8 +167,7 @@ const KenoGuide = () => {
         title="Online Keno – Spil Keno med Dansk Licens | Casinoaftaler"
         description="Komplet guide til online keno i Danmark: varianter, RTP-analyse, sandsynligheder og strategi. Find de bedste keno-casinoer med dansk licens."
         jsonLd={[faqJsonLd, articleJsonLd]}
-      datePublished="2025-12-12"
-        />
+      />
 
       {/* Hero – same gradient as /nye-casinoer and Bingo */}
       <section

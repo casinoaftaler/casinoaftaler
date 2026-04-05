@@ -96,8 +96,7 @@ export default function PokerBedsteSiderGuide() {
         title="Bedste Pokersider 2026 – Top Pokersites med Dansk Licens"
         description="Sammenlign de bedste pokersider med dansk licens i 2026. Anmeldelser af PokerStars, Unibet, bet365 og flere med bonus, rakeback og turneringer."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-01-14"
-        />
+      />
 
       {/* Hero – matches /nye-casinoer gradient */}
       <section
@@ -839,9 +838,9 @@ export default function PokerBedsteSiderGuide() {
 
         <CasinospilMoneyLinks gameName="Poker" currentPath="/casinospil/poker/bedste-sider" />
         <LatestNewsByCategory pagePath="/casinospil/poker/bedste-sider" />
-        <FAQSection faqs={faqs} />
-
         <RelatedGuides currentPath="/casinospil/poker/bedste-sider" />
+
+        <FAQSection faqs={faqs} />
 
         <AuthorBio author="kevin" />
       </ContentPageLayout>

@@ -79,8 +79,7 @@ export default function EuropaeiskRouletteGuide() {
         title="Europæisk Roulette 2026 – Single Zero, House Edge & Guide"
         description="Europæisk roulette: Single zero mekanik, 2,70 % house edge, call bets, sector betting og strategiske anbefalinger. Se hvornår du bør spille det."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-01-25"
-        />
+      />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -703,9 +702,9 @@ export default function EuropaeiskRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Europæisk Roulette" currentPath="/casinospil/roulette/europaeisk-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/europaeisk-roulette" />
-        <AuthorBio author="jonas" />
-        <FAQSection faqs={faqs} />
         <RelatedGuides currentPath="/casinospil/roulette/europaeisk-roulette" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

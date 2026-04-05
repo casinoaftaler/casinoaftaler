@@ -167,8 +167,7 @@ const SkrabespilGuide = () => {
         title="Online Skrabespil – Spil Skrabelodder med Dansk Licens | Casinoaftaler"
         description="Komplet guide til online skrabespil i Danmark: varianter, RTP-analyse, gevinsttabeller og strategi. Find de bedste skrabespil-casinoer med dansk licens."
         jsonLd={[faqJsonLd, articleJsonLd]}
-      datePublished="2025-12-22"
-        />
+      />
 
       {/* Hero – same gradient as /nye-casinoer, Bingo, Keno */}
       <section

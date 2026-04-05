@@ -82,7 +82,7 @@ const MartingaleBlackjackGuide = () => {
         title="Martingale Blackjack 2026 – Matematik, Risiko & Fejl"
         description="Martingale i blackjack: Vi analyserer matematikken, risk of ruin og hvorfor fordoblingsstrategien bryder sammen. Se simuleringen og vores vurdering."
         type="article"
-        datePublished="2026-03-16"
+        datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -239,9 +239,9 @@ const MartingaleBlackjackGuide = () => {
 
         <CasinospilMoneyLinks gameName="Martingale Blackjack" currentPath="/casinospil/blackjack/martingale" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/martingale" />
-        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinospil/blackjack/martingale" />
         <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>

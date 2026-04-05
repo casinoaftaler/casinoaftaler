@@ -91,8 +91,7 @@ export default function MartingaleRouletteGuide() {
         title="Martingale Roulette 2026 – System, Matematik & Ærlig Test"
         description="Martingale i roulette: Fordoblingsprincippet, eksponentiel risiko og 10.000-spins simulering. Virker det? Se vores ærlige analyse."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2026-03-14"
-        />
+      />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
@@ -842,9 +841,9 @@ export default function MartingaleRouletteGuide() {
 
         <CasinospilMoneyLinks gameName="Martingale Roulette" currentPath="/casinospil/roulette/martingale-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/martingale-roulette" />
+        <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="frederik" />
-        <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

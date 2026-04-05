@@ -99,8 +99,7 @@ const CrapsGuide = () => {
         title="Craps Matematik 2026 – Odds, Edge og Analyse"
         description="Craps guide 2026: Terningekombinationer, house edge for alle væddemål, EV-beregning og bankroll management. Se optimal strategi for danske spillere."
         jsonLd={[faqJsonLd, articleSchema]}
-      datePublished="2025-12-18"
-        />
+      />
 
       {/* ── HERO ── */}
       <section
@@ -503,9 +502,9 @@ const CrapsGuide = () => {
 
         <CasinospilMoneyLinks gameName="Craps" currentPath="/casinospil/craps" />
         <LatestNewsByCategory pagePath="/casinospil/craps" />
+        <RelatedGuides currentPath="/casinospil/craps" />
         <FAQSection faqs={crapsFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />
-        <RelatedGuides currentPath="/casinospil/craps" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
