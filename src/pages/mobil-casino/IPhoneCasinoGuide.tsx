@@ -974,6 +974,20 @@ const IPhoneCasinoGuide = () => {
             ))}
           </div>
 
+          <div className="grid gap-4 sm:grid-cols-2 mb-6">
+            <ReviewScreenshot
+              src={campobetCasinoLobby}
+              alt="CampoBet casino-lobby med Anbefalede spil, Golden Slots og Nye Spil – over 3.100 tilgængelige titler på iPhone"
+              caption="CampoBets casino-lobby på iPhone: Anbefalede spil, Golden Slots og over 3.100 nye titler – alt optimeret til touch."
+              size="compact"
+            />
+            <ReviewScreenshot
+              src={campobetLiveCasino}
+              alt="CampoBet Live Casino med Speed Roulette, Lightning Baccarat, Crazy Pachinko, Dansk Roulette og Blackjack på iPhone"
+              caption="Live Casino-sektionen med 660+ borde: Speed Roulette, Lightning Baccarat, Dansk Roulette og Blackjack – alt i HD direkte på iPhone."
+              size="compact"
+            />
+          </div>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Generelt set er 95 % af alle casino-spiltitler kompatible med iPhone via Safari. De resterende
             5 % er typisk ældre Flash-baserede spil, der ikke længere understøttes af nogen moderne platform.
