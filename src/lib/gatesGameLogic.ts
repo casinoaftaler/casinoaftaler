@@ -62,8 +62,8 @@ export function scanGridBombs(grid: string[][]): GatesBomb[] {
 }
 
 // Chance of multiplier orbs appearing on a spin (percentage of cells)
-export const MULTIPLIER_CHANCE_BASE = 0.08; // 8% per cell in base game
-export const MULTIPLIER_CHANCE_BONUS = 0.12; // 12% per cell in bonus
+export const MULTIPLIER_CHANCE_BASE = 0.02; // 2% per cell in base game
+export const MULTIPLIER_CHANCE_BONUS = 0.03; // 3% per cell in bonus
 
 export interface GatesWin {
   symbolId: string;
