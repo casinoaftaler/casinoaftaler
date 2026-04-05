@@ -22,7 +22,6 @@ import screenshotRouletteBord from "@/assets/screenshots/roulette-bord-layout-ch
 import screenshotSpildanskKatalog from "@/assets/screenshots/spildansknu-roulette-katalog.png";
 import screenshotDanskeSpilLobby from "@/assets/screenshots/danske-spil-roulette-lobby.png";
 import screenshotDanskeSpilLive from "@/assets/screenshots/danske-spil-live-roulette-gameplay.png";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
