@@ -549,6 +549,20 @@ export default function PokerBedsteSiderGuide() {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={pokerstarsHaandrangering}
+            alt="PokerStars håndrangering guide – Royal Flush, Straight Flush, Fire ens, Fuldt hus, Flush og Straight forklaret med kortillustrationer"
+            caption="PokerStars' officielle håndrangering – fra Royal Flush til Straight, illustreret med kort"
+            size="full"
+          />
+
+          <ReviewScreenshot
+            src={pokerstarsHaandrangering2}
+            alt="PokerStars håndrangering fortsat – Tre ens, To par, Par og High card med eksempler"
+            caption="Håndrangering fortsat – Tre ens, To par, Par og High card med visuelle eksempler"
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             Vores poker-cluster dækker begge verdener: <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> og <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link> for PvP-spillere, og <Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> og <Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> for casino poker-spillere. For en samlet oversigt, se vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
