@@ -681,7 +681,14 @@ const IPhoneCasinoGuide = () => {
                   <div className="flex gap-4 text-xs">
                     <span className="text-muted-foreground">Tid: <span className="text-foreground font-medium">{method.time}</span></span>
                     <span className="text-muted-foreground">Gebyr: <span className="text-foreground font-medium">{method.fee}</span></span>
-                  </div>
+          </div>
+
+          <ReviewScreenshot
+            src={campobetKasserer}
+            alt="CampoBet kasserer med betalingsmetoder: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med min. 100 kr og 0% gebyr"
+            caption="CampoBets kasserer på iPhone: MobilePay, Apple Pay, Visa/Mastercard, Dankort, Trustly og Paysafecard – alle med 0 % gebyr og minimum 100 kr indbetaling."
+            size="medium"
+          />
                   <p className="text-sm text-muted-foreground">{method.desc}</p>
                   <Link to={method.link} className="text-primary underline hover:text-primary/80 text-xs">
                     Læs komplet guide →
