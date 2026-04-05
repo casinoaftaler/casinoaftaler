@@ -157,6 +157,13 @@ export default function AmerikanskRouletteGuide() {
             caption="Roulette-hjulet i nærbillede – bemærk den europæiske single-zero talrækkefølge. Et amerikansk hjul har 00 direkte overfor 0."
             size="medium"
             eager={true}
+         />
+
+          <ReviewScreenshot
+            src={rouletteClassicAutoBordlayout}
+            alt="Classic Auto Roulette bordlayout med indsatsfelter, chip-values og roulette-hjul"
+            caption="Det komplette bordlayout i Classic Auto Roulette – med alle indsatstyper synlige: straight-up, split, street, corner, dozen og even-money felter."
+            size="full"
           />
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
