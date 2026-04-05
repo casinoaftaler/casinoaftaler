@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import screenshot5Lions from "@/assets/screenshots/5-lions-megaways-bonus-buy-knap.png";
+import screenshotKoebDialog from "@/assets/screenshots/bonus-buy-koeb-gratis-spins-dialog.png";
+import screenshotSpilleregler from "@/assets/screenshots/spilleregler-rtp-volatilitet-info.png";
+import screenshotWantedGameplay from "@/assets/screenshots/wanted-dead-or-a-wild-gameplay.png";
+import screenshotWantedBuyMenu from "@/assets/screenshots/wanted-dead-or-a-wild-bonus-buy-menu.png";
+import screenshotBuyRtp from "@/assets/screenshots/bonus-buy-rtp-spilleregler.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
