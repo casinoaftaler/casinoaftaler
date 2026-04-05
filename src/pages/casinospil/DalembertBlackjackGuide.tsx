@@ -177,6 +177,9 @@ const DalembertBlackjackGuide = () => {
         />
 
         <Separator className="mb-12" />
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 2 – Mekanikken
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
