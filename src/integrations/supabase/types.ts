@@ -3184,6 +3184,13 @@ export type Database = {
         }[]
       }
       get_community_stats: { Args: never; Returns: Json }
+      get_pending_queue_positions: {
+        Args: never
+        Returns: {
+          queue_position: number
+          request_id: string
+        }[]
+      }
       get_slot_by_slug: {
         Args: { p_slug: string }
         Returns: {
