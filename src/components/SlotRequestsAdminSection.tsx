@@ -30,6 +30,7 @@ export function SlotRequestsAdminSection() {
   const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
   const activeHuntNumber = session?.hunt_number;
+  const [manualHitRequest, setManualHitRequest] = useState<{ id: string; userId: string; slotName: string } | null>(null);
 
   const currentMax = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
   const [maxLimit, setMaxLimit] = useState(currentMax);
