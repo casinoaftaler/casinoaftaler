@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spildansknuBonus from "@/assets/reviews/spildansknu-bonus.webp";
+import comeonBonus from "@/assets/screenshots/comeon-velkomstbonus-100pct-casino-live.webp";
+import kapowBonus from "@/assets/screenshots/kapow-casino-100-spins-gates-of-olympus.webp";
+import royalCasinoBonus from "@/assets/screenshots/royal-casino-bonus-750kr-200-chancer.webp";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -169,9 +171,10 @@ const NyeCasinoerLavWagering = () => {
             Ikke alle spil bidrager lige meget til omsætningskravet. De fleste nye casinoer anvender følgende standard, men der er vigtige afvigelser, du skal kende. Vi har gennemgået bonusvilkårene hos 15+ nye danske casinoer og fundet disse mønstre:
           </p>
            <ReviewScreenshot
-             src={spildansknuBonus}
-             alt="Bonusvilkår og omsætningskrav hos SpilDanskNu med lav wagering på velkomstbonus"
-             caption="Bonussiden hos et nyt dansk casino – tjek altid omsætningskrav inden du aktiverer"
+             src={comeonBonus}
+             alt="ComeOn velkomstbonus med 100% bonus op til 1.000 kr. til casino eller live casino med 10x omsætningskrav"
+             caption="ComeOn tilbyder 100% velkomstbonus med overskuelige omsætningskrav – et godt eksempel på lav wagering"
+             size="medium"
            />
           <div className="overflow-x-auto rounded-lg border border-border mb-4">
             <table className="w-full text-sm">
@@ -250,6 +253,12 @@ const NyeCasinoerLavWagering = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowBonus}
+          alt="Kapow Casino velkomstbonus med 100 spins til Gates of Olympus for 100 kr. indbetaling og 10x omsætningskrav"
+          caption="Kapow Casino tilbyder 100 free spins ved 100 kr. indbetaling – bemærk 10x omsætningskrav i vilkårene"
+        />
+
         <Separator className="my-10" />
 
         {/* Bankroll management during wagering - UNIQUE */}
@@ -324,6 +333,13 @@ const NyeCasinoerLavWagering = () => {
             <strong>Vigtigt:</strong> Tjek altid om automaten er tilgængelig hos det nye casino og om den bidrager 100% til omsætningskrav. Nogle nye casinoer ekskluderer specifikke høj-RTP automater fra wagering-bidrag. Vi noter disse undtagelser i vores individuelle casinoanmeldelser.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={royalCasinoBonus}
+          alt="Royal Casino bonusside med 750 kr. ved første overførsel og 200 chancer ved oprettelse med 10x omsætningskrav"
+          caption="Royal Casino viser tydelige bonusvilkår – 10x omsætning på 750 kr. bonus og separate free spins"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
