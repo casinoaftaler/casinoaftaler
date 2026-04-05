@@ -27,7 +27,7 @@ export const FREE_SPINS_RETRIGGER = 5;
 
 // Multiplier orb values and their weights (synced with site_settings)
 export const MULTIPLIER_VALUES = [2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 50, 100, 250, 500];
-export const MULTIPLIER_WEIGHTS = [5000, 3000, 2000, 1500, 1200, 1000, 800, 700, 600, 500, 400, 350, 250, 100, 50];
+export const MULTIPLIER_WEIGHTS = [5000, 3000, 2000, 1500, 1200, 1000, 800, 700, 600, 500, 400, 84, 10, 5, 2];
 
 // Re-export multiplier helpers for convenience
 export { isMultiplierSymbol, getMultiplierValue } from './gatesMultiplierSymbols';
