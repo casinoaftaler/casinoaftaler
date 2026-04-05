@@ -151,12 +151,20 @@ const CrazyTimeGuide = () => {
             For danske spillere er Crazy Time tilgængeligt hos alle større <Link to="/casino-anmeldelser" className={linkClass}>casinoer med dansk licens</Link>, der samarbejder med Evolution Gaming – hvilket inkluderer størstedelen af de licenserede danske operatører. Spillet er identisk uanset casino: samme studie, samme hjul, samme odds. Valget af casino bør derfor baseres på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed – ikke på gameplay-forskelle, der ikke eksisterer.
           </p>
           <ReviewScreenshot
-            src={royalcasinoLiveCasino}
-            alt="RoyalCasino live casino-lobby med game shows som Crazy Time og Dream Catcher"
-            caption="RoyalCasino's live casino – herfra finder du Crazy Time og andre populære game shows fra Evolution"
+            src={crazyTimeDealer}
+            alt="Crazy Time live dealer foran det ikoniske hjul med segmenter for Coin Flip, Cash Hunt, Pachinko og Crazy Time bonus"
+            caption="Crazy Time – Evolutions mest populære game show med live dealer og fire unikke bonusspil."
             size="full"
+            eager
           />
         </section>
+
+        <ReviewScreenshot
+          src={crazyTimeLogo}
+          alt="Crazy Time officielt logo med det farverige hjul og gylden nøgle"
+          caption="Crazy Time-logoet – Evolutions flagskib inden for live game shows siden 2020."
+          size="medium"
+        />
 
         {/* ── H2 2: Hjulets opbygning ── */}
         <section className="mb-12">
