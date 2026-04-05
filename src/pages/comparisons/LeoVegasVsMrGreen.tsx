@@ -1,6 +1,15 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
+import lvForside from "@/assets/screenshots/leovegas-forside-velkomstbonus-bigbass.webp";
+import lvTop10 from "@/assets/screenshots/leovegas-top10-spil-populaere.webp";
+import lvLiveExclusive from "@/assets/screenshots/leovegas-live-casino-exclusive-blackjack-roulette.webp";
+import lvLiveTop10 from "@/assets/screenshots/leovegas-live-casino-top10-spil.webp";
+import lvSport from "@/assets/screenshots/leovegas-sport-oddsboosts-superligaen.webp";
+import mgLogin from "@/assets/screenshots/mrgreen-mitid-login-tilmeld.webp";
+import mgLobby from "@/assets/screenshots/mrgreen-casino-lobby-favoritter-paske.webp";
+import mgLive from "@/assets/screenshots/mrgreen-live-casino-blackjack-roulette-borde.webp";
+import mgKampagner from "@/assets/screenshots/mrgreen-kampagner-casino-paske-cashspins.webp";
+import mgSport from "@/assets/screenshots/mrgreen-sport-kampagner-risikofrit.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 const linkClass = "text-primary underline hover:text-primary/80";
