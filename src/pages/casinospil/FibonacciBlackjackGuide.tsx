@@ -394,6 +394,12 @@ const FibonacciBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spildansknuBlackjack}
+          alt="SpilDanskNu live blackjack-lobby med Evolution og Pragmatic Play borde fra 10 kr. til 500 kr. – ideel til Fibonacci-progressionen"
+          caption="SpilDanskNu tilbyder et bredt udvalg af live blackjack-borde med indsatser fra 10 kr. – perfekt til at teste Fibonacci med lav basisenhed"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════
