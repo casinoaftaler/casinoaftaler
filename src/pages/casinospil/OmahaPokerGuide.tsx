@@ -361,6 +361,12 @@ const OmahaPokerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Re-draws og backdoor equity:</strong> I PLO er det ikke nok bare at ramme en straight – du skal tænke på, om din straight kan blive slået af en bedre straight eller en flush på næste gade. Når du rammer en straight med non-nut kort, og boardet har en mulig flush draw, er din equity langt lavere end tallene ovenfor antyder. Avancerede PLO-spillere evaluerer altid deres "nut outs" separat fra deres "non-nut outs" for at undgå at overcommitte med den næstbedste hånd.
           </p>
+          <ReviewScreenshot
+            src={omahaCommunityCards}
+            alt="Omaha kortlayout – community cards og hole cards vist separat med to hænder og fem fælleskort"
+            caption="Omaha kortlayout – community cards (øverst) og to spilleres hole cards (nederst) illustrerer must-use-2 reglen"
+            size="full"
+          />
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
