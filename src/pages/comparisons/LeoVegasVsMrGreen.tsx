@@ -289,6 +289,20 @@ export default function LeoVegasVsMrGreen() {
         </p>
       </section>
 
+        <ReviewScreenshot
+          src={mgLive}
+          alt="Mr Green Live Casino med Dansk Blackjack 1 og 2, Manhattan Blackjack, Cosmopolitan Blackjack, Exclusive Roulette og Free Bet Blackjack"
+          caption="Mr Greens Live Casino – danske blackjack-borde med navngivne dealere og VIP-borde op til 30.000 kr."
+          size="full"
+        />
+
+        <ReviewScreenshot
+          src={lvLiveTop10}
+          alt="LeoVegas Top 10 Live Casino spil med XXXtreme Lightning Roulette, Exclusive Live Roulette, Crazy Coin Flip, Red Door Roulette"
+          caption="LeoVegas' Top 10 Live Casino – fra Lightning Roulette til eksklusive borde med lave minimums."
+          size="full"
+        />
+
       {/* SECTION: Ansvarligt spil */}
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – Mr Greens Green Gaming sætter standarden</h2>
