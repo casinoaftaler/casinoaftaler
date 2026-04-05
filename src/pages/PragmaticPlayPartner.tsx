@@ -401,6 +401,12 @@ const PragmaticPlayPartner = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={screenshotGatesGameplay}
+          alt="Gates of Olympus 1000 gameplay-screenshot med multiplier-symboler og tumble-mekanik på SpilDanskNu"
+          caption="Gates of Olympus 1000 i aktion – Pragmatic Plays ikoniske multiplier collect-mekanik med op til 15.000x indsatsen."
+        />
+
         {/* ═══════════════════════════════════════════════════════════
             SEKTION 6: SÅDAN TESTER VI PRAGMATIC PLAY SPIL
         ═══════════════════════════════════════════════════════════ */}
