@@ -31,7 +31,7 @@ export function BonanzaFlyingMultiplier({ flyers, className }: BonanzaFlyingMult
               "--fly-dy": `${dy}px`,
             } as React.CSSProperties}
           >
-            <span className="text-3xl font-black text-yellow-300 drop-shadow-[0_0_16px_rgba(250,204,21,0.8)] [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_0_20px_rgba(250,204,21,0.6)]">
+            <span className={`text-3xl font-black drop-shadow-[0_0_16px_rgba(59,130,246,0.8)] [text-shadow:0_2px_8px_rgba(0,0,0,0.9),0_0_20px_rgba(59,130,246,0.6)] ${className ? 'text-blue-300' : 'text-yellow-300'}`}>
               {f.value}x
             </span>
           </div>
