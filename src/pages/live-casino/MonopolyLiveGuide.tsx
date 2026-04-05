@@ -1,6 +1,9 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
+import monopolyLiveWheel from "@/assets/screenshots/monopoly-live-spinning-wheel.png";
+import monopolyLiveBoardOverview from "@/assets/screenshots/monopoly-live-3d-board-overview.png";
+import monopolyLiveBoardCloseup from "@/assets/screenshots/monopoly-live-board-closeup.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
@@ -300,6 +303,12 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={monopolyLiveWheel}
+          alt="Monopoly Live spinning wheel med vært i rødt studie – segmenter med 1, 2, 5, 10, Chance og 2/4 Rolls synlige"
+          caption="Monopoly Live hjulet i aktion: Værten spinner det fysiske hjul mens spillere placerer indsatser på de 7 segmenter"
+        />
+
         <Separator className="my-10" />
 
         {/* H2 #4 – Chance-segmentet */}
@@ -363,6 +372,12 @@ const MonopolyLiveGuide = () => {
             <strong>Spread-betting advarsel:</strong> Mange spillere sætter på alle 7 segmenter for at "garantere" en gevinst. Dette er matematisk suboptimalt: du betaler house edge på alle bets simultant, og din nettogenvinst pr. spin reduceres markant. Fokusér dine indsatser på færre segmenter med lavere house edge for at maksimere din spiltid pr. bankroll-krone.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={monopolyLiveBoardOverview}
+          alt="Monopoly Live 3D bonusrunde – Mr. Monopoly på det virtuelle brætspil med multiplikatorer fra 4x til 8x på ejendomme"
+          caption="Bonusrunden i Monopoly Live: Mr. Monopoly bevæger sig rundt på det 3D-animerede brætspil med multiplikatorer på hver ejendom"
+        />
 
         <Separator className="my-10" />
 
@@ -499,6 +514,12 @@ const MonopolyLiveGuide = () => {
             <strong>Unik fordel ved Monopoly Live:</strong> Bonusrunden er det mest interaktive element i nogen game show. Du følger Mr. Monopoly rundt på brættet med genuine spænding om hvert kast. Crazy Times bonusspil er mere varierede (4 vs. 1), men Monopoly Livs enkeltstående bonusrunde er dybere og mere immersiv. Det er en subjektiv præference – men objektivt er Monopoly Live billigere pr. time.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={monopolyLiveBoardCloseup}
+          alt="Monopoly Live 3D-bræt close-up med detaljerede ejendomme, gader og bygninger i fuld 3D"
+          caption="Close-up af det detaljerede 3D Monopoly-bræt med bygninger, parker og gadenavne – kvaliteten af Evolutions grafik er bemærkelsesværdig"
+        />
 
         <Separator className="my-10" />
 
