@@ -135,7 +135,7 @@ const IPhoneCasinoGuide = () => {
 
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
+        className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
             ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
@@ -153,7 +153,7 @@ const IPhoneCasinoGuide = () => {
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino på iPhone – Komplet iOS Guide
             </h1>
-            <p className="text-lg text-primary-foreground/80">
+            <p className="text-lg text-white/80">
               Face ID-login, Apple Pay-indbetalinger, Safari PWA og performance-benchmarks
               for alle iPhone-modeller. Alt du skal vide om casino på iOS.
             </p>
@@ -747,6 +747,8 @@ const IPhoneCasinoGuide = () => {
               <div key={rule} className="flex items-start gap-2">
                 <MenuIcon iconName="check-circle" className="h-4 w-4 mt-1 text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">{rule}</span>
+              </div>
+            ))}
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
@@ -762,8 +764,6 @@ const IPhoneCasinoGuide = () => {
               caption="App Store-detaljer: 135,1 MB, Kasino-kategori, 18+ aldersklassificering – alle Spillemyndighedens krav er opfyldt."
               size="compact"
             />
-          </div>
-            ))}
           </div>
 
           <p className="text-muted-foreground leading-relaxed mb-4">
