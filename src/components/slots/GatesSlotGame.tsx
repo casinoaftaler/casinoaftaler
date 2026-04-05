@@ -296,7 +296,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin", isMobile = false }
   }, []);
 
   // Process tumble steps — Bonanza-style with sequential bomb blow-up
-  const processTumbleSteps = useCallback(async (steps: any[]) => {
+  const processTumbleSteps = useCallback(async (steps: any[], serverTotalWin?: number) => {
     let winningStepCount = 0;
 
     for (let i = 0; i < steps.length; i++) {
